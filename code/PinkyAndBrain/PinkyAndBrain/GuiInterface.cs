@@ -11,16 +11,55 @@ using System.IO;
 
 namespace PinkyAndBrain
 {
+
+    public struct Param
+    {
+        List<int> ratHouseParameter;
+        List<int> landscapeParameters;
+    }
+
+    public struct Variable
+    {
+        string name;
+        string niceName;
+        bool vectGen;
+        bool editable;
+        int category;
+        string callBack;
+        string toolTip;
+        Param Parameters;
+        Param lowBound;
+        Param highBound;
+        Param increment;
+    }
+
     /// <summary>
     /// This partial is used for events callbacks.
     /// </summary>
     public partial class GuiInterface : Form
     {
+        /// <summary>
+        /// The selected protocols path to view protocols.
+        /// </summary>
         private string _protoclsDirPath;
 
-        public GuiInterface()
+        /// <summary>
+        /// The variables readen from the xlsx protocol file.
+        /// </summary>
+        private List<Variable> _variablesList;
+
+        private ExcelProtocolConfigFieLoader _excelLoader;
+
+
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public GuiInterface(ExcelProtocolConfigFieLoader excelLoader)
         {
             InitializeComponent();
+            _excelLoader = excelLoader;
+
         }
 
         private void protocolBrowserBtn_Click(object sender, EventArgs e)
@@ -32,6 +71,12 @@ namespace PinkyAndBrain
 
             }
         }
+
+
+
+
+
+
 
 
 
@@ -56,8 +101,19 @@ namespace PinkyAndBrain
 
             }
 
-            if(_protocolsComboBox.Items.Count > 0 )
+            if (_protocolsComboBox.Items.Count > 0)
+            {
                 _protocolsComboBox.SelectedItem = _protocolsComboBox.Items[0];
+                SetVariables(dirPath);
+            }
+        }
+
+        /// <summary>
+        /// Sets the variables in the chosen xlsx file and stote them in the class members.
+        /// </summary>
+        private void SetVariables(string dirPath)
+        {
+            
         }
 
         #endregion

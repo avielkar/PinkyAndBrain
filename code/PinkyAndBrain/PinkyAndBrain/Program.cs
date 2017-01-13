@@ -14,9 +14,10 @@ namespace PinkyAndBrain
         [STAThread]
         static void Main()
         {
+            ExcelProtocolConfigFieLoader excelLoader = new ExcelProtocolConfigFieLoader();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GuiInterface());
+            Application.Run(new GuiInterface(excelLoader));
         }
     }
 }
