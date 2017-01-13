@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PinkyAndBrain
 {
-    public partial class Form1 : Form
+    public partial class GuiInterface : Form
     {
-        public Form1()
+        public GuiInterface()
         {
             InitializeComponent();
         }
