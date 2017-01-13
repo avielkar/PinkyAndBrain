@@ -44,14 +44,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcrossVectorValuesGenerator.cs" />
+    <Compile Include="ControlLoop.cs" />
+    <Compile Include="ExcelProtocolConfigFieLoader.cs" />
     <Compile Include="GuiInterface.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GuiInterface.Designer.cs">
       <DependentUpon>GuiInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="OnlinePsychGraphMaker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RatResponseController.cs" />
+    <Compile Include="ResponseAnalyzer.cs" />
+    <Compile Include="RobotsController.cs" />
+    <Compile Include="SavedDataMaker.cs" />
+    <Compile Include="TrjectoryCreator.cs" />
+    <EmbeddedResource Include="GuiInterface.resx">
+      <DependentUpon>GuiInterface.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
