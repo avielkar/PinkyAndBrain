@@ -1,0 +1,733 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MotoComES_CS</name>
+    </assembly>
+    <members>
+        <member name="T:MotoComES_CS.MotoComES">
+            <summary>
+            外部DLLをラッピングするためのクラス
+            ※『DllImport』を使用するため、アンセーフコードとなる
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.OK">
+            <summary>
+            正常処理 : 0
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_CONNECTION_ERROR">
+            <summary>
+            未接続エラー : 9000
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_CONNECTION_TIMEOUT_ERROR">
+            <summary>
+            受信タイムアウトエラー : 9001
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_SEND_ERROR">
+            <summary>
+            送信エラー : 9002
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_COMMAND_RECEIVE_ERROR">
+            <summary>
+            コマンド受信エラー : 9003
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_FILE_SEND_ERROR">
+            <summary>
+            ファイル送信エラー : 9004
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_FILE_RECEIVE_ERROR">
+            <summary>
+            ファイル受信エラー : 9005
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_FILE_SAVE_ERROR">
+            <summary>
+            ファイル保存エラー : 9006
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_FILE_LOAD_ERROR">
+            <summary>
+            ファイル読み込みエラー : 9006
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_DCI_BIND_ERROR">
+            <summary>
+            DCI bindエラー : 9010
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_DCI_TIMEOUT">
+            <summary>
+            DCI タイムアウト : 9011
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_DCI_EVENT_ERROR2">
+            <summary>
+            DCI イベントエラー : 9012
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_DCI_EVENT_ERROR3">
+            <summary>
+            DCI イベントエラー : 9013
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_DCI_RECEIVE_SIZE_ERROR">
+            <summary>
+            DCI 受信サイズエラー : 9014
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_DCI_COMMAND_UNMATCHING_ERROR">
+            <summary>
+            DCI 受信コマンド不一致エラー : 9015
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_DCI_PROC_UNMATCHING_ERROR">
+            <summary>
+            DCI 受信procエラー : 9016
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_DCI_FILE_OPEN_ERROR">
+            <summary>
+            DCI ファイルオープンエラー : 9017
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_PARAM_ERROR">
+            <summary>
+            パラメータ指定エラー : 9100
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ES_SERVICE_NOT_SUPPORTED">
+            <summary>
+            SERVICE未実装エラー : 08
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.String_Length">
+            <summary>
+            文字列最大文字数(バイト数) : 16 + 1
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.FileName_Length">
+            <summary>
+            ファイル名最大文字数(バイト数) : 32 + 1
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.DCI_VarData_Length">
+            <summary>
+            変数データ最大領域数(バイト数) : 13 + 1
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES._ECode">
+            <summary>
+            文字エンコーディング
+            </summary>
+        </member>
+        <member name="M:MotoComES_CS.MotoComES.ByteArrayToString(System.Byte[])">
+            <summary>
+            バイト配列を文字列に変換
+            </summary>
+            <param name="pbArray">バイト配列</param>
+            <returns></returns>
+        </member>
+        <member name="M:MotoComES_CS.MotoComES.StringToByteArray(System.String,System.Int32)">
+            <summary>
+            文字列をバイト配列に変換
+            </summary>
+            <param name="psValue">文字列</param>
+            <param name="piByteCount">バイト数</param>
+            <returns></returns>
+        </member>
+        <member name="M:MotoComES_CS.MotoComES.ArrayEdit(System.Byte[],System.Int32,System.Int32,System.Byte[][]@)">
+            <summary>
+            1次元配列を2次元配列に変換
+            </summary>
+            <param name="pbArray1">1次元配列</param>
+            <param name="piLength1">2次元配列 1次元要素数</param>
+            <param name="piLength2">2次元配列 2次元要素数</param>
+            <param name="pbArray2">2次元配列</param>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESAlarmData">
+            <summary>
+            アラームデータ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAlarmData.alarmTime_Length">
+            <summary>
+            アラーム発生時刻 バイト数(16 + 1)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAlarmData.alarmName_Length">
+            <summary>
+            アラーム文字列名称 バイト数(32 + 1)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAlarmData.alarmCode">
+            <summary>
+            アラームコード
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAlarmData.alarmData">
+            <summary>
+            アラームデータ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAlarmData.alarmType">
+            <summary>
+            アラームデータ種別
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAlarmData.alarmTime">
+            <summary>
+            アラーム発生時刻
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAlarmData.alarmName">
+            <summary>
+            アラーム文字列名称
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESAlarmDataEx">
+            <summary>
+            アラームサブコードデータ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAlarmDataEx.alarmData">
+            <summary>
+            アラームデータ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAlarmDataEx.subcodeData">
+            <summary>
+            アラームデータ(サブコード対応)
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESSubcodeData">
+            <summary>
+            アラームデータ(サブコード対応)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESSubcodeData.alarmAddInfo_Length">
+            <summary>
+            詳細データ付加情報文字列 バイト数(16 + 1)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESSubcodeData.alarmStrData_Length">
+            <summary>
+            詳細データ文字列 バイト数(96 + 1)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESSubcodeData.alarmAddInfo">
+            <summary>
+            詳細データ付加情報文字列
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESSubcodeData.alarmStrData">
+            <summary>
+            詳細データ文字列
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESSubcodeData.alarmHighlightData">
+            <summary>
+            詳細データ文字列 反転表示情報 ("1"のとき反転表示)
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESAlarmList">
+            <summary>
+            アラームリスト
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAlarmList.data_Lenght">
+            <summary>
+            アラームデータ 要素数
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAlarmList.data">
+            <summary>
+            アラームデータ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESAlarmListEx">
+            <summary>
+            アラームサブコードリスト
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAlarmListEx.data_Lenght">
+            <summary>
+            アラームデータ 要素数
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAlarmListEx.data">
+            <summary>
+            アラームデータ(サブコード対応)
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESStatusData">
+            <summary>
+            ステータスデータ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESStatusData.status1">
+            <summary>
+            ステータスデータ1
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESStatusData.status2">
+            <summary>
+            ステータスデータ2
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESJobStatusData">
+            <summary>
+            ジョブステータスデータ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESJobStatusData.jobName_Length">
+            <summary>
+            ジョブ名称 バイト数(32 + 1)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESJobStatusData.jobName">
+            <summary>
+            ジョブ名称
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESJobStatusData.lineNo">
+            <summary>
+            ライン番号
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESJobStatusData.stepNo">
+            <summary>
+            ステップ番号
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESJobStatusData.speedOverride">
+            <summary>
+            速度オーバーライド値
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESConfigurationData">
+            <summary>
+            軸構成データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESConfigurationData.configurations_Length1">
+            <summary>
+            軸名称 1次元要素数
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESConfigurationData.configurations_Length2">
+            <summary>
+            軸名称 2次元要素数(4 + 1)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESConfigurationData.configurations_Length">
+            <summary>
+            軸名称 バイト数 (1次元要素数 * 2次元要素数)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESConfigurationData.configurations">
+            <summary>
+            軸名称(SLURBT,XYZRxRyRz)
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESAxisData">
+            <summary>
+            軸データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAxisData.axis_Length">
+            <summary>
+            軸データ 要素数
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESAxisData.axis">
+            <summary>
+            軸データ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESPositionData">
+            <summary>
+            ロボット位置データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESPositionData.dataType">
+            <summary>
+            データタイプ(パルス値/直交値)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESPositionData.fig">
+            <summary>
+            形態
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESPositionData.toolNo">
+            <summary>
+            ツール番号
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESPositionData.userFrameNo">
+            <summary>
+            ユーザ座標番号
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESPositionData.exFig">
+            <summary>
+            形態(7軸用)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESPositionData.axesData">
+            <summary>
+            軸データ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESBpexPositionData">
+            <summary>
+            ベース位置/外部軸位置データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESBpexPositionData.dataType">
+            <summary>
+            データタイプ(パルス値/直交値)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESBpexPositionData.axesData">
+            <summary>
+            軸データ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESMonitoringTimeData">
+            <summary>
+            管理時間データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMonitoringTimeData.startTime_Length">
+            <summary>
+            稼働開始時刻 バイト数(16 + 1)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMonitoringTimeData.elapseTime_Length">
+            <summary>
+            経過時間 バイト数(12 + 1)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMonitoringTimeData.startTime">
+            <summary>
+            稼働開始時刻
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMonitoringTimeData.elapseTime">
+            <summary>
+            経過時間
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESSystemInfoData">
+            <summary>
+            システム情報データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESSystemInfoData.systemVersion_Length">
+            <summary>
+            システムソフトウェアバージョン バイト数(24 + 1)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESSystemInfoData.name_Length">
+            <summary>
+            機種名称/用途名称 バイト数(16 + 1)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESSystemInfoData.parameterNo_Length">
+            <summary>
+            パラメータNo. バイト数(8 + 1)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESSystemInfoData.systemVersion">
+            <summary>
+            システムソフトウェアバージョン
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESSystemInfoData.name">
+            <summary>
+            機種名称/用途名称
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESSystemInfoData.parameterNo">
+            <summary>
+            パラメータNo.
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESControlGroupData">
+            <summary>
+            制御グループデータ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESControlGroupData.robot">
+            <summary>
+            ロボット
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESControlGroupData.Base">
+            <summary>
+            ベース
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESControlGroupData.station">
+            <summary>
+            ステーション
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESMultiByteData">
+            <summary>
+            1バイト複数データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiByteData.multiData_Length">
+            <summary>
+            データ最大数
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiByteData.data">
+            <summary>
+            1バイトデータ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESMultiShortData">
+            <summary>
+            2バイト複数データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiShortData.multiData_Length">
+            <summary>
+            データ最大数
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiShortData.data">
+            <summary>
+            2バイトデータ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESMultiUShortData">
+            <summary>
+            2バイト複数データ(unsigned)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiUShortData.multiData_Length">
+            <summary>
+            データ最大数
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiUShortData.data">
+            <summary>
+            2バイトデータ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESMultiLongData">
+            <summary>
+            4バイト複数データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiLongData.multiData_Length">
+            <summary>
+            データ最大数
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiLongData.data">
+            <summary>
+            4バイトデータ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESMultiRealData">
+            <summary>
+            実数複数データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiRealData.multiData_Length">
+            <summary>
+            データ最大数
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiRealData.data">
+            <summary>
+            4バイトデータ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESMultiStrData">
+            <summary>
+            文字列複数データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiStrData.multiData_Length1">
+            <summary>
+            軸名称 1次元要素数(データ最大数 = 29)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiStrData.multiData_Length2">
+            <summary>
+            軸名称 2次元要素数(16 + 1)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiStrData.multiData_Length">
+            <summary>
+            軸名称 バイト数 (1次元要素数 * 2次元要素数)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiStrData.data">
+            <summary>
+            文字列データ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESMultiPositionData">
+            <summary>
+            複数位置データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiPositionData.multiData_Length">
+            <summary>
+            データ最大数
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiPositionData.data">
+            <summary>
+            位置データ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESMultiBpexPositionData">
+            <summary>
+            複数ベース・外部位置データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiBpexPositionData.multiData_Length">
+            <summary>
+            データ最大数
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMultiBpexPositionData.data">
+            <summary>
+            位置データ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESMoveData">
+            <summary>
+            移動情報データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMoveData.robotNo">
+            <summary>
+            ロボット番号(0 - 8)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMoveData.startionNo">
+            <summary>
+            ステーション番号(0 - 24)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMoveData.speedType">
+            <summary>
+            速度区分
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESMoveData.speed">
+            <summary>
+            速度
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESBaseData">
+            <summary>
+            ベース位置データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESBaseData.axis_Length">
+            <summary>
+            軸データ 要素数
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESBaseData.axis">
+            <summary>
+            軸データ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESStationData">
+            <summary>
+            ステーション位置データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESStationData.axis_Length">
+            <summary>
+            軸データ 要素数
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESStationData.axis">
+            <summary>
+            軸データ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESPulsePosData">
+            <summary>
+            ロボットの目標位置データ(パルス値)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESPulsePosData.axesData">
+            <summary>
+            軸データ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESCartMoveData">
+            <summary>
+            移動データ(直交座標)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESCartMoveData.moveData">
+            <summary>
+            移動情報データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESCartMoveData.robotPos">
+            <summary>
+            ロボット目標位置データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESCartMoveData.basePos">
+            <summary>
+            ベース目標位置データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESCartMoveData.stationPos">
+            <summary>
+            ステーション目標位置データ
+            </summary>
+        </member>
+        <member name="T:MotoComES_CS.MotoComES.ESPulseMoveData">
+            <summary>
+            移動データ(パスル)
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESPulseMoveData.moveData">
+            <summary>
+            移動情報データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESPulseMoveData.robotPos">
+            <summary>
+            ロボット目標位置データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESPulseMoveData.basePos">
+            <summary>
+            ベース目標位置データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESPulseMoveData.stationPos">
+            <summary>
+            ステーション目標位置データ
+            </summary>
+        </member>
+        <member name="F:MotoComES_CS.MotoComES.ESPulseMoveData.toolNo">
+            <summary>
+            ツール番号
+            </summary>
+        </member>
+    </members>
+</doc>

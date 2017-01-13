@@ -1,0 +1,228 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
+    "LANGUAGE 17, 1\r\n"
+    "#pragma code_page(932)\r\n"
+    "#include ""res\\Sample.rc2""  // Microsoft Visual C++ 以外で編集されたリソース\r\n"
+    "#include ""l.JPN\\afxres.rc""      // 標準コンポーネント\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\Sample.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SAMPLE_DIALOG DIALOGEX 0, 0, 587, 329
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Sample"
+FONT 9, "MS UI Gothic", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,7,7,181,315,ES_MULTILINE | ES_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL
+    PUSHBUTTON      "ESGetAlarm",IDC_BTNESGETALARM,195,7,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetAlarmHist",IDC_BTNESGETALARMHIST,195,47,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetStatus",IDC_BTNESGETSTATUS,195,87,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetJobStatus",IDC_BTNESGETJOBSTATUS,195,107,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetConfiguration",IDC_BTNESGETCONFIGURATION,194,127,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetPosition",IDC_BTNESGETPOSITION,195,147,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetDeviation",IDC_BTNESGETDEVIATION,195,167,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetTorque",IDC_BTNESGETTORQUE,195,187,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetMonitoringTime",IDC_BTNESGETMONITORINGTIME,195,207,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetSystemInfo",IDC_BTNESGETSYSTEMINFO,194,227,83,14,BS_LEFT
+    PUSHBUTTON      "ESReadIO",IDC_BTNESREADIO,194,247,83,14,BS_LEFT
+    PUSHBUTTON      "ESWriteIO",IDC_BTNESWRITEIO,194,267,83,14,BS_LEFT
+    PUSHBUTTON      "ESReadRegister",IDC_BTNESREADREGISTER,194,287,83,14,BS_LEFT
+    PUSHBUTTON      "ESWriteRegister",IDC_BTNESWRITEREGISTER,194,308,83,14,BS_LEFT
+    PUSHBUTTON      "ESReadIOM",IDC_BTNESREADIOM,296,7,83,14,BS_LEFT
+    PUSHBUTTON      "ESWriteIOM",IDC_BTNESWRITEIOM,296,27,83,14,BS_LEFT
+    PUSHBUTTON      "ESReadRegisterM",IDC_BTNESREADREGISTERM,296,47,83,14,BS_LEFT
+    PUSHBUTTON      "ESWriteRegisterM",IDC_BTNESWRITEREGISTERM,296,67,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetVarData",IDC_BTNESGETVARDATA,296,87,83,14,BS_LEFT
+    PUSHBUTTON      "ESSetVarData",IDC_BTNESSETVARDATA,296,107,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetStrData",IDC_BTNESGETSTRDATA,296,127,83,14,BS_LEFT
+    PUSHBUTTON      "ESSetStrData",IDC_BTNESSETSTRDATA,296,147,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetPositionData",IDC_BTNESGETPOSITIONDATA,296,167,83,14,BS_LEFT
+    PUSHBUTTON      "ESSetPositionData",IDC_BTNESSETPOSITIONDATA,296,187,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetBpexPositionData",IDC_BTNESGETBPEXPOSITIONDATA,296,207,83,14,BS_LEFT
+    PUSHBUTTON      "ESSetBpexPositionData",IDC_BTNESSETBPEXPOSITIONDATA,296,227,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetVarDataMB",IDC_BTNESGETVARDATAMB,296,247,83,14,BS_LEFT
+    PUSHBUTTON      "ESSetVarDataMB",IDC_BTNESSETVARDATAMB,296,267,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetVarDataMI",IDC_BTNESGETVARDATAMI,296,288,83,14,BS_LEFT
+    PUSHBUTTON      "ESSetVarDataMI",IDC_BTNESSETVARDATAMI,296,308,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetVarDataMD",IDC_BTNESGETVARDATAMD,397,7,83,14,BS_LEFT
+    PUSHBUTTON      "ESSetVarDataMD",IDC_BTNESSETVARDATAMD,397,27,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetVarDataMR",IDC_BTNESGETVARDATAMR,397,47,83,14,BS_LEFT
+    PUSHBUTTON      "ESSetVarDataMR",IDC_BTNESSETVARDATAMR,397,67,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetStrDataM",IDC_BTNESGETSTRDATAM,397,87,83,14,BS_LEFT
+    PUSHBUTTON      "ESSetStrDataM",IDC_BTNESSETSTRDATAM,397,107,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetPositionDataM",IDC_BTNESGETPOSITIONDATAM,397,127,83,14,BS_LEFT
+    PUSHBUTTON      "ESSetPositionDataM",IDC_BTNESSETPOSITIONDATAM,397,147,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetBpexPositionDataM",IDC_BTNESGETBPEXPOSITIONDATAM,397,167,83,14,BS_LEFT
+    PUSHBUTTON      "ESSetBpexPositionDataM",IDC_BTNESSETBPEXPOSITIONDATAM,397,187,83,14,BS_LEFT
+    PUSHBUTTON      "ESReset",IDC_BTNESRESET,397,207,83,14,BS_LEFT
+    PUSHBUTTON      "ESCancel",IDC_BTNESCANCEL,397,227,83,14,BS_LEFT
+    PUSHBUTTON      "ESHold",IDC_BTNESHOLD,397,248,83,14,BS_LEFT
+    PUSHBUTTON      "ESServo",IDC_BTNESSERVO,397,268,83,14,BS_LEFT
+    PUSHBUTTON      "ESHlock",IDC_BTNESHLOCK,397,288,83,14,BS_LEFT
+    PUSHBUTTON      "ESCycle",IDC_BTNESCYCLE,397,308,83,14,BS_LEFT
+    PUSHBUTTON      "ESBDSP",IDC_BTNESBDSP,497,7,83,14,BS_LEFT
+    PUSHBUTTON      "ESStartJob",IDC_BTNESSTARTJOB,497,127,83,14,BS_LEFT
+    PUSHBUTTON      "ESSelectJob",IDC_BTNESSELECTJOB,497,87,83,14,BS_LEFT
+    PUSHBUTTON      "ESSaveFile",IDC_BTNESSAVEFILE,497,47,83,14,BS_LEFT
+    PUSHBUTTON      "ESLoadFile",IDC_BTNESLOADFILE,497,67,83,14,BS_LEFT
+    PUSHBUTTON      "ESDeleteJob",IDC_BTNESDELETEJOB,497,107,83,14,BS_LEFT
+    PUSHBUTTON      "ESFileList",IDC_BTNESFILELIST,497,27,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetAlarmEx",IDC_BTNESGETALARMEX,195,27,83,14,BS_LEFT
+    PUSHBUTTON      "ESGetAlarmHistEx",IDC_BTNESGETALARMHISTEX,195,67,83,14,BS_LEFT
+    PUSHBUTTON      "ESCartMove",IDC_BTNESCARTMOVE,497,147,83,14,BS_LEFT
+    PUSHBUTTON      "ESPulseMove",IDC_BTNESPULSEMOVE,497,167,83,14,BS_LEFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_SAMPLE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 580
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 322
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041103a4"
+        BEGIN
+            VALUE "CompanyName", "TODO: <会社名>"
+            VALUE "FileDescription", "TODO: <ファイルの説明>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "Sample.exe"
+            VALUE "LegalCopyright", "TODO: (C) <会社名>.  All rights reserved."
+            VALUE "OriginalFilename", "Sample.exe"
+            VALUE "ProductName", "TODO: <製品名>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x411, 932
+    END
+END
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+LANGUAGE 17, 1
+#pragma code_page(932)
+#include "res\Sample.rc2"  // Microsoft Visual C++ 以外で編集されたリソース
+#include "l.JPN\afxres.rc"      // 標準コンポーネント
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,52 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: MotocomLoadLibrary - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x407 /fo"Release/MotocomLoadLibrary.res" /d "NDEBUG" "U:\MotoSoft_Standard\Motocom32\V5.11_beta\Install\Application\Samples\MotocomDemoVCplusplus-LoadLibrary\MotocomLoadLibrary.rc"" 
+Creating temporary file "C:\DOKUME~1\Waibel\LOKALE~1\Temp\RSP30D.tmp" with contents
+[
+/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /FR"Release/" /Fp"Release/MotocomLoadLibrary.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"U:\MotoSoft_Standard\Motocom32\V5.11_beta\Install\Application\Samples\MotocomDemoVCplusplus-LoadLibrary\MotocomLoadLibrary.cpp"
+"U:\MotoSoft_Standard\Motocom32\V5.11_beta\Install\Application\Samples\MotocomDemoVCplusplus-LoadLibrary\MotocomLoadLibraryDlg.cpp"
+]
+Creating command line "cl.exe @C:\DOKUME~1\Waibel\LOKALE~1\Temp\RSP30D.tmp" 
+Creating temporary file "C:\DOKUME~1\Waibel\LOKALE~1\Temp\RSP30E.tmp" with contents
+[
+/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /FR"Release/" /Fp"Release/MotocomLoadLibrary.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"U:\MotoSoft_Standard\Motocom32\V5.11_beta\Install\Application\Samples\MotocomDemoVCplusplus-LoadLibrary\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOKUME~1\Waibel\LOKALE~1\Temp\RSP30E.tmp" 
+Creating temporary file "C:\DOKUME~1\Waibel\LOKALE~1\Temp\RSP30F.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:no /pdb:"Release/MotocomLoadLibrary.pdb" /machine:I386 /out:"Release/MotocomLoadLibrary.exe" 
+".\Release\MotocomLoadLibrary.obj"
+".\Release\MotocomLoadLibraryDlg.obj"
+".\Release\StdAfx.obj"
+".\Release\MotocomLoadLibrary.res"
+]
+Creating command line "link.exe @C:\DOKUME~1\Waibel\LOKALE~1\Temp\RSP30F.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+MotocomLoadLibrary.cpp
+MotocomLoadLibraryDlg.cpp
+Generating Code...
+Linking...
+LINK : warning LNK4089: all references to "SHELL32.dll" discarded by /OPT:REF
+Creating command line "bscmake.exe /nologo /o"Release/MotocomLoadLibrary.bsc"  ".\Release\StdAfx.sbr" ".\Release\MotocomLoadLibrary.sbr" ".\Release\MotocomLoadLibraryDlg.sbr""
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+MotocomLoadLibrary.exe - 0 error(s), 1 warning(s)
+</pre>
+</body>
+</html>

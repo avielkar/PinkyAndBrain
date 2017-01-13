@@ -1,0 +1,52 @@
+:Base Yasnac.HLP
+1 Transmition Instruction=Transmition_Instruction
+1 Command Transmission
+2 YASNAC Help=YASNAC_Help
+2 RALARM=RALARM
+2 RPOS=RPOS
+2 RPOSJ=RPOSJ
+2 RSTATS=RSTATS
+2 RJSEQ=RJSEQ_
+2 RPOSC=RPOSC
+2 JWAIT=JWAIT
+2 RGROUP=RGROUP
+2 SAVEV=SAVEV
+2 RJDIR=RJDIR
+2 RUFRAME=RUFRAME
+2 HOLD=HOLD
+2 RESET=RESET
+2 CANCEL=CANCEL
+2 MODE=MODE
+2 CYCLE=CYCLE
+2 HLOCK=HLOCK
+2 MDSP=MDSP
+2 SVON=SVON
+2 CGROUP=CGROUP
+2 CTASK=CTASK
+2 DELETE=DELETE
+2 WUFRAME=WUFRAME
+2 CVTRJ=CVTRJ
+2 CVTSJ=CVTSJ
+2 LOADV=LOADV
+2 SETMJ=SETMJ
+2 JSEQ=JSEQ
+2 START=START
+2 MOVJ=MOVJ
+2 MOVL=MOVL
+2 IMOV=IMOV
+2 PMOVJ=PMOVJ
+2 PMOVL=PMOVL
+2 LOADJ(Transmition Instruction）=LOADJ
+2 SAVEJ(Transmition Instruction）=SAVEJ
+2 DELETEJ(Transmition Instruction）=DELETEJ
+2 SWAIT(Transmition Instruction）=SWAIT
+2 LOADV(Transmition Instruction）=LOADV_DCI
+2 SAVEV(Transmition Instruction）=SAVEV_DCI
+2 XRC: Form=XRC__Form
+2 MRC: Form=MRC__Form
+1 Interpreter
+2 Interpreter Message List=Interpreter_Message_List
+1 Alarm Code
+2 Alarm Code=Alarm_Code
+2 Alarm code of Host Control=Alarm_code_of_Host_Control
+2 Alarm code of DCI=Alarm_code_of_DCI
