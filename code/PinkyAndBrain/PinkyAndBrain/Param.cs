@@ -113,6 +113,12 @@ namespace PinkyAndBrain
             get;
             set;
         }
+
+        /// <summary>
+        /// Description for one variable in the protocol.
+        /// The string is the attribute of the variable and the Param is the value of this aatribute.
+        /// </summary>
+        public Dictionary<string, Param> _description;
     }
 
     public class Variables

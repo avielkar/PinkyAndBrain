@@ -49,33 +49,39 @@ namespace PinkyAndBrain
             object[,] valueArray = (object[,])xlRange.get_Value(
                 Excel.XlRangeValueDataType.xlRangeValueDefault);
 
-
             string[,] excelStringValuesArray = Convert2DObjectsTo2DStrings(valueArray);
 
-            for (int i = 1; i < xlRange.Cells.Rows.Count; i++)
+            //vars going to collect all the variables in the excel data with thier attributes as dictionary of a vraible name and all it's attribute in inner dictionary.
+            Variables vars = new Variables();
+            vars._variablesDictionary = new Dictionary<string, Variable>();
+
+            //collecting all the attributes for each variable (all variables have them).
+            string[] attributes = new string[excelStringValuesArray.GetLength(1)];
+            for(int i=0;i<excelStringValuesArray.GetLength(1);i++)
             {
-                string variableName = xlRange.Cells[i, 1];
+                attributes[i] = excelStringValuesArray[0, i];
+            }
 
-                Param param = new Param();
-                param._landscapeParameters = new List<string>();
-                param._ratHouseParameter = new List<string>();
-                param._name = variableName;
-                param._bothParam = false;
-
+            //run along all the data lines.
+            for (int k = 1; k < excelStringValuesArray.GetLength(0); k++)
+            {
                 Variable var = new Variable();
-                var._name = xlRange.Cells[i, 1];
-                var._niceName = xlRange.Cells[i, 2];
-                var._vectGen = xlRange.Cells[i, 3];
-                var._editable = xlRange.Cells[i, 4];
-                var._category = xlRange.Cells[i, 5];
-                var._callBack = xlRange.Cells[i, 6];
-                var._toolTip = xlRange.Cells[i, 7];
-                var._parameters = xlRange.Cells[i, 8];
-                var._lowBound = xlRange.Cells[i, 9];
-                var._highBound = xlRange.Cells[i, 10];
-                var._increment = xlRange.Cells[i, 11];
+                var._description = new Dictionary<string, Param>();
 
-                variables._variablesDictionary.Add(variableName, var);
+                //run along the number of columns along the lines.
+                for (int i = 0; i < excelStringValuesArray.GetLength(1); i++)
+                {   
+                    Param param = new Param();
+                    param._name = attributes[i];
+
+                    param._ratHouseParameter = new List<string>();
+                    param._ratHouseParameter.Add(excelStringValuesArray[k,i]);
+
+                    var._description.Add(attributes[i], param);
+                }
+
+                vars._variablesDictionary.Add(var._description["name"]._ratHouseParameter[0], var);
+
             }
 
         }
