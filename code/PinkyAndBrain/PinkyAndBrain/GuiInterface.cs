@@ -11,28 +11,6 @@ using System.IO;
 
 namespace PinkyAndBrain
 {
-
-    public struct Param
-    {
-        List<int> ratHouseParameter;
-        List<int> landscapeParameters;
-    }
-
-    public struct Variable
-    {
-        string name;
-        string niceName;
-        bool vectGen;
-        bool editable;
-        int category;
-        string callBack;
-        string toolTip;
-        Param Parameters;
-        Param lowBound;
-        Param highBound;
-        Param increment;
-    }
-
     /// <summary>
     /// This partial is used for events callbacks.
     /// </summary>
@@ -46,7 +24,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// The variables readen from the xlsx protocol file.
         /// </summary>
-        private List<Variable> _variablesList;
+        private Variables _variablesList;
 
         private ExcelProtocolConfigFieLoader _excelLoader;
 
@@ -59,6 +37,8 @@ namespace PinkyAndBrain
         {
             InitializeComponent();
             _excelLoader = excelLoader;
+            _variablesList = new Variables();
+            _variablesList._variablesDictionary = new Dictionary<string, Variable>();
 
         }
 
@@ -104,7 +84,7 @@ namespace PinkyAndBrain
             if (_protocolsComboBox.Items.Count > 0)
             {
                 _protocolsComboBox.SelectedItem = _protocolsComboBox.Items[0];
-                SetVariables(dirPath);
+                SetVariables(_protoclsDirPath + "\\" +_protocolsComboBox.Items[0].ToString());
             }
         }
 
@@ -113,7 +93,7 @@ namespace PinkyAndBrain
         /// </summary>
         private void SetVariables(string dirPath)
         {
-            
+            _excelLoader.ReadProtocolFile(dirPath , ref _variablesList);
         }
 
         #endregion
