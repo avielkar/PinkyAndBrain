@@ -65,21 +65,25 @@ namespace PinkyAndBrain
             //run along all the data lines.
             for (int k = 1; k < excelStringValuesArray.GetLength(0); k++)
             {
+                //making the new variable to be inserted into the protocol variables dictionary.
                 Variable var = new Variable();
                 var._description = new Dictionary<string, Param>();
 
-                //run along the number of columns along the lines.
+                //run along the number of columns along the lines to collect the attributes of the specific variable..
                 for (int i = 0; i < excelStringValuesArray.GetLength(1); i++)
                 {   
                     Param param = new Param();
-                    param._name = attributes[i];
 
                     param._ratHouseParameter = new List<string>();
                     param._ratHouseParameter.Add(excelStringValuesArray[k,i]);
 
+                    if(excelStringValuesArray[k, i] != null)
+                        param = DisassamblyDataAttributeValue(excelStringValuesArray[k, i]);
+
                     var._description.Add(attributes[i], param);
                 }
 
+                //adding the variable (line in the excel data file into the dictionary of variables with the variable name as the key).
                 vars._variablesDictionary.Add(var._description["name"]._ratHouseParameter[0], var);
 
             }
@@ -109,6 +113,44 @@ namespace PinkyAndBrain
             }
 
             return returnArray;
+        }
+
+        /// <summary>
+        /// Dissasembly data attribute to it's components(if it's a vector attribute for both the _ratHouseParameter and _landscapeParameters) for a Param class.
+        /// </summary>
+        /// <param name="attributeValue">The attribute value of the excel cell to be dissasembly.</param>
+        /// <returns>The param disassemblied object acordding to the value.</returns>
+        private Param DisassamblyDataAttributeValue(string attributeValue)
+        {
+            Param par = new Param();
+            par._ratHouseParameter = new List<string>();
+            par._landscapeParameters = new List<string>();
+
+            //if there are a two attributes in the attribute data. [x][y] == 2 attributes. x y z w == vector for one attribute only.
+            if(attributeValue.Count(x => x == '[') == 2)
+            {
+                string ratHouseParameteString;
+                string landscapeHouseParameteString;
+
+                ratHouseParameteString = string.Join("",attributeValue.Skip(1).TakeWhile(x => x != ']').ToArray());
+                landscapeHouseParameteString = string.Join("", attributeValue.Skip(1).SkipWhile(x => x != '[').Skip(1).TakeWhile(x => x != ']').ToArray());
+
+                //split each vector of data for each robot to a list of components.
+                par._ratHouseParameter = ratHouseParameteString.Split(' ').ToList();
+                par._landscapeParameters = landscapeHouseParameteString.Split(' ').ToList();
+
+                par._bothParam = true;
+            }
+
+            else
+            {
+                //split each vector of data for each robot to a list of components.
+                par._ratHouseParameter = attributeValue.Split(' ').ToList();
+
+                par._bothParam = false;
+            }
+
+            return par;
         }
     }
 }

@@ -34,11 +34,11 @@ namespace PinkyAndBrain
             set;
         }
 
-        public string _name
+        /*public string _name
         {
             get;
             set;
-        }
+        }*/
     }
 
     public class Variable
@@ -48,75 +48,9 @@ namespace PinkyAndBrain
 
         }
 
-        public Param _name
-        {
-            get;
-            set;
-        }
-
-        public Param _niceName
-        {
-            get;
-            set;
-        }
-
-        public Param _vectGen
-        {
-            get;
-            set;
-        }
-
-        public Param _editable
-        {
-            get;
-            set;
-        }
-
-        public Param _category
-        {
-            get;
-            set;
-        }
-
-        public Param _callBack
-        {
-            get;
-            set;
-        }
-
-        public Param _toolTip
-        {
-            get;
-            set;
-        }
-
-        public Param _parameters
-        {
-            get;
-            set;
-        }
-
-        public Param _lowBound
-        {
-            get;
-            set;
-        }
-
-        public Param _highBound
-        {
-            get;
-            set;
-        }
-
-        public Param _increment
-        {
-            get;
-            set;
-        }
-
         /// <summary>
         /// Description for one variable in the protocol.
-        /// The string is the attribute of the variable and the Param is the value of this aatribute.
+        /// The string is the attribute of the variable and the Param is the value of this atribute.
         /// </summary>
         public Dictionary<string, Param> _description;
     }
