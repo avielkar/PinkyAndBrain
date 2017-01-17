@@ -83,6 +83,7 @@
             this.Controls.Add(this._protocolsComboBox);
             this.Name = "GuiInterface";
             this.Text = "GuiInterface";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GuiInterface_Close);
             this.ResumeLayout(false);
             this.PerformLayout();
 

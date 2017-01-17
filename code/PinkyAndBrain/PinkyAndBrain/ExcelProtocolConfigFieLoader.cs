@@ -38,6 +38,11 @@ namespace PinkyAndBrain
             _xlApp = new Excel.Application();
         }
 
+        public void CloseExcelProtocoConfigFilelLoader()
+        {
+            _xlApp.Quit();
+        }
+
         public void ReadProtocolFile(string protocolFilePath , ref Variables variables)
         {
             Excel.Workbook xlWorkbook = _xlApp.Workbooks.Open(protocolFilePath);
@@ -87,6 +92,9 @@ namespace PinkyAndBrain
                 variables._variablesDictionary.Add(var._description["name"]._ratHouseParameter[0], var);
 
             }
+
+            //clost the file.
+            xlWorkbook.Close();
 
         }
 

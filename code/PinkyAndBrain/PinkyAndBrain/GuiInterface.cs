@@ -33,13 +33,23 @@ namespace PinkyAndBrain
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GuiInterface(ExcelProtocolConfigFieLoader excelLoader)
+        public GuiInterface(ref ExcelProtocolConfigFieLoader excelLoader)
         {
             InitializeComponent();
             _excelLoader = excelLoader;
             _variablesList = new Variables();
             _variablesList._variablesDictionary = new Dictionary<string, Variable>();
 
+        }
+
+        /// <summary>
+        /// Closing the guiInterface window event handler.
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">args</param>
+        private void GuiInterface_Close(object sender , EventArgs e)
+        {
+            _excelLoader.CloseExcelProtocoConfigFilelLoader();
         }
 
         private void protocolBrowserBtn_Click(object sender, EventArgs e)
@@ -57,6 +67,8 @@ namespace PinkyAndBrain
             SetVariables(_protoclsDirPath + "\\" + _protocolsComboBox.SelectedItem.ToString());
             ShowVariablesToGui();
         }
+
+
 
 
 
@@ -102,8 +114,8 @@ namespace PinkyAndBrain
 
         private void ShowVariablesToGui()
         {
-            int x = 100;
-            int y = 10;
+            int top = 100;
+            int left = 10;
             int z = 0;
             foreach (string varName in _variablesList._variablesDictionary.Keys)
             {
@@ -113,14 +125,74 @@ namespace PinkyAndBrain
                 newLabel.Text = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0];
                 newLabel.Width = 200;
                 newLabel.Height = 14;
-                newLabel.Top = x;
-                newLabel.Left = y;
-                x += 35;
+                newLabel.Top = top;
+                newLabel.Left = left;
+
+                ShowVariableAttributes(varName, top, left, 200, 14);
+
+                top += 35;
             }
         }
 
-        #endregion
+        private void ShowVariableAttributes(string varName , int top , int left , int width  , int height)
+        {
+            #region status ComboBox
+            //add the status ComboBox.
+            ComboBox statusCombo = new ComboBox();
+            statusCombo.Left = left + 1000;
+            statusCombo.Top = top;
+            statusCombo.Items.Add("Static");
+            statusCombo.Items.Add("Varying");
+            statusCombo.Items.Add("AcrossStair");
+            statusCombo.Items.Add("WithinStair");
 
+            //decide which items on the ComboBox is selected according to the data in the excel sheet.
+            switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0])
+            {
+                case "1":
+                    statusCombo.SelectedText = "Static";
+                    break;
+
+                case "2":
+                    statusCombo.SelectedText = "Varying";
+                    break;
+
+                case "3":
+                    statusCombo.SelectedText = "AcrossStair";
+                    break;
+
+                case "4":
+                    statusCombo.SelectedText = "WithinStair";
+                    break;
+            }
+
+            //add the status ComboBox to the gui.
+            this.Controls.Add(statusCombo);
+            #endregion
+
+            //add the low bound textbox.
+            TextBox lowBoundTextBox = new TextBox();
+            lowBoundTextBox.Left = left + 800;
+            lowBoundTextBox.Top = top;
+
+            //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
+            //show both parameters.
+            if(_variablesList._variablesDictionary[varName]._description["low_bound"]._bothParam)
+            {
+            }
+
+            //show only the _ratHouseParameter.
+            else
+            {
+                string lowBoundTextVal = string.Join(" " , _variablesList._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
+                lowBoundTextBox.Text = lowBoundTextVal;
+            }
+
+            this.Controls.Add(lowBoundTextBox);
+
+        }
+
+        #endregion
 
     }
 
