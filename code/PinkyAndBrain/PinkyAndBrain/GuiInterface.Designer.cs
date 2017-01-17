@@ -42,6 +42,7 @@
             this._protocolsComboBox.Name = "_protocolsComboBox";
             this._protocolsComboBox.Size = new System.Drawing.Size(193, 21);
             this._protocolsComboBox.TabIndex = 0;
+            this._protocolsComboBox.SelectedIndexChanged += new System.EventHandler(this._protocolsComboBox_SelectedIndexChanged);
             // 
             // label1
             // 

@@ -48,13 +48,15 @@ namespace PinkyAndBrain
             {
                 _protoclsDirPath = _protocolsFolderBrowser.SelectedPath;
                 AddFilesToComboBox(_protocolsComboBox, _protoclsDirPath);
-
             }
         }
 
-
-
-
+        private void _protocolsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //_protocolsComboBox.SelectedItem = _protocolsComboBox.Items[0];
+            SetVariables(_protoclsDirPath + "\\" + _protocolsComboBox.SelectedItem.ToString());
+            ShowVariablesToGui();
+        }
 
 
 
@@ -85,18 +87,41 @@ namespace PinkyAndBrain
             {
                 _protocolsComboBox.SelectedItem = _protocolsComboBox.Items[0];
                 SetVariables(_protoclsDirPath + "\\" +_protocolsComboBox.Items[0].ToString());
+                ShowVariablesToGui();
             }
         }
 
         /// <summary>
-        /// Sets the variables in the chosen xlsx file and stote them in the class members.
+        /// Sets the variables in the chosen xslx file and stote them in the class members.
         /// </summary>
         private void SetVariables(string dirPath)
         {
             _excelLoader.ReadProtocolFile(dirPath , ref _variablesList);
         }
 
+
+        private void ShowVariablesToGui()
+        {
+            int x = 100;
+            int y = 10;
+            int z = 0;
+            foreach (string varName in _variablesList._variablesDictionary.Keys)
+            {
+                Label newLabel = new Label();
+                this.Controls.Add(newLabel);
+                newLabel.Name = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0];
+                newLabel.Text = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0];
+                newLabel.Width = 200;
+                newLabel.Height = 14;
+                newLabel.Top = x;
+                newLabel.Left = y;
+                x += 35;
+            }
+        }
+
         #endregion
+
+
     }
 
 

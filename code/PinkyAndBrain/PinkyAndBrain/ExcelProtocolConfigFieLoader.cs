@@ -52,8 +52,8 @@ namespace PinkyAndBrain
             string[,] excelStringValuesArray = Convert2DObjectsTo2DStrings(valueArray);
 
             //vars going to collect all the variables in the excel data with thier attributes as dictionary of a vraible name and all it's attribute in inner dictionary.
-            Variables vars = new Variables();
-            vars._variablesDictionary = new Dictionary<string, Variable>();
+            //Variables vars = new Variables();
+            variables._variablesDictionary = new Dictionary<string, Variable>();
 
             //collecting all the attributes for each variable (all variables have them).
             string[] attributes = new string[excelStringValuesArray.GetLength(1)];
@@ -84,7 +84,7 @@ namespace PinkyAndBrain
                 }
 
                 //adding the variable (line in the excel data file into the dictionary of variables with the variable name as the key).
-                vars._variablesDictionary.Add(var._description["name"]._ratHouseParameter[0], var);
+                variables._variablesDictionary.Add(var._description["name"]._ratHouseParameter[0], var);
 
             }
 
@@ -126,7 +126,7 @@ namespace PinkyAndBrain
             par._ratHouseParameter = new List<string>();
             par._landscapeParameters = new List<string>();
 
-            //if there are a two attributes in the attribute data. [x][y] == 2 attributes. x y z w == vector for one attribute only.
+            //if there are a two attributes in the attribute data. [x][y] == 2 attributes. x,y,z,w == vector for one attribute only.
             if(attributeValue.Count(x => x == '[') == 2)
             {
                 string ratHouseParameteString;
@@ -136,8 +136,8 @@ namespace PinkyAndBrain
                 landscapeHouseParameteString = string.Join("", attributeValue.Skip(1).SkipWhile(x => x != '[').Skip(1).TakeWhile(x => x != ']').ToArray());
 
                 //split each vector of data for each robot to a list of components.
-                par._ratHouseParameter = ratHouseParameteString.Split(' ').ToList();
-                par._landscapeParameters = landscapeHouseParameteString.Split(' ').ToList();
+                par._ratHouseParameter = ratHouseParameteString.Split(',').ToList();
+                par._landscapeParameters = landscapeHouseParameteString.Split(',').ToList();
 
                 par._bothParam = true;
             }
@@ -145,7 +145,7 @@ namespace PinkyAndBrain
             else
             {
                 //split each vector of data for each robot to a list of components.
-                par._ratHouseParameter = attributeValue.Split(' ').ToList();
+                par._ratHouseParameter = attributeValue.Split(',').ToList();
 
                 par._bothParam = false;
             }
