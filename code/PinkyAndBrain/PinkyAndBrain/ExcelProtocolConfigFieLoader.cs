@@ -150,10 +150,11 @@ namespace PinkyAndBrain
                 par._bothParam = true;
             }
 
+            //if one attribute only (can be a scalar either a vector).
             else
             {
                 //split each vector of data for each robot to a list of components.
-                par._ratHouseParameter = attributeValue.Split(',').ToList();
+                par._ratHouseParameter = string.Join("", attributeValue.SkipWhile(x => x == '[').TakeWhile(x => x != ']').ToArray()).Split(',').ToList() ;
 
                 par._bothParam = false;
             }
