@@ -59,6 +59,11 @@ namespace PinkyAndBrain
             _excelLoader.CloseExcelProtocoConfigFilelLoader();
         }
 
+        /// <summary>
+        /// Event handler for clicking the protocol browser buttom.
+        /// </summary>
+        /// <param name="sender">sender.</param>
+        /// <param name="e">args.</param>
         private void protocolBrowserBtn_Click(object sender, EventArgs e)
         {
             if(_protocolsFolderBrowser.ShowDialog() == DialogResult.OK)
@@ -68,6 +73,11 @@ namespace PinkyAndBrain
             }
         }
 
+        /// <summary>
+        /// Handler for selecting protocol in the protocols combo box.
+        /// </summary>
+        /// <param name="sender">sender.</param>
+        /// <param name="e">args/</param>
         private void _protocolsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //_protocolsComboBox.SelectedItem = _protocolsComboBox.Items[0];
@@ -76,7 +86,17 @@ namespace PinkyAndBrain
         }
 
 
-
+        /// <summary>
+        /// Function handler for changing the variable from the Gui according to the textboxes input.
+        /// </summary>
+        /// <param name="sender">The textbox sender object have been changed.</param>
+        /// <param name="e">args.</param>
+        /// <param name="varName">The variable name in the variables dictionary to update according to the textbox.</param>
+        private void VariableTextBox_TextChanged(object sender, EventArgs e , string varName)
+        {
+            TextBox tb = sender as TextBox;
+            //CheckProperInputSpelling(tb.Text , e._name);
+        }
 
 
 
@@ -119,6 +139,9 @@ namespace PinkyAndBrain
         }
 
 
+        /// <summary>
+        /// Showing the variables from the readen excel file to the Gui with option to change them.
+        /// </summary>
         private void ShowVariablesToGui()
         {
             int top = 100;
@@ -139,12 +162,22 @@ namespace PinkyAndBrain
                 newLabel.Top = top;
                 newLabel.Left = left;
 
-                ShowVariableAttributes(varName, top, left, 250, 14 , 230 , 1100);
+                ShowVariableAttributes(varName, top, left, 150, 14 , 230 , 1100);
 
                 top += 35;
             }
         }
 
+        /// <summary>
+        /// Showing a single variable with all it's attributes.
+        /// </summary>
+        /// <param name="varName">The variable name.</param>
+        /// <param name="top">The offset from the top of the window.</param>
+        /// <param name="left">The offset from the left of the window for the DropDownList of each variable.</param>
+        /// <param name="width">The width for each textbox in the line of the attribute.</param>
+        /// <param name="height">The height for each textbox in the line of the attribute.</param>
+        /// <param name="eachDistance">The distance between each textbox of the same attribute in the same line.</param>
+        /// <param name="offset">The offset for each textbox of the attribute from the left.</param>
         private void ShowVariableAttributes(string varName , int top , int left , int width  , int height , int eachDistance , int offset)
         {
             //string builder for making the text to show to the gui.
@@ -192,6 +225,10 @@ namespace PinkyAndBrain
             TextBox incrementTextBox = new TextBox();
             incrementTextBox.Left = offset;
             incrementTextBox.Top = top;
+            incrementTextBox.Width = width;
+
+            //function to change the variable list dictionary according to changes.
+            incrementTextBox.TextChanged += new EventHandler((sender , e) => VariableTextBox_TextChanged(sender , e , varName));
 
             //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
             //show both parameters.
@@ -221,6 +258,7 @@ namespace PinkyAndBrain
             TextBox highBoundTextBox = new TextBox();
             highBoundTextBox.Left = offset;
             highBoundTextBox.Top = top;
+            highBoundTextBox.Width = width;
 
             //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
             //show both parameters.
@@ -250,6 +288,7 @@ namespace PinkyAndBrain
             TextBox lowBoundTextBox = new TextBox();
             lowBoundTextBox.Left = offset;
             lowBoundTextBox.Top = top;
+            lowBoundTextBox.Width = width;
 
             //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
             //show both parameters.
@@ -279,6 +318,7 @@ namespace PinkyAndBrain
             TextBox parametersTextBox = new TextBox();
             parametersTextBox.Left = offset;
             parametersTextBox.Top = top;
+            parametersTextBox.Width = width;
 
             //print the parameter in the gui according to the representation of each status.
             switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0])
@@ -392,11 +432,13 @@ namespace PinkyAndBrain
             return sBuilder.ToString();
         }
 
+        private bool CheckProperInputSpelling(string newText  , string varName)
+        {
+            return true;
+        }
 
 
         #endregion
 
     }
-
-
 }
