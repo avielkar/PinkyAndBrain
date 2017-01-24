@@ -87,15 +87,15 @@ namespace PinkyAndBrain
 
 
         /// <summary>
-        /// Function handler for changing the variable from the Gui according to the textboxes input.
+        /// Function handler for changing the variable from the Gui according to the textboxes input when leaving the textbox.
         /// </summary>
         /// <param name="sender">The textbox sender object have been changed.</param>
         /// <param name="e">args.</param>
         /// <param name="varName">The variable name in the variables dictionary to update according to the textbox.</param>
-        private void VariableTextBox_TextChanged(object sender, EventArgs e , string varName)
+        private void VariableTextBox_TextBoxLeaved(object sender, EventArgs e , string varName , string varAttibuteName)
         {
             TextBox tb = sender as TextBox;
-            //CheckProperInputSpelling(tb.Text , e._name);
+            CheckProperInputSpelling(tb.Text , varName , varAttibuteName);
         }
 
 
@@ -126,7 +126,8 @@ namespace PinkyAndBrain
             {
                 _protocolsComboBox.SelectedItem = _protocolsComboBox.Items[0];
                 SetVariables(_protoclsDirPath + "\\" +_protocolsComboBox.Items[0].ToString());
-                ShowVariablesToGui();
+                //that was deleted because it show the variables already in the two lines before.
+                //ShowVariablesToGui();
             }
         }
 
@@ -227,8 +228,8 @@ namespace PinkyAndBrain
             incrementTextBox.Top = top;
             incrementTextBox.Width = width;
 
-            //function to change the variable list dictionary according to changes.
-            incrementTextBox.TextChanged += new EventHandler((sender , e) => VariableTextBox_TextChanged(sender , e , varName));
+            //function to change the variable list dictionary according to changes when leave the textbox.
+            incrementTextBox.LostFocus += new EventHandler((sender , e) => VariableTextBox_TextBoxLeaved(sender , e , varName , "increament"));
 
             //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
             //show both parameters.
@@ -260,6 +261,9 @@ namespace PinkyAndBrain
             highBoundTextBox.Top = top;
             highBoundTextBox.Width = width;
 
+            //function to change the variable list dictionary according to changes when leave the textbox.
+             highBoundTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "increament"));
+
             //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
             //show both parameters.
             if (_variablesList._variablesDictionary[varName]._description["high_bound"]._bothParam)
@@ -289,6 +293,9 @@ namespace PinkyAndBrain
             lowBoundTextBox.Left = offset;
             lowBoundTextBox.Top = top;
             lowBoundTextBox.Width = width;
+
+            //function to change the variable list dictionary according to changes when leave the textbox.
+            lowBoundTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "increament"));
 
             //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
             //show both parameters.
@@ -432,9 +439,132 @@ namespace PinkyAndBrain
             return sBuilder.ToString();
         }
 
-        private bool CheckProperInputSpelling(string newText  , string varName)
+        private Param CheckProperInputSpelling(string attributeValue , string varName , string attributeName)
         {
+            Param par = new Param();
+            par._ratHouseParameter = new List<string>();
+            par._landscapeParameters = new List<string>();
+
+            //if there are a two attributes in the attribute data. [x][y] == 2 attributes. x,y,z,w == vector for one attribute only.
+            if (attributeValue.Count(x => x == '[') == 2)
+            {
+                string ratHouseParameteString;
+                string landscapeHouseParameteString;
+
+                ratHouseParameteString = string.Join("", attributeValue.Skip(1).TakeWhile(x => x != ']').ToArray());
+                landscapeHouseParameteString = string.Join("", attributeValue.Skip(1).SkipWhile(x => x != '[').Skip(1).TakeWhile(x => x != ']').ToArray());
+
+                //split each vector of data for each robot to a list of components.
+                par._ratHouseParameter = ratHouseParameteString.Split(',').ToList();
+                par._landscapeParameters = landscapeHouseParameteString.Split(',').ToList();
+                par._bothParam = true;
+
+                //if the input for one value contains more than one dot for precison dot or chars that are not digits.
+                //if true , update the values in the variables dictionary.
+                if (DigitsNumberChecker(par._ratHouseParameter))
+                {
+                    if(DigitsNumberChecker(par._landscapeParameters))
+                    {
+                        _variablesList._variablesDictionary[varName]._description[attributeName] = par;
+                        //todo:change also the parameters textbox according to the change of the variable.
+                    }
+                    
+                    //show the previous text to the changed textbox (taken from the variable list dictionary).
+                    else
+                    {
+                        //refresh according to the last.
+                        ShowVariablesToGui();
+                    }
+                }
+
+
+                //show the previous text to the changed textbox (taken from the variable list dictionary).
+                else
+                {
+                    //refresh according to the last.
+                    ShowVariablesToGui();
+                }
+
+            }
+
+            //if one attribute only (can be a scalar either a vector).
+            else
+            {
+                //split each vector of data for each robot to a list of components.
+                par._ratHouseParameter = string.Join("", attributeValue.SkipWhile(x => x == '[').TakeWhile(x => x != ']').ToArray()).Split(',').ToList();
+                par._bothParam = false;
+
+                //if the input for one value contains more than one dot for precison dot or chars that are not digits.
+                //if true , update the values in the variables dictionary.
+                if(DigitsNumberChecker(par._ratHouseParameter))
+                {
+                    _variablesList._variablesDictionary[varName]._description[attributeName] = par;
+                    //todo:change also the parameters textbox according to the change of the variable.
+                }
+
+                //show the previous text to the changed textbox (taken from the variable list dictionary).
+                else
+                {
+                    //refresh according to the last.
+                    ShowVariablesToGui();
+                }
+
+            }
+
+            return par;
+        }
+
+
+        /// <summary>
+        /// Check if all items in the list can represent numbers.
+        /// </summary>
+        /// <param name="lst">The input list.</param>
+        /// <returns>True if all list items can be considered as numbers , False otherwise.</returns>
+        private bool DigitsNumberChecker(List<string> lst)
+        {
+            bool returnVal = true;
+
+            foreach (string value in lst)
+            {
+                //if the input for one value contains more than one dot for precison dot or chars that are not digits.
+                returnVal = returnVal & DigitsNumberChecker(value);
+            }
+
+            return returnVal;
+        }
+
+        /// <summary>
+        /// Check if a string can represent a number or not.
+        /// </summary>
+        /// <param name="str">The input string to be a number.</param>
+        /// <returns>True if the string can be a number , False otherwise.</returns>
+        private bool DigitsNumberChecker(string str)
+        {
+            //can starts with negative sign.
+            if(str.StartsWith("-"))
+            {
+                str = str.Substring(1, str.Length - 1);
+            }
+
+            if (str.Where(x => (x < '0' || x > '9') && x != '.').Count() > 0 || str.Count(x => x == '.') > 1)
+            {
+                MessageBox.Show("Warnning : cannot include more than one dot for precision or characters that are not digits.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return false;
+            }
+
             return true;
+        }
+
+        /// <summary>
+        /// The function check if the new status have no dillema with other statuses.
+        /// </summary>
+        /// <param name="varName">The variable name to check it's new status.</param>
+        /// <param name="status">The new status.</param>
+        /// <returns>True , if there was a dillema (with message error) or False if everything is o.k.</returns>
+        private bool StatusDillemaChecker(string varName , string status)
+        {
+            return false;
         }
 
 
