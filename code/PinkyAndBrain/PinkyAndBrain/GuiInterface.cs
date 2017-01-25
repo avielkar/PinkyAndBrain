@@ -32,10 +32,11 @@ namespace PinkyAndBrain
         private ExcelProtocolConfigFieLoader _excelLoader;
 
         /// <summary>
-        /// The list of the dynamic allocated textboxes that allocated each time the user choose different protocol.
+        /// The dictionary of the dynamic allocated textboxes that allocated each time the user choose different protocol.
         /// It saves the dynamic TextBox reference.
+        /// The string represent the name of the varName concatinating with the attributename for each textbox.
         /// </summary>
-        private List<Control> _dynamicAllocatedTextBoxes;
+        private Dictionary<string , Control> _dynamicAllocatedTextBoxes;
 
         /// <summary>
         /// Constructor.
@@ -46,7 +47,7 @@ namespace PinkyAndBrain
             _excelLoader = excelLoader;
             _variablesList = new Variables();
             _variablesList._variablesDictionary = new Dictionary<string, Variable>();
-            _dynamicAllocatedTextBoxes = new List<Control>();
+            _dynamicAllocatedTextBoxes = new Dictionary<string,Control>();
         }
 
         /// <summary>
@@ -98,7 +99,44 @@ namespace PinkyAndBrain
             CheckProperInputSpelling(tb.Text , varName , varAttibuteName);
         }
 
+        private void statusCombo_SelectedIndexChanged(object sender, EventArgs e , string varName)
+        {
+            ComboBox cb = sender as ComboBox;
+            string selectedIndex="";
 
+            #region SELECTED_VALUE_DECODER
+            switch (cb.SelectedItem.ToString())
+            {
+                case "Static":
+                    selectedIndex = "1";
+                    break;
+                case "Varying":
+                    selectedIndex = "2";
+                    break;
+                case "AccrosStair":
+                    selectedIndex = "3";
+                    break;
+                case "WithinStair":
+                    selectedIndex = "4";
+                    break;
+            }
+            #endregion SELECTED_VALUE_DECODER
+
+            //update the status in the variables dictionary.
+            _variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0] = selectedIndex;
+
+            #region TEXTBOXES_FREEZING_NEW_STSTUS
+            //update the gui textboxes freezing according to the new status.
+            foreach (string attribute in _variablesList._variablesDictionary[varName]._description.Keys)
+            {
+                if(!attribute.Equals("parameters") && !attribute.Equals("status"))
+                {
+                    if (_dynamicAllocatedTextBoxes.ContainsKey(varName + attribute))
+                        FreezeTextBoxAccordingToStatus((TextBox)_dynamicAllocatedTextBoxes[varName + attribute] , varName);
+                }
+            }
+            #endregion TEXTBOXES_FREEZING_NEW_STSTUS
+        }
 
 
         #region my functions
@@ -194,6 +232,9 @@ namespace PinkyAndBrain
             statusCombo.Items.Add("AcrossStair");
             statusCombo.Items.Add("WithinStair");
 
+            //Handle event when a status of a variable is changed.
+            statusCombo.SelectedIndexChanged += new EventHandler((sender , args) => statusCombo_SelectedIndexChanged(sender , args , varName));
+
             //decide which items on the ComboBox is selected according to the data in the excel sheet.
             switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0])
             {
@@ -216,7 +257,7 @@ namespace PinkyAndBrain
 
             //add the status ComboBox to the gui.
             this.Controls.Add(statusCombo);
-            _dynamicAllocatedTextBoxes.Add(statusCombo);
+            _dynamicAllocatedTextBoxes.Add(varName + "status", statusCombo);
             #endregion STATUS_COMBOBOX
 
             offset -= eachDistance;
@@ -230,6 +271,9 @@ namespace PinkyAndBrain
 
             //function to change the variable list dictionary according to changes when leave the textbox.
             incrementTextBox.LostFocus += new EventHandler((sender , e) => VariableTextBox_TextBoxLeaved(sender , e , varName , "increament"));
+
+            //freezing the textbox according to the status
+            FreezeTextBoxAccordingToStatus(incrementTextBox, varName);
 
             //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
             //show both parameters.
@@ -249,7 +293,7 @@ namespace PinkyAndBrain
             }
 
             this.Controls.Add(incrementTextBox);
-            _dynamicAllocatedTextBoxes.Add(incrementTextBox);
+            _dynamicAllocatedTextBoxes.Add(varName + "increament" , incrementTextBox);
             #endregion INCREMENT_TEXTBOX
 
             offset -= eachDistance;
@@ -262,7 +306,10 @@ namespace PinkyAndBrain
             highBoundTextBox.Width = width;
 
             //function to change the variable list dictionary according to changes when leave the textbox.
-             highBoundTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "increament"));
+            highBoundTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "high_bound"));
+
+            //freezing the textbox according to the status
+            FreezeTextBoxAccordingToStatus(highBoundTextBox, varName);
 
             //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
             //show both parameters.
@@ -282,7 +329,7 @@ namespace PinkyAndBrain
             }
 
             this.Controls.Add(highBoundTextBox);
-            this._dynamicAllocatedTextBoxes.Add(highBoundTextBox);
+            this._dynamicAllocatedTextBoxes.Add(varName + "high_bound" , highBoundTextBox);
             #endregion HIGHBOUND_TEXTBOX
 
             offset -= eachDistance;
@@ -295,7 +342,10 @@ namespace PinkyAndBrain
             lowBoundTextBox.Width = width;
 
             //function to change the variable list dictionary according to changes when leave the textbox.
-            lowBoundTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "increament"));
+            lowBoundTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "low_bound"));
+
+            //freezing the textbox according to the status
+            FreezeTextBoxAccordingToStatus(lowBoundTextBox, varName);
 
             //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
             //show both parameters.
@@ -315,7 +365,7 @@ namespace PinkyAndBrain
             }
 
             this.Controls.Add(lowBoundTextBox);
-            _dynamicAllocatedTextBoxes.Add(lowBoundTextBox);
+            _dynamicAllocatedTextBoxes.Add(varName + "low_bound" , lowBoundTextBox);
             #endregion LOWBOUND_TEXTBOX
 
             offset -= eachDistance;
@@ -326,6 +376,8 @@ namespace PinkyAndBrain
             parametersTextBox.Left = offset;
             parametersTextBox.Top = top;
             parametersTextBox.Width = width;
+            //add name to the control in order to get it from the list if needed.
+            parametersTextBox.Name = "parameters";
 
             //print the parameter in the gui according to the representation of each status.
             switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0])
@@ -382,7 +434,7 @@ namespace PinkyAndBrain
             }
 
             this.Controls.Add(parametersTextBox);
-            _dynamicAllocatedTextBoxes.Add(parametersTextBox);
+            _dynamicAllocatedTextBoxes.Add(varName + "parameters" , parametersTextBox);
             #endregion PARMETERS_VALUE_TEXTBOX
 
             offset -= eachDistance;
@@ -393,12 +445,12 @@ namespace PinkyAndBrain
         /// </summary>
         private void ClearDynamicControls()
         {
-            foreach (Control ctrl in _dynamicAllocatedTextBoxes)
+            foreach (Control ctrl in _dynamicAllocatedTextBoxes.Values)
             {
                 this.Controls.Remove(ctrl);
             }
 
-            _dynamicAllocatedTextBoxes.RemoveAll(x=> true);
+            _dynamicAllocatedTextBoxes.Clear();
         }
 
         /// <summary>
@@ -439,6 +491,35 @@ namespace PinkyAndBrain
             return sBuilder.ToString();
         }
 
+        /// <summary>
+        /// Freezing a textbox according to it's status.
+        /// </summary>
+        /// <param name="textBox">The textbox to freeze or not.</param>
+        /// <param name="varName">The variable name for chaecing the status for the textbox. </param>
+        private void FreezeTextBoxAccordingToStatus(TextBox textBox , string varName)
+        {
+            //decide which items on the ComboBox is selected according to the data in the excel sheet.
+            switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0])
+            {
+                case "1":
+                    textBox.Enabled = false;
+                    break;
+
+                case "2":
+                case "3":
+                case "4":
+                    textBox.Enabled = true;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Checks the input spelling to be proper and update the dictionary according to that.
+        /// </summary>
+        /// <param name="attributeValue">The attribute value to check.</param>
+        /// <param name="varName">The var name to attributed updated according to the new value if the input is proper.</param>
+        /// <param name="attributeName">The attribute of the variable to be pdated if the input was proper.</param>
+        /// <returns></returns>
         private Param CheckProperInputSpelling(string attributeValue , string varName , string attributeName)
         {
             Param par = new Param();
@@ -485,6 +566,8 @@ namespace PinkyAndBrain
                     ShowVariablesToGui();
                 }
 
+                ChangeParametersTextBox(varName, attributeName);
+
             }
 
             //if one attribute only (can be a scalar either a vector).
@@ -509,11 +592,11 @@ namespace PinkyAndBrain
                     ShowVariablesToGui();
                 }
 
+                ChangeParametersTextBox(varName, attributeName);
             }
 
             return par;
         }
-
 
         /// <summary>
         /// Check if all items in the list can represent numbers.
@@ -554,6 +637,11 @@ namespace PinkyAndBrain
             }
 
             return true;
+        }
+
+        private void ChangeParametersTextBox(string varName , string attributeName)
+        {
+   
         }
 
         /// <summary>
