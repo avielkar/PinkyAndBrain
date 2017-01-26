@@ -99,31 +99,32 @@ namespace PinkyAndBrain
             CheckProperInputSpelling(tb.Text , varName , varAttibuteName);
         }
 
+        /// <summary>
+        /// Function handler for status variable combobox changed.
+        /// </summary>
+        /// <param name="sender">The combobox object that was changed.</param>
+        /// <param name="e">The args.</param>
+        /// <param name="varName">The var name it's combobox changed.</param>
         private void statusCombo_SelectedIndexChanged(object sender, EventArgs e , string varName)
         {
             ComboBox cb = sender as ComboBox;
             string selectedIndex="";
 
-            #region SELECTED_VALUE_DECODER
-            switch (cb.SelectedItem.ToString())
-            {
-                case "Static":
-                    selectedIndex = "1";
-                    break;
-                case "Varying":
-                    selectedIndex = "2";
-                    break;
-                case "AccrosStair":
-                    selectedIndex = "3";
-                    break;
-                case "WithinStair":
-                    selectedIndex = "4";
-                    break;
-            }
-            #endregion SELECTED_VALUE_DECODER
+            //decide which index in the status list was selected.
+            selectedIndex = StatusIndexByNameDecoder(cb.SelectedItem.ToString());
 
             //update the status in the variables dictionary.
             _variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0] = selectedIndex;
+
+            //Check if both he num of staicases and withinstairs is 1 or 0.
+            #region STATUS_NUM_OF_OCCURENCES
+            int withinStairStstusOccurences = NumOfSpecificStatus("WithinStair");
+            int acrossStairStatusOccurences = NumOfSpecificStatus("AcrossStair");
+            if (withinStairStstusOccurences != acrossStairStatusOccurences || acrossStairStatusOccurences > 1)
+            {
+                MessageBox.Show("The number of Withinstairs is the same as AccrossStairs and both not occurs more than 1!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            #endregion STATUS_NUM_OF_OCCURENCES
 
             #region TEXTBOXES_FREEZING_NEW_STSTUS
             //update the gui textboxes freezing according to the new status.
@@ -137,7 +138,6 @@ namespace PinkyAndBrain
             }
             #endregion TEXTBOXES_FREEZING_NEW_STSTUS
         }
-
 
         #region my functions
         
@@ -637,6 +637,35 @@ namespace PinkyAndBrain
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Returns the num of statusVal statuses in the variable list.
+        /// </summary>
+        /// <param name="statusVal">The status to check it's occurence number.</param>
+        /// <returns>The num of statusVal in the variable list.</returns>
+        private int NumOfSpecificStatus(string statusVal)
+        {
+            statusVal = StatusIndexByNameDecoder(statusVal);
+            return _variablesList._variablesDictionary.Count(variable =>
+                _variablesList._variablesDictionary[variable.Key]._description["status"]._ratHouseParameter[0] == statusVal);
+        }
+
+        private string StatusIndexByNameDecoder(string statusValueByName)
+        {
+            switch (statusValueByName)
+            {
+                case "Static":
+                    return "1";
+                case "Varying":
+                    return "2";
+                case "AcrossStair":
+                    return "3";
+                case "WithinStair":
+                    return "4";
+            }
+
+            return "4";
         }
 
         private void ChangeParametersTextBox(string varName , string attributeName)
