@@ -96,6 +96,7 @@ namespace PinkyAndBrain
         private void VariableTextBox_TextBoxLeaved(object sender, EventArgs e , string varName , string varAttibuteName)
         {
             TextBox tb = sender as TextBox;
+
             CheckProperInputSpelling(tb.Text , varName , varAttibuteName);
         }
 
@@ -126,18 +127,26 @@ namespace PinkyAndBrain
             }
             #endregion STATUS_NUM_OF_OCCURENCES
 
-            #region TEXTBOXES_FREEZING_NEW_STSTUS
+            #region TEXTBOXES_FREEZING_NEW_STATUS
             //update the gui textboxes freezing according to the new status.
             foreach (string attribute in _variablesList._variablesDictionary[varName]._description.Keys)
             {
-                if(!attribute.Equals("parameters") && !attribute.Equals("status"))
+                if(!attribute.Equals("status"))
                 {
                     if (_dynamicAllocatedTextBoxes.ContainsKey(varName + attribute))
-                        FreezeTextBoxAccordingToStatus((TextBox)_dynamicAllocatedTextBoxes[varName + attribute] , varName);
+                        FreezeTextBoxAccordingToStatus((TextBox)_dynamicAllocatedTextBoxes[varName + attribute] , varName , attribute.Equals("parameters"));
                 }
             }
-            #endregion TEXTBOXES_FREEZING_NEW_STSTUS
+            #endregion TEXTBOXES_FREEZING_NEW_STATUS
+
+            //change the parametes attribute textbox for the changed status variable.
+            #region PRAMETERS_TEXTBOX_CHANGE_TEXT_SHOW
+            SetParametersTextBox(varName , new StringBuilder());
+            #endregion PRAMETERS_TEXTBOX_CHANGE_TEXT_SHOW
         }
+
+
+
 
         #region my functions
         
@@ -176,7 +185,6 @@ namespace PinkyAndBrain
         {
             _excelLoader.ReadProtocolFile(dirPath , ref _variablesList);
         }
-
 
         /// <summary>
         /// Showing the variables from the readen excel file to the Gui with option to change them.
@@ -273,7 +281,7 @@ namespace PinkyAndBrain
             incrementTextBox.LostFocus += new EventHandler((sender , e) => VariableTextBox_TextBoxLeaved(sender , e , varName , "increament"));
 
             //freezing the textbox according to the status
-            FreezeTextBoxAccordingToStatus(incrementTextBox, varName);
+            FreezeTextBoxAccordingToStatus(incrementTextBox, varName , false);
 
             //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
             //show both parameters.
@@ -309,7 +317,7 @@ namespace PinkyAndBrain
             highBoundTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "high_bound"));
 
             //freezing the textbox according to the status
-            FreezeTextBoxAccordingToStatus(highBoundTextBox, varName);
+            FreezeTextBoxAccordingToStatus(highBoundTextBox, varName , false);
 
             //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
             //show both parameters.
@@ -345,7 +353,7 @@ namespace PinkyAndBrain
             lowBoundTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "low_bound"));
 
             //freezing the textbox according to the status
-            FreezeTextBoxAccordingToStatus(lowBoundTextBox, varName);
+            FreezeTextBoxAccordingToStatus(lowBoundTextBox, varName , false);
 
             //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
             //show both parameters.
@@ -435,6 +443,13 @@ namespace PinkyAndBrain
 
             this.Controls.Add(parametersTextBox);
             _dynamicAllocatedTextBoxes.Add(varName + "parameters" , parametersTextBox);
+
+            //freezing the textbox according to the status
+            FreezeTextBoxAccordingToStatus(parametersTextBox, varName , true);
+
+            //function to change the variable list dictionary according to changes when leave the textbox.
+            parametersTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "parameters"));
+
             #endregion PARMETERS_VALUE_TEXTBOX
 
             offset -= eachDistance;
@@ -496,7 +511,8 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="textBox">The textbox to freeze or not.</param>
         /// <param name="varName">The variable name for chaecing the status for the textbox. </param>
-        private void FreezeTextBoxAccordingToStatus(TextBox textBox , string varName)
+        /// <param name="parametersTextbox">Is the textbox describe a parameters attribute textbox. </param>
+        private void FreezeTextBoxAccordingToStatus(TextBox textBox , string varName , bool parametersTextbox)
         {
             //decide which items on the ComboBox is selected according to the data in the excel sheet.
             switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0])
@@ -510,6 +526,12 @@ namespace PinkyAndBrain
                 case "4":
                     textBox.Enabled = true;
                     break;
+            }
+
+            //reverse the result.
+            if(parametersTextbox)
+            {
+                textBox.Enabled = !textBox.Enabled;
             }
         }
 
@@ -547,7 +569,8 @@ namespace PinkyAndBrain
                     if(DigitsNumberChecker(par._landscapeParameters))
                     {
                         _variablesList._variablesDictionary[varName]._description[attributeName] = par;
-                        //todo:change also the parameters textbox according to the change of the variable.
+
+                        SetParametersTextBox(varName, new StringBuilder());
                     }
                     
                     //show the previous text to the changed textbox (taken from the variable list dictionary).
@@ -565,9 +588,6 @@ namespace PinkyAndBrain
                     //refresh according to the last.
                     ShowVariablesToGui();
                 }
-
-                ChangeParametersTextBox(varName, attributeName);
-
             }
 
             //if one attribute only (can be a scalar either a vector).
@@ -582,7 +602,8 @@ namespace PinkyAndBrain
                 if(DigitsNumberChecker(par._ratHouseParameter))
                 {
                     _variablesList._variablesDictionary[varName]._description[attributeName] = par;
-                    //todo:change also the parameters textbox according to the change of the variable.
+
+                    SetParametersTextBox(varName, new StringBuilder());
                 }
 
                 //show the previous text to the changed textbox (taken from the variable list dictionary).
@@ -591,8 +612,6 @@ namespace PinkyAndBrain
                     //refresh according to the last.
                     ShowVariablesToGui();
                 }
-
-                ChangeParametersTextBox(varName, attributeName);
             }
 
             return par;
@@ -651,6 +670,11 @@ namespace PinkyAndBrain
                 _variablesList._variablesDictionary[variable.Key]._description["status"]._ratHouseParameter[0] == statusVal);
         }
 
+        /// <summary>
+        /// Get the index (number) of a status by the status name.
+        /// </summary>
+        /// <param name="statusValueByName">The status value by name.</param>
+        /// <returns>The status value by index(number).</returns>
         private string StatusIndexByNameDecoder(string statusValueByName)
         {
             switch (statusValueByName)
@@ -668,22 +692,69 @@ namespace PinkyAndBrain
             return "4";
         }
 
-        private void ChangeParametersTextBox(string varName , string attributeName)
-        {
-   
-        }
-
         /// <summary>
-        /// The function check if the new status have no dillema with other statuses.
+        /// Changing the text for the parameters textbox for the varName variable.
         /// </summary>
-        /// <param name="varName">The variable name to check it's new status.</param>
-        /// <param name="status">The new status.</param>
-        /// <returns>True , if there was a dillema (with message error) or False if everything is o.k.</returns>
-        private bool StatusDillemaChecker(string varName , string status)
+        /// <param name="varName">The variable to change it's parameters textbox.</param>
+        private void SetParametersTextBox(string varName, StringBuilder sBuilder)
         {
-            return false;
-        }
+            //find the relevant parameters attribute textbox according to the variable name.
+            TextBox parametersTextBox = _dynamicAllocatedTextBoxes[varName + "parameters"] as TextBox;
 
+            //print the parameter in the gui according to the representation of each status.
+            switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0])
+            {
+                case "1":   //static
+                    //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
+                    //show both parameters.
+                    if (_variablesList._variablesDictionary[varName]._description["parameters"]._bothParam)
+                    {
+                        string parametersTextBoxa = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter);
+                        string parametersTextBoxb = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._landscapeParameters);
+
+                        parametersTextBox.Text = BracketsAppender(sBuilder, parametersTextBoxa, parametersTextBoxb);
+                    }
+
+                    //show only the _ratHouseParameter.
+                    else
+                    {
+                        string parametersTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter);
+                        parametersTextBox.Text = parametersTextVal;
+                    }
+                    break;
+
+                case "2":   //varying
+                case "3":   //acrossstair
+                case "4":   //withinstair
+                    if (_variablesList._variablesDictionary[varName]._description["parameters"]._bothParam)
+                    {
+                        string lowboundTextVala = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
+                        string highboundTextVala = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter);
+                        string increasingTextVala = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
+
+                        string lowboundTextValb = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._landscapeParameters);
+                        string highboundTextValb = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._landscapeParameters);
+                        string increasingTextValb = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._landscapeParameters);
+
+                        string partA = ThreeStagesRepresentation(sBuilder, lowboundTextVala, increasingTextVala, highboundTextVala);
+                        string partB = ThreeStagesRepresentation(sBuilder, lowboundTextValb, increasingTextValb, highboundTextValb);
+
+                        parametersTextBox.Text = BracketsAppender(sBuilder, partA, partB);
+                    }
+
+                    //show only the _ratHouseParameter.
+                    else
+                    {
+                        string lowboundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
+                        string highboundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter);
+                        string increasingTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
+
+                        parametersTextBox.Text = ThreeStagesRepresentation(sBuilder, lowboundTextVal, increasingTextVal, highboundTextVal);
+                    }
+                    break;
+
+            }
+        }
 
         #endregion
 
