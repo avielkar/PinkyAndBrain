@@ -16,6 +16,8 @@ namespace PinkyAndBrain
     /// </summary>
     public partial class GuiInterface : Form
     {
+        #region MEMBERS
+
         /// <summary>
         /// The selected protocols path to view protocols.
         /// </summary>
@@ -39,6 +41,14 @@ namespace PinkyAndBrain
         private Dictionary<string , Control> _dynamicAllocatedTextBoxes;
 
         /// <summary>
+        /// A list holds all the titles for the variables attribute to show in the title of the table.
+        /// </summary>
+        private List<Label> _titlesLabelsList;
+
+        #endregion MEMBERS
+
+        #region CONSTRUCTORS
+        /// <summary>
         /// Constructor.
         /// </summary>
         public GuiInterface(ref ExcelProtocolConfigFieLoader excelLoader)
@@ -48,7 +58,11 @@ namespace PinkyAndBrain
             _variablesList = new Variables();
             _variablesList._variablesDictionary = new Dictionary<string, Variable>();
             _dynamicAllocatedTextBoxes = new Dictionary<string,Control>();
+            InitializeTitleLabels();
         }
+        #endregion CONSTRUCTORS
+
+        #region EVENTS_HANDLE_FUNCTIONS
 
         /// <summary>
         /// Closing the guiInterface window event handler.
@@ -85,7 +99,6 @@ namespace PinkyAndBrain
             SetVariables(_protoclsDirPath + "\\" + _protocolsComboBox.SelectedItem.ToString());
             ShowVariablesToGui();
         }
-
 
         /// <summary>
         /// Function handler for changing the variable from the Gui according to the textboxes input when leaving the textbox.
@@ -145,11 +158,10 @@ namespace PinkyAndBrain
             #endregion PRAMETERS_TEXTBOX_CHANGE_TEXT_SHOW
         }
 
-
-
+        #endregion EVENTS_HANDLE_FUNCTIONS
 
         #region my functions
-        
+
         /// <summary>
         /// Add the files ends with .xlsx extension to the protocol ComboBox.
         /// </summary>
@@ -197,6 +209,8 @@ namespace PinkyAndBrain
 
             //clear dynamic textboxes and labels from the last uploaded protocol before creating the new dynamic controls..
             ClearDynamicControls();
+
+            AddVariablesLabelsTitles(ref top, left, 150, 14, 230);
 
             foreach (string varName in _variablesList._variablesDictionary.Keys)
             {
@@ -466,6 +480,63 @@ namespace PinkyAndBrain
             }
 
             _dynamicAllocatedTextBoxes.Clear();
+        }
+
+        /// <summary>
+        /// Initalize the title labels with their text and add them to the controls.
+        /// </summary>
+        private void InitializeTitleLabels()
+        {
+            //Make all the titles labels.
+            _titlesLabelsList = new List<Label>();
+            Label parametersLabel = new Label();
+            Label lowBoundLabel = new Label();
+            Label highBoundLabel = new Label();
+            Label incrementLabel = new Label();
+            Label statusLabel = new Label();
+
+            //Add their text attribute.
+            parametersLabel.Text = "Parameter";
+            lowBoundLabel.Text = "Low Bound";
+            highBoundLabel.Text = "High Bound";
+            incrementLabel.Text = "Increment";
+            statusLabel.Text = "Status";
+
+            //Add them to the list of titles labels.
+            _titlesLabelsList.Add(parametersLabel);
+            _titlesLabelsList.Add(lowBoundLabel);
+            _titlesLabelsList.Add(highBoundLabel);
+            _titlesLabelsList.Add(incrementLabel);
+            _titlesLabelsList.Add(statusLabel);
+        }
+
+        /// <summary>
+        /// Adding titles lables for the attributes of the parameters.
+        /// </summary>
+        /// <param name="top">The offset from the top of the window.</param>
+        /// <param name="left">The offset from the left of the window for the DropDownList of each variable.</param>
+        /// <param name="width">The width for each label in the line of the titles.</param>
+        /// <param name="height">The height for each label in the line of the titles.</param>
+        /// <param name="eachDistance">The distance between each label in the titles line.</param>
+        private void AddVariablesLabelsTitles(ref int top , int left , int width , int height , int eachDistance)
+        {
+            //add offset for the first.
+            left += eachDistance;
+
+            //Place each title label control.
+            foreach (Label lbl in _titlesLabelsList)
+            {
+                lbl.Top = top;
+                lbl.Left = left;
+                lbl.Width = width;
+                lbl.Height = height;
+                left += eachDistance;
+
+                this.Controls.Add(lbl);
+            }
+
+            //increase the top for the reference.
+            top += 35;
         }
 
         /// <summary>
