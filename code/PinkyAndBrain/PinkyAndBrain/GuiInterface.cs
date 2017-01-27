@@ -193,7 +193,9 @@ namespace PinkyAndBrain
             //if there ar no errors middwile. Generate crrossvals and run the control loop.
             _acrossVectorValuesGenerator.SetVariablesValues(_variablesList);
             _acrossVectorValuesGenerator.MakeTrialsVaringVectors();
-            
+
+            ClearVaryingListBox();
+
             AddVaryingMatrixToVaryingListBox(_acrossVectorValuesGenerator.GetVaryingMatrix());
             _varyingListBox.Visible = true;
         }
@@ -875,11 +877,33 @@ namespace PinkyAndBrain
         /// <param name="varyingCrossVals">The cross genereated varying values to add to the listbox.</param>
         private void AddVaryingMatrixToVaryingListBox(List<Dictionary<string , double>> varyingCrossVals)
         {
+            //collect the titles for the listbox columns to a list.
+            string listBoxTitleLineText="";
+            List<string> niceNameList = new List<string>();
+            foreach (string varName in varyingCrossVals.ElementAt(0).Keys)
+            {
+                string varNiceName = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter.ElementAt(0);
+                niceNameList.Add(varNiceName);
+            }  
+
+            //add the itles for the listbox columns/
+            listBoxTitleLineText = string.Join("\t" ,  niceNameList);
+            _varyingListBox.Items.Add(listBoxTitleLineText);
+
+            //add all varying cross value in new line in the textbox.
             foreach (Dictionary<string , double> varRowDictionaryItem in varyingCrossVals)
             {
                 string listBoxLineText = string.Join("\t", varRowDictionaryItem.Values);
                 _varyingListBox.Items.Add(listBoxLineText);
             }
+        }
+
+        /// <summary>
+        /// Clears the varying list box.
+        /// </summary>
+        private void ClearVaryingListBox()
+        {
+            _varyingListBox.Items.Clear();
         }
         #endregion VARYING_LISTBOX_FUNCTIONS
 

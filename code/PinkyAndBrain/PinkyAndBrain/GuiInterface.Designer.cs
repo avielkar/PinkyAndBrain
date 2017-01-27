@@ -90,7 +90,7 @@
             this._varyingListBox.IntegralHeight = false;
             this._varyingListBox.Location = new System.Drawing.Point(1019, 54);
             this._varyingListBox.Name = "_varyingListBox";
-            this._varyingListBox.Size = new System.Drawing.Size(220, 355);
+            this._varyingListBox.Size = new System.Drawing.Size(232, 384);
             this._varyingListBox.TabIndex = 5;
             // 
             // GuiInterface
