@@ -45,6 +45,16 @@ namespace PinkyAndBrain
         /// </summary>
         private List<Label> _titlesLabelsList;
 
+        /// <summary>
+        /// Holds the trajectory creator object.
+        /// </summary>
+        private TrajectoryCreator _trajectoryCreator;
+
+        /// <summary>
+        /// Holds the AcrossVectorValuesGenerator generator.
+        /// </summary>
+        private AcrossVectorValuesGenerator _acrossVectorValuesGenerator;
+
         #endregion MEMBERS
 
         #region CONSTRUCTORS
@@ -58,6 +68,8 @@ namespace PinkyAndBrain
             _variablesList = new Variables();
             _variablesList._variablesDictionary = new Dictionary<string, Variable>();
             _dynamicAllocatedTextBoxes = new Dictionary<string,Control>();
+            _trajectoryCreator = new TrajectoryCreator();
+            _acrossVectorValuesGenerator = new AcrossVectorValuesGenerator();
             InitializeTitleLabels();
         }
         #endregion CONSTRUCTORS
@@ -156,6 +168,31 @@ namespace PinkyAndBrain
             #region PRAMETERS_TEXTBOX_CHANGE_TEXT_SHOW
             SetParametersTextBox(varName , new StringBuilder());
             #endregion PRAMETERS_TEXTBOX_CHANGE_TEXT_SHOW
+        }
+
+        /// <summary>
+        /// Function handler for starting the experiment tirlas. 
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">args.</param>
+        private void _startButton_Click(object sender, EventArgs e)
+        {
+            //Check if both he num of staicases and withinstairs is 1 or 0.
+            #region STATUS_NUM_OF_OCCURENCES
+            int withinStairStstusOccurences = NumOfSpecificStatus("WithinStair");
+            int acrossStairStatusOccurences = NumOfSpecificStatus("AcrossStair");
+            if (withinStairStstusOccurences != acrossStairStatusOccurences || acrossStairStatusOccurences > 1)
+            {
+                MessageBox.Show("Cannor start the experiment.\n The number of Withinstairs should be the same as AccrossStairs and both not occurs more than 1!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                //do nothing else.
+                return;
+            }
+            #endregion STATUS_NUM_OF_OCCURENCES
+
+            //if there ar no errors middwile. Generate crrossvals and run the control loop.
+            _acrossVectorValuesGenerator.SetVariablesValues(_variablesList);
+            _acrossVectorValuesGenerator.TrialsVaringVectors();
         }
 
         #endregion EVENTS_HANDLE_FUNCTIONS
@@ -828,6 +865,5 @@ namespace PinkyAndBrain
         }
 
         #endregion
-
     }
 }
