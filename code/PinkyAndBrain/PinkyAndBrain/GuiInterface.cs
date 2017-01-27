@@ -192,7 +192,8 @@ namespace PinkyAndBrain
 
             //if there ar no errors middwile. Generate crrossvals and run the control loop.
             _acrossVectorValuesGenerator.SetVariablesValues(_variablesList);
-            _acrossVectorValuesGenerator.TrialsVaringVectors();
+            _acrossVectorValuesGenerator.MakeTrialsVaringVectors();
+            _acrossVectorValuesGenerator.GetVaryingMatrix();
         }
 
         #endregion EVENTS_HANDLE_FUNCTIONS

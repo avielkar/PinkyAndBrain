@@ -12,12 +12,25 @@ namespace PinkyAndBrain
     /// </summary>
     class AcrossVectorValuesGenerator
     {
+        #region ATTRIBUTES
+        /// <summary>
+        /// Dictionary holds all static variables.
+        /// </summary>
         private Variable  _staticVariables;
 
+        /// <summary>
+        /// Dictionary holds all varying variables.
+        /// </summary>
         private Variables _varyingVariables;
 
+        /// <summary>
+        /// Dictionary holds all acrossStair variables.
+        /// </summary>
         private Variables _acrossStairVariables;
 
+        /// <summary>
+        /// Dictionary holds all withinStair variables.
+        /// </summary>
         private Variables _withinStairVariables;
 
         /// <summary>
@@ -27,11 +40,24 @@ namespace PinkyAndBrain
         /// </summary>
         private Dictionary<string, Vector<double>> _varyingVectorDictionary;
 
+        /// <summary>
+        /// Matrix holds all the generated varying vectors for the experiment. Each row in the matrix represent a varyin trial vector.
+        /// The num of the columns should be the number of the trials.
+        /// </summary>
+        private Matrix<double> _varyingMatrix;
+        #endregion ATTRIBUTES
+
+        #region CONSTRUCTOR
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public AcrossVectorValuesGenerator()
         {
 
         }
+        #endregion CONSTRUCTOR
 
+        #region FUNCTIONS
         /// <summary>
         /// Sets the variables dictionary into new variables dictionaries ordered by statuses.
         /// </summary>
@@ -41,19 +67,27 @@ namespace PinkyAndBrain
             _varyingVariables = vars.FilterVariablesByStatus("2");
         }
 
-
-        public void TrialsVaringVectors()
+        /// <summary>
+        /// Creates all the varying vectors the trial in the experiment would use.
+        /// </summary>
+        public void MakeTrialsVaringVectors()
         {
             List<Vector<double>> seperatedVaryingValues = MakeSeperatedVaryingVectorsList();
 
+            //the commulative matrix that incresed 1 line in each iteration and in many rows as the number of values the variables takes.
             Matrix<double> commulativeMatrix = Matrix<double>.Build.DenseOfRowVectors(seperatedVaryingValues.ElementAt(0));
 
+            //the previous iteration final matrix.
             Matrix<double> previousStepMatrix = Matrix<double>.Build.DenseOfRowVectors(seperatedVaryingValues.ElementAt(0));
 
+            //the previous iteration final matrix but also transposed.
             Matrix<double> previousStepMatrixTransposed = previousStepMatrix.ConjugateTranspose();
 
+            //indicate to skip the first item in the foreach loop because it was already inserted to the accumulative matrix in the two lines before.
             bool skipFirst = true;
 
+            //run over all the varying variables.
+            //each iteration in this loop add a new line with duplicated previous matrix with current variables values.
             foreach (Vector<double> varVec in seperatedVaryingValues)
             {
                 if (!skipFirst)
@@ -61,6 +95,12 @@ namespace PinkyAndBrain
                     bool first = true;
 
                     int columnLength = commulativeMatrix.ColumnCount;
+
+                    //run over all values the variable is bounded in.
+                    //each iteration in the loop added the repeated values of each value of the variable to the previous matrix with the matrix above the line.
+                    //also , it concatinating this new matrix to the other matrixes.
+                    //after all the iterations of the loop , there is a previous duplicated matrix x times with new lines of duplicated values(x times).
+                    //the x means the number of values in the variables.
                     foreach (double value in varVec)
                     {
                         Vector<double> addedColumnVector = Vector<double>.Build.Dense(columnLength, value);
@@ -69,23 +109,58 @@ namespace PinkyAndBrain
 
                         Matrix<double> addedMatrix = previousStepMatrixTransposed.Append(addedColumnMatrix);
 
+                        //if this is the first iteration, add the new row to the matrix.
                         if (first)
                         {
                             commulativeMatrix = addedMatrix.Transpose();
                         }
 
+                        //append the added matrix to the commulative matrix.
                         else
                         {
                             commulativeMatrix = commulativeMatrix.Append(addedMatrix.Transpose());
                         }
+
+                        //from now, append the commulative matrix because it was updated first to the needed size.
                         first = false;
                     }
 
+                    //update thr previous matrix to be the commulatiuve matrix.
                     previousStepMatrixTransposed = commulativeMatrix.Transpose();
                 }
 
+                //skipped the first variable that was already inserted , from now start to insert each variable in the first foreach loop.
                 skipFirst = false;
             }
+
+            _varyingMatrix = commulativeMatrix;
+        }
+
+        /// <summary>
+        /// Getting the list of all varying vector. Each veactor is represented by dictionary of variable name and value.
+        /// </summary>
+        /// <returns>Returns list in the size of generated varying vectors. Each vector represents by the bame of the variable and it's value.</returns>
+        public List<Dictionary<string , double>> GetVaryingMatrix()
+        {
+            List<Dictionary<string, double>> returnList = new List<Dictionary<string, double>>();
+
+            List <string> varyingVariablesNames = _varyingVariables._variablesDictionary.Keys.ToList();
+
+            IEnumerator<string> nameEnumerator = varyingVariablesNames.GetEnumerator();
+
+            foreach (Vector<double> varRow in _varyingMatrix.EnumerateColumns())
+            {
+                Dictionary<string , double> dictionaryItem = new Dictionary<string,double>();
+                nameEnumerator.Reset();
+                foreach(double value in varRow)
+                {
+                    nameEnumerator.MoveNext();
+                    dictionaryItem[nameEnumerator.Current] = value;
+                }
+                returnList.Add(dictionaryItem);
+            }
+
+            return returnList;
         }
 
         /// <summary>
@@ -140,5 +215,6 @@ namespace PinkyAndBrain
 
             return createdVector;
         }
+        #endregion FUNCTIONS
     }
 }
