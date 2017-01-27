@@ -196,7 +196,7 @@ namespace PinkyAndBrain
 
             ClearVaryingListBox();
 
-            AddVaryingMatrixToVaryingListBox(_acrossVectorValuesGenerator.GetVaryingMatrix());
+            AddVaryingMatrixToVaryingListBox(_acrossVectorValuesGenerator.MakeVaryingMatrix());
             _varyingListBox.Visible = true;
         }
         #endregion EVENTS_HANDLE_FUNCTIONS
@@ -890,11 +890,22 @@ namespace PinkyAndBrain
             listBoxTitleLineText = string.Join("\t" ,  niceNameList);
             _varyingListBox.Items.Add(listBoxTitleLineText);
 
+            //set the display member and value member for each item in the ListBox thta represents a Dictionary values in the varyingCrossVals list.
+            _varyingListBox.DisplayMember = "_text";
+            _varyingListBox.ValueMember = "_listIndex";
+
             //add all varying cross value in new line in the textbox.
+            int index = 0;
             foreach (Dictionary<string , double> varRowDictionaryItem in varyingCrossVals)
             {
                 string listBoxLineText = string.Join("\t", varRowDictionaryItem.Values);
-                _varyingListBox.Items.Add(listBoxLineText);
+
+                VaryingItem varyItem = new VaryingItem();
+                varyItem._text = listBoxLineText;
+                varyItem._listIndex = index;
+
+                index++;
+                _varyingListBox.Items.Add(varyItem);
             }
         }
 
@@ -907,6 +918,65 @@ namespace PinkyAndBrain
         }
         #endregion VARYING_LISTBOX_FUNCTIONS
 
+        /// <summary>
+        /// Handler for adding combination to the varying cross values.
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">args.</param>
+        private void _addVaryingCobination_Click(object sender, EventArgs e)
+        {
+
+        }
+
         #endregion
+
+        /// <summary>
+        /// Handler for removing selected varting combination from varying cross values.
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">args.</param>
+        private void _removeVaryingCombination_Click(object sender, EventArgs e)
+        {
+            //take the selected item.
+            VaryingItem selectedCombination = _varyingListBox.SelectedItem as VaryingItem;
+
+            //set the _acrossVectorValuesGenerator cross varying values
+            _acrossVectorValuesGenerator._crossVaryingVals.RemoveAt(selectedCombination._listIndex);
+
+            //update also the gui varying listbox.
+            _varyingListBox.Items.Remove(selectedCombination);
+
+            if (selectedCombination._listIndex - 1 > 0)
+                _varyingListBox.SelectedIndex = (_varyingListBox.Items[selectedCombination._listIndex-1] as VaryingItem)._listIndex;
+        }
+    }
+
+    public class VaryingItem
+    {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public VaryingItem()
+        {
+
+        }
+
+        /// <summary>
+        /// The text the item have to show.
+        /// </summary>
+        public string _text 
+        {
+            get; 
+            set;
+        }
+
+        /// <summary>
+        /// The index in the varying cross vals list to be referenced to.
+        /// </summary>
+        public int _listIndex 
+        {
+            get;
+            set;
+        }
     }
 }

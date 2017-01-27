@@ -34,17 +34,22 @@ namespace PinkyAndBrain
         private Variables _withinStairVariables;
 
         /// <summary>
-        /// Dictionary describes all the vectors sorted by all trials for each variables by index for the varying values generator.
+        /// Initial Dictionary (nor updated later) describes all the vectors sorted by all trials for each variables by index for the varying values generator.
         /// The vector for each key string (name  of variable) is the paralleled vector for the other strings (variables).
         /// Each paralleled index in all vector describes a vector for one trial.
         /// </summary>
         private Dictionary<string, Vector<double>> _varyingVectorDictionary;
 
         /// <summary>
-        /// Matrix holds all the generated varying vectors for the experiment. Each row in the matrix represent a varyin trial vector.
+        ///Initial Matrix (not updated later) holds all the generated varying vectors for the experiment. Each row in the matrix represent a varyin trial vector.
         /// The num of the columns should be the number of the trials.
         /// </summary>
         private Matrix<double> _varyingMatrix;
+
+        /// <summary>
+        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial).
+        /// </summary>
+        public List<Dictionary<string, double>> _crossVaryingVals;
         #endregion ATTRIBUTES
 
         #region CONSTRUCTOR
@@ -139,9 +144,12 @@ namespace PinkyAndBrain
         /// <summary>
         /// Getting the list of all varying vector. Each veactor is represented by dictionary of variable name and value.
         /// </summary>
-        /// <returns>Returns list in the size of generated varying vectors. Each vector represents by the bame of the variable and it's value.</returns>
-        public List<Dictionary<string , double>> GetVaryingMatrix()
+        /// <returns>Returns list in the size of generated varying vectors. Each vector represents by the name of the variable and it's value.</returns>
+        public List<Dictionary<string , double>> MakeVaryingMatrix()
         {
+            //make trials vectoes by matrix operations.
+            MakeTrialsVaringVectors();
+
             List<Dictionary<string, double>> returnList = new List<Dictionary<string, double>>();
 
             List <string> varyingVariablesNames = _varyingVariables._variablesDictionary.Keys.ToList();
@@ -160,7 +168,11 @@ namespace PinkyAndBrain
                 returnList.Add(dictionaryItem);
             }
 
-            return returnList;
+            //insert this list to the cross varying values attribute.
+            _crossVaryingVals =  returnList;
+
+            //return this list that can be edited.
+            return _crossVaryingVals;
         }
 
         /// <summary>

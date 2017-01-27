@@ -35,6 +35,8 @@
             this._protocolBrowserBtn = new System.Windows.Forms.Button();
             this._startButton = new System.Windows.Forms.Button();
             this._varyingListBox = new System.Windows.Forms.ListBox();
+            this._addVaryingCobination = new System.Windows.Forms.Button();
+            this._removeVaryingCombination = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -88,16 +90,38 @@
             // 
             this._varyingListBox.FormattingEnabled = true;
             this._varyingListBox.IntegralHeight = false;
-            this._varyingListBox.Location = new System.Drawing.Point(1019, 54);
+            this._varyingListBox.Location = new System.Drawing.Point(1011, 54);
             this._varyingListBox.Name = "_varyingListBox";
-            this._varyingListBox.Size = new System.Drawing.Size(232, 384);
+            this._varyingListBox.Size = new System.Drawing.Size(240, 384);
             this._varyingListBox.TabIndex = 5;
+            // 
+            // _addVaryingCobination
+            // 
+            this._addVaryingCobination.Location = new System.Drawing.Point(1011, 444);
+            this._addVaryingCobination.Name = "_addVaryingCobination";
+            this._addVaryingCobination.Size = new System.Drawing.Size(114, 23);
+            this._addVaryingCobination.TabIndex = 6;
+            this._addVaryingCobination.Text = "Add Combination";
+            this._addVaryingCobination.UseVisualStyleBackColor = true;
+            this._addVaryingCobination.Click += new System.EventHandler(this._addVaryingCobination_Click);
+            // 
+            // _removeVaryingCombination
+            // 
+            this._removeVaryingCombination.Location = new System.Drawing.Point(1128, 444);
+            this._removeVaryingCombination.Name = "_removeVaryingCombination";
+            this._removeVaryingCombination.Size = new System.Drawing.Size(123, 23);
+            this._removeVaryingCombination.TabIndex = 7;
+            this._removeVaryingCombination.Text = "Remove Combination";
+            this._removeVaryingCombination.UseVisualStyleBackColor = true;
+            this._removeVaryingCombination.Click += new System.EventHandler(this._removeVaryingCombination_Click);
             // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1251, 604);
+            this.Controls.Add(this._removeVaryingCombination);
+            this.Controls.Add(this._addVaryingCobination);
             this.Controls.Add(this._varyingListBox);
             this.Controls.Add(this._startButton);
             this.Controls.Add(this._protocolBrowserBtn);
@@ -121,5 +145,7 @@
         private System.Windows.Forms.Button _protocolBrowserBtn;
         private System.Windows.Forms.Button _startButton;
         private System.Windows.Forms.ListBox _varyingListBox;
+        private System.Windows.Forms.Button _addVaryingCobination;
+        private System.Windows.Forms.Button _removeVaryingCombination;
     }
 }
