@@ -20,29 +20,31 @@ namespace PinkyAndBrain
     public class ExcelProtocolConfigFieLoader
     {
         /// <summary>
-        /// The file path to read from.
+        /// Excel application handler.
         /// </summary>
-        private string _filePath;
-
-        /// <summary>
-        /// The variables in the readen protocol file.
-        /// </summary>
-        //private Variable _variables;
-
-        //Excel application handler.
         private Excel.Application _xlApp;
 
-        
+        /// <summary>
+        /// Start the excel app to run.
+        /// </summary>
         public ExcelProtocolConfigFieLoader()
         {
             _xlApp = new Excel.Application();
         }
 
+        /// <summary>
+        /// Closes the excel application and destroy it's running app.
+        /// </summary>
         public void CloseExcelProtocoConfigFilelLoader()
         {
             _xlApp.Quit();
         }
 
+        /// <summary>
+        /// Reads an excel protocol files and insert all the variables in the protocol with each variable attributes.
+        /// </summary>
+        /// <param name="protocolFilePath">The protocol file path to be read.</param>
+        /// <param name="variables">The object where all the variables with their attributes will be saved.</param>
         public void ReadProtocolFile(string protocolFilePath , ref Variables variables)
         {
             Excel.Workbook xlWorkbook = _xlApp.Workbooks.Open(protocolFilePath);
@@ -95,11 +97,6 @@ namespace PinkyAndBrain
 
             //clost the file.
             xlWorkbook.Close();
-
-        }
-
-        private void LoadProtocolFileToGui()
-        {
 
         }
 

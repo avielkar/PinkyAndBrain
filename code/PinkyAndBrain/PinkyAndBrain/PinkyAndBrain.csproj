@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>..\packages\MathNet.Numerics.3.17.0\lib\net40\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -61,7 +64,7 @@
     <Compile Include="ResponseAnalyzer.cs" />
     <Compile Include="RobotsController.cs" />
     <Compile Include="SavedDataMaker.cs" />
-    <Compile Include="TrjectoryCreator.cs" />
+    <Compile Include="TrajectoryCreator.cs" />
     <EmbeddedResource Include="GuiInterface.resx">
       <DependentUpon>GuiInterface.cs</DependentUpon>
     </EmbeddedResource>
@@ -74,6 +77,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

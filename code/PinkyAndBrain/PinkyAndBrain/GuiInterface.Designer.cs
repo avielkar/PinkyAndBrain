@@ -33,6 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this._protocolsFolderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this._protocolBrowserBtn = new System.Windows.Forms.Button();
+            this._startButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -72,11 +73,22 @@
             this._protocolBrowserBtn.UseVisualStyleBackColor = true;
             this._protocolBrowserBtn.Click += new System.EventHandler(this.protocolBrowserBtn_Click);
             // 
+            // _startButton
+            // 
+            this._startButton.Location = new System.Drawing.Point(829, 415);
+            this._startButton.Name = "_startButton";
+            this._startButton.Size = new System.Drawing.Size(75, 23);
+            this._startButton.TabIndex = 4;
+            this._startButton.Text = "Start";
+            this._startButton.UseVisualStyleBackColor = true;
+            this._startButton.Click += new System.EventHandler(this._startButton_Click);
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1251, 604);
+            this.Controls.Add(this._startButton);
             this.Controls.Add(this._protocolBrowserBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -96,5 +108,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.FolderBrowserDialog _protocolsFolderBrowser;
         private System.Windows.Forms.Button _protocolBrowserBtn;
+        private System.Windows.Forms.Button _startButton;
     }
 }
