@@ -71,11 +71,11 @@ namespace PinkyAndBrain
             _trajectoryCreator = new TrajectoryCreator();
             _acrossVectorValuesGenerator = new AcrossVectorValuesGenerator();
             InitializeTitleLabels();
+            _varyingListBox.Visible = false;
         }
         #endregion CONSTRUCTORS
 
         #region EVENTS_HANDLE_FUNCTIONS
-
         /// <summary>
         /// Closing the guiInterface window event handler.
         /// </summary>
@@ -193,9 +193,10 @@ namespace PinkyAndBrain
             //if there ar no errors middwile. Generate crrossvals and run the control loop.
             _acrossVectorValuesGenerator.SetVariablesValues(_variablesList);
             _acrossVectorValuesGenerator.MakeTrialsVaringVectors();
-            _acrossVectorValuesGenerator.GetVaryingMatrix();
+            
+            AddVaryingMatrixToVaryingListBox(_acrossVectorValuesGenerator.GetVaryingMatrix());
+            _varyingListBox.Visible = true;
         }
-
         #endregion EVENTS_HANDLE_FUNCTIONS
 
         #region my functions
@@ -243,12 +244,14 @@ namespace PinkyAndBrain
         {
             int top = 100;
             int left = 10;
-            int z = 0;
+            int width = 130;
+            int height = 14;
+            int eachDistance = 150;
 
             //clear dynamic textboxes and labels from the last uploaded protocol before creating the new dynamic controls..
             ClearDynamicControls();
 
-            AddVariablesLabelsTitles(ref top, left, 150, 14, 230);
+            AddVariablesLabelsTitles(ref top, left, width, height, eachDistance);
 
             foreach (string varName in _variablesList._variablesDictionary.Keys)
             {
@@ -256,12 +259,12 @@ namespace PinkyAndBrain
                 this.Controls.Add(newLabel);
                 newLabel.Name = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0];
                 newLabel.Text = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0];
-                newLabel.Width = 150;
-                newLabel.Height = 14;
+                newLabel.Width = width - 35;
+                newLabel.Height = height;
                 newLabel.Top = top;
                 newLabel.Left = left;
 
-                ShowVariableAttributes(varName, top, left, 150, 14 , 230 , 1100);
+                ShowVariableAttributes(varName, top, left, width, height, eachDistance, 750);
 
                 top += 35;
             }
@@ -864,6 +867,21 @@ namespace PinkyAndBrain
 
             }
         }
+
+        #region VARYING_LISTBOX_FUNCTIONS
+        /// <summary>
+        /// Adding the generated cross varying values to the varying listbox.
+        /// </summary>
+        /// <param name="varyingCrossVals">The cross genereated varying values to add to the listbox.</param>
+        private void AddVaryingMatrixToVaryingListBox(List<Dictionary<string , double>> varyingCrossVals)
+        {
+            foreach (Dictionary<string , double> varRowDictionaryItem in varyingCrossVals)
+            {
+                string listBoxLineText = string.Join("\t", varRowDictionaryItem.Values);
+                _varyingListBox.Items.Add(listBoxLineText);
+            }
+        }
+        #endregion VARYING_LISTBOX_FUNCTIONS
 
         #endregion
     }

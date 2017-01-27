@@ -34,6 +34,7 @@
             this._protocolsFolderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this._protocolBrowserBtn = new System.Windows.Forms.Button();
             this._startButton = new System.Windows.Forms.Button();
+            this._varyingListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -83,11 +84,21 @@
             this._startButton.UseVisualStyleBackColor = true;
             this._startButton.Click += new System.EventHandler(this._startButton_Click);
             // 
+            // _varyingListBox
+            // 
+            this._varyingListBox.FormattingEnabled = true;
+            this._varyingListBox.IntegralHeight = false;
+            this._varyingListBox.Location = new System.Drawing.Point(1019, 54);
+            this._varyingListBox.Name = "_varyingListBox";
+            this._varyingListBox.Size = new System.Drawing.Size(220, 355);
+            this._varyingListBox.TabIndex = 5;
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1251, 604);
+            this.Controls.Add(this._varyingListBox);
             this.Controls.Add(this._startButton);
             this.Controls.Add(this._protocolBrowserBtn);
             this.Controls.Add(this.label2);
@@ -109,5 +120,6 @@
         private System.Windows.Forms.FolderBrowserDialog _protocolsFolderBrowser;
         private System.Windows.Forms.Button _protocolBrowserBtn;
         private System.Windows.Forms.Button _startButton;
+        private System.Windows.Forms.ListBox _varyingListBox;
     }
 }
