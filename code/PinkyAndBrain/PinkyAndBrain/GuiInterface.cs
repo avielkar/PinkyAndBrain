@@ -201,7 +201,7 @@ namespace PinkyAndBrain
         }
         #endregion EVENTS_HANDLE_FUNCTIONS
 
-        #region my functions
+        #region my_functions
 
         /// <summary>
         /// Add the files ends with .xlsx extension to the protocol ComboBox.
@@ -890,9 +890,12 @@ namespace PinkyAndBrain
             listBoxTitleLineText = string.Join("\t" ,  niceNameList);
             _varyingListBox.Items.Add(listBoxTitleLineText);
 
+            //enable horizonal scrolling.
+            _varyingListBox.HorizontalScrollbar = true;
+
             //set the display member and value member for each item in the ListBox thta represents a Dictionary values in the varyingCrossVals list.
-            _varyingListBox.DisplayMember = "_text";
-            _varyingListBox.ValueMember = "_listIndex";
+            //_varyingListBox.DisplayMember = "_text";
+            //_varyingListBox.ValueMember = "_listIndex";
 
             //add all varying cross value in new line in the textbox.
             int index = 0;
@@ -900,12 +903,12 @@ namespace PinkyAndBrain
             {
                 string listBoxLineText = string.Join("\t", varRowDictionaryItem.Values);
 
-                VaryingItem varyItem = new VaryingItem();
+                /*VaryingItem varyItem = new VaryingItem();
                 varyItem._text = listBoxLineText;
-                varyItem._listIndex = index;
+                varyItem._listIndex = index;*/
 
                 index++;
-                _varyingListBox.Items.Add(varyItem);
+                _varyingListBox.Items.Add(listBoxLineText);
             }
         }
 
@@ -916,7 +919,6 @@ namespace PinkyAndBrain
         {
             _varyingListBox.Items.Clear();
         }
-        #endregion VARYING_LISTBOX_FUNCTIONS
 
         /// <summary>
         /// Handler for adding combination to the varying cross values.
@@ -928,8 +930,6 @@ namespace PinkyAndBrain
 
         }
 
-        #endregion
-
         /// <summary>
         /// Handler for removing selected varting combination from varying cross values.
         /// </summary>
@@ -937,19 +937,50 @@ namespace PinkyAndBrain
         /// <param name="e">args.</param>
         private void _removeVaryingCombination_Click(object sender, EventArgs e)
         {
-            //take the selected item.
-            VaryingItem selectedCombination = _varyingListBox.SelectedItem as VaryingItem;
+            int selectedIndex = _varyingListBox.SelectedIndex;
+            if (selectedIndex > 0)
+            {
+                //take the selected item.
+                //VaryingItem selectedCombination = _varyingListBox.SelectedItem as VaryingItem;
 
-            //set the _acrossVectorValuesGenerator cross varying values
-            _acrossVectorValuesGenerator._crossVaryingVals.RemoveAt(selectedCombination._listIndex);
+                //set the _acrossVectorValuesGenerator cross varying values
+                //_acrossVectorValuesGenerator._crossVaryingVals.RemoveAt(selectedCombination._listIndex);
 
-            //update also the gui varying listbox.
-            _varyingListBox.Items.Remove(selectedCombination);
+                _acrossVectorValuesGenerator._crossVaryingVals.RemoveAt(_varyingListBox.SelectedIndex - 1);
 
-            if (selectedCombination._listIndex - 1 > 0)
-                _varyingListBox.SelectedIndex = (_varyingListBox.Items[selectedCombination._listIndex-1] as VaryingItem)._listIndex;
+                //update also the gui varying listbox.
+                //_varyingListBox.Items.Remove(selectedCombination);
+                _varyingListBox.Items.RemoveAt(_varyingListBox.SelectedIndex);
+
+                //ReduceIndexesFromNumberedIndex(selectedCombination._listIndex, _varyingListBox);
+
+                //if (selectedCombination._listIndex > 0)
+                //_varyingListBox.SelectedItem = (_varyingListBox.Items[selectedCombination._listIndex - 1] as VaryingItem);
+
+                if (selectedIndex > 1)
+                {
+                    _varyingListBox.SelectedIndex = selectedIndex - 1;
+                }
+            }
         }
+
+        /// <summary>
+        /// Reduces the indexes of the value of the VaryingItem in the varyingListBox to be matched with the _crossVaryingVals list.
+        /// </summary>
+        /// <param name="beginIndex">The index to begin reducing it's value index.</param>
+        /// <param name="varyingListBox">Yhe varying listbox to reduce it's indexes.</param>
+        private void ReduceIndexesFromNumberedIndex(int beginIndex , ListBox varyingListBox)
+        {
+            for (int index = beginIndex; index < varyingListBox.Items.Count;index++)
+            {
+                VaryingItem varyItem = varyingListBox.Items[index] as VaryingItem;
+                varyItem._listIndex--;
+            }
+        }
+        #endregion VARYING_LISTBOX_FUNCTIONS
     }
+
+        #endregion my_functions
 
     public class VaryingItem
     {
