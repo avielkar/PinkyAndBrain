@@ -605,6 +605,49 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Split [x][y]... to list of {x, y, ...}
+        /// </summary>
+        /// <param name="value">The string to be splitted.</param>
+        /// <returns>The list of splitted strings.</returns>
+        private List<string> BracketsSplitter(string value)
+        {
+            //split for each element as the brackets should.
+            List<string> splittedList = value.Split('[').ToList();
+
+            //The first splitted value is "" , so drop it.
+            splittedList.RemoveAt(0);
+
+            //drop the ']' brackets which appears in the end.
+            for(int i=0;i<splittedList.Count;i++)
+            {
+                splittedList[i] = splittedList.ElementAt(i).Substring(0 , splittedList.ElementAt(i).Length-1);
+            }
+
+            //return the splitted list.
+            return splittedList;
+        }
+
+        /// <summary>
+        /// Converts a list of strings to a list of doubles.
+        /// </summary>
+        /// <param name="strList">The string list.</param>
+        /// <returns>The converted double list.</returns>
+        private List<double> ConvertStringListToDoubleList(List<string> strList)
+        {
+            //The double list to be returned.
+            List<double> doubleList = new List<double>();
+
+            //converts each element in the string list to double and insert to the double list.
+            foreach (string stringVal in strList)
+            {
+                doubleList.Add(int.Parse(stringVal));
+            }
+
+            //return the converted list.
+            return doubleList;
+        }
+
+        /// <summary>
         /// Creates a string for the gui with 3 steps.
         /// </summary>
         /// <param name="sBuilder">The string writer.</param>
@@ -993,7 +1036,7 @@ namespace PinkyAndBrain
         private void _addVaryingCombination_Click(object sender, EventArgs e)
         {
             //get the cross varying values list.
-            List<Dictionary<string, double>> crossVaryingVals = new List<Dictionary<string,double>>();// = _acrossVectorValuesGenerator._crossVaryingVals;
+            List<Dictionary<string, List<double>>> crossVaryingVals = _acrossVectorValuesGenerator._crossVaryingValsBoth;
 
             //make a dictionary with the variable name as key and the belong textbox as value.
             Dictionary<string, TextBox> varNameToTextboxDictionary = new Dictionary<string,TextBox>();
@@ -1002,7 +1045,7 @@ namespace PinkyAndBrain
             ShowControlAddingVaryingForm(crossVaryingVals, varNameToTextboxDictionary);
         }
 
-        private Form ShowControlAddingVaryingForm(List<Dictionary<string, double>> crossVaryingVals, Dictionary<string, TextBox> varNameToTextboxDictionary)
+        private Form ShowControlAddingVaryingForm(List<Dictionary<string, List<double>>> crossVaryingVals, Dictionary<string, TextBox> varNameToTextboxDictionary)
         {
             //show thw new little form for the desired variables.
             Form littleTempForm = new Form();
@@ -1062,9 +1105,28 @@ namespace PinkyAndBrain
             AddNewVaryngCombination(varNameToValueDictionary);
         }
 
+        /// <summary>
+        /// Adding new line (trial) of varying combination to the varyingCrossVals and to the listbox.
+        /// </summary>
+        /// <param name="varNameToValueDictionary">
+        /// The item that describes the trial by a dictionary.
+        /// The key os for the variable name.
+        /// The value is for the value of that variable include for both ratHouseParameter and landscapeHouseParameter,
+        ///if needed by [x][y] string.
+        /// </param>
         private void AddNewVaryngCombination(Dictionary<string, string> varNameToValueDictionary)
         {
+            Dictionary<string , List<double>> varNameToValueDictionaryDoubleListVersion = new Dictionary<string,List<double>>();
+            foreach (string varName in varNameToValueDictionary.Keys)
+            {
+                varNameToValueDictionaryDoubleListVersion.Add(varName,
+                    ConvertStringListToDoubleList(BracketsSplitter(varNameToValueDictionary[varName])));
+            }
 
+            _acrossVectorValuesGenerator._crossVaryingValsBoth.Add(varNameToValueDictionaryDoubleListVersion);
+
+            string listBoxLineText = string.Join("\t", varNameToValueDictionary.Values);
+            _varyingListBox.Items.Add(listBoxLineText);
         }
 
         /// <summary>
