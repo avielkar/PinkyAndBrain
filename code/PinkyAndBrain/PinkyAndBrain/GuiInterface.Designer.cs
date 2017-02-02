@@ -103,7 +103,7 @@
             this._addVaryingCobination.TabIndex = 6;
             this._addVaryingCobination.Text = "Add Combination";
             this._addVaryingCobination.UseVisualStyleBackColor = true;
-            this._addVaryingCobination.Click += new System.EventHandler(this._addVaryingCobination_Click);
+            this._addVaryingCobination.Click += new System.EventHandler(this._addVaryingCombination_Click);
             // 
             // _removeVaryingCombination
             // 

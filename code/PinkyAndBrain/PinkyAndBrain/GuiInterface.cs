@@ -196,7 +196,10 @@ namespace PinkyAndBrain
 
             ClearVaryingListBox();
 
-            AddVaryingMatrixToVaryingListBox(_acrossVectorValuesGenerator.MakeVaryingMatrix());
+            //make the varyingCrossVals matrix.
+            _acrossVectorValuesGenerator.MakeVaryingMatrix();
+
+            AddVaryingMatrixToVaryingListBox(_acrossVectorValuesGenerator._crossVaryingVals , _acrossVectorValuesGenerator._varyingVectorDictionaryParalelledForLandscapeHouseParameters);
             _varyingListBox.Visible = true;
         }
         #endregion EVENTS_HANDLE_FUNCTIONS
@@ -875,7 +878,7 @@ namespace PinkyAndBrain
         /// Adding the generated cross varying values to the varying listbox.
         /// </summary>
         /// <param name="varyingCrossVals">The cross genereated varying values to add to the listbox.</param>
-        private void AddVaryingMatrixToVaryingListBox(List<Dictionary<string , double>> varyingCrossVals)
+        private void AddVaryingMatrixToVaryingListBox(List<Dictionary<string, double>> varyingCrossVals, Dictionary<string, Dictionary<double, double>> varyingVectorDictionaryParalelledForLandscapeHouseParameters)
         {
             //collect the titles for the listbox columns to a list.
             string listBoxTitleLineText="";
@@ -886,7 +889,7 @@ namespace PinkyAndBrain
                 niceNameList.Add(varNiceName);
             }  
 
-            //add the itles for the listbox columns/
+            //add the titles for the listbox columns
             listBoxTitleLineText = string.Join("\t" ,  niceNameList);
             _varyingListBox.Items.Add(listBoxTitleLineText);
 
@@ -897,9 +900,14 @@ namespace PinkyAndBrain
             //_varyingListBox.DisplayMember = "_text";
             //_varyingListBox.ValueMember = "_listIndex";
 
+
+            //make the list describes all varying lines to describes both parameters (if should) for the ratHouseParameters and the landscapeHouseParameters.
+            List<Dictionary<string, string>> varyingCrossValsBoth = CrossVaryingValuesToBothParameters(varyingCrossVals , varyingVectorDictionaryParalelledForLandscapeHouseParameters);
+
             //add all varying cross value in new line in the textbox.
             int index = 0;
-            foreach (Dictionary<string , double> varRowDictionaryItem in varyingCrossVals)
+
+            foreach (Dictionary<string, string> varRowDictionaryItem in varyingCrossValsBoth)
             {
                 string listBoxLineText = string.Join("\t", varRowDictionaryItem.Values);
 
@@ -910,6 +918,64 @@ namespace PinkyAndBrain
                 index++;
                 _varyingListBox.Items.Add(listBoxLineText);
             }
+        }
+
+        /// <summary>
+        /// Creates a list of rows for the crossVaryingVlaues for the both parameters
+        /// from the list of rows for the crossVaryingValues of the ratHouseParameters only and the matched values dictionary.
+        /// </summary>
+        /// <param name="ratHouseVaryingCrossVals">The crossVaryingValues of the ratHouseParameters only.</param>
+        /// <param name="matchedRatHouseToLandscapeHouseVariablesVectorValues">The matched dictionary between the values of the ratHouseParameters and the landscapeHouseParameters.</param>
+        /// <returns>
+        /// A list of dictionaries.
+        /// Each item in the dictionary describes a raw of trial for the varying.
+        /// Each item is a dictionary of string to string.
+        /// The first string (key) is for the variable name.
+        /// The second string (value) is for the value of the both ratHouseValue and the landscapeHouseValue if enabled or only the first for the key variable string.
+        /// </returns>
+        private List<Dictionary<string , string>> CrossVaryingValuesToBothParameters(List<Dictionary<string , double>>ratHouseVaryingCrossVals , Dictionary<string , Dictionary<double , double>> matchedRatHouseToLandscapeHouseVariablesVectorValues)
+        {
+            //The list to be returned.
+            List<Dictionary<string, string>> crossVaryingBothParmeters = new List<Dictionary<string, string>>();
+
+            //The string builder to build string with.
+            StringBuilder sBuilder = new StringBuilder();
+
+            //run over all lines in the crossVals for the ratHouseValues.
+            foreach (Dictionary<string , double> varRatHouseRowItem in ratHouseVaryingCrossVals)
+            {
+                //make a row to add to the returned list.
+                Dictionary<string, string> varyingBothRowItem = new Dictionary<string, string>();
+
+                //The string for a variable in the current row.
+                string itemBothParameterString = "";
+
+                //run over all the variables in the row.
+                foreach (string varName in varRatHouseRowItem.Keys)
+                {
+                    //clear the string builder for the new variable in the current row.
+                    sBuilder.Clear();
+                    
+                    //check if the value for the variable in the current line is set to tbot the ratHouseValue and the lanscapeHouseValue.
+                    if(matchedRatHouseToLandscapeHouseVariablesVectorValues.Keys.Contains(varName))
+                    {
+                        itemBothParameterString = BracketsAppender(sBuilder, varRatHouseRowItem[varName].ToString(), matchedRatHouseToLandscapeHouseVariablesVectorValues[varName][varRatHouseRowItem[varName]].ToString());
+                    }
+
+                    else
+                    {
+                        itemBothParameterString = varRatHouseRowItem[varName].ToString();
+                    }
+
+                    //add the variable string description for the current line (of the both) for the dictionary describes that line.
+                    varyingBothRowItem.Add(varName, itemBothParameterString);
+                }
+
+                //add the line (the description of varying trial) to the list of lines (trials).
+                crossVaryingBothParmeters.Add(varyingBothRowItem);
+            }
+
+            return crossVaryingBothParmeters;
         }
 
         /// <summary>
@@ -925,7 +991,79 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="sender">Sender.</param>
         /// <param name="e">args.</param>
-        private void _addVaryingCobination_Click(object sender, EventArgs e)
+        private void _addVaryingCombination_Click(object sender, EventArgs e)
+        {
+            //get the cross varying values list.
+            List<Dictionary<string, double>> crossVaryingVals = _acrossVectorValuesGenerator._crossVaryingVals;
+
+            //make a dictionary with the variable name as key and the belong textbox as value.
+            Dictionary<string, TextBox> varNameToTextboxDictionary = new Dictionary<string,TextBox>();
+            
+            //Showing the new little form to get the inputs for the new combination.
+            ShowControlAddingVaryingForm(crossVaryingVals, varNameToTextboxDictionary);
+        }
+
+        private Form ShowControlAddingVaryingForm(List<Dictionary<string, double>> crossVaryingVals, Dictionary<string, TextBox> varNameToTextboxDictionary)
+        {
+            //show thw new little form for the desired variables.
+            Form littleTempForm = new Form();
+            littleTempForm.Show();
+
+            int leftOffset = 0;
+            int topOffset = 0;
+            int width = 140;
+            int height = 14;
+            //add an input textbox with label show the name for each varying parameter.
+            foreach (string varName in crossVaryingVals.ElementAt(0).Keys)
+            {
+                string varNiceName = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter.ElementAt(0);
+                
+                Label varyingAttributeLabel = new Label();
+                varyingAttributeLabel.Text = varName;
+                varyingAttributeLabel.Top = topOffset += 35;
+                varyingAttributeLabel.Left = leftOffset;
+                varyingAttributeLabel.Height = height;
+                varyingAttributeLabel.Width = width;
+                littleTempForm.Controls.Add(varyingAttributeLabel);
+
+                TextBox varyingAttributeTextBox = new TextBox();
+                varyingAttributeTextBox.Top = topOffset;
+                varyingAttributeTextBox.Left = leftOffset + width + 20;
+                littleTempForm.Controls.Add(varyingAttributeTextBox);
+
+                //add the variable name with the belonged textbox.
+                varNameToTextboxDictionary.Add(varName, varyingAttributeTextBox);
+            }
+
+            //handle the confirm adding new combination.
+            Button confirmCombinationAdding = new Button();
+            littleTempForm.Controls.Add(confirmCombinationAdding);
+            confirmCombinationAdding.Top = topOffset;
+            confirmCombinationAdding.Left = leftOffset + width;
+            confirmCombinationAdding.Click += new EventHandler((sender2, e2) => confirmVaryingCombinationAdding_Click(sender2, e2, varNameToTextboxDictionary));
+
+            return littleTempForm;
+        }
+
+        private void confirmVaryingCombinationAdding_Click(object sender, EventArgs e , Dictionary<string , TextBox> varNameToTextboxDictionary)
+        {
+            //creating dictionary for variable name as key and it's value as a value.
+            Dictionary<string, string> varNameToValueDictionary = new Dictionary<string, string>();
+
+            //converting the textboxes to strings value according to their text.
+            foreach (string varName in varNameToTextboxDictionary.Keys)
+            {
+                varNameToValueDictionary.Add(varName, varNameToTextboxDictionary[varName].Text);
+            }
+
+            //confirm if the input is spelled well.
+
+
+            //add the new combination after checking the spelling for the input.
+            AddNewVaryngCombination(varNameToValueDictionary);
+        }
+
+        private void AddNewVaryngCombination(Dictionary<string, string> varNameToValueDictionary)
         {
 
         }
