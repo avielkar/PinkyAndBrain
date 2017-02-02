@@ -58,9 +58,10 @@ namespace PinkyAndBrain
         private Matrix<double> _varyingMatrix;
 
         /// <summary>
-        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial).
+        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for bot ratHouseParameters and landscapeHouseParameters.
         /// </summary>
-        public List<Dictionary<string, double>> _crossVaryingVals;
+        public List<Dictionary<string, List<double>>> _crossVaryingValsBoth;
+
         #endregion ATTRIBUTES
 
         #region CONSTRUCTOR
@@ -157,12 +158,12 @@ namespace PinkyAndBrain
         /// Getting the list of all varying vector. Each veactor is represented by dictionary of variable name and value.
         /// </summary>
         /// <returns>Returns list in the size of generated varying vectors. Each vector represents by the name of the variable and it's value.</returns>
-        public List<Dictionary<string , double>> MakeVaryingMatrix()
+        public List<Dictionary<string , List<double>>> MakeVaryingMatrix()
         {
             //make trials vectoes by matrix operations.
             MakeTrialsVaringVectors();
 
-            List<Dictionary<string, double>> returnList = new List<Dictionary<string, double>>();
+            List<Dictionary<string, List<double>>> returnList = new List<Dictionary<string, List<double>>>();
 
             List <string> varyingVariablesNames = _varyingVariables._variablesDictionary.Keys.ToList();
 
@@ -170,21 +171,47 @@ namespace PinkyAndBrain
 
             foreach (Vector<double> varRow in _varyingMatrix.EnumerateColumns())
             {
-                Dictionary<string , double> dictionaryItem = new Dictionary<string,double>();
+                Dictionary<string, List<double>> dictionaryItem = new Dictionary<string, List<double>>();
                 nameEnumerator.Reset();
                 foreach(double value in varRow)
                 {
                     nameEnumerator.MoveNext();
-                    dictionaryItem[nameEnumerator.Current] = value;
+
+                    dictionaryItem[nameEnumerator.Current] = new List<double>();
+                    dictionaryItem[nameEnumerator.Current].Add(value);
                 }
                 returnList.Add(dictionaryItem);
             }
 
+            //make the crossVaryingVals include both parameters for the ratHouseParameters and landscapeHouseParameters if needed.
+            CrossVaryingValuesToBothParameters(returnList);
+
             //insert this list to the cross varying values attribute.
-            _crossVaryingVals =  returnList;
+            _crossVaryingValsBoth = returnList;
 
             //return this list that can be edited.
-            return _crossVaryingVals;
+            return _crossVaryingValsBoth;
+        }
+
+        /// <summary>
+        /// Creates a list of rows for the crossVaryingVlaues for the both parameters
+        /// from the list of rows for the crossVaryingValues of the ratHouseParameters only and the matched values dictionary.
+        /// </summary>
+        /// <param name="ratHouseVaryingCrossVals"></param>
+        public void CrossVaryingValuesToBothParameters(List<Dictionary<string , List<double>>> ratHouseVaryingCrossVals)
+        {
+            foreach (Dictionary<string, List<double>> varRatHouseRowItem in ratHouseVaryingCrossVals)
+            {
+                //run over all the variables in the row.
+                foreach (string varName in varRatHouseRowItem.Keys)
+                {
+                    //check if the value for the variable in the current line is set to tbot the ratHouseValue and the lanscapeHouseValue.
+                    if (_varyingVectorDictionaryParalelledForLandscapeHouseParameters.Keys.Contains(varName))
+                    {
+                        varRatHouseRowItem[varName].Add(_varyingVectorDictionaryParalelledForLandscapeHouseParameters[varName][varRatHouseRowItem[varName].ElementAt(0)]);
+                    }
+                }
+            }
         }
 
         /// <summary>
