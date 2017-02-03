@@ -48,7 +48,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Holds the trajectory creator object.
         /// </summary>
-        private TrajectoryCreator _trajectoryCreator;
+        private TrajectoryCreatorHandler _trajectoryCreator;
 
         /// <summary>
         /// Holds the AcrossVectorValuesGenerator generator.
@@ -68,7 +68,7 @@ namespace PinkyAndBrain
             _variablesList = new Variables();
             _variablesList._variablesDictionary = new Dictionary<string, Variable>();
             _dynamicAllocatedTextBoxes = new Dictionary<string,Control>();
-            _trajectoryCreator = new TrajectoryCreator();
+            _trajectoryCreator = new TrajectoryCreatorHandler();
             _acrossVectorValuesGenerator = new AcrossVectorValuesGenerator();
             InitializeTitleLabels();
             ShowVaryingControlsOptions(false);

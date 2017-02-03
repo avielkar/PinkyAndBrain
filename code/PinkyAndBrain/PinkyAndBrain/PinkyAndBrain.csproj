@@ -56,6 +56,7 @@
     <Compile Include="GuiInterface.Designer.cs">
       <DependentUpon>GuiInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="ITrajectoryCreator.cs" />
     <Compile Include="OnlinePsychGraphMaker.cs" />
     <Compile Include="Param.cs" />
     <Compile Include="Program.cs" />
@@ -64,7 +65,8 @@
     <Compile Include="ResponseAnalyzer.cs" />
     <Compile Include="RobotsController.cs" />
     <Compile Include="SavedDataMaker.cs" />
-    <Compile Include="TrajectoryCreator.cs" />
+    <Compile Include="TrajectoryCreatorHandler.cs" />
+    <Compile Include="TrajectoryCreators\ThreeStepAdaptaion.cs" />
     <EmbeddedResource Include="GuiInterface.resx">
       <DependentUpon>GuiInterface.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,6 +122,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

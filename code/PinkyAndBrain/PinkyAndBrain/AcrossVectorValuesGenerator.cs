@@ -58,7 +58,7 @@ namespace PinkyAndBrain
         private Matrix<double> _varyingMatrix;
 
         /// <summary>
-        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for bot ratHouseParameters and landscapeHouseParameters.
+        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.
         /// </summary>
         public List<Dictionary<string, List<double>>> _crossVaryingValsBoth;
 

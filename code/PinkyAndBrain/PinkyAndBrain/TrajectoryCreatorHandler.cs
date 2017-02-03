@@ -9,11 +9,12 @@ namespace PinkyAndBrain
     /// <summary>
     /// This class is called in each trial in order to create the trajectories to the current trial according to the current trial parmaters.
     /// </summary>
-    class TrajectoryCreator
+    class TrajectoryCreatorHandler
     {
-        public TrajectoryCreator()
+        public TrajectoryCreatorHandler()
         {
-            
+            //reset the varying index to read from.
+            _varyingCurrentIndex = 0;
         }
     }
 }
