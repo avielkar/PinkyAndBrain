@@ -71,7 +71,7 @@ namespace PinkyAndBrain
             _trajectoryCreator = new TrajectoryCreator();
             _acrossVectorValuesGenerator = new AcrossVectorValuesGenerator();
             InitializeTitleLabels();
-            _varyingListBox.Visible = false;
+            ShowVaryingControlsOptions(false);
         }
         #endregion CONSTRUCTORS
 
@@ -200,7 +200,8 @@ namespace PinkyAndBrain
             _acrossVectorValuesGenerator.MakeVaryingMatrix();
 
             AddVaryingMatrixToVaryingListBox(_acrossVectorValuesGenerator._crossVaryingValsBoth , _acrossVectorValuesGenerator._varyingVectorDictionaryParalelledForLandscapeHouseParameters);
-            _varyingListBox.Visible = true;
+
+            ShowVaryingControlsOptions(true);
         }
         #endregion EVENTS_HANDLE_FUNCTIONS
 
@@ -778,6 +779,91 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Checking ig the input for the new adding varying vector is proper.
+        /// </summary>
+        /// <param name="toCheckVector">The list of variables with values to be checked.</param>
+        /// <returns>True or false if the input is propper.</returns>
+        private bool CheckVaryingListBoxProperInput(Dictionary<string , string> toCheckVector)
+        {
+            //check if each attribute is according to both parameters if needed and the brackets also.
+            foreach (string varName in toCheckVector.Keys)
+            {
+                int firstLeftBracketIndex = toCheckVector[varName].IndexOf('[');
+                int firstRightBracketIndex = toCheckVector[varName].IndexOf(']');
+                string varNiceName = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter.ElementAt(0);
+
+                //if both parameters are enabled ,  should check for 2 of [].
+                if(_variablesList._variablesDictionary[varName]._description["parameters"]._bothParam)
+                {
+                    //if no brackets at all there is error because we expect for [x][y]  and not for a scalar.
+                    if (firstRightBracketIndex == -1 || firstLeftBracketIndex == -1)
+                    {
+                        MessageBox.Show("Error : variable " + varNiceName + " need 2 attributes!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    if (toCheckVector[varName].Count(x => x.Equals('[')) != 2 || toCheckVector[varName].Count(x => x.Equals(']')) != 2)
+                    {
+                        MessageBox.Show("Error : variable " + varNiceName + " need 2 attributes!", "Error" ,  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    //check that the first '[' is before the first ']'.
+                    if (firstLeftBracketIndex > firstRightBracketIndex)
+                    {
+                        MessageBox.Show("Error : variable " + varNiceName + " has [x][y] syntax error!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    //check that the digits between the brackets define a real number.
+                    if (!DigitsNumberChecker(toCheckVector[varName].Substring(firstLeftBracketIndex + 1, firstRightBracketIndex - firstLeftBracketIndex - 1)))
+                    {;
+                        MessageBox.Show("Error : variable " + varNiceName + " has some attributs that are no numbers!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    int secondLeftBracketIndex = toCheckVector[varName].IndexOf('[', firstLeftBracketIndex + 1);
+                    int secondRightBracketIndex = toCheckVector[varName].IndexOf(']', firstRightBracketIndex + 1);
+
+                    //check that the second '[' is before the second ']'.
+                    if (secondLeftBracketIndex > secondRightBracketIndex)
+                    {
+                        MessageBox.Show("Error : variable " + varNiceName + " has [x][y] syntax error!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    //check that the digits between the brackets define a real number.
+                    if (!DigitsNumberChecker(toCheckVector[varName].Substring(firstLeftBracketIndex + 1, firstRightBracketIndex - firstLeftBracketIndex - 1)))
+                    {
+                        MessageBox.Show("Error : variable " + varNiceName + " has some attributs that are no numbers!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+                
+                //if only the ratHouseParameter is enabled for this variable.
+                else
+                {
+                    //if there are brackets for a scalar.
+                    if (firstRightBracketIndex > -1 || firstLeftBracketIndex > -1)
+                    {
+                        MessageBox.Show("Error : variable " + varNiceName + " has brackets but is a scalar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    //if not represent a number.
+                    if(!DigitsNumberChecker(toCheckVector[varName]))
+                    {
+                        MessageBox.Show("Error : variable " + varNiceName + " has [x][y] syntax error!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+
+            //if everything is o.k return true.
+            return true;
+        }
+
+        /// <summary>
         /// Check if all items in the list can represent numbers.
         /// </summary>
         /// <param name="lst">The input list.</param>
@@ -1040,16 +1126,21 @@ namespace PinkyAndBrain
 
             //make a dictionary with the variable name as key and the belong textbox as value.
             Dictionary<string, TextBox> varNameToTextboxDictionary = new Dictionary<string,TextBox>();
-            
+
             //Showing the new little form to get the inputs for the new combination.
             ShowControlAddingVaryingForm(crossVaryingVals, varNameToTextboxDictionary);
         }
 
+        /// <summary>
+        /// Showing the new little form of the textboxes for the varyin variables to get the input from.
+        /// </summary>
+        /// <param name="crossVaryingVals">The crossVaryingVals list for all the trials.</param>
+        /// <param name="varNameToTextboxDictionary">The dictionary map for the variable string (key) to the variable representing textbox(value).</param>
+        /// <returns></returns>
         private Form ShowControlAddingVaryingForm(List<Dictionary<string, List<double>>> crossVaryingVals, Dictionary<string, TextBox> varNameToTextboxDictionary)
         {
             //show thw new little form for the desired variables.
             Form littleTempForm = new Form();
-            littleTempForm.Show();
 
             int leftOffset = 0;
             int topOffset = 0;
@@ -1084,9 +1175,19 @@ namespace PinkyAndBrain
             confirmCombinationAdding.Left = leftOffset + width;
             confirmCombinationAdding.Click += new EventHandler((sender2, e2) => confirmVaryingCombinationAdding_Click(sender2, e2, varNameToTextboxDictionary));
 
+            //show the dialog (need to be after adding controls) with the parent as the main windows frozed behind.
+            littleTempForm.ShowDialog(this);
+
+            //retutn the little form;
             return littleTempForm;
         }
 
+        /// <summary>
+        /// Handler for clicking on the confirm buttom for adding the combination added in the little window.
+        /// </summary>
+        /// <param name="sender">The buttom object.</param>
+        /// <param name="e">args.</param>
+        /// <param name="varNameToTextboxDictionary">The dictionary map for the variable string (key) to the variable representing textbox(value).</param>
         private void confirmVaryingCombinationAdding_Click(object sender, EventArgs e , Dictionary<string , TextBox> varNameToTextboxDictionary)
         {
             //creating dictionary for variable name as key and it's value as a value.
@@ -1099,10 +1200,17 @@ namespace PinkyAndBrain
             }
 
             //confirm if the input is spelled well.
-
+            if (!CheckVaryingListBoxProperInput(varNameToValueDictionary))
+                return;
 
             //add the new combination after checking the spelling for the input.
             AddNewVaryngCombination(varNameToValueDictionary);
+
+            Button clickedButtom = sender as Button;
+            Form littleWindow = clickedButtom.Parent as Form;
+
+            //close the adding combination little window.
+            littleWindow.Close();
         }
 
         /// <summary>
@@ -1175,6 +1283,17 @@ namespace PinkyAndBrain
                 VaryingItem varyItem = varyingListBox.Items[index] as VaryingItem;
                 varyItem._listIndex--;
             }
+        }
+
+        /// <summary>
+        /// Detemines ig the varying control items are visible according to the input. show.
+        /// </summary>
+        /// <param name="show">If to show the varying control items.</param>
+        private void ShowVaryingControlsOptions(bool show)
+        {
+            this._varyingListBox.Visible = show;
+            this._addVaryingCobination.Visible = show;
+            this._removeVaryingCombination.Visible = show;
         }
         #endregion VARYING_LISTBOX_FUNCTIONS
     }
