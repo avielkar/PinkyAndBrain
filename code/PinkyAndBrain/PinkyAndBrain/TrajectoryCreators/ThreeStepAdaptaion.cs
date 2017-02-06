@@ -98,7 +98,7 @@ namespace PinkyAndBrain.TrajectoryCreators
 
         private Vector<double> Create()
         {
-            NewtonCotesTrapeziumRule.IntegrateAdaptive((x => _vestibularVelocityVector[x]), 0, _trajectorySampleNumber,0.0001);
+            //NewtonCotesTrapeziumRule.IntegrateAdaptive((x => _vestibularVelocityVector[x]), 0, _trajectorySampleNumber,0.0001);
         }
     }
 }
