@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using MLApp;
 
 namespace PinkyAndBrain
 {
@@ -55,6 +56,16 @@ namespace PinkyAndBrain
         /// </summary>
         private AcrossVectorValuesGenerator _acrossVectorValuesGenerator;
 
+        /// <summary>
+        /// ControlLoop interface for doing the commands inserted in the gui.
+        /// </summary>
+        private ControlLoop _cntrlLoop;
+
+        /// <summary>
+        /// The matlab app object for handling the matlab application.
+        /// </summary>
+        private MLApp.MLApp _matlabApp;
+
         #endregion MEMBERS
 
         #region CONSTRUCTORS
@@ -72,6 +83,8 @@ namespace PinkyAndBrain
             _acrossVectorValuesGenerator = new AcrossVectorValuesGenerator();
             InitializeTitleLabels();
             ShowVaryingControlsOptions(false);
+            _matlabApp = new MLApp.MLApp();
+            _cntrlLoop = new ControlLoop(_matlabApp);
         }
         #endregion CONSTRUCTORS
 
@@ -199,9 +212,14 @@ namespace PinkyAndBrain
             //make the varyingCrossVals matrix.
             _acrossVectorValuesGenerator.MakeVaryingMatrix();
 
+            //add the crossVaryingVals to the listbox.
             AddVaryingMatrixToVaryingListBox(_acrossVectorValuesGenerator._crossVaryingValsBoth , _acrossVectorValuesGenerator._varyingVectorDictionaryParalelledForLandscapeHouseParameters);
 
+            //show the list box controls(add , remove , etc...)
             ShowVaryingControlsOptions(true);
+
+            //start the control loop.
+            _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, 60);
         }
         #endregion EVENTS_HANDLE_FUNCTIONS
 

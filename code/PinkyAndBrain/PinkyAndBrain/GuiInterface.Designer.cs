@@ -37,6 +37,7 @@
             this._varyingListBox = new System.Windows.Forms.ListBox();
             this._addVaryingCobination = new System.Windows.Forms.Button();
             this._removeVaryingCombination = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -147,5 +148,6 @@
         private System.Windows.Forms.ListBox _varyingListBox;
         private System.Windows.Forms.Button _addVaryingCobination;
         private System.Windows.Forms.Button _removeVaryingCombination;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

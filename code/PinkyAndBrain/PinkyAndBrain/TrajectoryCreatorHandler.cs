@@ -14,7 +14,7 @@ namespace PinkyAndBrain
         public TrajectoryCreatorHandler()
         {
             //reset the varying index to read from.
-            _varyingCurrentIndex = 0;
+            //_varyingCurrentIndex = 0;
         }
     }
 }
