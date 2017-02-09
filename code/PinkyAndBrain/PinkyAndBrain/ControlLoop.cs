@@ -21,12 +21,29 @@ namespace PinkyAndBrain
         /// </summary>
         private ITrajectoryCreator _trajectoryCrator;
 
+        /// <summary>
+        /// The trajectory creation 
+        /// </summary>
+        private TrajectoryCreatorHandler _trajectoryCreatorHandler;
+
+        /// <summary>
+        /// The variables readen from the xlsx protocol file.
+        /// </summary>
         private Variables _variablesList;
 
+        /// <summary>
+        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.
+        /// </summary>
         private List<Dictionary<string, List<double>>> _crossVaryingVals;
 
+        /// <summary>
+        /// The numbers of samples for each trajectory.
+        /// </summary>
         private int _frequency;
 
+        /// <summary>
+        /// The Matlab computing process object for drawing graphs and etc.
+        /// </summary>
         private MLApp.MLApp _matlabApp;
 
         /// <summary>
@@ -35,19 +52,24 @@ namespace PinkyAndBrain
         public ControlLoop(MLApp.MLApp matlabApp)
         {
             _matlabApp = matlabApp;
+            _trajectoryCreatorHandler = new TrajectoryCreatorHandler(_matlabApp);
         }
 
         /// <summary>
         /// Transfer the control from the main gui to the control loop until a new gui event is handled by the user.
         /// </summary>
-        public void Start(Variables variablesList, List<Dictionary<string, List<double>>> crossVaryingList, int frequency)
+        public void Start(Variables variablesList, List<Dictionary<string, List<double>>> crossVaryingList, int frequency , string trajectoryCreatorName)
         {
             _variablesList = variablesList;
             _crossVaryingVals = crossVaryingList;
             _frequency = frequency;
-            _trajectoryCrator = new ThreeStepAdaptaion(_matlabApp, _variablesList, _crossVaryingVals, _frequency);
-            _trajectoryCrator.GenererateGaussianDirectly(1, 3, 8, _frequency);
-            
+            //_trajectoryCrator = new ThreeStepAdaptaion(_matlabApp, _variablesList, _crossVaryingVals, _frequency);
+
+            //set the trajectory creator name to the given one that should be called in the trajectoryCreatorHandler.
+            //also , set the other properties.
+            _trajectoryCreatorHandler.SetTrajectoryAttributes(trajectoryCreatorName, _variablesList, _crossVaryingVals, _frequency);
+
+            _trajectoryCreatorHandler.CreateTrajectory();
         }
     }
 }

@@ -79,7 +79,6 @@ namespace PinkyAndBrain
             _variablesList = new Variables();
             _variablesList._variablesDictionary = new Dictionary<string, Variable>();
             _dynamicAllocatedTextBoxes = new Dictionary<string,Control>();
-            _trajectoryCreator = new TrajectoryCreatorHandler();
             _acrossVectorValuesGenerator = new AcrossVectorValuesGenerator();
             InitializeTitleLabels();
             ShowVaryingControlsOptions(false);
@@ -219,7 +218,7 @@ namespace PinkyAndBrain
             ShowVaryingControlsOptions(true);
 
             //start the control loop.
-            _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, 60);
+            _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, 50, "ThreeStepAdaptation");
         }
         #endregion EVENTS_HANDLE_FUNCTIONS
 

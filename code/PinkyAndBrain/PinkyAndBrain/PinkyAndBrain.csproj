@@ -98,7 +98,7 @@
     <Compile Include="GuiInterface.Designer.cs">
       <DependentUpon>GuiInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="ITrajectoryCreator.cs" />
+    <Compile Include="TrajectoryCreators\ITrajectoryCreator.cs" />
     <Compile Include="OnlinePsychGraphMaker.cs" />
     <Compile Include="Param.cs" />
     <Compile Include="Program.cs" />
@@ -108,7 +108,7 @@
     <Compile Include="RobotsController.cs" />
     <Compile Include="SavedDataMaker.cs" />
     <Compile Include="TrajectoryCreatorHandler.cs" />
-    <Compile Include="TrajectoryCreators\ThreeStepAdaptaion.cs" />
+    <Compile Include="TrajectoryCreators\ThreeStepAdaptation.cs" />
     <EmbeddedResource Include="GuiInterface.resx">
       <DependentUpon>GuiInterface.cs</DependentUpon>
     </EmbeddedResource>

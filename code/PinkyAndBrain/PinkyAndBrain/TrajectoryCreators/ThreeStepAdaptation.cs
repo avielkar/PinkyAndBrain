@@ -21,7 +21,7 @@ namespace PinkyAndBrain.TrajectoryCreators
     /// Trajectory creation according to ThreeStepAdaptation creator.
     /// It's method for 'Create' called each trial by it's handler.
     /// </summary>
-    class ThreeStepAdaptaion:ITrajectoryCreator
+    class ThreeStepAdaptation:ITrajectoryCreator
     {
         /// <summary>
         /// The varying index to read now from the varyingCrossValues.
@@ -67,12 +67,41 @@ namespace PinkyAndBrain.TrajectoryCreators
         /// The second is for the lanscapeHouseDescription.
         private Tuple<Tuple<double, double, double>, Tuple<double, double, double>> origin;
 
+        /// <summary>
+        /// The Matlab handler object.
+        /// </summary>
         private MLApp.MLApp _matlabApp;
+
 
 
         private Vector<double> _vestibularVelocityVector;
 
         private Vector<double> _vestibularDistanceVector;
+
+
+        /// <summary>
+        /// The variables readen from the xlsx protocol file.
+        /// </summary>
+        private Variables _variablesList;
+
+        /// <summary>
+        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.
+        /// </summary>
+        private List<Dictionary<string, List<double>>> _crossVaryingVals;
+
+        /// <summary>
+        /// The numbers of samples for each trajectory.
+        /// </summary>
+        private int _frequency;
+
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public ThreeStepAdaptation()
+        {
+
+        }
 
         /// <summary>
         /// ThreeStepAdapdation Constructor.
@@ -80,44 +109,34 @@ namespace PinkyAndBrain.TrajectoryCreators
         /// <param name="variablesList">The variables list showen in the readen from the excel and changed by the main gui.</param>
         /// <param name="crossVaryingVals">Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.</param>
         /// <param name="trajectorySampleNumber">The number of sample points for the trajectory.</param>
-        public ThreeStepAdaptaion(MLApp.MLApp matlabApp , Variables variablesList , List<Dictionary<string , List<double>>> crossVaryingVals , int trajectorySampleNumber)
+        public ThreeStepAdaptation(MLApp.MLApp matlabApp , Variables variablesList , List<Dictionary<string , List<double>>> crossVaryingVals , int trajectorySampleNumber)
         {
             _matlabApp = matlabApp;
+            _variablesList = variablesList;
+            _crossVaryingVals = crossVaryingVals;
+            _frequency = trajectorySampleNumber;
         }
 
         /// <summary>
-        /// Generates a gaussian velocity vector for the trajectory accoeding to the parameters.
+        /// Generating a vector of sampled gaussian cdf with the given attributes.
         /// </summary>
-        /// <param name="duration">Trajectory duration.</param>
-        /// <param name="sigma">Trajectory standart deviatian.</param>
-        /// <param name="magnitude">Trajectory amplitude.</param>
-        /// <param name="frequency">Num of samples for the trajectory.</param>
-        /// <returns>The sampled velocity vector for the trajectory.</returns>
-        private Vector<double> GenererateGaussian(double duration , double sigma , int magnitude , int frequency)
+        /// <param name="duration">The duraon for the trajectory.</param>
+        /// <param name="sigma">The number of sigmas for the trajectory in the generated gayssian cdf.</param>
+        /// <param name="magnitude">The mfgnitude of the trajectory.</param>
+        /// <param name="frequency">The number of samples for the gaussian cdf to the trajectory.</param>
+        /// <returns>
+        /// The sampled gaussian cdf trajector.
+        /// The vector length is as the fgiven frequency.
+        /// </returns>
+        public Vector<double> GenererateGaussianSampledCDF(double duration, double sigma, int magnitude, int frequency)
         {
-            Vector<double> sampleVector = CreateVector.Dense<double>(frequency, x => Normal.PDF(duration / 2, sigma, x));
-
-            sampleVector = sampleVector * Math.Sqrt(2 * (Math.Pow(sigma, 2) * Math.PI));
-
-            sampleVector = sampleVector / sampleVector.Max();
-
-            sampleVector *= magnitude;
-
-            return sampleVector;
-        }
-
-        public Vector<double> GenererateGaussianDirectly(double duration, double sigma, int magnitude, int frequency)
-        {
-            Normal.PDF(duration / 2, duration/(2 * sigma), frequency);
-            //Vector<double> returnedVector = CreateVector.Dense<double>(frequency, time => magnitude * Normal.CDF(0, duration / (2 * sigma), ((time - frequency / 2)) * (duration / (8 * sigma))));
             Vector<double> returnedVector = CreateVector.Dense<double>(frequency, time => magnitude * Normal.CDF(duration/2, duration / (2 * sigma), (double)time/frequency));
-            MindFusionPlotFunction(returnedVector);
             MatlabPlotFunction(returnedVector);
             return returnedVector;
         }
 
         /// <summary>
-        /// Plotting a vector into  new window for 2D function.
+        /// Plotting a vector into  new window for 2D function with MindFusion.
         /// </summary>
         /// <param name="drawingVector">
         /// The vector to be drawn into the graph.
@@ -164,15 +183,23 @@ namespace PinkyAndBrain.TrajectoryCreators
             f.Show();
         }
 
+        /// <summary>
+        /// Plotting a vector into  new window for 2D function with MATLAB.
+        /// </summary>
+        /// <param name="drawingVector">
+        /// The vector to be drawn into the graph.
+        /// The x axis is the size of the vecor.
+        /// The y axis is the vector.
+        /// </param>
         public void MatlabPlotFunction(Vector<double> drawingVector)
         {
-            int data = 24;
-            MWCellArray cell = new MWCellArray(2, 5);
-            
-            //mArray
-            _matlabApp.Execute("gaussian_pdf");
-            //_matlabApp.PutWorkspaceData("a", "base", mArray);
-            _matlabApp.Execute("a+a");
+            double[] dArray = new double[drawingVector.Count];
+            for(int i=0;i<dArray.Length;i++)
+                dArray[i] = drawingVector[i];
+
+            _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
+
+            _matlabApp.Execute("plot(drawingVector)");
         }
     }
 }
