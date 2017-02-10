@@ -195,6 +195,20 @@ namespace PinkyAndBrain
         /// <param name="e">args.</param>
         private void _startButton_Click(object sender, EventArgs e)
         {
+            //add the static variable list of double type values.
+            _staticValuesGenerator.SetVariables(_variablesList);
+
+            //start the control loop.
+            _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList ,  60, "ThreeStepAdaptation");
+        }
+
+        /// <summary>
+        /// Make trails for the selected varying variables.
+        /// </summary>
+        /// <param name="sender">The sender oButtom object.</param>
+        /// <param name="e">Args.</param>
+        private void _makeTrials_Click(object sender, EventArgs e)
+        {
             //Check if both he num of staicases and withinstairs is 1 or 0.
             #region STATUS_NUM_OF_OCCURENCES
             int withinStairStstusOccurences = NumOfSpecificStatus("WithinStair");
@@ -202,7 +216,7 @@ namespace PinkyAndBrain
             if (withinStairStstusOccurences != acrossStairStatusOccurences || acrossStairStatusOccurences > 1)
             {
                 MessageBox.Show("Cannor start the experiment.\n The number of Withinstairs should be the same as AccrossStairs and both not occurs more than 1!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+
                 //do nothing else.
                 return;
             }
@@ -218,16 +232,10 @@ namespace PinkyAndBrain
             _acrossVectorValuesGenerator.MakeVaryingMatrix();
 
             //add the crossVaryingVals to the listbox.
-            AddVaryingMatrixToVaryingListBox(_acrossVectorValuesGenerator._crossVaryingValsBoth , _acrossVectorValuesGenerator._varyingVectorDictionaryParalelledForLandscapeHouseParameters);
+            AddVaryingMatrixToVaryingListBox(_acrossVectorValuesGenerator._crossVaryingValsBoth, _acrossVectorValuesGenerator._varyingVectorDictionaryParalelledForLandscapeHouseParameters);
 
             //show the list box controls(add , remove , etc...)
             ShowVaryingControlsOptions(true);
-
-            //add the static variable list of double type values.
-            _staticValuesGenerator.SetVariables(_variablesList);
-
-            //start the control loop.
-            _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList ,  60, "ThreeStepAdaptation");
         }
         #endregion EVENTS_HANDLE_FUNCTIONS
 

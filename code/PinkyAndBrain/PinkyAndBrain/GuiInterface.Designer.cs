@@ -38,6 +38,7 @@
             this._addVaryingCobination = new System.Windows.Forms.Button();
             this._removeVaryingCombination = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this._makeTrials = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -79,7 +80,7 @@
             // 
             // _startButton
             // 
-            this._startButton.Location = new System.Drawing.Point(829, 415);
+            this._startButton.Location = new System.Drawing.Point(930, 444);
             this._startButton.Name = "_startButton";
             this._startButton.Size = new System.Drawing.Size(75, 23);
             this._startButton.TabIndex = 4;
@@ -116,11 +117,22 @@
             this._removeVaryingCombination.UseVisualStyleBackColor = true;
             this._removeVaryingCombination.Click += new System.EventHandler(this._removeVaryingCombination_Click);
             // 
+            // _makeTrials
+            // 
+            this._makeTrials.Location = new System.Drawing.Point(930, 415);
+            this._makeTrials.Name = "_makeTrials";
+            this._makeTrials.Size = new System.Drawing.Size(75, 23);
+            this._makeTrials.TabIndex = 8;
+            this._makeTrials.Text = "MakeTrials";
+            this._makeTrials.UseVisualStyleBackColor = true;
+            this._makeTrials.Click += new System.EventHandler(this._makeTrials_Click);
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1251, 604);
+            this.Controls.Add(this._makeTrials);
             this.Controls.Add(this._removeVaryingCombination);
             this.Controls.Add(this._addVaryingCobination);
             this.Controls.Add(this._varyingListBox);
@@ -149,5 +161,6 @@
         private System.Windows.Forms.Button _addVaryingCobination;
         private System.Windows.Forms.Button _removeVaryingCombination;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button _makeTrials;
     }
 }

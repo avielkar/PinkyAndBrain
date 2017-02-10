@@ -87,18 +87,22 @@ namespace PinkyAndBrain
         /// <param name="frequency">The numbers of samples for each trajectory.</param>
         public void SetTrajectoryAttributes(string trajectoryName, Variables variableList, List<Dictionary<string, List<double>>> crossVaryingVals, Dictionary<string, List<List<double>>> staticVariables, int frequency)
         {
+            //set the variables.
             _trajectoryCreatorName = trajectoryName;
             _variablesList = variableList;
             _crossVaryingVals = crossVaryingVals;
             _staticVals = staticVariables;
             _frequency = frequency;
 
+            //arguments for the ITrajectoryCreator constructor.
             object[] args = new object[5];
             args[0] = _matlab;
             args[1] = _variablesList;
             args[2] = _crossVaryingVals;
             args[3] = _staticVals;
             args[4] = _frequency;
+
+            //create the _trajectoryCreator by constructor with the match name to the trajectoryName.
             _trajectoryCreator = (ITrajectoryCreator)Activator.CreateInstance(Type.GetType("PinkyAndBrain.TrajectoryCreators." + _trajectoryCreatorName), args);
         }
 

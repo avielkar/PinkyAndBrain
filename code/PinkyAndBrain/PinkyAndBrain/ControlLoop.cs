@@ -75,16 +75,17 @@ namespace PinkyAndBrain
         /// </summary>
         public void Start(Variables variablesList, List<Dictionary<string, List<double>>> crossVaryingList, Dictionary<string , List<List<double>>> staticVariablesList  , int frequency , string trajectoryCreatorName)
         {
+            //initialize variables.
             _variablesList = variablesList;
             _crossVaryingVals = crossVaryingList;
             _staticVariablesList = staticVariablesList;
             _frequency = frequency;
-            //_trajectoryCrator = new ThreeStepAdaptaion(_matlabApp, _variablesList, _crossVaryingVals, _frequency);
 
             //set the trajectory creator name to the given one that should be called in the trajectoryCreatorHandler.
             //also , set the other properties.
             _trajectoryCreatorHandler.SetTrajectoryAttributes(trajectoryCreatorName, _variablesList, _crossVaryingVals, _staticVariablesList, _frequency);
 
+            //craetes the trajectory for both robots for the current trial.
             _trajectoryCreatorHandler.CreateTrajectory();
         }
         #endregion FUNCTIONS
