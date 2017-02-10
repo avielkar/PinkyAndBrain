@@ -11,6 +11,7 @@ namespace PinkyAndBrain
     /// </summary>
     class VaryingIndexSelector
     {
+        #region ATTRIBUTES
         /// <summary>
         /// This array stores the state of all experiment trials combination.
         /// If true , it means that the trial already been used.
@@ -22,7 +23,9 @@ namespace PinkyAndBrain
         /// Random number generator.
         /// </summary>
         Random _randGenerator;
-        
+        #endregion ATTRIBUTES
+
+        #region CONSTRUCTORS
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -37,7 +40,9 @@ namespace PinkyAndBrain
             _trialsCombinationIndexesStatus = new bool[trialsCount];
             ResetTrialsStatus();
         }
+        #endregion CONSTRUCTORS
 
+        #region FUNCTIONS
         /// <summary>
         /// Reset the status of all the trials combinations.
         /// </summary>
@@ -69,5 +74,6 @@ namespace PinkyAndBrain
             //return the selected combination index.
             return rand;
         }
+        #endregion FUNCTIONS
     }
 }
