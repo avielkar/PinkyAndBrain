@@ -79,6 +79,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -98,6 +99,7 @@
     <Compile Include="GuiInterface.Designer.cs">
       <DependentUpon>GuiInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="StaticValuesGenerator.cs" />
     <Compile Include="TrajectoryCreators\ITrajectoryCreator.cs" />
     <Compile Include="OnlinePsychGraphMaker.cs" />
     <Compile Include="Param.cs" />

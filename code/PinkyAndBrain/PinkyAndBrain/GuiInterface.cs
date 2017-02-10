@@ -57,6 +57,11 @@ namespace PinkyAndBrain
         private AcrossVectorValuesGenerator _acrossVectorValuesGenerator;
 
         /// <summary>
+        /// Holds the StaticValuesGenerator generator.
+        /// </summary>
+        private StaticValuesGenerator _staticValuesGenerator;
+
+        /// <summary>
         /// ControlLoop interface for doing the commands inserted in the gui.
         /// </summary>
         private ControlLoop _cntrlLoop;
@@ -80,6 +85,7 @@ namespace PinkyAndBrain
             _variablesList._variablesDictionary = new Dictionary<string, Variable>();
             _dynamicAllocatedTextBoxes = new Dictionary<string,Control>();
             _acrossVectorValuesGenerator = new AcrossVectorValuesGenerator();
+            _staticValuesGenerator = new StaticValuesGenerator();
             InitializeTitleLabels();
             ShowVaryingControlsOptions(false);
             _matlabApp = new MLApp.MLApp();
@@ -217,8 +223,11 @@ namespace PinkyAndBrain
             //show the list box controls(add , remove , etc...)
             ShowVaryingControlsOptions(true);
 
+            //add the static variable list of double type values.
+            _staticValuesGenerator.SetVariables(_variablesList);
+
             //start the control loop.
-            _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, 50, "ThreeStepAdaptation");
+            _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList ,  60, "ThreeStepAdaptation");
         }
         #endregion EVENTS_HANDLE_FUNCTIONS
 

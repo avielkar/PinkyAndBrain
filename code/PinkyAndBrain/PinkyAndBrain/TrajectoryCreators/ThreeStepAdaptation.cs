@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MathNet.Numerics;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.Distributions;
 using MathNet.Numerics.Integration;
@@ -23,6 +24,7 @@ namespace PinkyAndBrain.TrajectoryCreators
     /// </summary>
     class ThreeStepAdaptation:ITrajectoryCreator
     {
+        #region ATTRIBUTES
         /// <summary>
         /// The varying index to read now from the varyingCrossValues.
         /// </summary>
@@ -46,38 +48,65 @@ namespace PinkyAndBrain.TrajectoryCreators
         private Tuple<double, double> _headingDirection;
 
         /// <summary>
+        /// Describes the elevation amplitudes.
+        /// The first is for the ratHouseDescription.
+        /// The second is for the lanscapeHouseDescription.
+        /// </summary>
+        private Tuple<double, double> _discPlaneElevation;
+
+        /// <summary>
+        /// Describes the azimuth amplitudes.
+        /// The first is for the ratHouseDescription.
+        /// The second is for the lanscapeHouseDescription.
+        /// </summary>
+        private Tuple<double, double> _discPlaneAzimuth;
+
+        /// <summary>
+        /// Describes the tilt amplitudes.
+        /// The first is for the ratHouseDescription.
+        /// The second is for the lanscapeHouseDescription.
+        /// </summary>
+        private Tuple<double, double> _discPlaneTilt;
+
+        /// <summary>
         /// Describes the heading distance should be done.
         /// The first is for the ratHouseDescription.
         /// The second is for the lanscapeHouseDescription.
         /// </summary>
         private Tuple<double, double> _distance;
 
+        /// <summary>
         /// Describes the duration to make the move.
         /// The first is for the ratHouseDescription.
         /// The second is for the lanscapeHouseDescription.
+        /// </summary>
         private Tuple<double, double> _duration;
 
+        /// <summary>
         /// Describes the sigma of the gaussian for the trajectory.
         /// The first is for the ratHouseDescription.
         /// The second is for the lanscapeHouseDescription.
+        /// </summary>
         private Tuple<double, double> _sigma;
 
+        /// <summary>
         /// Describes the origin each trajectory begin from.
         /// The first is for the ratHouseDescription.
         /// The second is for the lanscapeHouseDescription.
-        private Tuple<Tuple<double, double, double>, Tuple<double, double, double>> origin;
+        /// </summary>
+        private Tuple<Tuple<double, double, double>, Tuple<double, double, double>> _origin;
+
+        /// <summary>
+        /// Describes the adaptation angle size.
+        /// The first is for the ratHouseDescription.
+        /// The second is for the lanscapeHouseDescription.
+        /// </summary>
+        private Tuple<double , double> _adaptationAngle;
 
         /// <summary>
         /// The Matlab handler object.
         /// </summary>
         private MLApp.MLApp _matlabApp;
-
-
-
-        private Vector<double> _vestibularVelocityVector;
-
-        private Vector<double> _vestibularDistanceVector;
-
 
         /// <summary>
         /// The variables readen from the xlsx protocol file.
@@ -90,11 +119,22 @@ namespace PinkyAndBrain.TrajectoryCreators
         private List<Dictionary<string, List<double>>> _crossVaryingVals;
 
         /// <summary>
+        /// The static variables list in double value presentation.
+        /// The string is for the variable name.
+        /// The outer list is for the two inner list (or one , conditioned in the landscapeHouseParameter).
+        /// The inners lists are for the values for each of the ratHouseParameter and landscapeHouseParameter (if there).
+        /// The inners kist is with size 1 if the input is a scalar.
+        /// Otherwise ,  if a vector , it would be a list with the size of the vector.
+        /// </summary>
+        private Dictionary<string, List<List<double>>> _staticVars;
+
+        /// <summary>
         /// The numbers of samples for each trajectory.
         /// </summary>
         private int _frequency;
+        #endregion ATTRIBUTES
 
-
+        #region CONSTRUCTORS
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -109,14 +149,17 @@ namespace PinkyAndBrain.TrajectoryCreators
         /// <param name="variablesList">The variables list showen in the readen from the excel and changed by the main gui.</param>
         /// <param name="crossVaryingVals">Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.</param>
         /// <param name="trajectorySampleNumber">The number of sample points for the trajectory.</param>
-        public ThreeStepAdaptation(MLApp.MLApp matlabApp , Variables variablesList , List<Dictionary<string , List<double>>> crossVaryingVals , int trajectorySampleNumber)
+        public ThreeStepAdaptation(MLApp.MLApp matlabApp , Variables variablesList , List<Dictionary<string , List<double>>> crossVaryingVals , Dictionary<string , List<List<double>>> staticVals , int trajectorySampleNumber)
         {
             _matlabApp = matlabApp;
             _variablesList = variablesList;
             _crossVaryingVals = crossVaryingVals;
+            _staticVars = staticVals;
             _frequency = trajectorySampleNumber;
         }
+        #endregion CONSTRUCTORS
 
+        #region FUNCTIONS
         /// <summary>
         /// Generating a vector of sampled gaussian cdf with the given attributes.
         /// </summary>
@@ -128,11 +171,173 @@ namespace PinkyAndBrain.TrajectoryCreators
         /// The sampled gaussian cdf trajector.
         /// The vector length is as the fgiven frequency.
         /// </returns>
-        public Vector<double> GenererateGaussianSampledCDF(double duration, double sigma, int magnitude, int frequency)
+        public Vector<double> GenerateGaussianSampledCDF(double duration, double sigma, double magnitude, int frequency)
         {
-            Vector<double> returnedVector = CreateVector.Dense<double>(frequency, time => magnitude * Normal.CDF(duration/2, duration / (2 * sigma), (double)time/frequency));
+            Vector<double> returnedVector = CreateVector.Dense<double>(frequency * (int)duration, time => magnitude * Normal.CDF(duration/2, duration / (2 * sigma), (double)time/frequency));
             MatlabPlotFunction(returnedVector);
             return returnedVector;
+        }
+
+        /// <summary>
+        /// Computes the trajectoy tuple (for the ratHouseTrajectory and for the landscapeHouseTrajectory).
+        /// </summary>
+        /// <param name="index">The index from the crossVaryingList to take the attributes of he varying variables from.</param>
+        /// <returns>The trajectory tuple (for the ratHouseTrajectory and for the landscapeHouseTrajectory). </returns>
+        public Tuple<Trajectory , Trajectory> CreateTrialTrajectory(int index)
+        {
+            //reading the needed current trial parameters into the object members.
+            ReadTrialParameters(index);
+
+            //make the ratHouseDistance vector and the landscapeHouseDistance vector.
+            Vector<double> ratHouseDistanceVector = GenerateGaussianSampledCDF(_duration.Item1 , _sigma.Item1 , _distance.Item1 , _frequency);
+            Vector<double> landscapeHouseDistanceVector = GenerateGaussianSampledCDF(_duration.Item2, _sigma.Item2, _distance.Item2, _frequency);
+            
+            //combined.
+            if(_stimulusType == 3)
+            {
+                _headingDirection = new Tuple<double,double> (_headingDirection.Item1 + _adaptationAngle.Item1 * Math.PI * 180 / 2 ,_headingDirection.Item2 + _adaptationAngle.Item2 * Math.PI * 180 / 2);
+            }
+
+            //create the multiplication matrix to multiply with the distances vectors.
+            Tuple<double , double , double> multiplyRatDistance =  CreateMultiplyTuple(_headingDirection.Item1, _discPlaneAzimuth.Item1, _discPlaneElevation.Item1, _discPlaneTilt.Item1);
+            Tuple<double, double, double> multiplyLandscapeDistance = CreateMultiplyTuple(_headingDirection.Item2, _discPlaneAzimuth.Item2, _discPlaneElevation.Item2, _discPlaneTilt.Item2);
+
+            //multuply the distance vectors.
+            Vector<double> lateralRatHouse = multiplyRatDistance.Item1 * ratHouseDistanceVector;
+            Vector<double> surgeRatHouse = multiplyRatDistance.Item2 * ratHouseDistanceVector;
+            Vector<double> heaveRatHouse = multiplyRatDistance.Item3 * ratHouseDistanceVector;
+            Vector<double> lateralLandscapeHouse = multiplyLandscapeDistance.Item1 * landscapeHouseDistanceVector;
+            Vector<double> surgeLandscapeHouse = multiplyLandscapeDistance.Item2 * landscapeHouseDistanceVector;
+            Vector<double> heaveLandscapeHouse = multiplyLandscapeDistance.Item3 * landscapeHouseDistanceVector;
+
+            Trajectory ratHouseTrajectory = new Trajectory();
+
+            ratHouseTrajectory.x = surgeRatHouse;
+            ratHouseTrajectory.y = lateralRatHouse;
+            ratHouseTrajectory.z = heaveRatHouse;
+
+            //rx - roll , ry - pitch , rz = yaw
+            ratHouseTrajectory.rx = CreateVector.Dense<double>(_frequency, 0);
+            ratHouseTrajectory.ry = CreateVector.Dense<double>(_frequency, 0);
+            ratHouseTrajectory.rz = CreateVector.Dense<double>(_frequency, 0);
+
+
+            Trajectory landscapeHouseTrajectory = new Trajectory();
+            landscapeHouseTrajectory.x = surgeLandscapeHouse;
+            landscapeHouseTrajectory.y = lateralLandscapeHouse;
+            landscapeHouseTrajectory.z = heaveLandscapeHouse;
+
+            //rx - roll , ry - pitch , rz = yaw
+            ratHouseTrajectory.rx = CreateVector.Dense<double>(_frequency, 0);
+            ratHouseTrajectory.ry = CreateVector.Dense<double>(_frequency, 0);
+            ratHouseTrajectory.rz = CreateVector.Dense<double>(_frequency, 0);
+
+            //visual only (landscapeHouseDistance only).
+            if(_stimulusType == 2)
+            {
+                ratHouseTrajectory.x = CreateVector.Dense<double>(_frequency, 0);
+                ratHouseTrajectory.y = CreateVector.Dense<double>(_frequency, 0);
+                ratHouseTrajectory.z = CreateVector.Dense<double>(_frequency, 0);
+            }
+
+            //if need to plot the trajectories
+            if(true)
+            {
+                MatlabPlotFunction(ratHouseTrajectory.x);
+            }
+
+            return new Tuple<Trajectory, Trajectory>(ratHouseTrajectory, landscapeHouseTrajectory);
+        }
+
+        /// <summary>
+        /// Creating the multiplier for each x,y,z movement by the amplitude , aimuth , elevtion and tilt.
+        /// </summary>
+        /// <param name="amplitude">Amplitude (degree).</param>
+        /// <param name="azimuth">Azimuth (degree).</param>
+        /// <param name="elevation">Elevation (degree).</param>
+        /// <param name="tilt">Tilt (degree).</param>
+        /// <returns></returns>
+        public Tuple<double , double , double> CreateMultiplyTuple(double amplitude , double azimuth , double elevation , double tilt)
+        {
+            //converting the angles to radian.
+            amplitude = amplitude * Math.PI / 180;
+            azimuth = azimuth * Math.PI / 180;
+            elevation = elevation * Math.PI / 180;
+            tilt = tilt * Math.PI / 180;
+
+            //making the multipliers vector.
+            double xM = -Trig.Sin(amplitude) * Trig.Sin(azimuth) * Trig.Cos(tilt) +
+                    Trig.Cos(amplitude) *  
+                    (Trig.Cos(azimuth) * Trig.Cos(elevation) + Trig.Sin(azimuth) * Trig.Sin(tilt) * Trig.Sin(elevation));
+
+            double yM = -Trig.Sin(amplitude) * Trig.Cos(azimuth) * Trig.Cos(tilt) +
+                        Trig.Cos(amplitude) * 
+                        (Trig.Sin(azimuth) * Trig.Cos(elevation) +
+                        -Trig.Sin(azimuth) * Trig.Sin(tilt) * Trig.Sin(elevation));
+
+            double zM = -Trig.Sin(amplitude) * Trig.Sin(tilt) - Trig.Cos(amplitude) * Trig.Sin(elevation) * Trig.Cos(tilt);
+
+            //return the requested vector.
+            return new Tuple<double, double, double>(xM, yM, zM);
+        }
+
+        /// <summary>
+        /// Read the current trial needed parameters and insert them to the object members.
+        /// </summary>
+        public void ReadTrialParameters(int index)
+        {
+            Dictionary<string, List<double>> currentVaryingTrialParameters = _crossVaryingVals[index];
+
+            //if there is no landscapeHouseParameter put the value of the ratHouseParameter for both (and at the sending , and before sending check the status of the stimulus type.
+            if (_staticVars.ContainsKey("DIST"))
+                _distance = new Tuple<double, double>(_staticVars["DIST"][0][0], _staticVars["DIST"].Count() > 1 ? _staticVars["DIST"][1][0] : _staticVars["DIST"][0][0]);
+            else if (_crossVaryingVals[index].Keys.Contains("DIST"))
+                _distance = new Tuple<double, double>(currentVaryingTrialParameters["DIST"][0], (currentVaryingTrialParameters["DIST"].Count > 1) ? currentVaryingTrialParameters["DIST"][1] : currentVaryingTrialParameters["DIST"][0]);
+
+            if (_staticVars.ContainsKey("DURATION"))
+                _duration = new Tuple<double, double>(_staticVars["DURATION"][0][0], _staticVars["DURATION"].Count() > 1 ? _staticVars["DURATION"][1][0] : _staticVars["DURATION"][0][0]);
+            else if (_crossVaryingVals[index].Keys.Contains("DURATION"))
+                _duration = new Tuple<double, double>(currentVaryingTrialParameters["DURATION"][0], (currentVaryingTrialParameters["DURATION"].Count > 1) ? currentVaryingTrialParameters["DURATION"][1] : currentVaryingTrialParameters["DURATION"][0]);
+
+            if (_staticVars.ContainsKey("SIGMA"))
+                _sigma = new Tuple<double, double>(_staticVars["SIGMA"][0][0], _staticVars["SIGMA"].Count() > 1 ? _staticVars["SIGMA"][1][0] : _staticVars["SIGMA"][0][0]);
+            else if (_crossVaryingVals[index].Keys.Contains("SIGMA"))
+                _sigma = new Tuple<double, double>(currentVaryingTrialParameters["SIGMA"][0], (currentVaryingTrialParameters["SIGMA"].Count > 1) ? currentVaryingTrialParameters["SIGMA"][1] : currentVaryingTrialParameters["SIGMA"][0]);
+
+            if (_staticVars.ContainsKey("ADAPTATION_ANGLE"))
+                _adaptationAngle = new Tuple<double, double>(_staticVars["ADAPTATION_ANGLE"][0][0], _staticVars["ADAPTATION_ANGLE"].Count() > 1 ? _staticVars["ADAPTATION_ANGLE"][1][0] : _staticVars["ADAPTATION_ANGLE"][0][0]);
+            else if (_crossVaryingVals[index].Keys.Contains("ADAPTATION_ANGLE"))
+                _adaptationAngle = new Tuple<double, double>(currentVaryingTrialParameters["ADAPTATION_ANGLE"][0], (currentVaryingTrialParameters["ADAPTATION_ANGLE"].Count > 1) ? currentVaryingTrialParameters["ADAPTATION_ANGLE"][1] : currentVaryingTrialParameters["ADAPTATION_ANGLE"][0]);
+
+            if (_staticVars.ContainsKey("HEADING_DIRECTION"))
+                _headingDirection = new Tuple<double, double>(_staticVars["HEADING_DIRECTION"][0][0], _staticVars["HEADING_DIRECTION"].Count() > 1 ? _staticVars["HEADING_DIRECTION"][1][0] : _staticVars["HEADING_DIRECTION"][0][0]);
+            else if (_crossVaryingVals[index].Keys.Contains("HEADING_DIRECTION"))
+                _headingDirection = new Tuple<double, double>(currentVaryingTrialParameters["HEADING_DIRECTION"][0], (currentVaryingTrialParameters["HEADING_DIRECTION"].Count > 1) ? currentVaryingTrialParameters["HEADING_DIRECTION"][1] : currentVaryingTrialParameters["HEADING_DIRECTION"][0]);
+
+            if (_staticVars.ContainsKey("DISC_PLANE_AZIMUTH"))
+                _discPlaneAzimuth = new Tuple<double, double>(_staticVars["DISC_PLANE_AZIMUTH"][0][0], _staticVars["DISC_PLANE_AZIMUTH"].Count() > 1 ? _staticVars["DISC_PLANE_AZIMUTH"][1][0] : _staticVars["DISC_PLANE_AZIMUTH"][0][0]);
+            else if (_crossVaryingVals[index].Keys.Contains("DISC_PLANE_AZIMUTH"))
+                _discPlaneAzimuth = new Tuple<double, double>(currentVaryingTrialParameters["DISC_PLANE_AZIMUTH"][0], (currentVaryingTrialParameters["DISC_PLANE_AZIMUTH"].Count > 1) ? currentVaryingTrialParameters["DISC_PLANE_AZIMUTH"][1] : currentVaryingTrialParameters["DISC_PLANE_AZIMUTH"][0]);
+
+            if (_staticVars.ContainsKey("DISC_PLANE_ELEVATION"))
+                _discPlaneElevation = new Tuple<double, double>(_staticVars["DISC_PLANE_ELEVATION"][0][0], _staticVars["DISC_PLANE_ELEVATION"].Count() > 1 ? _staticVars["DISC_PLANE_ELEVATION"][1][0] : _staticVars["DISC_PLANE_ELEVATION"][0][0]);
+            else if (_crossVaryingVals[index].Keys.Contains("DISC_PLANE_ELEVATION"))
+                _discPlaneElevation = new Tuple<double, double>(currentVaryingTrialParameters["DISC_PLANE_ELEVATION"][0], (currentVaryingTrialParameters["DISC_PLANE_ELEVATION"].Count > 1) ? currentVaryingTrialParameters["DISC_PLANE_ELEVATION"][1] : currentVaryingTrialParameters["DISC_PLANE_ELEVATION"][0]);
+
+            if (_staticVars.ContainsKey("DISC_PLANE_TILT"))
+                _discPlaneTilt = new Tuple<double, double>(_staticVars["DISC_PLANE_TILT"][0][0], _staticVars["DISC_PLANE_TILT"].Count() > 1 ? _staticVars["DISC_PLANE_TILT"][1][0] : _staticVars["DISC_PLANE_TILT"][0][0]);
+            else if (_crossVaryingVals[index].Keys.Contains("DISC_PLANE_TILT"))
+                _discPlaneTilt = new Tuple<double, double>(currentVaryingTrialParameters["DISC_PLANE_TILT"][0], (currentVaryingTrialParameters["DISC_PLANE_TILT"].Count > 1) ? currentVaryingTrialParameters["DISC_PLANE_TILT"][1] : currentVaryingTrialParameters["DISC_PLANE_TILT"][0]);
+
+            //check what about the stimulus type (that not must be static).
+            if (currentVaryingTrialParameters.ContainsKey("STIMULUS_TYPE"))
+            {
+                _stimulusType = (int)currentVaryingTrialParameters["STIMULUS_TYPE"][0];
+            }
+            else
+            {
+                _stimulusType = int.Parse(_variablesList._variablesDictionary["STIMULUS_TYPE"]._description["parameters"]._ratHouseParameter[0]);
+            }
         }
 
         /// <summary>
@@ -191,15 +396,18 @@ namespace PinkyAndBrain.TrajectoryCreators
         /// The x axis is the size of the vecor.
         /// The y axis is the vector.
         /// </param>
-        public void MatlabPlotFunction(Vector<double> drawingVector)
+        public void MatlabPlotFunction(Vector<double> drawingVector , string graphName="")
         {
             double[] dArray = new double[drawingVector.Count];
             for(int i=0;i<dArray.Length;i++)
                 dArray[i] = drawingVector[i];
 
             _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
-
+            
+            _matlabApp.Execute("figure");
             _matlabApp.Execute("plot(drawingVector)");
+            _matlabApp.Execute("title('xxx')");
         }
+        #endregion FUNCTIONS
     }
 }

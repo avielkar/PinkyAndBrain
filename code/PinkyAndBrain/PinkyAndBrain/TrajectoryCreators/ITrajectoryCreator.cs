@@ -23,6 +23,18 @@ namespace PinkyAndBrain
         /// The sampled gaussian cdf trajector.
         /// The vector length is as the fgiven frequency.
         /// </returns>
-        Vector<double> GenererateGaussianSampledCDF(double duration, double sigma, int magnitude, int frequency);
+        Vector<double> GenerateGaussianSampledCDF(double duration, double sigma, double magnitude, int frequency);
+
+        /// <summary>
+        /// Read the current trial needed parameters and insert them to the object members.
+        /// </summary>
+        void ReadTrialParameters(int index);
+
+        /// <summary>
+        /// Computes the trajectoy tuple (for the ratHouseTrajectory and for the landscapeHouseTrajectory).
+        /// </summary>
+        /// <param name="index">The index from the crossVaryingList to take the attributes of he varying variables from.</param>
+        /// <returns>The trajectory tuple (for the ratHouseTrajectory and for the landscapeHouseTrajectory). </returns>
+        Tuple<Trajectory, Trajectory> CreateTrialTrajectory(int index);
     }
 }

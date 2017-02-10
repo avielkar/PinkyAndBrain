@@ -14,7 +14,7 @@ namespace PinkyAndBrain
     /// </summary>
     class TrajectoryCreatorHandler
     {
-
+        #region ATTRIBUTES
         /// <summary>
         /// The trajectory creator name (the name of the type for making the trjectory).
         /// </summary>
@@ -41,14 +41,31 @@ namespace PinkyAndBrain
         private List<Dictionary<string, List<double>>> _crossVaryingVals;
 
         /// <summary>
+        /// The static variables list in double value presentation.
+        /// The string is for the variable name.
+        /// The outer list is for the two inner list (or one , conditioned in the landscapeHouseParameter).
+        /// The inners lists are for the values for each of the ratHouseParameter and landscapeHouseParameter (if there).
+        /// The inners kist is with size 1 if the input is a scalar.
+        /// Otherwise ,  if a vector , it would be a list with the size of the vector.
+        /// </summary>
+        private Dictionary<string, List<List<double>>> _staticVals;
+
+        /// <summary>
         /// The numbers of samples for each trajectory.
         /// </summary>
         private int _frequency;
 
+        /// <summary>
+        /// The TrajectoryCreator object decided by the trajectoryName.
+        /// </summary>
         private ITrajectoryCreator _trajectoryCreator;
+        #endregion ATTRIBUTES
 
-
-
+        #region CONSTRUCTORS
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="matlab">The Matlab computations handler object.</param>
         public TrajectoryCreatorHandler(MLApp.MLApp matlab)
         {
             //set the matlab engine object pointer.
@@ -57,25 +74,86 @@ namespace PinkyAndBrain
             //reset the varying index to read from.
             _varyingCurrentIndex = 0;
         }
+        #endregion CONSTRUCTORS
 
-        public void SetTrajectoryAttributes(string trajectoryName , Variables variableList , List<Dictionary<string,List<double>>> crossVaryingVals , int frequency)
+        #region FUNCTIONS
+        /// <summary>
+        /// Setting new trajectory attribute according to a new user input.
+        /// </summary>
+        /// <param name="trajectoryName">The trajectoryCreator class name to make and call in order to deliver the trajectory.</param>
+        /// <param name="variableList">The variables readen from the xlsx protocol file.</param>
+        /// <param name="crossVaryingVals">Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.</param>
+        /// <param name="staticVariables">The static variables list in double value presentation.</param>
+        /// <param name="frequency">The numbers of samples for each trajectory.</param>
+        public void SetTrajectoryAttributes(string trajectoryName, Variables variableList, List<Dictionary<string, List<double>>> crossVaryingVals, Dictionary<string, List<List<double>>> staticVariables, int frequency)
         {
             _trajectoryCreatorName = trajectoryName;
             _variablesList = variableList;
             _crossVaryingVals = crossVaryingVals;
+            _staticVals = staticVariables;
             _frequency = frequency;
 
-            object[] args = new object[4];
+            object[] args = new object[5];
             args[0] = _matlab;
             args[1] = _variablesList;
             args[2] = _crossVaryingVals;
-            args[3] = _frequency;
-            _trajectoryCreator = (ITrajectoryCreator)Activator.CreateInstance(Type.GetType("PinkyAndBrain.TrajectoryCreators." + _trajectoryCreatorName) , args);
+            args[3] = _staticVals;
+            args[4] = _frequency;
+            _trajectoryCreator = (ITrajectoryCreator)Activator.CreateInstance(Type.GetType("PinkyAndBrain.TrajectoryCreators." + _trajectoryCreatorName), args);
         }
 
-        public Vector<double> CreateTrajectory()
-        {
-            return _trajectoryCreator.GenererateGaussianSampledCDF(1, 3, 5, 1000);
-        }
+        /// <summary>
+        /// Create a trajectory for both the ratHouseTrajectory and the landscapeHouseTrjectory for the control loop.
+        /// </summary>
+        /// <returns>The both ratHouseTrajectory and the landscapeHouseTrjectory.</returns>
+        public Tuple<Trajectory ,Trajectory> CreateTrajectory()
+        {         
+            return _trajectoryCreator.CreateTrialTrajectory(2);
+        } 
+        #endregion FUNCTIONS
+    }
+
+    /// <summary>
+    /// Describes the trajectory that should be sent to the robot.
+    /// </summary>
+    struct Trajectory
+    {
+        #region LINEAR_TRAJECTORIES
+        /// <summary>
+        /// The x axis for the position.
+        /// </summary>
+        public Vector< double> x;
+
+        /// <summary>
+        /// The y axis for the position.
+        /// </summary>
+
+        /// <summary>
+        /// The z axis for the position.
+        /// </summary>
+        public Vector<double> y;
+
+        /// <summary>
+        /// The z axis for the position.
+        /// </summary>
+        public Vector<double> z;
+        #endregion LINEAR_TRAJECTORIES
+
+        #region ROTATION_TRAJECTORIES
+        /// <summary>
+        /// The x rotation axis for the position.
+        /// </summary>
+        public Vector<double> rx;
+
+        /// <summary>
+        /// The y rotation axis for the position.
+        /// </summary>
+        public Vector<double> ry;
+
+        /// <summary>
+        /// The z rotation axis for the position.
+        /// </summary>
+        public Vector<double> rz;
+        #endregion ROTATION_TRAJECTORIES
     }
 }
