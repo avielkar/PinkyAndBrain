@@ -56,6 +56,26 @@ namespace PinkyAndBrain
         /// The Matlab computing process object for drawing graphs and etc.
         /// </summary>
         private MLApp.MLApp _matlabApp;
+
+        /// <summary>
+        /// The total trials made from the beginning of the experiment.
+        /// </summary>
+        private int _numOfPastTrials;
+
+        /// <summary>
+        /// The current varying trial combination that should be selected to make the trajectory from.
+        /// </summary>
+        private int _currentVaryingTrialIndex;
+
+        /// <summary>
+        /// The total number of trials for the experiment should have.
+        /// </summary>
+        private int _totalNumOfTrials;
+
+        /// <summary>
+        /// The varying index selector for choosing the current combination index.
+        /// </summary>
+        private VaryingIndexSelector _varyingIndexSelector;
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
@@ -80,13 +100,26 @@ namespace PinkyAndBrain
             _crossVaryingVals = crossVaryingList;
             _staticVariablesList = staticVariablesList;
             _frequency = frequency;
+            _totalNumOfTrials = _crossVaryingVals.Count();
+            _varyingIndexSelector = new VaryingIndexSelector(_totalNumOfTrials);
 
             //set the trajectory creator name to the given one that should be called in the trajectoryCreatorHandler.
             //also , set the other properties.
             _trajectoryCreatorHandler.SetTrajectoryAttributes(trajectoryCreatorName, _variablesList, _crossVaryingVals, _staticVariablesList, _frequency);
 
-            //craetes the trajectory for both robots for the current trial.
-            _trajectoryCreatorHandler.CreateTrajectory();
+            MainControlLoop();
+        }
+
+        public void MainControlLoop()
+        {
+            for (int i = 0; i < _crossVaryingVals.Count();i++ )
+            {
+                //choose the random combination index for the current trial.
+                _currentVaryingTrialIndex = _varyingIndexSelector.ChooseRandomCombination();
+
+                //craetes the trajectory for both robots for the current trial.
+                _trajectoryCreatorHandler.CreateTrajectory(_currentVaryingTrialIndex);
+            }
         }
         #endregion FUNCTIONS
     }

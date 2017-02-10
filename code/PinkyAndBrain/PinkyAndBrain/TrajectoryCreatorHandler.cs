@@ -110,9 +110,9 @@ namespace PinkyAndBrain
         /// Create a trajectory for both the ratHouseTrajectory and the landscapeHouseTrjectory for the control loop.
         /// </summary>
         /// <returns>The both ratHouseTrajectory and the landscapeHouseTrjectory.</returns>
-        public Tuple<Trajectory ,Trajectory> CreateTrajectory()
+        public Tuple<Trajectory ,Trajectory> CreateTrajectory(int index = 0)
         {         
-            return _trajectoryCreator.CreateTrialTrajectory(2);
+            return _trajectoryCreator.CreateTrialTrajectory(index);
         } 
         #endregion FUNCTIONS
     }
