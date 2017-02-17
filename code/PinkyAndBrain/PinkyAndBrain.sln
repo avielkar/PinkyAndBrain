@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinkyAndBrain", "PinkyAndBrain\PinkyAndBrain.csproj", "{9AB9FDF9-7214-41FD-A53C-807F062FAAAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotocomdotNetWrapper", "MotocomdotNetWrapper\MotocomdotNetWrapper.csproj", "{25010A89-4D18-4607-ADAF-32553D6D343A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,14 @@ Global
 		{9AB9FDF9-7214-41FD-A53C-807F062FAAAB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9AB9FDF9-7214-41FD-A53C-807F062FAAAB}.Release|x86.ActiveCfg = Release|x86
 		{9AB9FDF9-7214-41FD-A53C-807F062FAAAB}.Release|x86.Build.0 = Release|x86
+		{25010A89-4D18-4607-ADAF-32553D6D343A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25010A89-4D18-4607-ADAF-32553D6D343A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25010A89-4D18-4607-ADAF-32553D6D343A}.Debug|x86.ActiveCfg = Debug|x86
+		{25010A89-4D18-4607-ADAF-32553D6D343A}.Debug|x86.Build.0 = Debug|x86
+		{25010A89-4D18-4607-ADAF-32553D6D343A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25010A89-4D18-4607-ADAF-32553D6D343A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25010A89-4D18-4607-ADAF-32553D6D343A}.Release|x86.ActiveCfg = Release|x86
+		{25010A89-4D18-4607-ADAF-32553D6D343A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

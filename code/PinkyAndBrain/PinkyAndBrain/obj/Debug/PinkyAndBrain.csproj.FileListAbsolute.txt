@@ -31,3 +31,11 @@ C:\Users\Admin\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\b
 C:\Users\Admin\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\MindFusion.Svg.dll
 C:\Users\Admin\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\MindFusion.Pdf.dll
 C:\Users\Admin\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Debug\Interop.MLApp.dll
+C:\Users\Admin\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\Hslsrv32.exe
+C:\Users\Admin\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\MotoCom32.dll
+C:\Users\Admin\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\MotoLk.dll
+C:\Users\Admin\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\Motolkr.dll
+C:\Users\Admin\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\vrp32.dll
+C:\Users\Admin\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\MotocomdotNetWrapper.dll
+C:\Users\Admin\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\MotocomdotNetWrapper.pdb
+C:\Users\Admin\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\MotocomdotNetWrapper.xml
