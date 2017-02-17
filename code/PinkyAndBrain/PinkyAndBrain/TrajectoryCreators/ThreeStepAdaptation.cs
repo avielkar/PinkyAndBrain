@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using MLApp;
 using MathWorks.MATLAB.NET.Arrays;
 using MathWorks.MATLAB.NET.Utility;
+using System.Reflection;
 
 
 namespace PinkyAndBrain.TrajectoryCreators
@@ -174,7 +175,7 @@ namespace PinkyAndBrain.TrajectoryCreators
         public Vector<double> GenerateGaussianSampledCDF(double duration, double sigma, double magnitude, int frequency)
         {
             Vector<double> returnedVector = CreateVector.Dense<double>(frequency * (int)duration, time => magnitude * Normal.CDF(duration/2, duration / (2 * sigma), (double)time/frequency));
-            MatlabPlotFunction(returnedVector);
+            //MatlabPlotFunction(returnedVector);
             return returnedVector;
         }
 
@@ -241,9 +242,9 @@ namespace PinkyAndBrain.TrajectoryCreators
             }
 
             //if need to plot the trajectories
-            if(true)
+            if (true)
             {
-                MatlabPlotFunction(ratHouseTrajectory.x);
+                MatlabPlotTrajectoryFunction(ratHouseTrajectory);
             }
 
             return new Tuple<Trajectory, Trajectory>(ratHouseTrajectory, landscapeHouseTrajectory);
@@ -396,17 +397,89 @@ namespace PinkyAndBrain.TrajectoryCreators
         /// The x axis is the size of the vecor.
         /// The y axis is the vector.
         /// </param>
-        public void MatlabPlotFunction(Vector<double> drawingVector , string graphName="")
+        public void MatlabPlotFunction(Vector<double> drawingVector)
         {
-            double[] dArray = new double[drawingVector.Count];
-            for(int i=0;i<dArray.Length;i++)
-                dArray[i] = drawingVector[i];
-
-            _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
-            
-            _matlabApp.Execute("figure");
+            double[] dArray = ConvertVectorToArray(drawingVector);
+            _matlabApp.Execute("figure;");
+            _matlabApp.Execute("title('Trajectories')");
             _matlabApp.Execute("plot(drawingVector)");
-            _matlabApp.Execute("title('xxx')");
+
+        }
+
+        /// <summary>
+        /// Plotting all 6 attributes for the given trajectory.
+        /// </summary>
+        /// <param name="traj">The trajectory to be decomposed to it's 6 components and to plot in a figure.</param>
+        public void MatlabPlotTrajectoryFunction(Trajectory traj)
+        {
+
+            _matlabApp.Execute("figure;");
+            _matlabApp.Execute("title('Trajectories')");
+
+            _matlabApp.PutWorkspaceData("rows", "base", (double)3);
+            _matlabApp.PutWorkspaceData("columns", "base", (double)2);
+
+            double[] dArray = ConvertVectorToArray(traj.x);
+            _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
+            _matlabApp.PutWorkspaceData("subplotGraphName", "base", "x");
+            _matlabApp.PutWorkspaceData("index", "base", (double)1);
+            _matlabApp.Execute("subplot(rows , columns , index)");
+            _matlabApp.Execute("plot(drawingVector)");
+            _matlabApp.Execute("title(subplotGraphName)");
+
+            dArray = ConvertVectorToArray(traj.y);
+            _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
+            _matlabApp.PutWorkspaceData("subplotGraphName", "base", "y");
+            _matlabApp.PutWorkspaceData("index", "base", (double)2);
+            _matlabApp.Execute("subplot(rows , columns , index)");
+            _matlabApp.Execute("plot(drawingVector)");
+            _matlabApp.Execute("title(subplotGraphName)");
+
+            dArray = ConvertVectorToArray(traj.z);
+            _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
+            _matlabApp.PutWorkspaceData("subplotGraphName", "base", "z");
+            _matlabApp.PutWorkspaceData("index", "base", (double)3);
+            _matlabApp.Execute("subplot(rows , columns , index)");
+            _matlabApp.Execute("plot(drawingVector)");
+            _matlabApp.Execute("title(subplotGraphName)");
+
+            dArray = ConvertVectorToArray(traj.rx);
+            _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
+            _matlabApp.PutWorkspaceData("subplotGraphName", "base", "rx");
+            _matlabApp.PutWorkspaceData("index", "base", (double)4);
+            _matlabApp.Execute("subplot(rows , columns , index)");
+            _matlabApp.Execute("plot(drawingVector)");
+            _matlabApp.Execute("title(subplotGraphName)");
+
+            dArray = ConvertVectorToArray(traj.ry);
+            _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
+            _matlabApp.PutWorkspaceData("subplotGraphName", "base", "ry");
+            _matlabApp.PutWorkspaceData("index", "base", (double)5);
+            _matlabApp.Execute("subplot(rows , columns , index)");
+            _matlabApp.Execute("plot(drawingVector)");
+            _matlabApp.Execute("title(subplotGraphName)");
+
+            dArray = ConvertVectorToArray(traj.rz);
+            _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
+            _matlabApp.PutWorkspaceData("subplotGraphName", "base", "rz");
+            _matlabApp.PutWorkspaceData("index", "base", (double)6);
+            _matlabApp.Execute("subplot(rows , columns , index)");
+            _matlabApp.Execute("plot(drawingVector)");
+            _matlabApp.Execute("title(subplotGraphName)");
+        }
+
+        /// <summary>
+        /// Converts a double vector type to double array type.
+        /// </summary>
+        /// <param name="vector">The vector to be converted.</param>
+        /// <returns>The converted array.</returns>
+        public double [] ConvertVectorToArray(Vector<double> vector)
+        {
+            double[] dArray = new double[vector.Count];
+            for (int i = 0; i < dArray.Length; i++)
+                dArray[i] = vector[i];
+
+            return dArray;
         }
         #endregion FUNCTIONS
     }

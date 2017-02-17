@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MathNet.Numerics.LinearAlgebra;
 using MLApp;
 using System.Runtime.Remoting;
+using System.Reflection;
 
 namespace PinkyAndBrain
 {
@@ -123,6 +124,7 @@ namespace PinkyAndBrain
     struct Trajectory
     {
         #region LINEAR_TRAJECTORIES
+
         /// <summary>
         /// The x axis for the position.
         /// </summary>
@@ -130,10 +132,6 @@ namespace PinkyAndBrain
 
         /// <summary>
         /// The y axis for the position.
-        /// </summary>
-
-        /// <summary>
-        /// The z axis for the position.
         /// </summary>
         public Vector<double> y;
 
