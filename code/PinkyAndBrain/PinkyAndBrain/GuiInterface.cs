@@ -1014,6 +1014,7 @@ namespace PinkyAndBrain
                 case "2":   //varying
                 case "3":   //acrossstair
                 case "4":   //withinstair
+                case "5":   //ramdom
                     if (_variablesList._variablesDictionary[varName]._description["parameters"]._bothParam)
                     {
                         string lowboundTextVala = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);

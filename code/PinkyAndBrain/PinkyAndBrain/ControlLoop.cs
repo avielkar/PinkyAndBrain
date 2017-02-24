@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using PinkyAndBrain.TrajectoryCreators;
 using MathNet.Numerics.LinearAlgebra;
@@ -87,6 +88,11 @@ namespace PinkyAndBrain
         /// A random object for random numbers.
         /// </summary>
         private Random _timingRandomizer;
+
+        /// <summary>
+        /// The robot reward controller.
+        /// </summary>
+        private RewardController _rewardController;
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
@@ -97,6 +103,7 @@ namespace PinkyAndBrain
         {
             _matlabApp = matlabApp;
             _trajectoryCreatorHandler = new TrajectoryCreatorHandler(_matlabApp);
+            _rewardController = new RewardController("Dev1" , "Port1" ,"Line0:2", "RewardChannels");
         }
         #endregion CONTRUCTORS
 
@@ -143,8 +150,29 @@ namespace PinkyAndBrain
         {
             //determine all current trial timings and delays.
             _currentTrialTimings = DetermineCurrentTrialTimings();
+            
+            //Sounds the start beep. Now waiting for the rat to move it's head to the center.
+            Console.Beep();
 
+            //waits for the rat to move it's head to the center.
+            //while(ReadKey().Key.Equals(('\n'))){}
 
+            //here should be the motion of the Yasakawa robot.
+            Thread.Sleep((int)(_currentTrialTimings.wStartDelay * 1000));
+
+            //here should be checked if the rat was ll the motion duration with head in the center.
+
+            //wait the reward1 delay time befor openning the reward1.
+            Thread.Sleep((int)(_currentTrialTimings.wReward1Delay*1000));
+
+            //open the center reward for the rat to be rewarded.
+            //after the reward1 duration time and than close it.
+            _rewardController.WriteSingleSamplePort(true , 0x02);
+            Thread.Sleep((int)(_currentTrialTimings.wReward1Duration*1000));
+            _rewardController.WriteSingleSamplePort(true , 0x00);
+
+            //time to wait for the moving rat response.
+            Thread.Sleep(2000);
         }
 
         /// <summary>
@@ -181,11 +209,11 @@ namespace PinkyAndBrain
             switch (startDelayStatus)
             {
                 case "1"://static
-                    return double.Parse(_variablesList._variablesDictionary["START_DELAY"]._description["parameters"]._ratHouseParameter[0]);
+                    return double.Parse(_variablesList._variablesDictionary[timeVarName]._description["parameters"]._ratHouseParameter[0]);
 
                 case "5"://random
-                    double lowTime = double.Parse(_variablesList._variablesDictionary["START_DELAY"]._description["low_bound"]._ratHouseParameter[0]);
-                    double highTime = double.Parse(_variablesList._variablesDictionary["START_DELAY"]._description["high_bound"]._ratHouseParameter[0]);
+                    double lowTime = double.Parse(_variablesList._variablesDictionary[timeVarName]._description["low_bound"]._ratHouseParameter[0]);
+                    double highTime = double.Parse(_variablesList._variablesDictionary[timeVarName]._description["high_bound"]._ratHouseParameter[0]);
                     return RandomTimeUniformly(lowTime, highTime);
             }
 

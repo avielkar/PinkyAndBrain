@@ -77,6 +77,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\MATLAB\R2013a\toolbox\dotnetbuilder\bin\win32\v2.0\MWArray.dll</HintPath>
     </Reference>
+    <Reference Include="NationalInstruments.Common, Version=13.0.40.190, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\National Instruments\MeasurementStudioVS2010\DotNET\Assemblies\Current\NationalInstruments.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.DAQmx">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\National Instruments\NI ELVISmx Instrument Launcher\NationalInstruments.DAQmx.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
@@ -99,6 +106,7 @@
     <Compile Include="GuiInterface.Designer.cs">
       <DependentUpon>GuiInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="RewardController.cs" />
     <Compile Include="StaticValuesGenerator.cs" />
     <Compile Include="TrajectoryCreators\ITrajectoryCreator.cs" />
     <Compile Include="OnlinePsychGraphMaker.cs" />
