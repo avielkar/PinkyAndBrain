@@ -334,6 +334,7 @@ namespace PinkyAndBrain
             statusCombo.Items.Add("Varying");
             statusCombo.Items.Add("AcrossStair");
             statusCombo.Items.Add("WithinStair");
+            statusCombo.Items.Add("Random");
 
             //Handle event when a status of a variable is changed.
             statusCombo.SelectedIndexChanged += new EventHandler((sender , args) => statusCombo_SelectedIndexChanged(sender , args , varName));
@@ -355,6 +356,10 @@ namespace PinkyAndBrain
 
                 case "4":
                     statusCombo.SelectedText = "WithinStair";
+                    break;
+
+                case "5":
+                    statusCombo.SelectedText = "Random";
                     break;
             }
 
@@ -507,6 +512,7 @@ namespace PinkyAndBrain
                 case "2":   //varying
                 case "3":   //acrossstair
                 case "4":   //withinstair
+                case "5":
                     if (_variablesList._variablesDictionary[varName]._description["parameters"]._bothParam)
                     {
                         string lowboundTextVala = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
@@ -967,6 +973,8 @@ namespace PinkyAndBrain
                     return "3";
                 case "WithinStair":
                     return "4";
+                case "Random":
+                    return "5";
             }
 
             return "4";
