@@ -196,15 +196,31 @@ namespace PinkyAndBrain
             {
                 x = _ratResponseController.ReadSingleSamplePort();
             }
+
+            if (x == 2)
+            {
+                //waits the startdelay time before starting the motion of the robot for the rat to ensure stability with head in the center.
+                //reset the stopwatch for new measurement time cycle of startDelay.
+                sw.Restart();
+
+                //check if the head is stable in the center during the startDelay time (before starting the movement).
+                while (sw.ElapsedMilliseconds < (int)(_currentTrialTimings.wStartDelay * 1000))
+                {
+                    //if the head sample mentioned that the head was not in the center during the startDelay time , break , and move to the post trial time.
+                    if(_ratResponseController.ReadSingleSamplePort()!=2)
+                    {
+                        x = 0;
+                        break;
+                    }
+                }
+
+            }
             #endregion WAITING_TO_HEAD_CENTER_START
 
             //if have a start reponse head to the center , begin the trial movement and etc.
             //otherwise , skip these stages and go directly to the post trial time stage.
             if (x == 2)
             {
-                //waits the startdelay time before starting the motion of the robot for the rat.
-                Thread.Sleep((int)(_currentTrialTimings.wStartDelay * 1000));
-
                 #region ROBOT_MOVEMENT_AND_HEAD_IN_CENTER_CHECKING
                 //here should be the motion of the Yasakawa robot(now it's only delay of the duration movement according to the robot frequency and the number of points in the trajectory).
                 Task robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories));
@@ -222,8 +238,7 @@ namespace PinkyAndBrain
                                 headInCenterAllTheTime = false;
                             }
                         }
-                    }
-                    );
+                    });
 
                 //wait the robot to finish the movement.
                 robotMotion.Wait();
@@ -260,7 +275,7 @@ namespace PinkyAndBrain
             }
 
             //no matter if the rat was with the head in the center during the movement , wait the postTrialTime before begining the next trial.
-            Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
+            MainTimerStage();
         }
 
         public void MoveYasakawaRobotWithTrajectory(Tuple<Trajectory , Trajectory> traj)
@@ -348,7 +363,7 @@ namespace PinkyAndBrain
         /// </summary>
         public void MainTimerStage()
         {
-
+            Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
         }
 
         /// <summary>
