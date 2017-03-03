@@ -148,6 +148,9 @@ namespace PinkyAndBrain
             Task.Run(() => MainControlLoop());
         }
 
+        /// <summary>
+        /// Stop the MainControlLoop function.
+        /// </summary>
         public void Stop()
         {
             Globals._systemState = SystemState.STOPPED;
@@ -167,7 +170,43 @@ namespace PinkyAndBrain
                 //craetes the trajectory for both robots for the current trial.
                 _currentTrialTrajectories = _trajectoryCreatorHandler.CreateTrajectory(_currentVaryingTrialIndex);
 
+                //initialize the currebt time parameters and all the current trial variables.
                 InitializationStage();
+
+                //wait the rat to first (in the current trial - for "start buttom") move it's head to the center.
+                bool headEnteredToTheCenterDuringTheTimeoutDuration = WaitForHeadEnteranceToTheCenterStage();
+
+                //if the rat entered it's head to the center in the before timeOut time.
+                if(headEnteredToTheCenterDuringTheTimeoutDuration)
+                {
+                    //if the rat head was stable in the center for the startDelay time as required start the movement.
+                    if(CheckDuration1HeadInTheCenterStabilityStage())
+                    {
+                        if (MovingTheRobotDurationWithHeadCenterStabilityStage())
+                        {
+                            //reward the rat in the center with water for duration of reward1Duration for stable head in the center during the movement.
+                            Reward1Stage();
+
+                            //wait the rat to response to the movement.
+                            ResponseTimeStage();
+                        }
+                    }
+
+                    //sounds the beep for missing the movement head in the center.
+                    else
+                    {
+                        Task.Run(() => { Console.Beep(8000, 100); });
+                    }
+                }
+
+                //sounds the beep with the missing start gead in the center.
+                else
+                {
+                    Task.Run(() => { Console.Beep(3275, 100); });
+                }
+
+                //the post trial stage for saving the trial data and for the delay between trials.
+                PostTrialStage();
             }
 
             Globals._systemState = SystemState.FINISHED;
@@ -183,8 +222,94 @@ namespace PinkyAndBrain
             
             //Sounds the start beep. Now waiting for the rat to move it's head to the center.
             Console.Beep();
+        }
 
-            #region WAITING_TO_HEAD_CENTER_START
+        /// <summary>
+        /// Waiting the rat to response the movement direction.
+        /// </summary>
+        public void ResponseTimeStage()
+        {
+            //time to wait for the moving rat response.
+            Thread.Sleep(1000*(int)(_currentTrialTimings.wResponseTime));
+        }
+
+        /// <summary>
+        /// The reward1 stage is happening if the rat head was consistently stable in the center during the movement.
+        /// </summary>
+        public void Reward1Stage()
+        {
+            //wait the reward1 delay time befor openning the reward1.
+            Thread.Sleep((int)(_currentTrialTimings.wReward1Delay * 1000));
+
+            //open the center reward for the rat to be rewarded.
+            //after the reward1 duration time and than close it.
+            _rewardController.WriteSingleSamplePort(true, 0x02);
+            Thread.Sleep((int)(_currentTrialTimings.wReward1Duration * 1000));
+            _rewardController.WriteSingleSamplePort(true, 0x00);
+
+        }
+
+        /// <summary>
+        /// Moving the robot stage (it the rat enter the head to the center in the timeOut time and was stable in the center for startDelay time).
+        /// This function also , in paralleled to the robot moving , checks that the rat head was consistently in the center during the duration time of the movement time.
+        /// </summary>
+        /// <returns>True if the head was stable consistently in the center during the movement time.</returns>
+        public bool MovingTheRobotDurationWithHeadCenterStabilityStage()
+        {
+            //here should be the motion of the Yasakawa robot(now it's only delay of the duration movement according to the robot frequency and the number of points in the trajectory).
+            Task robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories));
+
+            //also run the rat center head checking in parallel to the movement time.
+            bool headInCenterAllTheTime = true;
+            Task.Run(() =>
+            {
+                while (!robotMotion.IsCompleted)
+                {
+                    //sample the signal indicating if the rat head is in the center only 60 time per second (because the refresh rate of the signal is that frequency.
+                    Thread.Sleep(1000 / 60);
+                    if (_ratResponseController.ReadSingleSamplePort() != 2)
+                    {
+                        headInCenterAllTheTime = false;
+                    }
+                }
+            });
+
+            //wait the robot to finish the movement.
+            robotMotion.Wait();
+
+            return headInCenterAllTheTime;
+        }
+
+        /// <summary>
+        /// Stage to check (after the rat enter the head to the center) that the head is stable in the center for startDelay time.
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckDuration1HeadInTheCenterStabilityStage()
+        {
+            //waits the startdelay time before starting the motion of the robot for the rat to ensure stability with head in the center.
+            //reset the stopwatch for new measurement time cycle of startDelay.
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            //check if the head is stable in the center during the startDelay time (before starting the movement).
+            while (sw.ElapsedMilliseconds < (int)(_currentTrialTimings.wStartDelay * 1000))
+            {
+                //if the head sample mentioned that the head was not in the center during the startDelay time , break , and move to the post trial time.
+                if (_ratResponseController.ReadSingleSamplePort() != 2)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Stage for checing if the rat enter the first time the head to the center in order to start the movement.
+        /// </summary>
+        /// <returns>True if the rat enter the head to the center during the limit of the timeoutTime.</returns>
+        public bool WaitForHeadEnteranceToTheCenterStage()
+        {
             //waits for the rat to move it's head to the center with timeout time.
             int x = 0;
 
@@ -192,90 +317,12 @@ namespace PinkyAndBrain
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            while(x!=2 && ((int)sw.Elapsed.TotalMilliseconds < (int)(_currentTrialTimings.wTimeOutTime*1000)))
+            while (x != 2 && ((int)sw.Elapsed.TotalMilliseconds < (int)(_currentTrialTimings.wTimeOutTime * 1000)))
             {
                 x = _ratResponseController.ReadSingleSamplePort();
             }
 
-            if (x == 2)
-            {
-                //waits the startdelay time before starting the motion of the robot for the rat to ensure stability with head in the center.
-                //reset the stopwatch for new measurement time cycle of startDelay.
-                sw.Restart();
-
-                //check if the head is stable in the center during the startDelay time (before starting the movement).
-                while (sw.ElapsedMilliseconds < (int)(_currentTrialTimings.wStartDelay * 1000))
-                {
-                    //if the head sample mentioned that the head was not in the center during the startDelay time , break , and move to the post trial time.
-                    if(_ratResponseController.ReadSingleSamplePort()!=2)
-                    {
-                        x = 0;
-                        break;
-                    }
-                }
-
-            }
-            #endregion WAITING_TO_HEAD_CENTER_START
-
-            //if have a start reponse head to the center , begin the trial movement and etc.
-            //otherwise , skip these stages and go directly to the post trial time stage.
-            if (x == 2)
-            {
-                #region ROBOT_MOVEMENT_AND_HEAD_IN_CENTER_CHECKING
-                //here should be the motion of the Yasakawa robot(now it's only delay of the duration movement according to the robot frequency and the number of points in the trajectory).
-                Task robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories));
-
-                //also run the rat center head checking in parallel to the movement time.
-                bool headInCenterAllTheTime = true;
-                Task.Run(() =>
-                    {
-                        while (!robotMotion.IsCompleted)
-                        {
-                            //sample the signal indicating if the rat head is in the center only 60 time per second (because the refresh rate of the signal is that frequency.
-                            Thread.Sleep(1000 / 60);
-                            if (_ratResponseController.ReadSingleSamplePort() != 2)
-                            {
-                                headInCenterAllTheTime = false;
-                            }
-                        }
-                    });
-
-                //wait the robot to finish the movement.
-                robotMotion.Wait();
-                #endregion ROBOT_MOVEMENT_AND_HEAD_IN_CENTER_CHECKING
-
-                //here should be checked if the rat was all the motion duration with head in the center.
-                if (headInCenterAllTheTime)
-                {
-
-                    //wait the reward1 delay time befor openning the reward1.
-                    Thread.Sleep((int)(_currentTrialTimings.wReward1Delay * 1000));
-
-                    //open the center reward for the rat to be rewarded.
-                    //after the reward1 duration time and than close it.
-                    _rewardController.WriteSingleSamplePort(true, 0x02);
-                    Thread.Sleep((int)(_currentTrialTimings.wReward1Duration * 1000));
-                    _rewardController.WriteSingleSamplePort(true, 0x00);
-
-                    //time to wait for the moving rat response.
-                    Thread.Sleep(2000);
-                }
-
-                //sounds the beep for missing the movement head in the center.
-                else
-                {
-                    Task.Run(() => { Console.Beep(8000, 100); });
-                }
-            }
-
-            //sounds the beep with the missing start gead in the center.
-            else
-            {
-                Task.Run(() => { Console.Beep(3275, 100); });
-            }
-
-            //no matter if the rat was with the head in the center during the movement , wait the postTrialTime before begining the next trial.
-            MainTimerStage();
+            return (x == 2);
         }
 
         public void MoveYasakawaRobotWithTrajectory(Tuple<Trajectory , Trajectory> traj)
@@ -363,14 +410,14 @@ namespace PinkyAndBrain
         /// </summary>
         public void MainTimerStage()
         {
-            Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
         }
 
         /// <summary>
         /// The post trial time - analyaing the response , saving all the trial data into the results file.
         /// </summary>
-        public void PostTrialTime()
+        public void PostTrialStage()
         { 
+            Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
         }
 
         /// <summary>
