@@ -245,6 +245,18 @@ namespace PinkyAndBrain
                     //time to wait for the moving rat response.
                     Thread.Sleep(2000);
                 }
+
+                //sounds the beep for missing the movement head in the center.
+                else
+                {
+                    Task.Run(() => { Console.Beep(8000, 100); });
+                }
+            }
+
+            //sounds the beep with the missing start gead in the center.
+            else
+            {
+                Task.Run(() => { Console.Beep(3275, 100); });
             }
 
             //no matter if the rat was with the head in the center during the movement , wait the postTrialTime before begining the next trial.
