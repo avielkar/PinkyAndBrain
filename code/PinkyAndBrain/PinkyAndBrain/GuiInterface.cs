@@ -70,6 +70,11 @@ namespace PinkyAndBrain
         /// The matlab app object for handling the matlab application.
         /// </summary>
         private MLApp.MLApp _matlabApp;
+
+        /// <summary>
+        /// The selected protocol file name.
+        /// </summary>
+        private string _selectedProtocolName;
         #endregion MEMBERS
 
         #region CONSTRUCTORS
@@ -125,8 +130,11 @@ namespace PinkyAndBrain
         /// <param name="e">args/</param>
         private void _protocolsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //update the name of the selected protocol.
+            _selectedProtocolName = _protocolsComboBox.SelectedItem.ToString();
+
             //_protocolsComboBox.SelectedItem = _protocolsComboBox.Items[0];
-            SetVariables(_protoclsDirPath + "\\" + _protocolsComboBox.SelectedItem.ToString());
+            SetVariables(_protoclsDirPath + "\\" + _selectedProtocolName);
             ShowVariablesToGui();
         }
 
@@ -205,7 +213,11 @@ namespace PinkyAndBrain
                 _staticValuesGenerator.SetVariables(_variablesList);
 
                 //start the control loop.
-                _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, 60, "ThreeStepAdaptation");
+                //need to be changed according to parameters added to which trajectoryname to be called from the excel file.
+                //string trajectoryCreatorName = _variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0];
+                int trajectoryCreatorNum= int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0]);
+                string trajectoryCreatorName = (trajectoryCreatorNum == 0) ? "Training" : "ThreeStepAdaptation";
+                _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, 60, trajectoryCreatorName);
             }
         }
 
@@ -316,19 +328,38 @@ namespace PinkyAndBrain
 
             foreach (string varName in _variablesList._variablesDictionary.Keys)
             {
-                Label newLabel = new Label();
+                /*Label newLabel = new Label();
                 this.Controls.Add(newLabel);
                 newLabel.Name = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0];
                 newLabel.Text = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0];
                 newLabel.Width = width - 35;
                 newLabel.Height = height;
                 newLabel.Top = top;
-                newLabel.Left = left;
+                newLabel.Left = left;*/
+                ShowVariableLabel(_variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0], top, left, width, height, eachDistance);
 
                 ShowVariableAttributes(varName, top, left, width, height, eachDistance, 750);
 
                 top += 35;
             }
+        }
+
+        public void ShowVariableLabel(string varName , int top , int left , int width  , int height , int eachDistance)
+        {
+            //create the new label to show on the gui.
+            Label newLabel = new Label();
+            
+            //add the label on thr gui.
+            this.Controls.Add(newLabel);
+            newLabel.Name = varName;
+            newLabel.Text = varName;
+            newLabel.Width = width - 35;
+            newLabel.Height = height;
+            newLabel.Top = top;
+            newLabel.Left = left;
+
+            //also , add the label to the dynamic control list.
+            _dynamicAllocatedTextBoxes.Add(newLabel.Text.ToString() + "Label", newLabel);
         }
 
         /// <summary>
@@ -640,6 +671,7 @@ namespace PinkyAndBrain
                 lbl.Height = height;
                 left += eachDistance;
 
+                //add the label to the gui.
                 this.Controls.Add(lbl);
             }
 

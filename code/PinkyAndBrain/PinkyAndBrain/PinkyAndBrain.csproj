@@ -120,6 +120,7 @@
     <Compile Include="SavedDataMaker.cs" />
     <Compile Include="TrajectoryCreatorHandler.cs" />
     <Compile Include="TrajectoryCreators\ThreeStepAdaptation.cs" />
+    <Compile Include="TrajectoryCreators\Training.cs" />
     <Compile Include="VaryingIndexSelector.cs" />
     <EmbeddedResource Include="GuiInterface.resx">
       <DependentUpon>GuiInterface.cs</DependentUpon>

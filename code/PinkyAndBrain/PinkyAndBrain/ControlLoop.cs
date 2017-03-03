@@ -66,6 +66,11 @@ namespace PinkyAndBrain
         private int _numOfPastTrials;
 
         /// <summary>
+        /// The name of the selected protocol.
+        /// </summary>
+        private string _selectedProtocolName;
+
+        /// <summary>
         /// The current varying trial combination that should be selected to make the trajectory from.
         /// </summary>
         private int _currentVaryingTrialIndex;
@@ -167,7 +172,7 @@ namespace PinkyAndBrain
                 //choose the random combination index for the current trial.
                 _currentVaryingTrialIndex = _varyingIndexSelector.ChooseRandomCombination();
 
-                //craetes the trajectory for both robots for the current trial.
+                //craetes the trajectory for both robots for the current trial if not one of the training protocols.
                 _currentTrialTrajectories = _trajectoryCreatorHandler.CreateTrajectory(_currentVaryingTrialIndex);
 
                 //initialize the currebt time parameters and all the current trial variables.
