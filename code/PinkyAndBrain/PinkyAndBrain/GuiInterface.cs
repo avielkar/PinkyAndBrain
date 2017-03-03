@@ -70,7 +70,6 @@ namespace PinkyAndBrain
         /// The matlab app object for handling the matlab application.
         /// </summary>
         private MLApp.MLApp _matlabApp;
-
         #endregion MEMBERS
 
         #region CONSTRUCTORS
@@ -89,6 +88,7 @@ namespace PinkyAndBrain
             InitializeTitleLabels();
             ShowVaryingControlsOptions(false);
             _matlabApp = new MLApp.MLApp();
+            Globals._systemState = SystemState.INITIALIZED;
             _cntrlLoop = new ControlLoop(_matlabApp);
         }
         #endregion CONSTRUCTORS
@@ -195,11 +195,18 @@ namespace PinkyAndBrain
         /// <param name="e">args.</param>
         private void _startButton_Click(object sender, EventArgs e)
         {
-            //add the static variable list of double type values.
-            _staticValuesGenerator.SetVariables(_variablesList);
+            //if already running - ignore.
+            if (!Globals._systemState.Equals(SystemState.RUNNING))
+            {
+                //update the system state.
+                Globals._systemState = SystemState.RUNNING;
 
-            //start the control loop.
-            _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList ,  60, "ThreeStepAdaptation");
+                //add the static variable list of double type values.
+                _staticValuesGenerator.SetVariables(_variablesList);
+
+                //start the control loop.
+                _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, 60, "ThreeStepAdaptation");
+            }
         }
 
         /// <summary>
@@ -236,6 +243,20 @@ namespace PinkyAndBrain
 
             //show the list box controls(add , remove , etc...)
             ShowVaryingControlsOptions(true);
+        }
+
+        /// <summary>
+        /// Handler for stop experiment buttom clicked.
+        /// </summary>
+        /// <param name="sender">The stop buttom object.</param>
+        /// <param name="e">The args.</param>
+        private void _stopButtom_Click(object sender, EventArgs e)
+        {
+            //update the system state.
+            Globals._systemState = SystemState.STOPPED;
+
+            //stop the control loop.
+            _cntrlLoop.Stop();
         }
         #endregion EVENTS_HANDLE_FUNCTIONS
 
@@ -1370,5 +1391,36 @@ namespace PinkyAndBrain
             get;
             set;
         }
+    }
+
+    /// <summary>
+    /// Enum describes the systen states.
+    /// </summary>
+    public enum SystemState
+    {
+        /// <summary>
+        /// The system is running now.
+        /// </summary>
+        RUNNING = 0,
+
+        /// <summary>
+        /// The system has been stopped by the user.
+        /// </summary>
+        STOPPED = 1,
+        
+        /// <summary>
+        /// The system has been paused by the user.
+        /// </summary>
+        PAUSED = 2,
+
+        /// <summary>
+        /// The system is now warmed up.
+        /// </summary>
+        INITIALIZED = 4,
+
+        /// <summary>
+        /// The current experiment (all trials) over , waiting for the next command.
+        /// </summary>
+        FINISHED = 5
     }
 }

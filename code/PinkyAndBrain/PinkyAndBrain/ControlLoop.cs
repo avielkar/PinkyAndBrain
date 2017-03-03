@@ -8,6 +8,7 @@ using PinkyAndBrain.TrajectoryCreators;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.Distributions;
 using MLApp;
+using System.Diagnostics;
 
 namespace PinkyAndBrain
 {
@@ -85,6 +86,13 @@ namespace PinkyAndBrain
         private TrialTimings _currentTrialTimings;
 
         /// <summary>
+        /// The current trial trajectories.
+        /// The first element in the tuple is the ratHouseTrajectory.
+        /// The second element in the tuple is the landscapeHouseTrajectory.
+        /// </summary>
+        private Tuple<Trajectory, Trajectory> _currentTrialTrajectories;
+
+        /// <summary>
         /// A random object for random numbers.
         /// </summary>
         private Random _timingRandomizer;
@@ -93,6 +101,11 @@ namespace PinkyAndBrain
         /// The robot reward controller.
         /// </summary>
         private RewardController _rewardController;
+
+        /// <summary>
+        /// Controller for the rat Noldus responses.
+        /// </summary>
+        private RatResponseController _ratResponseController;
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
@@ -104,6 +117,7 @@ namespace PinkyAndBrain
             _matlabApp = matlabApp;
             _trajectoryCreatorHandler = new TrajectoryCreatorHandler(_matlabApp);
             _rewardController = new RewardController("Dev1" , "Port1" ,"Line0:2", "RewardChannels");
+            _ratResponseController = new RatResponseController("Dev1", "Port0", "Line0:2", "RatResponseChannels");
         }
         #endregion CONTRUCTORS
 
@@ -126,21 +140,37 @@ namespace PinkyAndBrain
             //also , set the other properties.
             _trajectoryCreatorHandler.SetTrajectoryAttributes(trajectoryCreatorName, _variablesList, _crossVaryingVals, _staticVariablesList, _frequency);
 
-            MainControlLoop();
+            //reset the RewardController outputs.
+            _rewardController.ResetControllerOutputs();
+
+            //run the main control loop function in other thread fom the main thread ( that handling events and etc).
+            Globals._systemState = SystemState.RUNNING;
+            Task.Run(() => MainControlLoop());
+        }
+
+        public void Stop()
+        {
+            Globals._systemState = SystemState.STOPPED;
         }
 
         public void MainControlLoop()
         {
             for (int i = 0; i < _crossVaryingVals.Count();i++ )
             {
+                //if system has stopped , wait for the end of the current trial ans break,
+                if (Globals._systemState.Equals(SystemState.STOPPED))
+                    break;
+
                 //choose the random combination index for the current trial.
                 _currentVaryingTrialIndex = _varyingIndexSelector.ChooseRandomCombination();
 
                 //craetes the trajectory for both robots for the current trial.
-                _trajectoryCreatorHandler.CreateTrajectory(_currentVaryingTrialIndex);
+                _currentTrialTrajectories = _trajectoryCreatorHandler.CreateTrajectory(_currentVaryingTrialIndex);
 
                 InitializationStage();
             }
+
+            Globals._systemState = SystemState.FINISHED;
         }
 
         /// <summary>
@@ -154,25 +184,80 @@ namespace PinkyAndBrain
             //Sounds the start beep. Now waiting for the rat to move it's head to the center.
             Console.Beep();
 
-            //waits for the rat to move it's head to the center.
-            //while(ReadKey().Key.Equals(('\n'))){}
+            #region WAITING_TO_HEAD_CENTER_START
+            //waits for the rat to move it's head to the center with timeout time.
+            int x = 0;
 
-            //here should be the motion of the Yasakawa robot.
-            Thread.Sleep((int)(_currentTrialTimings.wStartDelay * 1000));
+            //stopwatch for the center head start response timeout.
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
 
-            //here should be checked if the rat was ll the motion duration with head in the center.
+            while(x!=2 && ((int)sw.Elapsed.TotalMilliseconds < (int)(_currentTrialTimings.wTimeOutTime*1000)))
+            {
+                x = _ratResponseController.ReadSingleSamplePort();
+            }
+            #endregion WAITING_TO_HEAD_CENTER_START
 
-            //wait the reward1 delay time befor openning the reward1.
-            Thread.Sleep((int)(_currentTrialTimings.wReward1Delay*1000));
+            //if have a start reponse head to the center , begin the trial movement and etc.
+            //otherwise , skip these stages and go directly to the post trial time stage.
+            if (x == 2)
+            {
+                //waits the startdelay time before starting the motion of the robot for the rat.
+                Thread.Sleep((int)(_currentTrialTimings.wStartDelay * 1000));
 
-            //open the center reward for the rat to be rewarded.
-            //after the reward1 duration time and than close it.
-            _rewardController.WriteSingleSamplePort(true , 0x02);
-            Thread.Sleep((int)(_currentTrialTimings.wReward1Duration*1000));
-            _rewardController.WriteSingleSamplePort(true , 0x00);
+                #region ROBOT_MOVEMENT_AND_HEAD_IN_CENTER_CHECKING
+                //here should be the motion of the Yasakawa robot(now it's only delay of the duration movement according to the robot frequency and the number of points in the trajectory).
+                Task robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories));
 
-            //time to wait for the moving rat response.
-            Thread.Sleep(2000);
+                //also run the rat center head checking in parallel to the movement time.
+                bool headInCenterAllTheTime = true;
+                Task.Run(() =>
+                    {
+                        while (!robotMotion.IsCompleted)
+                        {
+                            //sample the signal indicating if the rat head is in the center only 60 time per second (because the refresh rate of the signal is that frequency.
+                            Thread.Sleep(1000 / 60);
+                            if (_ratResponseController.ReadSingleSamplePort() != 2)
+                            {
+                                headInCenterAllTheTime = false;
+                            }
+                        }
+                    }
+                    );
+
+                //wait the robot to finish the movement.
+                robotMotion.Wait();
+                #endregion ROBOT_MOVEMENT_AND_HEAD_IN_CENTER_CHECKING
+
+                //here should be checked if the rat was all the motion duration with head in the center.
+                if (headInCenterAllTheTime)
+                {
+
+                    //wait the reward1 delay time befor openning the reward1.
+                    Thread.Sleep((int)(_currentTrialTimings.wReward1Delay * 1000));
+
+                    //open the center reward for the rat to be rewarded.
+                    //after the reward1 duration time and than close it.
+                    _rewardController.WriteSingleSamplePort(true, 0x02);
+                    Thread.Sleep((int)(_currentTrialTimings.wReward1Duration * 1000));
+                    _rewardController.WriteSingleSamplePort(true, 0x00);
+
+                    //time to wait for the moving rat response.
+                    Thread.Sleep(2000);
+                }
+            }
+
+            //no matter if the rat was with the head in the center during the movement , wait the postTrialTime before begining the next trial.
+            Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
+        }
+
+        public void MoveYasakawaRobotWithTrajectory(Tuple<Trajectory , Trajectory> traj)
+        {
+            foreach (var xTrajectoryPoint in traj.Item1.x)
+            {
+                //sleep the time frequency for each command of the robot (the robot frequency).
+                Thread.Sleep(4);
+            }
         }
 
         /// <summary>
@@ -191,6 +276,12 @@ namespace PinkyAndBrain
             currentTrialTimings.wReward1Duration = DetermineTimeByVariable("REWARD1_DURATION");
             currentTrialTimings.wReward2Duration = DetermineTimeByVariable("REWARD2_DURATION");
             currentTrialTimings.wReward3Duration = DetermineTimeByVariable("REWARD3_DURATION");
+
+            currentTrialTimings.wPostTrialTime = DetermineTimeByVariable("POST_TRIAL_TIME");
+
+            currentTrialTimings.wTimeOutTime = DetermineTimeByVariable("TIMEOUT_TIME");
+
+            currentTrialTimings.wResponseTime = DetermineTimeByVariable("RESPONSE_TIME");
 
             return currentTrialTimings;
         }
@@ -256,7 +347,7 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Struvt contains all the trial timings.
+        /// Struct contains all the trial timings.
         /// </summary>
         public struct TrialTimings
         {
@@ -294,8 +385,22 @@ namespace PinkyAndBrain
             /// The duration for the left reward.
             /// </summary>
             public double wReward3Duration;
-        };
 
+            /// <summary>
+            /// The duration to wait between the end of the previous trial and the begining of the next trial.
+            /// </summary>
+            public double wPostTrialTime;
+
+            /// <summary>
+            /// The time after the beep of the trial begin time and the time the rat can response with head to the center in order to begin the movement.
+            /// </summary>
+            public double wTimeOutTime;
+
+            /// <summary>
+            /// The time the rat have to response (with head to the left or to the right) after the reward1 (ig get).
+            /// </summary>
+            public double wResponseTime;
+        };
         #endregion FUNCTIONS
     }
 }

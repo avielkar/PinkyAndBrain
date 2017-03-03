@@ -229,9 +229,9 @@ namespace PinkyAndBrain.TrajectoryCreators
             landscapeHouseTrajectory.z = heaveLandscapeHouse;
 
             //rx - roll , ry - pitch , rz = yaw
-            ratHouseTrajectory.rx = CreateVector.Dense<double>(_frequency, 0);
-            ratHouseTrajectory.ry = CreateVector.Dense<double>(_frequency, 0);
-            ratHouseTrajectory.rz = CreateVector.Dense<double>(_frequency, 0);
+            landscapeHouseTrajectory.rx = CreateVector.Dense<double>(_frequency, 0);
+            landscapeHouseTrajectory.ry = CreateVector.Dense<double>(_frequency, 0);
+            landscapeHouseTrajectory.rz = CreateVector.Dense<double>(_frequency, 0);
 
             //visual only (landscapeHouseDistance only).
             if(_stimulusType == 2)

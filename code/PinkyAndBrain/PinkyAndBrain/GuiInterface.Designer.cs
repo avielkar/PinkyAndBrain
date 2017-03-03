@@ -39,6 +39,7 @@
             this._removeVaryingCombination = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this._makeTrials = new System.Windows.Forms.Button();
+            this._stopButtom = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -127,11 +128,22 @@
             this._makeTrials.UseVisualStyleBackColor = true;
             this._makeTrials.Click += new System.EventHandler(this._makeTrials_Click);
             // 
+            // _stopButtom
+            // 
+            this._stopButtom.Location = new System.Drawing.Point(930, 473);
+            this._stopButtom.Name = "_stopButtom";
+            this._stopButtom.Size = new System.Drawing.Size(75, 23);
+            this._stopButtom.TabIndex = 9;
+            this._stopButtom.Text = "Stop";
+            this._stopButtom.UseVisualStyleBackColor = true;
+            this._stopButtom.Click += new System.EventHandler(this._stopButtom_Click);
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1251, 604);
+            this.Controls.Add(this._stopButtom);
             this.Controls.Add(this._makeTrials);
             this.Controls.Add(this._removeVaryingCombination);
             this.Controls.Add(this._addVaryingCobination);
@@ -162,5 +174,6 @@
         private System.Windows.Forms.Button _removeVaryingCombination;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button _makeTrials;
+        private System.Windows.Forms.Button _stopButtom;
     }
 }

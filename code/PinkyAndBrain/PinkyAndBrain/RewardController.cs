@@ -51,5 +51,13 @@ namespace PinkyAndBrain
         {
             _digitalWriter.WriteSingleSamplePort(autoStart, data);
         }
+
+        /// <summary>
+        /// Reset all the outputs of the controller to 0 volts.
+        /// </summary>
+        public void ResetControllerOutputs()
+        {
+            WriteSingleSamplePort(true, 0);
+        }
     }
 }
