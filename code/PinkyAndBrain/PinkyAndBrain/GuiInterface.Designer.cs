@@ -40,6 +40,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this._makeTrials = new System.Windows.Forms.Button();
             this._stopButtom = new System.Windows.Forms.Button();
+            this._trialDetailsListView = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -138,11 +139,21 @@
             this._stopButtom.UseVisualStyleBackColor = true;
             this._stopButtom.Click += new System.EventHandler(this._stopButtom_Click);
             // 
+            // _trialDetailsListView
+            // 
+            this._trialDetailsListView.HoverSelection = true;
+            this._trialDetailsListView.Location = new System.Drawing.Point(15, 719);
+            this._trialDetailsListView.Name = "_trialDetailsListView";
+            this._trialDetailsListView.Size = new System.Drawing.Size(711, 181);
+            this._trialDetailsListView.TabIndex = 10;
+            this._trialDetailsListView.UseCompatibleStateImageBehavior = false;
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1251, 604);
+            this.ClientSize = new System.Drawing.Size(1251, 912);
+            this.Controls.Add(this._trialDetailsListView);
             this.Controls.Add(this._stopButtom);
             this.Controls.Add(this._makeTrials);
             this.Controls.Add(this._removeVaryingCombination);
@@ -175,5 +186,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button _makeTrials;
         private System.Windows.Forms.Button _stopButtom;
+        private System.Windows.Forms.ListView _trialDetailsListView;
     }
 }

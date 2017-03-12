@@ -9,6 +9,7 @@ using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.Distributions;
 using MLApp;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace PinkyAndBrain
 {
@@ -116,6 +117,17 @@ namespace PinkyAndBrain
         /// Indicated if the control loop should not make another trials.
         /// </summary>
         private bool _stopAfterTheEndOfTheCurrentTrial;
+
+        /// <summary>
+        /// Describes the delegate for a control with it's nick name.
+        /// </summary>
+        private Dictionary<string, Delegate> _mainGuiControlsDelegatesDictionary;
+
+        /// <summary>
+        /// Describes the control object with it's nick name.
+        /// </summary>
+        private Dictionary<string , Control> _mainGuiInterfaceControlsDictionary;
+
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
@@ -136,7 +148,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Transfer the control from the main gui to the control loop until a new gui event is handled by the user.
         /// </summary>
-        public void Start(Variables variablesList, List<Dictionary<string, List<double>>> crossVaryingList, Dictionary<string , List<List<double>>> staticVariablesList  , int frequency , string trajectoryCreatorName)
+        public void Start(Variables variablesList, List<Dictionary<string, List<double>>> crossVaryingList, Dictionary<string, List<List<double>>> staticVariablesList, int frequency, string trajectoryCreatorName, Dictionary<string, Delegate> ctrlDelegatesDic, Dictionary<string , Control> mainGuiInterfaceControlsDictionary)
         {
             //initialize variables.
             _variablesList = variablesList;
@@ -146,6 +158,8 @@ namespace PinkyAndBrain
             _totalNumOfTrials = _crossVaryingVals.Count();
             _varyingIndexSelector = new VaryingIndexSelector(_totalNumOfTrials);
             _timingRandomizer = new Random();
+            _mainGuiControlsDelegatesDictionary = ctrlDelegatesDic;
+            _mainGuiInterfaceControlsDictionary = mainGuiInterfaceControlsDictionary;
 
             //set the trajectory creator name to the given one that should be called in the trajectoryCreatorHandler.
             //also , set the other properties.
@@ -185,6 +199,8 @@ namespace PinkyAndBrain
 
                 //craetes the trajectory for both robots for the current trial if not one of the training protocols.
                 _currentTrialTrajectories = _trajectoryCreatorHandler.CreateTrajectory(_currentVaryingTrialIndex);
+
+                ShowTrialDetailsToTheDetailsListView();
 
                 //initialize the currebt time parameters and all the current trial variables.
                 InitializationStage();
@@ -227,6 +243,19 @@ namespace PinkyAndBrain
             }
 
             Globals._systemState = SystemState.FINISHED;
+        }
+
+        public void ShowTrialDetailsToTheDetailsListView()
+        {
+            Dictionary<string , List<double>> currentTrialDetails =  _crossVaryingVals[_currentVaryingTrialIndex];
+            _mainGuiInterfaceControlsDictionary["ClearCurrentTrialDetailsViewList"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["ClearCurrentTrialDetailsViewList"]);
+
+            foreach (string varName in currentTrialDetails.Keys)
+            {
+                _mainGuiInterfaceControlsDictionary["UpdateCurrentTrialDetailsViewList"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateCurrentTrialDetailsViewList"], varName, currentTrialDetails[varName][0].ToString());
+            }
         }
 
         /// <summary>

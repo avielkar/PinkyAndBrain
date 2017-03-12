@@ -98,6 +98,69 @@ namespace PinkyAndBrain
         }
         #endregion CONSTRUCTORS
 
+        #region OUTSIDER_EVENTS_HANDLE_FUNCTION
+        /// <summary>
+        /// Delegate for the trial details ListView text changing.
+        /// </summary>
+        /// <param name="text">The text to changed to the ListView.</param>
+        public delegate void ChangeCurrentTrialDetailsListViewText(string text , string value);
+
+        /// <summary>
+        /// Updates the trial details ListView with the given text.
+        /// </summary>
+        /// <param name="text"></param>
+        private void ChangeCurrentTrialDetailsListView(string name, string value)
+        {
+            ListViewItem lvi = new ListViewItem(name);
+            lvi.SubItems.Add(value);
+            _trialDetailsListView.Items.Add(lvi);
+        }
+
+        /// <summary>
+        /// Delegate for the trial details ListView text clearing.
+        /// </summary>
+        public delegate void ClearCurrentTrialDetailsListViewText();
+
+        /// <summary>
+        /// Clear the trial details ListView text.
+        /// </summary>
+        private void ClearCurrentTrialDetailsListView() 
+        { 
+            _trialDetailsListView.Items.Clear();
+            _trialDetailsListView.Columns.Clear();
+            _trialDetailsListView.Columns.Add("Name", "Name", 350);
+            _trialDetailsListView.Columns.Add("Description", "Description", 100);
+            _trialDetailsListView.View = View.Details;
+        }
+        
+        /// <summary>
+        /// Collect all needed controls and their delegates for the ControlLoop.
+        /// </summary>
+        /// <returns>
+        /// The both dictionaries of the delegate and it's control.
+        /// The first dictionary is for control object with it's name as key.
+        /// The second dictionary is for delegate object with the same name as it's key.
+        /// </returns>
+        private Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>> MakeCtrlDelegateAndFunctionDictionary()
+        {
+            //create the delegate dictionary include all delegates with their nick name to find as a key in the dictionary.
+            Dictionary<string, Delegate> ctrlDelegatesDic = new Dictionary<string, Delegate>();
+            Dictionary<string, Control> ctrlDictionary = new Dictionary<string, Control>();
+
+            //add the delegate for updating the text for the current trial details ListView , also add the control of the ListView with the same key name.
+            ChangeCurrentTrialDetailsListViewText changeCurrentTrialTextDelegate = new ChangeCurrentTrialDetailsListViewText(ChangeCurrentTrialDetailsListView);
+            ctrlDelegatesDic.Add("UpdateCurrentTrialDetailsViewList", changeCurrentTrialTextDelegate);
+            ctrlDictionary.Add("UpdateCurrentTrialDetailsViewList", _trialDetailsListView);
+
+            ClearCurrentTrialDetailsListViewText clearCurrentTrialTextDelegate = new ClearCurrentTrialDetailsListViewText(ClearCurrentTrialDetailsListView);
+            ctrlDelegatesDic.Add("ClearCurrentTrialDetailsViewList", clearCurrentTrialTextDelegate);
+            ctrlDictionary.Add("ClearCurrentTrialDetailsViewList", _trialDetailsListView);
+
+            //return both dictionaries.
+            return new Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>>(ctrlDictionary, ctrlDelegatesDic);
+        }
+        #endregion OUTSIDER_EVENTS_HANDLE_FUNCTION
+
         #region EVENTS_HANDLE_FUNCTIONS
         /// <summary>
         /// Closing the guiInterface window event handler.
@@ -212,12 +275,16 @@ namespace PinkyAndBrain
                 //add the static variable list of double type values.
                 _staticValuesGenerator.SetVariables(_variablesList);
 
+                //make the delegate with it's control object and their nickname as pairs of dictionaries.
+                Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>> delegatsControlsTuple = MakeCtrlDelegateAndFunctionDictionary();
+
                 //start the control loop.
                 //need to be changed according to parameters added to which trajectoryname to be called from the excel file.
                 //string trajectoryCreatorName = _variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0];
                 int trajectoryCreatorNum= int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0]);
                 string trajectoryCreatorName = (trajectoryCreatorNum == 0) ? "Training" : "ThreeStepAdaptation";
-                _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, 60, trajectoryCreatorName);
+
+                _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, 60, trajectoryCreatorName, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1);
             }
         }
 
