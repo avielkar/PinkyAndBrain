@@ -111,6 +111,11 @@ namespace PinkyAndBrain
         /// Controller for the rat Noldus responses.
         /// </summary>
         private RatResponseController _ratResponseController;
+
+        /// <summary>
+        /// Indicated if the control loop should not make another trials.
+        /// </summary>
+        private bool _stopAfterTheEndOfTheCurrentTrial;
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
@@ -123,6 +128,7 @@ namespace PinkyAndBrain
             _trajectoryCreatorHandler = new TrajectoryCreatorHandler(_matlabApp);
             _rewardController = new RewardController("Dev1" , "Port1" ,"Line0:2", "RewardChannels");
             _ratResponseController = new RatResponseController("Dev1", "Port0", "Line0:2", "RatResponseChannels");
+            _stopAfterTheEndOfTheCurrentTrial = false;
         }
         #endregion CONTRUCTORS
 
@@ -149,6 +155,7 @@ namespace PinkyAndBrain
             _rewardController.ResetControllerOutputs();
 
             //run the main control loop function in other thread fom the main thread ( that handling events and etc).
+            _stopAfterTheEndOfTheCurrentTrial = false;
             Globals._systemState = SystemState.RUNNING;
             Task.Run(() => MainControlLoop());
         }
@@ -158,7 +165,8 @@ namespace PinkyAndBrain
         /// </summary>
         public void Stop()
         {
-            Globals._systemState = SystemState.STOPPED;
+            //Globals._systemState = SystemState.STOPPED;
+            _stopAfterTheEndOfTheCurrentTrial = true;
         }
 
         public void MainControlLoop()
@@ -166,8 +174,11 @@ namespace PinkyAndBrain
             for (int i = 0; i < _crossVaryingVals.Count();i++ )
             {
                 //if system has stopped , wait for the end of the current trial ans break,
-                if (Globals._systemState.Equals(SystemState.STOPPED))
+                if (Globals._systemState.Equals(SystemState.STOPPED) || _stopAfterTheEndOfTheCurrentTrial)
+                {
+                    Globals._systemState = SystemState.STOPPED;
                     break;
+                }
 
                 //choose the random combination index for the current trial.
                 _currentVaryingTrialIndex = _varyingIndexSelector.ChooseRandomCombination();
@@ -187,6 +198,7 @@ namespace PinkyAndBrain
                     //if the rat head was stable in the center for the startDelay time as required start the movement.
                     if(CheckDuration1HeadInTheCenterStabilityStage())
                     {
+                        //moving the robot with duration time , and checking for the stability of the head in the center.
                         if (MovingTheRobotDurationWithHeadCenterStabilityStage())
                         {
                             //reward the rat in the center with water for duration of reward1Duration for stable head in the center during the movement.
@@ -243,13 +255,22 @@ namespace PinkyAndBrain
         /// </summary>
         public void Reward1Stage()
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
             //wait the reward1 delay time befor openning the reward1.
-            Thread.Sleep((int)(_currentTrialTimings.wReward1Delay * 1000));
+            while (sw.ElapsedMilliseconds < (int)(_currentTrialTimings.wReward1Delay * 1000))
+            { }
+
 
             //open the center reward for the rat to be rewarded.
             //after the reward1 duration time and than close it.
             _rewardController.WriteSingleSamplePort(true, 0x02);
-            Thread.Sleep((int)(_currentTrialTimings.wReward1Duration * 1000));
+
+            while (sw.ElapsedMilliseconds < (int)(_currentTrialTimings.wReward1Duration * 1000))
+            { }
+
+            //close again the reward1 port.
             _rewardController.WriteSingleSamplePort(true, 0x00);
 
         }

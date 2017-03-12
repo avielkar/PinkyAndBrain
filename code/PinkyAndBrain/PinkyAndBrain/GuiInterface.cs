@@ -265,7 +265,7 @@ namespace PinkyAndBrain
         private void _stopButtom_Click(object sender, EventArgs e)
         {
             //update the system state.
-            Globals._systemState = SystemState.STOPPED;
+            //Globals._systemState = SystemState.STOPPED;
 
             //stop the control loop.
             _cntrlLoop.Stop();
