@@ -41,6 +41,9 @@
             this._makeTrials = new System.Windows.Forms.Button();
             this._stopButtom = new System.Windows.Forms.Button();
             this._trialDetailsListView = new System.Windows.Forms.ListView();
+            this._trialParametersGroup = new System.Windows.Forms.GroupBox();
+            this._dynamicParametersPanel = new System.Windows.Forms.Panel();
+            this._trialParametersGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -148,11 +151,30 @@
             this._trialDetailsListView.TabIndex = 10;
             this._trialDetailsListView.UseCompatibleStateImageBehavior = false;
             // 
+            // _trialParametersGroup
+            // 
+            this._trialParametersGroup.Controls.Add(this._dynamicParametersPanel);
+            this._trialParametersGroup.Location = new System.Drawing.Point(15, 81);
+            this._trialParametersGroup.Name = "_trialParametersGroup";
+            this._trialParametersGroup.Size = new System.Drawing.Size(909, 620);
+            this._trialParametersGroup.TabIndex = 11;
+            this._trialParametersGroup.TabStop = false;
+            this._trialParametersGroup.Text = "Parameters";
+            // 
+            // _dynamicParametersPanel
+            // 
+            this._dynamicParametersPanel.AutoScroll = true;
+            this._dynamicParametersPanel.Location = new System.Drawing.Point(6, 19);
+            this._dynamicParametersPanel.Name = "_dynamicParametersPanel";
+            this._dynamicParametersPanel.Size = new System.Drawing.Size(897, 595);
+            this._dynamicParametersPanel.TabIndex = 12;
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1251, 912);
+            this.Controls.Add(this._trialParametersGroup);
             this.Controls.Add(this._trialDetailsListView);
             this.Controls.Add(this._stopButtom);
             this.Controls.Add(this._makeTrials);
@@ -167,6 +189,7 @@
             this.Name = "GuiInterface";
             this.Text = "GuiInterface";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GuiInterface_Close);
+            this._trialParametersGroup.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +210,7 @@
         private System.Windows.Forms.Button _makeTrials;
         private System.Windows.Forms.Button _stopButtom;
         private System.Windows.Forms.ListView _trialDetailsListView;
+        private System.Windows.Forms.GroupBox _trialParametersGroup;
+        private System.Windows.Forms.Panel _dynamicParametersPanel;
     }
 }

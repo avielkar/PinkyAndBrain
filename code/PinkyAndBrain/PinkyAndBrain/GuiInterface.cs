@@ -417,7 +417,7 @@ namespace PinkyAndBrain
             Label newLabel = new Label();
             
             //add the label on thr gui.
-            this.Controls.Add(newLabel);
+            _dynamicParametersPanel.Controls.Add(newLabel);
             newLabel.Name = varName;
             newLabel.Text = varName;
             newLabel.Width = width - 35;
@@ -483,7 +483,7 @@ namespace PinkyAndBrain
             }
 
             //add the status ComboBox to the gui.
-            this.Controls.Add(statusCombo);
+            _dynamicParametersPanel.Controls.Add(statusCombo);
             _dynamicAllocatedTextBoxes.Add(varName + "status", statusCombo);
             #endregion STATUS_COMBOBOX
 
@@ -519,7 +519,7 @@ namespace PinkyAndBrain
                 incrementTextBox.Text = lowBoundTextVal;
             }
 
-            this.Controls.Add(incrementTextBox);
+            _dynamicParametersPanel.Controls.Add(incrementTextBox);
             _dynamicAllocatedTextBoxes.Add(varName + "increament" , incrementTextBox);
             #endregion INCREMENT_TEXTBOX
 
@@ -555,7 +555,7 @@ namespace PinkyAndBrain
                 highBoundTextBox.Text = highBoundTextVal;
             }
 
-            this.Controls.Add(highBoundTextBox);
+            _dynamicParametersPanel.Controls.Add(highBoundTextBox);
             this._dynamicAllocatedTextBoxes.Add(varName + "high_bound" , highBoundTextBox);
             #endregion HIGHBOUND_TEXTBOX
 
@@ -591,7 +591,7 @@ namespace PinkyAndBrain
                 lowBoundTextBox.Text = lowBoundTextVal;
             }
 
-            this.Controls.Add(lowBoundTextBox);
+            _dynamicParametersPanel.Controls.Add(lowBoundTextBox);
             _dynamicAllocatedTextBoxes.Add(varName + "low_bound" , lowBoundTextBox);
             #endregion LOWBOUND_TEXTBOX
 
@@ -661,7 +661,7 @@ namespace PinkyAndBrain
 
             }
 
-            this.Controls.Add(parametersTextBox);
+            _dynamicParametersPanel.Controls.Add(parametersTextBox);
             _dynamicAllocatedTextBoxes.Add(varName + "parameters" , parametersTextBox);
 
             //freezing the textbox according to the status
@@ -682,7 +682,7 @@ namespace PinkyAndBrain
         {
             foreach (Control ctrl in _dynamicAllocatedTextBoxes.Values)
             {
-                this.Controls.Remove(ctrl);
+                _dynamicParametersPanel.Controls.Remove(ctrl);
             }
 
             _dynamicAllocatedTextBoxes.Clear();
@@ -739,7 +739,7 @@ namespace PinkyAndBrain
                 left += eachDistance;
 
                 //add the label to the gui.
-                this.Controls.Add(lbl);
+                _dynamicParametersPanel.Controls.Add(lbl);
             }
 
             //increase the top for the reference.
