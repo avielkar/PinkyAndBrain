@@ -157,6 +157,7 @@ namespace PinkyAndBrain
             _frequency = frequency;
             _totalNumOfTrials = _crossVaryingVals.Count();
             _varyingIndexSelector = new VaryingIndexSelector(_totalNumOfTrials);
+            _numOfPastTrials = 0;
             _timingRandomizer = new Random();
             _mainGuiControlsDelegatesDictionary = ctrlDelegatesDic;
             _mainGuiInterfaceControlsDictionary = mainGuiInterfaceControlsDictionary;
@@ -202,6 +203,8 @@ namespace PinkyAndBrain
 
                 ShowTrialDetailsToTheDetailsListView();
 
+                ShowGlobalExperimentDetailsListView();
+
                 //initialize the currebt time parameters and all the current trial variables.
                 InitializationStage();
 
@@ -240,11 +243,31 @@ namespace PinkyAndBrain
 
                 //the post trial stage for saving the trial data and for the delay between trials.
                 PostTrialStage();
+
+                //increase the num of trials counter indicator.
+                _numOfPastTrials++;
             }
 
             Globals._systemState = SystemState.FINISHED;
         }
 
+        /// <summary>
+        /// Show global experiment parameters.
+        /// </summary>
+        private void ShowGlobalExperimentDetailsListView()
+        {
+            //update the number of past trials.
+            _mainGuiInterfaceControlsDictionary["UpdateCurrentTrialDetailsViewList"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateCurrentTrialDetailsViewList"], "Trial Number", (_numOfPastTrials+1).ToString());
+
+            //update the number of left trials.
+            _mainGuiInterfaceControlsDictionary["UpdateCurrentTrialDetailsViewList"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateCurrentTrialDetailsViewList"], "Left Number", (_totalNumOfTrials - _numOfPastTrials - 1).ToString());
+        }
+
+        /// <summary>
+        /// Show the current trial dynamic details to the ListView.
+        /// </summary>
         public void ShowTrialDetailsToTheDetailsListView()
         {
             Dictionary<string , List<double>> currentTrialDetails =  _crossVaryingVals[_currentVaryingTrialIndex];
@@ -253,8 +276,16 @@ namespace PinkyAndBrain
 
             foreach (string varName in currentTrialDetails.Keys)
             {
+                string currentParameterDetails;
+                //only ratHouseParameter
+                if (currentTrialDetails[varName].Count == 1)
+                    currentParameterDetails = "[" + currentTrialDetails[varName][0].ToString() + "]";
+                else
+                    currentParameterDetails = "[" + currentTrialDetails[varName][0].ToString() + "]" + "[" + currentTrialDetails[varName][1].ToString() + "]";
+                //both ratHouseParameter and landscapeHouseParameter
+                
                 _mainGuiInterfaceControlsDictionary["UpdateCurrentTrialDetailsViewList"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateCurrentTrialDetailsViewList"], varName, currentTrialDetails[varName][0].ToString());
+                _mainGuiControlsDelegatesDictionary["UpdateCurrentTrialDetailsViewList"], varName, currentParameterDetails);
             }
         }
 
