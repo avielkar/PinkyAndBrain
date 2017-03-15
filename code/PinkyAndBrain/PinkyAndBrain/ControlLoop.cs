@@ -506,6 +506,11 @@ namespace PinkyAndBrain
             Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
         }
 
+        /// <summary>
+        /// Giving reward as specified (for the specified directions).
+        /// </summary>
+        /// <param name="value">The specified direction by xxxxxy-y-y where left-center-right.</param>
+        /// <param name="continious">Make the reward continiously (open untill get a close value) or not continiously (by the time of REWARD1_DURATION parameter.</param>
         public void GiveRewardHandReward(byte value , bool continious = false)
         {
             if(continious)

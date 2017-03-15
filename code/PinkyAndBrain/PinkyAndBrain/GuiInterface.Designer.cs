@@ -49,8 +49,15 @@
             this._leftHandRewardCheckBox = new System.Windows.Forms.CheckBox();
             this._digitalHandRewardButton = new System.Windows.Forms.Button();
             this._continiousHandRewardButton = new System.Windows.Forms.Button();
+            this._varyingControlGroupBox = new System.Windows.Forms.GroupBox();
+            this._interactiveNolduscommuncation = new System.Windows.Forms.GroupBox();
+            this._leftNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
+            this._centerNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
+            this._rightNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
+            this._varyingControlGroupBox.SuspendLayout();
+            this._interactiveNolduscommuncation.SuspendLayout();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -92,7 +99,7 @@
             // 
             // _startButton
             // 
-            this._startButton.Location = new System.Drawing.Point(930, 444);
+            this._startButton.Location = new System.Drawing.Point(6, 409);
             this._startButton.Name = "_startButton";
             this._startButton.Size = new System.Drawing.Size(75, 23);
             this._startButton.TabIndex = 4;
@@ -104,14 +111,14 @@
             // 
             this._varyingListBox.FormattingEnabled = true;
             this._varyingListBox.IntegralHeight = false;
-            this._varyingListBox.Location = new System.Drawing.Point(1011, 54);
+            this._varyingListBox.Location = new System.Drawing.Point(87, 19);
             this._varyingListBox.Name = "_varyingListBox";
             this._varyingListBox.Size = new System.Drawing.Size(240, 384);
             this._varyingListBox.TabIndex = 5;
             // 
             // _addVaryingCobination
             // 
-            this._addVaryingCobination.Location = new System.Drawing.Point(1011, 444);
+            this._addVaryingCobination.Location = new System.Drawing.Point(87, 409);
             this._addVaryingCobination.Name = "_addVaryingCobination";
             this._addVaryingCobination.Size = new System.Drawing.Size(114, 23);
             this._addVaryingCobination.TabIndex = 6;
@@ -121,7 +128,7 @@
             // 
             // _removeVaryingCombination
             // 
-            this._removeVaryingCombination.Location = new System.Drawing.Point(1128, 444);
+            this._removeVaryingCombination.Location = new System.Drawing.Point(204, 409);
             this._removeVaryingCombination.Name = "_removeVaryingCombination";
             this._removeVaryingCombination.Size = new System.Drawing.Size(123, 23);
             this._removeVaryingCombination.TabIndex = 7;
@@ -131,7 +138,7 @@
             // 
             // _makeTrials
             // 
-            this._makeTrials.Location = new System.Drawing.Point(930, 415);
+            this._makeTrials.Location = new System.Drawing.Point(6, 380);
             this._makeTrials.Name = "_makeTrials";
             this._makeTrials.Size = new System.Drawing.Size(75, 23);
             this._makeTrials.TabIndex = 8;
@@ -141,7 +148,7 @@
             // 
             // _stopButtom
             // 
-            this._stopButtom.Location = new System.Drawing.Point(930, 473);
+            this._stopButtom.Location = new System.Drawing.Point(6, 438);
             this._stopButtom.Name = "_stopButtom";
             this._stopButtom.Size = new System.Drawing.Size(75, 23);
             this._stopButtom.TabIndex = 9;
@@ -244,20 +251,73 @@
             this._continiousHandRewardButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._countiniousHandRewardKeyDown);
             this._continiousHandRewardButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this._continiousHandRewardKeyReleaed);
             // 
+            // _varyingControlGroupBox
+            // 
+            this._varyingControlGroupBox.Controls.Add(this._varyingListBox);
+            this._varyingControlGroupBox.Controls.Add(this._startButton);
+            this._varyingControlGroupBox.Controls.Add(this._makeTrials);
+            this._varyingControlGroupBox.Controls.Add(this._addVaryingCobination);
+            this._varyingControlGroupBox.Controls.Add(this._stopButtom);
+            this._varyingControlGroupBox.Controls.Add(this._removeVaryingCombination);
+            this._varyingControlGroupBox.Location = new System.Drawing.Point(930, 81);
+            this._varyingControlGroupBox.Name = "_varyingControlGroupBox";
+            this._varyingControlGroupBox.Size = new System.Drawing.Size(339, 468);
+            this._varyingControlGroupBox.TabIndex = 13;
+            this._varyingControlGroupBox.TabStop = false;
+            this._varyingControlGroupBox.Text = "Varying Control";
+            // 
+            // _interactiveNolduscommuncation
+            // 
+            this._interactiveNolduscommuncation.Controls.Add(this._rightNoldusCommunicationRadioButton);
+            this._interactiveNolduscommuncation.Controls.Add(this._centerNoldusCommunicationRadioButton);
+            this._interactiveNolduscommuncation.Controls.Add(this._leftNoldusCommunicationRadioButton);
+            this._interactiveNolduscommuncation.Location = new System.Drawing.Point(930, 555);
+            this._interactiveNolduscommuncation.Name = "_interactiveNolduscommuncation";
+            this._interactiveNolduscommuncation.Size = new System.Drawing.Size(339, 146);
+            this._interactiveNolduscommuncation.TabIndex = 14;
+            this._interactiveNolduscommuncation.TabStop = false;
+            this._interactiveNolduscommuncation.Text = "Interacive Noldus Communication";
+            // 
+            // _leftNoldusCommunicationRadioButton
+            // 
+            this._leftNoldusCommunicationRadioButton.AutoSize = true;
+            this._leftNoldusCommunicationRadioButton.Location = new System.Drawing.Point(34, 66);
+            this._leftNoldusCommunicationRadioButton.Name = "_leftNoldusCommunicationRadioButton";
+            this._leftNoldusCommunicationRadioButton.Size = new System.Drawing.Size(14, 13);
+            this._leftNoldusCommunicationRadioButton.TabIndex = 0;
+            this._leftNoldusCommunicationRadioButton.TabStop = true;
+            this._leftNoldusCommunicationRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // _centerNoldusCommunicationRadioButton
+            // 
+            this._centerNoldusCommunicationRadioButton.AutoSize = true;
+            this._centerNoldusCommunicationRadioButton.Location = new System.Drawing.Point(151, 66);
+            this._centerNoldusCommunicationRadioButton.Name = "_centerNoldusCommunicationRadioButton";
+            this._centerNoldusCommunicationRadioButton.Size = new System.Drawing.Size(14, 13);
+            this._centerNoldusCommunicationRadioButton.TabIndex = 1;
+            this._centerNoldusCommunicationRadioButton.TabStop = true;
+            this._centerNoldusCommunicationRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // _rightNoldusCommunicationRadioButton
+            // 
+            this._rightNoldusCommunicationRadioButton.AutoSize = true;
+            this._rightNoldusCommunicationRadioButton.Location = new System.Drawing.Point(269, 66);
+            this._rightNoldusCommunicationRadioButton.Name = "_rightNoldusCommunicationRadioButton";
+            this._rightNoldusCommunicationRadioButton.Size = new System.Drawing.Size(14, 13);
+            this._rightNoldusCommunicationRadioButton.TabIndex = 2;
+            this._rightNoldusCommunicationRadioButton.TabStop = true;
+            this._rightNoldusCommunicationRadioButton.UseVisualStyleBackColor = true;
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1251, 912);
+            this.ClientSize = new System.Drawing.Size(1278, 912);
+            this.Controls.Add(this._interactiveNolduscommuncation);
+            this.Controls.Add(this._varyingControlGroupBox);
             this.Controls.Add(this._handRewardsgroupBox);
             this.Controls.Add(this._trialParametersGroup);
             this.Controls.Add(this._trialDetailsListView);
-            this.Controls.Add(this._stopButtom);
-            this.Controls.Add(this._makeTrials);
-            this.Controls.Add(this._removeVaryingCombination);
-            this.Controls.Add(this._addVaryingCobination);
-            this.Controls.Add(this._varyingListBox);
-            this.Controls.Add(this._startButton);
             this.Controls.Add(this._protocolBrowserBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -268,6 +328,9 @@
             this._trialParametersGroup.ResumeLayout(false);
             this._handRewardsgroupBox.ResumeLayout(false);
             this._handRewardsgroupBox.PerformLayout();
+            this._varyingControlGroupBox.ResumeLayout(false);
+            this._interactiveNolduscommuncation.ResumeLayout(false);
+            this._interactiveNolduscommuncation.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,5 +359,10 @@
         private System.Windows.Forms.CheckBox _rightHandRewardCheckBox;
         private System.Windows.Forms.CheckBox _centerHandRewardCheckBox;
         private System.Windows.Forms.CheckBox _leftHandRewardCheckBox;
+        private System.Windows.Forms.GroupBox _varyingControlGroupBox;
+        private System.Windows.Forms.GroupBox _interactiveNolduscommuncation;
+        private System.Windows.Forms.RadioButton _rightNoldusCommunicationRadioButton;
+        private System.Windows.Forms.RadioButton _centerNoldusCommunicationRadioButton;
+        private System.Windows.Forms.RadioButton _leftNoldusCommunicationRadioButton;
     }
 }
