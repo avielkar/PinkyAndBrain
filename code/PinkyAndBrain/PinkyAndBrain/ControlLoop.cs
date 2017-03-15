@@ -506,6 +506,20 @@ namespace PinkyAndBrain
             Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
         }
 
+        public void GiveRewardHandReward(byte value , bool continious = false)
+        {
+            if(continious)
+            {
+                _rewardController.WriteSingleSamplePort(true, value);
+            }
+            else
+            {
+                _rewardController.WriteSingleSamplePort(true , value);
+                Thread.Sleep((int)(DetermineTimeByVariable("REWARD1_DURATION") * 1000));
+                _rewardController.WriteSingleSamplePort(true, 0);
+            }
+        }
+
         /// <summary>
         /// Struct contains all the trial timings.
         /// </summary>

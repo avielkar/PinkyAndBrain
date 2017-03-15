@@ -43,7 +43,14 @@
             this._trialDetailsListView = new System.Windows.Forms.ListView();
             this._trialParametersGroup = new System.Windows.Forms.GroupBox();
             this._dynamicParametersPanel = new System.Windows.Forms.Panel();
+            this._handRewardsgroupBox = new System.Windows.Forms.GroupBox();
+            this._rightHandRewardCheckBox = new System.Windows.Forms.CheckBox();
+            this._centerHandRewardCheckBox = new System.Windows.Forms.CheckBox();
+            this._leftHandRewardCheckBox = new System.Windows.Forms.CheckBox();
+            this._digitalHandRewardButton = new System.Windows.Forms.Button();
+            this._continiousHandRewardButton = new System.Windows.Forms.Button();
             this._trialParametersGroup.SuspendLayout();
+            this._handRewardsgroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -169,11 +176,80 @@
             this._dynamicParametersPanel.Size = new System.Drawing.Size(897, 595);
             this._dynamicParametersPanel.TabIndex = 12;
             // 
+            // _handRewardsgroupBox
+            // 
+            this._handRewardsgroupBox.Controls.Add(this._rightHandRewardCheckBox);
+            this._handRewardsgroupBox.Controls.Add(this._centerHandRewardCheckBox);
+            this._handRewardsgroupBox.Controls.Add(this._leftHandRewardCheckBox);
+            this._handRewardsgroupBox.Controls.Add(this._digitalHandRewardButton);
+            this._handRewardsgroupBox.Controls.Add(this._continiousHandRewardButton);
+            this._handRewardsgroupBox.Location = new System.Drawing.Point(732, 719);
+            this._handRewardsgroupBox.Name = "_handRewardsgroupBox";
+            this._handRewardsgroupBox.Size = new System.Drawing.Size(192, 181);
+            this._handRewardsgroupBox.TabIndex = 12;
+            this._handRewardsgroupBox.TabStop = false;
+            this._handRewardsgroupBox.Text = "Hand Rewards";
+            // 
+            // _rightHandRewardCheckBox
+            // 
+            this._rightHandRewardCheckBox.AutoSize = true;
+            this._rightHandRewardCheckBox.Location = new System.Drawing.Point(78, 86);
+            this._rightHandRewardCheckBox.Name = "_rightHandRewardCheckBox";
+            this._rightHandRewardCheckBox.Size = new System.Drawing.Size(46, 17);
+            this._rightHandRewardCheckBox.TabIndex = 8;
+            this._rightHandRewardCheckBox.Text = "right";
+            this._rightHandRewardCheckBox.UseVisualStyleBackColor = true;
+            this._rightHandRewardCheckBox.CheckedChanged += new System.EventHandler(this._rightHandRewardCheckBox_CheckedChanged);
+            // 
+            // _centerHandRewardCheckBox
+            // 
+            this._centerHandRewardCheckBox.AutoSize = true;
+            this._centerHandRewardCheckBox.Location = new System.Drawing.Point(78, 52);
+            this._centerHandRewardCheckBox.Name = "_centerHandRewardCheckBox";
+            this._centerHandRewardCheckBox.Size = new System.Drawing.Size(56, 17);
+            this._centerHandRewardCheckBox.TabIndex = 7;
+            this._centerHandRewardCheckBox.Text = "center";
+            this._centerHandRewardCheckBox.UseVisualStyleBackColor = true;
+            this._centerHandRewardCheckBox.CheckedChanged += new System.EventHandler(this._centerHandRewardCheckBox_CheckedChanged);
+            // 
+            // _leftHandRewardCheckBox
+            // 
+            this._leftHandRewardCheckBox.AutoSize = true;
+            this._leftHandRewardCheckBox.Location = new System.Drawing.Point(78, 19);
+            this._leftHandRewardCheckBox.Name = "_leftHandRewardCheckBox";
+            this._leftHandRewardCheckBox.Size = new System.Drawing.Size(40, 17);
+            this._leftHandRewardCheckBox.TabIndex = 6;
+            this._leftHandRewardCheckBox.Text = "left";
+            this._leftHandRewardCheckBox.UseVisualStyleBackColor = true;
+            this._leftHandRewardCheckBox.CheckedChanged += new System.EventHandler(this._leftHandRewardCheckBox_CheckedChanged);
+            // 
+            // _digitalHandRewardButton
+            // 
+            this._digitalHandRewardButton.Location = new System.Drawing.Point(6, 123);
+            this._digitalHandRewardButton.Name = "_digitalHandRewardButton";
+            this._digitalHandRewardButton.Size = new System.Drawing.Size(75, 23);
+            this._digitalHandRewardButton.TabIndex = 5;
+            this._digitalHandRewardButton.Text = "Digital";
+            this._digitalHandRewardButton.UseVisualStyleBackColor = true;
+            this._digitalHandRewardButton.Click += new System.EventHandler(this._digitalHandRewardButton_Click);
+            // 
+            // _continiousHandRewardButton
+            // 
+            this._continiousHandRewardButton.Location = new System.Drawing.Point(111, 123);
+            this._continiousHandRewardButton.Name = "_continiousHandRewardButton";
+            this._continiousHandRewardButton.Size = new System.Drawing.Size(75, 23);
+            this._continiousHandRewardButton.TabIndex = 4;
+            this._continiousHandRewardButton.Text = "Continious";
+            this._continiousHandRewardButton.UseVisualStyleBackColor = true;
+            this._continiousHandRewardButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._countiniousHandRewardKeyDown);
+            this._continiousHandRewardButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this._continiousHandRewardKeyReleaed);
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1251, 912);
+            this.Controls.Add(this._handRewardsgroupBox);
             this.Controls.Add(this._trialParametersGroup);
             this.Controls.Add(this._trialDetailsListView);
             this.Controls.Add(this._stopButtom);
@@ -190,6 +266,8 @@
             this.Text = "GuiInterface";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GuiInterface_Close);
             this._trialParametersGroup.ResumeLayout(false);
+            this._handRewardsgroupBox.ResumeLayout(false);
+            this._handRewardsgroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,5 +290,11 @@
         private System.Windows.Forms.ListView _trialDetailsListView;
         private System.Windows.Forms.GroupBox _trialParametersGroup;
         private System.Windows.Forms.Panel _dynamicParametersPanel;
+        private System.Windows.Forms.GroupBox _handRewardsgroupBox;
+        private System.Windows.Forms.Button _digitalHandRewardButton;
+        private System.Windows.Forms.Button _continiousHandRewardButton;
+        private System.Windows.Forms.CheckBox _rightHandRewardCheckBox;
+        private System.Windows.Forms.CheckBox _centerHandRewardCheckBox;
+        private System.Windows.Forms.CheckBox _leftHandRewardCheckBox;
     }
 }

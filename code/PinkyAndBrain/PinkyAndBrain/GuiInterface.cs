@@ -75,6 +75,12 @@ namespace PinkyAndBrain
         /// The selected protocol file name.
         /// </summary>
         private string _selectedProtocolName;
+
+        /// <summary>
+        /// The selected directions to give them hand rewrad (xxxxxyyy).
+        /// The y-y-y is the indicators for the directions as followed by left-center-right.
+        /// </summary>
+        private byte _selectedHandRewardDirections;
         #endregion MEMBERS
 
         #region CONSTRUCTORS
@@ -95,6 +101,7 @@ namespace PinkyAndBrain
             _matlabApp = new MLApp.MLApp();
             Globals._systemState = SystemState.INITIALIZED;
             _cntrlLoop = new ControlLoop(_matlabApp);
+            _selectedHandRewardDirections = 0;
         }
         #endregion CONSTRUCTORS
 
@@ -161,7 +168,7 @@ namespace PinkyAndBrain
         }
         #endregion OUTSIDER_EVENTS_HANDLE_FUNCTION
 
-        #region EVENTS_HANDLE_FUNCTIONS
+        #region GLOBAL_EVENTS_HANDLE_FUNCTIONS
         /// <summary>
         /// Closing the guiInterface window event handler.
         /// </summary>
@@ -337,7 +344,403 @@ namespace PinkyAndBrain
             //stop the control loop.
             _cntrlLoop.Stop();
         }
-        #endregion EVENTS_HANDLE_FUNCTIONS
+        #endregion GLOBAL_EVENTS_HANDLE_FUNCTIONS
+
+        #region VARYING_LISTBOX_FUNCTIONS
+        /// <summary>
+        /// Adding the generated cross varying values to the varying listbox.
+        /// </summary>
+        /// <param name="varyingCrossValsBoth">The cross genereated varying values to add to the listbox.</param>
+        private void AddVaryingMatrixToVaryingListBox(List<Dictionary<string, List<double>>> varyingCrossValsBoth, Dictionary<string, Dictionary<double, double>> varyingVectorDictionaryParalelledForLandscapeHouseParameters)
+        {
+            //collect the titles for the listbox columns to a list.
+            string listBoxTitleLineText = "";
+            List<string> niceNameList = new List<string>();
+            foreach (string varName in varyingCrossValsBoth.ElementAt(0).Keys)
+            {
+                string varNiceName = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter.ElementAt(0);
+                niceNameList.Add(varNiceName);
+            }
+
+            //add the titles for the listbox columns
+            listBoxTitleLineText = string.Join("\t", niceNameList);
+            _varyingListBox.Items.Add(listBoxTitleLineText);
+
+            //enable horizonal scrolling.
+            _varyingListBox.HorizontalScrollbar = true;
+
+            //set the display member and value member for each item in the ListBox thta represents a Dictionary values in the varyingCrossVals list.
+            //_varyingListBox.DisplayMember = "_text";
+            //_varyingListBox.ValueMember = "_listIndex";
+
+
+            //make the list describes all varying lines to describes both parameters (if should) for the ratHouseParameters and the landscapeHouseParameters.
+            List<Dictionary<string, string>> varyingCrossValsBothStringVersion = CrossVaryingValuesToBothParameters(varyingCrossValsBoth);
+
+            //add all varying cross value in new line in the textbox.
+            int index = 0;
+
+            foreach (Dictionary<string, string> varRowDictionaryItem in varyingCrossValsBothStringVersion)
+            {
+                string listBoxLineText = string.Join("\t", varRowDictionaryItem.Values);
+
+                /*VaryingItem varyItem = new VaryingItem();
+                varyItem._text = listBoxLineText;
+                varyItem._listIndex = index;*/
+
+                index++;
+                _varyingListBox.Items.Add(listBoxLineText);
+            }
+        }
+
+        /// <summary>
+        /// Creates a string to string inner dictionary inside of string to list of doubles.
+        /// </summary>
+        /// <param name="ratHouseVaryingCrossVals">The crossVaryingValues of the both ratHouseParameter and landscapeHouseParameter.</param>
+        /// <returns>
+        /// A list of dictionaries.
+        /// Each item in the dictionary describes a raw of trial for the varying.
+        /// Each item is a dictionary of string to string.
+        /// The first string (key) is for the variable name.
+        /// The second string (value) is for the value of the both ratHouseValue and the landscapeHouseValue if enabled or only the first for the key variable string.
+        /// </returns>
+        private List<Dictionary<string, string>> CrossVaryingValuesToBothParameters(List<Dictionary<string, List<double>>> ratHouseVaryingCrossVals)
+        {
+            //The list to be returned.
+            List<Dictionary<string, string>> crossVaryingBothParmeters = new List<Dictionary<string, string>>();
+
+            //The string builder to build string with.
+            StringBuilder sBuilder = new StringBuilder();
+
+            //run over all lines in the crossVals for the ratHouseValues.
+            foreach (Dictionary<string, List<double>> varRatHouseRowItem in ratHouseVaryingCrossVals)
+            {
+                //make a row to add to the returned list.
+                Dictionary<string, string> varyingBothRowItem = new Dictionary<string, string>();
+
+                //The string for a variable in the current row.
+                string itemBothParameterString = "";
+
+                //run over all the variables in the row.
+                foreach (string varName in varRatHouseRowItem.Keys)
+                {
+                    //clear the string builder for the new variable in the current row.
+                    sBuilder.Clear();
+
+                    //check if the value for the variable in the current line is set to tbot the ratHouseValue and the lanscapeHouseValue.
+                    if (varRatHouseRowItem[varName].Count() > 1)
+                    {
+                        itemBothParameterString = BracketsAppender(sBuilder, varRatHouseRowItem[varName].ElementAt(0).ToString(),
+                            varRatHouseRowItem[varName].ElementAt(1).ToString());
+                    }
+
+                    else
+                    {
+                        itemBothParameterString = varRatHouseRowItem[varName].ElementAt(0).ToString();
+                    }
+
+                    //add the variable string description for the current line (of the both) for the dictionary describes that line.
+                    varyingBothRowItem.Add(varName, itemBothParameterString);
+                }
+
+                //add the line (the description of varying trial) to the list of lines (trials).
+                crossVaryingBothParmeters.Add(varyingBothRowItem);
+            }
+
+            return crossVaryingBothParmeters;
+        }
+
+        /// <summary>
+        /// Clears the varying list box.
+        /// </summary>
+        private void ClearVaryingListBox()
+        {
+            _varyingListBox.Items.Clear();
+        }
+
+        /// <summary>
+        /// Handler for adding combination to the varying cross values.
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">args.</param>
+        private void _addVaryingCombination_Click(object sender, EventArgs e)
+        {
+            //get the cross varying values list.
+            List<Dictionary<string, List<double>>> crossVaryingVals = _acrossVectorValuesGenerator._crossVaryingValsBoth;
+
+            //make a dictionary with the variable name as key and the belong textbox as value.
+            Dictionary<string, TextBox> varNameToTextboxDictionary = new Dictionary<string, TextBox>();
+
+            //Showing the new little form to get the inputs for the new combination.
+            ShowControlAddingVaryingForm(crossVaryingVals, varNameToTextboxDictionary);
+        }
+
+        /// <summary>
+        /// Showing the new little form of the textboxes for the varyin variables to get the input from.
+        /// </summary>
+        /// <param name="crossVaryingVals">The crossVaryingVals list for all the trials.</param>
+        /// <param name="varNameToTextboxDictionary">The dictionary map for the variable string (key) to the variable representing textbox(value).</param>
+        /// <returns></returns>
+        private Form ShowControlAddingVaryingForm(List<Dictionary<string, List<double>>> crossVaryingVals, Dictionary<string, TextBox> varNameToTextboxDictionary)
+        {
+            //show thw new little form for the desired variables.
+            Form littleTempForm = new Form();
+
+            int leftOffset = 0;
+            int topOffset = 0;
+            int width = 140;
+            int height = 14;
+            //add an input textbox with label show the name for each varying parameter.
+            foreach (string varName in crossVaryingVals.ElementAt(0).Keys)
+            {
+                string varNiceName = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter.ElementAt(0);
+
+                Label varyingAttributeLabel = new Label();
+                varyingAttributeLabel.Text = varName;
+                varyingAttributeLabel.Top = topOffset += 35;
+                varyingAttributeLabel.Left = leftOffset;
+                varyingAttributeLabel.Height = height;
+                varyingAttributeLabel.Width = width;
+                littleTempForm.Controls.Add(varyingAttributeLabel);
+
+                TextBox varyingAttributeTextBox = new TextBox();
+                varyingAttributeTextBox.Top = topOffset;
+                varyingAttributeTextBox.Left = leftOffset + width + 20;
+                littleTempForm.Controls.Add(varyingAttributeTextBox);
+
+                //add the variable name with the belonged textbox.
+                varNameToTextboxDictionary.Add(varName, varyingAttributeTextBox);
+            }
+
+            //handle the confirm adding new combination.
+            Button confirmCombinationAdding = new Button();
+            littleTempForm.Controls.Add(confirmCombinationAdding);
+            confirmCombinationAdding.Top = topOffset;
+            confirmCombinationAdding.Left = leftOffset + width;
+            confirmCombinationAdding.Click += new EventHandler((sender2, e2) => confirmVaryingCombinationAdding_Click(sender2, e2, varNameToTextboxDictionary));
+
+            //show the dialog (need to be after adding controls) with the parent as the main windows frozed behind.
+            littleTempForm.ShowDialog(this);
+
+            //retutn the little form;
+            return littleTempForm;
+        }
+
+        /// <summary>
+        /// Handler for clicking on the confirm buttom for adding the combination added in the little window.
+        /// </summary>
+        /// <param name="sender">The buttom object.</param>
+        /// <param name="e">args.</param>
+        /// <param name="varNameToTextboxDictionary">The dictionary map for the variable string (key) to the variable representing textbox(value).</param>
+        private void confirmVaryingCombinationAdding_Click(object sender, EventArgs e, Dictionary<string, TextBox> varNameToTextboxDictionary)
+        {
+            //creating dictionary for variable name as key and it's value as a value.
+            Dictionary<string, string> varNameToValueDictionary = new Dictionary<string, string>();
+
+            //converting the textboxes to strings value according to their text.
+            foreach (string varName in varNameToTextboxDictionary.Keys)
+            {
+                varNameToValueDictionary.Add(varName, varNameToTextboxDictionary[varName].Text);
+            }
+
+            //confirm if the input is spelled well.
+            if (!CheckVaryingListBoxProperInput(varNameToValueDictionary))
+                return;
+
+            //add the new combination after checking the spelling for the input.
+            AddNewVaryngCombination(varNameToValueDictionary);
+
+            Button clickedButtom = sender as Button;
+            Form littleWindow = clickedButtom.Parent as Form;
+
+            //close the adding combination little window.
+            littleWindow.Close();
+        }
+
+        /// <summary>
+        /// Adding new line (trial) of varying combination to the varyingCrossVals and to the listbox.
+        /// </summary>
+        /// <param name="varNameToValueDictionary">
+        /// The item that describes the trial by a dictionary.
+        /// The key os for the variable name.
+        /// The value is for the value of that variable include for both ratHouseParameter and landscapeHouseParameter,
+        ///if needed by [x][y] string.
+        /// </param>
+        private void AddNewVaryngCombination(Dictionary<string, string> varNameToValueDictionary)
+        {
+            Dictionary<string, List<double>> varNameToValueDictionaryDoubleListVersion = new Dictionary<string, List<double>>();
+            foreach (string varName in varNameToValueDictionary.Keys)
+            {
+                varNameToValueDictionaryDoubleListVersion.Add(varName,
+                    ConvertStringListToDoubleList(BracketsSplitter(varNameToValueDictionary[varName])));
+            }
+
+            _acrossVectorValuesGenerator._crossVaryingValsBoth.Add(varNameToValueDictionaryDoubleListVersion);
+
+            string listBoxLineText = string.Join("\t", varNameToValueDictionary.Values);
+            _varyingListBox.Items.Add(listBoxLineText);
+        }
+
+        /// <summary>
+        /// Handler for removing selected varting combination from varying cross values.
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">args.</param>
+        private void _removeVaryingCombination_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = _varyingListBox.SelectedIndex;
+            if (selectedIndex > 0)
+            {
+                //take the selected item.
+                //VaryingItem selectedCombination = _varyingListBox.SelectedItem as VaryingItem;
+
+                //set the _acrossVectorValuesGenerator cross varying values
+                //_acrossVectorValuesGenerator._crossVaryingVals.RemoveAt(selectedCombination._listIndex);
+
+                _acrossVectorValuesGenerator._crossVaryingValsBoth.RemoveAt(_varyingListBox.SelectedIndex - 1);
+
+                //update also the gui varying listbox.
+                //_varyingListBox.Items.Remove(selectedCombination);
+                _varyingListBox.Items.RemoveAt(_varyingListBox.SelectedIndex);
+
+                //ReduceIndexesFromNumberedIndex(selectedCombination._listIndex, _varyingListBox);
+
+                //if (selectedCombination._listIndex > 0)
+                //_varyingListBox.SelectedItem = (_varyingListBox.Items[selectedCombination._listIndex - 1] as VaryingItem);
+
+                if (selectedIndex > 1)
+                {
+                    _varyingListBox.SelectedIndex = selectedIndex - 1;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reduces the indexes of the value of the VaryingItem in the varyingListBox to be matched with the _crossVaryingVals list.
+        /// </summary>
+        /// <param name="beginIndex">The index to begin reducing it's value index.</param>
+        /// <param name="varyingListBox">Yhe varying listbox to reduce it's indexes.</param>
+        private void ReduceIndexesFromNumberedIndex(int beginIndex, ListBox varyingListBox)
+        {
+            for (int index = beginIndex; index < varyingListBox.Items.Count; index++)
+            {
+                VaryingItem varyItem = varyingListBox.Items[index] as VaryingItem;
+                varyItem._listIndex--;
+            }
+        }
+
+        /// <summary>
+        /// Detemines ig the varying control items are visible according to the input. show.
+        /// </summary>
+        /// <param name="show">If to show the varying control items.</param>
+        private void ShowVaryingControlsOptions(bool show)
+        {
+            this._varyingListBox.Visible = show;
+            this._addVaryingCobination.Visible = show;
+            this._removeVaryingCombination.Visible = show;
+        }
+        #endregion VARYING_LISTBOX_FUNCTIONS
+
+        #region HAND_REWARD_CONTROLL_FUNCTION
+        /// <summary>
+        /// Handler for digital hand reward button clicked.
+        /// </summary>
+        /// <param name="sender">The button.</param>
+        /// <param name="e">Args.</param>
+        private void _digitalHandRewardButton_Click(object sender, EventArgs e)
+        {
+            Task.Run(() =>
+            {
+                _cntrlLoop.GiveRewardHandReward(_selectedHandRewardDirections, false);
+            });
+        }
+
+        /// <summary>
+        /// Handler for the continious hand reward releasing (when release the button - should stop the selected reward due to the clicked).
+        /// </summary>
+        /// <param name="sender">The button.</param>
+        /// <param name="e">Args.</param>
+        private void _continiousHandRewardKeyReleaed(object sender, MouseEventArgs e)
+        {
+            _cntrlLoop.GiveRewardHandReward(0, true);
+        }
+
+        /// <summary>
+        /// Handler for the continious hand reward clicking (when release the button - should stop the given reward due to the clicked that opened the selected rewrad).
+        /// </summary>
+        /// <param name="sender">The buutton.</param>
+        /// <param name="e">Args.</param>
+        private void _countiniousHandRewardKeyDown(object sender, MouseEventArgs e)
+        {
+            _cntrlLoop.GiveRewardHandReward(_selectedHandRewardDirections, true);
+        }
+
+        /// <summary>
+        /// Handler for changing the state of the left reward direction.
+        /// </summary>
+        /// <param name="sender">The checbox.</param>
+        /// <param name="e">Args.</param>
+        private void _leftHandRewardCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox leftCheckBox = sender as CheckBox;
+
+            if (leftCheckBox.Checked)
+            {
+                //| operator with 0000_0100
+                _selectedHandRewardDirections |= 4;
+            }
+
+            else
+            {
+                //& operator with 0000_0011
+                _selectedHandRewardDirections &= 3;
+            }
+        }
+
+        /// <summary>
+        /// Handler for changing the state of the center reward direction.
+        /// </summary>
+        /// <param name="sender">The checkbox.</param>
+        /// <param name="e">Args.</param>
+        private void _centerHandRewardCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox centerheckBox = sender as CheckBox;
+
+            if (centerheckBox.Checked)
+            {
+                //| operator with 0000_0010
+                _selectedHandRewardDirections |= 2;
+            }
+
+            else
+            {
+                //& operator with 0000_0101
+                _selectedHandRewardDirections &= 5;
+            }
+        }
+
+        /// <summary>
+        /// Handler for changing the state of the right reward direction.
+        /// </summary>
+        /// <param name="sender">The checkbox.</param>
+        /// <param name="e">Args.</param>
+        private void _rightHandRewardCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox rightCheckBox = sender as CheckBox;
+
+            if (rightCheckBox.Checked)
+            {
+                //| operator with 0000_0001
+                _selectedHandRewardDirections |= 1;
+            }
+
+            else
+            {
+                //& operator with 0000_0100
+                _selectedHandRewardDirections &= 4;
+            }
+        }
+        #endregion HAND_REWARD_CONTROLL_FUNCTION
 
         #region my_functions
 
@@ -1164,304 +1567,9 @@ namespace PinkyAndBrain
 
             }
         }
-
-        #region VARYING_LISTBOX_FUNCTIONS
-        /// <summary>
-        /// Adding the generated cross varying values to the varying listbox.
-        /// </summary>
-        /// <param name="varyingCrossValsBoth">The cross genereated varying values to add to the listbox.</param>
-        private void AddVaryingMatrixToVaryingListBox(List<Dictionary<string, List<double>>> varyingCrossValsBoth, Dictionary<string, Dictionary<double, double>> varyingVectorDictionaryParalelledForLandscapeHouseParameters)
-        {
-            //collect the titles for the listbox columns to a list.
-            string listBoxTitleLineText="";
-            List<string> niceNameList = new List<string>();
-            foreach (string varName in varyingCrossValsBoth.ElementAt(0).Keys)
-            {
-                string varNiceName = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter.ElementAt(0);
-                niceNameList.Add(varNiceName);
-            }  
-
-            //add the titles for the listbox columns
-            listBoxTitleLineText = string.Join("\t" ,  niceNameList);
-            _varyingListBox.Items.Add(listBoxTitleLineText);
-
-            //enable horizonal scrolling.
-            _varyingListBox.HorizontalScrollbar = true;
-
-            //set the display member and value member for each item in the ListBox thta represents a Dictionary values in the varyingCrossVals list.
-            //_varyingListBox.DisplayMember = "_text";
-            //_varyingListBox.ValueMember = "_listIndex";
-
-
-            //make the list describes all varying lines to describes both parameters (if should) for the ratHouseParameters and the landscapeHouseParameters.
-            List<Dictionary<string, string>> varyingCrossValsBothStringVersion = CrossVaryingValuesToBothParameters(varyingCrossValsBoth);
-
-            //add all varying cross value in new line in the textbox.
-            int index = 0;
-
-            foreach (Dictionary<string, string> varRowDictionaryItem in varyingCrossValsBothStringVersion)
-            {
-                string listBoxLineText = string.Join("\t", varRowDictionaryItem.Values);
-
-                /*VaryingItem varyItem = new VaryingItem();
-                varyItem._text = listBoxLineText;
-                varyItem._listIndex = index;*/
-
-                index++;
-                _varyingListBox.Items.Add(listBoxLineText);
-            }
-        }
-
-        /// <summary>
-        /// Creates a string to string inner dictionary inside of string to list of doubles.
-        /// </summary>
-        /// <param name="ratHouseVaryingCrossVals">The crossVaryingValues of the both ratHouseParameter and landscapeHouseParameter.</param>
-        /// <returns>
-        /// A list of dictionaries.
-        /// Each item in the dictionary describes a raw of trial for the varying.
-        /// Each item is a dictionary of string to string.
-        /// The first string (key) is for the variable name.
-        /// The second string (value) is for the value of the both ratHouseValue and the landscapeHouseValue if enabled or only the first for the key variable string.
-        /// </returns>
-        private List<Dictionary<string , string>> CrossVaryingValuesToBothParameters(List<Dictionary<string , List<double>>>ratHouseVaryingCrossVals )
-        {
-            //The list to be returned.
-            List<Dictionary<string, string>> crossVaryingBothParmeters = new List<Dictionary<string, string>>();
-
-            //The string builder to build string with.
-            StringBuilder sBuilder = new StringBuilder();
-
-            //run over all lines in the crossVals for the ratHouseValues.
-            foreach (Dictionary<string , List<double>> varRatHouseRowItem in ratHouseVaryingCrossVals)
-            {
-                //make a row to add to the returned list.
-                Dictionary<string, string> varyingBothRowItem = new Dictionary<string, string>();
-
-                //The string for a variable in the current row.
-                string itemBothParameterString = "";
-
-                //run over all the variables in the row.
-                foreach (string varName in varRatHouseRowItem.Keys)
-                {
-                    //clear the string builder for the new variable in the current row.
-                    sBuilder.Clear();
-                    
-                    //check if the value for the variable in the current line is set to tbot the ratHouseValue and the lanscapeHouseValue.
-                    if(varRatHouseRowItem[varName].Count() > 1)
-                    {
-                        itemBothParameterString = BracketsAppender(sBuilder, varRatHouseRowItem[varName].ElementAt(0).ToString(),
-                            varRatHouseRowItem[varName].ElementAt(1).ToString());
-                    }
-
-                    else
-                    {
-                        itemBothParameterString = varRatHouseRowItem[varName].ElementAt(0).ToString();
-                    }
-
-                    //add the variable string description for the current line (of the both) for the dictionary describes that line.
-                    varyingBothRowItem.Add(varName, itemBothParameterString);
-                }
-
-                //add the line (the description of varying trial) to the list of lines (trials).
-                crossVaryingBothParmeters.Add(varyingBothRowItem);
-            }
-
-            return crossVaryingBothParmeters;
-        }
-
-        /// <summary>
-        /// Clears the varying list box.
-        /// </summary>
-        private void ClearVaryingListBox()
-        {
-            _varyingListBox.Items.Clear();
-        }
-
-        /// <summary>
-        /// Handler for adding combination to the varying cross values.
-        /// </summary>
-        /// <param name="sender">Sender.</param>
-        /// <param name="e">args.</param>
-        private void _addVaryingCombination_Click(object sender, EventArgs e)
-        {
-            //get the cross varying values list.
-            List<Dictionary<string, List<double>>> crossVaryingVals = _acrossVectorValuesGenerator._crossVaryingValsBoth;
-
-            //make a dictionary with the variable name as key and the belong textbox as value.
-            Dictionary<string, TextBox> varNameToTextboxDictionary = new Dictionary<string,TextBox>();
-
-            //Showing the new little form to get the inputs for the new combination.
-            ShowControlAddingVaryingForm(crossVaryingVals, varNameToTextboxDictionary);
-        }
-
-        /// <summary>
-        /// Showing the new little form of the textboxes for the varyin variables to get the input from.
-        /// </summary>
-        /// <param name="crossVaryingVals">The crossVaryingVals list for all the trials.</param>
-        /// <param name="varNameToTextboxDictionary">The dictionary map for the variable string (key) to the variable representing textbox(value).</param>
-        /// <returns></returns>
-        private Form ShowControlAddingVaryingForm(List<Dictionary<string, List<double>>> crossVaryingVals, Dictionary<string, TextBox> varNameToTextboxDictionary)
-        {
-            //show thw new little form for the desired variables.
-            Form littleTempForm = new Form();
-
-            int leftOffset = 0;
-            int topOffset = 0;
-            int width = 140;
-            int height = 14;
-            //add an input textbox with label show the name for each varying parameter.
-            foreach (string varName in crossVaryingVals.ElementAt(0).Keys)
-            {
-                string varNiceName = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter.ElementAt(0);
-                
-                Label varyingAttributeLabel = new Label();
-                varyingAttributeLabel.Text = varName;
-                varyingAttributeLabel.Top = topOffset += 35;
-                varyingAttributeLabel.Left = leftOffset;
-                varyingAttributeLabel.Height = height;
-                varyingAttributeLabel.Width = width;
-                littleTempForm.Controls.Add(varyingAttributeLabel);
-
-                TextBox varyingAttributeTextBox = new TextBox();
-                varyingAttributeTextBox.Top = topOffset;
-                varyingAttributeTextBox.Left = leftOffset + width + 20;
-                littleTempForm.Controls.Add(varyingAttributeTextBox);
-
-                //add the variable name with the belonged textbox.
-                varNameToTextboxDictionary.Add(varName, varyingAttributeTextBox);
-            }
-
-            //handle the confirm adding new combination.
-            Button confirmCombinationAdding = new Button();
-            littleTempForm.Controls.Add(confirmCombinationAdding);
-            confirmCombinationAdding.Top = topOffset;
-            confirmCombinationAdding.Left = leftOffset + width;
-            confirmCombinationAdding.Click += new EventHandler((sender2, e2) => confirmVaryingCombinationAdding_Click(sender2, e2, varNameToTextboxDictionary));
-
-            //show the dialog (need to be after adding controls) with the parent as the main windows frozed behind.
-            littleTempForm.ShowDialog(this);
-
-            //retutn the little form;
-            return littleTempForm;
-        }
-
-        /// <summary>
-        /// Handler for clicking on the confirm buttom for adding the combination added in the little window.
-        /// </summary>
-        /// <param name="sender">The buttom object.</param>
-        /// <param name="e">args.</param>
-        /// <param name="varNameToTextboxDictionary">The dictionary map for the variable string (key) to the variable representing textbox(value).</param>
-        private void confirmVaryingCombinationAdding_Click(object sender, EventArgs e , Dictionary<string , TextBox> varNameToTextboxDictionary)
-        {
-            //creating dictionary for variable name as key and it's value as a value.
-            Dictionary<string, string> varNameToValueDictionary = new Dictionary<string, string>();
-
-            //converting the textboxes to strings value according to their text.
-            foreach (string varName in varNameToTextboxDictionary.Keys)
-            {
-                varNameToValueDictionary.Add(varName, varNameToTextboxDictionary[varName].Text);
-            }
-
-            //confirm if the input is spelled well.
-            if (!CheckVaryingListBoxProperInput(varNameToValueDictionary))
-                return;
-
-            //add the new combination after checking the spelling for the input.
-            AddNewVaryngCombination(varNameToValueDictionary);
-
-            Button clickedButtom = sender as Button;
-            Form littleWindow = clickedButtom.Parent as Form;
-
-            //close the adding combination little window.
-            littleWindow.Close();
-        }
-
-        /// <summary>
-        /// Adding new line (trial) of varying combination to the varyingCrossVals and to the listbox.
-        /// </summary>
-        /// <param name="varNameToValueDictionary">
-        /// The item that describes the trial by a dictionary.
-        /// The key os for the variable name.
-        /// The value is for the value of that variable include for both ratHouseParameter and landscapeHouseParameter,
-        ///if needed by [x][y] string.
-        /// </param>
-        private void AddNewVaryngCombination(Dictionary<string, string> varNameToValueDictionary)
-        {
-            Dictionary<string , List<double>> varNameToValueDictionaryDoubleListVersion = new Dictionary<string,List<double>>();
-            foreach (string varName in varNameToValueDictionary.Keys)
-            {
-                varNameToValueDictionaryDoubleListVersion.Add(varName,
-                    ConvertStringListToDoubleList(BracketsSplitter(varNameToValueDictionary[varName])));
-            }
-
-            _acrossVectorValuesGenerator._crossVaryingValsBoth.Add(varNameToValueDictionaryDoubleListVersion);
-
-            string listBoxLineText = string.Join("\t", varNameToValueDictionary.Values);
-            _varyingListBox.Items.Add(listBoxLineText);
-        }
-
-        /// <summary>
-        /// Handler for removing selected varting combination from varying cross values.
-        /// </summary>
-        /// <param name="sender">Sender.</param>
-        /// <param name="e">args.</param>
-        private void _removeVaryingCombination_Click(object sender, EventArgs e)
-        {
-            int selectedIndex = _varyingListBox.SelectedIndex;
-            if (selectedIndex > 0)
-            {
-                //take the selected item.
-                //VaryingItem selectedCombination = _varyingListBox.SelectedItem as VaryingItem;
-
-                //set the _acrossVectorValuesGenerator cross varying values
-                //_acrossVectorValuesGenerator._crossVaryingVals.RemoveAt(selectedCombination._listIndex);
-
-                _acrossVectorValuesGenerator._crossVaryingValsBoth.RemoveAt(_varyingListBox.SelectedIndex - 1);
-
-                //update also the gui varying listbox.
-                //_varyingListBox.Items.Remove(selectedCombination);
-                _varyingListBox.Items.RemoveAt(_varyingListBox.SelectedIndex);
-
-                //ReduceIndexesFromNumberedIndex(selectedCombination._listIndex, _varyingListBox);
-
-                //if (selectedCombination._listIndex > 0)
-                //_varyingListBox.SelectedItem = (_varyingListBox.Items[selectedCombination._listIndex - 1] as VaryingItem);
-
-                if (selectedIndex > 1)
-                {
-                    _varyingListBox.SelectedIndex = selectedIndex - 1;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Reduces the indexes of the value of the VaryingItem in the varyingListBox to be matched with the _crossVaryingVals list.
-        /// </summary>
-        /// <param name="beginIndex">The index to begin reducing it's value index.</param>
-        /// <param name="varyingListBox">Yhe varying listbox to reduce it's indexes.</param>
-        private void ReduceIndexesFromNumberedIndex(int beginIndex , ListBox varyingListBox)
-        {
-            for (int index = beginIndex; index < varyingListBox.Items.Count;index++)
-            {
-                VaryingItem varyItem = varyingListBox.Items[index] as VaryingItem;
-                varyItem._listIndex--;
-            }
-        }
-
-        /// <summary>
-        /// Detemines ig the varying control items are visible according to the input. show.
-        /// </summary>
-        /// <param name="show">If to show the varying control items.</param>
-        private void ShowVaryingControlsOptions(bool show)
-        {
-            this._varyingListBox.Visible = show;
-            this._addVaryingCobination.Visible = show;
-            this._removeVaryingCombination.Visible = show;
-        }
-        #endregion VARYING_LISTBOX_FUNCTIONS
     }
 
-        #endregion my_functions
+    #endregion my_functions
 
     public class VaryingItem
     {
