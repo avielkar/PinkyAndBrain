@@ -51,13 +51,19 @@
             this._continiousHandRewardButton = new System.Windows.Forms.Button();
             this._varyingControlGroupBox = new System.Windows.Forms.GroupBox();
             this._interactiveNolduscommuncation = new System.Windows.Forms.GroupBox();
-            this._leftNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
-            this._centerNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
+            this.panel3 = new System.Windows.Forms.Panel();
             this._rightNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this._centerNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this._leftNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
             this._interactiveNolduscommuncation.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -268,9 +274,9 @@
             // 
             // _interactiveNolduscommuncation
             // 
-            this._interactiveNolduscommuncation.Controls.Add(this._rightNoldusCommunicationRadioButton);
-            this._interactiveNolduscommuncation.Controls.Add(this._centerNoldusCommunicationRadioButton);
-            this._interactiveNolduscommuncation.Controls.Add(this._leftNoldusCommunicationRadioButton);
+            this._interactiveNolduscommuncation.Controls.Add(this.panel3);
+            this._interactiveNolduscommuncation.Controls.Add(this.panel2);
+            this._interactiveNolduscommuncation.Controls.Add(this.panel1);
             this._interactiveNolduscommuncation.Location = new System.Drawing.Point(930, 555);
             this._interactiveNolduscommuncation.Name = "_interactiveNolduscommuncation";
             this._interactiveNolduscommuncation.Size = new System.Drawing.Size(339, 146);
@@ -278,35 +284,59 @@
             this._interactiveNolduscommuncation.TabStop = false;
             this._interactiveNolduscommuncation.Text = "Interacive Noldus Communication";
             // 
-            // _leftNoldusCommunicationRadioButton
+            // panel3
             // 
-            this._leftNoldusCommunicationRadioButton.AutoSize = true;
-            this._leftNoldusCommunicationRadioButton.Location = new System.Drawing.Point(34, 66);
-            this._leftNoldusCommunicationRadioButton.Name = "_leftNoldusCommunicationRadioButton";
-            this._leftNoldusCommunicationRadioButton.Size = new System.Drawing.Size(14, 13);
-            this._leftNoldusCommunicationRadioButton.TabIndex = 0;
-            this._leftNoldusCommunicationRadioButton.TabStop = true;
-            this._leftNoldusCommunicationRadioButton.UseVisualStyleBackColor = true;
+            this.panel3.Controls.Add(this._rightNoldusCommunicationRadioButton);
+            this.panel3.Location = new System.Drawing.Point(254, 55);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(47, 33);
+            this.panel3.TabIndex = 5;
+            // 
+            // _rightNoldusCommunicationRadioButton
+            // 
+            this._rightNoldusCommunicationRadioButton.AutoSize = true;
+            this._rightNoldusCommunicationRadioButton.Location = new System.Drawing.Point(19, 17);
+            this._rightNoldusCommunicationRadioButton.Name = "_rightNoldusCommunicationRadioButton";
+            this._rightNoldusCommunicationRadioButton.Size = new System.Drawing.Size(14, 13);
+            this._rightNoldusCommunicationRadioButton.TabIndex = 2;
+            this._rightNoldusCommunicationRadioButton.TabStop = true;
+            this._rightNoldusCommunicationRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this._centerNoldusCommunicationRadioButton);
+            this.panel2.Location = new System.Drawing.Point(148, 55);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(43, 34);
+            this.panel2.TabIndex = 4;
             // 
             // _centerNoldusCommunicationRadioButton
             // 
             this._centerNoldusCommunicationRadioButton.AutoSize = true;
-            this._centerNoldusCommunicationRadioButton.Location = new System.Drawing.Point(151, 66);
+            this._centerNoldusCommunicationRadioButton.Location = new System.Drawing.Point(13, 18);
             this._centerNoldusCommunicationRadioButton.Name = "_centerNoldusCommunicationRadioButton";
             this._centerNoldusCommunicationRadioButton.Size = new System.Drawing.Size(14, 13);
             this._centerNoldusCommunicationRadioButton.TabIndex = 1;
             this._centerNoldusCommunicationRadioButton.TabStop = true;
             this._centerNoldusCommunicationRadioButton.UseVisualStyleBackColor = true;
             // 
-            // _rightNoldusCommunicationRadioButton
+            // panel1
             // 
-            this._rightNoldusCommunicationRadioButton.AutoSize = true;
-            this._rightNoldusCommunicationRadioButton.Location = new System.Drawing.Point(269, 66);
-            this._rightNoldusCommunicationRadioButton.Name = "_rightNoldusCommunicationRadioButton";
-            this._rightNoldusCommunicationRadioButton.Size = new System.Drawing.Size(14, 13);
-            this._rightNoldusCommunicationRadioButton.TabIndex = 2;
-            this._rightNoldusCommunicationRadioButton.TabStop = true;
-            this._rightNoldusCommunicationRadioButton.UseVisualStyleBackColor = true;
+            this.panel1.Controls.Add(this._leftNoldusCommunicationRadioButton);
+            this.panel1.Location = new System.Drawing.Point(39, 55);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(42, 34);
+            this.panel1.TabIndex = 3;
+            // 
+            // _leftNoldusCommunicationRadioButton
+            // 
+            this._leftNoldusCommunicationRadioButton.AutoSize = true;
+            this._leftNoldusCommunicationRadioButton.Location = new System.Drawing.Point(14, 18);
+            this._leftNoldusCommunicationRadioButton.Name = "_leftNoldusCommunicationRadioButton";
+            this._leftNoldusCommunicationRadioButton.Size = new System.Drawing.Size(14, 13);
+            this._leftNoldusCommunicationRadioButton.TabIndex = 0;
+            this._leftNoldusCommunicationRadioButton.TabStop = true;
+            this._leftNoldusCommunicationRadioButton.UseVisualStyleBackColor = true;
             // 
             // GuiInterface
             // 
@@ -330,7 +360,12 @@
             this._handRewardsgroupBox.PerformLayout();
             this._varyingControlGroupBox.ResumeLayout(false);
             this._interactiveNolduscommuncation.ResumeLayout(false);
-            this._interactiveNolduscommuncation.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,5 +399,8 @@
         private System.Windows.Forms.RadioButton _rightNoldusCommunicationRadioButton;
         private System.Windows.Forms.RadioButton _centerNoldusCommunicationRadioButton;
         private System.Windows.Forms.RadioButton _leftNoldusCommunicationRadioButton;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel1;
     }
 }

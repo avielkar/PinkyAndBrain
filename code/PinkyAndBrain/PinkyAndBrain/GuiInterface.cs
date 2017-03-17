@@ -139,7 +139,24 @@ namespace PinkyAndBrain
             _trialDetailsListView.Columns.Add("Description", "Description", 100);
             _trialDetailsListView.View = View.Details;
         }
-        
+
+        public delegate void SetNoldusRatResponseInteractivePanelCheckboxes(byte data);
+
+        private void SetNoldusRatResponseInteractivePanel(byte data)
+        {
+            _leftNoldusCommunicationRadioButton.Checked = (data & 4) > 0;
+
+            _centerNoldusCommunicationRadioButton.Checked = (data & 2) > 0;
+
+            _rightNoldusCommunicationRadioButton.Checked = (data & 1) > 0;
+
+            _leftHandRewardCheckBox.Show();
+
+            _centerHandRewardCheckBox.Show();
+
+            _rightHandRewardCheckBox.Show();
+        }
+
         /// <summary>
         /// Collect all needed controls and their delegates for the ControlLoop.
         /// </summary>
@@ -162,6 +179,11 @@ namespace PinkyAndBrain
             ClearCurrentTrialDetailsListViewText clearCurrentTrialTextDelegate = new ClearCurrentTrialDetailsListViewText(ClearCurrentTrialDetailsListView);
             ctrlDelegatesDic.Add("ClearCurrentTrialDetailsViewList", clearCurrentTrialTextDelegate);
             ctrlDictionary.Add("ClearCurrentTrialDetailsViewList", _trialDetailsListView);
+
+            //add the delegates for the Noldus rat response interactive panel checkboxes.
+            SetNoldusRatResponseInteractivePanelCheckboxes setNoldusRatResponseInteractivePanelCheckboxesDelegate = new SetNoldusRatResponseInteractivePanelCheckboxes(SetNoldusRatResponseInteractivePanel);
+            ctrlDelegatesDic.Add("SetNoldusRatResponseInteractivePanel", setNoldusRatResponseInteractivePanelCheckboxesDelegate);
+            ctrlDictionary.Add("SetNoldusRatResponseInteractivePanel", _centerHandRewardCheckBox);
 
             //return both dictionaries.
             return new Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>>(ctrlDictionary, ctrlDelegatesDic);
