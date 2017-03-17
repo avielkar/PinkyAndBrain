@@ -59,6 +59,8 @@
             this._leftNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
             this._drinkControlGroupBox = new System.Windows.Forms.GroupBox();
             this._waterRewardMeasure = new WaterMeasure.WaterMeasure();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -343,6 +345,8 @@
             // 
             // _drinkControlGroupBox
             // 
+            this._drinkControlGroupBox.Controls.Add(this.label4);
+            this._drinkControlGroupBox.Controls.Add(this.label3);
             this._drinkControlGroupBox.Controls.Add(this._waterRewardMeasure);
             this._drinkControlGroupBox.Location = new System.Drawing.Point(931, 555);
             this._drinkControlGroupBox.Name = "_drinkControlGroupBox";
@@ -355,13 +359,31 @@
             // 
             this._waterRewardMeasure.BackColor = System.Drawing.Color.Transparent;
             this._waterRewardMeasure.Image = null;
-            this._waterRewardMeasure.Location = new System.Drawing.Point(22, 45);
+            this._waterRewardMeasure.Location = new System.Drawing.Point(14, 45);
             this._waterRewardMeasure.Name = "_waterRewardMeasure";
             this._waterRewardMeasure.ProgressColor = System.Drawing.Color.Aqua;
             this._waterRewardMeasure.ProgressDirection = WaterMeasure.WaterMeasure.ProgressDir.Vertical;
             this._waterRewardMeasure.ShowPercentage = true;
             this._waterRewardMeasure.Size = new System.Drawing.Size(44, 294);
             this._waterRewardMeasure.Text = "ml";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(64, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "60ml";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(64, 326);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(23, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "0ml";
             // 
             // GuiInterface
             // 
@@ -393,6 +415,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this._drinkControlGroupBox.ResumeLayout(false);
+            this._drinkControlGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -431,5 +454,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox _drinkControlGroupBox;
         private WaterMeasure.WaterMeasure _waterRewardMeasure;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
     }
 }
