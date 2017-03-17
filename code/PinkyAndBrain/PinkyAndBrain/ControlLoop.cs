@@ -164,6 +164,7 @@ namespace PinkyAndBrain
             //configure the water filling timer for the water reward estimation interactive window.
             _waterRewardFillingTimer = new System.Timers.Timer();
             _waterRewardFillingTimer.Interval = 100;
+            _waterRewardFillingTimer.Elapsed += WaterRewardFillingTimer_Tick;
         }
         #endregion CONTRUCTORS
 
@@ -577,6 +578,7 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="sender">Sender.</param>
         /// <param name="e">Args.</param>
+        void WaterRewardFillingTimer_Tick(object sender, EventArgs e)
         {
             _mainGuiInterfaceControlsDictionary["SetWaterRewardsMeasure"].BeginInvoke(
                 _mainGuiControlsDelegatesDictionary["SetWaterRewardsMeasure"]);
