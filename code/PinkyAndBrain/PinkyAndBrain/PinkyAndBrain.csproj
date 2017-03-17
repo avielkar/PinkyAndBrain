@@ -191,6 +191,10 @@
       <Project>{25010a89-4d18-4607-adaf-32553d6d343a}</Project>
       <Name>MotocomdotNetWrapper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WaterMeasure\WaterMeasure\WaterMeasure.csproj">
+      <Project>{084082d2-54a4-4df0-97b7-0c3e63a5fb4d}</Project>
+      <Name>WaterMeasure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

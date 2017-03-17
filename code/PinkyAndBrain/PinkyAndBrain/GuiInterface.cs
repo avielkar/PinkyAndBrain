@@ -101,7 +101,12 @@ namespace PinkyAndBrain
             _matlabApp = new MLApp.MLApp();
             Globals._systemState = SystemState.INITIALIZED;
             _cntrlLoop = new ControlLoop(_matlabApp);
+
+            //reset the selected direction to be empty.
             _selectedHandRewardDirections = 0;
+
+            //set the maximum (100%) of the  water filling to be as the cycle for the bottle to be empty (for 60ml) in 10xsec.
+            _waterRewardMeasure.Maximum = Properties.Settings.Default.WaterBottleEmptyTime;
         }
         #endregion CONSTRUCTORS
 
@@ -140,8 +145,16 @@ namespace PinkyAndBrain
             _trialDetailsListView.View = View.Details;
         }
 
+        /// <summary>
+        /// Handler for rat direction response panel.
+        /// </summary>
+        /// <param name="data"></param>
         public delegate void SetNoldusRatResponseInteractivePanelCheckboxes(byte data);
 
+        /// <summary>
+        /// Handler for updating the interactive rat response direction panel.
+        /// </summary>
+        /// <param name="data"></param>
         private void SetNoldusRatResponseInteractivePanel(byte data)
         {
             _leftNoldusCommunicationRadioButton.Checked = (data & 4) > 0;
@@ -155,6 +168,16 @@ namespace PinkyAndBrain
             _centerHandRewardCheckBox.Show();
 
             _rightHandRewardCheckBox.Show();
+        }
+
+        public delegate void SetWaterRewardsMeasureDelegate();
+
+        /// <summary>
+        /// Handler for setting the interactive water reward measure panel.
+        /// </summary>
+        private void SetWaterRewardsMeasure()
+        {
+                _waterRewardMeasure.Value += 1;
         }
 
         /// <summary>
@@ -184,6 +207,11 @@ namespace PinkyAndBrain
             SetNoldusRatResponseInteractivePanelCheckboxes setNoldusRatResponseInteractivePanelCheckboxesDelegate = new SetNoldusRatResponseInteractivePanelCheckboxes(SetNoldusRatResponseInteractivePanel);
             ctrlDelegatesDic.Add("SetNoldusRatResponseInteractivePanel", setNoldusRatResponseInteractivePanelCheckboxesDelegate);
             ctrlDictionary.Add("SetNoldusRatResponseInteractivePanel", _centerHandRewardCheckBox);
+
+            //add the delegate for the interactive water reward estimation panel.
+            SetWaterRewardsMeasureDelegate setWaterRewardsMeasureDelegate = new SetWaterRewardsMeasureDelegate(SetWaterRewardsMeasure);
+            ctrlDelegatesDic.Add("SetWaterRewardsMeasure", setWaterRewardsMeasureDelegate);
+            ctrlDictionary.Add("SetWaterRewardsMeasure", _waterRewardMeasure);
 
             //return both dictionaries.
             return new Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>>(ctrlDictionary, ctrlDelegatesDic);

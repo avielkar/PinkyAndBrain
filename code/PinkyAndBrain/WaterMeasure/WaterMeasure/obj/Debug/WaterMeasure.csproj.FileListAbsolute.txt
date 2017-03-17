@@ -1,0 +1,4 @@
+c:\users\user\documents\visual studio 2013\Projects\WaterMeasure\WaterMeasure\bin\Debug\WaterMeasure.dll
+c:\users\user\documents\visual studio 2013\Projects\WaterMeasure\WaterMeasure\bin\Debug\WaterMeasure.pdb
+c:\users\user\documents\visual studio 2013\Projects\WaterMeasure\WaterMeasure\obj\Debug\WaterMeasure.dll
+c:\users\user\documents\visual studio 2013\Projects\WaterMeasure\WaterMeasure\obj\Debug\WaterMeasure.pdb

@@ -46,5 +46,17 @@ namespace PinkyAndBrain.Properties {
                 this["NoldusRatReponseSampleRate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("440")]
+        public int WaterBottleEmptyTime {
+            get {
+                return ((int)(this["WaterBottleEmptyTime"]));
+            }
+            set {
+                this["WaterBottleEmptyTime"] = value;
+            }
+        }
     }
 }

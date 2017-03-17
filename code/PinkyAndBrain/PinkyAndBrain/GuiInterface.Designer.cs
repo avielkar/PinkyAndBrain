@@ -58,6 +58,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this._leftNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
             this._drinkControlGroupBox = new System.Windows.Forms.GroupBox();
+            this._waterRewardMeasure = new WaterMeasure.WaterMeasure();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -65,6 +66,7 @@
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this._drinkControlGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -278,9 +280,9 @@
             this._interactiveNolduscommuncation.Controls.Add(this.panel3);
             this._interactiveNolduscommuncation.Controls.Add(this.panel2);
             this._interactiveNolduscommuncation.Controls.Add(this.panel1);
-            this._interactiveNolduscommuncation.Location = new System.Drawing.Point(930, 555);
+            this._interactiveNolduscommuncation.Location = new System.Drawing.Point(1036, 555);
             this._interactiveNolduscommuncation.Name = "_interactiveNolduscommuncation";
-            this._interactiveNolduscommuncation.Size = new System.Drawing.Size(339, 146);
+            this._interactiveNolduscommuncation.Size = new System.Drawing.Size(233, 146);
             this._interactiveNolduscommuncation.TabIndex = 14;
             this._interactiveNolduscommuncation.TabStop = false;
             this._interactiveNolduscommuncation.Text = "Interacive Noldus Communication";
@@ -288,7 +290,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this._rightNoldusCommunicationRadioButton);
-            this.panel3.Location = new System.Drawing.Point(254, 55);
+            this.panel3.Location = new System.Drawing.Point(165, 61);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(47, 33);
             this.panel3.TabIndex = 5;
@@ -306,7 +308,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this._centerNoldusCommunicationRadioButton);
-            this.panel2.Location = new System.Drawing.Point(148, 55);
+            this.panel2.Location = new System.Drawing.Point(91, 60);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(43, 34);
             this.panel2.TabIndex = 4;
@@ -324,7 +326,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this._leftNoldusCommunicationRadioButton);
-            this.panel1.Location = new System.Drawing.Point(39, 55);
+            this.panel1.Location = new System.Drawing.Point(19, 60);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(42, 34);
             this.panel1.TabIndex = 3;
@@ -341,12 +343,25 @@
             // 
             // _drinkControlGroupBox
             // 
-            this._drinkControlGroupBox.Location = new System.Drawing.Point(931, 722);
+            this._drinkControlGroupBox.Controls.Add(this._waterRewardMeasure);
+            this._drinkControlGroupBox.Location = new System.Drawing.Point(931, 555);
             this._drinkControlGroupBox.Name = "_drinkControlGroupBox";
-            this._drinkControlGroupBox.Size = new System.Drawing.Size(99, 178);
+            this._drinkControlGroupBox.Size = new System.Drawing.Size(99, 345);
             this._drinkControlGroupBox.TabIndex = 15;
             this._drinkControlGroupBox.TabStop = false;
             this._drinkControlGroupBox.Text = "Drink Control";
+            // 
+            // _waterRewardMeasure
+            // 
+            this._waterRewardMeasure.BackColor = System.Drawing.Color.Transparent;
+            this._waterRewardMeasure.Image = null;
+            this._waterRewardMeasure.Location = new System.Drawing.Point(22, 45);
+            this._waterRewardMeasure.Name = "_waterRewardMeasure";
+            this._waterRewardMeasure.ProgressColor = System.Drawing.Color.Aqua;
+            this._waterRewardMeasure.ProgressDirection = WaterMeasure.WaterMeasure.ProgressDir.Vertical;
+            this._waterRewardMeasure.ShowPercentage = true;
+            this._waterRewardMeasure.Size = new System.Drawing.Size(44, 294);
+            this._waterRewardMeasure.Text = "ml";
             // 
             // GuiInterface
             // 
@@ -377,6 +392,7 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this._drinkControlGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -414,5 +430,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox _drinkControlGroupBox;
+        private WaterMeasure.WaterMeasure _waterRewardMeasure;
     }
 }

@@ -128,11 +128,21 @@ namespace PinkyAndBrain
         /// </summary>
         private Dictionary<string , Control> _mainGuiInterfaceControlsDictionary;
 
+        /// <summary>
+        /// The current rat sampling response come from the Noldus.
+        /// The sampling rate is readen from solution settings configuration.
+        /// </summary>
         private byte _currentRatResponse;
 
-        private double _totalWaterRewards;
-
+        /// <summary>
+        /// Timer for raising event to sample the Noldus reponse direction and store it in _currentRatResponse.
+        /// </summary>
         private System.Timers.Timer _ratSampleResponseTimer;
+
+        /// <summary>
+        /// Timer for raising event for counting the water the rat have rewarded so far.
+        /// </summary>
+        private System.Timers.Timer _waterRewardFillingTimer;
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
@@ -146,9 +156,14 @@ namespace PinkyAndBrain
             _rewardController = new RewardController("Dev1" , "Port1" ,"Line0:2", "RewardChannels");
             _ratResponseController = new RatResponseController("Dev1", "Port0", "Line0:2", "RatResponseChannels");
             _stopAfterTheEndOfTheCurrentTrial = false;
+            
+            //configure  rge timer for the sampling Noldus rat response direction.
             _ratSampleResponseTimer = new System.Timers.Timer(Properties.Settings.Default.NoldusRatReponseSampleRate);
             _ratSampleResponseTimer.Elapsed += SetRatReponse;
-            _totalWaterRewards = 0;
+            
+            //configure the water filling timer for the water reward estimation interactive window.
+            _waterRewardFillingTimer = new System.Timers.Timer();
+            _waterRewardFillingTimer.Interval = 100;
         }
         #endregion CONTRUCTORS
 
@@ -336,7 +351,10 @@ namespace PinkyAndBrain
             //after the reward1 duration time and than close it.
             _rewardController.WriteSingleSamplePort(true, 0x02);
 
+            //wait the reward1 time and fill the interactive water fill estimation panel.
+            _waterRewardFillingTimer.Start();
             Thread.Sleep((int)(_currentTrialTimings.wReward1Duration * 1000));
+            _waterRewardFillingTimer.Stop();
 
             //close again the reward1 port.
             _rewardController.WriteSingleSamplePort(true, 0x00);
@@ -552,6 +570,16 @@ namespace PinkyAndBrain
             //only if the system is running , update the interactive window.
             if(Globals._systemState.Equals(SystemState.RUNNING))
                 _mainGuiInterfaceControlsDictionary["SetNoldusRatResponseInteractivePanel"].BeginInvoke(_mainGuiControlsDelegatesDictionary["SetNoldusRatResponseInteractivePanel"] , _currentRatResponse);
+        }
+
+        /// <summary>
+        /// Handler for raising interval time evemt for the water fill estimation panel.
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">Args.</param>
+        {
+            _mainGuiInterfaceControlsDictionary["SetWaterRewardsMeasure"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["SetWaterRewardsMeasure"]);
         }
 
         /// <summary>
