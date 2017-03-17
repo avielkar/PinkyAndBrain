@@ -129,7 +129,7 @@ namespace PinkyAndBrain.TrajectoryCreators
             landscapeHouseTrajectory.rz = CreateVector.Dense<double>(_frequency, 0);
 
             //if need to plot the trajectories
-            if (true)
+            if (Properties.Settings.Default.DrawTrialMovementGraph)
             {
                 MatlabPlotTrajectoryFunction(ratHouseTrajectory);
             }

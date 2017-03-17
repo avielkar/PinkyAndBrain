@@ -242,7 +242,7 @@ namespace PinkyAndBrain.TrajectoryCreators
             }
 
             //if need to plot the trajectories
-            if (true)
+            if (Properties.Settings.Default.DrawTrialMovementGraph)
             {
                 MatlabPlotTrajectoryFunction(ratHouseTrajectory);
             }

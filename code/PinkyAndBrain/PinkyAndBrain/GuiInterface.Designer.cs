@@ -57,6 +57,7 @@
             this._centerNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this._leftNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
+            this._drinkControlGroupBox = new System.Windows.Forms.GroupBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -338,11 +339,21 @@
             this._leftNoldusCommunicationRadioButton.TabStop = true;
             this._leftNoldusCommunicationRadioButton.UseVisualStyleBackColor = true;
             // 
+            // _drinkControlGroupBox
+            // 
+            this._drinkControlGroupBox.Location = new System.Drawing.Point(931, 722);
+            this._drinkControlGroupBox.Name = "_drinkControlGroupBox";
+            this._drinkControlGroupBox.Size = new System.Drawing.Size(99, 178);
+            this._drinkControlGroupBox.TabIndex = 15;
+            this._drinkControlGroupBox.TabStop = false;
+            this._drinkControlGroupBox.Text = "Drink Control";
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 912);
+            this.Controls.Add(this._drinkControlGroupBox);
             this.Controls.Add(this._interactiveNolduscommuncation);
             this.Controls.Add(this._varyingControlGroupBox);
             this.Controls.Add(this._handRewardsgroupBox);
@@ -402,5 +413,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox _drinkControlGroupBox;
     }
 }

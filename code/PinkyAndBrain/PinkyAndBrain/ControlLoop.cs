@@ -130,9 +130,9 @@ namespace PinkyAndBrain
 
         private byte _currentRatResponse;
 
-        private System.Timers.Timer _ratSampleResponseTimer;
+        private double _totalWaterRewards;
 
-        private const double SAMPLING_RAT_RESPONSE_RATE = 1000 / 80;
+        private System.Timers.Timer _ratSampleResponseTimer;
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
@@ -146,8 +146,9 @@ namespace PinkyAndBrain
             _rewardController = new RewardController("Dev1" , "Port1" ,"Line0:2", "RewardChannels");
             _ratResponseController = new RatResponseController("Dev1", "Port0", "Line0:2", "RatResponseChannels");
             _stopAfterTheEndOfTheCurrentTrial = false;
-            _ratSampleResponseTimer = new System.Timers.Timer(SAMPLING_RAT_RESPONSE_RATE);
+            _ratSampleResponseTimer = new System.Timers.Timer(Properties.Settings.Default.NoldusRatReponseSampleRate);
             _ratSampleResponseTimer.Elapsed += SetRatReponse;
+            _totalWaterRewards = 0;
         }
         #endregion CONTRUCTORS
 
@@ -359,7 +360,7 @@ namespace PinkyAndBrain
                 while (!robotMotion.IsCompleted)
                 {
                     //sample the signal indicating if the rat head is in the center only 60 time per second (because the refresh rate of the signal is that frequency).
-                    Thread.Sleep((int)(SAMPLING_RAT_RESPONSE_RATE));
+                    Thread.Sleep((int)(Properties.Settings.Default.NoldusRatReponseSampleRate));
                     if (_currentRatResponse != 2)
                     {
                         headInCenterAllTheTime = false;
@@ -388,7 +389,7 @@ namespace PinkyAndBrain
             while (sw.ElapsedMilliseconds < (int)(_currentTrialTimings.wStartDelay * 1000))
             {
                 //sample the signal indicating if the rat head is in the center only 60 time per second (because the refresh rate of the signal is that frequency).
-                Thread.Sleep((int)(SAMPLING_RAT_RESPONSE_RATE));
+                Thread.Sleep((int)(Properties.Settings.Default.NoldusRatReponseSampleRate));
 
                 //if the head sample mentioned that the head was not in the center during the startDelay time , break , and move to the post trial time.
                 if (_currentRatResponse != 2)
@@ -416,7 +417,7 @@ namespace PinkyAndBrain
             while (x != 2 && ((int)sw.Elapsed.TotalMilliseconds < (int)(_currentTrialTimings.wTimeOutTime * 1000)))
             {
                 //sample the signal indicating if the rat head is in the center only 60 time per second (because the refresh rate of the signal is that frequency).
-                Thread.Sleep((int)(SAMPLING_RAT_RESPONSE_RATE));
+                Thread.Sleep((int)(Properties.Settings.Default.NoldusRatReponseSampleRate));
 
                 x = _currentRatResponse;
             }
@@ -537,10 +538,18 @@ namespace PinkyAndBrain
                 _rewardController.WriteSingleSamplePort(true, 0);
             }
         }
-
+        
+        /// <summary>
+        /// An event raises every [Properties.Settings.Default.NoldusRatReponseSampleRate] second for sampling the rat head direction.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">Args.</param>
         private void SetRatReponse(object sender , System.Timers.ElapsedEventArgs args)
         {
+            //update the variable saving the current rat head direction.
             _currentRatResponse = _ratResponseController.ReadSingleSamplePort();
+
+            //only if the system is running , update the interactive window.
             if(Globals._systemState.Equals(SystemState.RUNNING))
                 _mainGuiInterfaceControlsDictionary["SetNoldusRatResponseInteractivePanel"].BeginInvoke(_mainGuiControlsDelegatesDictionary["SetNoldusRatResponseInteractivePanel"] , _currentRatResponse);
         }
