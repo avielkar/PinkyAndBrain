@@ -256,14 +256,14 @@ namespace PinkyAndBrain
                     //sounds the beep for missing the movement head in the center.
                     else
                     {
-                        Task.Run(() => { Console.Beep(8000, 100); });
+                        Task.Run(() => { Console.Beep(300, 200); });
                     }
                 }
 
                 //sounds the beep with the missing start gead in the center.
                 else
                 {
-                    Task.Run(() => { Console.Beep(3275, 100); });
+                    Task.Run(() => { Console.Beep(400, 200); });
                 }
 
                 //the post trial stage for saving the trial data and for the delay between trials.
