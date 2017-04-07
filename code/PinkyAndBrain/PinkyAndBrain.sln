@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotocomdotNetWrapper", "Mot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterMeasure", "WaterMeasure\WaterMeasure\WaterMeasure.csproj", "{084082D2-54A4-4DF0-97B7-0C3E63A5FB4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LED.Strip.Adressable", "LED.Strip.Adressable\LED.Strip.Adressable.csproj", "{7A1A9157-08DD-4752-86DA-8A984CD4369A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,12 @@ Global
 		{084082D2-54A4-4DF0-97B7-0C3E63A5FB4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{084082D2-54A4-4DF0-97B7-0C3E63A5FB4D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{084082D2-54A4-4DF0-97B7-0C3E63A5FB4D}.Release|x86.ActiveCfg = Release|Any CPU
+		{7A1A9157-08DD-4752-86DA-8A984CD4369A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A1A9157-08DD-4752-86DA-8A984CD4369A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A1A9157-08DD-4752-86DA-8A984CD4369A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7A1A9157-08DD-4752-86DA-8A984CD4369A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A1A9157-08DD-4752-86DA-8A984CD4369A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A1A9157-08DD-4752-86DA-8A984CD4369A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

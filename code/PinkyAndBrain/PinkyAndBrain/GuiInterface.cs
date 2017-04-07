@@ -81,6 +81,8 @@ namespace PinkyAndBrain
         /// The y-y-y is the indicators for the directions as followed by left-center-right.
         /// </summary>
         private byte _selectedHandRewardDirections;
+
+        private object _lockerStopStartButton;
         #endregion MEMBERS
 
         #region CONSTRUCTORS
@@ -107,6 +109,8 @@ namespace PinkyAndBrain
 
             //set the maximum (100%) of the  water filling to be as the cycle for the bottle to be empty (for 60ml) in 10xsec.
             _waterRewardMeasure.Maximum = Properties.Settings.Default.WaterBottleEmptyTime;
+
+            _lockerStopStartButton = new object();
         }
         #endregion CONSTRUCTORS
 
@@ -323,25 +327,31 @@ namespace PinkyAndBrain
         /// <param name="e">args.</param>
         private void _startButton_Click(object sender, EventArgs e)
         {
-            //if already running - ignore.
-            if (!Globals._systemState.Equals(SystemState.RUNNING))
+            lock (_lockerStopStartButton)
             {
-                //update the system state.
-                Globals._systemState = SystemState.RUNNING;
+                _startButton.Enabled = false;
+                _stopButtom.Enabled = true;
 
-                //add the static variable list of double type values.
-                _staticValuesGenerator.SetVariables(_variablesList);
+                //if already running - ignore.
+                if (!Globals._systemState.Equals(SystemState.RUNNING))
+                {
+                    //update the system state.
+                    Globals._systemState = SystemState.RUNNING;
 
-                //make the delegate with it's control object and their nickname as pairs of dictionaries.
-                Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>> delegatsControlsTuple = MakeCtrlDelegateAndFunctionDictionary();
+                    //add the static variable list of double type values.
+                    _staticValuesGenerator.SetVariables(_variablesList);
 
-                //start the control loop.
-                //need to be changed according to parameters added to which trajectoryname to be called from the excel file.
-                //string trajectoryCreatorName = _variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0];
-                int trajectoryCreatorNum= int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0]);
-                string trajectoryCreatorName = (trajectoryCreatorNum == 0) ? "Training" : "ThreeStepAdaptation";
+                    //make the delegate with it's control object and their nickname as pairs of dictionaries.
+                    Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>> delegatsControlsTuple = MakeCtrlDelegateAndFunctionDictionary();
 
-                _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, 60, trajectoryCreatorName, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1);
+                    //start the control loop.
+                    //need to be changed according to parameters added to which trajectoryname to be called from the excel file.
+                    //string trajectoryCreatorName = _variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0];
+                    int trajectoryCreatorNum = int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0]);
+                    string trajectoryCreatorName = (trajectoryCreatorNum == 0) ? "Training" : "ThreeStepAdaptation";
+
+                    _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, 60, trajectoryCreatorName, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1);
+                }
             }
         }
 
@@ -390,9 +400,14 @@ namespace PinkyAndBrain
         {
             //update the system state.
             //Globals._systemState = SystemState.STOPPED;
+            lock (_lockerStopStartButton)
+            {
+                _stopButtom.Enabled = false;
+                _startButton.Enabled = true;
 
-            //stop the control loop.
-            _cntrlLoop.Stop();
+                //stop the control loop.
+                _cntrlLoop.Stop();
+            }
         }
         #endregion GLOBAL_EVENTS_HANDLE_FUNCTIONS
 
