@@ -91,7 +91,7 @@ namespace PinkyAndBrain
                 sb.Append("MOVL ");
                 sb.Append("P");
                 sb.Append((i + 1).ToString("D" + 5));
-                double velocity = (traj.x[i + 1] - traj.x[i]) * 10000 / (1000/_frequency);
+                double velocity = Math.Sqrt(Math.Pow(traj.x[i + 1] - traj.x[i] , 2) + Math.Pow(traj.y[i+1]-traj.y[i] , 2)) * 10000 / (1000/_frequency);
                 sb.Append(" V=");
                 sb.Append(velocity.ToString("0000.0000000"));
                 _fileStreamWriter.WriteLine(sb.ToString());
@@ -101,7 +101,7 @@ namespace PinkyAndBrain
             sb.Append("MOVL ");
             sb.Append("P");
             sb.Append((traj.x.Count).ToString("D" + 5));
-            double velocity2 = (traj.x[traj.x.Count - 1] - traj.x[traj.x.Count - 2]) * 10000 / (1000/_frequency);
+            double velocity2 = Math.Sqrt(Math.Pow((traj.x[traj.x.Count - 1] - traj.x[traj.x.Count - 2]) ,2) + Math.Pow((traj.y[traj.y.Count - 1] - traj.y[traj.y.Count - 2]), 2)) * 10000 / (1000 / _frequency);
             sb.Append(" V=");
             sb.Append(velocity2.ToString("0000.0000000"));
             _fileStreamWriter.WriteLine(sb.ToString());
@@ -135,7 +135,9 @@ namespace PinkyAndBrain
                 currectStringValue.Append(i.ToString("D" + 5));
                 currectStringValue.Append("=");
                 currectStringValue.Append(((double)(point * 10 + 249)).ToString("0000.00000000"));
-                currectStringValue.Append(",16.200,273.300,-179.4000,-0.79,-160.6000");
+                currectStringValue.Append(",");
+                currectStringValue.Append(((double)(traj.y[i-1] * 10 + 16.2)).ToString("0000.00000000"));
+                currectStringValue.Append(",273.300,-179.4000,-0.79,-160.6000");
                 i++;
                 stringLinesList.Add(currectStringValue.ToString());
                 currectStringValue.Clear();
