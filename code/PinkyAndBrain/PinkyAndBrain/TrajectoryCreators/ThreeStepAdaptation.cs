@@ -213,8 +213,8 @@ namespace PinkyAndBrain.TrajectoryCreators
 
             Trajectory ratHouseTrajectory = new Trajectory();
 
-            ratHouseTrajectory.x = surgeRatHouse;
-            ratHouseTrajectory.y = lateralRatHouse;
+            ratHouseTrajectory.x =  lateralRatHouse;
+            ratHouseTrajectory.y = surgeRatHouse;
             ratHouseTrajectory.z = heaveRatHouse;
 
             //rx - roll , ry - pitch , rz = yaw
@@ -224,8 +224,8 @@ namespace PinkyAndBrain.TrajectoryCreators
 
 
             Trajectory landscapeHouseTrajectory = new Trajectory();
-            landscapeHouseTrajectory.x = surgeLandscapeHouse;
-            landscapeHouseTrajectory.y = lateralLandscapeHouse;
+            landscapeHouseTrajectory.x = lateralLandscapeHouse;
+            landscapeHouseTrajectory.y = surgeLandscapeHouse;
             landscapeHouseTrajectory.z = heaveLandscapeHouse;
 
             //rx - roll , ry - pitch , rz = yaw

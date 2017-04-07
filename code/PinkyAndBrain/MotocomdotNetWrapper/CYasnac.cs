@@ -605,7 +605,15 @@ namespace MotocomdotNetWrapper
                         throw new Exception("Error selecting job !");
                 }
             }
-            
+
+
+            public short WaitJobFinished(short time)
+            {
+                lock (m_YasnacAccessLock)
+                {
+                    return CMotocom.BscJobWait(m_Handle, time);
+                }
+            }
 
             /// <summary>
             /// Returns executing job of task 0

@@ -10,6 +10,7 @@ using MathNet.Numerics.Distributions;
 using MLApp;
 using System.Diagnostics;
 using System.Windows.Forms;
+using MotocomdotNetWrapper;
 
 namespace PinkyAndBrain
 {
@@ -143,13 +144,20 @@ namespace PinkyAndBrain
         /// Timer for raising event for counting the water the rat have rewarded so far.
         /// </summary>
         private System.Timers.Timer _waterRewardFillingTimer;
+
+        /// <summary>
+        /// The JBI protocol file creator for each trial trajectory.
+        /// </summary>
+        private MotomanProtocolFileCreator _motomanProtocolFileCreator;
+
+        private CYasnac _motomanController;
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public ControlLoop(MLApp.MLApp matlabApp)
+        public ControlLoop(MLApp.MLApp matlabApp , CYasnac motomanController)
         {
             _matlabApp = matlabApp;
             _trajectoryCreatorHandler = new TrajectoryCreatorHandler(_matlabApp);
@@ -165,6 +173,12 @@ namespace PinkyAndBrain
             _waterRewardFillingTimer = new System.Timers.Timer();
             _waterRewardFillingTimer.Interval = 100;
             _waterRewardFillingTimer.Elapsed += WaterRewardFillingTimer_Tick;
+
+            //initialized the motoman JBI file creatotr for each trial (the command file that would be send to the motoman controller).
+            _motomanProtocolFileCreator = new MotomanProtocolFileCreator(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
+
+            //take the motoman controller object.
+            _motomanController = motomanController;
         }
         #endregion CONTRUCTORS
 
@@ -192,6 +206,9 @@ namespace PinkyAndBrain
 
             //reset the RewardController outputs.
             _rewardController.ResetControllerOutputs();
+
+            //set the frequency for the JBI file creator.
+            _motomanProtocolFileCreator.Frequency = _frequency;
 
             //run the main control loop function in other thread fom the main thread ( that handling events and etc).
             _stopAfterTheEndOfTheCurrentTrial = false;
@@ -226,8 +243,8 @@ namespace PinkyAndBrain
                 //craetes the trajectory for both robots for the current trial if not one of the training protocols.
                 _currentTrialTrajectories = _trajectoryCreatorHandler.CreateTrajectory(_currentVaryingTrialIndex);
 
+                //show some trial details to the gui trial details panel.
                 ShowTrialDetailsToTheDetailsListView();
-
                 ShowGlobalExperimentDetailsListView();
 
                 //initialize the currebt time parameters and all the current trial variables.
@@ -446,11 +463,23 @@ namespace PinkyAndBrain
 
         public void MoveYasakawaRobotWithTrajectory(Tuple<Trajectory , Trajectory> traj)
         {
-            foreach (var xTrajectoryPoint in traj.Item1.x)
+            /*foreach (var xTrajectoryPoint in traj.Item1.x)
             {
                 //sleep the time frequency for each command of the robot (the robot frequency).
                 Thread.Sleep(4);
+            }*/
+
+            _motomanProtocolFileCreator.TrajectoryPosition = traj.Item1;
+            _motomanProtocolFileCreator.UpdateJobJBIFile();
+
+            try
+            {
+                _motomanController.DeleteJob("GAUSSIANMOVING2.JBI");
             }
+            catch { }
+            _motomanController.WriteFile(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
+            _motomanController.StartJob("GAUSSIANMOVING2.JBI");
+            _motomanController.WaitJobFinished(10000);
         }
 
         /// <summary>
@@ -535,8 +564,31 @@ namespace PinkyAndBrain
         /// The post trial time - analyaing the response , saving all the trial data into the results file.
         /// </summary>
         public void PostTrialStage()
-        { 
+        {
+            Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveRobotHomePosition());
+
             Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
+
+            //wait the maximum time of the postTrialTime and the going home position time.
+            moveRobotHomePositionTask.Wait();
+        }
+
+        public void MoveRobotHomePosition()
+        {
+            try
+            {
+                _motomanController.DeleteJob("HOME_POS.JBI");
+            }
+            catch
+            { }
+
+            _motomanController.WriteFile(@"C:\Users\User\Desktop\HOME_POS.JBI");
+
+            _motomanController.StartJob("HOME_POS.JBI");
+
+            //should fix this bug
+            //_motomanController.WaitJobFinished(10000);
+            Thread.Sleep(2000);
         }
 
         /// <summary>

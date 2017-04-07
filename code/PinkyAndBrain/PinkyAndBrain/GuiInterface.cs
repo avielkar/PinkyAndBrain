@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using MLApp;
+using MotocomdotNetWrapper;
 
 namespace PinkyAndBrain
 {
@@ -82,7 +83,15 @@ namespace PinkyAndBrain
         /// </summary>
         private byte _selectedHandRewardDirections;
 
+        /// <summary>
+        /// Locker for starting and stopping button to be enabled not both.
+        /// </summary>
         private object _lockerStopStartButton;
+
+        /// <summary>
+        /// The controller api for the YASAKAWA motoman robot.
+        /// </summary>
+        private CYasnac _motocomController;
         #endregion MEMBERS
 
         #region CONSTRUCTORS
@@ -101,8 +110,13 @@ namespace PinkyAndBrain
             InitializeTitleLabels();
             ShowVaryingControlsOptions(false);
             _matlabApp = new MLApp.MLApp();
+
+            //connect to the robot and turn on it's servos.
+            _motocomController = new CYasnac("10.0.0.2", Application.StartupPath);
+            _motocomController.SetServoOn();
+
             Globals._systemState = SystemState.INITIALIZED;
-            _cntrlLoop = new ControlLoop(_matlabApp);
+            _cntrlLoop = new ControlLoop(_matlabApp , _motocomController);
 
             //reset the selected direction to be empty.
             _selectedHandRewardDirections = 0;
@@ -110,7 +124,9 @@ namespace PinkyAndBrain
             //set the maximum (100%) of the  water filling to be as the cycle for the bottle to be empty (for 60ml) in 10xsec.
             _waterRewardMeasure.Maximum = Properties.Settings.Default.WaterBottleEmptyTime;
 
+            //allocate the start/stop buttom locker.
             _lockerStopStartButton = new object();
+
         }
         #endregion CONSTRUCTORS
 
@@ -231,6 +247,9 @@ namespace PinkyAndBrain
         private void GuiInterface_Close(object sender , EventArgs e)
         {
             _excelLoader.CloseExcelProtocoConfigFilelLoader();
+
+            //turn off the robot servos.
+            _motocomController.SetServoOff();
         }
 
         /// <summary>
