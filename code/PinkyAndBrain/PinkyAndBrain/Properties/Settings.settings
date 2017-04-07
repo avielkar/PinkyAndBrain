@@ -11,5 +11,18 @@
     <Setting Name="WaterBottleEmptyTime" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">440</Value>
     </Setting>
+    <Setting Name="Frequency" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="RatNames" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;Ash&lt;/string&gt;
+  &lt;string&gt;Bulbasour&lt;/string&gt;
+  &lt;string&gt;Charmander&lt;/string&gt;
+  &lt;string&gt;Doudo&lt;/string&gt;
+  &lt;string&gt;Evee&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

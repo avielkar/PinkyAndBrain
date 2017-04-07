@@ -100,6 +100,11 @@ namespace PinkyAndBrain
         private Tuple<Trajectory, Trajectory> _currentTrialTrajectories;
 
         /// <summary>
+        /// The current trial stimulus type.
+        /// </summary>
+        private int _currentTrialStimulusType;
+
+        /// <summary>
         /// A random object for random numbers.
         /// </summary>
         private Random _timingRandomizer;
@@ -341,6 +346,7 @@ namespace PinkyAndBrain
         {
             //determine all current trial timings and delays.
             _currentTrialTimings = DetermineCurrentTrialTimings();
+            _currentTrialStimulusType = DetermineCurrentStimulusType();
             
             //Sounds the start beep. Now waiting for the rat to move it's head to the center.
             Console.Beep();
@@ -389,8 +395,16 @@ namespace PinkyAndBrain
         /// <returns>True if the head was stable consistently in the center during the movement time.</returns>
         public bool MovingTheRobotDurationWithHeadCenterStabilityStage()
         {
-            //here should be the motion of the Yasakawa robot(now it's only delay of the duration movement according to the robot frequency and the number of points in the trajectory).
-            Task robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories));
+            //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
+            Task robotMotion;
+            if (_currentTrialStimulusType == 1 || _currentTrialStimulusType == 3)
+            {
+                robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories));
+            }
+            else//if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
+            {
+                robotMotion = Task.Factory.StartNew(() => Thread.Sleep((int)(1000*_currentTrialTimings.wDuration)));
+            }
 
             //also run the rat center head checking in parallel to the movement time.
             bool headInCenterAllTheTime = true;
@@ -496,6 +510,23 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Determine the current trial stimulus type bt the stimulus type variable status.
+        /// </summary>
+        /// <returns>The stimulus type.</returns>
+        public int DetermineCurrentStimulusType()
+        {
+            string stimulusTypeStatus = _variablesList._variablesDictionary["STIMULUS_TYPE"]._description["status"]._ratHouseParameter[0];
+            switch (stimulusTypeStatus)
+            {
+                case "1"://static
+                    return int.Parse(_variablesList._variablesDictionary["STIMULUS_TYPE"]._description["parameters"]._ratHouseParameter[0]);
+                case "2"://varying
+                    return (int)(_crossVaryingVals[_currentVaryingTrialIndex]["STIMULUS_TYPE"][0]);
+            }
+            return 0;
+        }
+
+        /// <summary>
         /// Detrmines all current tiral timings and delays acoording the time types statuses.
         /// </summary>
         /// <returns>Return the TrialTimings struct contains all the timings types.</returns>
@@ -517,6 +548,8 @@ namespace PinkyAndBrain
             currentTrialTimings.wTimeOutTime = DetermineTimeByVariable("TIMEOUT_TIME");
 
             currentTrialTimings.wResponseTime = DetermineTimeByVariable("RESPONSE_TIME");
+
+            currentTrialTimings.wDuration = DetermineTimeByVariable("DURATION");
 
             return currentTrialTimings;
         }
@@ -706,6 +739,11 @@ namespace PinkyAndBrain
             /// The time the rat have to response (with head to the left or to the right) after the reward1 (ig get).
             /// </summary>
             public double wResponseTime;
+
+            /// <summary>
+            /// The robot movement duration.
+            /// </summary>
+            public double wDuration;
         };
         #endregion FUNCTIONS
     }

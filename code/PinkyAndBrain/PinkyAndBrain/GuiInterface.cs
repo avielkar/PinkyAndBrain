@@ -127,6 +127,8 @@ namespace PinkyAndBrain
             //allocate the start/stop buttom locker.
             _lockerStopStartButton = new object();
 
+            //add the rat names (as the setting have) to the rat names combo box.
+            AddRatNamesToRatNamesComboBox();
         }
         #endregion CONSTRUCTORS
 
@@ -282,6 +284,18 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Adding the rat names to the rat names combo box by the configuration settings.
+        /// </summary>
+        public void AddRatNamesToRatNamesComboBox()
+        {
+            //add the rat names in the config file to thw combo box.
+            foreach (string ratName in Properties.Settings.Default.RatNames)
+            {
+                _selectedRatNameComboBox.Items.Add(ratName);
+            }
+        }
+
+        /// <summary>
         /// Function handler for changing the variable from the Gui according to the textboxes input when leaving the textbox.
         /// </summary>
         /// <param name="sender">The textbox sender object have been changed.</param>
@@ -369,7 +383,7 @@ namespace PinkyAndBrain
                     int trajectoryCreatorNum = int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0]);
                     string trajectoryCreatorName = (trajectoryCreatorNum == 0) ? "Training" : "ThreeStepAdaptation";
 
-                    _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, 60, trajectoryCreatorName, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1);
+                    _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreatorName, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1);
                 }
             }
         }

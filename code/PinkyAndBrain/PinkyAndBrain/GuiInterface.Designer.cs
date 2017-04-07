@@ -58,9 +58,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this._leftNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
             this._drinkControlGroupBox = new System.Windows.Forms.GroupBox();
-            this._waterRewardMeasure = new WaterMeasure.WaterMeasure();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this._waterRewardMeasure = new WaterMeasure.WaterMeasure();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this._selectedRatGroupBox = new System.Windows.Forms.GroupBox();
+            this._selectedRatNameComboBox = new System.Windows.Forms.ComboBox();
+            this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -69,6 +73,7 @@
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this._drinkControlGroupBox.SuspendLayout();
+            this._selectedRatGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -355,6 +360,24 @@
             this._drinkControlGroupBox.TabStop = false;
             this._drinkControlGroupBox.Text = "Drink Control";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(64, 326);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(23, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "0ml";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(64, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "60ml";
+            // 
             // _waterRewardMeasure
             // 
             this._waterRewardMeasure.BackColor = System.Drawing.Color.Transparent;
@@ -367,29 +390,30 @@
             this._waterRewardMeasure.Size = new System.Drawing.Size(44, 294);
             this._waterRewardMeasure.Text = "ml";
             // 
-            // label3
+            // _selectedRatGroupBox
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(64, 45);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "60ml";
+            this._selectedRatGroupBox.Controls.Add(this._selectedRatNameComboBox);
+            this._selectedRatGroupBox.Location = new System.Drawing.Point(1036, 719);
+            this._selectedRatGroupBox.Name = "_selectedRatGroupBox";
+            this._selectedRatGroupBox.Size = new System.Drawing.Size(230, 69);
+            this._selectedRatGroupBox.TabIndex = 16;
+            this._selectedRatGroupBox.TabStop = false;
+            this._selectedRatGroupBox.Text = "SelectedRat";
             // 
-            // label4
+            // _selectedRatNameComboBox
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(64, 326);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(23, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "0ml";
+            this._selectedRatNameComboBox.FormattingEnabled = true;
+            this._selectedRatNameComboBox.Location = new System.Drawing.Point(19, 30);
+            this._selectedRatNameComboBox.Name = "_selectedRatNameComboBox";
+            this._selectedRatNameComboBox.Size = new System.Drawing.Size(121, 21);
+            this._selectedRatNameComboBox.TabIndex = 0;
             // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 912);
+            this.Controls.Add(this._selectedRatGroupBox);
             this.Controls.Add(this._drinkControlGroupBox);
             this.Controls.Add(this._interactiveNolduscommuncation);
             this.Controls.Add(this._varyingControlGroupBox);
@@ -401,7 +425,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this._protocolsComboBox);
             this.Name = "GuiInterface";
-            this.Text = "GuiInterface";
+            this.Text = "_selectedRatNameComboBox";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GuiInterface_Close);
             this._trialParametersGroup.ResumeLayout(false);
             this._handRewardsgroupBox.ResumeLayout(false);
@@ -416,6 +440,7 @@
             this.panel1.PerformLayout();
             this._drinkControlGroupBox.ResumeLayout(false);
             this._drinkControlGroupBox.PerformLayout();
+            this._selectedRatGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -456,5 +481,9 @@
         private WaterMeasure.WaterMeasure _waterRewardMeasure;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private System.Windows.Forms.GroupBox _selectedRatGroupBox;
+        private System.Windows.Forms.ComboBox _selectedRatNameComboBox;
+        private System.ComponentModel.BackgroundWorker backgroundWorker3;
     }
 }
