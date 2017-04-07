@@ -150,6 +150,9 @@ namespace PinkyAndBrain
         /// </summary>
         private MotomanProtocolFileCreator _motomanProtocolFileCreator;
 
+        /// <summary>
+        /// The YASAKAWA motoman robot controller.
+        /// </summary>
         private CYasnac _motomanController;
         #endregion ATTRIBUTES
 
@@ -461,6 +464,10 @@ namespace PinkyAndBrain
             return (x == 2);
         }
 
+        /// <summary>
+        /// Move the motoman with the given trajectory.
+        /// </summary>
+        /// <param name="traj">The trajectory to be send to the controller.</param>
         public void MoveYasakawaRobotWithTrajectory(Tuple<Trajectory , Trajectory> traj)
         {
             /*foreach (var xTrajectoryPoint in traj.Item1.x)
@@ -468,17 +475,23 @@ namespace PinkyAndBrain
                 //sleep the time frequency for each command of the robot (the robot frequency).
                 Thread.Sleep(4);
             }*/
-
+            
+            //setting the trajectory for the JBI file creator and update the file that is being senf to the controller with the new commands.
             _motomanProtocolFileCreator.TrajectoryPosition = traj.Item1;
             _motomanProtocolFileCreator.UpdateJobJBIFile();
 
+            //Delete the old JBI file commands stored in the controller.
             try
             {
                 _motomanController.DeleteJob("GAUSSIANMOVING2.JBI");
             }
             catch { }
+
+            //wruite the new JBI file to the controller.
             _motomanController.WriteFile(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
             _motomanController.StartJob("GAUSSIANMOVING2.JBI");
+
+            //wait for the commands to be executed.
             _motomanController.WaitJobFinished(10000);
         }
 
@@ -573,6 +586,9 @@ namespace PinkyAndBrain
             moveRobotHomePositionTask.Wait();
         }
 
+        /// <summary>
+        /// Move the robot to it's home (origin) position.
+        /// </summary>
         public void MoveRobotHomePosition()
         {
             try

@@ -9,8 +9,14 @@ namespace PinkyAndBrain
 {
     class MotomanProtocolFileCreator
     {
+        /// <summary>
+        /// The JBI fileName to write the commands.
+        /// </summary>
         private string _fileName;
 
+        /// <summary>
+        /// The frequency the commands rely on (to make the velocity).
+        /// </summary>
         private int _frequency;
 
         /// <summary>
@@ -28,18 +34,30 @@ namespace PinkyAndBrain
             _frequency = frequency;
         }
 
+        /// <summary>
+        /// Set or get the frequency the JBIFileCreator rely on.
+        /// </summary>
         public int Frequency { get { return _frequency; } set { _frequency = value; } }
 
+        /// <summary>
+        /// Get or set the trajectory position to be written to the controller JBI file.
+        /// </summary>
         public Trajectory TrajectoryPosition { get; set; }
 
-        public Trajectory TrajectoryVelocity { get; set; }
-
+        /// <summary>
+        /// Update (make) the JBI file that would be send to the controller with the new given trajectory.
+        /// </summary>
+        /// <returns>True if the send was successful.</returns>
         public bool UpdateJobJBIFile()
         {
             DecodeTrajectoriesToJBIFile(TrajectoryPosition);
             return true;
         }
 
+        /// <summary>
+        /// Decode the trajectory commands to a JBI file.
+        /// </summary>
+        /// <param name="traj">The traj to be written to the file as the protocol format.</param>
         private void DecodeTrajectoriesToJBIFile(Trajectory traj)
         {
             StreamWriter _fileStreamWriter = new StreamWriter(_fileName);
@@ -96,6 +114,14 @@ namespace PinkyAndBrain
             //_fileStreamWriter = new StreamWriter(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
         }
 
+        /// <summary>
+        /// Convert commands of one points in the trajectory to a commands lines in a JBI format.
+        /// </summary>
+        /// <param name="traj">The trajectories to be converted to commands line.</param>
+        /// <returns>
+        /// The list of commands strings.
+        /// Every item in the list is a line command in the JBI file.
+        /// </returns>
         private List<string> TrajectoriesToLine(Trajectory traj)
         {
             List<string> stringLinesList = new List<string>();
