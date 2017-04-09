@@ -9,6 +9,7 @@ namespace PinkyAndBrain
 {
     class MotomanProtocolFileCreator
     {
+        #region MEMBERS
         /// <summary>
         /// The JBI fileName to write the commands.
         /// </summary>
@@ -18,7 +19,9 @@ namespace PinkyAndBrain
         /// The frequency the commands rely on (to make the velocity).
         /// </summary>
         private int _frequency;
+        #endregion MEMBERS
 
+        #region CONSTRUCTOR
         /// <summary>
         /// Default constructor.
         /// <param name="fileName">
@@ -33,16 +36,43 @@ namespace PinkyAndBrain
 
             _frequency = frequency;
         }
+        #endregion CONSTRUCTOR
 
+        #region SETTERS_GETTERS
         /// <summary>
         /// Set or get the frequency the JBIFileCreator rely on.
         /// </summary>
         public int Frequency { get { return _frequency; } set { _frequency = value; } }
+        #endregion SETTERS_GETTERS
 
+        #region FUNCTIONS
         /// <summary>
         /// Get or set the trajectory position to be written to the controller JBI file.
         /// </summary>
         public Trajectory TrajectoryPosition { get; set; }
+
+        /// <summary>
+        /// Velocity between 3D points.
+        /// </summary>
+        /// <param name="xSource">The source x value.</param>
+        /// <param name="xDesdination">The destination x value.</param>
+        /// <param name="ySource">The source y value.</param>
+        /// <param name="yDestination">The destination y value.</param>
+        /// <param name="zSource">The z soure value.</param>
+        /// <param name="zDestination">The z destination value.</param>
+        /// <returns>The distance between the 2 3D points.</returns>
+        public double Velocity3D(double xSource , double xDesdination , double ySource , double yDestination , double zSource , double zDestination)
+        {
+            double result =0;
+
+            result+=Math.Pow((xDesdination-xSource) , 2);
+            result+=Math.Pow((yDestination-ySource) , 2);
+            result+=Math.Pow((zDestination-zSource) , 2);
+
+            result = Math.Sqrt(result);
+
+            return result;
+        }
 
         /// <summary>
         /// Update (make) the JBI file that would be send to the controller with the new given trajectory.
@@ -91,7 +121,7 @@ namespace PinkyAndBrain
                 sb.Append("MOVL ");
                 sb.Append("P");
                 sb.Append((i + 1).ToString("D" + 5));
-                double velocity = Math.Sqrt(Math.Pow(traj.x[i + 1] - traj.x[i] , 2) + Math.Pow(traj.y[i+1]-traj.y[i] , 2)) * 10000 / (1000/_frequency);
+                double velocity = Velocity3D(traj.x[i + 1], traj.x[i], traj.y[i + 1], traj.y[i], traj.z[i + 1], traj.z[i]) * 10000 / (1000 / _frequency);
                 sb.Append(" V=");
                 sb.Append(velocity.ToString("0000.0000000"));
                 _fileStreamWriter.WriteLine(sb.ToString());
@@ -101,7 +131,7 @@ namespace PinkyAndBrain
             sb.Append("MOVL ");
             sb.Append("P");
             sb.Append((traj.x.Count).ToString("D" + 5));
-            double velocity2 = Math.Sqrt(Math.Pow((traj.x[traj.x.Count - 1] - traj.x[traj.x.Count - 2]) ,2) + Math.Pow((traj.y[traj.y.Count - 1] - traj.y[traj.y.Count - 2]), 2)) * 10000 / (1000 / _frequency);
+            double velocity2 = Velocity3D(traj.x[traj.x.Count - 1], traj.x[traj.x.Count - 2], traj.y[traj.y.Count - 1], traj.y[traj.y.Count - 2], traj.z[traj.z.Count - 1], traj.z[traj.z.Count - 2]) * 10000 / (1000 / _frequency);
             sb.Append(" V=");
             sb.Append(velocity2.ToString("0000.0000000"));
             _fileStreamWriter.WriteLine(sb.ToString());
@@ -110,8 +140,6 @@ namespace PinkyAndBrain
             _fileStreamWriter.WriteLine("END");
 
             _fileStreamWriter.Close();
-
-            //_fileStreamWriter = new StreamWriter(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
         }
 
         /// <summary>
@@ -134,10 +162,10 @@ namespace PinkyAndBrain
                 currectStringValue.Append("P");
                 currectStringValue.Append(i.ToString("D" + 5));
                 currectStringValue.Append("=");
-                currectStringValue.Append(((double)(point * 10 + 249)).ToString("0000.00000000"));
+                currectStringValue.Append(((double)(point * 10 + 237.41)).ToString("0000.00000000"));
                 currectStringValue.Append(",");
-                currectStringValue.Append(((double)(traj.y[i-1] * 10 + 16.2)).ToString("0000.00000000"));
-                currectStringValue.Append(",273.300,-179.4000,-0.79,-160.6000");
+                currectStringValue.Append(((double)(traj.y[i-1] * 10 -2.881)).ToString("0000.00000000"));
+                currectStringValue.Append(",273.306,-178.8807,-3.0241,-161.3872");
                 i++;
                 stringLinesList.Add(currectStringValue.ToString());
                 currectStringValue.Clear();
@@ -145,5 +173,6 @@ namespace PinkyAndBrain
 
             return stringLinesList;
         }
+        #endregion FUNCTIONS
     }
 }

@@ -129,6 +129,9 @@ namespace PinkyAndBrain
 
             //add the rat names (as the setting have) to the rat names combo box.
             AddRatNamesToRatNamesComboBox();
+
+            //move the robot to it's ome position when startup.
+            _cntrlLoop.MoveRobotHomePosition();
         }
         #endregion CONSTRUCTORS
 
@@ -179,11 +182,11 @@ namespace PinkyAndBrain
         /// <param name="data"></param>
         private void SetNoldusRatResponseInteractivePanel(byte data)
         {
-            _leftNoldusCommunicationRadioButton.Checked = (data & 4) > 0;
+            _leftNoldusCommunicationRadioButton.Checked = (data & 1) > 0;
 
             _centerNoldusCommunicationRadioButton.Checked = (data & 2) > 0;
 
-            _rightNoldusCommunicationRadioButton.Checked = (data & 1) > 0;
+            _rightNoldusCommunicationRadioButton.Checked =  (data & 4) > 0;
 
             _leftHandRewardCheckBox.Show();
 
