@@ -28,6 +28,5 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWra
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWrapper\bin\Debug\MotocomdotNetWrapper.XML
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWrapper\bin\Debug\MotocomdotNetWrapper.dll
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWrapper\bin\Debug\MotocomdotNetWrapper.pdb
-C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWrapper\obj\Debug\MotocomdotNetWrapper.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWrapper\obj\Debug\MotocomdotNetWrapper.dll
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWrapper\obj\Debug\MotocomdotNetWrapper.pdb
