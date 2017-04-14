@@ -1,0 +1,4 @@
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\bin\Release\LED.Strip.Adressable.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\bin\Release\LED.Strip.Adressable.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\obj\Release\LED.Strip.Adressable.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\obj\Release\LED.Strip.Adressable.pdb

@@ -74,6 +74,37 @@ namespace PinkyAndBrain
             //return the selected combination index.
             return rand;
         }
+        
+        /// <summary>
+        /// fullify the array with specific number of '1' and '0'.
+        /// </summary>
+        /// <param name="numOfFillings">The numer of '1' to be in the random array of bytes.</param>
+        /// <returns>The random array fullified with '1' and '0'.</returns>
+        public byte[] FillWithBinaryRandomCombination(int numOfFillings)
+        {
+            //the returned array with the numOfFillings '1' in thae arry values.
+            byte[] returnedArray = new byte[_trialsCombinationIndexesStatus.Length];
+
+            //choosing numOfFillings indexes to fill with '1' value.
+            for(int i=0;i<numOfFillings;i++)
+            {
+                ChooseRandomCombination();
+            }
+
+            int index = 0;
+            byte trueByte = 1;
+            byte falseByte = 0;
+
+            //decide the value of each byte by the randoms indexes.
+            foreach (bool value in _trialsCombinationIndexesStatus)
+            {
+                returnedArray[index] = (value) ? trueByte : falseByte;
+            }
+
+            //return the random array with selected bytes to be with '1' value and '0 values.
+            return returnedArray;
+        }
         #endregion FUNCTIONS
     }
+
 }

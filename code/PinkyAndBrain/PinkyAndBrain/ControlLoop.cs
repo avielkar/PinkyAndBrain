@@ -11,6 +11,7 @@ using MLApp;
 using System.Diagnostics;
 using System.Windows.Forms;
 using MotocomdotNetWrapper;
+using LED.Strip.Adressable;
 
 namespace PinkyAndBrain
 {
@@ -159,6 +160,16 @@ namespace PinkyAndBrain
         /// The YASAKAWA motoman robot controller.
         /// </summary>
         private CYasnac _motomanController;
+
+        /// <summary>
+        /// The led controller for controlling the leds visibility in the ledstrip connected to the arduino.
+        /// </summary>
+        private LEDController _ledController;
+
+        /// <summary>
+        /// The leds selector dor selecting different led to turn on.
+        /// </summary>
+        private VaryingIndexSelector _ledSelector;
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
@@ -187,6 +198,10 @@ namespace PinkyAndBrain
 
             //take the motoman controller object.
             _motomanController = motomanController;
+
+            //initialze the led controller.
+            _ledController = new LEDController();
+            _ledController.OpenConnection();//need to transfer it to the main in order to close it's connection.
         }
         #endregion CONTRUCTORS
 
@@ -207,6 +222,9 @@ namespace PinkyAndBrain
             _timingRandomizer = new Random();
             _mainGuiControlsDelegatesDictionary = ctrlDelegatesDic;
             _mainGuiInterfaceControlsDictionary = mainGuiInterfaceControlsDictionary;
+
+            //initialize the led selctor for selectiong on/off leds.
+            _ledSelector = new VaryingIndexSelector();
 
             //set the trajectory creator name to the given one that should be called in the trajectoryCreatorHandler.
             //also , set the other properties.
@@ -404,6 +422,11 @@ namespace PinkyAndBrain
             else//if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
             {
                 robotMotion = Task.Factory.StartNew(() => Thread.Sleep((int)(1000*_currentTrialTimings.wDuration)));
+
+                //here should be stimulus type 2 for motion of the second robot for visual only.
+                //should move the robot and also to turn on the leds.
+                LEDsData ledsData = new LEDsData(10 , 0 , 255 , 0 , _ledSelector.FillWithBinaryRandomCombination(20));
+                _ledController.SendData();
             }
 
             //also run the rat center head checking in parallel to the movement time.

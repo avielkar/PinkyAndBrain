@@ -58,9 +58,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this._leftNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
             this._drinkControlGroupBox = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this._waterRewardMeasure = new WaterMeasure.WaterMeasure();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this._selectedRatGroupBox = new System.Windows.Forms.GroupBox();
             this._selectedRatNameComboBox = new System.Windows.Forms.ComboBox();
@@ -425,7 +425,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this._protocolsComboBox);
             this.Name = "GuiInterface";
-            this.Text = "_selectedRatNameComboBox";
+            this.Text = "GuiInterface";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GuiInterface_Close);
             this._trialParametersGroup.ResumeLayout(false);
             this._handRewardsgroupBox.ResumeLayout(false);

@@ -1,0 +1,4 @@
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\WaterMeasure\WaterMeasure\bin\Release\WaterMeasure.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\WaterMeasure\WaterMeasure\bin\Release\WaterMeasure.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\WaterMeasure\WaterMeasure\obj\Release\WaterMeasure.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\WaterMeasure\WaterMeasure\obj\Release\WaterMeasure.pdb

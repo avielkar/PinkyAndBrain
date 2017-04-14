@@ -11,6 +11,7 @@ using System.IO;
 using MLApp;
 using MotocomdotNetWrapper;
 
+
 namespace PinkyAndBrain
 {
     /// <summary>
@@ -112,8 +113,8 @@ namespace PinkyAndBrain
             _matlabApp = new MLApp.MLApp();
 
             //connect to the robot and turn on it's servos.
-            _motocomController = new CYasnac("10.0.0.2", Application.StartupPath);
-            _motocomController.SetServoOn();
+            //avi-insert//_motocomController = new CYasnac("10.0.0.2", Application.StartupPath);
+            //avi-insert//_motocomController.SetServoOn();
 
             Globals._systemState = SystemState.INITIALIZED;
             _cntrlLoop = new ControlLoop(_matlabApp , _motocomController);
@@ -131,7 +132,7 @@ namespace PinkyAndBrain
             AddRatNamesToRatNamesComboBox();
 
             //move the robot to it's ome position when startup.
-            _cntrlLoop.MoveRobotHomePosition();
+            //avi-insert//_cntrlLoop.MoveRobotHomePosition();
         }
         #endregion CONSTRUCTORS
 
@@ -254,7 +255,7 @@ namespace PinkyAndBrain
             _excelLoader.CloseExcelProtocoConfigFilelLoader();
 
             //turn off the robot servos.
-            _motocomController.SetServoOff();
+            //avi-insert//_motocomController.SetServoOff();
         }
 
         /// <summary>

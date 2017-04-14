@@ -60,3 +60,5 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bi
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\NationalInstruments.Common.Native.dll
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\WaterMeasure.dll
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\WaterMeasure.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\LED.Strip.Adressable.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\LED.Strip.Adressable.pdb

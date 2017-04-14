@@ -188,6 +188,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LED.Strip.Adressable\LED.Strip.Adressable.csproj">
+      <Project>{7a1a9157-08dd-4752-86da-8a984cd4369a}</Project>
+      <Name>LED.Strip.Adressable</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MotocomdotNetWrapper\MotocomdotNetWrapper.csproj">
       <Project>{25010a89-4d18-4607-adaf-32553d6d343a}</Project>
       <Name>MotocomdotNetWrapper</Name>
