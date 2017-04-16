@@ -8,8 +8,12 @@ using System.Threading;
 
 namespace LED.Strip.Adressable
 {
+    /// <summary>
+    /// Led controller for controlling the leds in the ledstrip statuses (turn on/off) connected to the arduino.
+    /// </summary>
     public class LEDController
     {
+        #region MEMBERS
         /// <summary>
         /// The serial port to communicate with the arduino led controller.
         /// </summary>
@@ -19,15 +23,25 @@ namespace LED.Strip.Adressable
         /// The objects saves the all Led strip data color and places to turn on.
         /// </summary>
         private LEDsData _ledsData;
+        #endregion MEMBERS
 
+        #region CONSTRUCTORS
         /// <summary>
         /// Constructor.
+        /// <param name="portName">The port COM to connect with.</param>
+        /// <param name="baudRate">The communication baud rate.</param>
+        /// <param name="numOfLeds">The number of leds to controll with in the strip.</param>
         /// </summary>
-        public LEDController()
+        public LEDController(string portName , int baudRate , int numOfLeds)
         {
-            _ledArduinoSerialPort = new SerialPort("COM4", 2000000, Parity.None, 8, StopBits.One);
-        }
+            _ledArduinoSerialPort = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
 
+            byte[] b = new byte[250];
+            _ledsData = new LEDsData(0, 0, 0, 0, b);
+        }
+        #endregion CONSTRUCTORS
+
+        #region FUNCTIONS
         /// <summary>
         /// Open the port connection with arduino led controller.
         /// </summary>
@@ -45,11 +59,6 @@ namespace LED.Strip.Adressable
         }
 
         /// <summary>
-        /// Get or Set the data that should be executed on the arduino led command.
-        /// </summary>
-        public LEDsData LEDsDataCommand { get { return _ledsData; } set { _ledsData = value; } }
-
-        /// <summary>
         /// Send the data to the arduino led contoller.
         /// </summary>
         public void SendData()
@@ -58,7 +67,7 @@ namespace LED.Strip.Adressable
             _ledArduinoSerialPort.Write("#");
 
             //sending the colors.
-            byte[] colorData = { 255, 0, 0 };
+            byte[] colorData = { _ledsData.Red, _ledsData.Green , _ledsData.Blue };
             _ledArduinoSerialPort.Write(colorData, 0, colorData.Length);
 
             //means end sending te colors and start sending te points of places to turn on it's places.
@@ -84,5 +93,32 @@ namespace LED.Strip.Adressable
             //means the data execution command.
             _ledArduinoSerialPort.Write("!");
         }
+
+        /// <summary>
+        /// Turning off all leds in the ledstrip.
+        /// </summary>
+        public void ResetLeds()
+        {
+            //rset leds data
+            _ledsData.Red = 0;
+            _ledsData.Green = 0;
+            _ledsData.Blue = 0;
+
+            //send the data for leds turning on/off as the default value of arrays (which is 0).
+            int len = _ledsData.TurnedOnPlaces.Length;
+            _ledsData.TurnedOnPlaces = new byte[len];
+            SendData();
+
+            //execute the data commands.
+            ExecuteCommands();
+        }
+        #endregion FUNCTIONS
+
+        #region SETTERS_AND_GETTERS
+        /// <summary>
+        /// Get or Set the data that should be executed on the arduino led command.
+        /// </summary>
+        public LEDsData LEDsDataCommand { get { return _ledsData; } set { _ledsData = value; } }
+        #endregion SETTERS_AND_GETTERS
     }
 }

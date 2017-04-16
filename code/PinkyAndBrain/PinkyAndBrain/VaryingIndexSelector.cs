@@ -82,6 +82,9 @@ namespace PinkyAndBrain
         /// <returns>The random array fullified with '1' and '0'.</returns>
         public byte[] FillWithBinaryRandomCombination(int numOfFillings)
         {
+            //reset all indexes to be with false.
+            ResetTrialsStatus();
+
             //the returned array with the numOfFillings '1' in thae arry values.
             byte[] returnedArray = new byte[_trialsCombinationIndexesStatus.Length];
 
@@ -99,6 +102,7 @@ namespace PinkyAndBrain
             foreach (bool value in _trialsCombinationIndexesStatus)
             {
                 returnedArray[index] = (value) ? trueByte : falseByte;
+                index++;
             }
 
             //return the random array with selected bytes to be with '1' value and '0 values.

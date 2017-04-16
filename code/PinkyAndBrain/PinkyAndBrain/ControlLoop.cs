@@ -175,8 +175,11 @@ namespace PinkyAndBrain
         #region CONTRUCTORS
         /// <summary>
         /// Default constructor.
+        /// <param name="matlabApp">The matlab app handler.</param>
+        /// <param name="motomanController">The motoman controller object.</param>
+        /// <param name="ledController">The led controller object.</param>
         /// </summary>
-        public ControlLoop(MLApp.MLApp matlabApp , CYasnac motomanController)
+        public ControlLoop(MLApp.MLApp matlabApp , CYasnac motomanController , LEDController ledController)
         {
             _matlabApp = matlabApp;
             _trajectoryCreatorHandler = new TrajectoryCreatorHandler(_matlabApp);
@@ -199,9 +202,10 @@ namespace PinkyAndBrain
             //take the motoman controller object.
             _motomanController = motomanController;
 
-            //initialze the led controller.
-            _ledController = new LEDController();
-            _ledController.OpenConnection();//need to transfer it to the main in order to close it's connection.
+            //take the led controller object.
+            _ledController = ledController;
+            //initialize the leds index selector.
+            _ledSelector = new VaryingIndexSelector(250);
         }
         #endregion CONTRUCTORS
 
@@ -222,9 +226,6 @@ namespace PinkyAndBrain
             _timingRandomizer = new Random();
             _mainGuiControlsDelegatesDictionary = ctrlDelegatesDic;
             _mainGuiInterfaceControlsDictionary = mainGuiInterfaceControlsDictionary;
-
-            //initialize the led selctor for selectiong on/off leds.
-            _ledSelector = new VaryingIndexSelector();
 
             //set the trajectory creator name to the given one that should be called in the trajectoryCreatorHandler.
             //also , set the other properties.
@@ -425,8 +426,10 @@ namespace PinkyAndBrain
 
                 //here should be stimulus type 2 for motion of the second robot for visual only.
                 //should move the robot and also to turn on the leds.
-                LEDsData ledsData = new LEDsData(10 , 0 , 255 , 0 , _ledSelector.FillWithBinaryRandomCombination(20));
+                LEDsData ledsData = new LEDsData(10 , 0 , 255 , 0 , _ledSelector.FillWithBinaryRandomCombination(40));
+                _ledController.LEDsDataCommand = ledsData;
                 _ledController.SendData();
+                _ledController.ExecuteCommands();
             }
 
             //also run the rat center head checking in parallel to the movement time.
@@ -446,6 +449,9 @@ namespace PinkyAndBrain
 
             //wait the robot to finish the movement.
             robotMotion.Wait();
+
+            //and turn off the leds visual vistibular (it is o.k for all cases , just reset).
+            _ledController.ResetLeds();
 
             return headInCenterAllTheTime;
         }

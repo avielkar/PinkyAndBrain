@@ -117,7 +117,7 @@ void LedStripRoundDataExecution()
     {sendColor(0 , 0 , 0, 0);}
   }
   
-  endFrame(255);
+  endFrame(250);
 }
 
 void transferByte(uint8_t data)

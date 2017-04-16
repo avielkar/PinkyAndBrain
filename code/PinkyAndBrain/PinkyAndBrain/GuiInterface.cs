@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using MLApp;
 using MotocomdotNetWrapper;
+using LED.Strip.Adressable;
 
 
 namespace PinkyAndBrain
@@ -93,6 +94,8 @@ namespace PinkyAndBrain
         /// The controller api for the YASAKAWA motoman robot.
         /// </summary>
         private CYasnac _motocomController;
+
+        private LEDController _ledController;
         #endregion MEMBERS
 
         #region CONSTRUCTORS
@@ -113,11 +116,18 @@ namespace PinkyAndBrain
             _matlabApp = new MLApp.MLApp();
 
             //connect to the robot and turn on it's servos.
-            //avi-insert//_motocomController = new CYasnac("10.0.0.2", Application.StartupPath);
-            //avi-insert//_motocomController.SetServoOn();
+            //avi-insert//
+            _motocomController = new CYasnac("10.0.0.2", Application.StartupPath);
+            //avi-insert//
+            _motocomController.SetServoOn();
+
+            //create the ledstrip controller and initialize it (also turn off leds).
+            _ledController = new LEDController("COM4", 2000000, 250);
+            _ledController.OpenConnection();
+            _ledController.ResetLeds();
 
             Globals._systemState = SystemState.INITIALIZED;
-            _cntrlLoop = new ControlLoop(_matlabApp , _motocomController);
+            _cntrlLoop = new ControlLoop(_matlabApp , _motocomController , _ledController);
 
             //reset the selected direction to be empty.
             _selectedHandRewardDirections = 0;
@@ -132,7 +142,8 @@ namespace PinkyAndBrain
             AddRatNamesToRatNamesComboBox();
 
             //move the robot to it's ome position when startup.
-            //avi-insert//_cntrlLoop.MoveRobotHomePosition();
+            //avi-insert//
+            _cntrlLoop.MoveRobotHomePosition();
         }
         #endregion CONSTRUCTORS
 
@@ -255,7 +266,11 @@ namespace PinkyAndBrain
             _excelLoader.CloseExcelProtocoConfigFilelLoader();
 
             //turn off the robot servos.
-            //avi-insert//_motocomController.SetServoOff();
+            //avi-insert//
+            _motocomController.SetServoOff();
+
+            //close the connection with the led strip.
+            _ledController.CloseConnection();
         }
 
         /// <summary>
