@@ -416,21 +416,36 @@ namespace PinkyAndBrain
         {
             //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
             Task robotMotion;
-            if (_currentTrialStimulusType == 1 || _currentTrialStimulusType == 3)
+            switch (_currentTrialStimulusType)
             {
-                robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories));
-            }
-            else//if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
-            {
-                robotMotion = Task.Factory.StartNew(() => Thread.Sleep((int)(1000*_currentTrialTimings.wDuration)));
+                case 1://vistibular only.
+                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only));
+                    break;
 
-                //here should be stimulus type 2 for motion of the second robot for visual only.
-                //should move the robot and also to turn on the leds.
-                LEDsData ledsData = new LEDsData(10 , 0 , 255 , 0 , _ledSelector.FillWithBinaryRandomCombination(40));
-                _ledController.LEDsDataCommand = ledsData;
-                _ledController.SendData();
-                _ledController.ExecuteCommands();
-            }
+                case 2://visual only.
+                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only));
+
+                    //here should be stimulus type 2 for motion of the second robot for visual only.
+                    //should move the robot and also to turn on the leds.
+                    LEDsData ledsData = new LEDsData(10, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(40));
+                    _ledController.LEDsDataCommand = ledsData;
+                    _ledController.SendData();
+                    _ledController.ExecuteCommands();
+                    break;
+
+                case 3://vistibular and visual both.
+                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both));
+                    //should move both the robots and also to turn on the leds.
+                    LEDsData ledsData2 = new LEDsData(10, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(40));
+                    _ledController.LEDsDataCommand = ledsData2;
+                    _ledController.SendData();
+                    _ledController.ExecuteCommands();
+                    break;
+
+                default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
+                    robotMotion = Task.Factory.StartNew(() => Thread.Sleep((int)(1000 * _currentTrialTimings.wDuration)));
+                    break;
+            };
 
             //also run the rat center head checking in parallel to the movement time.
             bool headInCenterAllTheTime = true;
@@ -509,9 +524,10 @@ namespace PinkyAndBrain
 
         /// <summary>
         /// Move the motoman with the given trajectory.
-        /// </summary>
         /// <param name="traj">The trajectory to be send to the controller.</param>
-        public void MoveYasakawaRobotWithTrajectory(Tuple<Trajectory , Trajectory> traj)
+        /// <param name="updateJobType">The robots type to update the job trajectory with.</param>
+        /// </summary>
+        public void MoveYasakawaRobotWithTrajectory(Tuple<Trajectory , Trajectory> traj , MotomanProtocolFileCreator.UpdateJobType updateJobType)
         {
             /*foreach (var xTrajectoryPoint in traj.Item1.x)
             {
@@ -520,8 +536,9 @@ namespace PinkyAndBrain
             }*/
             
             //setting the trajectory for the JBI file creator and update the file that is being senf to the controller with the new commands.
-            _motomanProtocolFileCreator.TrajectoryPosition = traj.Item1;
-            _motomanProtocolFileCreator.UpdateJobJBIFile();
+            _motomanProtocolFileCreator.TrajectoryR1Position = traj.Item1;
+            _motomanProtocolFileCreator.TrajectoryR2Position = traj.Item2;
+            _motomanProtocolFileCreator.UpdateJobJBIFile(updateJobType);
 
             //Delete the old JBI file commands stored in the controller.
             try
@@ -655,14 +672,14 @@ namespace PinkyAndBrain
         {
             try
             {
-                _motomanController.DeleteJob("HOME_POS.JBI");
+                _motomanController.DeleteJob("HOME_POS_BOTH.JBI");
             }
             catch
             { }
 
-            _motomanController.WriteFile(@"C:\Users\User\Desktop\HOME_POS.JBI");
+            _motomanController.WriteFile(@"C:\Users\User\Desktop\HOME_POS_BOTH.JBI");
 
-            _motomanController.StartJob("HOME_POS.JBI");
+            _motomanController.StartJob("HOME_POS_BOTH.JBI");
 
             //should fix this bug
             //_motomanController.WaitJobFinished(10000);

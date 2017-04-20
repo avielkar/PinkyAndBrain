@@ -47,9 +47,14 @@ namespace PinkyAndBrain
 
         #region FUNCTIONS
         /// <summary>
-        /// Get or set the trajectory position to be written to the controller JBI file.
+        /// Get or set the R1 robot trajectory position to be written to the controller JBI file.
         /// </summary>
-        public Trajectory TrajectoryPosition { get; set; }
+        public Trajectory TrajectoryR1Position { get; set; }
+
+        /// <summary>
+        /// Get or set the R2 robot trajectory position to be written to the controller JBI file.
+        /// </summary>
+        public Trajectory TrajectoryR2Position { get; set; }
 
         /// <summary>
         /// Velocity between 3D points.
@@ -76,26 +81,44 @@ namespace PinkyAndBrain
 
         /// <summary>
         /// Update (make) the JBI file that would be send to the controller with the new given trajectory.
+        /// <param name="updateJobType">The robots type to update the job trajectory with.</param>
         /// </summary>
         /// <returns>True if the send was successful.</returns>
-        public bool UpdateJobJBIFile()
+        public bool UpdateJobJBIFile(UpdateJobType updateJobType)
         {
-            DecodeTrajectoriesToJBIFile(TrajectoryPosition);
+            DecodeTrajectoriesToJBIFile(TrajectoryR1Position , TrajectoryR2Position , updateJobType);
             return true;
         }
 
         /// <summary>
         /// Decode the trajectory commands to a JBI file.
+        /// <param name="r1Traj">The r1 robot traj to be written to the file as the protocol format.</param>
+        /// <param name="r2Traj">The r2 robot traj to be written to the file as the protocol format.</param>
+        /// <param name="updateJobType">The robots type to update the job trajectory with.</param>
         /// </summary>
-        /// <param name="traj">The traj to be written to the file as the protocol format.</param>
-        private void DecodeTrajectoriesToJBIFile(Trajectory traj)
+        private void DecodeTrajectoriesToJBIFile(Trajectory r1Traj , Trajectory r2Traj , UpdateJobType updateJobType)
         {
             StreamWriter _fileStreamWriter = new StreamWriter(_fileName);
 
             _fileStreamWriter.WriteLine("/JOB");
             _fileStreamWriter.WriteLine("//NAME GAUSSIANMOVING2");
             _fileStreamWriter.WriteLine("//POS");
-            _fileStreamWriter.Write("///NPOS 0,0,0,"); _fileStreamWriter.Write(traj.x.Count + 1); _fileStreamWriter.WriteLine(",0,0");
+
+            switch (updateJobType)
+            {
+                case UpdateJobType.R1Only:
+                    _fileStreamWriter.Write("///NPOS 0,0,0,"); _fileStreamWriter.Write(r1Traj.x.Count + 1); _fileStreamWriter.WriteLine(",0,0");
+                    break;
+                case UpdateJobType.R2Only:
+                    _fileStreamWriter.Write("///NPOS 0,0,0,"); _fileStreamWriter.Write(r2Traj.x.Count + 1); _fileStreamWriter.WriteLine(",0,0");
+                    break;
+                case UpdateJobType.Both:
+                    _fileStreamWriter.Write("///NPOS 0,0,0,"); _fileStreamWriter.Write(r1Traj.x.Count + r2Traj.x.Count + 1); _fileStreamWriter.WriteLine(",0,0");
+                    break;
+                default:
+                    break;
+            }
+
             _fileStreamWriter.WriteLine("///TOOL 0");
             _fileStreamWriter.WriteLine("///POSTYPE ROBOT");
             _fileStreamWriter.WriteLine("///RECTAN");
@@ -103,37 +126,98 @@ namespace PinkyAndBrain
             _fileStreamWriter.WriteLine("P00000=10.000,0.000,0.000,0.0000,0.0000,0.0000");
             _fileStreamWriter.WriteLine("///POSTYPE BASE");
 
-            foreach (string lineString in TrajectoriesToLine(traj))
+            foreach (string lineString in TrajectoriesToLine(r1Traj , r2Traj , updateJobType))
             {
                 _fileStreamWriter.WriteLine(lineString);
             }
 
             _fileStreamWriter.WriteLine("//INST");
             _fileStreamWriter.WriteLine("///DATE 2017/03/31 08:11");
+
+            if(updateJobType.Equals(UpdateJobType.Both))
+                _fileStreamWriter.WriteLine("///COMM PLAYINGTWOROBOTS");
+
             _fileStreamWriter.WriteLine("///ATTR SC,RW");
-            _fileStreamWriter.WriteLine("///GROUP1 RB1");
+
+            switch (updateJobType)
+            {
+                case UpdateJobType.R1Only:
+                    _fileStreamWriter.WriteLine("///GROUP1 RB1");
+                    break;
+                case UpdateJobType.R2Only:
+                    _fileStreamWriter.WriteLine("///GROUP1 RB2");
+                    break;
+                case UpdateJobType.Both:
+                    _fileStreamWriter.WriteLine("///GROUP1 RB1");
+                    _fileStreamWriter.WriteLine("///GROUP2 RB2");
+                    break;
+                default:
+                    break;
+            }
+            
             _fileStreamWriter.WriteLine("NOP");
 
             StringBuilder sb = new StringBuilder();
-
-            for (int i = 0; i < traj.x.Count - 1; i++)
+            //the selected trajectory is for the for loop to init with r1 or r2 as needed for the UpdateJobType.
+            Trajectory selecterRobotTraj = (!updateJobType.Equals(UpdateJobType.R2Only))?(r1Traj):(r2Traj);
+            for (int i = 0; i < selecterRobotTraj.x.Count - 1; i++)
             {
+                //decode the velocity for the selected robot (if only one of then) or the first robot (r1) if both of them.
                 sb.Append("MOVL ");
                 sb.Append("P");
                 sb.Append((i + 1).ToString("D" + 5));
-                double velocity = Velocity3D(traj.x[i + 1], traj.x[i], traj.y[i + 1], traj.y[i], traj.z[i + 1], traj.z[i]) * 10000 / (1000 / _frequency);
+                double velocity = Velocity3D(selecterRobotTraj.x[i + 1],
+                    selecterRobotTraj.x[i],
+                    selecterRobotTraj.y[i + 1],
+                    selecterRobotTraj.y[i],
+                    selecterRobotTraj.z[i + 1],
+                    selecterRobotTraj.z[i])
+                    * 10000 / (1000 / _frequency);
                 sb.Append(" V=");
                 sb.Append(velocity.ToString("0000.0000000"));
+
+                if (updateJobType.Equals(UpdateJobType.Both))
+                {
+                    sb.Append("  +MOVL ");
+                    sb.Append("P");
+                    sb.Append((selecterRobotTraj.x.Count + 1 + i).ToString("D" + 5));
+                    double velocity12 = Velocity3D(r2Traj.x[i + 1], r2Traj.x[i], r2Traj.y[i + 1], r2Traj.y[i], r2Traj.z[i + 1], r2Traj.z[i]) * 10000 / (1000 / _frequency);
+                    sb.Append(" V=");
+                    sb.Append(velocity12.ToString("0000.0000000"));
+                }
+
                 _fileStreamWriter.WriteLine(sb.ToString());
                 sb.Clear();
             }
 
+            //decode the velocity for the selected robot (if only one of then) or the first robot (r1) if both of them.
             sb.Append("MOVL ");
             sb.Append("P");
-            sb.Append((traj.x.Count).ToString("D" + 5));
-            double velocity2 = Velocity3D(traj.x[traj.x.Count - 1], traj.x[traj.x.Count - 2], traj.y[traj.y.Count - 1], traj.y[traj.y.Count - 2], traj.z[traj.z.Count - 1], traj.z[traj.z.Count - 2]) * 10000 / (1000 / _frequency);
+            sb.Append((selecterRobotTraj.x.Count).ToString("D" + 5));
+            double velocity2 = Velocity3D(selecterRobotTraj.x[selecterRobotTraj.x.Count - 1],
+                selecterRobotTraj.x[selecterRobotTraj.x.Count - 2], 
+                selecterRobotTraj.y[selecterRobotTraj.y.Count - 1],
+                selecterRobotTraj.y[selecterRobotTraj.y.Count - 2],
+                selecterRobotTraj.z[selecterRobotTraj.z.Count - 1],
+                selecterRobotTraj.z[selecterRobotTraj.z.Count - 2])
+                * 10000 / (1000 / _frequency);
             sb.Append(" V=");
             sb.Append(velocity2.ToString("0000.0000000"));
+
+            if (updateJobType.Equals(UpdateJobType.Both))
+            {
+                sb.Append("  +MOVL ");
+                sb.Append("P");
+                sb.Append((selecterRobotTraj.x.Count * 2).ToString("D" + 5));
+                double velocity21 = Velocity3D(r2Traj.x[r2Traj.x.Count - 1],
+                    r2Traj.x[r2Traj.x.Count - 2], r2Traj.y[r2Traj.y.Count - 1],
+                    r2Traj.y[r2Traj.y.Count - 2], r2Traj.z[r2Traj.z.Count - 1],
+                    r2Traj.z[r2Traj.z.Count - 2])
+                    * 10000 / (1000 / _frequency);
+                sb.Append(" V=");
+                sb.Append(velocity21.ToString("0000.0000000"));
+            }
+
             _fileStreamWriter.WriteLine(sb.ToString());
             sb.Clear();
 
@@ -145,34 +229,81 @@ namespace PinkyAndBrain
         /// <summary>
         /// Convert commands of one points in the trajectory to a commands lines in a JBI format.
         /// </summary>
-        /// <param name="traj">The trajectories to be converted to commands line.</param>
+        /// <param name="trajR1">The trajectories of robot r1 to be converted to commands line (if needed as the updateJobType).</param>
+        /// <param name="trajR2">The trajectories of robot r2 to be converted to commands line (if needed as the updateJobType).</param>
         /// <returns>
         /// The list of commands strings.
         /// Every item in the list is a line command in the JBI file.
         /// </returns>
-        private List<string> TrajectoriesToLine(Trajectory traj)
+        private List<string> TrajectoriesToLine(Trajectory trajR1, Trajectory trajR2 , UpdateJobType updateJobType)
         {
             List<string> stringLinesList = new List<string>();
 
             StringBuilder currectStringValue = new StringBuilder();
-
+    
+            //if need to encode the r1 robot for movement.
             int i = 1;
-            foreach (double point in traj.x)
+            if (updateJobType.Equals(UpdateJobType.R1Only) || updateJobType.Equals(UpdateJobType.Both))
             {
-                currectStringValue.Append("P");
-                currectStringValue.Append(i.ToString("D" + 5));
-                currectStringValue.Append("=");
-                currectStringValue.Append(((double)(point * 10 + 237.41)).ToString("0000.00000000"));
-                currectStringValue.Append(",");
-                currectStringValue.Append(((double)(traj.y[i-1] * 10 -2.881)).ToString("0000.00000000"));
-                currectStringValue.Append(",273.306,-178.8807,-3.0241,-161.3872");
-                i++;
-                stringLinesList.Add(currectStringValue.ToString());
-                currectStringValue.Clear();
+                foreach (double point in trajR1.x)
+                {
+                    currectStringValue.Append("P");
+                    currectStringValue.Append(i.ToString("D" + 5));
+                    currectStringValue.Append("=");
+                    currectStringValue.Append(((double)(point * 10 + 368.184)).ToString("0000.00000000"));
+                    currectStringValue.Append(",");
+                    currectStringValue.Append(((double)(trajR1.y[i - 1] * 10 + 4.147)).ToString("0000.00000000"));
+                    currectStringValue.Append(",378.131,178.2426,-0.7296,-129.2918");
+                    i++;
+                    stringLinesList.Add(currectStringValue.ToString());
+                    currectStringValue.Clear();
+                }
+            }
+
+            //if need to encode the r2 robot for movement.
+            if (updateJobType.Equals(UpdateJobType.R2Only) || updateJobType.Equals(UpdateJobType.Both))
+            {
+                int j = i;
+                i = 1;
+                foreach (double point in trajR2.x)
+                {
+                    currectStringValue.Append("P");
+                    currectStringValue.Append(j.ToString("D" + 5));
+                    currectStringValue.Append("=");
+                    currectStringValue.Append(((double)(point * 10 + 303.219)).ToString("0000.00000000"));
+                    currectStringValue.Append(",");
+                    currectStringValue.Append(((double)(-trajR2.y[i - 1] * 10 + 0.632)).ToString("0000.00000000"));
+                    currectStringValue.Append(",308.141,178.5590,4.5487,-19.7702");
+                    i++;
+                    j++;
+                    stringLinesList.Add(currectStringValue.ToString());
+                    currectStringValue.Clear();
+                }
             }
 
             return stringLinesList;
         }
         #endregion FUNCTIONS
+
+        /// <summary>
+        /// The update robot/s job trajectory selection.
+        /// </summary>
+        public enum UpdateJobType
+        {
+            /// <summary>
+            /// Update the job only with R1 trajectory.
+            /// </summary>
+            R1Only=1,
+
+            /// <summary>
+            /// Update the job only with R2 trajectory.
+            /// </summary>
+            R2Only=2,
+
+            /// <summary>
+            /// Update the job for both R1 and R2 trajectories.
+            /// </summary>
+            Both=3
+        }
     }
 }
