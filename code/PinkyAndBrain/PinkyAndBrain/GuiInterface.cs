@@ -151,8 +151,9 @@ namespace PinkyAndBrain
             //add the rat names (as the setting have) to the rat names combo box.
             AddRatNamesToRatNamesComboBox();
 
-            //move the robot to it's ome position when startup.
+            //move the robot to it's home position when startup.
             //avi-insert//
+            _cntrlLoop.WriteHomePosFile();
             _cntrlLoop.MoveRobotHomePosition();
         }
         #endregion CONSTRUCTORS
@@ -965,6 +966,16 @@ namespace PinkyAndBrain
             }
         }
 
+        /// <summary>
+        /// Show the label of the variable name in the gui variable list.
+        /// </summary>
+        /// <param name="varName">The variable name to show.</param>
+        /// <param name="top">The top place offset.</param>
+        /// <param name="left">The left place offset.</param>
+        /// <param name="width">The width of the label.</param>
+        /// <param name="height">The height of the label.</param>
+        /// <param name="eachDistance">The distance between each label.</param>
+        /// <param name="toolTipString">The tooltipper string to add to the label.</param>
         public void ShowVariableLabel(string varName , int top , int left , int width  , int height , int eachDistance , string toolTipString = "")
         {
             //create the new label to show on the gui.

@@ -90,6 +90,76 @@ namespace PinkyAndBrain
             return true;
         }
 
+        public void UpdateHomePosJBIFile(Position r1Pos , Position r2Pos , double velocity)
+        {
+            StreamWriter _fileStreamWriter = new StreamWriter(_fileName);
+
+            StringBuilder lineStringBuilder = new StringBuilder();
+
+            _fileStreamWriter.WriteLine("/JOB");
+            _fileStreamWriter.WriteLine("//NAME HOME_POS_BOTH");
+            _fileStreamWriter.WriteLine("//POS");
+            _fileStreamWriter.WriteLine("///NPOS 0,0,0,4,0,0");
+            _fileStreamWriter.WriteLine("///TOOL 0");
+            _fileStreamWriter.WriteLine("///POSTYPE ROBOT");
+            _fileStreamWriter.WriteLine("///RECTAN");
+            _fileStreamWriter.WriteLine("///RCONF 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0");
+            _fileStreamWriter.WriteLine("P00000=10.000,0.000,0.000,0.0000,0.0000,0.0000");
+            _fileStreamWriter.WriteLine("///POSTYPE BASE");
+
+            lineStringBuilder.Append("P00001=");
+            lineStringBuilder.Append(r1Pos.x.ToString("0000.0000000"));
+            lineStringBuilder.Append(",");
+            lineStringBuilder.Append(r1Pos.y.ToString("0000.0000000"));
+            lineStringBuilder.Append(",");
+            lineStringBuilder.Append(r1Pos.z.ToString("0000.0000000"));
+            lineStringBuilder.Append(",");
+            lineStringBuilder.Append(r1Pos.rx.ToString("0000.0000000"));
+            lineStringBuilder.Append(",");
+            lineStringBuilder.Append(r1Pos.ry.ToString("0000.0000000"));
+            lineStringBuilder.Append(",");
+            lineStringBuilder.Append(r1Pos.rz.ToString("0000.0000000"));
+
+            _fileStreamWriter.WriteLine(lineStringBuilder.ToString());
+            lineStringBuilder.Clear();
+
+            lineStringBuilder.Append("P00002=");
+            lineStringBuilder.Append(r2Pos.x.ToString("0000.0000000"));
+            lineStringBuilder.Append(",");
+            lineStringBuilder.Append(r2Pos.y.ToString("0000.0000000"));
+            lineStringBuilder.Append(",");
+            lineStringBuilder.Append(r2Pos.z.ToString("0000.0000000"));
+            lineStringBuilder.Append(",");
+            lineStringBuilder.Append(r2Pos.rx.ToString("0000.0000000"));
+            lineStringBuilder.Append(",");
+            lineStringBuilder.Append(r2Pos.ry.ToString("0000.0000000"));
+            lineStringBuilder.Append(",");
+            lineStringBuilder.Append(r2Pos.rz.ToString("0000.0000000"));
+
+            _fileStreamWriter.WriteLine(lineStringBuilder.ToString());
+            lineStringBuilder.Clear();
+
+            _fileStreamWriter.WriteLine("//INST");
+            _fileStreamWriter.WriteLine("///DATE 2017/03/31 08:11");
+            _fileStreamWriter.WriteLine("///COMM PLAYINGTWOROBOTS");
+            _fileStreamWriter.WriteLine("///ATTR SC,RW");
+            _fileStreamWriter.WriteLine("///GROUP1 RB1");
+            _fileStreamWriter.WriteLine("///GROUP2 RB2");
+            _fileStreamWriter.WriteLine("NOP");
+
+            lineStringBuilder.Append("MOVL P00001 V=");
+            lineStringBuilder.Append(velocity.ToString("0000.0000000"));
+            lineStringBuilder.Append("  +MOVL P00002 V=");
+            lineStringBuilder.Append(velocity.ToString("0000.0000000"));
+
+            _fileStreamWriter.WriteLine(lineStringBuilder);
+            lineStringBuilder.Clear();
+
+            _fileStreamWriter.WriteLine("END");
+
+            _fileStreamWriter.Close();
+        }
+
         /// <summary>
         /// Decode the trajectory commands to a JBI file.
         /// <param name="r1Traj">The r1 robot traj to be written to the file as the protocol format.</param>
@@ -250,10 +320,18 @@ namespace PinkyAndBrain
                     currectStringValue.Append("P");
                     currectStringValue.Append(i.ToString("D" + 5));
                     currectStringValue.Append("=");
-                    currectStringValue.Append(((double)(point * 10 + 368.184)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(point * 10 + Properties.Settings.Default.R1OriginalX)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR1.y[i - 1] * 10 + 4.147)).ToString("0000.00000000"));
-                    currectStringValue.Append(",378.131,178.2426,-0.7296,-129.2918");
+                    currectStringValue.Append(((double)(trajR1.y[i - 1] * 10 + Properties.Settings.Default.R1OriginalY)).ToString("0000.00000000"));
+                    currectStringValue.Append(",");
+                    currectStringValue.Append(((double)(trajR1.z[i - 1] * 10 + Properties.Settings.Default.R1OriginalZ)).ToString("0000.00000000"));
+                    currectStringValue.Append(",");
+                    currectStringValue.Append(((double)(trajR1.rx[i - 1] * 10 + Properties.Settings.Default.R1OriginalRX)).ToString("0000.00000000"));
+                    currectStringValue.Append(",");
+                    currectStringValue.Append(((double)(trajR1.ry[i - 1] * 10 + Properties.Settings.Default.R1OriginalRY)).ToString("0000.00000000"));
+                    currectStringValue.Append(",");
+                    currectStringValue.Append(((double)(trajR1.rz[i - 1] * 10 + Properties.Settings.Default.R1OriginalRZ)).ToString("0000.00000000"));
+                    currectStringValue.Append(",");
                     i++;
                     stringLinesList.Add(currectStringValue.ToString());
                     currectStringValue.Clear();
@@ -270,10 +348,17 @@ namespace PinkyAndBrain
                     currectStringValue.Append("P");
                     currectStringValue.Append(j.ToString("D" + 5));
                     currectStringValue.Append("=");
-                    currectStringValue.Append(((double)(point * 10 + 303.219)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(point * 10 + Properties.Settings.Default.R2OriginalX)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR2.y[i - 1] * 10 + 0.632)).ToString("0000.00000000"));
-                    currectStringValue.Append(",308.141,178.5590,4.5487,-19.7702");
+                    currectStringValue.Append(((double)(trajR2.y[i - 1] * 10 + Properties.Settings.Default.R2OriginalY)).ToString("0000.00000000"));
+                    currectStringValue.Append(",");
+                    currectStringValue.Append(((double)(trajR2.z[i - 1] * 10  +Properties.Settings.Default.R2OriginalZ)).ToString("0000.00000000"));
+                    currectStringValue.Append(",");
+                    currectStringValue.Append(((double)(trajR2.rx[i - 1] * 10 + Properties.Settings.Default.R2OriginalRX)).ToString("0000.00000000"));
+                    currectStringValue.Append(",");
+                    currectStringValue.Append(((double)(trajR2.ry[i - 1] * 10 + Properties.Settings.Default.R2OriginalRY)).ToString("0000.00000000"));
+                    currectStringValue.Append(",");
+                    currectStringValue.Append(((double)(trajR2.rz[i - 1] * 10 + Properties.Settings.Default.R2OriginalRZ)).ToString("0000.00000000"));
                     i++;
                     j++;
                     stringLinesList.Add(currectStringValue.ToString());

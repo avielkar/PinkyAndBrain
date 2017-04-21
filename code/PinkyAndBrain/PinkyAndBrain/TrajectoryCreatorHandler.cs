@@ -126,36 +126,74 @@ namespace PinkyAndBrain
         #region LINEAR_TRAJECTORIES
 
         /// <summary>
-        /// The x axis for the position.
+        /// The x axis for the vector list position.
         /// </summary>
-        public Vector< double> x;
+        public Vector<double> x;
 
         /// <summary>
-        /// The y axis for the position.
+        /// The y axis for the vector list  position.
         /// </summary>
         public Vector<double> y;
 
         /// <summary>
-        /// The z axis for the position.
+        /// The z axis for the vector list position.
         /// </summary>
         public Vector<double> z;
         #endregion LINEAR_TRAJECTORIES
 
         #region ROTATION_TRAJECTORIES
         /// <summary>
-        /// The x rotation axis for the position.
+        /// The x rotation axis for the vector list  position.
         /// </summary>
         public Vector<double> rx;
 
         /// <summary>
-        /// The y rotation axis for the position.
+        /// The y rotation axis for the vector list  position.
         /// </summary>
         public Vector<double> ry;
 
         /// <summary>
-        /// The z rotation axis for the position.
+        /// The z rotation axis for thevector list position.
         /// </summary>
         public Vector<double> rz;
         #endregion ROTATION_TRAJECTORIES
+    }
+
+    struct Position
+    {
+        #region LINEAR_TRAJECTORY
+
+        /// <summary>
+        /// The x axis for the position.
+        /// </summary>
+        public double x;
+
+        /// <summary>
+        /// The y axis for the position.
+        /// </summary>
+        public double y;
+
+        /// <summary>
+        /// The z axis for the position.
+        /// </summary>
+        public double z;
+        #endregion LINEAR_TRAJECTORY
+
+        #region ROTATION_TRAJECTORY
+        /// <summary>
+        /// The x rotation axis for the position.
+        /// </summary>
+        public double rx;
+
+        /// <summary>
+        /// The y rotation axis for the position.
+        /// </summary>
+        public double ry;
+
+        /// <summary>
+        /// The z rotation axis for the position.
+        /// </summary>
+        public double rz;
+        #endregion ROTATION_TRAJECTORY
     }
 }

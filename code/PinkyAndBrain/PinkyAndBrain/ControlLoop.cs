@@ -669,6 +669,32 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Writing the home_pos file as the readen parameter in the configuration.
+        /// </summary>
+        public void WriteHomePosFile()
+        {
+            MotomanProtocolFileCreator homePositionFile = new MotomanProtocolFileCreator(@"C:\Users\User\Desktop\HOME_POS_BOTH.JBI");
+
+            Position r1HomePosition = new Position();
+            r1HomePosition.x=Properties.Settings.Default.R1OriginalX;
+            r1HomePosition.y=Properties.Settings.Default.R1OriginalY;
+            r1HomePosition.z=Properties.Settings.Default.R1OriginalZ;
+            r1HomePosition.rx=Properties.Settings.Default.R1OriginalRX;
+            r1HomePosition.ry=Properties.Settings.Default.R1OriginalRY;
+            r1HomePosition.rz=Properties.Settings.Default.R1OriginalRZ;
+
+            Position r2HomePosition = new Position();
+            r2HomePosition.x = Properties.Settings.Default.R2OriginalX;
+            r2HomePosition.y = Properties.Settings.Default.R2OriginalY;
+            r2HomePosition.z = Properties.Settings.Default.R2OriginalZ;
+            r2HomePosition.rx=Properties.Settings.Default.R2OriginalRX;
+            r2HomePosition.ry=Properties.Settings.Default.R2OriginalRY;
+            r2HomePosition.rz=Properties.Settings.Default.R2OriginalRZ;
+
+            homePositionFile.UpdateHomePosJBIFile(r1HomePosition , r2HomePosition , 90);
+        }
+
+        /// <summary>
         /// Move the robot to it's home (origin) position.
         /// </summary>
         public void MoveRobotHomePosition()
