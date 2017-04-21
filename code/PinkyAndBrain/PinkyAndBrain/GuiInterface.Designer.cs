@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,13 +59,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this._leftNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
             this._drinkControlGroupBox = new System.Windows.Forms.GroupBox();
-            this._waterRewardMeasure = new WaterMeasure.WaterMeasure();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this._waterRewardMeasure = new WaterMeasure.WaterMeasure();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this._selectedRatGroupBox = new System.Windows.Forms.GroupBox();
             this._selectedRatNameComboBox = new System.Windows.Forms.ComboBox();
             this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
+            this._guiInterfaceToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -408,6 +410,10 @@
             this._selectedRatNameComboBox.Size = new System.Drawing.Size(121, 21);
             this._selectedRatNameComboBox.TabIndex = 0;
             // 
+            // _guiInterfaceToolTip
+            // 
+            this._guiInterfaceToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -485,5 +491,6 @@
         private System.Windows.Forms.GroupBox _selectedRatGroupBox;
         private System.Windows.Forms.ComboBox _selectedRatNameComboBox;
         private System.ComponentModel.BackgroundWorker backgroundWorker3;
+        private System.Windows.Forms.ToolTip _guiInterfaceToolTip;
     }
 }

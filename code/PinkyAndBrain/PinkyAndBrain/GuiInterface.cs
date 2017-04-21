@@ -627,7 +627,7 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Showing the new little form of the textboxes for the varyin variables to get the input from.
+        /// Showing the new tittle form of the textboxes for the varyin variables to get the input from.
         /// </summary>
         /// <param name="crossVaryingVals">The crossVaryingVals list for all the trials.</param>
         /// <param name="varNameToTextboxDictionary">The dictionary map for the variable string (key) to the variable representing textbox(value).</param>
@@ -957,7 +957,7 @@ namespace PinkyAndBrain
                 newLabel.Height = height;
                 newLabel.Top = top;
                 newLabel.Left = left;*/
-                ShowVariableLabel(_variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0], top, left, width, height, eachDistance);
+                ShowVariableLabel(_variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0], top, left, width, height, eachDistance, _variablesList._variablesDictionary[varName]._description["tool_tip"]._ratHouseParameter[0]);
 
                 ShowVariableAttributes(varName, top, left, width, height, eachDistance, 750);
 
@@ -965,7 +965,7 @@ namespace PinkyAndBrain
             }
         }
 
-        public void ShowVariableLabel(string varName , int top , int left , int width  , int height , int eachDistance)
+        public void ShowVariableLabel(string varName , int top , int left , int width  , int height , int eachDistance , string toolTipString = "")
         {
             //create the new label to show on the gui.
             Label newLabel = new Label();
@@ -978,6 +978,9 @@ namespace PinkyAndBrain
             newLabel.Height = height;
             newLabel.Top = top;
             newLabel.Left = left;
+
+            //add the tooltip help for the label.
+            _guiInterfaceToolTip.SetToolTip(newLabel, toolTipString);
 
             //also , add the label to the dynamic control list.
             _dynamicAllocatedTextBoxes.Add(newLabel.Text.ToString() + "Label", newLabel);
