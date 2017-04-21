@@ -272,7 +272,7 @@ namespace PinkyAndBrain
                     currectStringValue.Append("=");
                     currectStringValue.Append(((double)(point * 10 + 303.219)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(-trajR2.y[i - 1] * 10 + 0.632)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR2.y[i - 1] * 10 + 0.632)).ToString("0000.00000000"));
                     currectStringValue.Append(",308.141,178.5590,4.5487,-19.7702");
                     i++;
                     j++;

@@ -201,7 +201,12 @@ namespace PinkyAndBrain.TrajectoryCreators
 
             //create the multiplication matrix to multiply with the distances vectors.
             Tuple<double , double , double> multiplyRatDistance =  CreateMultiplyTuple(_headingDirection.Item1, _discPlaneAzimuth.Item1, _discPlaneElevation.Item1, _discPlaneTilt.Item1);
-            Tuple<double, double, double> multiplyLandscapeDistance = CreateMultiplyTuple(_headingDirection.Item2, _discPlaneAzimuth.Item2, _discPlaneElevation.Item2, _discPlaneTilt.Item2);
+            Tuple<double, double, double> multiplyLandscapeDistance;
+            //if it is to move both robots (vestribular only) or not.
+            if (_stimulusType != 1)
+                multiplyLandscapeDistance = CreateMultiplyTuple(_headingDirection.Item2, _discPlaneAzimuth.Item2, _discPlaneElevation.Item2, _discPlaneTilt.Item2);
+            else
+                multiplyLandscapeDistance = CreateMultiplyTuple(180 + _headingDirection.Item2, _discPlaneAzimuth.Item2, _discPlaneElevation.Item2, _discPlaneTilt.Item2);
 
             //multuply the distance vectors.
             Vector<double> lateralRatHouse = multiplyRatDistance.Item1 * ratHouseDistanceVector;
@@ -331,11 +336,13 @@ namespace PinkyAndBrain.TrajectoryCreators
                 _discPlaneTilt = new Tuple<double, double>(currentVaryingTrialParameters["DISC_PLANE_TILT"][0], (currentVaryingTrialParameters["DISC_PLANE_TILT"].Count > 1) ? currentVaryingTrialParameters["DISC_PLANE_TILT"][1] : currentVaryingTrialParameters["DISC_PLANE_TILT"][0]);
 
             //check what about the stimulus type (that not must be static).
-            if (currentVaryingTrialParameters.ContainsKey("STIMULUS_TYPE"))
+            if (_staticVars.ContainsKey("STIMULUS_TYPE"))
+                _stimulusType = (int)(_staticVars["STIMULUS_TYPE"][0][0]);
+            else if (currentVaryingTrialParameters.ContainsKey("STIMULUS_TYPE"))
             {
                 _stimulusType = (int)currentVaryingTrialParameters["STIMULUS_TYPE"][0];
             }
-            else if(_crossVaryingVals[index].Keys.Contains("STIMULUS_TYPE"))
+            else if (_crossVaryingVals[index].Keys.Contains("STIMULUS_TYPE"))
             {
                 _stimulusType = int.Parse(_variablesList._variablesDictionary["STIMULUS_TYPE"]._description["parameters"]._ratHouseParameter[0]);
             }

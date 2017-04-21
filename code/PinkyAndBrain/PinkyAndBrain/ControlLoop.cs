@@ -419,7 +419,7 @@ namespace PinkyAndBrain
             switch (_currentTrialStimulusType)
             {
                 case 1://vistibular only.
-                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only));
+                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both));
                     break;
 
                 case 2://visual only.
@@ -434,8 +434,8 @@ namespace PinkyAndBrain
                     break;
 
                 case 3://vistibular and visual both.
-                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both));
-                    //should move both the robots and also to turn on the leds.
+                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only));
+                    //should move only r1 robot and also to turn on the leds.
                     LEDsData ledsData2 = new LEDsData(10, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(40));
                     _ledController.LEDsDataCommand = ledsData2;
                     _ledController.SendData();
