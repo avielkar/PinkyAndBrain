@@ -91,6 +91,13 @@ namespace PinkyAndBrain
         private object _lockerStopStartButton;
 
         /// <summary>
+        /// Indicates if can press the start/stop button (that only after makeTrial presses on the init of the program or on changing parameters.
+        /// When false - it means that casnt start the trials because no makeTrial presses.
+        /// When true - it means that the make trials presses for the most updates properties in the gui and can press atsrt the trials.
+        /// </summary>
+        private bool _makeTrialsButtonPress;
+
+        /// <summary>
         /// The controller api for the YASAKAWA motoman robot.
         /// </summary>
         private CYasnac _motocomController;
@@ -137,6 +144,9 @@ namespace PinkyAndBrain
 
             //allocate the start/stop buttom locker.
             _lockerStopStartButton = new object();
+            //disable initialy the start and stop buttom untill makeTrials buttom is pressed.
+            _startButton.Enabled = false;
+            _stopButtom.Enabled = false;
 
             //add the rat names (as the setting have) to the rat names combo box.
             AddRatNamesToRatNamesComboBox();
@@ -180,6 +190,21 @@ namespace PinkyAndBrain
             _trialDetailsListView.Columns.Add("Name", "Name", 350);
             _trialDetailsListView.Columns.Add("Description", "Description", 100);
             _trialDetailsListView.View = View.Details;
+        }
+
+        /// <summary>
+        /// Delegate for event of finishing the experiment trials rounds.
+        /// </summary>
+        public delegate void FinishedAllTrialsInRoundDelegate();
+
+        /// <summary>
+        /// Handler for event of finishing the experiment trials rounds.
+        /// </summary>
+        public void FinishedAllTrialsRound()
+        {
+            _stopButtom.Enabled = false;
+            _startButton.Enabled = false;
+            _makeTrials.Enabled = true;
         }
 
         /// <summary>
@@ -249,6 +274,11 @@ namespace PinkyAndBrain
             SetWaterRewardsMeasureDelegate setWaterRewardsMeasureDelegate = new SetWaterRewardsMeasureDelegate(SetWaterRewardsMeasure);
             ctrlDelegatesDic.Add("SetWaterRewardsMeasure", setWaterRewardsMeasureDelegate);
             ctrlDictionary.Add("SetWaterRewardsMeasure", _waterRewardMeasure);
+
+            //add the delegate for event indicates finshing all rounds in trial experiment.
+            FinishedAllTrialsInRoundDelegate finishedAlltrialRoundDelegate = new FinishedAllTrialsInRoundDelegate(FinishedAllTrialsRound);
+            ctrlDelegatesDic.Add("FinishedAllTrialsRound", finishedAlltrialRoundDelegate);
+            ctrlDictionary.Add("FinishedAllTrialsRound", _stopButtom);
 
             //return both dictionaries.
             return new Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>>(ctrlDictionary, ctrlDelegatesDic);
@@ -382,6 +412,7 @@ namespace PinkyAndBrain
             lock (_lockerStopStartButton)
             {
                 _startButton.Enabled = false;
+                _makeTrials.Enabled = false;
                 _stopButtom.Enabled = true;
 
                 //if already running - ignore.
@@ -441,6 +472,9 @@ namespace PinkyAndBrain
 
             //show the list box controls(add , remove , etc...)
             ShowVaryingControlsOptions(true);
+
+            //show the start button
+            _startButton.Enabled = true;
         }
 
         /// <summary>

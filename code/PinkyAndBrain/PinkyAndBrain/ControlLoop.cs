@@ -318,6 +318,9 @@ namespace PinkyAndBrain
             }
 
             Globals._systemState = SystemState.FINISHED;
+
+            //raise an event for the GuiInterface that the trials round is over.
+            _mainGuiInterfaceControlsDictionary["FinishedAllTrialsRound"].BeginInvoke(_mainGuiControlsDelegatesDictionary["FinishedAllTrialsRound"]);
         }
 
         /// <summary>
