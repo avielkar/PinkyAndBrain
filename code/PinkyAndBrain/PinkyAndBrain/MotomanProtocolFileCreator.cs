@@ -90,6 +90,12 @@ namespace PinkyAndBrain
             return true;
         }
 
+        /// <summary>
+        /// Updates the home_pos_both file (rewritten it) with the given positions.
+        /// </summary>
+        /// <param name="r1Pos">The r1 robot home position.</param>
+        /// <param name="r2Pos">The r2 robot home position.</param>
+        /// <param name="velocity">The velocity to takes both robots to home position.</param>
         public void UpdateHomePosJBIFile(Position r1Pos , Position r2Pos , double velocity)
         {
             StreamWriter _fileStreamWriter = new StreamWriter(_fileName);

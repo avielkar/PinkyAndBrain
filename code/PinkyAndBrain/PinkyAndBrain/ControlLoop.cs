@@ -691,6 +691,7 @@ namespace PinkyAndBrain
             r2HomePosition.ry=Properties.Settings.Default.R2OriginalRY;
             r2HomePosition.rz=Properties.Settings.Default.R2OriginalRZ;
 
+            //update the home_pos_both file.
             homePositionFile.UpdateHomePosJBIFile(r1HomePosition , r2HomePosition , 90);
         }
 
