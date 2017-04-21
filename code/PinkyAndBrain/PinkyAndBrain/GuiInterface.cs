@@ -155,6 +155,10 @@ namespace PinkyAndBrain
             //avi-insert//
             _cntrlLoop.WriteHomePosFile();
             _cntrlLoop.MoveRobotHomePosition();
+
+            //create the result directory in the application path if needed.
+            if(!Directory.Exists(Application.StartupPath + "\results"))
+                Directory.CreateDirectory(Application.StartupPath + @"\results\");
         }
         #endregion CONSTRUCTORS
 

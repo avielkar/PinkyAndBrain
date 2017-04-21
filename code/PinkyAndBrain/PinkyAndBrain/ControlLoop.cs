@@ -12,6 +12,8 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using MotocomdotNetWrapper;
 using LED.Strip.Adressable;
+using System.IO;
+using System.Reflection;
 
 namespace PinkyAndBrain
 {
@@ -170,6 +172,11 @@ namespace PinkyAndBrain
         /// The leds selector dor selecting different led to turn on.
         /// </summary>
         private VaryingIndexSelector _ledSelector;
+
+        /// <summary>
+        /// The streamwriter for the current experiment results.
+        /// </summary>
+        private StreamWriter _currentResultFileStrwamWriter;
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
@@ -236,6 +243,10 @@ namespace PinkyAndBrain
 
             //set the frequency for the JBI file creator.
             _motomanProtocolFileCreator.Frequency = _frequency;
+
+            //create a new results file for the new experiment.
+            if (_currentResultFileStrwamWriter != null) _currentResultFileStrwamWriter.Dispose();
+            _currentResultFileStrwamWriter =  File.CreateText(Application.StartupPath + @"\results\" + Guid.NewGuid());
 
             //run the main control loop function in other thread fom the main thread ( that handling events and etc).
             _stopAfterTheEndOfTheCurrentTrial = false;
@@ -662,10 +673,65 @@ namespace PinkyAndBrain
         {
             Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveRobotHomePosition());
 
+            Task.Run(() =>
+            {
+                StringBuilder textBuilder = new StringBuilder();
+                textBuilder.Append("trial # ");
+                textBuilder.Append(_numOfPastTrials);
+                _currentResultFileStrwamWriter.WriteLine(textBuilder.ToString());
+                textBuilder.Clear();
+
+                WriteAllParametersValues(_crossVaryingVals[_currentVaryingTrialIndex] , _currentTrialTimings , _staticVariablesList);
+                _currentResultFileStrwamWriter.Flush();
+            });
+
             Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
 
             //wait the maximum time of the postTrialTime and the going home position time.
             moveRobotHomePositionTask.Wait();
+        }
+
+        public void WriteAllParametersValues(Dictionary<string , List<double>> trialVaryingParameters , TrialTimings trialTimings , Dictionary<string , List<List<double>>> trialStaticParameters)
+        {
+            StringBuilder lineBuilder = new StringBuilder();
+
+            foreach (string paramName in trialStaticParameters.Keys)
+            {
+                lineBuilder.Append(paramName);
+                lineBuilder.Append("\t\t:\t");
+                foreach (double value in trialStaticParameters[paramName][0])
+                {
+                    lineBuilder.Append(value);
+                    lineBuilder.Append(" ");
+                }
+
+                _currentResultFileStrwamWriter.WriteLine(lineBuilder.ToString());
+                lineBuilder.Clear();
+            }
+
+            foreach (string paramName in trialVaryingParameters.Keys)
+            {
+                lineBuilder.Append(paramName);
+                lineBuilder.Append("\t\t:\t");
+                foreach (double value in trialVaryingParameters[paramName])
+                {
+                    lineBuilder.Append(value);
+                    lineBuilder.Append(" ");
+                }
+
+                _currentResultFileStrwamWriter.WriteLine(lineBuilder.ToString());
+                lineBuilder.Clear();
+            }
+
+            foreach (var field in typeof(TrialTimings).GetFields(BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic))
+            {
+                lineBuilder.Append(field.Name);
+                lineBuilder.Append("\t:\t");
+                lineBuilder.Append(field.GetValue(trialTimings));
+
+                _currentResultFileStrwamWriter.WriteLine(lineBuilder.ToString());
+                lineBuilder.Clear();
+            }
         }
 
         /// <summary>
