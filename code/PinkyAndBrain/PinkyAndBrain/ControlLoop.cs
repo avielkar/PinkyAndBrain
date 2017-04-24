@@ -174,9 +174,9 @@ namespace PinkyAndBrain
         private VaryingIndexSelector _ledSelector;
 
         /// <summary>
-        /// The streamwriter for the current experiment results.
+        /// The SavedDataMaker object to create new result file for each experiment.
         /// </summary>
-        private StreamWriter _currentResultFileStrwamWriter;
+        private SavedDataMaker _savedExperimentDataMaker;
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
@@ -213,6 +213,9 @@ namespace PinkyAndBrain
             _ledController = ledController;
             //initialize the leds index selector.
             _ledSelector = new VaryingIndexSelector(250);
+
+            //initialize the savedDataMaker object once.
+            _savedExperimentDataMaker = new SavedDataMaker();
         }
         #endregion CONTRUCTORS
 
@@ -245,8 +248,7 @@ namespace PinkyAndBrain
             _motomanProtocolFileCreator.Frequency = _frequency;
 
             //create a new results file for the new experiment.
-            if (_currentResultFileStrwamWriter != null) _currentResultFileStrwamWriter.Dispose();
-            _currentResultFileStrwamWriter =  File.CreateText(Application.StartupPath + @"\results\" + Guid.NewGuid());
+            _savedExperimentDataMaker.CreateControlNewFile();
 
             //run the main control loop function in other thread fom the main thread ( that handling events and etc).
             _stopAfterTheEndOfTheCurrentTrial = false;
@@ -675,63 +677,13 @@ namespace PinkyAndBrain
 
             Task.Run(() =>
             {
-                StringBuilder textBuilder = new StringBuilder();
-                textBuilder.Append("trial # ");
-                textBuilder.Append(_numOfPastTrials);
-                _currentResultFileStrwamWriter.WriteLine(textBuilder.ToString());
-                textBuilder.Clear();
-
-                WriteAllParametersValues(_crossVaryingVals[_currentVaryingTrialIndex] , _currentTrialTimings , _staticVariablesList);
-                _currentResultFileStrwamWriter.Flush();
+                _savedExperimentDataMaker.SaveTrialDataToFile(new TrialData() { StaticVariables = _staticVariablesList, VaryingVariables = _crossVaryingVals[_currentVaryingTrialIndex], TimingsVariables = _currentTrialTimings }, _numOfPastTrials);
             });
 
             Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
 
             //wait the maximum time of the postTrialTime and the going home position time.
             moveRobotHomePositionTask.Wait();
-        }
-
-        public void WriteAllParametersValues(Dictionary<string , List<double>> trialVaryingParameters , TrialTimings trialTimings , Dictionary<string , List<List<double>>> trialStaticParameters)
-        {
-            StringBuilder lineBuilder = new StringBuilder();
-
-            foreach (string paramName in trialStaticParameters.Keys)
-            {
-                lineBuilder.Append(paramName);
-                lineBuilder.Append("\t\t:\t");
-                foreach (double value in trialStaticParameters[paramName][0])
-                {
-                    lineBuilder.Append(value);
-                    lineBuilder.Append(" ");
-                }
-
-                _currentResultFileStrwamWriter.WriteLine(lineBuilder.ToString());
-                lineBuilder.Clear();
-            }
-
-            foreach (string paramName in trialVaryingParameters.Keys)
-            {
-                lineBuilder.Append(paramName);
-                lineBuilder.Append("\t\t:\t");
-                foreach (double value in trialVaryingParameters[paramName])
-                {
-                    lineBuilder.Append(value);
-                    lineBuilder.Append(" ");
-                }
-
-                _currentResultFileStrwamWriter.WriteLine(lineBuilder.ToString());
-                lineBuilder.Clear();
-            }
-
-            foreach (var field in typeof(TrialTimings).GetFields(BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic))
-            {
-                lineBuilder.Append(field.Name);
-                lineBuilder.Append("\t:\t");
-                lineBuilder.Append(field.GetValue(trialTimings));
-
-                _currentResultFileStrwamWriter.WriteLine(lineBuilder.ToString());
-                lineBuilder.Clear();
-            }
         }
 
         /// <summary>

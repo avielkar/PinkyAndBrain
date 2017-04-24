@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Windows.Forms;
+using System.Reflection;
 
 namespace PinkyAndBrain
 {
@@ -10,13 +13,112 @@ namespace PinkyAndBrain
     /// This class is called at the beginning and the end of each trial.
     /// At the beginning in order to store the current trial parameters.
     /// At the end of the trial in order to store the responses and etc results.
-    /// At the end of the experiment it saves the whole stored data into an excel file according to a user input file.
+    /// At the end of each trial in the experiment it saves the whole stored data into an txt file.
     /// </summary>
     class SavedDataMaker
     {
+        /// <summary>
+        /// The current file name (full path) writing to it the data.
+        /// </summary>
+        private string _cuurentFilePath;
+
+        private StreamWriter _currentSavedFileStramWriter;
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public SavedDataMaker()
         {
-
+            _currentSavedFileStramWriter = null;
         }
+
+        /// <summary>
+        /// Save (write) a trial in the experiment to the current created new file.
+        /// </summary>
+        /// <param name="trialData">The trial data struct to written to the file.</param>
+        /// <param name="trialNumber">The trial number to be written to the current trialData.</param>
+        public void SaveTrialDataToFile(TrialData trialData , int trialNumber)
+        {
+            //create a new stringBuilder for line filling in the new created results file.
+            StringBuilder lineBuilder = new StringBuilder();
+            
+            //append the new trial number.
+            lineBuilder.Append("trial # ");
+            lineBuilder.Append(trialNumber);
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
+            //appends all static variables names and values.
+            foreach (string paramName in trialData.StaticVariables.Keys)
+            {
+                lineBuilder.Append(paramName);
+                lineBuilder.Append("\t\t:\t");
+                foreach (double value in trialData.StaticVariables[paramName][0])
+                {
+                    lineBuilder.Append(value);
+                    lineBuilder.Append(" ");
+                }
+
+                _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+                lineBuilder.Clear();
+            }
+
+            //append all varying variables names and values.
+            foreach (string paramName in trialData.VaryingVariables.Keys)
+            {
+                lineBuilder.Append(paramName);
+                lineBuilder.Append("\t\t:\t");
+                foreach (double value in trialData.VaryingVariables[paramName])
+                {
+                    lineBuilder.Append(value);
+                    lineBuilder.Append(" ");
+                }
+
+                _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+                lineBuilder.Clear();
+            }
+
+            //append all timngs variables names and values.
+            foreach (var field in typeof(ControlLoop.TrialTimings).GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
+            {
+                lineBuilder.Append(field.Name);
+                lineBuilder.Append("\t:\t");
+                lineBuilder.Append(field.GetValue(trialData.TimingsVariables));
+
+                _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+                lineBuilder.Clear();
+            }
+        }
+
+        /// <summary>
+        /// Create a new experiment result file to save in it new experiment data.
+        /// </summary>
+        public void CreateControlNewFile()
+        {
+            //create a new results file for the new experiment.
+            if (_currentSavedFileStramWriter != null) _currentSavedFileStramWriter.Dispose();
+            _currentSavedFileStramWriter = File.CreateText(Application.StartupPath + @"\results\" + Guid.NewGuid());
+        }
+    }
+
+    /// <summary>
+    /// TrialData compact class.
+    /// </summary>
+    class TrialData
+    {
+        /// <summary>
+        /// The static variables value for one trial.
+        /// </summary>
+        public Dictionary<string , List<List<double>>> StaticVariables { get; set; }
+
+        /// <summary>
+        /// The varying varuiables value for one trial.
+        /// </summary>
+        public Dictionary<string , List<double>> VaryingVariables { get; set; }
+
+        /// <summary>
+        /// The timings variables for one trial.
+        /// </summary>
+        public ControlLoop.TrialTimings TimingsVariables { get; set; }
     }
 }
