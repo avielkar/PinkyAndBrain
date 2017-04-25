@@ -84,6 +84,11 @@ namespace PinkyAndBrain
         /// The total number of trials for the experiment should have.
         /// </summary>
         private int _totalNumOfTrials;
+        
+        /// <summary>
+        /// The total number of correct answers(head stability during the trial movement plus correct decision).
+        /// </summary>
+        private int _totalCorrectAnswers;
 
         /// <summary>
         /// The varying index selector for choosing the current combination index.
@@ -230,9 +235,13 @@ namespace PinkyAndBrain
             _crossVaryingVals = crossVaryingList;
             _staticVariablesList = staticVariablesList;
             _frequency = frequency;
+            
+            //initialize counters and varying selector.
             _totalNumOfTrials = _crossVaryingVals.Count();
             _varyingIndexSelector = new VaryingIndexSelector(_totalNumOfTrials);
             _numOfPastTrials = 0;
+            _totalCorrectAnswers = 0;
+
             _timingRandomizer = new Random();
             _mainGuiControlsDelegatesDictionary = ctrlDelegatesDic;
             _mainGuiInterfaceControlsDictionary = mainGuiInterfaceControlsDictionary;
@@ -348,6 +357,9 @@ namespace PinkyAndBrain
             //update the number of left trials.
             _mainGuiInterfaceControlsDictionary["UpdateCurrentTrialDetailsViewList"].BeginInvoke(
                 _mainGuiControlsDelegatesDictionary["UpdateCurrentTrialDetailsViewList"], "Left Number", (_totalNumOfTrials - _numOfPastTrials - 1).ToString());
+
+            _mainGuiInterfaceControlsDictionary["UpdateCurrentTrialDetailsViewList"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateCurrentTrialDetailsViewList"], "Total Correct Answers", (_totalCorrectAnswers).ToString());
         }
 
         /// <summary>
@@ -389,11 +401,30 @@ namespace PinkyAndBrain
 
         /// <summary>
         /// Waiting the rat to response the movement direction.
+        /// <returns>The rat decision value.</returns>
         /// </summary>
-        public void ResponseTimeStage()
+        public RatDecison ResponseTimeStage()
         {
-            //time to wait for the moving rat response.
-            Thread.Sleep(1000*(int)(_currentTrialTimings.wResponseTime));
+            //Thread.Sleep(1000*(int)(_currentTrialTimings.wResponseTime));
+
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            //time to wait for the moving rat response. if decided about a side so break and return the decision.
+            while(sw.ElapsedMilliseconds < 1000*(int)(_currentTrialTimings.wResponseTime))
+            {
+                if(_currentRatResponse == 1)
+                {
+                    return RatDecison.Left;
+                }
+
+                else if(_currentRatResponse == 4)
+                {
+                    return RatDecison.Right; ;
+                }
+            }
+
+            return RatDecison.NoDecision;
         }
 
         /// <summary>
@@ -434,6 +465,9 @@ namespace PinkyAndBrain
             Task robotMotion;
             switch (_currentTrialStimulusType)
             {
+                case 0://none
+                    robotMotion = Task.Factory.StartNew(() => Thread.Sleep((int)(1000 * _currentTrialTimings.wDuration)));
+                    break;
                 case 1://vistibular only.
                     robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both));
                     break;
@@ -838,6 +872,32 @@ namespace PinkyAndBrain
             /// The robot movement duration.
             /// </summary>
             public double wDuration;
+        };
+
+        /// <summary>
+        /// Enum for the rat stimulus decision.
+        /// </summary>
+        public enum RatDecison
+        {
+            /// <summary>
+            /// The rat doesn't decide anything (it's head eas not in any of the sides).
+            /// </summary>
+            NoDecision = 0,
+
+            /// <summary>
+            /// The rat decide about the center.
+            /// </summary>
+            Center = 1,
+
+            /// <summary>
+            /// The rat decide about the left side.
+            /// </summary>
+            Left = 2,
+
+            /// <summary>
+            /// The rat decide about the right side.
+            /// </summary>
+            Right = 4,
         };
         #endregion FUNCTIONS
     }

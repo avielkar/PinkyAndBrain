@@ -22,6 +22,9 @@ namespace PinkyAndBrain
         /// </summary>
         private string _cuurentFilePath;
 
+        /// <summary>
+        /// The current saving file StreamWriter to save the file with.
+        /// </summary>
         private StreamWriter _currentSavedFileStramWriter;
 
         /// <summary>
