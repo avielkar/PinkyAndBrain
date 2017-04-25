@@ -400,27 +400,36 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Waiting the rat to response the movement direction.
+        /// Waiting the rat to response the movement direction abd update the _totalCorrectAnswers counter.
         /// <returns>The rat decision value.</returns>
         /// </summary>
         public RatDecison ResponseTimeStage()
         {
             //Thread.Sleep(1000*(int)(_currentTrialTimings.wResponseTime));
 
+            //get the current stimulus direction.
+            double currentHeadingDirection = double.Parse(GetVariableValue(0, "HEADING_DIRECTION"));
+
+            //determine the current stimulus direaction.
+            RatDecison currentStimulationSide = (currentHeadingDirection == 0) ? (RatDecison.Center) : ((currentHeadingDirection > 0) ? (RatDecison.Right) : RatDecison.Left);
+
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            //time to wait for the moving rat response. if decided about a side so break and return the decision.
+            //time to wait for the moving rat response. if decided about a side so break and return the decision and update the _totalCorrectAnsers.
             while(sw.ElapsedMilliseconds < 1000*(int)(_currentTrialTimings.wResponseTime))
             {
                 if(_currentRatResponse == 1)
                 {
+                    if (currentStimulationSide.Equals(RatDecison.Left)) { _totalCorrectAnswers++; }
+
                     return RatDecison.Left;
                 }
 
                 else if(_currentRatResponse == 4)
                 {
-                    return RatDecison.Right; ;
+                    if (currentStimulationSide.Equals(RatDecison.Right)) { _totalCorrectAnswers++; }
+                    return RatDecison.Right;
                 }
             }
 
@@ -657,22 +666,46 @@ namespace PinkyAndBrain
         /// <returns>The result time according to the type of the time.</returns>
         public double DetermineTimeByVariable(string timeVarName)
         {
-            //detrmine the status of the time type.
-            string startDelayStatus = _variablesList._variablesDictionary[timeVarName]._description["status"]._ratHouseParameter[0];
             
-            //decide the time value of the time type according to it's status.
-            switch (startDelayStatus)
-            {
-                case "1"://static
-                    return double.Parse(_variablesList._variablesDictionary[timeVarName]._description["parameters"]._ratHouseParameter[0]);
+           //detrmine variable value by the status of the time type.
+           string timeValue = GetVariableValue(0, timeVarName);
 
-                case "5"://random
-                    double lowTime = double.Parse(_variablesList._variablesDictionary[timeVarName]._description["low_bound"]._ratHouseParameter[0]);
-                    double highTime = double.Parse(_variablesList._variablesDictionary[timeVarName]._description["high_bound"]._ratHouseParameter[0]);
-                    return RandomTimeUniformly(lowTime, highTime);
+            //if not found - it is random type varriable.
+            if(timeValue == string.Empty)
+            {
+                double lowTime = double.Parse(_variablesList._variablesDictionary[timeVarName]._description["low_bound"]._ratHouseParameter[0]);
+                double highTime = double.Parse(_variablesList._variablesDictionary[timeVarName]._description["high_bound"]._ratHouseParameter[0]);
+                return RandomTimeUniformly(lowTime, highTime);
             }
 
-            return 0;
+            return double.Parse(timeValue);
+        }
+
+        /// <summary>
+        /// Determines the asked variable value at the current stage by it's status (not include random types).
+        /// </summary>
+        /// <param name="houseParameter">'0' for ratHouseParameter or '1' for landscapeHouseParameter.</param>
+        /// <param name="parameterName">The parameter name to get the value for.</param>
+        /// <returns>The value of the parameter at the current trial.</returns>
+        public string GetVariableValue(int houseParameter , string parameterName)
+        {
+            //detrmine the status of the variable type.
+            string variableStatus = _variablesList._variablesDictionary[parameterName]._description["status"]._ratHouseParameter[houseParameter];
+
+            //decide the time value of the time type according to it's status.
+            switch (variableStatus)
+            {
+                case "1"://static
+                    return _variablesList._variablesDictionary[parameterName]._description["parameters"]._ratHouseParameter[houseParameter];
+
+                case "2"://varying
+                    return _crossVaryingVals[_currentVaryingTrialIndex][parameterName][houseParameter].ToString("000000.00000000");
+
+                default:
+                    return string.Empty;
+
+            }
+
         }
 
         /// <summary>

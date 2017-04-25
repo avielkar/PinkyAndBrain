@@ -2,3 +2,4 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adress
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\bin\Debug\LED.Strip.Adressable.pdb
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\obj\Debug\LED.Strip.Adressable.dll
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\obj\Debug\LED.Strip.Adressable.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\obj\Debug\LED.Strip.Adressable.csprojResolveAssemblyReference.cache
