@@ -407,6 +407,10 @@ namespace PinkyAndBrain
         {
             //Thread.Sleep(1000*(int)(_currentTrialTimings.wResponseTime));
 
+            //if not trainig continue.
+            if (GetVariableValue(0, "STIMULUS_TYPE") == "0")
+                return RatDecison.NoDecision;
+
             //get the current stimulus direction.
             double currentHeadingDirection = double.Parse(GetVariableValue(0, "HEADING_DIRECTION"));
 
