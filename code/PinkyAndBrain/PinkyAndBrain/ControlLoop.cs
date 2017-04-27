@@ -322,10 +322,29 @@ namespace PinkyAndBrain
                             _totalHeadStabilityInCenterDuringDurationTime++;
 
                             //reward the rat in the center with water for duration of reward1Duration for stable head in the center during the movement.
-                            Reward1Stage();
+                            RewardCenterStage();
 
-                            //wait the rat to response to the movement.
-                            ResponseTimeStage();
+                            //wait the rat to response to the movement during the response tine.
+                            Tuple<RatDecison , bool> decision = ResponseTimeStage();
+                            //check if the decision was correct and reward the rat according that decision.
+                            if(decision.Item2)
+                            {
+                                //reward the choosen side cellenoid.
+                                switch (decision.Item1)
+                                {
+                                    case RatDecison.Center:
+                                        RewardCenterStage();
+                                        break;
+                                    case RatDecison.Left:
+                                        RewardLeftStage();
+                                        break;
+                                    case RatDecison.Right:
+                                        RewardRightStage();
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
                         }
                     }
 
@@ -410,6 +429,10 @@ namespace PinkyAndBrain
         /// </summary>
         public void InitializationStage()
         {
+            //update the global details listview with the current stage.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Intialization");
+
             //determine all current trial timings and delays.
             _currentTrialTimings = DetermineCurrentTrialTimings();
             _currentTrialStimulusType = DetermineCurrentStimulusType();
@@ -420,15 +443,19 @@ namespace PinkyAndBrain
 
         /// <summary>
         /// Waiting the rat to response the movement direction abd update the _totalCorrectAnswers counter.
-        /// <returns>The rat decision value.</returns>
+        /// <returns>The rat decision value and it's correctness.</returns>
         /// </summary>
-        public RatDecison ResponseTimeStage()
+        public Tuple<RatDecison , bool> ResponseTimeStage()
         {
             //Thread.Sleep(1000*(int)(_currentTrialTimings.wResponseTime));
 
+            //update the global details listview with the current stage.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Response time");
+
             //if not trainig continue.
             if (GetVariableValue(0, "STIMULUS_TYPE") == "0")
-                return RatDecison.NoDecision;
+                return new Tuple<RatDecison,bool>(RatDecison.NoDecision , false);
 
             //get the current stimulus direction.
             double currentHeadingDirection = double.Parse(GetVariableValue(0, "HEADING_DIRECTION"));
@@ -444,46 +471,84 @@ namespace PinkyAndBrain
             {
                 if(_currentRatResponse == 1)
                 {
-                    if (currentStimulationSide.Equals(RatDecison.Left)) { _totalCorrectAnswers++; }
+                    if (currentStimulationSide.Equals(RatDecison.Left)) { _totalCorrectAnswers++; return new Tuple<RatDecison, bool>(RatDecison.Left, true); }
 
-                    return RatDecison.Left;
+                    return new Tuple<RatDecison,bool>(RatDecison.Left , false);
                 }
 
                 else if(_currentRatResponse == 4)
                 {
-                    if (currentStimulationSide.Equals(RatDecison.Right)) { _totalCorrectAnswers++; }
-                    return RatDecison.Right;
+                    if (currentStimulationSide.Equals(RatDecison.Right)) { _totalCorrectAnswers++; return new Tuple<RatDecison, bool>(RatDecison.Right, true); }
+                    return new Tuple<RatDecison,bool>( RatDecison.Right , false);
                 }
             }
 
-            return RatDecison.NoDecision;
+            return new Tuple<RatDecison,bool>(RatDecison.NoDecision , false);
         }
 
         /// <summary>
-        /// The reward1 stage is happening if the rat head was consistently stable in the center during the movement.
+        /// Reward water to the rat in the given position with during the given time long.
         /// </summary>
-        public void Reward1Stage()
+        /// <param name="position"></param>
+        /// <param name="duration"></param>
+        public void Reward(RewardPosition position , double duration)
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
             //wait the reward1 delay time befor openning the reward1.
-            Thread.Sleep((int)(_currentTrialTimings.wReward1Delay * 1000));
+            Thread.Sleep((int)(duration * 1000));
 
             sw.Restart();
 
             //open the center reward for the rat to be rewarded.
             //after the reward1 duration time and than close it.
-            _rewardController.WriteSingleSamplePort(true, 0x02);
+            _rewardController.WriteSingleSamplePort(true , (byte)position);
 
             //wait the reward1 time and fill the interactive water fill estimation panel.
             _waterRewardFillingTimer.Start();
-            Thread.Sleep((int)(_currentTrialTimings.wReward1Duration * 1000));
+            Thread.Sleep((int)(_currentTrialTimings.wRewardCenterDuration * 1000));
             _waterRewardFillingTimer.Stop();
 
             //close again the reward1 port.
             _rewardController.WriteSingleSamplePort(true, 0x00);
+        }
 
+        /// <summary>
+        /// The reward left stage is happening if the rat decide the correct stimulus side.
+        /// </summary>
+        public void RewardLeftStage()
+        {
+            //update the global details listview with the current stage.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Reward Left time");
+
+            Reward(RewardPosition.Left, _currentTrialTimings.wReward3Duration);
+        }
+
+        /// <summary>
+        /// The reward right stage is happening if the rat decide the correct stimulus side.
+        /// </summary>
+        public void RewardRightStage()
+        {
+            //update the global details listview with the current stage.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Reward Right time");
+
+
+            Reward(RewardPosition.Right, _currentTrialTimings.wReward2Duration);
+        }
+
+        /// <summary>
+        /// The reward center stage is happening if the rat head was consistently stable in the center during the movement.
+        /// </summary>
+        public void RewardCenterStage()
+        {
+            //update the global details listview with the current stage.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Reward Center time");
+
+            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration);
         }
 
         /// <summary>
@@ -493,6 +558,10 @@ namespace PinkyAndBrain
         /// <returns>True if the head was stable consistently in the center during the movement time.</returns>
         public bool MovingTheRobotDurationWithHeadCenterStabilityStage()
         {
+            //update the global details listview with the current stage.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Duration time");
+
             //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
             Task robotMotion;
             switch (_currentTrialStimulusType)
@@ -586,6 +655,10 @@ namespace PinkyAndBrain
         /// <returns>True if the rat enter the head to the center during the limit of the timeoutTime.</returns>
         public bool WaitForHeadEnteranceToTheCenterStage()
         {
+            //update the global details listview with the current stage.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Head in the center waiting");
+
             //waits for the rat to move it's head to the center with timeout time.
             int x = 0;
 
@@ -667,7 +740,7 @@ namespace PinkyAndBrain
             currentTrialTimings .wReward2Delay= DetermineTimeByVariable("REWARD2_DELAY");
             currentTrialTimings.wReward3Delay= DetermineTimeByVariable("REWARD3_DELAY");
 
-            currentTrialTimings.wReward1Duration = DetermineTimeByVariable("REWARD1_DURATION");
+            currentTrialTimings.wRewardCenterDuration = DetermineTimeByVariable("REWARD1_DURATION");
             currentTrialTimings.wReward2Duration = DetermineTimeByVariable("REWARD2_DURATION");
             currentTrialTimings.wReward3Duration = DetermineTimeByVariable("REWARD3_DURATION");
 
@@ -763,6 +836,10 @@ namespace PinkyAndBrain
         /// </summary>
         public void PostTrialStage()
         {
+            //update the global details listview with the current stage.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Post trial time.");
+
             Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveRobotHomePosition());
 
             Task.Run(() =>
@@ -897,7 +974,7 @@ namespace PinkyAndBrain
             /// <summary>
             /// The duration for the center reward.
             /// </summary>
-            public double wReward1Duration;
+            public double wRewardCenterDuration;
 
             /// <summary>
             /// The duration for the right reward.
@@ -954,6 +1031,27 @@ namespace PinkyAndBrain
             /// The rat decide about the right side.
             /// </summary>
             Right = 4,
+        };
+
+        /// <summary>
+        /// Enum for the reward poition/direction.
+        /// </summary>
+        public enum RewardPosition
+        {
+            /// <summary>
+            /// Reward to the center.
+            /// </summary>
+            Center = 0x02,
+
+            /// <summary>
+            /// Reward to the left.
+            /// </summary>
+            Left = 0x01,
+
+            /// <summary>
+            /// Reward to the right.
+            /// </summary>
+            Right = 0x04,
         };
         #endregion FUNCTIONS
     }

@@ -434,7 +434,7 @@
             this.globalExperimentInfogroupBox.Controls.Add(this._globaExperimentlInfoListView);
             this.globalExperimentInfogroupBox.Location = new System.Drawing.Point(1275, 81);
             this.globalExperimentInfogroupBox.Name = "globalExperimentInfogroupBox";
-            this.globalExperimentInfogroupBox.Size = new System.Drawing.Size(298, 186);
+            this.globalExperimentInfogroupBox.Size = new System.Drawing.Size(391, 310);
             this.globalExperimentInfogroupBox.TabIndex = 18;
             this.globalExperimentInfogroupBox.TabStop = false;
             this.globalExperimentInfogroupBox.Text = "Global Experiment Info";
@@ -443,7 +443,7 @@
             // 
             this._globaExperimentlInfoListView.Location = new System.Drawing.Point(6, 19);
             this._globaExperimentlInfoListView.Name = "_globaExperimentlInfoListView";
-            this._globaExperimentlInfoListView.Size = new System.Drawing.Size(286, 161);
+            this._globaExperimentlInfoListView.Size = new System.Drawing.Size(379, 285);
             this._globaExperimentlInfoListView.TabIndex = 0;
             this._globaExperimentlInfoListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -451,7 +451,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1585, 912);
+            this.ClientSize = new System.Drawing.Size(1678, 912);
             this.Controls.Add(this.globalExperimentInfogroupBox);
             this.Controls.Add(this._trialInfoGroupBox);
             this.Controls.Add(this._selectedRatGroupBox);
