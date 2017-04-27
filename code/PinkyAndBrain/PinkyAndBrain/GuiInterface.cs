@@ -222,7 +222,7 @@ namespace PinkyAndBrain
             _globaExperimentlInfoListView.Items.Clear();
             _globaExperimentlInfoListView.Columns.Clear();
             _globaExperimentlInfoListView.Columns.Add("Name", "Name", 190);
-            _globaExperimentlInfoListView.Columns.Add("Description", "Description", 80);
+            _globaExperimentlInfoListView.Columns.Add("Description", "Description", 150);
             _globaExperimentlInfoListView.View = View.Details;
         }
 
