@@ -91,6 +91,11 @@ namespace PinkyAndBrain
         private int _totalCorrectAnswers;
 
         /// <summary>
+        /// Thr total number of enterance to the center during timeout time with stability during the duration time.
+        /// </summary>
+        private int _totalHeadStabilityInCenterDuringDurationTime;
+
+        /// <summary>
         /// The varying index selector for choosing the current combination index.
         /// </summary>
         private VaryingIndexSelector _varyingIndexSelector;
@@ -241,6 +246,7 @@ namespace PinkyAndBrain
             _varyingIndexSelector = new VaryingIndexSelector(_totalNumOfTrials);
             _numOfPastTrials = 0;
             _totalCorrectAnswers = 0;
+            _totalHeadStabilityInCenterDuringDurationTime = 0;
 
             _timingRandomizer = new Random();
             _mainGuiControlsDelegatesDictionary = ctrlDelegatesDic;
@@ -294,6 +300,7 @@ namespace PinkyAndBrain
 
                 //show some trial details to the gui trial details panel.
                 ShowTrialDetailsToTheDetailsListView();
+                //show the global experiment details for global experiment details.
                 ShowGlobalExperimentDetailsListView();
 
                 //initialize the currebt time parameters and all the current trial variables.
@@ -311,6 +318,9 @@ namespace PinkyAndBrain
                         //moving the robot with duration time , and checking for the stability of the head in the center.
                         if (MovingTheRobotDurationWithHeadCenterStabilityStage())
                         {
+                            //update the number of total head in the center with stability during the duration time.
+                            _totalHeadStabilityInCenterDuringDurationTime++;
+
                             //reward the rat in the center with water for duration of reward1Duration for stable head in the center during the movement.
                             Reward1Stage();
 
@@ -350,16 +360,25 @@ namespace PinkyAndBrain
         /// </summary>
         private void ShowGlobalExperimentDetailsListView()
         {
+            //clear the past global details in the global details listview.
+            _mainGuiInterfaceControlsDictionary["ClearGlobaExperimentlDetailsViewList"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["ClearGlobaExperimentlDetailsViewList"]);
+
             //update the number of past trials.
-            _mainGuiInterfaceControlsDictionary["UpdateCurrentTrialDetailsViewList"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateCurrentTrialDetailsViewList"], "Trial Number", (_numOfPastTrials+1).ToString());
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Trial Number", (_numOfPastTrials + 1).ToString());
 
             //update the number of left trials.
-            _mainGuiInterfaceControlsDictionary["UpdateCurrentTrialDetailsViewList"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateCurrentTrialDetailsViewList"], "Left Number", (_totalNumOfTrials - _numOfPastTrials - 1).ToString());
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Left Number", (_totalNumOfTrials - _numOfPastTrials - 1).ToString());
 
-            _mainGuiInterfaceControlsDictionary["UpdateCurrentTrialDetailsViewList"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateCurrentTrialDetailsViewList"], "Total Correct Answers", (_totalCorrectAnswers).ToString());
+            //update the number of total correct answers.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Total Correct Answers", (_totalCorrectAnswers).ToString());
+
+            //update the number of total correct head in center with stabilty during duration time.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Total Head in Center with Stability", (_totalHeadStabilityInCenterDuringDurationTime).ToString());
         }
 
         /// <summary>

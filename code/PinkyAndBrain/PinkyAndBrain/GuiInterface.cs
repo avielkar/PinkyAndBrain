@@ -197,6 +197,35 @@ namespace PinkyAndBrain
             _trialDetailsListView.View = View.Details;
         }
 
+        public delegate void ChangeGlobalDetailsListViewText(string name , string value);
+
+        /// <summary>
+        /// Update the global experiment details ListView with that parameter.
+        /// </summary>
+        /// <param name="name">The parameter name to show.</param>
+        /// <param name="value">The value of the parameter to show.</param>
+        private void ChangeGlobalExperimentDetailsListView(string name , string value)
+        {
+            ListViewItem lvi = new ListViewItem(name);
+            lvi.SubItems.Add(value);
+            _globaExperimentlInfoListView.Items.Add(lvi);
+        }
+
+        //A delegate for clearing the global experiment details listview.
+        public delegate void ClearGlobalDetailsListViewText();
+
+        /// <summary>
+        /// Clear the current global details listview.
+        /// </summary>
+        private void ClearGlobalExperimentDetailsListView()
+        {
+            _globaExperimentlInfoListView.Items.Clear();
+            _globaExperimentlInfoListView.Columns.Clear();
+            _globaExperimentlInfoListView.Columns.Add("Name", "Name", 190);
+            _globaExperimentlInfoListView.Columns.Add("Description", "Description", 80);
+            _globaExperimentlInfoListView.View = View.Details;
+        }
+
         /// <summary>
         /// Delegate for event of finishing the experiment trials rounds.
         /// </summary>
@@ -266,9 +295,20 @@ namespace PinkyAndBrain
             ctrlDelegatesDic.Add("UpdateCurrentTrialDetailsViewList", changeCurrentTrialTextDelegate);
             ctrlDictionary.Add("UpdateCurrentTrialDetailsViewList", _trialDetailsListView);
 
+            //add the delegate for clearing the current trial details listview.
             ClearCurrentTrialDetailsListViewText clearCurrentTrialTextDelegate = new ClearCurrentTrialDetailsListViewText(ClearCurrentTrialDetailsListView);
             ctrlDelegatesDic.Add("ClearCurrentTrialDetailsViewList", clearCurrentTrialTextDelegate);
             ctrlDictionary.Add("ClearCurrentTrialDetailsViewList", _trialDetailsListView);
+
+            //add the delegate for clearing the global details listview.
+            ClearGlobalDetailsListViewText clearGlobalTextDelegate = new ClearGlobalDetailsListViewText(ClearGlobalExperimentDetailsListView);
+            ctrlDelegatesDic.Add("ClearGlobaExperimentlDetailsViewList", clearGlobalTextDelegate);
+            ctrlDictionary.Add("ClearGlobaExperimentlDetailsViewList", _globaExperimentlInfoListView);
+
+            //add the delegate for updating the text for the current global experiment details ListView , also add the control of the ListView with the same key name.
+            ChangeGlobalDetailsListViewText changeGlobalExperimentTextDelegate = new ChangeGlobalDetailsListViewText(ChangeGlobalExperimentDetailsListView);
+            ctrlDelegatesDic.Add("UpdateGlobalExperimentDetailsListView", changeGlobalExperimentTextDelegate);
+            ctrlDictionary.Add("UpdateGlobalExperimentDetailsListView", _globaExperimentlInfoListView);
 
             //add the delegates for the Noldus rat response interactive panel checkboxes.
             SetNoldusRatResponseInteractivePanelCheckboxes setNoldusRatResponseInteractivePanelCheckboxesDelegate = new SetNoldusRatResponseInteractivePanelCheckboxes(SetNoldusRatResponseInteractivePanel);

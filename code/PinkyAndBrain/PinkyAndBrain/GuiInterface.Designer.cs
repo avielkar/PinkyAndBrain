@@ -67,6 +67,9 @@
             this._selectedRatNameComboBox = new System.Windows.Forms.ComboBox();
             this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
             this._guiInterfaceToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this._trialInfoGroupBox = new System.Windows.Forms.GroupBox();
+            this.globalExperimentInfogroupBox = new System.Windows.Forms.GroupBox();
+            this._globaExperimentlInfoListView = new System.Windows.Forms.ListView();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -76,6 +79,8 @@
             this.panel1.SuspendLayout();
             this._drinkControlGroupBox.SuspendLayout();
             this._selectedRatGroupBox.SuspendLayout();
+            this._trialInfoGroupBox.SuspendLayout();
+            this.globalExperimentInfogroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -177,9 +182,9 @@
             // _trialDetailsListView
             // 
             this._trialDetailsListView.HoverSelection = true;
-            this._trialDetailsListView.Location = new System.Drawing.Point(15, 719);
+            this._trialDetailsListView.Location = new System.Drawing.Point(6, 16);
             this._trialDetailsListView.Name = "_trialDetailsListView";
-            this._trialDetailsListView.Size = new System.Drawing.Size(711, 181);
+            this._trialDetailsListView.Size = new System.Drawing.Size(699, 156);
             this._trialDetailsListView.TabIndex = 10;
             this._trialDetailsListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -414,18 +419,47 @@
             // 
             this._guiInterfaceToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
+            // _trialInfoGroupBox
+            // 
+            this._trialInfoGroupBox.Controls.Add(this._trialDetailsListView);
+            this._trialInfoGroupBox.Location = new System.Drawing.Point(15, 722);
+            this._trialInfoGroupBox.Name = "_trialInfoGroupBox";
+            this._trialInfoGroupBox.Size = new System.Drawing.Size(711, 178);
+            this._trialInfoGroupBox.TabIndex = 17;
+            this._trialInfoGroupBox.TabStop = false;
+            this._trialInfoGroupBox.Text = "Trial Info";
+            // 
+            // globalExperimentInfogroupBox
+            // 
+            this.globalExperimentInfogroupBox.Controls.Add(this._globaExperimentlInfoListView);
+            this.globalExperimentInfogroupBox.Location = new System.Drawing.Point(1275, 81);
+            this.globalExperimentInfogroupBox.Name = "globalExperimentInfogroupBox";
+            this.globalExperimentInfogroupBox.Size = new System.Drawing.Size(298, 186);
+            this.globalExperimentInfogroupBox.TabIndex = 18;
+            this.globalExperimentInfogroupBox.TabStop = false;
+            this.globalExperimentInfogroupBox.Text = "Global Experiment Info";
+            // 
+            // _globaExperimentlInfoListView
+            // 
+            this._globaExperimentlInfoListView.Location = new System.Drawing.Point(6, 19);
+            this._globaExperimentlInfoListView.Name = "_globaExperimentlInfoListView";
+            this._globaExperimentlInfoListView.Size = new System.Drawing.Size(286, 161);
+            this._globaExperimentlInfoListView.TabIndex = 0;
+            this._globaExperimentlInfoListView.UseCompatibleStateImageBehavior = false;
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1278, 912);
+            this.ClientSize = new System.Drawing.Size(1585, 912);
+            this.Controls.Add(this.globalExperimentInfogroupBox);
+            this.Controls.Add(this._trialInfoGroupBox);
             this.Controls.Add(this._selectedRatGroupBox);
             this.Controls.Add(this._drinkControlGroupBox);
             this.Controls.Add(this._interactiveNolduscommuncation);
             this.Controls.Add(this._varyingControlGroupBox);
             this.Controls.Add(this._handRewardsgroupBox);
             this.Controls.Add(this._trialParametersGroup);
-            this.Controls.Add(this._trialDetailsListView);
             this.Controls.Add(this._protocolBrowserBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -447,6 +481,8 @@
             this._drinkControlGroupBox.ResumeLayout(false);
             this._drinkControlGroupBox.PerformLayout();
             this._selectedRatGroupBox.ResumeLayout(false);
+            this._trialInfoGroupBox.ResumeLayout(false);
+            this.globalExperimentInfogroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -492,5 +528,8 @@
         private System.Windows.Forms.ComboBox _selectedRatNameComboBox;
         private System.ComponentModel.BackgroundWorker backgroundWorker3;
         private System.Windows.Forms.ToolTip _guiInterfaceToolTip;
+        private System.Windows.Forms.GroupBox _trialInfoGroupBox;
+        private System.Windows.Forms.GroupBox globalExperimentInfogroupBox;
+        private System.Windows.Forms.ListView _globaExperimentlInfoListView;
     }
 }
