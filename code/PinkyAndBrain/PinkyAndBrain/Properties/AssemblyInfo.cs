@@ -14,6 +14,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
+//let log4net know that it can looks for configuration in the default config file.
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "PinkyAndBrain.log4net.config" , Watch=true)]
+
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.

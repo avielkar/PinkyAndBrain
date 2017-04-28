@@ -77,7 +77,7 @@ namespace LED.Strip.Adressable
             for (int i = 0; i < _ledsData.TurnedOnPlaces.Length / 50; i++)
             {
                 _ledArduinoSerialPort.Write(_ledsData.TurnedOnPlaces, i * 50, 50);
-                Thread.Sleep(10);
+                //avi:deleted - check - Thread.Sleep(10);
             }
 
             //means the end of the data.
