@@ -273,7 +273,11 @@ namespace PinkyAndBrain
         /// </summary>
         private void SetWaterRewardsMeasure()
         {
-                _waterRewardMeasure.Value += 1;
+            //set the water anoumt in animation.
+            _waterRewardMeasure.Value += 1;
+
+            //set the water amount in the animation text.
+            _waterRewardMeasure.Text = (((double)(_waterRewardMeasure.Value * 60) / _waterRewardMeasure.Maximum)).ToString("00.000") + "ml";
         }
 
         /// <summary>

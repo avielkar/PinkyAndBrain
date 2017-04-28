@@ -393,7 +393,7 @@
             this._waterRewardMeasure.Name = "_waterRewardMeasure";
             this._waterRewardMeasure.ProgressColor = System.Drawing.Color.Aqua;
             this._waterRewardMeasure.ProgressDirection = WaterMeasure.WaterMeasure.ProgressDir.Vertical;
-            this._waterRewardMeasure.ShowPercentage = true;
+            this._waterRewardMeasure.ShowText = true;
             this._waterRewardMeasure.Size = new System.Drawing.Size(44, 294);
             this._waterRewardMeasure.Text = "ml";
             // 

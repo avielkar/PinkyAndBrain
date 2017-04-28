@@ -489,15 +489,16 @@ namespace PinkyAndBrain
         /// <summary>
         /// Reward water to the rat in the given position with during the given time long.
         /// </summary>
-        /// <param name="position"></param>
-        /// <param name="duration"></param>
-        public void Reward(RewardPosition position , double duration)
+        /// <param name="position">The cellenoid position side to be opened.</param>
+        /// <param name="rewardDuration">The duration the selected cellenoid eould be opened.</param>
+        /// <param name="rewardDelay">The delay time before opening the selected cellenoid.</param>
+        public void Reward(RewardPosition position , double rewardDuration , double rewardDelay)
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
             //wait the reward1 delay time befor openning the reward1.
-            Thread.Sleep((int)(duration * 1000));
+            Thread.Sleep((int)(rewardDelay * 1000));
 
             sw.Restart();
 
@@ -507,7 +508,7 @@ namespace PinkyAndBrain
 
             //wait the reward1 time and fill the interactive water fill estimation panel.
             _waterRewardFillingTimer.Start();
-            Thread.Sleep((int)(_currentTrialTimings.wRewardCenterDuration * 1000));
+            Thread.Sleep((int)(rewardDuration * 1000));
             _waterRewardFillingTimer.Stop();
 
             //close again the reward1 port.
@@ -523,7 +524,7 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Left)");
 
-            Reward(RewardPosition.Left, _currentTrialTimings.wReward3Duration);
+            Reward(RewardPosition.Left, _currentTrialTimings.wReward3Duration , _currentTrialTimings.wReward3Delay);
         }
 
         /// <summary>
@@ -536,7 +537,7 @@ namespace PinkyAndBrain
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Right)");
 
 
-            Reward(RewardPosition.Right, _currentTrialTimings.wReward2Duration);
+            Reward(RewardPosition.Right, _currentTrialTimings.wReward2Duration , _currentTrialTimings.wReward2Delay);
         }
 
         /// <summary>
@@ -548,7 +549,7 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Center)");
 
-            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration);
+            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration , _currentTrialTimings.wReward3Delay);
         }
 
         /// <summary>
