@@ -11,6 +11,7 @@ using System.IO;
 using MLApp;
 using MotocomdotNetWrapper;
 using LED.Strip.Adressable;
+using log4net;
 
 
 namespace PinkyAndBrain
@@ -80,7 +81,7 @@ namespace PinkyAndBrain
         private string _selectedProtocolName;
 
         /// <summary>
-        /// The selected directions to give them hand rewrad (xxxxxyyy).
+        /// The selected directions to give them hand REWARD (xxxxxyyy).
         /// The y-y-y is the indicators for the directions as followed by left-center-right.
         /// </summary>
         private byte _selectedHandRewardDirections;
@@ -103,6 +104,8 @@ namespace PinkyAndBrain
         private CYasnac _motocomController;
 
         private LEDController _ledController;
+
+        private ILog _logger;
         #endregion MEMBERS
 
         #region CONSTRUCTORS
@@ -159,6 +162,10 @@ namespace PinkyAndBrain
             //create the result directory in the application path if needed.
             if(!Directory.Exists(Application.StartupPath + "\results"))
                 Directory.CreateDirectory(Application.StartupPath + @"\results\");
+
+            log4net.Config.XmlConfigurator.Configure(new FileInfo(Application.StartupPath+@"\Log4Net.config"));
+            _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            _logger.Info("Starting program...");
         }
         #endregion CONSTRUCTORS
 
@@ -866,7 +873,7 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Handler for the continious hand reward clicking (when release the button - should stop the given reward due to the clicked that opened the selected rewrad).
+        /// Handler for the continious hand reward clicking (when release the button - should stop the given reward due to the clicked that opened the selected REWARD).
         /// </summary>
         /// <param name="sender">The buutton.</param>
         /// <param name="e">Args.</param>
