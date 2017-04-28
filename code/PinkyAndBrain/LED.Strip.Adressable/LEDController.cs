@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO.Ports;
 using System.Threading;
+using log4net;
 
 namespace LED.Strip.Adressable
 {
@@ -23,6 +24,11 @@ namespace LED.Strip.Adressable
         /// The objects saves the all Led strip data color and places to turn on.
         /// </summary>
         private LEDsData _ledsData;
+
+        /// <summary>
+        /// Logger for writing log information.
+        /// </summary>
+        private ILog _logger;
         #endregion MEMBERS
 
         #region CONSTRUCTORS
@@ -32,12 +38,14 @@ namespace LED.Strip.Adressable
         /// <param name="baudRate">The communication baud rate.</param>
         /// <param name="numOfLeds">The number of leds to controll with in the strip.</param>
         /// </summary>
-        public LEDController(string portName , int baudRate , int numOfLeds)
+        public LEDController(string portName , int baudRate , int numOfLeds , ILog logger)
         {
             _ledArduinoSerialPort = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
 
             byte[] b = new byte[250];
             _ledsData = new LEDsData(0, 0, 0, 0, b);
+
+            _logger = logger;
         }
         #endregion CONSTRUCTORS
 
@@ -74,10 +82,13 @@ namespace LED.Strip.Adressable
             _ledArduinoSerialPort.Write("@");
 
             //sending the places.
+            _ledArduinoSerialPort.WriteTimeout = 1000;
             for (int i = 0; i < _ledsData.TurnedOnPlaces.Length / 50; i++)
             {
-                _ledArduinoSerialPort.Write(_ledsData.TurnedOnPlaces, i * 50, 50);
-                //avi:deleted - check - Thread.Sleep(10);
+                _logger.Info("Leds packet send.");
+                try { _ledArduinoSerialPort.Write(_ledsData.TurnedOnPlaces, i * 50, 50); }
+                catch { _logger.Error("Timeout Writing Leds."); }
+                Thread.Sleep(10);
             }
 
             //means the end of the data.
@@ -91,6 +102,7 @@ namespace LED.Strip.Adressable
         public void ExecuteCommands()
         {
             //means the data execution command.
+            _logger.Info("Leds execution command sent");
             _ledArduinoSerialPort.Write("!");
         }
 
@@ -99,6 +111,8 @@ namespace LED.Strip.Adressable
         /// </summary>
         public void ResetLeds()
         {
+            _logger.Info("Reset Leds begin");
+
             //rset leds data
             _ledsData.Red = 0;
             _ledsData.Green = 0;
@@ -111,6 +125,8 @@ namespace LED.Strip.Adressable
 
             //execute the data commands.
             ExecuteCommands();
+
+            _logger.Info("Reset Leds finished");
         }
         #endregion FUNCTIONS
 

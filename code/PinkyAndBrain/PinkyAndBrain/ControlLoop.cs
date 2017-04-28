@@ -14,6 +14,7 @@ using MotocomdotNetWrapper;
 using LED.Strip.Adressable;
 using System.IO;
 using System.Reflection;
+using log4net;
 
 namespace PinkyAndBrain
 {
@@ -187,6 +188,11 @@ namespace PinkyAndBrain
         /// The SavedDataMaker object to create new result file for each experiment.
         /// </summary>
         private SavedDataMaker _savedExperimentDataMaker;
+
+        /// <summary>
+        /// Logger for writing log information.
+        /// </summary>
+        private ILog _logger;
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
@@ -196,7 +202,7 @@ namespace PinkyAndBrain
         /// <param name="motomanController">The motoman controller object.</param>
         /// <param name="ledController">The led controller object.</param>
         /// </summary>
-        public ControlLoop(MLApp.MLApp matlabApp , CYasnac motomanController , LEDController ledController)
+        public ControlLoop(MLApp.MLApp matlabApp , CYasnac motomanController , LEDController ledController , ILog logger)
         {
             _matlabApp = matlabApp;
             _trajectoryCreatorHandler = new TrajectoryCreatorHandler(_matlabApp);
@@ -226,6 +232,9 @@ namespace PinkyAndBrain
 
             //initialize the savedDataMaker object once.
             _savedExperimentDataMaker = new SavedDataMaker();
+
+            //copy the logger reference to writing lof information
+            _logger = logger;
         }
         #endregion CONTRUCTORS
 
@@ -429,6 +438,8 @@ namespace PinkyAndBrain
         /// </summary>
         public void InitializationStage()
         {
+            _logger.Info("Initialization Stage of trial #" + (_numOfPastTrials+1));
+
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Intialization");
@@ -620,6 +631,7 @@ namespace PinkyAndBrain
             //and turn off the leds visual vistibular (it is o.k for all cases , just reset).
             _ledController.ResetLeds();
 
+            _logger.Info("End MovingTheRobotDurationWithHeadCenterStabilityStage");
             return headInCenterAllTheTime;
         }
 
@@ -685,6 +697,8 @@ namespace PinkyAndBrain
         /// </summary>
         public void MoveYasakawaRobotWithTrajectory(Tuple<Trajectory , Trajectory> traj , MotomanProtocolFileCreator.UpdateJobType updateJobType)
         {
+            _logger.Info("Moving the robot begin.");
+
             /*foreach (var xTrajectoryPoint in traj.Item1.x)
             {
                 //sleep the time frequency for each command of the robot (the robot frequency).
@@ -709,6 +723,7 @@ namespace PinkyAndBrain
 
             //wait for the commands to be executed.
             _motomanController.WaitJobFinished(10000);
+            _logger.Info("Moving the robot finished.");
         }
 
         /// <summary>

@@ -103,8 +103,14 @@ namespace PinkyAndBrain
         /// </summary>
         private CYasnac _motocomController;
 
+        /// <summary>
+        /// Led controller for controlling the led strip.
+        /// </summary>
         private LEDController _ledController;
 
+        /// <summary>
+        /// Logger for writing log information.
+        /// </summary>
         private ILog _logger;
         #endregion MEMBERS
 
@@ -131,13 +137,18 @@ namespace PinkyAndBrain
             //avi-insert//
             _motocomController.SetServoOn();
 
+            //creating the logger to writting log file information.
+            log4net.Config.XmlConfigurator.Configure(new FileInfo(Application.StartupPath+@"\Log4Net.config"));
+            _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            _logger.Info("Starting program...");
+
             //create the ledstrip controller and initialize it (also turn off leds).
-            _ledController = new LEDController("COM4", 2000000, 250);
+            _ledController = new LEDController("COM4", 2000000, 250 , _logger);
             _ledController.OpenConnection();
             _ledController.ResetLeds();
 
             Globals._systemState = SystemState.INITIALIZED;
-            _cntrlLoop = new ControlLoop(_matlabApp , _motocomController , _ledController);
+            _cntrlLoop = new ControlLoop(_matlabApp , _motocomController , _ledController , _logger);
 
             //reset the selected direction to be empty.
             _selectedHandRewardDirections = 0;
@@ -162,10 +173,6 @@ namespace PinkyAndBrain
             //create the result directory in the application path if needed.
             if(!Directory.Exists(Application.StartupPath + "\results"))
                 Directory.CreateDirectory(Application.StartupPath + @"\results\");
-
-            log4net.Config.XmlConfigurator.Configure(new FileInfo(Application.StartupPath+@"\Log4Net.config"));
-            _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-            _logger.Info("Starting program...");
         }
         #endregion CONSTRUCTORS
 
@@ -280,6 +287,8 @@ namespace PinkyAndBrain
         /// </summary>
         private void SetWaterRewardsMeasure()
         {
+            _logger.Info("Setting reward measure interactive panel....");
+
             //set the water anoumt in animation.
             _waterRewardMeasure.Value += 1;
 
