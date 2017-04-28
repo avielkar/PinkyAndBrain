@@ -321,7 +321,7 @@ namespace PinkyAndBrain
                             //update the number of total head in the center with stability during the duration time.
                             _totalHeadStabilityInCenterDuringDurationTime++;
 
-                            //reward the rat in the center with water for duration of reward1Duration for stable head in the center during the movement.
+                            //reward the rat in the center with water for duration of rewardCenterDuration for stable head in the center during the movement.
                             RewardCenterStage();
 
                             //wait the rat to response to the movement during the response tine.
@@ -497,21 +497,21 @@ namespace PinkyAndBrain
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            //wait the reward1 delay time befor openning the reward1.
+            //wait the reward delay time befor openning the reward.
             Thread.Sleep((int)(rewardDelay * 1000));
 
             sw.Restart();
 
             //open the center reward for the rat to be rewarded.
-            //after the reward1 duration time and than close it.
+            //after the reward duration time and than close it.
             _rewardController.WriteSingleSamplePort(true , (byte)position);
 
-            //wait the reward1 time and fill the interactive water fill estimation panel.
+            //wait the reward time and fill the interactive water fill estimation panel.
             _waterRewardFillingTimer.Start();
             Thread.Sleep((int)(rewardDuration * 1000));
             _waterRewardFillingTimer.Stop();
 
-            //close again the reward1 port.
+            //close again the reward port.
             _rewardController.WriteSingleSamplePort(true, 0x00);
         }
 
@@ -524,7 +524,7 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Left)");
 
-            Reward(RewardPosition.Left, _currentTrialTimings.wReward3Duration , _currentTrialTimings.wReward3Delay);
+            Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration , _currentTrialTimings.wRewardLeftDelay);
         }
 
         /// <summary>
@@ -537,7 +537,7 @@ namespace PinkyAndBrain
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Right)");
 
 
-            Reward(RewardPosition.Right, _currentTrialTimings.wReward2Duration , _currentTrialTimings.wReward2Delay);
+            Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration , _currentTrialTimings.wRewardRightDelay);
         }
 
         /// <summary>
@@ -549,7 +549,7 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Center)");
 
-            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration , _currentTrialTimings.wReward3Delay);
+            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration , _currentTrialTimings.wRewardLeftDelay);
         }
 
         /// <summary>
@@ -737,13 +737,13 @@ namespace PinkyAndBrain
             TrialTimings currentTrialTimings;
             currentTrialTimings.wStartDelay = DetermineTimeByVariable("START_DELAY");
 
-            currentTrialTimings.wReward1Delay = DetermineTimeByVariable("REWARD1_DELAY");
-            currentTrialTimings .wReward2Delay= DetermineTimeByVariable("REWARD2_DELAY");
-            currentTrialTimings.wReward3Delay= DetermineTimeByVariable("REWARD3_DELAY");
+            currentTrialTimings.wRewardCenterDelay = DetermineTimeByVariable("REWARD_CENTER_DELAY");
+            currentTrialTimings .wRewardRightDelay= DetermineTimeByVariable("REWARD_RIGHT_DELAY");
+            currentTrialTimings.wRewardLeftDelay= DetermineTimeByVariable("REWARD_LEFT_DELAY");
 
-            currentTrialTimings.wRewardCenterDuration = DetermineTimeByVariable("REWARD1_DURATION");
-            currentTrialTimings.wReward2Duration = DetermineTimeByVariable("REWARD2_DURATION");
-            currentTrialTimings.wReward3Duration = DetermineTimeByVariable("REWARD3_DURATION");
+            currentTrialTimings.wRewardCenterDuration = DetermineTimeByVariable("REWARD_CENTER_DURATION");
+            currentTrialTimings.wRewardRightDuration = DetermineTimeByVariable("REWARD_RIGHT_DURATION");
+            currentTrialTimings.wRewardLeftDuration = DetermineTimeByVariable("REWARD_LEFT_DURATION");
 
             currentTrialTimings.wPostTrialTime = DetermineTimeByVariable("POST_TRIAL_TIME");
 
@@ -906,7 +906,7 @@ namespace PinkyAndBrain
         /// Giving reward as specified (for the specified directions).
         /// </summary>
         /// <param name="value">The specified direction by xxxxxy-y-y where left-center-right.</param>
-        /// <param name="continious">Make the reward continiously (open untill get a close value) or not continiously (by the time of REWARD1_DURATION parameter.</param>
+        /// <param name="continious">Make the reward continiously (open untill get a close value) or not continiously (by the time of REWARD_CENTER_DURATION parameter.</param>
         public void GiveRewardHandReward(byte value , bool continious = false)
         {
             if(continious)
@@ -916,7 +916,7 @@ namespace PinkyAndBrain
             else
             {
                 _rewardController.WriteSingleSamplePort(true , value);
-                Thread.Sleep((int)(DetermineTimeByVariable("REWARD1_DURATION") * 1000));
+                Thread.Sleep((int)(DetermineTimeByVariable("REWARD_CENTER_DURATION") * 1000));
                 _rewardController.WriteSingleSamplePort(true, 0);
             }
         }
@@ -960,17 +960,17 @@ namespace PinkyAndBrain
             /// <summary>
             /// The delay between the center head tracking (for the trial begin) and the center reward.
             /// </summary>
-            public double wReward1Delay;
+            public double wRewardCenterDelay;
 
             /// <summary>
             /// The delay between the right head tracking (for the trial begin) and the right reward.
             /// </summary>
-            public double wReward2Delay;
+            public double wRewardRightDelay;
 
             /// <summary>
             /// The delay between the left head tracking (for the trial begin) and the left reward.
             /// </summary>
-            public double wReward3Delay;
+            public double wRewardLeftDelay;
 
             /// <summary>
             /// The duration for the center reward.
@@ -980,12 +980,12 @@ namespace PinkyAndBrain
             /// <summary>
             /// The duration for the right reward.
             /// </summary>
-            public double wReward2Duration;
+            public double wRewardRightDuration;
 
             /// <summary>
             /// The duration for the left reward.
             /// </summary>
-            public double wReward3Duration;
+            public double wRewardLeftDuration;
 
             /// <summary>
             /// The duration to wait between the end of the previous trial and the begining of the next trial.
@@ -998,7 +998,7 @@ namespace PinkyAndBrain
             public double wTimeOutTime;
 
             /// <summary>
-            /// The time the rat have to response (with head to the left or to the right) after the reward1 (ig get).
+            /// The time the rat have to response (with head to the left or to the right) after the rewardCenter (ig get).
             /// </summary>
             public double wResponseTime;
 
