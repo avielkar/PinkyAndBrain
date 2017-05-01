@@ -302,7 +302,8 @@ namespace PinkyAndBrain
 
         public void MainControlLoop()
         {
-            for (int i = 0; i < _crossVaryingVals.Count();i++ )
+            //while all trial are not executed or not come with response stage.
+            while(!_varyingIndexSelector.IsFinished())
             {
                 //if system has stopped , wait for the end of the current trial ans break,
                 if (Globals._systemState.Equals(SystemState.STOPPED) || _stopAfterTheEndOfTheCurrentTrial)
@@ -408,7 +409,7 @@ namespace PinkyAndBrain
 
             //update the number of left trials.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Left Number", (_totalNumOfTrials - _numOfPastTrials - 1).ToString());
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Left Number", (_varyingIndexSelector.CountRemaining()).ToString());
 
             //update the number of total correct answers.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
@@ -492,7 +493,7 @@ namespace PinkyAndBrain
             //time to wait for the moving rat response. if decided about a side so break and return the decision and update the _totalCorrectAnsers.
             while(sw.ElapsedMilliseconds < 1000*(int)(_currentTrialTimings.wResponseTime))
             {
-                if(_currentRatResponse == 1)
+                if(_currentRatResponse == (byte)RatDecison.Left)
                 {
                     if (currentStimulationSide.Equals(RatDecison.Left)) { _totalCorrectAnswers++; return new Tuple<RatDecison, bool>(RatDecison.Left, true); }
 
@@ -501,7 +502,7 @@ namespace PinkyAndBrain
                     return new Tuple<RatDecison,bool>(RatDecison.Left , false);
                 }
 
-                else if(_currentRatResponse == 4)
+                else if(_currentRatResponse == (byte)RatDecison.Right)
                 {
                     if (currentStimulationSide.Equals(RatDecison.Right)) { _totalCorrectAnswers++; return new Tuple<RatDecison, bool>(RatDecison.Right, true); }
 
@@ -877,6 +878,10 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Post trial time.");
 
+            if(_currentRatDecision.Equals(RatDecison.NoEntryToResponseStage))
+                //reset status of the current trial combination index if there was no reponse stage at all.
+            _varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
+
             Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveRobotHomePosition());
 
             Task.Run(() =>
@@ -1070,12 +1075,12 @@ namespace PinkyAndBrain
             /// <summary>
             /// The rat decide about the center.
             /// </summary>
-            Center = 1,
+            Center = 2,
 
             /// <summary>
             /// The rat decide about the left side.
             /// </summary>
-            Left = 2,
+            Left = 1,
 
             /// <summary>
             /// The rat decide about the right side.

@@ -55,6 +55,14 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Reset the status of one specific index combination.
+        /// </summary>
+        public void ResetTrialStatus(int index)
+        {
+            _trialsCombinationIndexesStatus[index] = false;
+        }
+        
+        /// <summary>
         /// Choosing random combination index that was not used in the past trials,
         /// </summary>
         /// <returns></returns>
@@ -74,7 +82,7 @@ namespace PinkyAndBrain
             //return the selected combination index.
             return rand;
         }
-        
+
         /// <summary>
         /// fullify the array with specific number of '1' and '0'.
         /// </summary>
@@ -107,6 +115,25 @@ namespace PinkyAndBrain
 
             //return the random array with selected bytes to be with '1' value and '0 values.
             return returnedArray;
+        }
+
+        /// <summary>
+        /// Check if all combination were used.
+        /// </summary>
+        /// <returns>True if all combonation were used. False otherwise.
+        /// </returns>
+        public bool IsFinished()
+        {
+            return CountRemaining() == 0;
+        }
+
+        /// <summary>
+        /// Count the number of remaining unused combimations.
+        /// </summary>
+        /// <returns>The number of remainig combinations.</returns>
+        public int CountRemaining()
+        {
+            return _trialsCombinationIndexesStatus.Count(x => x == false);
         }
         #endregion FUNCTIONS
     }
