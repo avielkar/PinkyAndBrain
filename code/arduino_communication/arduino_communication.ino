@@ -33,7 +33,7 @@ void loop() {
       char input = Serial.read();
       if(input == '#')
       {
-        Serial.print('#');
+        //Serial.print('#');
         init_stage = false;
         color_stage = true;
       }
@@ -66,7 +66,7 @@ void loop() {
       if(Serial.available() > 0)
       {
         data = Serial.read();
-        Serial.print('d');
+        //Serial.print('d');
         if(data == '#')
         {
           while( !(Serial.available() > 0)){}
@@ -74,19 +74,19 @@ void loop() {
           {
               places_stage = false;
               command_stage = true;
-              Serial.print("end of data");
+              //Serial.print("end of data");
           }
           else
           {
             placesData[numOfPlacedData] = data;
-            Serial.print(data);
+            //Serial.print(data);
             numOfPlacedData++;      
           }
         }
         else
         {
           placesData[numOfPlacedData] = data;
-          Serial.print(data);
+          //Serial.print(data);
           numOfPlacedData++;
         }
         
@@ -98,12 +98,12 @@ void loop() {
       {
         if(Serial.read() == '!')
         {
-          Serial.print("sending");
+          //Serial.print("sending");
           LedStripRoundDataExecution();
           command_stage = false;
           init_stage = true;
           numOfPlacedData = 0;
-          Serial.print('!');
+          //Serial.print('!');
         }
       }
     }
@@ -127,10 +127,10 @@ void LedStripRoundDataExecution()
       if(placeIndex + (byte)1 < numOfPlacedData)
       {
         placeIndex = placeIndex + (byte)(1);
-        Serial.print(placeIndex);
+        //Serial.print(placeIndex);
       }
-      Serial.print("kAAAA");
-      Serial.print(i);
+      //Serial.print("kAAAA");
+      //Serial.print(i);
     }
     else
     {sendColor(0 , 0 , 0, 0);}

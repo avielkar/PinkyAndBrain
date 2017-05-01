@@ -37,7 +37,7 @@ void loop() {
       char input = Serial.read();
       if(input == '#')
       {
-        Serial.print('#');
+        //Serial.print('#');
         init_stage = false;
         color_stage = true;
       }
@@ -57,7 +57,7 @@ void loop() {
       {
         if(Serial.read() == '@')
         {
-          Serial.print('@');
+          //Serial.print('@');
           color_stage = false;
           places_stage = true;
           colorIndex = 0;
@@ -70,7 +70,7 @@ void loop() {
       if(Serial.available() > 0)
       {
         data = Serial.read();
-        Serial.print('d');
+        //Serial.print('d');
         placesData[numOfPlacedData] = data;
         numOfPlacedData++;
       }
@@ -86,12 +86,12 @@ void loop() {
       {
         if(Serial.read() == '!')
         {
-          Serial.print("sending");
+          //Serial.print("sending");
           LedStripRoundDataExecution();
           command_stage = false;
           init_stage = true;
           numOfPlacedData = 0;
-          Serial.print('!');
+          //Serial.print('!');
         }
       }
     }

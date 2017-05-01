@@ -155,6 +155,16 @@ namespace PinkyAndBrain
         private byte _currentRatResponse;
 
         /// <summary>
+        /// The rat decision about the current trial stimulus direction.
+        /// </summary>
+        private RatDecison _currentRatDecision;
+
+        /// <summary>
+        /// The selected rat name (that makes the experiment).
+        /// </summary>
+        public string RatName { get; set; }
+
+        /// <summary>
         /// Timer for raising event to sample the Noldus reponse direction and store it in _currentRatResponse.
         /// </summary>
         private System.Timers.Timer _ratSampleResponseTimer;
@@ -447,6 +457,8 @@ namespace PinkyAndBrain
             //determine all current trial timings and delays.
             _currentTrialTimings = DetermineCurrentTrialTimings();
             _currentTrialStimulusType = DetermineCurrentStimulusType();
+            //set the reposne to the stimulus direction as no entry to descision stage (and change it after if needed as well).
+            _currentRatDecision = RatDecison.NoEntryToResponseStage;
             
             //Sounds the start beep. Now waiting for the rat to move it's head to the center.
             Console.Beep();
@@ -484,15 +496,22 @@ namespace PinkyAndBrain
                 {
                     if (currentStimulationSide.Equals(RatDecison.Left)) { _totalCorrectAnswers++; return new Tuple<RatDecison, bool>(RatDecison.Left, true); }
 
+                    _currentRatDecision = RatDecison.Left;
+
                     return new Tuple<RatDecison,bool>(RatDecison.Left , false);
                 }
 
                 else if(_currentRatResponse == 4)
                 {
                     if (currentStimulationSide.Equals(RatDecison.Right)) { _totalCorrectAnswers++; return new Tuple<RatDecison, bool>(RatDecison.Right, true); }
+
+                    _currentRatDecision = RatDecison.Right;
+
                     return new Tuple<RatDecison,bool>( RatDecison.Right , false);
                 }
             }
+
+            _currentRatDecision = RatDecison.NoDecision;
 
             return new Tuple<RatDecison,bool>(RatDecison.NoDecision , false);
         }
@@ -697,7 +716,7 @@ namespace PinkyAndBrain
         /// </summary>
         public void MoveYasakawaRobotWithTrajectory(Tuple<Trajectory , Trajectory> traj , MotomanProtocolFileCreator.UpdateJobType updateJobType)
         {
-            _logger.Info("Moving the robot begin.");
+            _logger.Info("Writing job to the robot.");
 
             /*foreach (var xTrajectoryPoint in traj.Item1.x)
             {
@@ -720,6 +739,8 @@ namespace PinkyAndBrain
             //wruite the new JBI file to the controller.
             _motomanController.WriteFile(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
             _motomanController.StartJob("GAUSSIANMOVING2.JBI");
+            _logger.Info("Moving the robot begin.");
+
 
             //wait for the commands to be executed.
             _motomanController.WaitJobFinished(10000);
@@ -860,7 +881,15 @@ namespace PinkyAndBrain
 
             Task.Run(() =>
             {
-                _savedExperimentDataMaker.SaveTrialDataToFile(new TrialData() { StaticVariables = _staticVariablesList, VaryingVariables = _crossVaryingVals[_currentVaryingTrialIndex], TimingsVariables = _currentTrialTimings }, _numOfPastTrials);
+                _savedExperimentDataMaker.SaveTrialDataToFile(new TrialData()
+                {
+                    StaticVariables = _staticVariablesList,
+                    VaryingVariables = _crossVaryingVals[_currentVaryingTrialIndex],
+                    TimingsVariables = _currentTrialTimings,
+                    RatName = RatName,
+                    RatDecison = _currentRatDecision,
+                    TrialNum = _numOfPastTrials
+                });
             });
 
             Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
@@ -1029,7 +1058,12 @@ namespace PinkyAndBrain
         public enum RatDecison
         {
             /// <summary>
-            /// The rat doesn't decide anything (it's head eas not in any of the sides).
+            /// The rat decision could not happened due to no enterance to the reponse stage (because no stability or enterance to the center).
+            /// </summary>
+            NoEntryToResponseStage = -1,
+
+            /// <summary>
+            /// The rat doesn't decide anything (it's head was not in any of the sides).
             /// </summary>
             NoDecision = 0,
 

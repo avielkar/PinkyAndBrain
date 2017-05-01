@@ -414,6 +414,7 @@
             this._selectedRatNameComboBox.Name = "_selectedRatNameComboBox";
             this._selectedRatNameComboBox.Size = new System.Drawing.Size(121, 21);
             this._selectedRatNameComboBox.TabIndex = 0;
+            this._selectedRatNameComboBox.SelectedValueChanged += new System.EventHandler(this._selectedRatNameComboBox_SelectedValueChanged);
             // 
             // _guiInterfaceToolTip
             // 

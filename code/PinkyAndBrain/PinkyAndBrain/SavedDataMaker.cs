@@ -39,15 +39,26 @@ namespace PinkyAndBrain
         /// Save (write) a trial in the experiment to the current created new file.
         /// </summary>
         /// <param name="trialData">The trial data struct to written to the file.</param>
-        /// <param name="trialNumber">The trial number to be written to the current trialData.</param>
-        public void SaveTrialDataToFile(TrialData trialData , int trialNumber)
+        public void SaveTrialDataToFile(TrialData trialData)
         {
             //create a new stringBuilder for line filling in the new created results file.
             StringBuilder lineBuilder = new StringBuilder();
             
             //append the new trial number.
-            lineBuilder.Append("trial # ");
-            lineBuilder.Append(trialNumber);
+            lineBuilder.Append("Trial # ");
+            lineBuilder.Append(trialData.TrialNum);
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
+            //append the rat name.
+            lineBuilder.Append("Rat Name: ");
+            lineBuilder.Append(trialData.RatName);
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
+            //append the rat decision for the stimulus direction.
+            lineBuilder.Append("Rat Decison: ");
+            lineBuilder.Append(trialData.RatDecison);
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
 
@@ -91,6 +102,9 @@ namespace PinkyAndBrain
                 _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
                 lineBuilder.Clear();
             }
+
+            //flush the taxt to be written immediately.
+            _currentSavedFileStramWriter.Flush();
         }
 
         /// <summary>
@@ -123,5 +137,20 @@ namespace PinkyAndBrain
         /// The timings variables for one trial.
         /// </summary>
         public ControlLoop.TrialTimings TimingsVariables { get; set; }
+
+        /// <summary>
+        /// The name of the rat being experiment.
+        /// </summary>
+        public String RatName { get; set; }
+
+        /// <summary>
+        /// The rat decision for the stimulus direction.
+        /// </summary>
+        public ControlLoop.RatDecison RatDecison { get; set; }
+
+        /// <summary>
+        /// The trial number in the experiment.
+        /// </summary>
+        public int TrialNum { get; set; }
     }
 }

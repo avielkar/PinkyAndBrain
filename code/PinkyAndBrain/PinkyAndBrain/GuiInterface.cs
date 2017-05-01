@@ -180,7 +180,8 @@ namespace PinkyAndBrain
         /// <summary>
         /// Delegate for the trial details ListView text changing.
         /// </summary>
-        /// <param name="text">The text to changed to the ListView.</param>
+        /// <param name="text">The name of the variable to be inserted.</param>
+        /// <param name="value">The value of the parameter to  be inserted.</param>
         public delegate void ChangeCurrentTrialDetailsListViewText(string text , string value);
 
         /// <summary>
@@ -211,6 +212,11 @@ namespace PinkyAndBrain
             _trialDetailsListView.View = View.Details;
         }
 
+        /// <summary>
+        /// Delegate for the trial details ListView text changing.
+        /// </summary>
+        /// <param name="name">The name of the variable to be inserted.</param>
+        /// <param name="value">The value of the variable to be inserted.</param>
         public delegate void ChangeGlobalDetailsListViewText(string name , string value);
 
         /// <summary>
@@ -225,7 +231,9 @@ namespace PinkyAndBrain
             _globaExperimentlInfoListView.Items.Add(lvi);
         }
 
-        //A delegate for clearing the global experiment details listview.
+        /// <summary>
+        /// A delegate for clearing the global experiment details listview.
+        /// </summary>
         public delegate void ClearGlobalDetailsListViewText();
 
         /// <summary>
@@ -280,6 +288,9 @@ namespace PinkyAndBrain
             _rightHandRewardCheckBox.Show();
         }
 
+        /// <summary>
+        /// Handler for water reward measurement interactive panel.
+        /// </summary>
         public delegate void SetWaterRewardsMeasureDelegate();
 
         /// <summary>
@@ -407,6 +418,17 @@ namespace PinkyAndBrain
             {
                 _selectedRatNameComboBox.Items.Add(ratName);
             }
+        }
+
+        /// <summary>
+        /// Function handler for changing the rat name.
+        /// </summary>
+        /// <param name="sender">The combobox that has changed.</param>
+        /// <param name="e">The args.</param>
+        private void _selectedRatNameComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            //change the selected rat name as followed by the combobox.
+            _cntrlLoop.RatName = (sender as ComboBox).SelectedItem.ToString();
         }
 
         /// <summary>
