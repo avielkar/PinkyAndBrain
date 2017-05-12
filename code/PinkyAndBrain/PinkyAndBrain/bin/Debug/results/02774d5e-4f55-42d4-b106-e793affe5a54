@@ -5,6 +5,7 @@ ADAPTATION_ANGLE		:	0
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
+DURATION		:	1 
 STIMULUS_TYPE		:	1 
 DISC_PLANE_AZIMUTH		:	0 
 DISC_PLANE_ELEVATION		:	0 
@@ -21,7 +22,6 @@ RESPONSE_TIME		:	2
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
 HEADING_DIRECTION		:	0 0 
-DURATION		:	3 3 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
 wRewardRightDelay	:	1
@@ -32,4 +32,4 @@ wRewardLeftDuration	:	1
 wPostTrialTime	:	1
 wTimeOutTime	:	2
 wResponseTime	:	2
-wDuration	:	3
+wDuration	:	1

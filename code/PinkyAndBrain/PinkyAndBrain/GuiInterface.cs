@@ -1017,7 +1017,7 @@ namespace PinkyAndBrain
         {
             _excelLoader.ReadProtocolFile(dirPath , ref _variablesList);
         }
-
+         
         /// <summary>
         /// Showing the variables from the readen excel file to the Gui with option to change them.
         /// </summary>
@@ -1044,7 +1044,7 @@ namespace PinkyAndBrain
                 newLabel.Height = height;
                 newLabel.Top = top;
                 newLabel.Left = left;*/
-                ShowVariableLabel(_variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0], top, left, width, height, eachDistance, _variablesList._variablesDictionary[varName]._description["tool_tip"]._ratHouseParameter[0]);
+                ShowVariableLabel(_variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0], top, left, width + 40, height, eachDistance, _variablesList._variablesDictionary[varName]._description["tool_tip"]._ratHouseParameter[0]);
 
                 ShowVariableAttributes(varName, top, left, width, height, eachDistance, 750);
 

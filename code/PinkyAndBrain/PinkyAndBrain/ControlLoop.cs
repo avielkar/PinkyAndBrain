@@ -602,11 +602,15 @@ namespace PinkyAndBrain
                     robotMotion = Task.Factory.StartNew(() => Thread.Sleep((int)(1000 * _currentTrialTimings.wDuration)));
                     break;
                 case 1://vistibular only.
-                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both));
+                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
+                    UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both);
+                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory());
                     break;
 
                 case 2://visual only.
-                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only));
+                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
+                    UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only);
+                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory());
 
                     //here should be stimulus type 2 for motion of the second robot for visual only.
                     //should move the robot and also to turn on the leds.
@@ -617,7 +621,9 @@ namespace PinkyAndBrain
                     break;
 
                 case 3://vistibular and visual both.
-                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only));
+                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
+                    UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only);
+                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory());
                     //should move only r1 robot and also to turn on the leds.
                     LEDsData ledsData2 = new LEDsData(10, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(40));
                     _ledController.LEDsDataCommand = ledsData2;
@@ -711,11 +717,11 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Move the motoman with the given trajectory.
+        /// Updating the robot working JBI file according to the trajectory and the stimulus type.
+        /// </summary>
         /// <param name="traj">The trajectory to be send to the controller.</param>
         /// <param name="updateJobType">The robots type to update the job trajectory with.</param>
-        /// </summary>
-        public void MoveYasakawaRobotWithTrajectory(Tuple<Trajectory , Trajectory> traj , MotomanProtocolFileCreator.UpdateJobType updateJobType)
+        public void UpdateYasakawaRobotJBIFile(Tuple<Trajectory , Trajectory> traj , MotomanProtocolFileCreator.UpdateJobType updatJobType)
         {
             _logger.Info("Writing job to the robot.");
 
@@ -728,7 +734,7 @@ namespace PinkyAndBrain
             //setting the trajectory for the JBI file creator and update the file that is being senf to the controller with the new commands.
             _motomanProtocolFileCreator.TrajectoryR1Position = traj.Item1;
             _motomanProtocolFileCreator.TrajectoryR2Position = traj.Item2;
-            _motomanProtocolFileCreator.UpdateJobJBIFile(updateJobType);
+            _motomanProtocolFileCreator.UpdateJobJBIFile(updatJobType);
 
             //Delete the old JBI file commands stored in the controller.
             try
@@ -739,9 +745,17 @@ namespace PinkyAndBrain
 
             //wruite the new JBI file to the controller.
             _motomanController.WriteFile(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
+
+            _logger.Info("Writing job to the robot ended.");
+        }
+
+        /// <summary>
+        /// Move the motoman with the given trajectory.
+        /// </summary>
+        public void MoveYasakawaRobotWithTrajectory()
+        {
             _motomanController.StartJob("GAUSSIANMOVING2.JBI");
             _logger.Info("Moving the robot begin.");
-
 
             //wait for the commands to be executed.
             _motomanController.WaitJobFinished(10000);

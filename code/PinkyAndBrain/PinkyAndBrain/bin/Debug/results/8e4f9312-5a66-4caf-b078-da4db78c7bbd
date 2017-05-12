@@ -2,7 +2,6 @@ Trial # 0
 Rat Name: 
 Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -21,7 +20,8 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
-STIMULUS_TYPE		:	1 
+HEADING_DIRECTION		:	-45 -45 
+STIMULUS_TYPE		:	2 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
 wRewardRightDelay	:	1
@@ -35,9 +35,8 @@ wResponseTime	:	2
 wDuration	:	1
 Trial # 1
 Rat Name: 
-Rat Decison: NoEntryToResponseStage
+Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -56,7 +55,8 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
-STIMULUS_TYPE		:	2 
+HEADING_DIRECTION		:	-30 -30 
+STIMULUS_TYPE		:	3 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
 wRewardRightDelay	:	1
@@ -70,9 +70,8 @@ wResponseTime	:	2
 wDuration	:	1
 Trial # 2
 Rat Name: 
-Rat Decison: NoEntryToResponseStage
+Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -91,7 +90,8 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
-STIMULUS_TYPE		:	2 
+HEADING_DIRECTION		:	-15 -15 
+STIMULUS_TYPE		:	1 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
 wRewardRightDelay	:	1
@@ -105,9 +105,8 @@ wResponseTime	:	2
 wDuration	:	1
 Trial # 3
 Rat Name: 
-Rat Decison: NoEntryToResponseStage
+Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -126,7 +125,8 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
-STIMULUS_TYPE		:	3 
+HEADING_DIRECTION		:	-30 -30 
+STIMULUS_TYPE		:	1 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
 wRewardRightDelay	:	1
@@ -140,9 +140,8 @@ wResponseTime	:	2
 wDuration	:	1
 Trial # 4
 Rat Name: 
-Rat Decison: NoEntryToResponseStage
+Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -161,6 +160,7 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
+HEADING_DIRECTION		:	30 30 
 STIMULUS_TYPE		:	3 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
@@ -175,9 +175,8 @@ wResponseTime	:	2
 wDuration	:	1
 Trial # 5
 Rat Name: 
-Rat Decison: Left
+Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -196,6 +195,7 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
+HEADING_DIRECTION		:	-30 -30 
 STIMULUS_TYPE		:	2 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
@@ -210,9 +210,8 @@ wResponseTime	:	2
 wDuration	:	1
 Trial # 6
 Rat Name: 
-Rat Decison: NoEntryToResponseStage
+Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -231,6 +230,7 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
+HEADING_DIRECTION		:	-15 -15 
 STIMULUS_TYPE		:	2 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
@@ -247,7 +247,6 @@ Trial # 7
 Rat Name: 
 Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -266,7 +265,8 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
-STIMULUS_TYPE		:	2 
+HEADING_DIRECTION		:	30 30 
+STIMULUS_TYPE		:	1 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
 wRewardRightDelay	:	1
@@ -282,7 +282,6 @@ Trial # 8
 Rat Name: 
 Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -301,7 +300,8 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
-STIMULUS_TYPE		:	2 
+HEADING_DIRECTION		:	-45 -45 
+STIMULUS_TYPE		:	1 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
 wRewardRightDelay	:	1
@@ -317,7 +317,6 @@ Trial # 9
 Rat Name: 
 Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -336,7 +335,8 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
-STIMULUS_TYPE		:	3 
+HEADING_DIRECTION		:	45 45 
+STIMULUS_TYPE		:	1 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
 wRewardRightDelay	:	1
@@ -352,7 +352,6 @@ Trial # 10
 Rat Name: 
 Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -371,6 +370,7 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
+HEADING_DIRECTION		:	30 30 
 STIMULUS_TYPE		:	2 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
@@ -387,7 +387,6 @@ Trial # 11
 Rat Name: 
 Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -406,7 +405,8 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
-STIMULUS_TYPE		:	3 
+HEADING_DIRECTION		:	0 0 
+STIMULUS_TYPE		:	2 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
 wRewardRightDelay	:	1
@@ -422,7 +422,6 @@ Trial # 12
 Rat Name: 
 Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -441,6 +440,7 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
+HEADING_DIRECTION		:	-45 -45 
 STIMULUS_TYPE		:	3 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
@@ -457,7 +457,6 @@ Trial # 13
 Rat Name: 
 Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -476,6 +475,7 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
+HEADING_DIRECTION		:	15 15 
 STIMULUS_TYPE		:	2 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
@@ -492,7 +492,6 @@ Trial # 14
 Rat Name: 
 Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -511,7 +510,8 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
-STIMULUS_TYPE		:	2 
+HEADING_DIRECTION		:	-15 -15 
+STIMULUS_TYPE		:	3 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
 wRewardRightDelay	:	1
@@ -527,7 +527,6 @@ Trial # 15
 Rat Name: 
 Rat Decison: NoDecision
 ADAPTATION_ANGLE		:	0 
-HEADING_DIRECTION		:	45 
 DIST		:	8 
 ORIGIN		:	0 0 0 
 SIGMA		:	3 
@@ -546,7 +545,183 @@ POST_TRIAL_TIME		:	1
 RESPONSE_TIME		:	2 
 TIMEOUT_TIME		:	2 
 TRAJECTORY_CREATOR		:	1 
+HEADING_DIRECTION		:	0 0 
 STIMULUS_TYPE		:	3 
+wStartDelay	:	1
+wRewardCenterDelay	:	1
+wRewardRightDelay	:	1
+wRewardLeftDelay	:	1
+wRewardCenterDuration	:	1
+wRewardRightDuration	:	1
+wRewardLeftDuration	:	1
+wPostTrialTime	:	1
+wTimeOutTime	:	2
+wResponseTime	:	2
+wDuration	:	1
+Trial # 16
+Rat Name: 
+Rat Decison: NoDecision
+ADAPTATION_ANGLE		:	0 
+DIST		:	8 
+ORIGIN		:	0 0 0 
+SIGMA		:	3 
+DURATION		:	1 
+DISC_PLANE_AZIMUTH		:	0 
+DISC_PLANE_ELEVATION		:	0 
+DISC_PLANE_TILT		:	0 
+REWARD_CENTER_DURATION		:	1 
+REWARD_RIGHT_DURATION		:	1 
+REWARD_LEFT_DURATION		:	1 
+REWARD_CENTER_DELAY		:	1 
+REWARD_RIGHT_DELAY		:	1 
+REWARD_LEFT_DELAY		:	1 
+START_DELAY		:	1 
+POST_TRIAL_TIME		:	1 
+RESPONSE_TIME		:	2 
+TIMEOUT_TIME		:	2 
+TRAJECTORY_CREATOR		:	1 
+HEADING_DIRECTION		:	15 15 
+STIMULUS_TYPE		:	1 
+wStartDelay	:	1
+wRewardCenterDelay	:	1
+wRewardRightDelay	:	1
+wRewardLeftDelay	:	1
+wRewardCenterDuration	:	1
+wRewardRightDuration	:	1
+wRewardLeftDuration	:	1
+wPostTrialTime	:	1
+wTimeOutTime	:	2
+wResponseTime	:	2
+wDuration	:	1
+Trial # 17
+Rat Name: 
+Rat Decison: NoDecision
+ADAPTATION_ANGLE		:	0 
+DIST		:	8 
+ORIGIN		:	0 0 0 
+SIGMA		:	3 
+DURATION		:	1 
+DISC_PLANE_AZIMUTH		:	0 
+DISC_PLANE_ELEVATION		:	0 
+DISC_PLANE_TILT		:	0 
+REWARD_CENTER_DURATION		:	1 
+REWARD_RIGHT_DURATION		:	1 
+REWARD_LEFT_DURATION		:	1 
+REWARD_CENTER_DELAY		:	1 
+REWARD_RIGHT_DELAY		:	1 
+REWARD_LEFT_DELAY		:	1 
+START_DELAY		:	1 
+POST_TRIAL_TIME		:	1 
+RESPONSE_TIME		:	2 
+TIMEOUT_TIME		:	2 
+TRAJECTORY_CREATOR		:	1 
+HEADING_DIRECTION		:	45 45 
+STIMULUS_TYPE		:	3 
+wStartDelay	:	1
+wRewardCenterDelay	:	1
+wRewardRightDelay	:	1
+wRewardLeftDelay	:	1
+wRewardCenterDuration	:	1
+wRewardRightDuration	:	1
+wRewardLeftDuration	:	1
+wPostTrialTime	:	1
+wTimeOutTime	:	2
+wResponseTime	:	2
+wDuration	:	1
+Trial # 18
+Rat Name: 
+Rat Decison: NoDecision
+ADAPTATION_ANGLE		:	0 
+DIST		:	8 
+ORIGIN		:	0 0 0 
+SIGMA		:	3 
+DURATION		:	1 
+DISC_PLANE_AZIMUTH		:	0 
+DISC_PLANE_ELEVATION		:	0 
+DISC_PLANE_TILT		:	0 
+REWARD_CENTER_DURATION		:	1 
+REWARD_RIGHT_DURATION		:	1 
+REWARD_LEFT_DURATION		:	1 
+REWARD_CENTER_DELAY		:	1 
+REWARD_RIGHT_DELAY		:	1 
+REWARD_LEFT_DELAY		:	1 
+START_DELAY		:	1 
+POST_TRIAL_TIME		:	1 
+RESPONSE_TIME		:	2 
+TIMEOUT_TIME		:	2 
+TRAJECTORY_CREATOR		:	1 
+HEADING_DIRECTION		:	15 15 
+STIMULUS_TYPE		:	3 
+wStartDelay	:	1
+wRewardCenterDelay	:	1
+wRewardRightDelay	:	1
+wRewardLeftDelay	:	1
+wRewardCenterDuration	:	1
+wRewardRightDuration	:	1
+wRewardLeftDuration	:	1
+wPostTrialTime	:	1
+wTimeOutTime	:	2
+wResponseTime	:	2
+wDuration	:	1
+Trial # 19
+Rat Name: 
+Rat Decison: NoDecision
+ADAPTATION_ANGLE		:	0 
+DIST		:	8 
+ORIGIN		:	0 0 0 
+SIGMA		:	3 
+DURATION		:	1 
+DISC_PLANE_AZIMUTH		:	0 
+DISC_PLANE_ELEVATION		:	0 
+DISC_PLANE_TILT		:	0 
+REWARD_CENTER_DURATION		:	1 
+REWARD_RIGHT_DURATION		:	1 
+REWARD_LEFT_DURATION		:	1 
+REWARD_CENTER_DELAY		:	1 
+REWARD_RIGHT_DELAY		:	1 
+REWARD_LEFT_DELAY		:	1 
+START_DELAY		:	1 
+POST_TRIAL_TIME		:	1 
+RESPONSE_TIME		:	2 
+TIMEOUT_TIME		:	2 
+TRAJECTORY_CREATOR		:	1 
+HEADING_DIRECTION		:	0 0 
+STIMULUS_TYPE		:	1 
+wStartDelay	:	1
+wRewardCenterDelay	:	1
+wRewardRightDelay	:	1
+wRewardLeftDelay	:	1
+wRewardCenterDuration	:	1
+wRewardRightDuration	:	1
+wRewardLeftDuration	:	1
+wPostTrialTime	:	1
+wTimeOutTime	:	2
+wResponseTime	:	2
+wDuration	:	1
+Trial # 20
+Rat Name: 
+Rat Decison: NoDecision
+ADAPTATION_ANGLE		:	0 
+DIST		:	8 
+ORIGIN		:	0 0 0 
+SIGMA		:	3 
+DURATION		:	1 
+DISC_PLANE_AZIMUTH		:	0 
+DISC_PLANE_ELEVATION		:	0 
+DISC_PLANE_TILT		:	0 
+REWARD_CENTER_DURATION		:	1 
+REWARD_RIGHT_DURATION		:	1 
+REWARD_LEFT_DURATION		:	1 
+REWARD_CENTER_DELAY		:	1 
+REWARD_RIGHT_DELAY		:	1 
+REWARD_LEFT_DELAY		:	1 
+START_DELAY		:	1 
+POST_TRIAL_TIME		:	1 
+RESPONSE_TIME		:	2 
+TIMEOUT_TIME		:	2 
+TRAJECTORY_CREATOR		:	1 
+HEADING_DIRECTION		:	45 45 
+STIMULUS_TYPE		:	2 
 wStartDelay	:	1
 wRewardCenterDelay	:	1
 wRewardRightDelay	:	1
