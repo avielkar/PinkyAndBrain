@@ -51,6 +51,8 @@
             this._digitalHandRewardButton = new System.Windows.Forms.Button();
             this._continiousHandRewardButton = new System.Windows.Forms.Button();
             this._varyingControlGroupBox = new System.Windows.Forms.GroupBox();
+            this._numOfRepetitionsTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this._interactiveNolduscommuncation = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this._rightNoldusCommunicationRadioButton = new System.Windows.Forms.RadioButton();
@@ -276,6 +278,8 @@
             // 
             // _varyingControlGroupBox
             // 
+            this._varyingControlGroupBox.Controls.Add(this._numOfRepetitionsTextBox);
+            this._varyingControlGroupBox.Controls.Add(this.label5);
             this._varyingControlGroupBox.Controls.Add(this._varyingListBox);
             this._varyingControlGroupBox.Controls.Add(this._startButton);
             this._varyingControlGroupBox.Controls.Add(this._makeTrials);
@@ -288,6 +292,24 @@
             this._varyingControlGroupBox.TabIndex = 13;
             this._varyingControlGroupBox.TabStop = false;
             this._varyingControlGroupBox.Text = "Varying Control";
+            // 
+            // _numOfRepetitionsTextBox
+            // 
+            this._numOfRepetitionsTextBox.Location = new System.Drawing.Point(227, 442);
+            this._numOfRepetitionsTextBox.Name = "_numOfRepetitionsTextBox";
+            this._numOfRepetitionsTextBox.Size = new System.Drawing.Size(100, 20);
+            this._numOfRepetitionsTextBox.TabIndex = 11;
+            this._numOfRepetitionsTextBox.Text = "1";
+            this._numOfRepetitionsTextBox.Leave += new System.EventHandler(this._numOfRepetitionsTextBox_Leave);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(138, 448);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Repetitions:";
             // 
             // _interactiveNolduscommuncation
             // 
@@ -472,6 +494,7 @@
             this._handRewardsgroupBox.ResumeLayout(false);
             this._handRewardsgroupBox.PerformLayout();
             this._varyingControlGroupBox.ResumeLayout(false);
+            this._varyingControlGroupBox.PerformLayout();
             this._interactiveNolduscommuncation.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -532,5 +555,7 @@
         private System.Windows.Forms.GroupBox _trialInfoGroupBox;
         private System.Windows.Forms.GroupBox globalExperimentInfogroupBox;
         private System.Windows.Forms.ListView _globaExperimentlInfoListView;
+        private System.Windows.Forms.TextBox _numOfRepetitionsTextBox;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -165,6 +165,11 @@ namespace PinkyAndBrain
         public string RatName { get; set; }
 
         /// <summary>
+        /// The number of repetitions for the varying set.
+        /// </summary>
+        public int NumOfRepetitions { get; set; }
+
+        /// <summary>
         /// Timer for raising event to sample the Noldus reponse direction and store it in _currentRatResponse.
         /// </summary>
         private System.Timers.Timer _ratSampleResponseTimer;
@@ -302,90 +307,97 @@ namespace PinkyAndBrain
 
         public void MainControlLoop()
         {
-            //while all trial are not executed or not come with response stage.
-            while(!_varyingIndexSelector.IsFinished())
+            for (int i = 0; i < NumOfRepetitions;i++)
             {
-                //if system has stopped , wait for the end of the current trial ans break,
-                if (Globals._systemState.Equals(SystemState.STOPPED) || _stopAfterTheEndOfTheCurrentTrial)
+                //while all trial are not executed or not come with response stage.
+                while (!_varyingIndexSelector.IsFinished())
                 {
-                    Globals._systemState = SystemState.STOPPED;
-                    break;
-                }
-
-                //choose the random combination index for the current trial.
-                _currentVaryingTrialIndex = _varyingIndexSelector.ChooseRandomCombination();
-
-                //craetes the trajectory for both robots for the current trial if not one of the training protocols.
-                _currentTrialTrajectories = _trajectoryCreatorHandler.CreateTrajectory(_currentVaryingTrialIndex);
-
-                //show some trial details to the gui trial details panel.
-                ShowTrialDetailsToTheDetailsListView();
-                //show the global experiment details for global experiment details.
-                ShowGlobalExperimentDetailsListView();
-
-                //initialize the currebt time parameters and all the current trial variables.
-                InitializationStage();
-
-                //wait the rat to first (in the current trial - for "start buttom") move it's head to the center.
-                bool headEnteredToTheCenterDuringTheTimeoutDuration = WaitForHeadEnteranceToTheCenterStage();
-
-                //if the rat entered it's head to the center in the before timeOut time.
-                if(headEnteredToTheCenterDuringTheTimeoutDuration)
-                {
-                    //if the rat head was stable in the center for the startDelay time as required start the movement.
-                    if(CheckDuration1HeadInTheCenterStabilityStage())
+                    //if system has stopped , wait for the end of the current trial ans break,
+                    if (Globals._systemState.Equals(SystemState.STOPPED) || _stopAfterTheEndOfTheCurrentTrial)
                     {
-                        //moving the robot with duration time , and checking for the stability of the head in the center.
-                        if (MovingTheRobotDurationWithHeadCenterStabilityStage())
+                        Globals._systemState = SystemState.STOPPED;
+                        break;
+                    }
+
+                    //choose the random combination index for the current trial.
+                    _currentVaryingTrialIndex = _varyingIndexSelector.ChooseRandomCombination();
+
+                    //craetes the trajectory for both robots for the current trial if not one of the training protocols.
+                    _currentTrialTrajectories = _trajectoryCreatorHandler.CreateTrajectory(_currentVaryingTrialIndex);
+
+                    //show some trial details to the gui trial details panel.
+                    ShowTrialDetailsToTheDetailsListView();
+                    //show the global experiment details for global experiment details.
+                    ShowGlobalExperimentDetailsListView();
+
+                    //initialize the currebt time parameters and all the current trial variables.
+                    InitializationStage();
+
+                    //wait the rat to first (in the current trial - for "start buttom") move it's head to the center.
+                    bool headEnteredToTheCenterDuringTheTimeoutDuration = WaitForHeadEnteranceToTheCenterStage();
+
+                    //if the rat entered it's head to the center in the before timeOut time.
+                    if (headEnteredToTheCenterDuringTheTimeoutDuration)
+                    {
+                        //if the rat head was stable in the center for the startDelay time as required start the movement.
+                        if (CheckDuration1HeadInTheCenterStabilityStage())
                         {
-                            //update the number of total head in the center with stability during the duration time.
-                            _totalHeadStabilityInCenterDuringDurationTime++;
-
-                            //reward the rat in the center with water for duration of rewardCenterDuration for stable head in the center during the movement.
-                            RewardCenterStage();
-
-                            //wait the rat to response to the movement during the response tine.
-                            Tuple<RatDecison , bool> decision = ResponseTimeStage();
-                            //check if the decision was correct and reward the rat according that decision.
-                            if(decision.Item2)
+                            //moving the robot with duration time , and checking for the stability of the head in the center.
+                            if (MovingTheRobotDurationWithHeadCenterStabilityStage())
                             {
-                                //reward the choosen side cellenoid.
-                                switch (decision.Item1)
+                                //update the number of total head in the center with stability during the duration time.
+                                _totalHeadStabilityInCenterDuringDurationTime++;
+
+                                //reward the rat in the center with water for duration of rewardCenterDuration for stable head in the center during the movement.
+                                RewardCenterStage();
+
+                                //wait the rat to response to the movement during the response tine.
+                                Tuple<RatDecison, bool> decision = ResponseTimeStage();
+                                //check if the decision was correct and reward the rat according that decision.
+                                if (decision.Item2)
                                 {
-                                    case RatDecison.Center:
-                                        RewardCenterStage();
-                                        break;
-                                    case RatDecison.Left:
-                                        RewardLeftStage();
-                                        break;
-                                    case RatDecison.Right:
-                                        RewardRightStage();
-                                        break;
-                                    default:
-                                        break;
+                                    //reward the choosen side cellenoid.
+                                    switch (decision.Item1)
+                                    {
+                                        case RatDecison.Center:
+                                            RewardCenterStage();
+                                            break;
+                                        case RatDecison.Left:
+                                            RewardLeftStage();
+                                            break;
+                                        case RatDecison.Right:
+                                            RewardRightStage();
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                 }
                             }
                         }
+
+                        //sounds the beep for missing the movement head in the center.
+                        else
+                        {
+                            Task.Run(() => { Console.Beep(300, 200); });
+                        }
                     }
 
-                    //sounds the beep for missing the movement head in the center.
+                    //sounds the beep with the missing start gead in the center.
                     else
                     {
-                        Task.Run(() => { Console.Beep(300, 200); });
+                        Task.Run(() => { Console.Beep(400, 200); });
                     }
+
+                    //the post trial stage for saving the trial data and for the delay between trials.
+                    PostTrialStage();
+
+                    //increase the num of trials counter indicator.
+                    _numOfPastTrials++;
                 }
 
-                //sounds the beep with the missing start gead in the center.
-                else
-                {
-                    Task.Run(() => { Console.Beep(400, 200); });
-                }
+                //reset all trials combination statuses for the next repetition.
+                _varyingIndexSelector.ResetTrialsStatus();
 
-                //the post trial stage for saving the trial data and for the delay between trials.
-                PostTrialStage();
-
-                //increase the num of trials counter indicator.
-                _numOfPastTrials++;
             }
 
             Globals._systemState = SystemState.FINISHED;

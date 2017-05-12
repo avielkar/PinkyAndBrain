@@ -46,7 +46,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Reset the status of all the trials combinations.
         /// </summary>
-        private void ResetTrialsStatus()
+        public void ResetTrialsStatus()
         {
             for(int i=0;i<_trialsCombinationIndexesStatus.Length;i++)
             {

@@ -520,6 +520,7 @@ namespace PinkyAndBrain
                     int trajectoryCreatorNum = int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0]);
                     string trajectoryCreatorName = (trajectoryCreatorNum == 0) ? "Training" : "ThreeStepAdaptation";
 
+                    _cntrlLoop.NumOfRepetitions = int.Parse(_numOfRepetitionsTextBox.Text.ToString());
                     _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreatorName, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1);
                 }
             }
@@ -1719,6 +1720,18 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Check if a given string represent a integer.
+        /// </summary>
+        /// <param name="number">The given string.</param>
+        /// <returns>True or False if an integer representation for the string.</returns>
+        private bool IntegerChecker(string number)
+        {
+            if (number.Count(c => (c < '0' || c > '9')) > 0)
+                return false;
+            return true;
+        }
+
+        /// <summary>
         /// Returns the num of statusVal statuses in the variable list.
         /// </summary>
         /// <param name="statusVal">The status to check it's occurence number.</param>
@@ -1816,6 +1829,22 @@ namespace PinkyAndBrain
                     }
                     break;
 
+            }
+        }
+
+        /// <summary>
+        /// Handler for changing the number of repetition input text.
+        /// </summary>
+        /// <param name="sender">The checkbox control.</param>
+        /// <param name="e">Args.</param>
+        private void _numOfRepetitionsTextBox_Leave(object sender, EventArgs e)
+        {
+            //check if represents an integer number.
+            if (!IntegerChecker(_numOfRepetitionsTextBox.Text.ToString()))
+            {
+                MessageBox.Show("No an integer number entered - returnnig to 1 as default", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //put the default number.
+                _numOfRepetitionsTextBox.Text = "1";
             }
         }
     }
