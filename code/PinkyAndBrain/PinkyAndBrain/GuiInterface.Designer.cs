@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -72,6 +75,8 @@
             this._trialInfoGroupBox = new System.Windows.Forms.GroupBox();
             this.globalExperimentInfogroupBox = new System.Windows.Forms.GroupBox();
             this._globaExperimentlInfoListView = new System.Windows.Forms.ListView();
+            this._onlinePsychGrpahGroupBox = new System.Windows.Forms.GroupBox();
+            this._onlinePsychGraphControl = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -83,6 +88,8 @@
             this._selectedRatGroupBox.SuspendLayout();
             this._trialInfoGroupBox.SuspendLayout();
             this.globalExperimentInfogroupBox.SuspendLayout();
+            this._onlinePsychGrpahGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._onlinePsychGraphControl)).BeginInit();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -470,11 +477,38 @@
             this._globaExperimentlInfoListView.TabIndex = 0;
             this._globaExperimentlInfoListView.UseCompatibleStateImageBehavior = false;
             // 
+            // _onlinePsychGrpahGroupBox
+            // 
+            this._onlinePsychGrpahGroupBox.Controls.Add(this._onlinePsychGraphControl);
+            this._onlinePsychGrpahGroupBox.Location = new System.Drawing.Point(1275, 397);
+            this._onlinePsychGrpahGroupBox.Name = "_onlinePsychGrpahGroupBox";
+            this._onlinePsychGrpahGroupBox.Size = new System.Drawing.Size(391, 304);
+            this._onlinePsychGrpahGroupBox.TabIndex = 19;
+            this._onlinePsychGrpahGroupBox.TabStop = false;
+            this._onlinePsychGrpahGroupBox.Text = "Online Psycho Graph";
+            // 
+            // _onlinePsychGraphControl
+            // 
+            chartArea1.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend1);
+            this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
+            this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series1);
+            this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
+            this._onlinePsychGraphControl.TabIndex = 0;
+            this._onlinePsychGraphControl.Text = "chart1";
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1678, 912);
+            this.Controls.Add(this._onlinePsychGrpahGroupBox);
             this.Controls.Add(this.globalExperimentInfogroupBox);
             this.Controls.Add(this._trialInfoGroupBox);
             this.Controls.Add(this._selectedRatGroupBox);
@@ -507,6 +541,8 @@
             this._selectedRatGroupBox.ResumeLayout(false);
             this._trialInfoGroupBox.ResumeLayout(false);
             this.globalExperimentInfogroupBox.ResumeLayout(false);
+            this._onlinePsychGrpahGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this._onlinePsychGraphControl)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -557,5 +593,7 @@
         private System.Windows.Forms.ListView _globaExperimentlInfoListView;
         private System.Windows.Forms.TextBox _numOfRepetitionsTextBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox _onlinePsychGrpahGroupBox;
+        private System.Windows.Forms.DataVisualization.Charting.Chart _onlinePsychGraphControl;
     }
 }

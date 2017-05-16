@@ -15,6 +15,7 @@ using LED.Strip.Adressable;
 using System.IO;
 using System.Reflection;
 using log4net;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace PinkyAndBrain
 {
@@ -208,6 +209,8 @@ namespace PinkyAndBrain
         /// Logger for writing log information.
         /// </summary>
         private ILog _logger;
+
+        private OnlinePsychGraphMaker _onlinePsychGraphMaker;
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
@@ -217,7 +220,7 @@ namespace PinkyAndBrain
         /// <param name="motomanController">The motoman controller object.</param>
         /// <param name="ledController">The led controller object.</param>
         /// </summary>
-        public ControlLoop(MLApp.MLApp matlabApp , CYasnac motomanController , LEDController ledController , ILog logger)
+        public ControlLoop(MLApp.MLApp matlabApp , CYasnac motomanController , LEDController ledController , Dictionary<string, Delegate> ctrlDelegatesDic, Dictionary<string , Control> mainGuiInterfaceControlsDictionary , ILog logger)
         {
             _matlabApp = matlabApp;
             _trajectoryCreatorHandler = new TrajectoryCreatorHandler(_matlabApp);
@@ -250,6 +253,17 @@ namespace PinkyAndBrain
 
             //copy the logger reference to writing lof information
             _logger = logger;
+
+            _mainGuiControlsDelegatesDictionary = ctrlDelegatesDic;
+            _mainGuiInterfaceControlsDictionary = mainGuiInterfaceControlsDictionary;
+
+            _onlinePsychGraphMaker = new OnlinePsychGraphMaker
+            {
+                ClearDelegate = _mainGuiControlsDelegatesDictionary["OnlinePsychoGraphClear"],
+                SetSeriesDelegate = _mainGuiControlsDelegatesDictionary["OnlinePsychoGraphSetSeries"],
+                SetPointDelegate = _mainGuiControlsDelegatesDictionary["OnlinePsychoGraphSetPoint"],
+                ChartControl = _mainGuiInterfaceControlsDictionary["OnlinePsychoGraph"] as Chart
+            };
         }
         #endregion CONTRUCTORS
 
@@ -257,7 +271,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Transfer the control from the main gui to the control loop until a new gui event is handled by the user.
         /// </summary>
-        public void Start(Variables variablesList, List<Dictionary<string, List<double>>> crossVaryingList, Dictionary<string, List<List<double>>> staticVariablesList, int frequency, string trajectoryCreatorName, Dictionary<string, Delegate> ctrlDelegatesDic, Dictionary<string , Control> mainGuiInterfaceControlsDictionary)
+        public void Start(Variables variablesList, List<Dictionary<string, List<double>>> crossVaryingList, Dictionary<string, List<List<double>>> staticVariablesList, int frequency, string trajectoryCreatorName)
         {
             //initialize variables.
             _variablesList = variablesList;
@@ -273,8 +287,6 @@ namespace PinkyAndBrain
             _totalHeadStabilityInCenterDuringDurationTime = 0;
 
             _timingRandomizer = new Random();
-            _mainGuiControlsDelegatesDictionary = ctrlDelegatesDic;
-            _mainGuiInterfaceControlsDictionary = mainGuiInterfaceControlsDictionary;
 
             //set the trajectory creator name to the given one that should be called in the trajectoryCreatorHandler.
             //also , set the other properties.
@@ -288,6 +300,16 @@ namespace PinkyAndBrain
 
             //create a new results file for the new experiment.
             _savedExperimentDataMaker.CreateControlNewFile();
+
+            _onlinePsychGraphMaker.Clear();
+            _onlinePsychGraphMaker.VaryingParametrsNames = GetVaryingVariablesList();
+            _onlinePsychGraphMaker.HeadingDireactionRegion = new Region
+            {
+                LowBound = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["low_bound"]._ratHouseParameter[0]),
+                Increament = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["increament"]._landscapeParameters[0]),
+                HighBound = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["high_bound"]._landscapeParameters[0])
+            };
+            _onlinePsychGraphMaker.InitSerieses();
 
             //run the main control loop function in other thread fom the main thread ( that handling events and etc).
             _stopAfterTheEndOfTheCurrentTrial = false;
@@ -839,6 +861,21 @@ namespace PinkyAndBrain
             }
 
             return double.Parse(timeValue);
+        }
+
+        private List<string> GetVaryingVariablesList()
+        {
+            List<string> varyingVariablesNames = new List<string>();
+
+            foreach (string item in _variablesList._variablesDictionary.Keys)
+            {
+                if (_variablesList._variablesDictionary[item]._description["status"]._ratHouseParameter[0].Equals("2"))
+                {
+                    varyingVariablesNames.Add(_variablesList._variablesDictionary[item]._description["nice_name"]._ratHouseParameter[0].ToString());
+                }
+            }
+
+            return varyingVariablesNames;
         }
 
         /// <summary>

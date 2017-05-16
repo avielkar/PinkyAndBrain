@@ -148,7 +148,10 @@ namespace PinkyAndBrain
             _ledController.ResetLeds();
 
             Globals._systemState = SystemState.INITIALIZED;
-            _cntrlLoop = new ControlLoop(_matlabApp , _motocomController , _ledController , _logger);
+
+            //make the delegate with it's control object and their nickname as pairs of dictionaries.
+            Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>> delegatsControlsTuple = MakeCtrlDelegateAndFunctionDictionary();
+            _cntrlLoop = new ControlLoop(_matlabApp, _motocomController, _ledController, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1, _logger);
 
             //reset the selected direction to be empty.
             _selectedHandRewardDirections = 0;
@@ -177,6 +180,33 @@ namespace PinkyAndBrain
         #endregion CONSTRUCTORS
 
         #region OUTSIDER_EVENTS_HANDLE_FUNCTION
+
+        public delegate void OnlinePsychoGraphClearDelegate();
+
+        public void OnlinePsychoGraphClear()
+        {
+            _onlinePsychGraphControl.Series.Clear();
+
+            _onlinePsychGraphControl.Show();
+        }
+
+        public delegate void OnlinePsychoGraphSetPointDelegate(string seriesName, int x, int y);
+
+        public void OnlinePsychoGraphSetPoint(string seriesName , int x , int y)
+        {
+            _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x, y);
+        }
+
+        public delegate void OnlinePsychoGraphSetSeriesDelegate(List<string> seriesNames);
+     
+        public void OnlinePsychoGraphSetSeries(List<string> seriesNames)
+        {
+            foreach (string seriesName in seriesNames)
+            {
+                _onlinePsychGraphControl.Series.Add(seriesName);
+            }
+        }
+
         /// <summary>
         /// Delegate for the trial details ListView text changing.
         /// </summary>
@@ -356,6 +386,18 @@ namespace PinkyAndBrain
             ctrlDelegatesDic.Add("FinishedAllTrialsRound", finishedAlltrialRoundDelegate);
             ctrlDictionary.Add("FinishedAllTrialsRound", _stopButtom);
 
+            //add the delegate for events changing the online psycho graph for the experiment results.
+            ctrlDictionary.Add("OnlinePsychoGraph", _onlinePsychGraphControl);
+            
+            OnlinePsychoGraphClearDelegate onlinePsychoGraphClearDelegate = new OnlinePsychoGraphClearDelegate(OnlinePsychoGraphClear);
+            ctrlDelegatesDic.Add("OnlinePsychoGraphClear", onlinePsychoGraphClearDelegate);
+
+            OnlinePsychoGraphSetPointDelegate onlinePsychoGraphSetPointDelegate = new OnlinePsychoGraphSetPointDelegate(OnlinePsychoGraphSetPoint);
+            ctrlDelegatesDic.Add("OnlinePsychoGraphSetPoint", onlinePsychoGraphSetPointDelegate);
+
+            OnlinePsychoGraphSetSeriesDelegate onlinePsychoGraphSetSeriesDelegate = new OnlinePsychoGraphSetSeriesDelegate(OnlinePsychoGraphSetSeries);
+            ctrlDelegatesDic.Add("OnlinePsychoGraphSetSeries", onlinePsychoGraphSetSeriesDelegate);
+
             //return both dictionaries.
             return new Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>>(ctrlDictionary, ctrlDelegatesDic);
         }
@@ -511,9 +553,6 @@ namespace PinkyAndBrain
                     //add the static variable list of double type values.
                     _staticValuesGenerator.SetVariables(_variablesList);
 
-                    //make the delegate with it's control object and their nickname as pairs of dictionaries.
-                    Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>> delegatsControlsTuple = MakeCtrlDelegateAndFunctionDictionary();
-
                     //start the control loop.
                     //need to be changed according to parameters added to which trajectoryname to be called from the excel file.
                     //string trajectoryCreatorName = _variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0];
@@ -521,7 +560,7 @@ namespace PinkyAndBrain
                     string trajectoryCreatorName = (trajectoryCreatorNum == 0) ? "Training" : "ThreeStepAdaptation";
 
                     _cntrlLoop.NumOfRepetitions = int.Parse(_numOfRepetitionsTextBox.Text.ToString());
-                    _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreatorName, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1);
+                    _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreatorName);
                 }
             }
         }
