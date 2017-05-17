@@ -190,11 +190,18 @@ namespace PinkyAndBrain
             _onlinePsychGraphControl.Show();
         }
 
-        public delegate void OnlinePsychoGraphSetPointDelegate(string seriesName, int x, int y);
+        public delegate void OnlinePsychoGraphSetPointDelegate(string seriesName, double x, double y, bool newPoint = false);
 
-        public void OnlinePsychoGraphSetPoint(string seriesName , int x , int y)
+        public void OnlinePsychoGraphSetPoint(string seriesName , double x , double y , bool newPoint = false)
         {
-            _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x, y);
+            if(newPoint)
+                _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x, y);
+            else
+            {
+                _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).SetValueXY(x , y);
+            }
+
+            _onlinePsychGraphControl.Update();
         }
 
         public delegate void OnlinePsychoGraphSetSeriesDelegate(List<string> seriesNames);
