@@ -187,6 +187,8 @@ namespace PinkyAndBrain
         {
             _onlinePsychGraphControl.Series.Clear();
 
+            _onlinePsychGraphControl.ChartAreas.First(area => true).RecalculateAxesScale();
+
             _onlinePsychGraphControl.Show();
         }
 
@@ -195,13 +197,16 @@ namespace PinkyAndBrain
         public void OnlinePsychoGraphSetPoint(string seriesName , double x , double y , bool newPoint = false)
         {
             if(newPoint)
-                _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x, y);
+                _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x, 0);
             else
             {
-                _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).SetValueXY(x , y);
+                _onlinePsychGraphControl.Series[seriesName].Points.Remove(_onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x));
+                _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x , y);
             }
 
             _onlinePsychGraphControl.Update();
+            
+            _onlinePsychGraphControl.ChartAreas.First(area => true).RecalculateAxesScale();
         }
 
         public delegate void OnlinePsychoGraphSetSeriesDelegate(List<string> seriesNames);
