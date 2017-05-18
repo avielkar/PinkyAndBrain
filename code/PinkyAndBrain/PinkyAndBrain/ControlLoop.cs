@@ -529,7 +529,16 @@ namespace PinkyAndBrain
             {
                 if(_currentRatResponse == (byte)RatDecison.Left)
                 {
-                    if (currentStimulationSide.Equals(RatDecison.Left)) { _totalCorrectAnswers++; _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT); return new Tuple<RatDecison, bool>(RatDecison.Left, true); }
+                    if (currentStimulationSide.Equals(RatDecison.Left))
+                    {
+                        //increase the total correct answers.
+                        _totalCorrectAnswers++;
+
+                        //update the psycho online graph.
+                        _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT);
+                        
+                        return new Tuple<RatDecison, bool>(RatDecison.Left, true);
+                    }
 
                     _currentRatDecision = RatDecison.Left;
                     _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.WRONG);
@@ -539,7 +548,16 @@ namespace PinkyAndBrain
 
                 else if(_currentRatResponse == (byte)RatDecison.Right)
                 {
-                    if (currentStimulationSide.Equals(RatDecison.Right)) { _totalCorrectAnswers++; _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT); return new Tuple<RatDecison, bool>(RatDecison.Right, true); }
+                    if (currentStimulationSide.Equals(RatDecison.Right)) 
+                    { 
+                        //increase the total coreect answers.
+                        _totalCorrectAnswers++;
+
+                        //update the psycho online graph.
+                        _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT); 
+                        
+                        return new Tuple<RatDecison, bool>(RatDecison.Right, true);
+                    }
 
                     _currentRatDecision = RatDecison.Right;
                     _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.WRONG);

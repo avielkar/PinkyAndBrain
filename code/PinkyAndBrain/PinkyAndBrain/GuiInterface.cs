@@ -181,8 +181,14 @@ namespace PinkyAndBrain
 
         #region OUTSIDER_EVENTS_HANDLE_FUNCTION
 
+        /// <summary>
+        /// Delegate clearing the psycho online graph.
+        /// </summary>
         public delegate void OnlinePsychoGraphClearDelegate();
 
+        /// <summary>
+        /// Clears the psycho online graph.
+        /// </summary>
         public void OnlinePsychoGraphClear()
         {
             _onlinePsychGraphControl.Series.Clear();
@@ -192,8 +198,22 @@ namespace PinkyAndBrain
             _onlinePsychGraphControl.Show();
         }
 
+        /// <summary>
+        /// Delegate setting the given point in the given series.
+        /// </summary>
+        /// <param name="seriesName">The series name to set it's point.</param>
+        /// <param name="x">The x value of the point.</param>
+        /// <param name="y">The y balue of the point.</param>
+        /// <param name="newPoint">Indicated if it is a new point to add or existing point.</param>
         public delegate void OnlinePsychoGraphSetPointDelegate(string seriesName, double x, double y, bool newPoint = false);
 
+        /// <summary>
+        /// Setting the given point in the given series.
+        /// </summary>
+        /// <param name="seriesName">The series name to set the point to it.</param>
+        /// <param name="x">The x value of the point.</param>
+        /// <param name="y">The y value of the point.</param>
+        /// <param name="newPoint">Indicates if the point is new to the chart or is an existing one.</param>
         public void OnlinePsychoGraphSetPoint(string seriesName , double x , double y , bool newPoint = false)
         {
             if(newPoint)
@@ -204,13 +224,19 @@ namespace PinkyAndBrain
                 _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x , y);
             }
 
-            _onlinePsychGraphControl.Update();
-            
             _onlinePsychGraphControl.ChartAreas.First(area => true).RecalculateAxesScale();
         }
 
+        /// <summary>
+        /// Delegate for setting serieses names to the chart.
+        /// </summary>
+        /// <param name="seriesNames">The series list to set to the graph.</param>
         public delegate void OnlinePsychoGraphSetSeriesDelegate(List<string> seriesNames);
      
+        /// <summary>
+        /// Setting the online psycho graph series by the given series names list.
+        /// </summary>
+        /// <param name="seriesNames">The series names list to set to the chart.</param>
         public void OnlinePsychoGraphSetSeries(List<string> seriesNames)
         {
             foreach (string seriesName in seriesNames)
@@ -229,7 +255,8 @@ namespace PinkyAndBrain
         /// <summary>
         /// Updates the trial details ListView with the given text.
         /// </summary>
-        /// <param name="text"></param>
+        /// <param name="name">The name of the parameter to add.</param>
+        /// <param name="value">The value of the parameter to add.</param>
         private void ChangeCurrentTrialDetailsListView(string name, string value)
         {
             ListViewItem lvi = new ListViewItem(name);

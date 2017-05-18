@@ -15,35 +15,64 @@ namespace PinkyAndBrain
     /// </summary>
     class OnlinePsychGraphMaker
     {
-
+        /// <summary>
+        /// The varying parametr names represents series in the chart.
+        /// </summary>
         public List<string> VaryingParametrsNames { get; set; }
 
+        /// <summary>
+        /// The heading direction regions represented in the chart.
+        /// </summary>
         public Region HeadingDireactionRegion { get; set; }
 
+        /// <summary>
+        /// The Pasycho online chart control item.
+        /// </summary>
         public Chart ChartControl { get; set; }
 
+        /// <summary>
+        /// Delegate for invoking the Clearing function for the psycho online graph.
+        /// </summary>
         public Delegate ClearDelegate { get; set; }
 
+        /// <summary>
+        /// Delegate for invoking the Setting serieses names functio of the psycho online graph.
+        /// </summary>
         public Delegate SetSeriesDelegate { get; set; }
 
+        /// <summary>
+        /// Delegate for invoking the Setting point in a given series of the psycho online graph.
+        /// </summary>
         public Delegate SetPointDelegate { get; set; }
 
+        /// <summary>
+        /// The serieses points details (for each series the details of points).
+        /// </summary>
         private Dictionary<string, List<SeriesDetail>> _seriesPointsDetails;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public OnlinePsychGraphMaker()
         {
             _seriesPointsDetails = new Dictionary<string, List<SeriesDetail>>();
         }
 
+        /// <summary>
+        /// Initialize the serieses with their names and the region of the HeadingDirection.
+        /// </summary>
         public void InitSerieses()
         {
+            //adding the serieses names to the chart.
             ChartControl.BeginInvoke(SetSeriesDelegate, VaryingParametrsNames);
 
+            //creating the varying parameter dictionary that holds all points for each.
             foreach (string varyingParameterName in VaryingParametrsNames)
             {
                 _seriesPointsDetails[varyingParameterName] = new List<SeriesDetail>();
             }
 
+            //adding all the heading direction to each series.
             for (double i = HeadingDireactionRegion.LowBound; i <= HeadingDireactionRegion.HighBound; i+= HeadingDireactionRegion.Increament)
             {
                 foreach (string varyingParameterName in VaryingParametrsNames)
@@ -60,44 +89,89 @@ namespace PinkyAndBrain
             }
         }
 
+        /// <summary>
+        /// Setting a point to the chart with the given series name and the accumulating result.
+        /// </summary>
+        /// <param name="varyingParameterName">The series name to add the point to it.</param>
+        /// <param name="regionPoint">The x value (heading direction) of the point to be set.</param>
+        /// <param name="answerStatus">Indicates if the current result was correct or false.</param>
         public void AddResult(string varyingParameterName, double regionPoint , AnswerStatus answerStatus)
         {
+            //increase the total number of answers at this point.
             _seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).Total++;
             
+            //increase the total correct answers to the given point if correct answer.
             if(answerStatus.Equals(AnswerStatus.CORRECT))
                 _seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).SuccessNum++;
 
+            //invoking the function updates the given series with the updated point.
             ChartControl.BeginInvoke(SetPointDelegate, varyingParameterName, regionPoint, ((double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).SuccessNum / (double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).Total), false);
         }
 
+        /// <summary>
+        /// Clearing all data in the psycho online graph.
+        /// </summary>
         public void Clear()
         {
             ChartControl.BeginInvoke(ClearDelegate);
         }
     }
 
+    /// <summary>
+    /// Representing a resion details.
+    /// </summary>
     public class Region
     {
+        /// <summary>
+        /// The low bound of the region.
+        /// </summary>
         public double LowBound { get; set; }
 
+        /// <summary>
+        /// The increament for the steps in the bound.
+        /// </summary>
         public double Increament { get; set; }
 
+        /// <summary>
+        /// The high bound of the region.
+        /// </summary>
         public double HighBound { get; set; }
     }
 
+    /// <summary>
+    /// Series Details represent the trade of sucess vs answers in a point(heading direction).
+    /// </summary>
     public class SeriesDetail
     {
+        /// <summary>
+        /// The value of the point (heading direction).
+        /// </summary>
         public double X { get; set; }
 
+        /// <summary>
+        /// The number of correct answers.
+        /// </summary>
         public int SuccessNum { get; set; }
 
+        /// <summary>
+        /// The total answers.
+        /// </summary>
         public int Total { get; set; }
     }
 
+    /// <summary>
+    /// Enum represents the answer status.
+    /// </summary>
     public enum AnswerStatus
 	{
-	      WRONG = 0,
+        /// <summary>
+        /// Represents wrong answer.
+        /// </summary>
+	    WRONG = 0,
 
-          CORRECT = 1
+        /// <summary>
+        /// Represents correct answer.
+        /// </summary>
+        CORRECT = 1
 	};
 }

@@ -15942,3 +15942,12 @@
 2017-05-18 21:26:28,346 INFO [12] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
 2017-05-18 21:26:28,347 INFO [12] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
 2017-05-18 21:26:28,347 INFO [12] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-05-18 22:44:44,810 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-05-18 22:44:44,839 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2017-05-18 22:44:44,844 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-18 22:44:44,855 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-18 22:44:44,865 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-18 22:44:44,875 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-18 22:44:44,886 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-18 22:44:44,898 INFO [9] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2017-05-18 22:44:44,900 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
