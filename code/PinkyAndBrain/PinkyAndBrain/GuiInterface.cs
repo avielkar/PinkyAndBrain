@@ -1003,14 +1003,14 @@ namespace PinkyAndBrain
 
             if (leftCheckBox.Checked)
             {
-                //| operator with 0000_0100
-                _selectedHandRewardDirections |= 4;
+                //| operator with 0000_0001
+                _selectedHandRewardDirections |= 1;
             }
 
             else
             {
-                //& operator with 0000_0011
-                _selectedHandRewardDirections &= 3;
+                //& operator with 0000_0100
+                _selectedHandRewardDirections &= 4;
             }
         }
 
@@ -1047,15 +1047,16 @@ namespace PinkyAndBrain
 
             if (rightCheckBox.Checked)
             {
-                //| operator with 0000_0001
-                _selectedHandRewardDirections |= 1;
+                //| operator with 0000_0100
+                _selectedHandRewardDirections |= 4;
             }
 
             else
             {
-                //& operator with 0000_0100
-                _selectedHandRewardDirections &= 4;
+                //& operator with 0000_0011
+                _selectedHandRewardDirections &= 3;
             }
+
         }
 
         private void _autoRewardsTextBox_CheckedChanged(object sender, EventArgs e)
