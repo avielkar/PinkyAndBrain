@@ -360,20 +360,34 @@ namespace PinkyAndBrain
         /// <summary>
         /// Handler for water reward measurement interactive panel.
         /// </summary>
-        public delegate void SetWaterRewardsMeasureDelegate();
+        public delegate void SetWaterRewardsMeasureDelegate(bool reset = false);
 
         /// <summary>
         /// Handler for setting the interactive water reward measure panel.
+        /// <param name="reset">Indicated if to set the water measurement to zero (reset it).</param>
         /// </summary>
-        private void SetWaterRewardsMeasure()
+        private void SetWaterRewardsMeasure(bool reset = false)
         {
-            _logger.Info("Setting reward measure interactive panel....");
+            if (!reset)
+            {
+                _logger.Info("Setting reward measure interactive panel....");
 
-            //set the water anoumt in animation.
-            _waterRewardMeasure.Value += 1;
+                //set the water anoumt in animation.
+                _waterRewardMeasure.Value += 1;
 
-            //set the water amount in the animation text.
-            _waterRewardMeasure.Text = (((double)(_waterRewardMeasure.Value * 60) / _waterRewardMeasure.Maximum)).ToString("00.000") + "ml";
+                //set the water amount in the animation text.
+                _waterRewardMeasure.Text = (((double)(_waterRewardMeasure.Value * 60) / _waterRewardMeasure.Maximum)).ToString("00.000") + "ml";
+            }
+            else
+            {
+                _logger.Info("Reseting reward measure interactive panel....");
+
+                //set the water anoumt in animation.
+                _waterRewardMeasure.Value = 0;
+
+                //set the water amount in the animation text.
+                _waterRewardMeasure.Text = (((double)0.000).ToString("00.000")) + "ml";
+            }
         }
 
         /// <summary>

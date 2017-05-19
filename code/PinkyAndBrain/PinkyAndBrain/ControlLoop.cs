@@ -209,9 +209,15 @@ namespace PinkyAndBrain
         /// Logger for writing log information.
         /// </summary>
         private ILog _logger;
-
+        
+        /// <summary>
+        /// The online psyco graph maker object to control the psycho chart.
+        /// </summary>
         private OnlinePsychGraphMaker _onlinePsychGraphMaker;
 
+        /// <summary>
+        /// Indictaed wether giving a second reward automatically in the direction side of the stimulus type.
+        /// </summary>
         public bool AutoReward { get; set; }
         #endregion ATTRIBUTES
 
@@ -256,9 +262,11 @@ namespace PinkyAndBrain
             //copy the logger reference to writing lof information
             _logger = logger;
 
+            //initialize the controls changed by the controlLoop and their invoking functions.
             _mainGuiControlsDelegatesDictionary = ctrlDelegatesDic;
             _mainGuiInterfaceControlsDictionary = mainGuiInterfaceControlsDictionary;
 
+            //initialize the online psycho graph.
             _onlinePsychGraphMaker = new OnlinePsychGraphMaker
             {
                 ClearDelegate = _mainGuiControlsDelegatesDictionary["OnlinePsychoGraphClear"],
@@ -303,6 +311,7 @@ namespace PinkyAndBrain
             //create a new results file for the new experiment.
             _savedExperimentDataMaker.CreateControlNewFile();
 
+            //clear and initialize the psyco online graph.
             _onlinePsychGraphMaker.Clear();
             _onlinePsychGraphMaker.VaryingParametrsNames = GetVaryingVariablesList();
             _onlinePsychGraphMaker.HeadingDireactionRegion = new Region
@@ -312,6 +321,10 @@ namespace PinkyAndBrain
                 HighBound = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["high_bound"]._landscapeParameters[0])
             };
             _onlinePsychGraphMaker.InitSerieses();
+
+            //reset the amount of water measurement interactive panel.
+            _mainGuiInterfaceControlsDictionary["SetWaterRewardsMeasure"].BeginInvoke(
+              _mainGuiControlsDelegatesDictionary["SetWaterRewardsMeasure"], true);
 
             //run the main control loop function in other thread fom the main thread ( that handling events and etc).
             _stopAfterTheEndOfTheCurrentTrial = false;
@@ -1119,7 +1132,7 @@ namespace PinkyAndBrain
         void WaterRewardFillingTimer_Tick(object sender, EventArgs e)
         {
             _mainGuiInterfaceControlsDictionary["SetWaterRewardsMeasure"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["SetWaterRewardsMeasure"]);
+                _mainGuiControlsDelegatesDictionary["SetWaterRewardsMeasure"] , false);
         }
 
         /// <summary>
