@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,6 +48,7 @@
             this._trialParametersGroup = new System.Windows.Forms.GroupBox();
             this._dynamicParametersPanel = new System.Windows.Forms.Panel();
             this._handRewardsgroupBox = new System.Windows.Forms.GroupBox();
+            this._autoRewardsCheckBox = new System.Windows.Forms.CheckBox();
             this._rightHandRewardCheckBox = new System.Windows.Forms.CheckBox();
             this._centerHandRewardCheckBox = new System.Windows.Forms.CheckBox();
             this._leftHandRewardCheckBox = new System.Windows.Forms.CheckBox();
@@ -77,7 +78,6 @@
             this._globaExperimentlInfoListView = new System.Windows.Forms.ListView();
             this._onlinePsychGrpahGroupBox = new System.Windows.Forms.GroupBox();
             this._onlinePsychGraphControl = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this._autoRewardsCheckBox = new System.Windows.Forms.CheckBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -230,6 +230,17 @@
             this._handRewardsgroupBox.TabIndex = 12;
             this._handRewardsgroupBox.TabStop = false;
             this._handRewardsgroupBox.Text = "Hand Rewards";
+            // 
+            // _autoRewardsCheckBox
+            // 
+            this._autoRewardsCheckBox.AutoSize = true;
+            this._autoRewardsCheckBox.Location = new System.Drawing.Point(54, 152);
+            this._autoRewardsCheckBox.Name = "_autoRewardsCheckBox";
+            this._autoRewardsCheckBox.Size = new System.Drawing.Size(93, 17);
+            this._autoRewardsCheckBox.TabIndex = 9;
+            this._autoRewardsCheckBox.Text = "Auto Rewards";
+            this._autoRewardsCheckBox.UseVisualStyleBackColor = true;
+            this._autoRewardsCheckBox.CheckedChanged += new System.EventHandler(this._autoRewardsTextBox_CheckedChanged);
             // 
             // _rightHandRewardCheckBox
             // 
@@ -491,30 +502,20 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea2.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend1);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series1);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
-            // 
-            // _autoRewardsTextBox
-            // 
-            this._autoRewardsCheckBox.AutoSize = true;
-            this._autoRewardsCheckBox.Location = new System.Drawing.Point(54, 152);
-            this._autoRewardsCheckBox.Name = "_autoRewardsTextBox";
-            this._autoRewardsCheckBox.Size = new System.Drawing.Size(93, 17);
-            this._autoRewardsCheckBox.TabIndex = 9;
-            this._autoRewardsCheckBox.Text = "Auto Rewards";
-            this._autoRewardsCheckBox.UseVisualStyleBackColor = true;
-            this._autoRewardsCheckBox.CheckedChanged += new System.EventHandler(this._autoRewardsTextBox_CheckedChanged);
             // 
             // GuiInterface
             // 

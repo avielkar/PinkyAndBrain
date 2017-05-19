@@ -176,6 +176,10 @@ namespace PinkyAndBrain
             //create the result directory in the application path if needed.
             if(!Directory.Exists(Application.StartupPath + "\results"))
                 Directory.CreateDirectory(Application.StartupPath + @"\results\");
+
+            //adding background image to the window.
+            this.BackgroundImage = Image.FromFile(Application.StartupPath + @"\Pinky_and_the_Brain.jpg");
+            this._varyingControlGroupBox.BackgroundImage = Image.FromFile(Application.StartupPath + @"\Pinky_and_the_Brain.jpg");
         }
         #endregion CONSTRUCTORS
 
@@ -242,6 +246,7 @@ namespace PinkyAndBrain
             foreach (string seriesName in seriesNames)
             {
                 _onlinePsychGraphControl.Series.Add(seriesName);
+                _onlinePsychGraphControl.Series[seriesName].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             }
         }
 
