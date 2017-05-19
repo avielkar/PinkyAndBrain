@@ -211,6 +211,8 @@ namespace PinkyAndBrain
         private ILog _logger;
 
         private OnlinePsychGraphMaker _onlinePsychGraphMaker;
+
+        public bool AutoReward { get; set; }
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
@@ -375,25 +377,9 @@ namespace PinkyAndBrain
 
                                 //wait the rat to response to the movement during the response tine.
                                 Tuple<RatDecison, bool> decision = ResponseTimeStage();
-                                //check if the decision was correct and reward the rat according that decision.
-                                if (decision.Item2)
-                                {
-                                    //reward the choosen side cellenoid.
-                                    switch (decision.Item1)
-                                    {
-                                        case RatDecison.Center:
-                                            RewardCenterStage();
-                                            break;
-                                        case RatDecison.Left:
-                                            RewardLeftStage();
-                                            break;
-                                        case RatDecison.Right:
-                                            RewardRightStage();
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
+                                
+                                //second reward stage (condition if needed in the stage)
+                                SecondRewardStage(decision , AutoReward);
                             }
                         }
 
@@ -598,6 +584,63 @@ namespace PinkyAndBrain
 
             //close again the reward port.
             _rewardController.WriteSingleSamplePort(true, 0x00);
+        }
+
+        /// <summary>
+        /// Second reward stage according to the rat response for the stimulus direction.
+        /// </summary>
+        /// <param name="decision">The rat decision about the stimulus direction and if correct or not.</param>
+        /// <param name="autoReward">Indicated if to give reward automatically in the motion side of the stimulus direction.</param>
+        public void SecondRewardStage(Tuple<RatDecison, bool> decision,  bool autoReward = false)
+        {
+            //check if the decision was correct and reward the rat according that decision.
+            if (decision.Item2)
+            {
+                //reward the choosen side cellenoid.
+                switch (decision.Item1)
+                {
+                    case RatDecison.Center:
+                        RewardCenterStage();
+                        break;
+                    case RatDecison.Left:
+                        RewardLeftStage();
+                        break;
+                    case RatDecison.Right:
+                        RewardRightStage();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            //if to give reward no matter whether the response was correct or not.
+            else if (AutoReward)
+            {
+                //get the current stimulus direction.
+                double currentHeadingDirection = double.Parse(GetVariableValue(0, "HEADING_DIRECTION"));
+
+                //determine the current stimulus direaction.
+                RatDecison currentStimulationSide = (currentHeadingDirection == 0) ? (RatDecison.Center) : ((currentHeadingDirection > 0) ? (RatDecison.Right) : RatDecison.Left);
+
+                //give the reward according to the robot direction motion.
+                switch (currentStimulationSide)
+                {
+                    case RatDecison.Center:
+                        RewardCenterStage();
+                        break;
+
+                    case RatDecison.Left:
+                        RewardLeftStage();
+                        break;
+
+                    case RatDecison.Right:
+                        RewardRightStage();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
         }
 
         /// <summary>

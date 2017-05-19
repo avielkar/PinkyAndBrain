@@ -1057,6 +1057,14 @@ namespace PinkyAndBrain
                 _selectedHandRewardDirections &= 4;
             }
         }
+
+        private void _autoRewardsTextBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_autoRewardsCheckBox.Checked)
+                _cntrlLoop.AutoReward = true;
+            else
+                _cntrlLoop.AutoReward = false;
+        }
         #endregion HAND_REWARD_CONTROLL_FUNCTION
 
         #region my_functions
