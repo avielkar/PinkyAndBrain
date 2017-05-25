@@ -1,0 +1,27 @@
+﻿2017-05-23 18:48:22,097 INFO [1] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-05-23 18:48:22,124 INFO [1] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2017-05-23 18:48:22,127 INFO [1] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 18:48:22,138 INFO [1] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 18:48:22,148 INFO [1] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 18:48:22,158 INFO [1] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 18:48:22,168 INFO [1] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 18:48:22,179 INFO [1] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2017-05-23 18:48:22,180 INFO [1] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2017-05-23 21:26:01,880 INFO [8] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-05-23 21:26:01,908 INFO [8] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2017-05-23 21:26:01,915 INFO [8] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 21:26:01,926 INFO [8] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 21:26:01,936 INFO [8] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 21:26:01,946 INFO [8] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 21:26:01,956 INFO [8] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 21:26:01,967 INFO [8] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2017-05-23 21:26:01,968 INFO [8] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2017-05-23 21:26:16,556 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-05-23 21:26:16,584 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2017-05-23 21:26:16,587 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 21:26:16,598 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 21:26:16,608 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 21:26:16,618 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 21:26:16,628 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-05-23 21:26:16,639 INFO [10] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2017-05-23 21:26:16,640 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished

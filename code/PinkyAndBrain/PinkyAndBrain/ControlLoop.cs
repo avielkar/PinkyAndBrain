@@ -16,6 +16,8 @@ using System.IO;
 using System.Reflection;
 using log4net;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Media;
+using WMPLib;
 
 namespace PinkyAndBrain
 {
@@ -219,6 +221,16 @@ namespace PinkyAndBrain
         /// Indictaed wether giving a second reward automatically in the direction side of the stimulus type.
         /// </summary>
         public bool AutoReward { get; set; }
+
+        /// <summary>
+        /// Dictionary represent a sound name and it's file path.
+        /// </summary>
+        private Dictionary<string, string> _soundPlayerPathDB;
+
+        /// <summary>
+        /// Object for handles WindowsMediaPlayer controls to play mp3 files.
+        /// </summary>
+        private WindowsMediaPlayer _windowsMediaPlayer;
         #endregion ATTRIBUTES
 
         #region CONTRUCTORS
@@ -274,6 +286,11 @@ namespace PinkyAndBrain
                 SetPointDelegate = _mainGuiControlsDelegatesDictionary["OnlinePsychoGraphSetPoint"],
                 ChartControl = _mainGuiInterfaceControlsDictionary["OnlinePsychoGraph"] as Chart
             };
+
+            //initialize the MrdiaPlayer controller and the DB of sound effects and their path.
+            _soundPlayerPathDB = new Dictionary<string, string>();
+            LoadAllSoundPlayers();
+            _windowsMediaPlayer = new WindowsMediaPlayer();
         }
         #endregion CONTRUCTORS
 
@@ -399,14 +416,14 @@ namespace PinkyAndBrain
                         //sounds the beep for missing the movement head in the center.
                         else
                         {
-                            Task.Run(() => { Console.Beep(300, 200); });
+                            Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play(); });
                         }
                     }
 
                     //sounds the beep with the missing start gead in the center.
                     else
                     {
-                        Task.Run(() => { Console.Beep(400, 200); });
+                        Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"]; _windowsMediaPlayer.controls.play(); });
                     }
 
                     //the post trial stage for saving the trial data and for the delay between trials.
@@ -425,6 +442,14 @@ namespace PinkyAndBrain
 
             //raise an event for the GuiInterface that the trials round is over.
             _mainGuiInterfaceControlsDictionary["FinishedAllTrialsRound"].BeginInvoke(_mainGuiControlsDelegatesDictionary["FinishedAllTrialsRound"]);
+        }
+
+        private void LoadAllSoundPlayers()
+        {
+            _soundPlayerPathDB.Add("CorrectAnswer", Application.StartupPath + @"\SoundEffects\correct sound effect.mp3");
+            _soundPlayerPathDB.Add("WrongAnswer", Application.StartupPath + @"\SoundEffects\Wrong Buzzer Sound Effect.mp3");
+            _soundPlayerPathDB.Add("Ding", Application.StartupPath + @"SoundEffects\Ding Sound Effects.mp3");
+            _soundPlayerPathDB.Add("MissingAnswer", Application.StartupPath + @"SoundEffects\Wrong Buzzer Sound Effect.mp3");
         }
 
         /// <summary>
@@ -635,19 +660,19 @@ namespace PinkyAndBrain
                 //determine the current stimulus direaction.
                 RatDecison currentStimulationSide = (currentHeadingDirection == 0) ? (RatDecison.Center) : ((currentHeadingDirection > 0) ? (RatDecison.Right) : RatDecison.Left);
 
-                //give the reward according to the robot direction motion.
+                //give the reward according to the robot direction motion with no delay.
                 switch (currentStimulationSide)
                 {
                     case RatDecison.Center:
-                        RewardCenterStage();
+                        RewardCenterStage(true);
                         break;
 
                     case RatDecison.Left:
-                        RewardLeftStage();
+                        RewardLeftStage(true);
                         break;
 
                     case RatDecison.Right:
-                        RewardRightStage();
+                        RewardRightStage(true);
                         break;
 
                     default:
@@ -658,39 +683,42 @@ namespace PinkyAndBrain
 
         /// <summary>
         /// The reward left stage is happening if the rat decide the correct stimulus side.
+        /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
         /// </summary>
-        public void RewardLeftStage()
+        public void RewardLeftStage(bool autoReward = false)
         {
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Left)");
 
-            Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration , _currentTrialTimings.wRewardLeftDelay);
+            Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration, (autoReward) ? 0 : _currentTrialTimings.wRewardLeftDelay);
         }
 
         /// <summary>
         /// The reward right stage is happening if the rat decide the correct stimulus side.
+        /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
         /// </summary>
-        public void RewardRightStage()
+        public void RewardRightStage(bool autoReward = false)
         {
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Right)");
 
 
-            Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration , _currentTrialTimings.wRewardRightDelay);
+            Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration, (autoReward) ? 0 : _currentTrialTimings.wRewardRightDelay);
         }
 
         /// <summary>
         /// The reward center stage is happening if the rat head was consistently stable in the center during the movement.
+        /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
         /// </summary>
-        public void RewardCenterStage()
+        public void RewardCenterStage(bool autoReward = false)
         {
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Center)");
 
-            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration , _currentTrialTimings.wRewardLeftDelay);
+            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration, (autoReward) ? 0 : _currentTrialTimings.wRewardLeftDelay);
         }
 
         /// <summary>
