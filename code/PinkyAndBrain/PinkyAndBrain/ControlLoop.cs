@@ -444,12 +444,17 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["FinishedAllTrialsRound"].BeginInvoke(_mainGuiControlsDelegatesDictionary["FinishedAllTrialsRound"]);
         }
 
+        /// <summary>
+        /// Load all mp3 files that the MediaPlayer object should use.
+        /// </summary>
         private void LoadAllSoundPlayers()
         {
             _soundPlayerPathDB.Add("CorrectAnswer", Application.StartupPath + @"\SoundEffects\correct sound effect.mp3");
             _soundPlayerPathDB.Add("WrongAnswer", Application.StartupPath + @"\SoundEffects\Wrong Buzzer Sound Effect.mp3");
-            _soundPlayerPathDB.Add("Ding", Application.StartupPath + @"SoundEffects\Ding Sound Effects.mp3");
-            _soundPlayerPathDB.Add("MissingAnswer", Application.StartupPath + @"SoundEffects\Wrong Buzzer Sound Effect.mp3");
+            _soundPlayerPathDB.Add("Ding", Application.StartupPath + @"\SoundEffects\Ding Sound Effects.mp3");
+            _soundPlayerPathDB.Add("MissingAnswer", Application.StartupPath + @"\SoundEffects\Wrong Buzzer Sound Effect.mp3");
+            _soundPlayerPathDB.Add("Ding-Left", Application.StartupPath + @"\SoundEffects\Ding Sound Effects - Left.mp3");
+            _soundPlayerPathDB.Add("Ding-Right", Application.StartupPath + @"\SoundEffects\Ding Sound Effects - Right.mp3");
         }
 
         /// <summary>
@@ -601,19 +606,41 @@ namespace PinkyAndBrain
         /// <param name="position">The cellenoid position side to be opened.</param>
         /// <param name="rewardDuration">The duration the selected cellenoid eould be opened.</param>
         /// <param name="rewardDelay">The delay time before opening the selected cellenoid.</param>
-        public void Reward(RewardPosition position , double rewardDuration , double rewardDelay)
+        /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
+        public void Reward(RewardPosition position, double rewardDuration, double rewardDelay, bool autoreward = false)
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            //wait the reward delay time befor openning the reward.
-            Thread.Sleep((int)(rewardDelay * 1000));
+            //wait the reward delay time befor openning the reward if not autoReward.
+            if (!autoreward)
+                Thread.Sleep((int)(rewardDelay * 1000));
+            //if autoReward than play the sound in the slected side of the water reward in order to help the rat to understand the water reward side.
+            else
+            {
+                //play the selected reward side mono sound.
+                switch (position)
+                {
+                    case RewardPosition.Center:
+                        break;
+                    case RewardPosition.Left:
+                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
+                        _windowsMediaPlayer.controls.play();
+                        break;
+                    case RewardPosition.Right:
+                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
+                        _windowsMediaPlayer.controls.play();
+                        break;
+                    default:
+                        break;
+                }
+            }
 
             sw.Restart();
 
             //open the center reward for the rat to be rewarded.
             //after the reward duration time and than close it.
-            _rewardController.WriteSingleSamplePort(true , (byte)position);
+            _rewardController.WriteSingleSamplePort(true, (byte)position);
 
             //wait the reward time and fill the interactive water fill estimation panel.
             _waterRewardFillingTimer.Start();
@@ -691,7 +718,7 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Left)");
 
-            Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration, (autoReward) ? 0 : _currentTrialTimings.wRewardLeftDelay);
+            Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration, _currentTrialTimings.wRewardLeftDelay, autoReward);
         }
 
         /// <summary>
@@ -705,7 +732,7 @@ namespace PinkyAndBrain
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Right)");
 
 
-            Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration, (autoReward) ? 0 : _currentTrialTimings.wRewardRightDelay);
+            Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration, _currentTrialTimings.wRewardRightDelay  , autoReward);
         }
 
         /// <summary>
@@ -718,7 +745,7 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Center)");
 
-            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration, (autoReward) ? 0 : _currentTrialTimings.wRewardLeftDelay);
+            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration, _currentTrialTimings.wRewardLeftDelay , autoReward);
         }
 
         /// <summary>
