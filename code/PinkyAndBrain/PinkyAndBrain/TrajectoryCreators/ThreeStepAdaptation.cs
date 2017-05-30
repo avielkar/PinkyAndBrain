@@ -174,7 +174,7 @@ namespace PinkyAndBrain.TrajectoryCreators
         /// </returns>
         public Vector<double> GenerateGaussianSampledCDF(double duration, double sigma, double magnitude, int frequency)
         {
-            Vector<double> returnedVector = CreateVector.Dense<double>(frequency * (int)duration, time => magnitude * Normal.CDF(duration/2, duration / (2 * sigma), (double)time/frequency));
+            Vector<double> returnedVector = CreateVector.Dense<double>((int)(frequency * duration), time => magnitude * Normal.CDF(duration/2, duration / (2 * sigma), (double)time/frequency));
             //MatlabPlotFunction(returnedVector);
             return returnedVector;
         }
@@ -223,10 +223,10 @@ namespace PinkyAndBrain.TrajectoryCreators
             ratHouseTrajectory.z = heaveRatHouse;
 
             //rx - roll , ry - pitch , rz = yaw
-            ratHouseTrajectory.rx = CreateVector.Dense<double>(_frequency*(int)_duration.Item1, 0);
-            ratHouseTrajectory.ry = CreateVector.Dense<double>(_frequency*(int)_duration.Item1, 0);
-            ratHouseTrajectory.rz = CreateVector.Dense<double>(_frequency*(int)_duration.Item1, 0);
-
+            ratHouseTrajectory.rx = CreateVector.Dense<double>((int)(_frequency*_duration.Item1), 0);
+            ratHouseTrajectory.ry = CreateVector.Dense<double>((int)(_frequency*_duration.Item1), 0);
+            ratHouseTrajectory.rz = CreateVector.Dense<double>((int)(_frequency*_duration.Item1), 0);
+                                                               
 
             Trajectory landscapeHouseTrajectory = new Trajectory();
             landscapeHouseTrajectory.x = lateralLandscapeHouse;
@@ -234,16 +234,16 @@ namespace PinkyAndBrain.TrajectoryCreators
             landscapeHouseTrajectory.z = heaveLandscapeHouse;
 
             //rx - roll , ry - pitch , rz = yaw
-            landscapeHouseTrajectory.rx = CreateVector.Dense<double>(_frequency*(int)_duration.Item2, 0);
-            landscapeHouseTrajectory.ry = CreateVector.Dense<double>(_frequency * (int)_duration.Item2, 0);
-            landscapeHouseTrajectory.rz = CreateVector.Dense<double>(_frequency * (int)_duration.Item2, 0);
+            landscapeHouseTrajectory.rx = CreateVector.Dense<double>((int)(_frequency*_duration.Item2), 0);
+            landscapeHouseTrajectory.ry = CreateVector.Dense<double>((int)(_frequency * _duration.Item2), 0);
+            landscapeHouseTrajectory.rz = CreateVector.Dense<double>((int)(_frequency * _duration.Item2), 0);
 
             //visual only (landscapeHouseDistance only).
             if(_stimulusType == 2)
             {
-                ratHouseTrajectory.x = CreateVector.Dense<double>(_frequency*(int)_duration.Item1, 0);
-                ratHouseTrajectory.y = CreateVector.Dense<double>(_frequency*(int)_duration.Item1, 0);
-                ratHouseTrajectory.z = CreateVector.Dense<double>(_frequency*(int)_duration.Item1, 0);
+                ratHouseTrajectory.x = CreateVector.Dense<double>((int)(_frequency*_duration.Item1), 0);
+                ratHouseTrajectory.y = CreateVector.Dense<double>((int)(_frequency*_duration.Item1), 0);
+                ratHouseTrajectory.z = CreateVector.Dense<double>((int)(_frequency*_duration.Item1), 0);
             }
 
             //if need to plot the trajectories

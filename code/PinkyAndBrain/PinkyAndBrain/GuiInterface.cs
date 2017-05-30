@@ -1077,7 +1077,14 @@ namespace PinkyAndBrain
             }
 
         }
+        #endregion HAND_REWARD_CONTROLL_FUNCTION
 
+        #region AUTOS
+        /// <summary>
+        /// Event for changing the AutoReward status.
+        /// </summary>
+        /// <param name="sender">The checkbox.</param>
+        /// <param name="e">The param.</param>
         private void _autoRewardsTextBox_CheckedChanged(object sender, EventArgs e)
         {
             if (_autoRewardsCheckBox.Checked)
@@ -1085,7 +1092,33 @@ namespace PinkyAndBrain
             else
                 _cntrlLoop.AutoReward = false;
         }
-        #endregion HAND_REWARD_CONTROLL_FUNCTION
+
+        /// <summary>
+        /// Event for changing the AutoFixation status.
+        /// </summary>
+        /// <param name="sender">The checkbox.</param>
+        /// <param name="e">The param.</param>
+        private void _autoFixation_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_autoFixationCheckBox.Checked)
+                _cntrlLoop.AutoFixation = true;
+            else
+                _cntrlLoop.AutoFixation = false;
+        }
+
+        /// <summary>
+        /// Event for changing the AutoStart status.
+        /// </summary>
+        /// <param name="sender">The checkbox.</param>
+        /// <param name="e">The param.</param>
+        private void _autoStartcheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_autoStartCheckBox.Checked)
+                _cntrlLoop.AutoStart = true;
+            else
+                _cntrlLoop.AutoStart = false;
+        }
+        #endregion AUTOS
 
         #region my_functions
 

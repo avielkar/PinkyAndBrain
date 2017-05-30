@@ -48,12 +48,12 @@
             this._trialParametersGroup = new System.Windows.Forms.GroupBox();
             this._dynamicParametersPanel = new System.Windows.Forms.Panel();
             this._handRewardsgroupBox = new System.Windows.Forms.GroupBox();
-            this._autoRewardsCheckBox = new System.Windows.Forms.CheckBox();
             this._rightHandRewardCheckBox = new System.Windows.Forms.CheckBox();
             this._centerHandRewardCheckBox = new System.Windows.Forms.CheckBox();
             this._leftHandRewardCheckBox = new System.Windows.Forms.CheckBox();
             this._digitalHandRewardButton = new System.Windows.Forms.Button();
             this._continiousHandRewardButton = new System.Windows.Forms.Button();
+            this._autoRewardsCheckBox = new System.Windows.Forms.CheckBox();
             this._varyingControlGroupBox = new System.Windows.Forms.GroupBox();
             this._numOfRepetitionsTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -78,6 +78,9 @@
             this._globaExperimentlInfoListView = new System.Windows.Forms.ListView();
             this._onlinePsychGrpahGroupBox = new System.Windows.Forms.GroupBox();
             this._onlinePsychGraphControl = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this._autosGroupBox = new System.Windows.Forms.GroupBox();
+            this._autoStartCheckBox = new System.Windows.Forms.CheckBox();
+            this._autoFixationCheckBox = new System.Windows.Forms.CheckBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -91,6 +94,7 @@
             this.globalExperimentInfogroupBox.SuspendLayout();
             this._onlinePsychGrpahGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._onlinePsychGraphControl)).BeginInit();
+            this._autosGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -218,7 +222,6 @@
             // 
             // _handRewardsgroupBox
             // 
-            this._handRewardsgroupBox.Controls.Add(this._autoRewardsCheckBox);
             this._handRewardsgroupBox.Controls.Add(this._rightHandRewardCheckBox);
             this._handRewardsgroupBox.Controls.Add(this._centerHandRewardCheckBox);
             this._handRewardsgroupBox.Controls.Add(this._leftHandRewardCheckBox);
@@ -230,17 +233,6 @@
             this._handRewardsgroupBox.TabIndex = 12;
             this._handRewardsgroupBox.TabStop = false;
             this._handRewardsgroupBox.Text = "Hand Rewards";
-            // 
-            // _autoRewardsCheckBox
-            // 
-            this._autoRewardsCheckBox.AutoSize = true;
-            this._autoRewardsCheckBox.Location = new System.Drawing.Point(54, 152);
-            this._autoRewardsCheckBox.Name = "_autoRewardsCheckBox";
-            this._autoRewardsCheckBox.Size = new System.Drawing.Size(93, 17);
-            this._autoRewardsCheckBox.TabIndex = 9;
-            this._autoRewardsCheckBox.Text = "Auto Rewards";
-            this._autoRewardsCheckBox.UseVisualStyleBackColor = true;
-            this._autoRewardsCheckBox.CheckedChanged += new System.EventHandler(this._autoRewardsTextBox_CheckedChanged);
             // 
             // _rightHandRewardCheckBox
             // 
@@ -295,6 +287,17 @@
             this._continiousHandRewardButton.UseVisualStyleBackColor = true;
             this._continiousHandRewardButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._countiniousHandRewardKeyDown);
             this._continiousHandRewardButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this._continiousHandRewardKeyReleaed);
+            // 
+            // _autoRewardsCheckBox
+            // 
+            this._autoRewardsCheckBox.AutoSize = true;
+            this._autoRewardsCheckBox.Location = new System.Drawing.Point(59, 65);
+            this._autoRewardsCheckBox.Name = "_autoRewardsCheckBox";
+            this._autoRewardsCheckBox.Size = new System.Drawing.Size(93, 17);
+            this._autoRewardsCheckBox.TabIndex = 9;
+            this._autoRewardsCheckBox.Text = "Auto Rewards";
+            this._autoRewardsCheckBox.UseVisualStyleBackColor = true;
+            this._autoRewardsCheckBox.CheckedChanged += new System.EventHandler(this._autoRewardsTextBox_CheckedChanged);
             // 
             // _varyingControlGroupBox
             // 
@@ -517,11 +520,46 @@
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
             // 
+            // _autosGroupBox
+            // 
+            this._autosGroupBox.Controls.Add(this._autoStartCheckBox);
+            this._autosGroupBox.Controls.Add(this._autoFixationCheckBox);
+            this._autosGroupBox.Controls.Add(this._autoRewardsCheckBox);
+            this._autosGroupBox.Location = new System.Drawing.Point(1036, 800);
+            this._autosGroupBox.Name = "_autosGroupBox";
+            this._autosGroupBox.Size = new System.Drawing.Size(233, 100);
+            this._autosGroupBox.TabIndex = 20;
+            this._autosGroupBox.TabStop = false;
+            this._autosGroupBox.Text = "Autos";
+            // 
+            // _autoStartcheckBox
+            // 
+            this._autoStartCheckBox.AutoSize = true;
+            this._autoStartCheckBox.Location = new System.Drawing.Point(59, 19);
+            this._autoStartCheckBox.Name = "_autoStartcheckBox";
+            this._autoStartCheckBox.Size = new System.Drawing.Size(73, 17);
+            this._autoStartCheckBox.TabIndex = 11;
+            this._autoStartCheckBox.Text = "Auto Start";
+            this._autoStartCheckBox.UseVisualStyleBackColor = true;
+            this._autoStartCheckBox.CheckedChanged += new System.EventHandler(this._autoStartcheckBox_CheckedChanged);
+            // 
+            // _autoFixationCheckBox
+            // 
+            this._autoFixationCheckBox.AutoSize = true;
+            this._autoFixationCheckBox.Location = new System.Drawing.Point(59, 42);
+            this._autoFixationCheckBox.Name = "_autoFixationCheckBox";
+            this._autoFixationCheckBox.Size = new System.Drawing.Size(87, 17);
+            this._autoFixationCheckBox.TabIndex = 10;
+            this._autoFixationCheckBox.Text = "Auto Fixation";
+            this._autoFixationCheckBox.UseVisualStyleBackColor = true;
+            this._autoFixationCheckBox.CheckedChanged += new System.EventHandler(this._autoFixation_CheckedChanged);
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1678, 912);
+            this.Controls.Add(this._autosGroupBox);
             this.Controls.Add(this._onlinePsychGrpahGroupBox);
             this.Controls.Add(this.globalExperimentInfogroupBox);
             this.Controls.Add(this._trialInfoGroupBox);
@@ -557,6 +595,8 @@
             this.globalExperimentInfogroupBox.ResumeLayout(false);
             this._onlinePsychGrpahGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._onlinePsychGraphControl)).EndInit();
+            this._autosGroupBox.ResumeLayout(false);
+            this._autosGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -610,5 +650,8 @@
         private System.Windows.Forms.GroupBox _onlinePsychGrpahGroupBox;
         private System.Windows.Forms.DataVisualization.Charting.Chart _onlinePsychGraphControl;
         private System.Windows.Forms.CheckBox _autoRewardsCheckBox;
+        private System.Windows.Forms.GroupBox _autosGroupBox;
+        private System.Windows.Forms.CheckBox _autoStartCheckBox;
+        private System.Windows.Forms.CheckBox _autoFixationCheckBox;
     }
 }

@@ -223,6 +223,16 @@ namespace PinkyAndBrain
         public bool AutoReward { get; set; }
 
         /// <summary>
+        /// Indicated if whether to wait for a rat to enter it's head to the center automatically skiping this step.
+        /// </summary>
+        public bool AutoStart { get; set; }
+
+        /// <summary>
+        /// Indicated if to check the fixation during the duration time or to skip that stage.k
+        /// </summary>
+        public bool AutoFixation { get; set; }
+
+        /// <summary>
         /// Dictionary represent a sound name and it's file path.
         /// </summary>
         private Dictionary<string, string> _soundPlayerPathDB;
@@ -823,7 +833,8 @@ namespace PinkyAndBrain
             _ledController.ResetLeds();
 
             _logger.Info("End MovingTheRobotDurationWithHeadCenterStabilityStage");
-            return headInCenterAllTheTime;
+            //return the true state of the heading in the center stability during the duration time or always true when AutoFixation.
+            return headInCenterAllTheTime || AutoFixation;
         }
 
         /// <summary>
@@ -862,6 +873,12 @@ namespace PinkyAndBrain
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Waiting for rat to start trial");
+
+            //if autoStart is checked than should not wait for the rat to enter it's head to the center for starting.
+            if(AutoStart)
+            {
+                return true;
+            }
 
             //waits for the rat to move it's head to the center with timeout time.
             int x = 0;
