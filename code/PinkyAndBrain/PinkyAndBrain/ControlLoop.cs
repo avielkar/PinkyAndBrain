@@ -26,7 +26,7 @@ namespace PinkyAndBrain
     /// It calls all the needed other inerfaces to make what it's needed to be created.
     /// The function is called by the GuiInterface after the statButton is clicked.
     /// </summary>
-    class ControlLoop
+    class ControlLoop:IDisposable
     {
         #region ATTRIBUTES
         /// <summary>
@@ -367,6 +367,18 @@ namespace PinkyAndBrain
         {
             //Globals._systemState = SystemState.STOPPED;
             _stopAfterTheEndOfTheCurrentTrial = true;
+        }
+
+        /// <summary>
+        /// Clear all the control loop items and timers.
+        /// </summary>
+        public void Dispose()
+        {
+            //stop the timer for sampling the rat Noldus response.
+            _ratSampleResponseTimer.Stop();
+
+            //remove the timer for rat Noldus response.
+            _ratSampleResponseTimer.Elapsed -= SetRatReponse;            
         }
 
         public void MainControlLoop()

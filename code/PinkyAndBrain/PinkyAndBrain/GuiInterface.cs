@@ -477,6 +477,10 @@ namespace PinkyAndBrain
 
             //close the connection with the led strip.
             _ledController.CloseConnection();
+
+            //stop the control loop.
+            _cntrlLoop.Stop();
+            _cntrlLoop.Dispose();
         }
 
         /// <summary>
