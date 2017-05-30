@@ -423,7 +423,7 @@ namespace PinkyAndBrain
                     //sounds the beep with the missing start gead in the center.
                     else
                     {
-                        Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"]; _windowsMediaPlayer.controls.play(); });
+                        //Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"]; _windowsMediaPlayer.controls.play(); });
                     }
 
                     //the post trial stage for saving the trial data and for the delay between trials.
