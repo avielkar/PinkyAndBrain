@@ -115,6 +115,7 @@
     <Compile Include="MotomanProtocolFileCreator.cs" />
     <Compile Include="RewardController.cs" />
     <Compile Include="StaticValuesGenerator.cs" />
+    <Compile Include="TrajectoryCreators\Azimuth1D.cs" />
     <Compile Include="TrajectoryCreators\ITrajectoryCreator.cs" />
     <Compile Include="OnlinePsychGraphMaker.cs" />
     <Compile Include="Param.cs" />

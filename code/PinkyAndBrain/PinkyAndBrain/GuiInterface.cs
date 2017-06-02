@@ -621,6 +621,22 @@ namespace PinkyAndBrain
                     int trajectoryCreatorNum = int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0]);
                     string trajectoryCreatorName = (trajectoryCreatorNum == 0) ? "Training" : "ThreeStepAdaptation";
 
+                    //determine the TrajectoryCreator to call with.
+                    switch (trajectoryCreatorNum)
+                    {
+                        case 0:
+                            trajectoryCreatorName = "Training";
+                            break;
+                        case 1:
+                            trajectoryCreatorName = "ThreeStepAdaptation";
+                            break;
+                        case 2:
+                            trajectoryCreatorName = "Azimuth1D";
+                            break;
+                        default:
+                            break;
+                    }
+
                     _cntrlLoop.NumOfRepetitions = int.Parse(_numOfRepetitionsTextBox.Text.ToString());
                     _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreatorName);
                 }
