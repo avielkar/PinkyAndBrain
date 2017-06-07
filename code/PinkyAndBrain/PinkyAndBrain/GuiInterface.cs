@@ -144,7 +144,25 @@ namespace PinkyAndBrain
 
             //create the ledstrip controller and initialize it (also turn off leds).
             _ledController = new LEDController("COM4", 2000000, 250 , _logger);
-            _ledController.OpenConnection();
+            #region TRY_OPENING_LEDS
+            try 
+            {
+                _ledController.OpenConnection(); 
+            }
+            catch 
+            {
+                GuiInterface_Close(this , null);
+
+                //clear all controls in the gui and wait the user for closing the form window.
+                this.Controls.Clear();
+
+                //show the error window.
+                MessageBox.Show("Error - The COM4 port for LED Arduino is not available , Exit and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                //break the initialization.
+                return;
+            }
+            #endregion TRY_OPENING_LEDS
             _ledController.ResetLeds();
 
             Globals._systemState = SystemState.INITIALIZED;
@@ -479,8 +497,11 @@ namespace PinkyAndBrain
             _ledController.CloseConnection();
 
             //stop the control loop.
-            _cntrlLoop.Stop();
-            _cntrlLoop.Dispose();
+            if (_cntrlLoop != null)
+            {
+                _cntrlLoop.Stop();
+                _cntrlLoop.Dispose();
+            }
         }
 
         /// <summary>
