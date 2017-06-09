@@ -144,25 +144,10 @@ namespace PinkyAndBrain
 
             //create the ledstrip controller and initialize it (also turn off leds).
             _ledController = new LEDController("COM4", 2000000, 250 , _logger);
-            #region TRY_OPENING_LEDS
-            try 
-            {
-                _ledController.OpenConnection(); 
-            }
-            catch 
-            {
-                GuiInterface_Close(this , null);
+            _ledController.OpenConnection();
 
-                //clear all controls in the gui and wait the user for closing the form window.
-                this.Controls.Clear();
-
-                //show the error window.
-                MessageBox.Show("Error - The COM4 port for LED Arduino is not available , Exit and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                //break the initialization.
-                return;
-            }
-            #endregion TRY_OPENING_LEDS
+            if (!_ledController.Connected)
+                _ardionoPrtWarningLabel.Visible = true;
             _ledController.ResetLeds();
 
             Globals._systemState = SystemState.INITIALIZED;
@@ -621,46 +606,68 @@ namespace PinkyAndBrain
         /// <param name="e">args.</param>
         private void _startButton_Click(object sender, EventArgs e)
         {
-            lock (_lockerStopStartButton)
+            //if everything is o.k start the control loop.
+            if(StartLoopStartCheck())
             {
-                _startButton.Enabled = false;
-                _makeTrials.Enabled = false;
-                _stopButtom.Enabled = true;
-
-                //if already running - ignore.
-                if (!Globals._systemState.Equals(SystemState.RUNNING))
+                lock (_lockerStopStartButton)
                 {
-                    //update the system state.
-                    Globals._systemState = SystemState.RUNNING;
+                    _startButton.Enabled = false;
+                    _makeTrials.Enabled = false;
+                    _stopButtom.Enabled = true;
 
-                    //add the static variable list of double type values.
-                    _staticValuesGenerator.SetVariables(_variablesList);
-
-                    //start the control loop.
-                    //need to be changed according to parameters added to which trajectoryname to be called from the excel file.
-                    //string trajectoryCreatorName = _variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0];
-                    int trajectoryCreatorNum = int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0]);
-                    string trajectoryCreatorName = (trajectoryCreatorNum == 0) ? "Training" : "ThreeStepAdaptation";
-
-                    //determine the TrajectoryCreator to call with.
-                    switch (trajectoryCreatorNum)
+                    //if already running - ignore.
+                    if (!Globals._systemState.Equals(SystemState.RUNNING))
                     {
-                        case 0:
-                            trajectoryCreatorName = "Training";
-                            break;
-                        case 1:
-                            trajectoryCreatorName = "ThreeStepAdaptation";
-                            break;
-                        case 2:
-                            trajectoryCreatorName = "Azimuth1D";
-                            break;
-                        default:
-                            break;
-                    }
+                        //update the system state.
+                        Globals._systemState = SystemState.RUNNING;
 
-                    _cntrlLoop.NumOfRepetitions = int.Parse(_numOfRepetitionsTextBox.Text.ToString());
-                    _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreatorName);
+                        //add the static variable list of double type values.
+                        _staticValuesGenerator.SetVariables(_variablesList);
+
+                        //start the control loop.
+                        //need to be changed according to parameters added to which trajectoryname to be called from the excel file.
+                        //string trajectoryCreatorName = _variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0];
+                        int trajectoryCreatorNum = int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0]);
+                        string trajectoryCreatorName = (trajectoryCreatorNum == 0) ? "Training" : "ThreeStepAdaptation";
+
+                        //determine the TrajectoryCreator to call with.
+                        switch (trajectoryCreatorNum)
+                        {
+                            case 0:
+                                trajectoryCreatorName = "Training";
+                                break;
+                            case 1:
+                                trajectoryCreatorName = "ThreeStepAdaptation";
+                                break;
+                            case 2:
+                                trajectoryCreatorName = "Azimuth1D";
+                                break;
+                            default:
+                                break;
+                        }
+
+                        _cntrlLoop.NumOfRepetitions = int.Parse(_numOfRepetitionsTextBox.Text.ToString());
+                        _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreatorName);
+                    }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Check all parameters needed before the control loop execution.
+        /// </summary>
+        /// <returns>True or false if can execute the control loop.</returns>
+        private bool StartLoopStartCheck()
+        {
+            //if selected rat name is o.k
+            if (_selectedRatNameComboBox.SelectedItem!=null)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Error - Should select a rat name before starting!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
@@ -677,7 +684,7 @@ namespace PinkyAndBrain
             int acrossStairStatusOccurences = NumOfSpecificStatus("AcrossStair");
             if (withinStairStstusOccurences != acrossStairStatusOccurences || acrossStairStatusOccurences > 1)
             {
-                MessageBox.Show("Cannor start the experiment.\n The number of Withinstairs should be the same as AccrossStairs and both not occurs more than 1!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cannot start the experiment.\n The number of Withinstairs should be the same as AccrossStairs and both not occurs more than 1!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 //do nothing else.
                 return;
