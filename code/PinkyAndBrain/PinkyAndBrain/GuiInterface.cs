@@ -181,8 +181,8 @@ namespace PinkyAndBrain
                 Directory.CreateDirectory(Application.StartupPath + @"\results\");
 
             //adding background image to the window.
-            this.BackgroundImage = Image.FromFile(Application.StartupPath + @"\Pinky_and_the_Brain.jpg");
-            this._varyingControlGroupBox.BackgroundImage = Image.FromFile(Application.StartupPath + @"\Pinky_and_the_Brain.jpg");
+            this.BackgroundImage = Image.FromFile(Application.StartupPath + @"\Pinky_and_the_Brain_darker.jpg");
+            this._varyingControlGroupBox.BackgroundImage = Image.FromFile(Application.StartupPath + @"\Pinky_and_the_Brain_darker.jpg");
         }
         #endregion CONSTRUCTORS
 
