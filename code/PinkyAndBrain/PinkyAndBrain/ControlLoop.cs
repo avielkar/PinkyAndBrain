@@ -336,7 +336,7 @@ namespace PinkyAndBrain
             _motomanProtocolFileCreator.Frequency = _frequency;
 
             //create a new results file for the new experiment.
-            _savedExperimentDataMaker.CreateControlNewFile();
+            _savedExperimentDataMaker.CreateControlNewFile(RatName);
 
             //clear and initialize the psyco online graph.
             _onlinePsychGraphMaker.Clear();

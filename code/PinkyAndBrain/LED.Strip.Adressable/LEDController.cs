@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO.Ports;
 using System.Threading;
+using System.Windows.Forms;
 using log4net;
 
 namespace LED.Strip.Adressable
@@ -29,6 +30,11 @@ namespace LED.Strip.Adressable
         /// Logger for writing log information.
         /// </summary>
         private ILog _logger;
+
+        /// <summary>
+        /// Indicated if the port is connected or not.
+        /// </summary>
+        public bool Connected { get; set; }
         #endregion MEMBERS
 
         #region CONSTRUCTORS
@@ -55,7 +61,25 @@ namespace LED.Strip.Adressable
         /// </summary>
         public void OpenConnection()
         {
-            _ledArduinoSerialPort.Open();
+            try
+            {
+                _ledArduinoSerialPort.Open();
+            }
+
+            catch
+            {
+                //show the error window.
+                MessageBox.Show("Error - The COM4 port for LED Arduino is not available , Exit and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                //connection failed
+                Connected = false;
+
+                //brek the function
+                return;
+            }
+
+            //connection successful
+            Connected = true;
         }
 
         /// <summary>
@@ -63,6 +87,9 @@ namespace LED.Strip.Adressable
         /// </summary>
         public void CloseConnection()
         {
+            //if not connected nothing to do.
+            if (!Connected) return;
+
             _ledArduinoSerialPort.Close();
         }
 
@@ -71,6 +98,9 @@ namespace LED.Strip.Adressable
         /// </summary>
         public void SendData()
         {
+            //if not connected nothing to do.
+            if (!Connected) return;
+
             //means a start of data transmit.
             _ledArduinoSerialPort.Write("#");
 
@@ -101,6 +131,9 @@ namespace LED.Strip.Adressable
         /// </summary>
         public void ExecuteCommands()
         {
+            //if not connected nothing to do.
+            if (!Connected) return;
+
             //means the data execution command.
             _logger.Info("Leds execution command sent");
             _ledArduinoSerialPort.Write("!");
@@ -111,6 +144,9 @@ namespace LED.Strip.Adressable
         /// </summary>
         public void ResetLeds()
         {
+            //if not connected nothing to do.
+            if (!Connected) return;
+
             _logger.Info("Reset Leds begin");
 
             //rset leds data

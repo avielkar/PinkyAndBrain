@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -81,6 +81,8 @@
             this._autosGroupBox = new System.Windows.Forms.GroupBox();
             this._autoStartCheckBox = new System.Windows.Forms.CheckBox();
             this._autoFixationCheckBox = new System.Windows.Forms.CheckBox();
+            this._warningsGroupBox = new System.Windows.Forms.GroupBox();
+            this._ardionoPrtWarningLabel = new System.Windows.Forms.Label();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -95,6 +97,7 @@
             this._onlinePsychGrpahGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._onlinePsychGraphControl)).BeginInit();
             this._autosGroupBox.SuspendLayout();
+            this._warningsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -505,17 +508,17 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea1.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend2);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series2);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
@@ -532,11 +535,11 @@
             this._autosGroupBox.TabStop = false;
             this._autosGroupBox.Text = "Autos";
             // 
-            // _autoStartcheckBox
+            // _autoStartCheckBox
             // 
             this._autoStartCheckBox.AutoSize = true;
             this._autoStartCheckBox.Location = new System.Drawing.Point(59, 19);
-            this._autoStartCheckBox.Name = "_autoStartcheckBox";
+            this._autoStartCheckBox.Name = "_autoStartCheckBox";
             this._autoStartCheckBox.Size = new System.Drawing.Size(73, 17);
             this._autoStartCheckBox.TabIndex = 11;
             this._autoStartCheckBox.Text = "Auto Start";
@@ -554,11 +557,34 @@
             this._autoFixationCheckBox.UseVisualStyleBackColor = true;
             this._autoFixationCheckBox.CheckedChanged += new System.EventHandler(this._autoFixation_CheckedChanged);
             // 
-            // GuiInterface
+            // _warningsGroupBox
+            // 
+            this._warningsGroupBox.Controls.Add(this._ardionoPrtWarningLabel);
+            this._warningsGroupBox.Location = new System.Drawing.Point(1275, 719);
+            this._warningsGroupBox.Name = "_warningsGroupBox";
+            this._warningsGroupBox.Size = new System.Drawing.Size(391, 69);
+            this._warningsGroupBox.TabIndex = 21;
+            this._warningsGroupBox.TabStop = false;
+            this._warningsGroupBox.Text = "Warnings";
+            // 
+            // _ardionoPrtWarningLabel
+            // 
+            this._ardionoPrtWarningLabel.AutoSize = true;
+            this._ardionoPrtWarningLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this._ardionoPrtWarningLabel.ForeColor = System.Drawing.Color.Red;
+            this._ardionoPrtWarningLabel.Location = new System.Drawing.Point(6, 20);
+            this._ardionoPrtWarningLabel.Name = "_ardionoPrtWarningLabel";
+            this._ardionoPrtWarningLabel.Size = new System.Drawing.Size(385, 13);
+            this._ardionoPrtWarningLabel.TabIndex = 0;
+            this._ardionoPrtWarningLabel.Text = "The COM4 (Arduino) port is not connected-LEDS not work properly";
+            this._ardionoPrtWarningLabel.Visible = false;
+            // 
+            // _arduinoPortWarningLabel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1678, 912);
+            this.Controls.Add(this._warningsGroupBox);
             this.Controls.Add(this._autosGroupBox);
             this.Controls.Add(this._onlinePsychGrpahGroupBox);
             this.Controls.Add(this.globalExperimentInfogroupBox);
@@ -573,7 +599,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._protocolsComboBox);
-            this.Name = "GuiInterface";
+            this.Name = "_arduinoPortWarningLabel";
             this.Text = "GuiInterface";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GuiInterface_Close);
             this._trialParametersGroup.ResumeLayout(false);
@@ -597,6 +623,8 @@
             ((System.ComponentModel.ISupportInitialize)(this._onlinePsychGraphControl)).EndInit();
             this._autosGroupBox.ResumeLayout(false);
             this._autosGroupBox.PerformLayout();
+            this._warningsGroupBox.ResumeLayout(false);
+            this._warningsGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -653,5 +681,7 @@
         private System.Windows.Forms.GroupBox _autosGroupBox;
         private System.Windows.Forms.CheckBox _autoStartCheckBox;
         private System.Windows.Forms.CheckBox _autoFixationCheckBox;
+        private System.Windows.Forms.GroupBox _warningsGroupBox;
+        private System.Windows.Forms.Label _ardionoPrtWarningLabel;
     }
 }

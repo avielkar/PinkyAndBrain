@@ -110,11 +110,11 @@ namespace PinkyAndBrain
         /// <summary>
         /// Create a new experiment result file to save in it new experiment data.
         /// </summary>
-        public void CreateControlNewFile()
+        public void CreateControlNewFile(string ratName)
         {
             //create a new results file for the new experiment.
             if (_currentSavedFileStramWriter != null) _currentSavedFileStramWriter.Dispose();
-            _currentSavedFileStramWriter = File.CreateText(Application.StartupPath + @"\results\" + Guid.NewGuid());
+            _currentSavedFileStramWriter = File.CreateText(Application.StartupPath + @"\results\" + DateTime.Now.ToString("yyyy_MM_dd_HH-mm") + ratName);
         }
     }
 

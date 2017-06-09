@@ -5,7 +5,6 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\ob
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Debug\PinkyAndBrain.csproj.GenerateResource.Cache
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Debug\PinkyAndBrain.exe
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Debug\PinkyAndBrain.pdb
-C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Debug\PinkyAndBrain.GuiInterface.resources
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Debug\PinkyAndBrain.csproj.ResolveComReference.cache
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\MathNet.Numerics.dll
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\MathNet.Numerics.xml
@@ -66,3 +65,4 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bi
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\log4net.xml
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\Log4Net.config
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Debug\Interop.WMPLib.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Debug\PinkyAndBrain.GuiInterface.resources
