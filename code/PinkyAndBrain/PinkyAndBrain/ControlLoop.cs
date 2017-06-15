@@ -137,6 +137,11 @@ namespace PinkyAndBrain
         private RatResponseController _ratResponseController;
 
         /// <summary>
+        /// Controller for writing events for the AlphaOmega.
+        /// </summary>
+        private AlphaOmegaEventsWriter _alphaOmegaEventsWriter;
+
+        /// <summary>
         /// Indicated if the control loop should not make another trials.
         /// </summary>
         private bool _stopAfterTheEndOfTheCurrentTrial;
@@ -254,8 +259,11 @@ namespace PinkyAndBrain
         {
             _matlabApp = matlabApp;
             _trajectoryCreatorHandler = new TrajectoryCreatorHandler(_matlabApp);
+            
             _rewardController = new RewardController("Dev1" , "Port1" ,"Line0:2", "RewardChannels");
             _ratResponseController = new RatResponseController("Dev1", "Port0", "Line0:2", "RatResponseChannels");
+            _alphaOmegaEventsWriter = new AlphaOmegaEventsWriter("Dev1", "Port0", "Line3:7", "AlphaOmegaEventsChannels");
+            
             _stopAfterTheEndOfTheCurrentTrial = false;
             
             //configure  rge timer for the sampling Noldus rat response direction.
@@ -548,6 +556,9 @@ namespace PinkyAndBrain
             
             //Sounds the start beep. Now waiting for the rat to move it's head to the center.
             Console.Beep();
+
+            //write the beep start event to the AlphaOmega.
+            _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.AudioStart);
         }
 
         /// <summary>
@@ -593,7 +604,10 @@ namespace PinkyAndBrain
 
                     _currentRatDecision = RatDecison.Left;
                     _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.WRONG);
-
+                    
+                    //write the event that te rat enter it's head to the left to the AlphaOmega.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterLeft);
+                    
                     return new Tuple<RatDecison,bool>(RatDecison.Left , false);
                 }
 
@@ -612,6 +626,9 @@ namespace PinkyAndBrain
 
                     _currentRatDecision = RatDecison.Right;
                     _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.WRONG);
+
+                    //write the event that te rat enter it's head to the right to the AlphaOmega.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterRight);
 
                     return new Tuple<RatDecison,bool>( RatDecison.Right , false);
                 }
@@ -741,6 +758,9 @@ namespace PinkyAndBrain
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Left)");
 
             Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration, _currentTrialTimings.wRewardLeftDelay, autoReward);
+
+            //write that the rat get left reward to the AlphaOmega.
+            _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.LeftReward);
         }
 
         /// <summary>
@@ -755,6 +775,9 @@ namespace PinkyAndBrain
 
 
             Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration, _currentTrialTimings.wRewardRightDelay  , autoReward);
+
+            //write that the rat get right reward to the AlphaOmega.
+            _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RightReward);
         }
 
         /// <summary>
@@ -768,6 +791,9 @@ namespace PinkyAndBrain
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Center)");
 
             Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration, _currentTrialTimings.wRewardLeftDelay , autoReward);
+
+            //write that the rat get center reward to the AlphaOmega.
+            _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.CenterReward);
         }
 
         /// <summary>
@@ -906,6 +932,9 @@ namespace PinkyAndBrain
 
                 x = _currentRatResponse;
             }
+
+            //write the event of HeadEnterCenter to the AlphaOmega.
+            _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterCenter);
 
             return (x == 2);
         }

@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcrossVectorValuesGenerator.cs" />
+    <Compile Include="AlphaOmegaEventsWriter.cs" />
     <Compile Include="ControlLoop.cs" />
     <Compile Include="ExcelProtocolConfigFieLoader.cs" />
     <Compile Include="Globals.cs" />
