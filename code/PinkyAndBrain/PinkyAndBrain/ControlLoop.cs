@@ -142,6 +142,11 @@ namespace PinkyAndBrain
         private AlphaOmegaEventsWriter _alphaOmegaEventsWriter;
 
         /// <summary>
+        /// Infra red controller for turnnig the InfraRed on/off.
+        /// </summary>
+        private InfraRedController _infraredController;
+
+        /// <summary>
         /// Indicated if the control loop should not make another trials.
         /// </summary>
         private bool _stopAfterTheEndOfTheCurrentTrial;
@@ -254,8 +259,12 @@ namespace PinkyAndBrain
         /// <param name="matlabApp">The matlab app handler.</param>
         /// <param name="motomanController">The motoman controller object.</param>
         /// <param name="ledController">The led controller object.</param>
+        /// <param name="infraRedController">The InfraRed controller for turning on/off the InfraRed.</param>
+        /// <param name="ctrlDelegatesDic">The controls delegate names and objects.</param>
+        /// <param name="mainGuiInterfaceControlsDictionary">The name of each main gui needed control and it's reference.</param>
+        /// <param name="logger">The program logger for logging into log file.</param>
         /// </summary>
-        public ControlLoop(MLApp.MLApp matlabApp , CYasnac motomanController , LEDController ledController , Dictionary<string, Delegate> ctrlDelegatesDic, Dictionary<string , Control> mainGuiInterfaceControlsDictionary , ILog logger)
+        public ControlLoop(MLApp.MLApp matlabApp , CYasnac motomanController , LEDController ledController , InfraRedController infraRedController, Dictionary<string, Delegate> ctrlDelegatesDic, Dictionary<string , Control> mainGuiInterfaceControlsDictionary , ILog logger)
         {
             _matlabApp = matlabApp;
             _trajectoryCreatorHandler = new TrajectoryCreatorHandler(_matlabApp);
@@ -263,6 +272,7 @@ namespace PinkyAndBrain
             _rewardController = new RewardController("Dev1" , "Port1" ,"Line0:2", "RewardChannels");
             _ratResponseController = new RatResponseController("Dev1", "Port0", "Line0:2", "RatResponseChannels");
             _alphaOmegaEventsWriter = new AlphaOmegaEventsWriter("Dev1", "Port0", "Line3:7", "AlphaOmegaEventsChannels");
+            _infraredController = infraRedController;
             
             _stopAfterTheEndOfTheCurrentTrial = false;
             

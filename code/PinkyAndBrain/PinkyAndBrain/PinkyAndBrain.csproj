@@ -113,6 +113,7 @@
     <Compile Include="GuiInterface.Designer.cs">
       <DependentUpon>GuiInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="InfraRedController.cs" />
     <Compile Include="MotomanProtocolFileCreator.cs" />
     <Compile Include="RewardController.cs" />
     <Compile Include="StaticValuesGenerator.cs" />

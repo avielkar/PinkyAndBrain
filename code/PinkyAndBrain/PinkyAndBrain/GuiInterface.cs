@@ -109,6 +109,11 @@ namespace PinkyAndBrain
         private LEDController _ledController;
 
         /// <summary>
+        /// Infra red controller for turnnig the InfraRed on/off.
+        /// </summary>
+        private InfraRedController _infraredController;
+
+        /// <summary>
         /// Logger for writing log information.
         /// </summary>
         private ILog _logger;
@@ -150,11 +155,16 @@ namespace PinkyAndBrain
                 _ardionoPrtWarningLabel.Visible = true;
             _ledController.ResetLeds();
 
+            //set the InfraRed controller object.
+            _infraredController = new InfraRedController("Dev1", "AO1", "InfraRedChannel");
+            //turn the infrared on.
+            _infraredController.WriteEvent(true, InfraRedStatus.TurnedOn);
+
             Globals._systemState = SystemState.INITIALIZED;
 
             //make the delegate with it's control object and their nickname as pairs of dictionaries.
             Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>> delegatsControlsTuple = MakeCtrlDelegateAndFunctionDictionary();
-            _cntrlLoop = new ControlLoop(_matlabApp, _motocomController, _ledController, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1, _logger);
+            _cntrlLoop = new ControlLoop(_matlabApp, _motocomController, _ledController, _infraredController, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1, _logger);
 
             //reset the selected direction to be empty.
             _selectedHandRewardDirections = 0;
@@ -480,6 +490,9 @@ namespace PinkyAndBrain
 
             //close the connection with the led strip.
             _ledController.CloseConnection();
+            
+            //turn off the InfraRed.
+            _infraredController.WriteEvent(true, InfraRedStatus.TurnedOff);
 
             //stop the control loop.
             if (_cntrlLoop != null)
