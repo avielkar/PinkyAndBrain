@@ -1179,7 +1179,7 @@ namespace PinkyAndBrain
             _varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
 
             //Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveRobotHomePosition());
-            MoveRobotHomePosition2();
+            UpdateRobotHomePositionBackwordsJBIFile();
             Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory());
 
             Task.Run(() =>
@@ -1250,11 +1250,29 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Move the robot to it's home (origin) position.
+        /// Update the robot trajectory JBI file to it's home (origin) position.
         /// </summary>
-        public void MoveRobotHomePosition2()
+        public void UpdateRobotHomePositionBackwordsJBIFile()
         {
-            UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both , true);
+            switch (_currentTrialStimulusType)
+            {
+                case 0://none
+                    break;
+                case 1://vistibular only.
+                    UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both , true);
+                    break;
+
+                case 2://visual only.
+                    UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only , true);
+                    break;
+
+                case 3://vistibular and visual both.
+                    UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only , true);
+                    break;
+
+                default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
+                    break;
+            }
         }
 
         /// <summary>
