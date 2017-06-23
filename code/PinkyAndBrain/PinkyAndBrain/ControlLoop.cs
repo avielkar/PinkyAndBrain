@@ -954,16 +954,14 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="traj">The trajectory to be send to the controller.</param>
         /// <param name="updateJobType">The robots type to update the job trajectory with.</param>
-        public void UpdateYasakawaRobotJBIFile(Tuple<Trajectory , Trajectory> traj , MotomanProtocolFileCreator.UpdateJobType updatJobType)
+        public void UpdateYasakawaRobotJBIFile(Tuple<Trajectory , Trajectory> traj , MotomanProtocolFileCreator.UpdateJobType updatJobType , bool inverse = false)
         {
             _logger.Info("Writing job to the robot.");
 
-            /*foreach (var xTrajectoryPoint in traj.Item1.x)
-            {
-                //sleep the time frequency for each command of the robot (the robot frequency).
-                Thread.Sleep(4);
-            }*/
-            
+            //if need to inverse the trajectory in case of PostTrialStage backword trajcetory.
+            if(inverse)
+                traj = new Tuple<Trajectory, Trajectory>(TrajectoryInverse(traj.Item1), TrajectoryInverse(traj.Item2));
+
             //setting the trajectory for the JBI file creator and update the file that is being senf to the controller with the new commands.
             _motomanProtocolFileCreator.TrajectoryR1Position = traj.Item1;
             _motomanProtocolFileCreator.TrajectoryR2Position = traj.Item2;
@@ -980,6 +978,42 @@ namespace PinkyAndBrain
             _motomanController.WriteFile(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
 
             _logger.Info("Writing job to the robot ended.");
+        }
+
+        /// <summary>
+        /// Trajectory inversing function for inversing the points backwords.
+        /// </summary>
+        /// <param name="trajectory">The trajectory to inverse.</param>
+        /// <returns>A new trajectory inversed from the original.</returns>
+        private Trajectory TrajectoryInverse(Trajectory trajectory)
+        {
+            //the inversed trajectory to be returned.
+            Trajectory inverseTrajectory = new Trajectory();
+
+            //initialization for the the trajectorry yo be retund.
+            int length = trajectory.x.Count;
+            inverseTrajectory.x = Vector<double>.Build.Dense(length);
+            inverseTrajectory.y = Vector<double>.Build.Dense(length);
+            inverseTrajectory.z = Vector<double>.Build.Dense(length);
+            inverseTrajectory.rx = Vector<double>.Build.Dense(length);
+            inverseTrajectory.ry = Vector<double>.Build.Dense(length);
+            inverseTrajectory.rz = Vector<double>.Build.Dense(length);
+
+            //inverse the original trajectory into the new trajectory.
+            for (int i = 0; i < length; i++)
+            {
+                int index = length - 1 - i;
+
+                inverseTrajectory.x[i] = trajectory.x[index];
+                inverseTrajectory.y[i] = trajectory.y[index];
+                inverseTrajectory.z[i] = trajectory.z[index];
+                inverseTrajectory.rx[i] = trajectory.rx[index];
+                inverseTrajectory.ry[i] = trajectory.ry[index];
+                inverseTrajectory.rz[i] = trajectory.rz[index];
+            }
+
+            //return the inversed trajectory.
+            return inverseTrajectory;
         }
 
         /// <summary>
@@ -1144,7 +1178,9 @@ namespace PinkyAndBrain
                 //reset status of the current trial combination index if there was no reponse stage at all.
             _varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
 
-            Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveRobotHomePosition());
+            //Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveRobotHomePosition());
+            MoveRobotHomePosition2();
+            Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory());
 
             Task.Run(() =>
             {
@@ -1189,7 +1225,7 @@ namespace PinkyAndBrain
             r2HomePosition.rz=Properties.Settings.Default.R2OriginalRZ;
 
             //update the home_pos_both file.
-            homePositionFile.UpdateHomePosJBIFile(r1HomePosition , r2HomePosition , 90);
+            homePositionFile.UpdateHomePosJBIFile(r1HomePosition , r2HomePosition , 60);
         }
 
         /// <summary>
@@ -1211,6 +1247,14 @@ namespace PinkyAndBrain
             //should fix this bug
             //_motomanController.WaitJobFinished(10000);
             Thread.Sleep(2000);
+        }
+
+        /// <summary>
+        /// Move the robot to it's home (origin) position.
+        /// </summary>
+        public void MoveRobotHomePosition2()
+        {
+            UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both , true);
         }
 
         /// <summary>

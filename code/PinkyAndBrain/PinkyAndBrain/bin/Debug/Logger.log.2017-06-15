@@ -1,0 +1,221 @@
+﻿2017-06-15 11:34:38,833 INFO [1] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 11:45:45,190 INFO [1] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-06-15 11:45:45,216 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-06-15 11:45:52,202 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-06-15 11:45:56,821 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2017-06-15 11:46:03,828 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2017-06-15 11:46:10,440 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
+2017-06-15 11:46:15,075 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
+2017-06-15 11:46:22,026 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
+2017-06-15 11:46:28,050 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #8
+2017-06-15 11:46:32,652 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #9
+2017-06-15 11:46:38,249 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #10
+2017-06-15 11:46:42,998 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #11
+2017-06-15 11:46:47,620 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #12
+2017-06-15 11:46:53,068 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #13
+2017-06-15 11:46:59,787 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #14
+2017-06-15 11:47:06,358 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #15
+2017-06-15 11:47:12,485 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #16
+2017-06-15 11:47:17,488 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #17
+2017-06-15 11:47:22,104 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #18
+2017-06-15 11:47:27,143 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #19
+2017-06-15 11:47:31,754 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #20
+2017-06-15 11:47:36,358 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #21
+2017-06-15 11:47:42,845 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #22
+2017-06-15 11:47:48,591 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #23
+2017-06-15 11:47:53,211 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #24
+2017-06-15 11:47:57,834 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #25
+2017-06-15 11:48:02,437 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #26
+2017-06-15 11:48:07,049 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #27
+2017-06-15 11:48:11,673 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #28
+2017-06-15 11:48:16,351 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #29
+2017-06-15 11:48:21,308 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #30
+2017-06-15 11:48:26,174 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #31
+2017-06-15 11:48:32,942 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #32
+2017-06-15 11:48:37,551 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #33
+2017-06-15 11:48:43,559 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #34
+2017-06-15 11:48:50,508 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #35
+2017-06-15 11:48:55,113 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #36
+2017-06-15 11:49:01,893 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #37
+2017-06-15 11:49:06,499 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #38
+2017-06-15 11:49:11,102 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #39
+2017-06-15 11:49:16,928 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #40
+2017-06-15 11:49:21,808 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #41
+2017-06-15 11:49:27,991 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #42
+2017-06-15 11:49:33,933 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #43
+2017-06-15 11:49:40,910 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #44
+2017-06-15 11:49:46,371 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #45
+2017-06-15 11:49:52,826 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #46
+2017-06-15 11:49:59,896 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #47
+2017-06-15 11:50:05,509 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #48
+2017-06-15 11:50:11,513 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #49
+2017-06-15 11:50:16,135 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #50
+2017-06-15 11:50:23,334 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #51
+2017-06-15 11:50:30,410 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #52
+2017-06-15 11:50:35,023 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #53
+2017-06-15 11:50:39,646 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #54
+2017-06-15 11:50:46,820 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #55
+2017-06-15 11:50:51,430 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #56
+2017-06-15 11:50:56,046 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #57
+2017-06-15 11:51:03,253 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #58
+2017-06-15 11:51:09,370 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #59
+2017-06-15 11:51:14,639 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #60
+2017-06-15 11:51:19,250 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #61
+2017-06-15 11:51:26,018 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #62
+2017-06-15 11:51:30,632 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #63
+2017-06-15 11:51:37,340 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #64
+2017-06-15 11:51:41,959 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #65
+2017-06-15 11:51:47,141 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #66
+2017-06-15 11:51:53,387 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #67
+2017-06-15 11:52:00,038 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #68
+2017-06-15 11:52:07,019 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #69
+2017-06-15 11:52:13,055 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #70
+2017-06-15 11:52:19,603 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #71
+2017-06-15 11:52:24,207 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #72
+2017-06-15 11:52:31,214 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #73
+2017-06-15 11:52:37,628 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #74
+2017-06-15 11:52:43,979 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #75
+2017-06-15 11:52:49,275 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #76
+2017-06-15 11:52:53,881 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #77
+2017-06-15 11:52:59,852 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #78
+2017-06-15 11:53:05,363 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #79
+2017-06-15 11:53:10,211 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #80
+2017-06-15 11:53:14,894 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #81
+2017-06-15 11:53:20,341 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #82
+2017-06-15 11:54:14,241 INFO [11] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-06-15 11:54:14,244 INFO [1] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-06-15 11:54:18,840 INFO [11] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-06-15 20:27:22,243 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 20:27:33,664 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-06-15 20:27:33,690 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-06-15 20:27:38,321 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-06-15 20:27:38,528 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:27:38,797 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:27:38,920 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:27:39,964 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:27:39,964 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:27:47,009 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2017-06-15 20:27:47,212 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:27:47,495 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:27:47,612 INFO [20] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:27:48,655 INFO [20] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:27:48,655 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:27:55,041 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2017-06-15 20:27:55,243 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:27:55,465 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:27:55,587 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:27:56,630 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:27:56,630 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:28:03,635 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
+2017-06-15 20:28:03,837 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:28:04,096 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:28:04,215 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:28:05,255 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:28:05,255 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:28:10,896 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
+2017-06-15 20:28:11,099 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:28:11,534 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:28:11,660 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:28:12,700 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:28:12,700 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:28:14,869 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Setting reward measure interactive panel....
+2017-06-15 20:28:19,270 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
+2017-06-15 20:28:19,473 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:28:19,730 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:28:19,849 INFO [20] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:28:20,894 INFO [20] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:28:20,894 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:28:27,950 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #8
+2017-06-15 20:28:28,153 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:28:28,414 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:28:28,533 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:28:29,581 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:28:29,581 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:30:33,882 INFO [15] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-06-15 20:30:33,887 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-06-15 20:30:34,084 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:30:34,312 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:30:34,430 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:30:35,475 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:30:35,475 INFO [15] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:30:40,056 INFO [15] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-06-15 20:30:40,258 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:30:40,478 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:30:40,593 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:30:41,632 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:30:41,633 INFO [15] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:30:48,453 INFO [15] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2017-06-15 20:30:48,656 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:30:48,897 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:30:49,014 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:30:50,060 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:30:50,061 INFO [15] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:30:54,655 INFO [15] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2017-06-15 20:30:54,856 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:30:55,085 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:30:55,199 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:30:56,245 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:30:56,246 INFO [15] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:33:15,458 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-06-15 20:33:15,463 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-06-15 20:33:15,661 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:33:15,889 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:33:16,013 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:33:17,051 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:33:17,052 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:33:21,716 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-06-15 20:33:21,918 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:33:22,140 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:33:22,261 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:33:23,300 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:33:23,301 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:33:30,312 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2017-06-15 20:33:30,514 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:33:30,959 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:33:31,078 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:33:32,116 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:33:32,116 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:33:36,710 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2017-06-15 20:33:36,912 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:33:37,133 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:33:37,255 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:33:38,298 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:33:38,298 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:33:45,160 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
+2017-06-15 20:33:45,363 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:33:45,811 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:33:45,927 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:33:46,966 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:33:46,966 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:33:49,131 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Setting reward measure interactive panel....
+2017-06-15 20:33:52,279 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
+2017-06-15 20:33:52,482 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:33:52,725 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:33:52,840 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:33:53,887 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:33:53,887 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 20:33:58,912 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
+2017-06-15 20:33:59,114 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-15 20:33:59,344 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-15 20:33:59,468 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-15 20:34:00,504 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-15 20:34:00,505 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-15 21:15:00,338 INFO [8] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 21:31:13,690 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 21:32:59,405 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 21:33:33,385 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 21:38:36,475 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 21:45:41,655 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 21:49:22,828 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 21:50:34,127 INFO [8] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 21:51:45,069 INFO [8] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 21:52:03,259 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 21:52:34,219 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 21:54:44,707 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 21:59:00,298 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 21:59:09,985 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 21:59:20,184 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 22:09:47,920 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 22:10:49,216 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 22:11:03,967 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-15 22:11:14,387 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...

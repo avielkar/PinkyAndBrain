@@ -1,0 +1,63 @@
+﻿2017-06-19 15:52:10,488 INFO [1] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-19 16:01:51,625 INFO [1] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-06-19 16:01:51,665 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-06-19 16:01:56,417 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-06-19 16:02:01,040 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2017-06-19 16:02:19,246 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-06-19 16:02:19,250 INFO [1] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-06-19 16:02:23,877 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-06-19 16:04:41,965 INFO [8] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-06-19 16:04:41,969 INFO [1] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-06-19 16:04:47,022 INFO [8] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-06-19 16:04:53,076 INFO [8] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2017-06-19 16:04:59,314 INFO [8] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2017-06-19 16:05:04,798 INFO [8] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
+2017-06-19 16:05:09,426 INFO [8] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
+2017-06-19 16:05:14,467 INFO [8] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
+2017-06-19 16:05:53,633 INFO [1] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-19 16:07:04,716 INFO [1] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-06-19 16:07:04,744 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-06-19 16:36:04,826 INFO [1] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-19 18:21:31,867 INFO [1] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-19 18:22:37,214 INFO [1] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-19 18:23:16,189 INFO [1] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-06-19 18:23:16,221 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-06-19 18:23:20,852 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-06-19 18:23:27,625 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2017-06-19 18:23:32,807 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2017-06-19 18:23:39,098 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
+2017-06-19 18:23:43,717 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
+2017-06-19 18:23:50,263 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
+2017-06-19 18:23:55,586 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #8
+2017-06-19 18:24:02,049 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #9
+2017-06-19 18:24:09,242 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #10
+2017-06-19 18:24:13,873 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #11
+2017-06-19 18:24:19,613 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #12
+2017-06-19 18:24:26,073 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #13
+2017-06-19 18:24:30,693 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #14
+2017-06-19 18:24:36,300 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #15
+2017-06-19 18:24:41,494 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #16
+2017-06-19 18:24:46,125 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #17
+2017-06-19 18:24:50,759 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #18
+2017-06-19 18:24:56,692 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #19
+2017-06-19 18:25:03,667 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #20
+2017-06-19 18:25:16,817 INFO [1] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-19 18:25:37,749 INFO [1] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-06-19 18:25:37,782 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-06-19 18:25:37,993 INFO [7] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-06-19 18:25:38,245 INFO [7] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-06-19 18:25:38,366 INFO [8] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-06-19 18:25:39,413 INFO [8] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-06-19 18:25:39,414 INFO [7] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-06-19 18:25:41,639 INFO [1] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Setting reward measure interactive panel....
+2017-06-19 18:27:34,228 INFO [1] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-06-19 18:30:28,834 INFO [1] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-06-19 18:30:28,869 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-06-19 18:30:35,461 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-06-19 18:30:41,235 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2017-06-19 18:30:46,686 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2017-06-19 18:30:51,319 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
+2017-06-19 18:30:56,786 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
+2017-06-19 18:31:01,442 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
+2017-06-19 18:31:06,377 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #8
+2017-06-19 18:31:10,990 INFO [7] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #9

@@ -8,7 +8,8 @@ using MathNet.Numerics.LinearAlgebra;
 namespace PinkyAndBrain
 {
     /// <summary>
-    /// This class attempt to create all the needed trials vector parmaeters for the whole experiment according to the protocol and th GuiInterfae inputs.
+    /// This class attempt to create all the needed trials 
+    /// parmaeters for the whole experiment according to the protocol and th GuiInterfae inputs.
     /// </summary>
     class AcrossVectorValuesGenerator
     {
