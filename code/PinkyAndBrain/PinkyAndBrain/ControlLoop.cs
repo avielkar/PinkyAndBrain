@@ -429,12 +429,15 @@ namespace PinkyAndBrain
 
                     //wait the rat to first (in the current trial - for "start buttom") move it's head to the center.
                     bool headEnteredToTheCenterDuringTheTimeoutDuration = WaitForHeadEnteranceToTheCenterStage();
+                    
+                    //indicates if during duration1 time - the rat stays with the eyes in the center.
+                    bool duration1HeadInTheCenterStabilityStage = false;
 
                     //if the rat entered it's head to the center in the before timeOut time.
                     if (headEnteredToTheCenterDuringTheTimeoutDuration)
                     {
                         //if the rat head was stable in the center for the startDelay time as required start the movement.
-                        if (CheckDuration1HeadInTheCenterStabilityStage())
+                        if (duration1HeadInTheCenterStabilityStage = CheckDuration1HeadInTheCenterStabilityStage())
                         {
                             //moving the robot with duration time , and checking for the stability of the head in the center.
                             if (MovingTheRobotDurationWithHeadCenterStabilityStage())
@@ -467,7 +470,7 @@ namespace PinkyAndBrain
                     }
 
                     //the post trial stage for saving the trial data and for the delay between trials.
-                    PostTrialStage();
+                    PostTrialStage(duration1HeadInTheCenterStabilityStage);
 
                     //increase the num of trials counter indicator.
                     _numOfPastTrials++;
@@ -1167,20 +1170,28 @@ namespace PinkyAndBrain
 
         /// <summary>
         /// The post trial time - analyaing the response , saving all the trial data into the results file.
+        /// <param name="duration1HeadInTheCenterStabilityStage">Indicated if one of the robots ot both moved due to suration 1 head in the center stability stage.</param>
         /// </summary>
-        public void PostTrialStage()
+        public void PostTrialStage(bool duration1HeadInTheCenterStabilityStage)
         {
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Post trial time.");
 
-            if(_currentRatDecision.Equals(RatDecison.NoEntryToResponseStage))
+            if (_currentRatDecision.Equals(RatDecison.NoEntryToResponseStage))
                 //reset status of the current trial combination index if there was no reponse stage at all.
-            _varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
+                _varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
 
             //Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveRobotHomePosition());
+
+            //need to get the robot backword only if ther was a rat enterance that trigger thr robot motion.
             UpdateRobotHomePositionBackwordsJBIFile();
-            Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory());
+            Task moveRobotHomePositionTask;
+            if (!duration1HeadInTheCenterStabilityStage)
+                moveRobotHomePositionTask = Task.Factory.StartNew(() => NullFunction());
+            else
+                moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory());
+
 
             Task.Run(() =>
             {
@@ -1199,6 +1210,13 @@ namespace PinkyAndBrain
 
             //wait the maximum time of the postTrialTime and the going home position time.
             moveRobotHomePositionTask.Wait();
+        }
+        
+        /// <summary>
+        /// Null bumper function.
+        /// </summary>
+        private void NullFunction()
+        {
         }
 
         /// <summary>
