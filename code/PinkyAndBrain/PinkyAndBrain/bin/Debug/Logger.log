@@ -1,472 +1,822 @@
-﻿2017-06-15 11:34:38,833 INFO [1] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 11:45:45,190 INFO [1] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
-2017-06-15 11:45:45,216 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
-2017-06-15 11:45:52,202 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
-2017-06-15 11:45:56,821 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
-2017-06-15 11:46:03,828 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
-2017-06-15 11:46:10,440 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
-2017-06-15 11:46:15,075 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
-2017-06-15 11:46:22,026 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
-2017-06-15 11:46:28,050 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #8
-2017-06-15 11:46:32,652 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #9
-2017-06-15 11:46:38,249 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #10
-2017-06-15 11:46:42,998 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #11
-2017-06-15 11:46:47,620 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #12
-2017-06-15 11:46:53,068 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #13
-2017-06-15 11:46:59,787 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #14
-2017-06-15 11:47:06,358 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #15
-2017-06-15 11:47:12,485 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #16
-2017-06-15 11:47:17,488 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #17
-2017-06-15 11:47:22,104 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #18
-2017-06-15 11:47:27,143 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #19
-2017-06-15 11:47:31,754 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #20
-2017-06-15 11:47:36,358 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #21
-2017-06-15 11:47:42,845 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #22
-2017-06-15 11:47:48,591 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #23
-2017-06-15 11:47:53,211 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #24
-2017-06-15 11:47:57,834 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #25
-2017-06-15 11:48:02,437 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #26
-2017-06-15 11:48:07,049 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #27
-2017-06-15 11:48:11,673 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #28
-2017-06-15 11:48:16,351 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #29
-2017-06-15 11:48:21,308 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #30
-2017-06-15 11:48:26,174 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #31
-2017-06-15 11:48:32,942 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #32
-2017-06-15 11:48:37,551 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #33
-2017-06-15 11:48:43,559 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #34
-2017-06-15 11:48:50,508 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #35
-2017-06-15 11:48:55,113 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #36
-2017-06-15 11:49:01,893 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #37
-2017-06-15 11:49:06,499 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #38
-2017-06-15 11:49:11,102 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #39
-2017-06-15 11:49:16,928 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #40
-2017-06-15 11:49:21,808 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #41
-2017-06-15 11:49:27,991 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #42
-2017-06-15 11:49:33,933 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #43
-2017-06-15 11:49:40,910 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #44
-2017-06-15 11:49:46,371 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #45
-2017-06-15 11:49:52,826 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #46
-2017-06-15 11:49:59,896 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #47
-2017-06-15 11:50:05,509 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #48
-2017-06-15 11:50:11,513 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #49
-2017-06-15 11:50:16,135 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #50
-2017-06-15 11:50:23,334 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #51
-2017-06-15 11:50:30,410 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #52
-2017-06-15 11:50:35,023 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #53
-2017-06-15 11:50:39,646 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #54
-2017-06-15 11:50:46,820 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #55
-2017-06-15 11:50:51,430 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #56
-2017-06-15 11:50:56,046 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #57
-2017-06-15 11:51:03,253 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #58
-2017-06-15 11:51:09,370 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #59
-2017-06-15 11:51:14,639 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #60
-2017-06-15 11:51:19,250 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #61
-2017-06-15 11:51:26,018 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #62
-2017-06-15 11:51:30,632 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #63
-2017-06-15 11:51:37,340 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #64
-2017-06-15 11:51:41,959 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #65
-2017-06-15 11:51:47,141 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #66
-2017-06-15 11:51:53,387 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #67
-2017-06-15 11:52:00,038 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #68
-2017-06-15 11:52:07,019 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #69
-2017-06-15 11:52:13,055 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #70
-2017-06-15 11:52:19,603 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #71
-2017-06-15 11:52:24,207 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #72
-2017-06-15 11:52:31,214 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #73
-2017-06-15 11:52:37,628 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #74
-2017-06-15 11:52:43,979 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #75
-2017-06-15 11:52:49,275 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #76
-2017-06-15 11:52:53,881 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #77
-2017-06-15 11:52:59,852 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #78
-2017-06-15 11:53:05,363 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #79
-2017-06-15 11:53:10,211 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #80
-2017-06-15 11:53:14,894 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #81
-2017-06-15 11:53:20,341 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #82
-2017-06-15 11:54:14,241 INFO [11] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
-2017-06-15 11:54:14,244 INFO [1] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
-2017-06-15 11:54:18,840 INFO [11] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
-2017-06-15 20:27:22,243 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 20:27:33,664 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
-2017-06-15 20:27:33,690 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
-2017-06-15 20:27:38,321 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
-2017-06-15 20:27:38,528 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:27:38,797 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:27:38,920 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:27:39,964 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:27:39,964 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:27:47,009 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
-2017-06-15 20:27:47,212 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:27:47,495 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:27:47,612 INFO [20] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:27:48,655 INFO [20] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:27:48,655 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:27:55,041 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
-2017-06-15 20:27:55,243 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:27:55,465 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:27:55,587 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:27:56,630 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:27:56,630 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:28:03,635 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
-2017-06-15 20:28:03,837 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:28:04,096 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:28:04,215 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:28:05,255 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:28:05,255 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:28:10,896 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
-2017-06-15 20:28:11,099 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:28:11,534 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:28:11,660 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:28:12,700 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:28:12,700 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:28:14,869 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Setting reward measure interactive panel....
-2017-06-15 20:28:19,270 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
-2017-06-15 20:28:19,473 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:28:19,730 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:28:19,849 INFO [20] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:28:20,894 INFO [20] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:28:20,894 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:28:27,950 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #8
-2017-06-15 20:28:28,153 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:28:28,414 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:28:28,533 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:28:29,581 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:28:29,581 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:30:33,882 INFO [15] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
-2017-06-15 20:30:33,887 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
-2017-06-15 20:30:34,084 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:30:34,312 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:30:34,430 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:30:35,475 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:30:35,475 INFO [15] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:30:40,056 INFO [15] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
-2017-06-15 20:30:40,258 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:30:40,478 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:30:40,593 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:30:41,632 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:30:41,633 INFO [15] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:30:48,453 INFO [15] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
-2017-06-15 20:30:48,656 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:30:48,897 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:30:49,014 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:30:50,060 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:30:50,061 INFO [15] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:30:54,655 INFO [15] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
-2017-06-15 20:30:54,856 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:30:55,085 INFO [15] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:30:55,199 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:30:56,245 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:30:56,246 INFO [15] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:33:15,458 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
-2017-06-15 20:33:15,463 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
-2017-06-15 20:33:15,661 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:33:15,889 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:33:16,013 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:33:17,051 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:33:17,052 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:33:21,716 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
-2017-06-15 20:33:21,918 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:33:22,140 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:33:22,261 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:33:23,300 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:33:23,301 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:33:30,312 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
-2017-06-15 20:33:30,514 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:33:30,959 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:33:31,078 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:33:32,116 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:33:32,116 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:33:36,710 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
-2017-06-15 20:33:36,912 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:33:37,133 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:33:37,255 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:33:38,298 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:33:38,298 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:33:45,160 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
-2017-06-15 20:33:45,363 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:33:45,811 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:33:45,927 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:33:46,966 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:33:46,966 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:33:49,131 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Setting reward measure interactive panel....
-2017-06-15 20:33:52,279 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
-2017-06-15 20:33:52,482 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:33:52,725 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:33:52,840 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:33:53,887 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:33:53,887 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 20:33:58,912 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
-2017-06-15 20:33:59,114 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-15 20:33:59,344 INFO [17] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-15 20:33:59,468 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-15 20:34:00,504 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-15 20:34:00,505 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-15 21:15:00,338 INFO [8] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 21:31:13,690 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 21:32:59,405 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 21:33:33,385 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 21:38:36,475 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 21:45:41,655 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 21:49:22,828 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 21:50:34,127 INFO [8] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 21:51:45,069 INFO [8] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 21:52:03,259 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 21:52:34,219 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 21:54:44,707 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 21:59:00,298 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 21:59:09,985 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 21:59:20,184 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 22:09:47,920 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 22:10:49,216 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 22:11:03,967 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-15 22:11:14,387 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-23 17:26:55,566 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-23 17:26:55,595 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:26:55,599 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:26:55,609 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:26:55,619 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:26:55,629 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:26:55,639 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:26:55,650 INFO [9] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:26:55,651 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
-2017-06-23 17:27:15,429 INFO [9] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
-2017-06-23 17:27:15,449 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
-2017-06-23 17:27:15,654 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:27:15,891 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:27:15,894 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:27:15,905 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:27:15,915 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:27:15,925 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:27:15,935 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:27:15,946 INFO [14] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:27:16,008 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:27:17,053 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:27:17,053 INFO [14] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:27:17,055 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:27:17,066 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:27:17,076 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:27:17,086 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:27:17,096 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:27:17,107 INFO [14] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:27:17,108 INFO [14] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
-2017-06-23 17:27:17,108 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-23 17:27:19,200 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:27:19,606 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:27:19,718 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:27:22,731 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:27:22,864 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
-2017-06-23 17:27:23,066 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:42:51,917 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-23 17:42:51,947 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:42:51,950 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:42:51,961 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:42:51,971 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:42:51,981 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:42:51,992 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:42:52,004 INFO [9] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:42:52,006 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
-2017-06-23 17:43:20,616 INFO [9] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
-2017-06-23 17:43:20,643 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
-2017-06-23 17:43:20,847 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:43:21,253 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:43:21,382 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:43:22,425 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:43:22,426 INFO [13] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:43:22,429 INFO [13] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:43:22,440 INFO [13] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:43:22,451 INFO [13] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:43:22,462 INFO [13] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:43:22,473 INFO [13] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:43:22,484 INFO [13] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:43:22,485 INFO [13] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
-2017-06-23 17:43:22,486 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-23 17:43:24,741 INFO [9] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Setting reward measure interactive panel....
-2017-06-23 17:43:24,746 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:43:25,126 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:43:25,245 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:43:28,306 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:43:28,307 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
-2017-06-23 17:43:28,510 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:45:32,258 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-23 17:45:32,288 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:45:32,291 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:32,302 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:32,312 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:32,322 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:32,332 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:32,343 INFO [9] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:45:32,344 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
-2017-06-23 17:45:44,057 INFO [9] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
-2017-06-23 17:45:44,079 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
-2017-06-23 17:45:44,284 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:45:44,516 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:45:44,519 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:44,530 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:44,540 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:44,550 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:44,560 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:44,571 INFO [14] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:45:44,639 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:45:45,684 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:45:45,684 INFO [14] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:45:45,686 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:45,697 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:45,707 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:45,717 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:45,727 INFO [14] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:45:45,738 INFO [14] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:45:45,739 INFO [14] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
-2017-06-23 17:45:45,739 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-23 17:45:47,991 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:45:48,217 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:45:48,329 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:45:51,340 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:45:51,575 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
-2017-06-23 17:45:51,777 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:47:57,381 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-23 17:47:57,408 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:47:57,412 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:47:57,423 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:47:57,433 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:47:57,443 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:47:57,453 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:47:57,464 INFO [9] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:47:57,465 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
-2017-06-23 17:48:14,929 INFO [9] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
-2017-06-23 17:48:14,949 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
-2017-06-23 17:48:15,154 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:48:15,537 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:48:15,654 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:48:16,706 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:48:16,707 INFO [13] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:48:16,711 INFO [13] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:48:16,722 INFO [13] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:48:16,733 INFO [13] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:48:16,744 INFO [13] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:48:16,755 INFO [13] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:48:16,766 INFO [13] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:48:16,767 INFO [13] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
-2017-06-23 17:48:16,768 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-23 17:48:19,029 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:48:19,406 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:48:19,525 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:49:21,930 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-23 17:49:21,958 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:49:21,961 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:21,972 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:21,982 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:21,992 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:22,002 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:22,013 INFO [10] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:49:22,014 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
-2017-06-23 17:49:41,890 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
-2017-06-23 17:49:41,915 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
-2017-06-23 17:49:42,121 INFO [6] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:49:42,517 INFO [6] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:49:42,635 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:49:43,679 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:49:43,680 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:49:43,686 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:43,697 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:43,709 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:43,719 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:43,730 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:43,742 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:49:43,743 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
-2017-06-23 17:49:43,744 INFO [6] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-23 17:49:46,003 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Setting reward measure interactive panel....
-2017-06-23 17:49:46,011 INFO [6] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:49:46,398 INFO [6] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:49:46,518 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:49:47,533 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:49:56,233 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
-2017-06-23 17:49:56,236 INFO [16] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
-2017-06-23 17:49:56,438 INFO [16] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:49:56,670 INFO [16] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:49:56,672 INFO [16] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:56,683 INFO [16] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:56,693 INFO [16] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:56,703 INFO [16] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:56,713 INFO [16] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:56,724 INFO [16] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:49:56,791 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:49:57,880 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:49:57,880 INFO [16] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:49:57,882 INFO [16] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:57,893 INFO [16] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:57,903 INFO [16] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:57,913 INFO [16] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:57,923 INFO [16] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:49:57,934 INFO [16] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:49:57,935 INFO [16] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
-2017-06-23 17:49:57,935 INFO [16] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-23 17:50:00,025 INFO [16] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:50:00,250 INFO [16] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:50:00,366 INFO [6] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:50:01,380 INFO [6] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:50:05,319 INFO [18] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
-2017-06-23 17:50:05,320 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
-2017-06-23 17:50:05,520 INFO [18] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:50:05,752 INFO [18] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:50:05,755 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:05,766 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:05,776 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:05,786 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:05,796 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:05,807 INFO [18] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:50:05,868 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:50:06,905 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:50:06,906 INFO [18] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:50:06,909 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:06,921 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:06,932 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:06,943 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:06,953 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:06,964 INFO [18] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:50:06,965 INFO [18] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
-2017-06-23 17:50:06,965 INFO [18] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-23 17:50:09,161 INFO [18] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:50:09,387 INFO [18] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:50:09,509 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:50:10,525 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:50:10,525 INFO [18] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
-2017-06-23 17:50:10,727 INFO [18] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:50:10,952 INFO [18] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:50:10,955 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:10,966 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:10,976 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:10,986 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:10,996 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:11,008 INFO [18] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:50:11,069 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:50:12,115 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:50:12,116 INFO [18] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:50:12,119 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:12,130 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:12,141 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:12,153 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:12,164 INFO [18] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:50:12,176 INFO [18] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:50:12,177 INFO [18] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
-2017-06-23 17:50:12,178 INFO [18] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
-2017-06-23 17:50:14,374 INFO [18] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
-2017-06-23 17:50:14,617 INFO [18] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
-2017-06-23 17:50:14,733 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
-2017-06-23 17:50:15,745 INFO [19] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
-2017-06-23 17:51:49,688 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-23 17:51:49,717 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:51:49,721 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:51:49,732 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:51:49,742 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:51:49,752 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:51:49,762 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:51:49,774 INFO [9] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:51:49,775 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
-2017-06-23 17:52:46,201 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
-2017-06-23 17:52:46,230 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
-2017-06-23 17:52:46,233 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:52:46,244 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:52:46,254 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:52:46,264 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:52:46,274 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
-2017-06-23 17:52:46,285 INFO [9] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
-2017-06-23 17:52:46,287 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+﻿2017-07-21 11:51:29,902 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-07-21 12:00:00,800 INFO [9] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-07-21 12:00:00,842 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-07-21 12:00:03,062 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:00:03,322 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:00:08,254 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-07-21 12:00:10,470 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:00:10,724 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:00:13,200 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2017-07-21 12:00:15,414 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:00:15,664 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:00:17,311 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2017-07-21 12:00:19,523 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:00:19,744 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:00:24,631 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
+2017-07-21 12:00:26,847 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:00:27,291 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:00:31,670 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
+2017-07-21 12:00:33,885 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:00:34,133 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:00:35,485 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
+2017-07-21 12:00:37,697 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:00:37,913 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:00:40,214 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #8
+2017-07-21 12:00:42,426 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:00:42,650 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:00:47,374 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #9
+2017-07-21 12:00:49,579 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:00:49,831 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:00:52,545 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #10
+2017-07-21 12:00:54,758 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:00:55,014 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:00:58,588 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #11
+2017-07-21 12:01:00,800 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:01:01,028 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:01:03,496 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #12
+2017-07-21 12:01:05,710 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:01:05,963 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:01:10,119 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #13
+2017-07-21 12:01:12,322 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:01:12,539 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:01:13,776 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #14
+2017-07-21 12:01:16,004 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:01:16,223 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:01:17,907 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #15
+2017-07-21 12:01:20,121 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:01:20,563 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:01:24,367 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #16
+2017-07-21 12:01:26,580 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:01:26,828 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:01:28,620 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #17
+2017-07-21 12:01:30,834 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:01:31,049 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:01:32,248 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #18
+2017-07-21 12:01:34,461 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:01:34,901 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:01:37,591 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #19
+2017-07-21 12:01:39,805 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:01:40,093 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:01:44,253 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #20
+2017-07-21 12:01:46,465 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:01:46,683 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:01:47,726 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #21
+2017-07-21 12:01:49,939 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:01:50,165 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:01:52,362 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #22
+2017-07-21 12:01:54,575 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:01:54,794 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:01:57,812 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #23
+2017-07-21 12:02:00,024 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:02:00,239 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:02:04,949 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #24
+2017-07-21 12:02:07,154 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:02:07,565 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:02:08,801 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #25
+2017-07-21 12:02:11,004 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:02:11,419 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:02:15,010 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #26
+2017-07-21 12:02:17,225 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:02:17,478 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:02:19,626 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #27
+2017-07-21 12:02:21,841 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:02:22,305 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:02:27,113 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #28
+2017-07-21 12:02:29,326 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:02:29,558 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:02:31,409 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #29
+2017-07-21 12:02:33,613 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:02:33,859 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:02:37,369 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #30
+2017-07-21 12:02:39,581 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 12:02:40,024 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 12:02:48,370 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-07-21 15:08:52,133 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-07-21 15:08:52,155 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-07-21 15:08:54,364 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:08:54,806 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:08:58,819 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-07-21 15:09:01,032 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:09:01,277 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:09:03,531 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2017-07-21 15:09:05,746 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:09:06,191 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:09:10,960 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2017-07-21 15:09:13,173 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:09:13,387 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:09:16,527 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
+2017-07-21 15:09:18,739 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:09:18,953 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:09:21,798 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
+2017-07-21 15:09:24,010 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:09:24,225 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:09:28,284 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
+2017-07-21 15:09:30,497 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:09:30,732 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:09:32,985 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #8
+2017-07-21 15:09:35,189 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:09:35,407 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:09:38,261 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #9
+2017-07-21 15:09:40,473 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:09:40,890 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:31:46,988 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-07-21 15:32:20,696 INFO [9] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-07-21 15:32:20,718 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-07-21 15:32:22,930 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:32:23,184 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:32:25,157 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-07-21 15:32:27,360 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:32:27,582 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:32:29,443 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2017-07-21 15:32:31,648 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:32:31,913 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:32:33,965 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2017-07-21 15:32:36,180 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:32:36,397 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:32:39,650 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
+2017-07-21 15:32:41,865 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:32:42,109 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:32:43,193 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
+2017-07-21 15:32:45,397 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:32:45,640 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:32:49,659 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
+2017-07-21 15:32:51,872 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:32:52,087 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:32:56,475 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #8
+2017-07-21 15:32:58,689 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:32:58,930 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 15:33:00,141 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #9
+2017-07-21 15:33:02,346 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 15:33:02,561 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:53:43,083 INFO [8] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-07-21 17:54:18,543 INFO [8] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-07-21 17:54:18,566 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-07-21 17:54:18,773 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:54:18,997 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:54:19,111 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:54:20,167 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:54:20,167 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 17:54:22,343 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:54:22,563 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:54:22,681 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:54:23,697 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:54:25,014 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-07-21 17:54:25,216 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:54:25,587 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:54:25,701 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:54:26,798 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:54:26,799 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 17:54:28,972 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:54:29,348 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:54:29,459 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:54:30,486 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:54:30,513 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2017-07-21 17:54:30,715 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:54:30,936 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:54:31,047 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:54:32,120 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:54:32,120 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 17:54:34,295 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:54:34,533 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:54:34,645 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:54:35,671 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:54:35,671 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2017-07-21 17:54:35,873 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:54:36,089 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:54:36,197 INFO [9] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:54:37,204 INFO [9] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:54:37,204 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 17:54:39,374 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:54:39,591 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:54:39,699 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:54:40,715 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:54:44,285 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
+2017-07-21 17:54:44,486 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:54:44,881 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:54:44,985 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:54:46,056 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:54:46,057 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 17:54:48,233 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:54:48,607 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:54:48,718 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:54:49,745 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:54:53,567 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
+2017-07-21 17:54:53,770 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:54:54,007 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:54:54,119 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:54:55,185 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:54:55,186 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 17:54:57,350 INFO [8] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Setting reward measure interactive panel....
+2017-07-21 17:54:57,355 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:54:57,768 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:54:57,881 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:54:58,907 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:54:59,990 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
+2017-07-21 17:55:00,192 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:55:00,564 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:55:00,678 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:55:01,758 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:55:01,759 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 17:55:03,933 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:55:04,304 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:55:04,420 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:55:05,459 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:55:08,204 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #8
+2017-07-21 17:55:08,407 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:55:08,827 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:55:08,935 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:55:09,992 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:55:09,992 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 17:55:12,156 INFO [8] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Setting reward measure interactive panel....
+2017-07-21 17:55:12,161 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:55:12,377 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:55:12,482 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:55:13,522 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:55:13,597 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #9
+2017-07-21 17:55:13,800 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:55:14,055 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:55:14,167 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:55:15,254 INFO [14] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:55:15,255 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 17:55:17,424 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:55:17,636 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:55:17,745 INFO [9] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:55:18,777 INFO [9] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:55:22,569 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #10
+2017-07-21 17:55:22,770 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:55:23,141 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:55:23,253 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:55:24,356 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:55:24,357 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 17:55:24,358 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:55:24,778 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:55:29,261 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #11
+2017-07-21 17:55:29,462 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:55:29,687 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:55:29,806 INFO [9] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:55:32,845 INFO [9] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:55:32,846 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 17:55:32,847 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:56:49,360 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-07-21 17:58:51,481 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-07-21 17:58:51,506 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-07-21 17:58:51,710 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:58:51,943 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:58:52,073 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:58:53,141 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:58:53,141 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 17:58:53,142 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:58:53,390 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:58:57,466 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-07-21 17:58:57,667 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 17:58:58,057 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 17:58:58,169 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 17:59:01,231 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 17:59:01,231 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 17:59:01,231 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:17:12,804 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-07-21 18:36:52,720 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-07-21 18:40:47,313 INFO [8] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-07-21 18:41:12,171 INFO [8] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-07-21 18:41:12,189 INFO [11] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-07-21 18:41:12,394 INFO [11] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:41:12,780 INFO [11] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:41:12,902 INFO [13] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:41:13,979 INFO [13] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:41:13,980 INFO [11] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:41:13,983 INFO [11] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:41:14,400 INFO [11] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:41:16,010 INFO [11] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-07-21 18:41:16,211 INFO [11] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:41:16,600 INFO [11] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:41:16,712 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:41:19,774 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:41:19,774 INFO [11] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:41:19,775 INFO [11] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:42:22,828 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-07-21 18:42:42,902 INFO [9] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-07-21 18:42:42,926 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-07-21 18:42:43,131 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:42:43,356 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:42:43,475 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:42:44,535 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:42:44,535 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:42:44,536 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:42:44,768 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:42:48,974 INFO [13] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-07-21 18:42:49,175 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:42:49,554 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:42:49,673 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:42:52,738 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:42:52,738 INFO [13] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:42:52,738 INFO [13] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:48:24,390 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-07-21 18:48:50,353 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2017-07-21 18:48:50,372 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2017-07-21 18:48:50,576 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:48:50,807 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:48:50,923 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:48:51,976 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:48:51,976 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:48:51,977 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:48:52,210 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:48:52,340 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:48:53,364 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:48:54,694 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2017-07-21 18:48:54,895 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:48:55,297 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:48:55,408 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:48:56,481 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:48:56,481 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:48:56,481 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:48:56,885 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:48:57,001 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:48:58,019 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:48:59,140 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2017-07-21 18:48:59,341 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:48:59,562 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:48:59,677 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:00,735 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:00,736 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:49:00,737 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:01,230 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:01,346 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:02,379 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:05,121 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2017-07-21 18:49:05,322 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:05,707 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:05,837 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:06,897 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:06,898 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:49:06,898 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:07,280 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:07,408 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:08,441 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:09,172 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
+2017-07-21 18:49:09,375 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:09,910 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:10,032 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:11,065 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:11,065 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:49:11,065 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:11,451 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:11,581 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:12,603 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:13,749 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
+2017-07-21 18:49:13,950 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:14,195 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:14,309 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:15,334 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:15,334 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:49:15,334 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:15,558 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:15,673 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:16,710 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:20,180 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
+2017-07-21 18:49:20,382 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:20,806 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:20,924 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:21,949 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:21,949 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:49:21,949 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:22,183 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:22,297 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:23,328 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:26,943 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #8
+2017-07-21 18:49:27,144 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:27,529 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:27,648 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:28,717 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:28,717 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:49:28,717 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:29,133 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:29,248 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:30,277 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:30,429 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #9
+2017-07-21 18:49:30,631 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:30,856 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:30,976 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:32,073 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:32,073 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:49:32,073 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:32,312 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:32,431 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:33,470 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:35,478 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #10
+2017-07-21 18:49:35,679 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:35,906 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:36,024 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:37,059 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:37,059 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:49:37,059 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:37,291 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:37,404 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:38,443 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:40,288 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #11
+2017-07-21 18:49:40,489 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:40,720 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:40,837 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:41,879 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:41,880 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:49:41,880 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:42,137 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:42,263 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:43,295 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:44,839 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #12
+2017-07-21 18:49:45,041 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:45,268 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:45,391 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:46,447 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:46,447 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:49:46,448 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:46,677 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:46,793 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:47,823 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:50,031 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #13
+2017-07-21 18:49:50,234 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:50,699 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:50,813 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:51,868 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:51,868 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:49:51,868 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:52,100 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:52,213 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:53,258 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:56,570 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #14
+2017-07-21 18:49:56,771 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:57,152 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:57,264 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:58,352 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:49:58,353 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:49:58,353 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:49:58,777 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:49:58,890 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:49:59,916 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:01,102 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #15
+2017-07-21 18:50:01,304 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:01,690 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:01,806 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:02,837 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:02,838 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:50:02,838 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:03,335 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:03,454 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:04,493 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:05,454 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #16
+2017-07-21 18:50:05,655 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:05,895 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:06,009 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:07,078 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:07,078 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:50:07,078 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:07,321 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:07,448 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:08,459 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:09,819 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #17
+2017-07-21 18:50:10,020 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:10,513 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:10,634 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:11,706 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:11,707 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:50:11,708 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:12,141 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:12,252 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:13,272 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:14,337 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #18
+2017-07-21 18:50:14,540 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:14,976 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:15,099 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:16,204 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:16,204 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:50:16,204 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:16,439 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:16,559 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:17,599 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:19,579 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #19
+2017-07-21 18:50:19,780 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:20,285 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:20,407 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:21,518 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:21,518 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:50:21,518 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:21,911 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:22,022 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:23,062 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:23,761 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #20
+2017-07-21 18:50:23,962 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:24,186 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:24,304 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:25,324 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:25,324 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:50:25,325 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:25,589 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:25,708 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:26,741 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:30,273 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #21
+2017-07-21 18:50:30,476 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:30,716 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:30,837 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:31,849 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:31,849 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:50:31,849 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:32,083 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:32,194 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:33,230 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:36,856 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #22
+2017-07-21 18:50:37,057 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:37,289 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:37,407 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:38,506 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:38,507 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:50:38,507 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:38,963 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:39,080 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:40,126 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:42,121 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #23
+2017-07-21 18:50:42,322 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:42,541 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:42,661 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:43,681 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:43,681 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:50:43,682 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:44,128 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:44,245 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:45,278 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:48,922 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #24
+2017-07-21 18:50:49,123 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:49,544 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:49,664 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:50,689 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:50,689 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:50:50,689 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:50,919 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:51,047 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:52,059 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:54,408 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #25
+2017-07-21 18:50:54,609 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:54,856 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:54,974 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:56,026 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:50:56,026 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:50:56,026 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:50:56,254 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:50:56,373 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:50:57,413 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:00,434 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #26
+2017-07-21 18:51:00,636 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:00,901 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:01,018 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:02,039 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:02,040 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:51:02,040 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:02,270 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:02,383 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:03,419 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:06,248 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #27
+2017-07-21 18:51:06,450 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:06,671 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:06,792 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:07,859 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:07,859 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:51:07,859 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:08,104 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:08,239 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:09,269 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:11,020 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #28
+2017-07-21 18:51:11,223 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:11,639 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:11,754 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:12,863 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:12,863 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:51:12,863 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:13,251 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:13,365 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:14,410 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:15,292 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #29
+2017-07-21 18:51:15,493 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:15,713 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:15,840 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:16,922 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:16,923 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:51:16,923 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:17,183 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:17,306 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:18,336 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:19,784 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #30
+2017-07-21 18:51:19,986 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:20,222 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:20,345 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:21,375 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:21,376 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:51:21,376 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:21,598 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:21,710 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:22,746 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:24,490 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #31
+2017-07-21 18:51:24,693 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:24,947 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:25,065 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:26,098 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:26,098 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:51:26,098 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:26,514 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:26,630 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:27,675 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:29,720 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #32
+2017-07-21 18:51:29,921 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:30,168 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:30,279 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:31,295 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:31,295 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:51:31,295 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:31,523 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:31,639 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:32,655 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:36,468 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #33
+2017-07-21 18:51:36,669 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:37,056 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:37,172 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:38,288 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:38,288 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:51:38,289 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:38,710 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:38,819 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:39,867 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:40,429 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #34
+2017-07-21 18:51:40,630 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:40,853 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:40,970 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:42,015 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:42,016 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:51:42,016 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:42,243 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:42,367 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:43,405 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:46,400 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #35
+2017-07-21 18:51:46,603 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:46,850 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:46,970 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:47,995 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:47,995 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:51:47,995 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:48,222 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:48,339 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:49,366 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:52,214 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #36
+2017-07-21 18:51:52,417 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:52,665 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:52,784 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:53,876 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:53,876 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:51:53,876 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:54,112 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:54,227 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:55,261 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:56,687 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #37
+2017-07-21 18:51:56,888 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:57,132 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:57,242 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:58,305 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:51:58,305 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:51:58,305 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:51:58,532 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:51:58,659 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:51:59,676 INFO [17] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:03,524 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #38
+2017-07-21 18:52:03,726 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:03,976 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:04,091 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:05,138 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:05,140 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:52:05,140 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:05,373 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:05,494 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:06,542 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:08,624 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #39
+2017-07-21 18:52:08,827 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:09,074 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:09,187 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:10,255 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:10,255 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:52:10,255 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:10,505 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:10,625 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:11,663 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:14,625 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #40
+2017-07-21 18:52:14,827 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:15,069 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:15,191 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:16,231 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:16,231 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:52:16,231 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:16,454 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:16,565 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:17,597 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:19,055 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #41
+2017-07-21 18:52:19,256 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:19,479 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:19,600 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:20,655 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:20,656 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:52:20,656 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:20,885 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:20,999 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:22,022 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:24,395 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #42
+2017-07-21 18:52:24,596 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:24,979 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:25,093 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:26,170 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:26,170 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:52:26,170 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:26,574 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:26,687 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:27,711 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:27,712 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #43
+2017-07-21 18:52:27,915 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:28,171 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:28,288 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:29,347 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:29,347 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:52:29,347 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:29,589 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:29,703 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:30,740 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:34,026 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #44
+2017-07-21 18:52:34,227 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:34,457 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:34,578 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:35,606 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:35,606 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:52:35,606 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:35,833 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:35,950 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:36,961 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:40,732 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #45
+2017-07-21 18:52:40,933 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:41,154 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:41,277 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:42,330 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:42,330 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:52:42,330 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:42,561 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:42,686 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:43,705 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:46,101 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #46
+2017-07-21 18:52:46,302 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:46,526 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:46,646 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:47,716 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:47,716 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:52:47,716 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:47,966 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:48,090 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:49,120 INFO [11] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:50,577 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #47
+2017-07-21 18:52:50,778 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:50,997 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:51,116 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:52,180 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:52,181 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:52:52,181 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:52,625 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:52,749 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:53,770 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:56,536 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #48
+2017-07-21 18:52:56,737 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:56,959 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:57,078 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:58,130 INFO [18] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:52:58,130 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:52:58,131 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:52:58,578 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:52:58,694 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:52:59,735 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:53:03,100 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #49
+2017-07-21 18:53:03,303 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:53:03,708 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:53:03,832 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:53:04,947 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:53:04,947 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:53:04,947 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:53:05,335 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:53:05,460 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:53:06,507 INFO [16] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:53:06,916 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #50
+2017-07-21 18:53:07,118 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:53:07,615 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:53:07,733 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:53:08,761 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:53:08,762 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:53:08,762 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:53:09,171 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:53:09,301 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:53:10,339 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:53:10,899 INFO [14] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #51
+2017-07-21 18:53:11,100 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:53:11,329 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-07-21 18:53:11,450 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2017-07-21 18:53:12,221 INFO [15] PinkyAndBrain.ControlLoop.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2017-07-21 18:53:12,226 INFO [14] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2017-07-21 18:53:12,226 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2017-07-21 18:53:12,489 INFO [14] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.

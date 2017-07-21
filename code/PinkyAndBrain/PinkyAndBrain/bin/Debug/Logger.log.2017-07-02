@@ -1,0 +1,9 @@
+﻿2017-07-02 14:48:48,862 INFO [1] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-07-02 14:48:48,889 INFO [1] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2017-07-02 14:48:48,894 INFO [1] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-07-02 14:48:48,905 INFO [1] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-07-02 14:48:48,915 INFO [1] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-07-02 14:48:48,925 INFO [1] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-07-02 14:48:48,935 INFO [1] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-07-02 14:48:48,946 INFO [1] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2017-07-02 14:48:48,947 INFO [1] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
