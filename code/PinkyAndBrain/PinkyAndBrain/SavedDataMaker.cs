@@ -114,7 +114,7 @@ namespace PinkyAndBrain
         {
             //create a new results file for the new experiment.
             if (_currentSavedFileStramWriter != null) _currentSavedFileStramWriter.Dispose();
-            _currentSavedFileStramWriter = File.CreateText(Application.StartupPath + @"\results\" + DateTime.Now.ToString("yyyy_MM_dd_HH-mm") + ratName);
+            _currentSavedFileStramWriter = File.CreateText(Application.StartupPath + @"\results\" + DateTime.Now.ToString("yyyy_MM_dd_HH-mm") + ratName + ".txt");
         }
     }
 
