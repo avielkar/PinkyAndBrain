@@ -51,13 +51,13 @@ namespace PinkyAndBrain
             lineBuilder.Clear();
 
             //append the rat name.
-            lineBuilder.Append("Rat Name: ");
+            lineBuilder.Append("Rat Name:");
             lineBuilder.Append(trialData.RatName);
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
 
             //append the rat decision for the stimulus direction.
-            lineBuilder.Append("Rat Decison: ");
+            lineBuilder.Append("Rat Decison:");
             lineBuilder.Append(trialData.RatDecison);
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
@@ -66,7 +66,7 @@ namespace PinkyAndBrain
             foreach (string paramName in trialData.StaticVariables.Keys)
             {
                 lineBuilder.Append(paramName);
-                lineBuilder.Append("\t\t:\t");
+                lineBuilder.Append(":");
                 foreach (double value in trialData.StaticVariables[paramName][0])
                 {
                     lineBuilder.Append(value);
@@ -81,7 +81,7 @@ namespace PinkyAndBrain
             foreach (string paramName in trialData.VaryingVariables.Keys)
             {
                 lineBuilder.Append(paramName);
-                lineBuilder.Append("\t\t:\t");
+                lineBuilder.Append(":");
                 foreach (double value in trialData.VaryingVariables[paramName])
                 {
                     lineBuilder.Append(value);
@@ -96,7 +96,7 @@ namespace PinkyAndBrain
             foreach (var field in typeof(ControlLoop.TrialTimings).GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
             {
                 lineBuilder.Append(field.Name);
-                lineBuilder.Append("\t:\t");
+                lineBuilder.Append(":");
                 lineBuilder.Append(field.GetValue(trialData.TimingsVariables));
 
                 _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());

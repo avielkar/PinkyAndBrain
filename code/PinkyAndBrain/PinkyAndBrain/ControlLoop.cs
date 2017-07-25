@@ -454,6 +454,10 @@ namespace PinkyAndBrain
                                 //second reward stage (condition if needed in the stage)
                                 SecondRewardStage(decision , AutoReward);
                             }
+
+                            //after the end of rewrad wait a time delay before backword movement to the home poistion.
+                            RewardToBackwardDelayStage();
+
                         }
 
                         //sounds the beep for missing the movement head in the center.
@@ -810,6 +814,14 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// The stage for the time between the end of the reward to the beginnig moving tohe robot to it's home position.
+        /// </summary>
+        private void RewardToBackwardDelayStage()
+        {
+            Thread.Sleep((int)(_currentTrialTimings.wRewardToBackwardDelay*1000));
+        }
+
+        /// <summary>
         /// Moving the robot stage (it the rat enter the head to the center in the timeOut time and was stable in the center for startDelay time).
         /// This function also , in paralleled to the robot moving , checks that the rat head was consistently in the center during the duration time of the movement time.
         /// </summary>
@@ -1065,6 +1077,8 @@ namespace PinkyAndBrain
             currentTrialTimings.wRewardCenterDuration = DetermineTimeByVariable("REWARD_CENTER_DURATION");
             currentTrialTimings.wRewardRightDuration = DetermineTimeByVariable("REWARD_RIGHT_DURATION");
             currentTrialTimings.wRewardLeftDuration = DetermineTimeByVariable("REWARD_LEFT_DURATION");
+
+            currentTrialTimings.wRewardToBackwardDelay = DetermineTimeByVariable("REWARD_BACKWARD_TIME");
 
             currentTrialTimings.wPostTrialTime = DetermineTimeByVariable("POST_TRIAL_TIME");
 
@@ -1377,6 +1391,11 @@ namespace PinkyAndBrain
             /// The duration for the left reward.
             /// </summary>
             public double wRewardLeftDuration;
+
+            /// <summary>
+            /// The delay between end of water reward to the begining of moving rovot to it's home position.
+            /// </summary>
+            public double wRewardToBackwardDelay;
 
             /// <summary>
             /// The duration to wait between the end of the previous trial and the begining of the next trial.
