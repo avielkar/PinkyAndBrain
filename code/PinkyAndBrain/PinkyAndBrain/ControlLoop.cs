@@ -455,6 +455,12 @@ namespace PinkyAndBrain
                                 SecondRewardStage(decision , AutoReward);
                             }
 
+                            //if fixation break - sound a aaaahhhh sound.
+                            else
+                            {
+                                Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play(); });
+                            }
+
                             //after the end of rewrad wait a time delay before backword movement to the home poistion.
                             RewardToBackwardDelayStage();
 
@@ -515,7 +521,7 @@ namespace PinkyAndBrain
 
             //update the number of past trials.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Trial Number", (_numOfPastTrials + 1).ToString());
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Remaining Trials", (_numOfPastTrials + 1).ToString());
 
             //update the number of left trials.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
