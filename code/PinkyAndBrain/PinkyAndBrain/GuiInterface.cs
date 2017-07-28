@@ -1179,6 +1179,19 @@ namespace PinkyAndBrain
             else
                 _cntrlLoop.AutoStart = false;
         }
+
+        /// <summary>
+        /// Event for changing the AutoRewardSound status.
+        /// </summary>
+        /// <param name="sender">The checkbox.</param>
+        /// <param name="e">The param.</param>
+        private void _autoRewardSound_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_autoRewardSound.Checked)
+                _cntrlLoop.AutoRewardSound = true;
+            else
+                _cntrlLoop.AutoRewardSound = false;
+        }
         #endregion AUTOS
 
         #region my_functions

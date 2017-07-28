@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -83,6 +83,7 @@
             this._autoFixationCheckBox = new System.Windows.Forms.CheckBox();
             this._warningsGroupBox = new System.Windows.Forms.GroupBox();
             this._ardionoPrtWarningLabel = new System.Windows.Forms.Label();
+            this._autoRewardSound = new System.Windows.Forms.CheckBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -294,7 +295,7 @@
             // _autoRewardsCheckBox
             // 
             this._autoRewardsCheckBox.AutoSize = true;
-            this._autoRewardsCheckBox.Location = new System.Drawing.Point(59, 65);
+            this._autoRewardsCheckBox.Location = new System.Drawing.Point(59, 60);
             this._autoRewardsCheckBox.Name = "_autoRewardsCheckBox";
             this._autoRewardsCheckBox.Size = new System.Drawing.Size(93, 17);
             this._autoRewardsCheckBox.TabIndex = 9;
@@ -508,17 +509,17 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea2.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend3);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series3);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
@@ -538,7 +539,7 @@
             // _autoStartCheckBox
             // 
             this._autoStartCheckBox.AutoSize = true;
-            this._autoStartCheckBox.Location = new System.Drawing.Point(59, 19);
+            this._autoStartCheckBox.Location = new System.Drawing.Point(59, 14);
             this._autoStartCheckBox.Name = "_autoStartCheckBox";
             this._autoStartCheckBox.Size = new System.Drawing.Size(73, 17);
             this._autoStartCheckBox.TabIndex = 11;
@@ -549,7 +550,7 @@
             // _autoFixationCheckBox
             // 
             this._autoFixationCheckBox.AutoSize = true;
-            this._autoFixationCheckBox.Location = new System.Drawing.Point(59, 42);
+            this._autoFixationCheckBox.Location = new System.Drawing.Point(59, 37);
             this._autoFixationCheckBox.Name = "_autoFixationCheckBox";
             this._autoFixationCheckBox.Size = new System.Drawing.Size(87, 17);
             this._autoFixationCheckBox.TabIndex = 10;
@@ -579,11 +580,23 @@
             this._ardionoPrtWarningLabel.Text = "The COM4 (Arduino) port is not connected-LEDS not work properly";
             this._ardionoPrtWarningLabel.Visible = false;
             // 
-            // _arduinoPortWarningLabel
+            // _autoRewardSound
+            // 
+            this._autoRewardSound.AutoSize = true;
+            this._autoRewardSound.Location = new System.Drawing.Point(1095, 881);
+            this._autoRewardSound.Name = "_autoRewardSound";
+            this._autoRewardSound.Size = new System.Drawing.Size(122, 17);
+            this._autoRewardSound.TabIndex = 12;
+            this._autoRewardSound.Text = "Auto Reward Sound";
+            this._autoRewardSound.UseVisualStyleBackColor = true;
+            this._autoRewardSound.CheckedChanged += new System.EventHandler(this._autoRewardSound_CheckedChanged);
+            // 
+            // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1678, 912);
+            this.Controls.Add(this._autoRewardSound);
             this.Controls.Add(this._warningsGroupBox);
             this.Controls.Add(this._autosGroupBox);
             this.Controls.Add(this._onlinePsychGrpahGroupBox);
@@ -599,7 +612,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._protocolsComboBox);
-            this.Name = "_arduinoPortWarningLabel";
+            this.Name = "GuiInterface";
             this.Text = "GuiInterface";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GuiInterface_Close);
             this._trialParametersGroup.ResumeLayout(false);
@@ -683,5 +696,6 @@
         private System.Windows.Forms.CheckBox _autoFixationCheckBox;
         private System.Windows.Forms.GroupBox _warningsGroupBox;
         private System.Windows.Forms.Label _ardionoPrtWarningLabel;
+        private System.Windows.Forms.CheckBox _autoRewardSound;
     }
 }

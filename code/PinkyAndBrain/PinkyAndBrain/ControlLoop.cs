@@ -243,6 +243,11 @@ namespace PinkyAndBrain
         public bool AutoFixation { get; set; }
 
         /// <summary>
+        /// Indicated if to sound a media during the reward with the same direction.
+        /// </summary>
+        public bool AutoRewardSound { get; set; }
+
+        /// <summary>
         /// Dictionary represent a sound name and it's file path.
         /// </summary>
         private Dictionary<string, string> _soundPlayerPathDB;
@@ -446,7 +451,7 @@ namespace PinkyAndBrain
                                 _totalHeadStabilityInCenterDuringDurationTime++;
 
                                 //reward the rat in the center with water for duration of rewardCenterDuration for stable head in the center during the movement.
-                                RewardCenterStage();
+                                RewardCenterStage(false , AutoRewardSound);
 
                                 //wait the rat to response to the movement during the response tine.
                                 Tuple<RatDecison, bool> decision = ResponseTimeStage();
@@ -668,8 +673,9 @@ namespace PinkyAndBrain
         /// <param name="position">The cellenoid position side to be opened.</param>
         /// <param name="rewardDuration">The duration the selected cellenoid eould be opened.</param>
         /// <param name="rewardDelay">The delay time before opening the selected cellenoid.</param>
-        /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
-        public void Reward(RewardPosition position, double rewardDuration, double rewardDelay, bool autoreward = false)
+        /// <param name="autoreward">Indecation if to give the reward with no delay.</param>
+        /// <param name="autoRewardSound">Indecation ig to give the suto reard sound during the reward.</param>
+        public void Reward(RewardPosition position, double rewardDuration, double rewardDelay, bool autoreward = false , bool autoRewardSound = false)
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -678,12 +684,14 @@ namespace PinkyAndBrain
             if (!autoreward)
                 Thread.Sleep((int)(rewardDelay * 1000));
             //if autoReward than play the sound in the slected side of the water reward in order to help the rat to understand the water reward side.
-            else
+            if(autoRewardSound)
             {
                 //play the selected reward side mono sound.
                 switch (position)
                 {
                     case RewardPosition.Center:
+                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
+                        _windowsMediaPlayer.controls.play();
                         break;
                     case RewardPosition.Left:
                         _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
@@ -727,13 +735,13 @@ namespace PinkyAndBrain
                 switch (decision.Item1)
                 {
                     case RatDecison.Center:
-                        RewardCenterStage();
+                        RewardCenterStage(false , AutoRewardSound);
                         break;
                     case RatDecison.Left:
-                        RewardLeftStage();
+                        RewardLeftStage(false, AutoRewardSound);
                         break;
                     case RatDecison.Right:
-                        RewardRightStage();
+                        RewardRightStage(false, AutoRewardSound);
                         break;
                     default:
                         break;
@@ -753,15 +761,15 @@ namespace PinkyAndBrain
                 switch (currentStimulationSide)
                 {
                     case RatDecison.Center:
-                        RewardCenterStage(true);
+                        RewardCenterStage(true , AutoRewardSound);
                         break;
 
                     case RatDecison.Left:
-                        RewardLeftStage(true);
+                        RewardLeftStage(true , AutoRewardSound);
                         break;
 
                     case RatDecison.Right:
-                        RewardRightStage(true);
+                        RewardRightStage(true , AutoRewardSound);
                         break;
 
                     default:
@@ -773,14 +781,15 @@ namespace PinkyAndBrain
         /// <summary>
         /// The reward left stage is happening if the rat decide the correct stimulus side.
         /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
+        /// <param name="autoRewardSound">Indecation ig to give the suto reard sound during the reward.</param>
         /// </summary>
-        public void RewardLeftStage(bool autoReward = false)
+        public void RewardLeftStage(bool autoReward = false , bool autoRewardSound = false)
         {
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Left)");
 
-            Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration, _currentTrialTimings.wRewardLeftDelay, autoReward);
+            Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration, _currentTrialTimings.wRewardLeftDelay, autoReward , autoRewardSound);
 
             //write that the rat get left reward to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.LeftReward);
@@ -789,15 +798,16 @@ namespace PinkyAndBrain
         /// <summary>
         /// The reward right stage is happening if the rat decide the correct stimulus side.
         /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
+        /// <param name="autoRewardSound">Indecation ig to give the suto reard sound during the reward.</param>
         /// </summary>
-        public void RewardRightStage(bool autoReward = false)
+        public void RewardRightStage(bool autoReward = false, bool autoRewardSound = false)
         {
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Right)");
 
 
-            Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration, _currentTrialTimings.wRewardRightDelay  , autoReward);
+            Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration, _currentTrialTimings.wRewardRightDelay  , autoReward ,autoRewardSound);
 
             //write that the rat get right reward to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RightReward);
@@ -806,14 +816,15 @@ namespace PinkyAndBrain
         /// <summary>
         /// The reward center stage is happening if the rat head was consistently stable in the center during the movement.
         /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
+        /// <param name="autoRewardSound">Indecation ig to give the suto reard sound during the reward.</param>
         /// </summary>
-        public void RewardCenterStage(bool autoReward = false)
+        public void RewardCenterStage(bool autoReward = false, bool autoRewardSound = false)
         {
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Center)");
 
-            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration, _currentTrialTimings.wRewardLeftDelay , autoReward);
+            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration, _currentTrialTimings.wRewardLeftDelay , autoReward ,autoRewardSound);
 
             //write that the rat get center reward to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.CenterReward);
