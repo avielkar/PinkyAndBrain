@@ -99,6 +99,9 @@ namespace PinkyAndBrain
         /// </summary>
         private int _totalHeadStabilityInCenterDuringDurationTime;
 
+        //The total number of head fixation breaks during the duration time.
+        private int _totalHeadFixationBreaks;
+
         /// <summary>
         /// The varying index selector for choosing the current combination index.
         /// </summary>
@@ -345,6 +348,7 @@ namespace PinkyAndBrain
             _numOfPastTrials = 0;
             _totalCorrectAnswers = 0;
             _totalHeadStabilityInCenterDuringDurationTime = 0;
+            _totalHeadFixationBreaks = 0;
 
             _timingRandomizer = new Random();
 
@@ -463,6 +467,9 @@ namespace PinkyAndBrain
                             //if fixation break - sound a aaaahhhh sound.
                             else
                             {
+                                //update the number of head fixation breaks.
+                                _totalHeadFixationBreaks++;
+
                                 Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play(); });
                             }
 
@@ -526,11 +533,11 @@ namespace PinkyAndBrain
 
             //update the number of past trials.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Remaining Trials", (_numOfPastTrials + 1).ToString());
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Past Trials", (_numOfPastTrials + 1).ToString());
 
             //update the number of left trials.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Left Number", (_varyingIndexSelector.CountRemaining()).ToString());
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Remaining Trials", (_varyingIndexSelector.CountRemaining()).ToString());
 
             //update the number of total correct answers.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
@@ -539,6 +546,10 @@ namespace PinkyAndBrain
             //update the number of total correct head in center with stabilty during duration time.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
                 _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Total Head in Center with Stability", (_totalHeadStabilityInCenterDuringDurationTime).ToString());
+
+            //update the number of total fixation breaks.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Total Fixation Breaks", (_totalHeadFixationBreaks).ToString());
         }
 
         /// <summary>
