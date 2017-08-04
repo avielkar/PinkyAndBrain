@@ -592,7 +592,7 @@ namespace PinkyAndBrain
             _currentRatDecision = RatDecison.NoEntryToResponseStage;
             
             //Sounds the start beep. Now waiting for the rat to move it's head to the center.
-            Console.Beep();
+            Console.Beep(800 , 600);
 
             //write the beep start event to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.AudioStart);
@@ -688,11 +688,8 @@ namespace PinkyAndBrain
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
-
-            //wait the reward delay time befor openning the reward if not autoReward.
-            if (!autoreward)
-                Thread.Sleep((int)(rewardDelay * 1000));
             //if autoReward than play the sound in the slected side of the water reward in order to help the rat to understand the water reward side.
+
             if(autoRewardSound)
             {
                 //play the selected reward side mono sound.
@@ -714,6 +711,10 @@ namespace PinkyAndBrain
                         break;
                 }
             }
+
+            //wait the reward delay time befor openning the reward if not autoReward.
+            if (!autoreward)
+                Thread.Sleep((int)(rewardDelay * 1000));
 
             sw.Restart();
 
