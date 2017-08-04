@@ -1,6 +1,6 @@
 ﻿namespace PinkyAndBrain
 {
-    partial class GuiInterface
+    partial class _specialModesGroupBox
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -84,6 +84,8 @@
             this._warningsGroupBox = new System.Windows.Forms.GroupBox();
             this._ardionoPrtWarningLabel = new System.Windows.Forms.Label();
             this._autoRewardSound = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._fixationOnlyCheckBox = new System.Windows.Forms.CheckBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -99,6 +101,7 @@
             ((System.ComponentModel.ISupportInitialize)(this._onlinePsychGraphControl)).BeginInit();
             this._autosGroupBox.SuspendLayout();
             this._warningsGroupBox.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -509,17 +512,17 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea3.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend3);
+            chartArea2.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend2);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series3);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series2);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
@@ -591,11 +594,33 @@
             this._autoRewardSound.UseVisualStyleBackColor = true;
             this._autoRewardSound.CheckedChanged += new System.EventHandler(this._autoRewardSound_CheckedChanged);
             // 
-            // GuiInterface
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this._fixationOnlyCheckBox);
+            this.groupBox1.Location = new System.Drawing.Point(1275, 800);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(119, 100);
+            this.groupBox1.TabIndex = 22;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Special Modes";
+            // 
+            // _fixationOnlyCheckBox
+            // 
+            this._fixationOnlyCheckBox.AutoSize = true;
+            this._fixationOnlyCheckBox.Location = new System.Drawing.Point(9, 19);
+            this._fixationOnlyCheckBox.Name = "_fixationOnlyCheckBox";
+            this._fixationOnlyCheckBox.Size = new System.Drawing.Size(86, 17);
+            this._fixationOnlyCheckBox.TabIndex = 0;
+            this._fixationOnlyCheckBox.Text = "Fixation Only";
+            this._fixationOnlyCheckBox.UseVisualStyleBackColor = true;
+            this._fixationOnlyCheckBox.CheckedChanged += new System.EventHandler(this._fixationOnlyCheckBox_CheckedChanged);
+            // 
+            // _specialModesGroupBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1678, 912);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this._autoRewardSound);
             this.Controls.Add(this._warningsGroupBox);
             this.Controls.Add(this._autosGroupBox);
@@ -612,7 +637,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._protocolsComboBox);
-            this.Name = "GuiInterface";
+            this.Name = "_specialModesGroupBox";
             this.Text = "GuiInterface";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GuiInterface_Close);
             this._trialParametersGroup.ResumeLayout(false);
@@ -638,6 +663,8 @@
             this._autosGroupBox.PerformLayout();
             this._warningsGroupBox.ResumeLayout(false);
             this._warningsGroupBox.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -697,5 +724,7 @@
         private System.Windows.Forms.GroupBox _warningsGroupBox;
         private System.Windows.Forms.Label _ardionoPrtWarningLabel;
         private System.Windows.Forms.CheckBox _autoRewardSound;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox _fixationOnlyCheckBox;
     }
 }

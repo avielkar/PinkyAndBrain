@@ -251,6 +251,11 @@ namespace PinkyAndBrain
         public bool AutoRewardSound { get; set; }
 
         /// <summary>
+        /// Indicates if the mode of the trial is only untill the fixation stage (include).
+        /// </summary>
+        public bool FixationOnlyMode { get; set; }
+
+        /// <summary>
         /// Dictionary represent a sound name and it's file path.
         /// </summary>
         private Dictionary<string, string> _soundPlayerPathDB;
@@ -457,11 +462,15 @@ namespace PinkyAndBrain
                                 //reward the rat in the center with water for duration of rewardCenterDuration for stable head in the center during the movement.
                                 RewardCenterStage(false , AutoRewardSound);
 
-                                //wait the rat to response to the movement during the response tine.
-                                Tuple<RatDecison, bool> decision = ResponseTimeStage();
-                                
-                                //second reward stage (condition if needed in the stage)
-                                SecondRewardStage(decision , AutoReward);
+                                //if not to skip all stages after the fixation stage.
+                                if (!FixationOnlyMode)
+                                {
+                                    //wait the rat to response to the movement during the response tine.
+                                    Tuple<RatDecison, bool> decision = ResponseTimeStage();
+
+                                    //second reward stage (condition if needed in the stage)
+                                    SecondRewardStage(decision, AutoReward);
+                                }
                             }
 
                             //if fixation break

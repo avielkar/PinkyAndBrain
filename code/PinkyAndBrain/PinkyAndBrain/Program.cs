@@ -17,7 +17,7 @@ namespace PinkyAndBrain
             ExcelProtocolConfigFieLoader excelLoader = new ExcelProtocolConfigFieLoader();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GuiInterface(ref excelLoader));
+            Application.Run(new _specialModesGroupBox(ref excelLoader));
         }
     }
 }

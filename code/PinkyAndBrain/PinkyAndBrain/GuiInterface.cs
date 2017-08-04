@@ -19,7 +19,7 @@ namespace PinkyAndBrain
     /// <summary>
     /// This partial is used for events callbacks.
     /// </summary>
-    public partial class GuiInterface : Form
+    public partial class _specialModesGroupBox : Form
     {
         #region MEMBERS
 
@@ -123,7 +123,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GuiInterface(ref ExcelProtocolConfigFieLoader excelLoader)
+        public _specialModesGroupBox(ref ExcelProtocolConfigFieLoader excelLoader)
         {
             InitializeComponent();
             _excelLoader = excelLoader;
@@ -1193,6 +1193,21 @@ namespace PinkyAndBrain
                 _cntrlLoop.AutoRewardSound = false;
         }
         #endregion AUTOS
+
+        #region MODES
+        /// <summary>
+        /// Event for changing the mode of the experiment.
+        /// </summary>
+        /// <param name="sender">The checkbox.</param>
+        /// <param name="e">The param.</param>
+        private void _fixationOnlyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_fixationOnlyCheckBox.Checked)
+                _cntrlLoop.FixationOnlyMode = true;
+            else
+                _cntrlLoop.FixationOnlyMode = false;
+        }
+        #endregion MODES
 
         #region my_functions
 
