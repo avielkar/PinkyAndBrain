@@ -279,7 +279,7 @@ namespace PinkyAndBrain
             
             _rewardController = new RewardController("Dev1" , "Port1" ,"Line0:2", "RewardChannels");
             _ratResponseController = new RatResponseController("Dev1", "Port0", "Line0:2", "RatResponseChannels");
-            _alphaOmegaEventsWriter = new AlphaOmegaEventsWriter("Dev1", "Port0", "Line3:7", "AlphaOmegaEventsChannels");
+            _alphaOmegaEventsWriter = new AlphaOmegaEventsWriter("Dev1", "Port0", "Line3:7", "AlphaOmegaEventsChannels" , "Port1" , "Line3" , "AlphaOmegaStrobeChannel");
             _infraredController = infraRedController;
             
             _stopAfterTheEndOfTheCurrentTrial = false;
@@ -464,13 +464,11 @@ namespace PinkyAndBrain
                                 SecondRewardStage(decision , AutoReward);
                             }
 
-                            //if fixation break - sound a aaaahhhh sound.
+                            //if fixation break
                             else
                             {
                                 //update the number of head fixation breaks.
                                 _totalHeadFixationBreaks++;
-
-                                Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play(); });
                             }
 
                             //after the end of rewrad wait a time delay before backword movement to the home poistion.
@@ -787,6 +785,16 @@ namespace PinkyAndBrain
                         break;
                 }
             }
+
+            //if not AutoReward and the answer is wrong play the wrong answer audio
+            else
+            {
+                //play the wrong answer
+                Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"]; _windowsMediaPlayer.controls.play(); });
+
+                //write the alpha omega event for playing a wrong answer audio.
+                _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.AudioWrong);
+            }
         }
 
         /// <summary>
@@ -913,6 +921,15 @@ namespace PinkyAndBrain
                     if (_currentRatResponse != 2)
                     {
                         headInCenterAllTheTime = false;
+
+                        if (!AutoFixation)
+                        {
+                            //sound the break fixation sound - aaaahhhh sound.
+                            Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play(); });
+
+                            //write the break fixation event to the AlphaOmega.
+                            _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadStabilityBreak);
+                        }
                     }
                 }
             });
