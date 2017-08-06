@@ -256,6 +256,11 @@ namespace PinkyAndBrain
         public bool FixationOnlyMode { get; set; }
 
         /// <summary>
+        /// Indicates the autos options that are commanded in the real time (when the code use it at the conditions and not only if the user change it betweens).
+        /// </summary>
+        public AutosOptions _autosOptionsInRealTime { get; set; }
+
+        /// <summary>
         /// Dictionary represent a sound name and it's file path.
         /// </summary>
         private Dictionary<string, string> _soundPlayerPathDB;

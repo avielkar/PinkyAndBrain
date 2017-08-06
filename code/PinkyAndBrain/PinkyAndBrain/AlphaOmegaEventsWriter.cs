@@ -83,7 +83,6 @@ namespace PinkyAndBrain
             Thread.Sleep(10);
             
             _digitalWriter.WriteSingleSamplePort(autoStart, (byte)(AlphaOmegaEvent.EmptyEvent));
-            
         }
     }
 

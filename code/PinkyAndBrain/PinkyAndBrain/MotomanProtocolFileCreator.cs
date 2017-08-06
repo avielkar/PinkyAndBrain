@@ -321,6 +321,12 @@ namespace PinkyAndBrain
             int i = 1;
             if (updateJobType.Equals(UpdateJobType.R1Only) || updateJobType.Equals(UpdateJobType.Both))
             {
+                //setting the tool0 for the robot0.
+                currectStringValue.Append("///TOOL0");
+                stringLinesList.Add(currectStringValue.ToString());
+                currectStringValue.Clear();
+
+                //setting all the points for the robot0.
                 foreach (double point in trajR1.x)
                 {
                     currectStringValue.Append("P");
@@ -349,6 +355,13 @@ namespace PinkyAndBrain
             {
                 int j = i;
                 i = 1;
+
+                //setting the tool1 for the robot1
+                currectStringValue.Append("///TOOL1");
+                stringLinesList.Add(currectStringValue.ToString());
+                currectStringValue.Clear();
+
+                //setting all the points for the robot1.
                 foreach (double point in trajR2.x)
                 {
                     currectStringValue.Append("P");

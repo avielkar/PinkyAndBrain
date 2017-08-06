@@ -152,5 +152,33 @@ namespace PinkyAndBrain
         /// The trial number in the experiment.
         /// </summary>
         public int TrialNum { get; set; }
+
+        public AutosOptions AutosOptions { get; set; }
+    }
+
+    /// <summary>
+    /// AutosOptions data class.
+    /// </summary>
+    public class AutosOptions
+    {
+        /// <summary>
+        /// AutoReward state at the current trial.
+        /// </summary>
+        public bool AutoReward { get; set; }
+
+        /// <summary>
+        /// AutoFixation state at the current trial.
+        /// </summary>
+        public bool AutoFixation { get; set; }
+
+        /// <summary>
+        /// AutoStart state at the current trial.
+        /// </summary>
+        public bool AutoStart { get; set; }
+
+        /// <summary>
+        /// AutoRewardSound state at the current trial.
+        /// </summary>
+        public bool AutoRewardSound { get; set; }
     }
 }
