@@ -74,13 +74,16 @@ namespace PinkyAndBrain
             _digitalWriter.WriteSingleSamplePort(autoStart, (byte)alphaOmegaEvent);
             
             Thread.Sleep(10);
+
+            //raise up the strobe bit for writing the event and then raise it down back.
+            _digitalWriterStrobe.WriteSingleSamplePort(autoStart, 0x08);
+            Thread.Sleep(10);
+            _digitalWriterStrobe.WriteSingleSamplePort(autoStart, 0x00);
+
+            Thread.Sleep(10);
             
             _digitalWriter.WriteSingleSamplePort(autoStart, (byte)(AlphaOmegaEvent.EmptyEvent));
             
-            //raise up the strobe bit for writing the event and then raise it down back.
-            //_digitalWriterStrobe.WriteSingleSamplePort(autoStart, 1);
-            //Thread.Sleep(10);
-            //_digitalWriterStrobe.WriteSingleSamplePort(autoStart, 0);
         }
     }
 
