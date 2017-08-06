@@ -70,8 +70,10 @@ namespace PinkyAndBrain
         /// <param name="autoStart">Auto start flag.</param>
         /// <param name="alphaOmegaEvent">The data (byte) to be written as l7l6l5l4l3l2l1l0 (lines).</param>
         public void WriteEvent(bool autoStart, AlphaOmegaEvent alphaOmegaEvent)
-        {
+        {         
             _digitalWriter.WriteSingleSamplePort(autoStart, (byte)alphaOmegaEvent);
+            
+            
             
             //raise up the strobe bit for writing the event and then raise it down back.
             //_digitalWriterStrobe.WriteSingleSamplePort(autoStart, 1);
@@ -85,6 +87,11 @@ namespace PinkyAndBrain
     /// </summary>
     public enum AlphaOmegaEvent : byte
     {
+        /// <summary>
+        /// Empty event occured between each of the events.
+        /// </summary>
+        EmptyEvent = 0x00,
+
         /// <summary>
         /// Trial begin event.
         /// </summary>

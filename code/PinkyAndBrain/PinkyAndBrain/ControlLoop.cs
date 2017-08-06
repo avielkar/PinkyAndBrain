@@ -601,7 +601,7 @@ namespace PinkyAndBrain
             _currentRatDecision = RatDecison.NoEntryToResponseStage;
             
             //Sounds the start beep. Now waiting for the rat to move it's head to the center.
-            Console.Beep(800 , 600);
+            Console.Beep(2000 ,200);
 
             //write the beep start event to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.AudioStart);
