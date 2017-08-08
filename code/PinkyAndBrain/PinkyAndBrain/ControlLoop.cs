@@ -487,7 +487,6 @@ namespace PinkyAndBrain
 
                             //after the end of rewrad wait a time delay before backword movement to the home poistion.
                             RewardToBackwardDelayStage();
-
                         }
 
                         //sounds the beep for missing the movement head in the center.
@@ -858,7 +857,7 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Center)");
 
-            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration, _currentTrialTimings.wRewardLeftDelay , autoReward ,autoRewardSound);
+            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration, _currentTrialTimings.wRewardCenterDelay, autoReward ,autoRewardSound);
 
             //write that the rat get center reward to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.CenterReward);
@@ -933,14 +932,14 @@ namespace PinkyAndBrain
                 {
                     //sample the signal indicating if the rat head is in the center only 60 time per second (because the refresh rate of the signal is that frequency).
                     Thread.Sleep((int)(Properties.Settings.Default.NoldusRatReponseSampleRate));
-                    if (_currentRatResponse != 2)
+                    if (_currentRatResponse != 2 && headInCenterAllTheTime)
                     {
                         headInCenterAllTheTime = false;
 
                         if (!AutoFixation)
                         {
                             //sound the break fixation sound - aaaahhhh sound.
-                            Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play(); });
+                            /*Task.Run(() => */{ _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play(); }/*)*/;
 
                             //write the break fixation event to the AlphaOmega.
                             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadStabilityBreak);
