@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -85,6 +85,7 @@
             this._ardionoPrtWarningLabel = new System.Windows.Forms.Label();
             this._autoRewardSound = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._breakFixationSoundEnableCheckBox = new System.Windows.Forms.CheckBox();
             this._fixationOnlyCheckBox = new System.Windows.Forms.CheckBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
@@ -512,17 +513,17 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea2.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend1);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series1);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
@@ -588,21 +589,33 @@
             this._autoRewardSound.AutoSize = true;
             this._autoRewardSound.Location = new System.Drawing.Point(1095, 881);
             this._autoRewardSound.Name = "_autoRewardSound";
-            this._autoRewardSound.Size = new System.Drawing.Size(122, 17);
+            this._autoRewardSound.Size = new System.Drawing.Size(97, 17);
             this._autoRewardSound.TabIndex = 12;
-            this._autoRewardSound.Text = "Auto Reward Sound";
+            this._autoRewardSound.Text = "Reward Sound";
             this._autoRewardSound.UseVisualStyleBackColor = true;
             this._autoRewardSound.CheckedChanged += new System.EventHandler(this._autoRewardSound_CheckedChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this._breakFixationSoundEnableCheckBox);
             this.groupBox1.Controls.Add(this._fixationOnlyCheckBox);
             this.groupBox1.Location = new System.Drawing.Point(1275, 800);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(119, 100);
+            this.groupBox1.Size = new System.Drawing.Size(123, 100);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Special Modes";
+            // 
+            // _breakFixationSoundEnableCheckBox
+            // 
+            this._breakFixationSoundEnableCheckBox.AutoSize = true;
+            this._breakFixationSoundEnableCheckBox.Location = new System.Drawing.Point(9, 37);
+            this._breakFixationSoundEnableCheckBox.Name = "_breakFixationSoundEnableCheckBox";
+            this._breakFixationSoundEnableCheckBox.Size = new System.Drawing.Size(112, 17);
+            this._breakFixationSoundEnableCheckBox.TabIndex = 1;
+            this._breakFixationSoundEnableCheckBox.Text = "B.F Sound On/Off";
+            this._breakFixationSoundEnableCheckBox.UseVisualStyleBackColor = true;
+            this._breakFixationSoundEnableCheckBox.CheckedChanged += new System.EventHandler(this._breakFixationSoundEnableCheckBox_CheckedChanged);
             // 
             // _fixationOnlyCheckBox
             // 
@@ -726,5 +739,6 @@
         private System.Windows.Forms.CheckBox _autoRewardSound;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox _fixationOnlyCheckBox;
+        private System.Windows.Forms.CheckBox _breakFixationSoundEnableCheckBox;
     }
 }

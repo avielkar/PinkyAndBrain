@@ -17522,3 +17522,21 @@
 2017-08-08 21:09:06,591 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
 2017-08-08 21:09:08,878 INFO [6] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot.
 2017-08-08 21:09:09,096 INFO [6] PinkyAndBrain.ControlLoop.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2017-08-08 22:23:59,594 INFO [9] PinkyAndBrain._specialModesGroupBox..ctor - Starting program...
+2017-08-08 22:23:59,623 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2017-08-08 22:23:59,626 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-08-08 22:23:59,637 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-08-08 22:23:59,647 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-08-08 22:23:59,657 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-08-08 22:23:59,667 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-08-08 22:23:59,678 INFO [9] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2017-08-08 22:23:59,679 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2017-08-08 22:25:45,070 INFO [9] PinkyAndBrain._specialModesGroupBox..ctor - Starting program...
+2017-08-08 22:25:45,098 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2017-08-08 22:25:45,101 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-08-08 22:25:45,112 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-08-08 22:25:45,122 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-08-08 22:25:45,132 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-08-08 22:25:45,142 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-08-08 22:25:45,154 INFO [9] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2017-08-08 22:25:45,155 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished

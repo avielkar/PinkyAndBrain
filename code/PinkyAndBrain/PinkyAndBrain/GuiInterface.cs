@@ -1207,6 +1207,19 @@ namespace PinkyAndBrain
             else
                 _cntrlLoop.FixationOnlyMode = false;
         }
+
+        /// <summary>
+        /// Event for turnning on/off the sound of the fixation break ahhhhhhh.
+        /// </summary>
+        /// <param name="sender">The checkbox.</param>
+        /// <param name="e">The param.</param>
+        private void _breakFixationSoundEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_breakFixationSoundEnableCheckBox.Checked)
+                _cntrlLoop.EnableFixationBreakSound = true;
+            else
+                _cntrlLoop.EnableFixationBreakSound = false;
+        }
         #endregion MODES
 
         #region my_functions

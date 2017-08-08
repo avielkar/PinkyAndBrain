@@ -256,6 +256,11 @@ namespace PinkyAndBrain
         public bool FixationOnlyMode { get; set; }
 
         /// <summary>
+        /// Indicates if to enable fixation break sound.
+        /// </summary>
+        public bool EnableFixationBreakSound { get; set; }
+
+        /// <summary>
         /// Indicates the autos options that are commanded in the real time (when the code use it at the conditions and not only if the user change it betweens).
         /// </summary>
         public AutosOptions _autosOptionsInRealTime { get; set; }
@@ -938,6 +943,7 @@ namespace PinkyAndBrain
 
                         if (!AutoFixation)
                         {
+                            if(EnableFixationBreakSound)
                             //sound the break fixation sound - aaaahhhh sound.
                             /*Task.Run(() => */{ _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play(); }/*)*/;
 
