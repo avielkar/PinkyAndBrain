@@ -809,7 +809,7 @@ namespace PinkyAndBrain
             else
             {
                 //play the wrong answer
-                Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"]; _windowsMediaPlayer.controls.play(); });
+                //Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"]; _windowsMediaPlayer.controls.play(); });
 
                 //write the alpha omega event for playing a wrong answer audio.
                 _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.AudioWrong);
@@ -979,13 +979,17 @@ namespace PinkyAndBrain
             //check if the head is stable in the center during the startDelay time (before starting the movement).
             while (sw.ElapsedMilliseconds < (int)(_currentTrialTimings.wStartDelay * 1000))
             {
-                //sample the signal indicating if the rat head is in the center only 60 time per second (because the refresh rate of the signal is that frequency).
-                Thread.Sleep((int)(Properties.Settings.Default.NoldusRatReponseSampleRate));
-
-                //if the head sample mentioned that the head was not in the center during the startDelay time , break , and move to the post trial time.
-                if (_currentRatResponse != 2)
+                //if AutoFixation no need to check that.
+                if (!AutoFixation)
                 {
-                    return false;
+                    //sample the signal indicating if the rat head is in the center only 60 time per second (because the refresh rate of the signal is that frequency).
+                    Thread.Sleep((int)(Properties.Settings.Default.NoldusRatReponseSampleRate));
+
+                    //if the head sample mentioned that the head was not in the center during the startDelay time , break , and move to the post trial time.
+                    if (_currentRatResponse != 2)
+                    {
+                        return false;
+                    }
                 }
             }
 
