@@ -1383,14 +1383,53 @@ namespace PinkyAndBrain
         /// <param name="continious">Make the reward continiously (open untill get a close value) or not continiously (by the time of REWARD_CENTER_DURATION parameter.</param>
         public void GiveRewardHandReward(byte value , bool continious = false)
         {
-            if(continious)
+            if (continious)
             {
                 _rewardController.WriteSingleSamplePort(true, value);
             }
             else
             {
-                _rewardController.WriteSingleSamplePort(true , value);
-                Thread.Sleep((int)(DetermineTimeByVariable("REWARD_CENTER_DURATION") * 1000));
+                //wait the delat time before opening the water and make a sound if AutoSound is on.
+                double timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
+                if ((value & (byte)RatDecison.Left) == (byte)RatDecison.Left)
+                {
+                    if (AutoRewardSound)
+                    {
+                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
+                        _windowsMediaPlayer.controls.play();
+                    }
+                    timeByVariable = DetermineTimeByVariable("REWARD_LEFT_DURATION");
+                }
+                else if ((value & 0x05) == 0x05)
+                {
+                    if (AutoRewardSound)
+                    {
+                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
+                        _windowsMediaPlayer.controls.play();
+                    }
+                    timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
+                }
+                else if ((value & (byte)RatDecison.Center) == (byte)RatDecison.Center)
+                {
+                    if (AutoRewardSound)
+                    {
+                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
+                        _windowsMediaPlayer.controls.play();
+                    }
+                    timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
+                }
+                else if ((value & (byte)RatDecison.Right) == (byte)RatDecison.Right)
+                {
+                    if (AutoRewardSound)
+                    {
+                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
+                        _windowsMediaPlayer.controls.play();
+                    }
+                    timeByVariable = DetermineTimeByVariable("REWARD_RIGHT_DURATION");
+                }
+
+                _rewardController.WriteSingleSamplePort(true, value);
+                Thread.Sleep((int)(timeByVariable * 1000));
                 _rewardController.WriteSingleSamplePort(true, 0);
             }
         }

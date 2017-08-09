@@ -587,7 +587,7 @@
             // _autoRewardSound
             // 
             this._autoRewardSound.AutoSize = true;
-            this._autoRewardSound.Location = new System.Drawing.Point(1095, 881);
+            this._autoRewardSound.Location = new System.Drawing.Point(9, 60);
             this._autoRewardSound.Name = "_autoRewardSound";
             this._autoRewardSound.Size = new System.Drawing.Size(97, 17);
             this._autoRewardSound.TabIndex = 12;
@@ -598,6 +598,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this._breakFixationSoundEnableCheckBox);
+            this.groupBox1.Controls.Add(this._autoRewardSound);
             this.groupBox1.Controls.Add(this._fixationOnlyCheckBox);
             this.groupBox1.Location = new System.Drawing.Point(1275, 800);
             this.groupBox1.Name = "groupBox1";
@@ -613,7 +614,7 @@
             this._breakFixationSoundEnableCheckBox.Name = "_breakFixationSoundEnableCheckBox";
             this._breakFixationSoundEnableCheckBox.Size = new System.Drawing.Size(112, 17);
             this._breakFixationSoundEnableCheckBox.TabIndex = 1;
-            this._breakFixationSoundEnableCheckBox.Text = "B.F Sound On/Off";
+            this._breakFixationSoundEnableCheckBox.Text = "B.F Sound On";
             this._breakFixationSoundEnableCheckBox.UseVisualStyleBackColor = true;
             this._breakFixationSoundEnableCheckBox.CheckedChanged += new System.EventHandler(this._breakFixationSoundEnableCheckBox_CheckedChanged);
             // 
@@ -634,7 +635,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1678, 912);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this._autoRewardSound);
             this.Controls.Add(this._warningsGroupBox);
             this.Controls.Add(this._autosGroupBox);
             this.Controls.Add(this._onlinePsychGrpahGroupBox);
