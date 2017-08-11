@@ -132,6 +132,10 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Protocols Directory Path...";
             // 
+            // _protocolsFolderBrowser
+            // 
+            this._protocolsFolderBrowser.SelectedPath = "C:\\Users\\User\\Desktop\\protocols";
+            // 
             // _protocolBrowserBtn
             // 
             this._protocolBrowserBtn.Location = new System.Drawing.Point(211, 51);
@@ -612,7 +616,7 @@
             this._breakFixationSoundEnableCheckBox.AutoSize = true;
             this._breakFixationSoundEnableCheckBox.Location = new System.Drawing.Point(9, 37);
             this._breakFixationSoundEnableCheckBox.Name = "_breakFixationSoundEnableCheckBox";
-            this._breakFixationSoundEnableCheckBox.Size = new System.Drawing.Size(112, 17);
+            this._breakFixationSoundEnableCheckBox.Size = new System.Drawing.Size(93, 17);
             this._breakFixationSoundEnableCheckBox.TabIndex = 1;
             this._breakFixationSoundEnableCheckBox.Text = "B.F Sound On";
             this._breakFixationSoundEnableCheckBox.UseVisualStyleBackColor = true;
