@@ -463,11 +463,15 @@ namespace PinkyAndBrain
                         //if the rat head was stable in the center for the startDelay time as required start the movement.
                         if (duration1HeadInTheCenterStabilityStage = CheckDuration1HeadInTheCenterStabilityStage())
                         {
+                            //update the state of the rat decision.
+                            _currentRatDecision = RatDecison.DurationTime;
+
                             //moving the robot with duration time , and checking for the stability of the head in the center.
                             if (MovingTheRobotDurationWithHeadCenterStabilityStage())
                             {
                                 //update the number of total head in the center with stability during the duration time.
                                 _totalHeadStabilityInCenterDuringDurationTime++;
+                                _currentRatDecision = RatDecison.PassDurationTime;
 
                                 //reward the rat in the center with water for duration of rewardCenterDuration for stable head in the center during the movement.
                                 RewardCenterStage(false , AutoRewardSound);
@@ -546,6 +550,18 @@ namespace PinkyAndBrain
             //clear the past global details in the global details listview.
             _mainGuiInterfaceControlsDictionary["ClearGlobaExperimentlDetailsViewList"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["ClearGlobaExperimentlDetailsViewList"]);
+
+            //update the number of trials count.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Trial # (count)", ((_totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks + 1)).ToString());
+
+            //update the number of total correct head in center with stabilty during duration time.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Success Trials", (_totalHeadStabilityInCenterDuringDurationTime).ToString());
+
+            //update the number of total failure trial during duration time.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Failure Trials", (_totalHeadFixationBreaks).ToString());
 
             //update the number of past trials.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
@@ -1261,7 +1277,11 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Post trial time.");
 
-            if (_currentRatDecision.Equals(RatDecison.NoEntryToResponseStage))
+            if (!FixationOnlyMode && _currentRatDecision.Equals(RatDecison.NoEntryToResponseStage))
+                //reset status of the current trial combination index if there was no reponse stage at all.
+                _varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
+
+            if (FixationOnlyMode && !_currentRatDecision.Equals(RatDecison.PassDurationTime))
                 //reset status of the current trial combination index if there was no reponse stage at all.
                 _varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
 
@@ -1275,19 +1295,22 @@ namespace PinkyAndBrain
             else
                 moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory());
 
-
-            Task.Run(() =>
+            //save the dat into the result file only if the trial is within success trials (that have any stimulus)
+            if (!_currentRatDecision.Equals(RatDecison.NoEntryToResponseStage))
             {
-                _savedExperimentDataMaker.SaveTrialDataToFile(new TrialData()
+                Task.Run(() =>
                 {
-                    StaticVariables = _staticVariablesList,
-                    VaryingVariables = _crossVaryingVals[_currentVaryingTrialIndex],
-                    TimingsVariables = _currentTrialTimings,
-                    RatName = RatName,
-                    RatDecison = _currentRatDecision,
-                    TrialNum = _numOfPastTrials
+                    _savedExperimentDataMaker.SaveTrialDataToFile(new TrialData()
+                    {
+                        StaticVariables = _staticVariablesList,
+                        VaryingVariables = _crossVaryingVals[_currentVaryingTrialIndex],
+                        TimingsVariables = _currentTrialTimings,
+                        RatName = RatName,
+                        RatDecison = _currentRatDecision,
+                        TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks
+                    });
                 });
-            });
+            }
 
             Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
 
@@ -1555,6 +1578,16 @@ namespace PinkyAndBrain
             /// The rat decide about the right side.
             /// </summary>
             Right = 4,
+
+            /// <summary>
+            /// The rat passed the duration time fixation (movement) as a state.
+            /// </summary>
+            PassDurationTime = 5,
+
+            /// <summary>
+            /// DurationTime state.
+            /// </summary>
+            DurationTime = 6
         };
 
         /// <summary>
