@@ -656,6 +656,21 @@ namespace PinkyAndBrain
 
             //determine the current stimulus direaction.
             RatDecison currentStimulationSide = (currentHeadingDirection == 0) ? (RatDecison.Center) : ((currentHeadingDirection > 0) ? (RatDecison.Right) : RatDecison.Left);
+            //determine if the current stimulus heading direction is in the random heading direction region.
+            if (Math.Abs(currentHeadingDirection) <= double.Parse(_variablesList._variablesDictionary["RR_HEADINGS"]._description["parameters"]._ratHouseParameter[0]))
+            {
+                //get a random side with probability of RR_PROBABILITY to the right side.
+                int sampledBernouli =  Bernoulli.Sample(double.Parse(_variablesList._variablesDictionary["RR_PROBABILITY"]._description["parameters"]._ratHouseParameter[0]));
+                if(sampledBernouli ==1)
+                {
+                    currentStimulationSide = RatDecison.Right;
+                }
+                else
+                {
+                    currentStimulationSide = RatDecison.Left;
+                }
+            }
+
 
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -1174,7 +1189,7 @@ namespace PinkyAndBrain
 
             currentTrialTimings.wResponseTime = DetermineTimeByVariable("RESPONSE_TIME");
 
-            currentTrialTimings.wDuration = DetermineTimeByVariable("DURATION");
+            currentTrialTimings.wDuration = DetermineTimeByVariable("STIMULUS_DURATION");
 
             return currentTrialTimings;
         }

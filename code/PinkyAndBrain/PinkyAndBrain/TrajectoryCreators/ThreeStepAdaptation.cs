@@ -300,10 +300,10 @@ namespace PinkyAndBrain.TrajectoryCreators
             else if (_crossVaryingVals[index].Keys.Contains("DIST"))
                 _distance = new Tuple<double, double>(currentVaryingTrialParameters["DIST"][0], (currentVaryingTrialParameters["DIST"].Count > 1) ? currentVaryingTrialParameters["DIST"][1] : currentVaryingTrialParameters["DIST"][0]);
 
-            if (_staticVars.ContainsKey("DURATION"))
-                _duration = new Tuple<double, double>(_staticVars["DURATION"][0][0], _staticVars["DURATION"].Count() > 1 ? _staticVars["DURATION"][1][0] : _staticVars["DURATION"][0][0]);
-            else if (_crossVaryingVals[index].Keys.Contains("DURATION"))
-                _duration = new Tuple<double, double>(currentVaryingTrialParameters["DURATION"][0], (currentVaryingTrialParameters["DURATION"].Count > 1) ? currentVaryingTrialParameters["DURATION"][1] : currentVaryingTrialParameters["DURATION"][0]);
+            if (_staticVars.ContainsKey("STIMULUS_DURATION"))
+                _duration = new Tuple<double, double>(_staticVars["STIMULUS_DURATION"][0][0], _staticVars["STIMULUS_DURATION"].Count() > 1 ? _staticVars["STIMULUS_DURATION"][1][0] : _staticVars["STIMULUS_DURATION"][0][0]);
+            else if (_crossVaryingVals[index].Keys.Contains("STIMULUS_DURATION"))
+                _duration = new Tuple<double, double>(currentVaryingTrialParameters["STIMULUS_DURATION"][0], (currentVaryingTrialParameters["STIMULUS_DURATION"].Count > 1) ? currentVaryingTrialParameters["STIMULUS_DURATION"][1] : currentVaryingTrialParameters["STIMULUS_DURATION"][0]);
 
             if (_staticVars.ContainsKey("SIGMA"))
                 _sigma = new Tuple<double, double>(_staticVars["SIGMA"][0][0], _staticVars["SIGMA"].Count() > 1 ? _staticVars["SIGMA"][1][0] : _staticVars["SIGMA"][0][0]);

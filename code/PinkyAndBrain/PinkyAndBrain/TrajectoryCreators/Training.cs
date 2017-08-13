@@ -144,11 +144,11 @@ namespace PinkyAndBrain.TrajectoryCreators
         {
             Dictionary<string, List<double>> currentVaryingTrialParameters = _crossVaryingVals[index];
 
-            if (_staticVars.ContainsKey("DURATION"))
-                _duration = new Tuple<double, double>(_staticVars["DURATION"][0][0], _staticVars["DURATION"].Count() > 1 ? _staticVars["DURATION"][1][0] : _staticVars["DURATION"][0][0]);
-            else if (_crossVaryingVals[index].Keys.Contains("DURATION"))
+            if (_staticVars.ContainsKey("STIMULUS_DURATION"))
+                _duration = new Tuple<double, double>(_staticVars["STIMULUS_DURATION"][0][0], _staticVars["STIMULUS_DURATION"].Count() > 1 ? _staticVars["STIMULUS_DURATION"][1][0] : _staticVars["STIMULUS_DURATION"][0][0]);
+            else if (_crossVaryingVals[index].Keys.Contains("STIMULUS_DURATION"))
             {
-                _duration = new Tuple<double, double>(currentVaryingTrialParameters["DURATION"][0], (currentVaryingTrialParameters["DURATION"].Count > 1) ? currentVaryingTrialParameters["DURATION"][1] : currentVaryingTrialParameters["DURATION"][0]);
+                _duration = new Tuple<double, double>(currentVaryingTrialParameters["STIMULUS_DURATION"][0], (currentVaryingTrialParameters["STIMULUS_DURATION"].Count > 1) ? currentVaryingTrialParameters["STIMULUS_DURATION"][1] : currentVaryingTrialParameters["STIMULUS_DURATION"][0]);
             }
         }
 
