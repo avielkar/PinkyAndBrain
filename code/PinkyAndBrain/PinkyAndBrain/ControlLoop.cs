@@ -474,7 +474,7 @@ namespace PinkyAndBrain
                                 _currentRatDecision = RatDecison.PassDurationTime;
 
                                 //reward the rat in the center with water for duration of rewardCenterDuration for stable head in the center during the movement.
-                                RewardCenterStage(false , AutoRewardSound);
+                                RewardCenterStage(AutoReward , AutoRewardSound);
 
                                 //if not to skip all stages after the fixation stage.
                                 if (!FixationOnlyMode)
@@ -527,6 +527,9 @@ namespace PinkyAndBrain
 
             //raise an event for the GuiInterface that the trials round is over.
             _mainGuiInterfaceControlsDictionary["FinishedAllTrialsRound"].BeginInvoke(_mainGuiControlsDelegatesDictionary["FinishedAllTrialsRound"]);
+
+            //choose none rat in the selected rat
+            _mainGuiInterfaceControlsDictionary["ResetSelectedRatNameCombobox"].BeginInvoke(_mainGuiControlsDelegatesDictionary["ResetSelectedRatNameCombobox"]);
         }
 
         /// <summary>
@@ -747,7 +750,7 @@ namespace PinkyAndBrain
             }
 
             //wait the reward delay time befor openning the reward if not autoReward.
-            if (!autoreward)
+            //if (!autoreward)
                 Thread.Sleep((int)(rewardDelay * 1000));
 
             sw.Restart();

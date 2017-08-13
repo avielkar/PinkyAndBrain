@@ -409,6 +409,20 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Handler for clearing the selected rat name in the combobox.
+        /// </summary>
+        public delegate void ResetSelectedRatNameComboboxDelegate();
+
+        /// <summary>
+        /// Clearing the selected rat name in the combobox.
+        /// </summary>
+        private void ResetSelectedRatNameCombobox()
+        {
+            _selectedRatNameComboBox.ResetText();
+            _selectedRatNameComboBox.SelectedItem = null;
+        }
+
+        /// <summary>
         /// Collect all needed controls and their delegates for the ControlLoop.
         /// </summary>
         /// <returns>
@@ -468,6 +482,11 @@ namespace PinkyAndBrain
 
             OnlinePsychoGraphSetSeriesDelegate onlinePsychoGraphSetSeriesDelegate = new OnlinePsychoGraphSetSeriesDelegate(OnlinePsychoGraphSetSeries);
             ctrlDelegatesDic.Add("OnlinePsychoGraphSetSeries", onlinePsychoGraphSetSeriesDelegate);
+
+            //add the delegate for clearing the selected rat name.
+            ResetSelectedRatNameComboboxDelegate resetSelectedRatNameComboboxDelegate = new ResetSelectedRatNameComboboxDelegate(ResetSelectedRatNameCombobox);
+            ctrlDelegatesDic.Add("ResetSelectedRatNameCombobox" , resetSelectedRatNameComboboxDelegate);
+            ctrlDictionary.Add("ResetSelectedRatNameCombobox", _selectedRatNameComboBox);
 
             //return both dictionaries.
             return new Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>>(ctrlDictionary, ctrlDelegatesDic);
@@ -551,7 +570,10 @@ namespace PinkyAndBrain
         private void _selectedRatNameComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             //change the selected rat name as followed by the combobox.
-            _cntrlLoop.RatName = (sender as ComboBox).SelectedItem.ToString();
+            if ((sender as ComboBox).SelectedItem != null)
+                _cntrlLoop.RatName = (sender as ComboBox).SelectedItem.ToString();
+            else
+                _cntrlLoop.RatName = "";
         }
 
         /// <summary>
