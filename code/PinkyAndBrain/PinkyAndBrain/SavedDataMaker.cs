@@ -62,6 +62,12 @@ namespace PinkyAndBrain
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
 
+            //append the RR inverse value (if flipped decision).
+            lineBuilder.Append("RR Inverse:");
+            lineBuilder.Append(trialData.RRInverse);
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
             //appends all static variables names and values.
             foreach (string paramName in trialData.StaticVariables.Keys)
             {
@@ -154,6 +160,11 @@ namespace PinkyAndBrain
         public int TrialNum { get; set; }
 
         public AutosOptions AutosOptions { get; set; }
+
+        /// <summary>
+        /// Indicates if in case of Random Heading Direction , the descision was converted to be true.
+        /// </summary>
+        public bool RRInverse { get; set; }
     }
 
     /// <summary>

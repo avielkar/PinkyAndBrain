@@ -176,6 +176,11 @@ namespace PinkyAndBrain
         private RatDecison _currentRatDecision;
 
         /// <summary>
+        /// Indicates if the rat decision should be inverse to the heading due to the random heading direction region.
+        /// </summary>
+        private bool _inverseRRDecision;
+
+        /// <summary>
         /// The selected rat name (that makes the experiment).
         /// </summary>
         public string RatName { get; set; }
@@ -661,6 +666,9 @@ namespace PinkyAndBrain
             {
                 //get a random side with probability of RR_PROBABILITY to the right side.
                 int sampledBernouli =  Bernoulli.Sample(double.Parse(_variablesList._variablesDictionary["RR_PROBABILITY"]._description["parameters"]._ratHouseParameter[0]));
+
+                RatDecison changedStimulusSide = currentStimulationSide;
+
                 if(sampledBernouli ==1)
                 {
                     currentStimulationSide = RatDecison.Right;
@@ -669,6 +677,15 @@ namespace PinkyAndBrain
                 {
                     currentStimulationSide = RatDecison.Left;
                 }
+
+                if (changedStimulusSide.Equals(currentStimulationSide))
+                {
+                    _inverseRRDecision = true;
+                }
+            }
+            else
+            {
+                _inverseRRDecision = false;
             }
 
 
@@ -1325,7 +1342,8 @@ namespace PinkyAndBrain
                         TimingsVariables = _currentTrialTimings,
                         RatName = RatName,
                         RatDecison = _currentRatDecision,
-                        TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks
+                        TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks,
+                        RRInverse = _inverseRRDecision
                     });
                 });
             }
