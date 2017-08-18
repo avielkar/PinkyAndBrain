@@ -68,6 +68,11 @@ namespace PinkyAndBrain
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
 
+            //append the auto's option statuses in the current trial.
+            lineBuilder.Append(trialData.AutosOptions.ToString());
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
             //appends all static variables names and values.
             foreach (string paramName in trialData.StaticVariables.Keys)
             {
@@ -191,5 +196,18 @@ namespace PinkyAndBrain
         /// AutoRewardSound state at the current trial.
         /// </summary>
         public bool AutoRewardSound { get; set; }
+
+        /// <summary>
+        /// Return a string represent the object.
+        /// </summary>
+        /// <returns>The string represents the obhect.</returns>
+        public override string ToString()
+        {
+            return
+                "AutoReward " + AutoReward + "\r\n" +
+                "AutoFixation " + AutoFixation + "\r\n" +
+                "AutoStart " + AutoStart + "\r\n" +
+                "AutoRewardSound " + AutoRewardSound;
+        }
     }
 }

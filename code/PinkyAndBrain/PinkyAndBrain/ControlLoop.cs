@@ -632,6 +632,8 @@ namespace PinkyAndBrain
             _currentTrialStimulusType = DetermineCurrentStimulusType();
             //set the reposne to the stimulus direction as no entry to descision stage (and change it after if needed as well).
             _currentRatDecision = RatDecison.NoEntryToResponseStage;
+            //set the auto option to default values.
+            _autosOptionsInRealTime = new AutosOptions();
             
             //Sounds the start beep. Now waiting for the rat to move it's head to the center.
             Console.Beep(2000 ,200);
@@ -757,8 +759,9 @@ namespace PinkyAndBrain
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            //if autoReward than play the sound in the slected side of the water reward in order to help the rat to understand the water reward side.
 
+            //if autoReward than play the sound in the slected side of the water reward in order to help the rat to understand the water reward side.
+            _autosOptionsInRealTime.AutoRewardSound = autoRewardSound;
             if(autoRewardSound)
             {
                 //play the selected reward side mono sound.
@@ -865,6 +868,8 @@ namespace PinkyAndBrain
                 //write the alpha omega event for playing a wrong answer audio.
                 _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.AudioWrong);
             }
+
+            _autosOptionsInRealTime.AutoReward = autoReward;
         }
 
         /// <summary>
@@ -1001,6 +1006,7 @@ namespace PinkyAndBrain
                             //write the break fixation event to the AlphaOmega.
                             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadStabilityBreak);
                         }
+                        _autosOptionsInRealTime.AutoFixation = AutoFixation;
                     }
                 }
             });
@@ -1058,6 +1064,7 @@ namespace PinkyAndBrain
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Waiting for rat to start trial");
 
             //if autoStart is checked than should not wait for the rat to enter it's head to the center for starting.
+            _autosOptionsInRealTime.AutoStart = AutoStart;
             if(AutoStart)
             {
                 return true;
@@ -1343,7 +1350,8 @@ namespace PinkyAndBrain
                         RatName = RatName,
                         RatDecison = _currentRatDecision,
                         TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks,
-                        RRInverse = _inverseRRDecision
+                        RRInverse = _inverseRRDecision,
+                        AutosOptions = _autosOptionsInRealTime
                     });
                 });
             }
