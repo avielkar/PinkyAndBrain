@@ -705,6 +705,7 @@ namespace PinkyAndBrain
                         _totalCorrectAnswers++;
 
                         //update the psycho online graph.
+                        _currentRatDecision = RatDecison.Left;
                         _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT);
                         
                         return new Tuple<RatDecison, bool>(RatDecison.Left, true);
@@ -727,8 +728,9 @@ namespace PinkyAndBrain
                         _totalCorrectAnswers++;
 
                         //update the psycho online graph.
-                        _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT); 
-                        
+                        _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT);
+
+                        _currentRatDecision = RatDecison.Right;
                         return new Tuple<RatDecison, bool>(RatDecison.Right, true);
                     }
 
