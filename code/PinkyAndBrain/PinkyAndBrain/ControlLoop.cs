@@ -99,6 +99,11 @@ namespace PinkyAndBrain
         /// </summary>
         private int _totalHeadStabilityInCenterDuringDurationTime;
 
+        /// <summary>
+        /// The total success states for a trial (correct or wrong answer but some answer).
+        /// </summary>
+        private int _totalChoices;
+
         //The total number of head fixation breaks during the duration time.
         private int _totalHeadFixationBreaks;
 
@@ -368,6 +373,7 @@ namespace PinkyAndBrain
             _numOfPastTrials = 0;
             _totalCorrectAnswers = 0;
             _totalHeadStabilityInCenterDuringDurationTime = 0;
+            _totalChoices = 0;
             _totalHeadFixationBreaks = 0;
 
             _timingRandomizer = new Random();
@@ -565,7 +571,7 @@ namespace PinkyAndBrain
 
             //update the number of total correct head in center with stabilty during duration time.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Success Trials", (_totalHeadStabilityInCenterDuringDurationTime).ToString());
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Success Trials", (_totalChoices).ToString());
 
             //update the number of total failure trial during duration time.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
@@ -699,21 +705,25 @@ namespace PinkyAndBrain
             {
                 if(_currentRatResponse == (byte)RatDecison.Left)
                 {
+                    //increase the total choices for wromg or correct choices (some choices).
+                    _totalChoices++;
+
+                    //update the current rat decision state.
+                    _currentRatDecision = RatDecison.Left;
+
                     if (currentStimulationSide.Equals(RatDecison.Left))
                     {
                         //increase the total correct answers.
                         _totalCorrectAnswers++;
 
                         //update the psycho online graph.
-                        _currentRatDecision = RatDecison.Left;
                         _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT);
                         
                         return new Tuple<RatDecison, bool>(RatDecison.Left, true);
                     }
 
-                    _currentRatDecision = RatDecison.Left;
                     _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.WRONG);
-                    
+
                     //write the event that te rat enter it's head to the left to the AlphaOmega.
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterLeft);
                     
@@ -722,6 +732,12 @@ namespace PinkyAndBrain
 
                 else if(_currentRatResponse == (byte)RatDecison.Right)
                 {
+                    //update current rat decision state.
+                    _currentRatDecision = RatDecison.Right;
+
+                    //increase the total choices for wromg or correct choices (some choices).
+                    _totalChoices++;
+
                     if (currentStimulationSide.Equals(RatDecison.Right)) 
                     { 
                         //increase the total coreect answers.
@@ -730,11 +746,9 @@ namespace PinkyAndBrain
                         //update the psycho online graph.
                         _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT);
 
-                        _currentRatDecision = RatDecison.Right;
                         return new Tuple<RatDecison, bool>(RatDecison.Right, true);
                     }
 
-                    _currentRatDecision = RatDecison.Right;
                     _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.WRONG);
 
                     //write the event that te rat enter it's head to the right to the AlphaOmega.
