@@ -186,6 +186,11 @@ namespace PinkyAndBrain
         private bool _inverseRRDecision;
 
         /// <summary>
+        /// The decision the rat should choose.
+        /// </summary>
+        private RatDecison _correctDecision;
+
+        /// <summary>
         /// The selected rat name (that makes the experiment).
         /// </summary>
         public string RatName { get; set; }
@@ -673,11 +678,11 @@ namespace PinkyAndBrain
             if (Math.Abs(currentHeadingDirection) <= double.Parse(_variablesList._variablesDictionary["RR_HEADINGS"]._description["parameters"]._ratHouseParameter[0]))
             {
                 //get a random side with probability of RR_PROBABILITY to the right side.
-                int sampledBernouli =  Bernoulli.Sample(double.Parse(_variablesList._variablesDictionary["RR_PROBABILITY"]._description["parameters"]._ratHouseParameter[0]));
+                int sampledBernouli = Bernoulli.Sample(double.Parse(_variablesList._variablesDictionary["RR_PROBABILITY"]._description["parameters"]._ratHouseParameter[0]));
 
                 RatDecison changedStimulusSide = currentStimulationSide;
 
-                if(sampledBernouli ==1)
+                if (sampledBernouli == 1)
                 {
                     currentStimulationSide = RatDecison.Right;
                 }
@@ -695,6 +700,7 @@ namespace PinkyAndBrain
             {
                 _inverseRRDecision = false;
             }
+            _correctDecision = currentStimulationSide;
 
 
             Stopwatch sw = new Stopwatch();
@@ -856,10 +862,15 @@ namespace PinkyAndBrain
                 RatDecison currentStimulationSide = (currentHeadingDirection == 0) ? (RatDecison.Center) : ((currentHeadingDirection > 0) ? (RatDecison.Right) : RatDecison.Left);
 
                 //give the reward according to the robot direction motion with no delay.
-                switch (currentStimulationSide)
+                switch (_correctDecision)
                 {
                     case RatDecison.Center:
-                        RewardCenterStage(true , AutoRewardSound);
+                        //RewardCenterStage(true , AutoRewardSound);
+                        //make the reward randomly chosen right or left.
+                        if(_inverseRRDecision)
+                        {
+
+                        }
                         break;
 
                     case RatDecison.Left:
