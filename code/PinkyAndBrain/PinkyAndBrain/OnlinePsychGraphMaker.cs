@@ -82,7 +82,8 @@ namespace PinkyAndBrain
                         new SeriesDetail {
                             X = i,
                             SuccessNum = 0,
-                            Total = 0
+                            Total = 0 , 
+                            TotalRight = 0
                     }
                     );
                 }
@@ -95,17 +96,20 @@ namespace PinkyAndBrain
         /// <param name="varyingParameterName">The series name to add the point to it.</param>
         /// <param name="regionPoint">The x value (heading direction) of the point to be set.</param>
         /// <param name="answerStatus">Indicates if the current result was correct or false.</param>
-        public void AddResult(string varyingParameterName, double regionPoint , AnswerStatus answerStatus)
+        public void AddResult(string varyingParameterName, double regionPoint, AnswerStatus answerStatus)
         {
             //increase the total number of answers at this point.
             _seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).Total++;
-            
+
             //increase the total correct answers to the given point if correct answer.
-            if(answerStatus.Equals(AnswerStatus.CORRECT))
+            if (answerStatus.Equals(AnswerStatus.CORRECT))
                 _seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).SuccessNum++;
 
-            //invoking the function updates the given series with the updated point.
-            ChartControl.BeginInvoke(SetPointDelegate, varyingParameterName, regionPoint, ((double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).SuccessNum / (double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).Total), false);
+            if ((answerStatus.Equals(AnswerStatus.CORRECT) && regionPoint > 0) || (answerStatus.Equals(AnswerStatus.WRONG) && regionPoint < 0))
+                _seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).TotalRight++;
+
+                //invoking the function updates the given series with the updated point.
+                ChartControl.BeginInvoke(SetPointDelegate, varyingParameterName, regionPoint, ((double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).TotalRight / (double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).Total), false);
         }
 
         /// <summary>
@@ -157,6 +161,11 @@ namespace PinkyAndBrain
         /// The total answers.
         /// </summary>
         public int Total { get; set; }
+
+        /// <summary>
+        /// The total right answers.
+        /// </summary>
+        public int TotalRight { get; set; }
     }
 
     /// <summary>
