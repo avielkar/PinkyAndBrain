@@ -541,6 +541,9 @@ namespace PinkyAndBrain
 
             Globals._systemState = SystemState.FINISHED;
 
+            //show the final global experiment info (show it the last time)
+            ShowGlobalExperimentDetailsListView();
+
             //raise an event for the GuiInterface that the trials round is over.
             _mainGuiInterfaceControlsDictionary["FinishedAllTrialsRound"].BeginInvoke(_mainGuiControlsDelegatesDictionary["FinishedAllTrialsRound"]);
 
@@ -725,7 +728,7 @@ namespace PinkyAndBrain
                         //update the psycho online graph.
                         _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT);
                         
-                        return new Tuple<RatDecison, bool>(RatDecison.Left, true);
+                        //return new Tuple<RatDecison, bool>(RatDecison.Left, true);
                     }
 
                     _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.WRONG);
@@ -752,7 +755,7 @@ namespace PinkyAndBrain
                         //update the psycho online graph.
                         _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT);
 
-                        return new Tuple<RatDecison, bool>(RatDecison.Right, true);
+                        //return new Tuple<RatDecison, bool>(RatDecison.Right, true);
                     }
 
                     _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.WRONG);
@@ -1346,7 +1349,8 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Post trial time.");
 
-            if (!FixationOnlyMode && _currentRatDecision.Equals(RatDecison.NoEntryToResponseStage))
+            //if no answer in the response time or not even coming to tge response time.
+            if (!FixationOnlyMode && !(_currentRatDecision.Equals(RatDecison.Left) || _currentRatDecision.Equals(RatDecison.Right)))
                 //reset status of the current trial combination index if there was no reponse stage at all.
                 _varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
 
