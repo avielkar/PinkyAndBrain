@@ -720,6 +720,9 @@ namespace PinkyAndBrain
                     //update the current rat decision state.
                     _currentRatDecision = RatDecison.Left;
 
+                    //write the event that te rat enter it's head to the left to the AlphaOmega.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterLeft);
+
                     if (currentStimulationSide.Equals(RatDecison.Left))
                     {
                         //increase the total correct answers.
@@ -728,13 +731,10 @@ namespace PinkyAndBrain
                         //update the psycho online graph.
                         _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT);
                         
-                        //return new Tuple<RatDecison, bool>(RatDecison.Left, true);
+                        return new Tuple<RatDecison, bool>(RatDecison.Left, true);
                     }
 
                     _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.WRONG);
-
-                    //write the event that te rat enter it's head to the left to the AlphaOmega.
-                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterLeft);
                     
                     return new Tuple<RatDecison,bool>(RatDecison.Left , false);
                 }
@@ -747,6 +747,9 @@ namespace PinkyAndBrain
                     //increase the total choices for wromg or correct choices (some choices).
                     _totalChoices++;
 
+                    //write the event that te rat enter it's head to the right to the AlphaOmega.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterRight);
+
                     if (currentStimulationSide.Equals(RatDecison.Right)) 
                     { 
                         //increase the total coreect answers.
@@ -755,13 +758,10 @@ namespace PinkyAndBrain
                         //update the psycho online graph.
                         _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT);
 
-                        //return new Tuple<RatDecison, bool>(RatDecison.Right, true);
+                        return new Tuple<RatDecison, bool>(RatDecison.Right, true);
                     }
 
                     _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.WRONG);
-
-                    //write the event that te rat enter it's head to the right to the AlphaOmega.
-                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterRight);
 
                     return new Tuple<RatDecison,bool>( RatDecison.Right , false);
                 }
