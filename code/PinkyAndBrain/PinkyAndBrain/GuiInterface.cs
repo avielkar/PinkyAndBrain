@@ -211,6 +211,8 @@ namespace PinkyAndBrain
             _onlinePsychGraphControl.Series.Clear();
 
             _onlinePsychGraphControl.ChartAreas.First(area => true).RecalculateAxesScale();
+            
+            _onlinePsychGraphControl.ChartAreas.First(area => true).AxisY.Maximum = 1.0;
 
             _onlinePsychGraphControl.Show();
         }
