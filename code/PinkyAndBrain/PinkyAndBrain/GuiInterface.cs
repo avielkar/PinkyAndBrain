@@ -682,6 +682,7 @@ namespace PinkyAndBrain
                         }
 
                         _cntrlLoop.NumOfRepetitions = int.Parse(_numOfRepetitionsTextBox.Text.ToString());
+                        _cntrlLoop.PercentageOfTurnedOnLeds = double.Parse(_textboxPercentageOfTurnOnLeds.Text.ToString());
                         _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreatorName);
                     }
                 }

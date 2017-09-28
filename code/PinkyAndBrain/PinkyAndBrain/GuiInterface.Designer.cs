@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -87,6 +87,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._breakFixationSoundEnableCheckBox = new System.Windows.Forms.CheckBox();
             this._fixationOnlyCheckBox = new System.Windows.Forms.CheckBox();
+            this._groupboxLedsController = new System.Windows.Forms.GroupBox();
+            this._textboxPercentageOfTurnOnLeds = new System.Windows.Forms.TextBox();
+            this._labelPercentageOfturnedOnLeds = new System.Windows.Forms.Label();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -103,6 +106,7 @@
             this._autosGroupBox.SuspendLayout();
             this._warningsGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this._groupboxLedsController.SuspendLayout();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -517,17 +521,17 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea2.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend3);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series3);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
@@ -633,11 +637,40 @@
             this._fixationOnlyCheckBox.UseVisualStyleBackColor = true;
             this._fixationOnlyCheckBox.CheckedChanged += new System.EventHandler(this._fixationOnlyCheckBox_CheckedChanged);
             // 
+            // _groupboxLedsController
+            // 
+            this._groupboxLedsController.Controls.Add(this._textboxPercentageOfTurnOnLeds);
+            this._groupboxLedsController.Controls.Add(this._labelPercentageOfturnedOnLeds);
+            this._groupboxLedsController.Location = new System.Drawing.Point(1404, 800);
+            this._groupboxLedsController.Name = "_groupboxLedsController";
+            this._groupboxLedsController.Size = new System.Drawing.Size(149, 100);
+            this._groupboxLedsController.TabIndex = 23;
+            this._groupboxLedsController.TabStop = false;
+            this._groupboxLedsController.Text = "Leds Controller";
+            // 
+            // _textboxPercentageOfTurnOnLeds
+            // 
+            this._textboxPercentageOfTurnOnLeds.Location = new System.Drawing.Point(93, 15);
+            this._textboxPercentageOfTurnOnLeds.Name = "_textboxPercentageOfTurnOnLeds";
+            this._textboxPercentageOfTurnOnLeds.Size = new System.Drawing.Size(50, 20);
+            this._textboxPercentageOfTurnOnLeds.TabIndex = 1;
+            this._textboxPercentageOfTurnOnLeds.Text = "0.4";
+            // 
+            // _labelPercentageOfturnedOnLeds
+            // 
+            this._labelPercentageOfturnedOnLeds.AutoSize = true;
+            this._labelPercentageOfturnedOnLeds.Location = new System.Drawing.Point(6, 18);
+            this._labelPercentageOfturnedOnLeds.Name = "_labelPercentageOfturnedOnLeds";
+            this._labelPercentageOfturnedOnLeds.Size = new System.Drawing.Size(82, 13);
+            this._labelPercentageOfturnedOnLeds.TabIndex = 0;
+            this._labelPercentageOfturnedOnLeds.Text = "% turn on LEDS";
+            // 
             // _specialModesGroupBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1678, 912);
+            this.Controls.Add(this._groupboxLedsController);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this._warningsGroupBox);
             this.Controls.Add(this._autosGroupBox);
@@ -682,6 +715,8 @@
             this._warningsGroupBox.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this._groupboxLedsController.ResumeLayout(false);
+            this._groupboxLedsController.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -744,5 +779,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox _fixationOnlyCheckBox;
         private System.Windows.Forms.CheckBox _breakFixationSoundEnableCheckBox;
+        private System.Windows.Forms.GroupBox _groupboxLedsController;
+        private System.Windows.Forms.TextBox _textboxPercentageOfTurnOnLeds;
+        private System.Windows.Forms.Label _labelPercentageOfturnedOnLeds;
     }
 }
