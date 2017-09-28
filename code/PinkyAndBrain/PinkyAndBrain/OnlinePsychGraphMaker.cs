@@ -98,6 +98,21 @@ namespace PinkyAndBrain
         /// <param name="answerStatus">Indicates if the current result was correct or false.</param>
         public void AddResult(string varyingParameterName, double regionPoint, AnswerStatus answerStatus)
         {
+            bool newPoint = _seriesPointsDetails[varyingParameterName].Count(series => series.X == regionPoint) == 0;
+            //if added artificially by the user after make trial button pressed.
+            if(newPoint)
+            {
+                _seriesPointsDetails[varyingParameterName].Add(
+                    new SeriesDetail
+                    {
+                        X = regionPoint,
+                        SuccessNum = 0,
+                        Total = 0,
+                        TotalRight = 0
+                    }
+                    );
+            }
+
             //increase the total number of answers at this point.
             _seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).Total++;
 
@@ -108,8 +123,9 @@ namespace PinkyAndBrain
             if ((answerStatus.Equals(AnswerStatus.CORRECT) && regionPoint > 0) || (answerStatus.Equals(AnswerStatus.WRONG) && regionPoint < 0))
                 _seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).TotalRight++;
 
-                //invoking the function updates the given series with the updated point.
-                ChartControl.BeginInvoke(SetPointDelegate, varyingParameterName, regionPoint, ((double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).TotalRight / (double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).Total), false);
+            
+            //invoking the function updates the given series with the updated point.
+            ChartControl.BeginInvoke(SetPointDelegate, varyingParameterName, regionPoint, ((double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).TotalRight / (double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).Total), newPoint);
         }
 
         /// <summary>
