@@ -105,7 +105,7 @@ namespace LED.Strip.Adressable
             _ledArduinoSerialPort.Write("#");
 
             //sending the colors.
-            byte[] colorData = { _ledsData.Red, _ledsData.Green , _ledsData.Blue };
+            byte[] colorData = {_ledsData.Brightness,  _ledsData.Red, _ledsData.Green , _ledsData.Blue };
             _ledArduinoSerialPort.Write(colorData, 0, colorData.Length);
 
             //means end sending te colors and start sending te points of places to turn on it's places.

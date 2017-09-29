@@ -72,6 +72,11 @@ namespace LED.Strip.Adressable
         /// Set or Get the blue color paramatere for the leds in the leds strip.
         /// </summary>
         public byte Blue { get { return _rgb[2]; } set { _rgb[2] = value; } }
+
+        /// <summary>
+        /// The brightness of the led (0-31).
+        /// </summary>
+        public byte Brightness { get { return _brightness; } set { _brightness = value; } }
         #endregion SETTERS_AND_GETTERS
     }
 }

@@ -9,7 +9,7 @@ bool command_stage = false;
 
 String currentColor;
 
-byte colors[3];
+byte colors[4];
 byte colorIndex;
 
 #define NUM_OF_LEDS 250
@@ -44,8 +44,8 @@ void loop() {
     }
     else if (color_stage)
     {
-      //not yet get all the 3 colors.
-      if(colorIndex < 3)
+      //not yet get all the 3 colors with brightness at first place.
+      if(colorIndex < 4)
       {
         if(Serial.available())
         {
@@ -111,7 +111,7 @@ void LedStripRoundDataExecution()
   {
     if(placesData[i] == 1)
     {
-      sendColor(colors[0] , colors[1] , colors[2] , 10);
+      sendColor(colors[1] , colors[2] , colors[3] , colors[0]);
     }
     else
     {sendColor(0 , 0 , 0, 0);}

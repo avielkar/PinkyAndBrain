@@ -206,6 +206,11 @@ namespace PinkyAndBrain
         public double PercentageOfTurnedOnLeds { get; set; }
 
         /// <summary>
+        /// The LEDs brightness value (0-31).
+        /// </summary>
+        public int LEDBrightness { get; set; }
+
+        /// <summary>
         /// Timer for raising event to sample the Noldus reponse direction and store it in _currentRatResponse.
         /// </summary>
         private System.Timers.Timer _ratSampleResponseTimer;
@@ -998,7 +1003,7 @@ namespace PinkyAndBrain
 
                     //here should be stimulus type 2 for motion of the second robot for visual only.
                     //should move the robot and also to turn on the leds.
-                    LEDsData ledsData = new LEDsData(10, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    LEDsData ledsData = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData;
                     _ledController.SendData();
                     _ledController.ExecuteCommands();
@@ -1009,7 +1014,7 @@ namespace PinkyAndBrain
                     UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only);
                     robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory());
                     //should move only r1 robot and also to turn on the leds.
-                    LEDsData ledsData2 = new LEDsData(10, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    LEDsData ledsData2 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData2;
                     _ledController.SendData();
                     _ledController.ExecuteCommands();

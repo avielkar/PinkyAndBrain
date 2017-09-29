@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -88,6 +88,8 @@
             this._breakFixationSoundEnableCheckBox = new System.Windows.Forms.CheckBox();
             this._fixationOnlyCheckBox = new System.Windows.Forms.CheckBox();
             this._groupboxLedsController = new System.Windows.Forms.GroupBox();
+            this._labelBrightness = new System.Windows.Forms.Label();
+            this._trackBarBrightness = new System.Windows.Forms.TrackBar();
             this._textboxPercentageOfTurnOnLeds = new System.Windows.Forms.TextBox();
             this._labelPercentageOfturnedOnLeds = new System.Windows.Forms.Label();
             this._trialParametersGroup.SuspendLayout();
@@ -107,6 +109,7 @@
             this._warningsGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this._groupboxLedsController.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._trackBarBrightness)).BeginInit();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -521,17 +524,17 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea3.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend1);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series1);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
@@ -639,14 +642,34 @@
             // 
             // _groupboxLedsController
             // 
+            this._groupboxLedsController.Controls.Add(this._labelBrightness);
+            this._groupboxLedsController.Controls.Add(this._trackBarBrightness);
             this._groupboxLedsController.Controls.Add(this._textboxPercentageOfTurnOnLeds);
             this._groupboxLedsController.Controls.Add(this._labelPercentageOfturnedOnLeds);
             this._groupboxLedsController.Location = new System.Drawing.Point(1404, 800);
             this._groupboxLedsController.Name = "_groupboxLedsController";
-            this._groupboxLedsController.Size = new System.Drawing.Size(149, 100);
+            this._groupboxLedsController.Size = new System.Drawing.Size(158, 100);
             this._groupboxLedsController.TabIndex = 23;
             this._groupboxLedsController.TabStop = false;
             this._groupboxLedsController.Text = "Leds Controller";
+            // 
+            // _labelBrightness
+            // 
+            this._labelBrightness.AutoSize = true;
+            this._labelBrightness.Location = new System.Drawing.Point(-3, 47);
+            this._labelBrightness.Name = "_labelBrightness";
+            this._labelBrightness.Size = new System.Drawing.Size(56, 13);
+            this._labelBrightness.TabIndex = 3;
+            this._labelBrightness.Text = "Brightness";
+            // 
+            // _trackBarBrightness
+            // 
+            this._trackBarBrightness.Location = new System.Drawing.Point(54, 41);
+            this._trackBarBrightness.Maximum = 31;
+            this._trackBarBrightness.Name = "_trackBarBrightness";
+            this._trackBarBrightness.Size = new System.Drawing.Size(104, 45);
+            this._trackBarBrightness.TabIndex = 2;
+            this._trackBarBrightness.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // _textboxPercentageOfTurnOnLeds
             // 
@@ -717,6 +740,7 @@
             this.groupBox1.PerformLayout();
             this._groupboxLedsController.ResumeLayout(false);
             this._groupboxLedsController.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._trackBarBrightness)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -782,5 +806,7 @@
         private System.Windows.Forms.GroupBox _groupboxLedsController;
         private System.Windows.Forms.TextBox _textboxPercentageOfTurnOnLeds;
         private System.Windows.Forms.Label _labelPercentageOfturnedOnLeds;
+        private System.Windows.Forms.Label _labelBrightness;
+        private System.Windows.Forms.TrackBar _trackBarBrightness;
     }
 }
