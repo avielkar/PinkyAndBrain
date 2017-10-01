@@ -224,6 +224,7 @@ namespace PinkyAndBrain
         /// <param name="x">The x value of the point.</param>
         /// <param name="y">The y balue of the point.</param>
         /// <param name="newPoint">Indicated if it is a new point to add or existing point.</param>
+        /// <param name="visible">Indicates if the point is visibbled on the graph.</param>
         public delegate void OnlinePsychoGraphSetPointDelegate(string seriesName, double x, double y, bool newPoint = false , bool visible = true);
 
         /// <summary>
@@ -233,6 +234,7 @@ namespace PinkyAndBrain
         /// <param name="x">The x value of the point.</param>
         /// <param name="y">The y value of the point.</param>
         /// <param name="newPoint">Indicates if the point is new to the chart or is an existing one.</param>
+        /// <param name="visible"> Indicates if the point is visibled on th graph.</param>
         public void OnlinePsychoGraphSetPoint(string seriesName , double x , double y , bool newPoint = false , bool visible = true)
         {
             if (newPoint)
