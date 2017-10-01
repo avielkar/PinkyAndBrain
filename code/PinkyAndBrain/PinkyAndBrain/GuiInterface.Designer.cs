@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,6 +55,8 @@
             this._continiousHandRewardButton = new System.Windows.Forms.Button();
             this._autoRewardsCheckBox = new System.Windows.Forms.CheckBox();
             this._varyingControlGroupBox = new System.Windows.Forms.GroupBox();
+            this._textboxStickOnNumber = new System.Windows.Forms.TextBox();
+            this._labelStickOnNumber = new System.Windows.Forms.Label();
             this._numOfRepetitionsTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this._interactiveNolduscommuncation = new System.Windows.Forms.GroupBox();
@@ -77,7 +79,7 @@
             this.globalExperimentInfogroupBox = new System.Windows.Forms.GroupBox();
             this._globaExperimentlInfoListView = new System.Windows.Forms.ListView();
             this._onlinePsychGrpahGroupBox = new System.Windows.Forms.GroupBox();
-            this._labelStickOnNumber = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this._onlinePsychGraphControl = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this._autosGroupBox = new System.Windows.Forms.GroupBox();
             this._autoStartCheckBox = new System.Windows.Forms.CheckBox();
             this._autoFixationCheckBox = new System.Windows.Forms.CheckBox();
@@ -92,8 +94,6 @@
             this._labelBrightness = new System.Windows.Forms.Label();
             this._textboxPercentageOfTurnOnLeds = new System.Windows.Forms.TextBox();
             this._labelPercentageOfturnedOnLeds = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this._textboxStickOnNumber = new System.Windows.Forms.TextBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -106,7 +106,7 @@
             this._trialInfoGroupBox.SuspendLayout();
             this.globalExperimentInfogroupBox.SuspendLayout();
             this._onlinePsychGrpahGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._labelStickOnNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._onlinePsychGraphControl)).BeginInit();
             this._autosGroupBox.SuspendLayout();
             this._warningsGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -322,7 +322,7 @@
             // _varyingControlGroupBox
             // 
             this._varyingControlGroupBox.Controls.Add(this._textboxStickOnNumber);
-            this._varyingControlGroupBox.Controls.Add(this.label6);
+            this._varyingControlGroupBox.Controls.Add(this._labelStickOnNumber);
             this._varyingControlGroupBox.Controls.Add(this._numOfRepetitionsTextBox);
             this._varyingControlGroupBox.Controls.Add(this.label5);
             this._varyingControlGroupBox.Controls.Add(this._varyingListBox);
@@ -337,6 +337,23 @@
             this._varyingControlGroupBox.TabIndex = 13;
             this._varyingControlGroupBox.TabStop = false;
             this._varyingControlGroupBox.Text = "Varying Control";
+            // 
+            // _textboxStickOnNumber
+            // 
+            this._textboxStickOnNumber.Location = new System.Drawing.Point(269, 442);
+            this._textboxStickOnNumber.Name = "_textboxStickOnNumber";
+            this._textboxStickOnNumber.Size = new System.Drawing.Size(58, 20);
+            this._textboxStickOnNumber.TabIndex = 13;
+            this._textboxStickOnNumber.Text = "1";
+            // 
+            // _labelStickOnNumber
+            // 
+            this._labelStickOnNumber.AutoSize = true;
+            this._labelStickOnNumber.Location = new System.Drawing.Point(207, 445);
+            this._labelStickOnNumber.Name = "_labelStickOnNumber";
+            this._labelStickOnNumber.Size = new System.Drawing.Size(56, 13);
+            this._labelStickOnNumber.TabIndex = 12;
+            this._labelStickOnNumber.Text = "Stick on #";
             // 
             // _numOfRepetitionsTextBox
             // 
@@ -517,7 +534,7 @@
             // 
             // _onlinePsychGrpahGroupBox
             // 
-            this._onlinePsychGrpahGroupBox.Controls.Add(this._labelStickOnNumber);
+            this._onlinePsychGrpahGroupBox.Controls.Add(this._onlinePsychGraphControl);
             this._onlinePsychGrpahGroupBox.Location = new System.Drawing.Point(1275, 397);
             this._onlinePsychGrpahGroupBox.Name = "_onlinePsychGrpahGroupBox";
             this._onlinePsychGrpahGroupBox.Size = new System.Drawing.Size(391, 304);
@@ -525,22 +542,22 @@
             this._onlinePsychGrpahGroupBox.TabStop = false;
             this._onlinePsychGrpahGroupBox.Text = "Online Psycho Graph";
             // 
-            // _labelStickOnNumber
+            // _onlinePsychGraphControl
             // 
-            chartArea1.Name = "ChartArea1";
-            this._labelStickOnNumber.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this._labelStickOnNumber.Legends.Add(legend1);
-            this._labelStickOnNumber.Location = new System.Drawing.Point(6, 19);
-            this._labelStickOnNumber.Name = "_labelStickOnNumber";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this._labelStickOnNumber.Series.Add(series1);
-            this._labelStickOnNumber.Size = new System.Drawing.Size(379, 279);
-            this._labelStickOnNumber.TabIndex = 0;
-            this._labelStickOnNumber.Text = "chart1";
+            chartArea2.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend2);
+            this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
+            this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series2);
+            this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
+            this._onlinePsychGraphControl.TabIndex = 0;
+            this._onlinePsychGraphControl.Text = "chart1";
             // 
             // _autosGroupBox
             // 
@@ -690,23 +707,6 @@
             this._labelPercentageOfturnedOnLeds.TabIndex = 0;
             this._labelPercentageOfturnedOnLeds.Text = "% turn on LEDS";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(207, 445);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Stick on #";
-            // 
-            // _textboxStickOnNumber
-            // 
-            this._textboxStickOnNumber.Location = new System.Drawing.Point(269, 442);
-            this._textboxStickOnNumber.Name = "_textboxStickOnNumber";
-            this._textboxStickOnNumber.Size = new System.Drawing.Size(58, 20);
-            this._textboxStickOnNumber.TabIndex = 13;
-            this._textboxStickOnNumber.Text = "1";
-            // 
             // _specialModesGroupBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -750,7 +750,7 @@
             this._trialInfoGroupBox.ResumeLayout(false);
             this.globalExperimentInfogroupBox.ResumeLayout(false);
             this._onlinePsychGrpahGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this._labelStickOnNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._onlinePsychGraphControl)).EndInit();
             this._autosGroupBox.ResumeLayout(false);
             this._autosGroupBox.PerformLayout();
             this._warningsGroupBox.ResumeLayout(false);
@@ -810,7 +810,7 @@
         private System.Windows.Forms.TextBox _numOfRepetitionsTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox _onlinePsychGrpahGroupBox;
-        private System.Windows.Forms.DataVisualization.Charting.Chart _labelStickOnNumber;
+        private System.Windows.Forms.DataVisualization.Charting.Chart _onlinePsychGraphControl;
         private System.Windows.Forms.CheckBox _autoRewardsCheckBox;
         private System.Windows.Forms.GroupBox _autosGroupBox;
         private System.Windows.Forms.CheckBox _autoStartCheckBox;
@@ -826,7 +826,7 @@
         private System.Windows.Forms.Label _labelPercentageOfturnedOnLeds;
         private System.Windows.Forms.Label _labelBrightness;
         private System.Windows.Forms.TextBox _textboxLEDBrightness;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label _labelStickOnNumber;
         private System.Windows.Forms.TextBox _textboxStickOnNumber;
     }
 }

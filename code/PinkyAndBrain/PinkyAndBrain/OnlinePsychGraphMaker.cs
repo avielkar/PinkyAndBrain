@@ -77,7 +77,7 @@ namespace PinkyAndBrain
             {
                 foreach (string varyingParameterName in VaryingParametrsNames)
                 {
-                    ChartControl.BeginInvoke(SetPointDelegate, varyingParameterName, i,0, true);
+                    ChartControl.BeginInvoke(SetPointDelegate, varyingParameterName, i,0, true , false);
                     _seriesPointsDetails[varyingParameterName].Add(
                         new SeriesDetail {
                             X = i,
@@ -125,7 +125,7 @@ namespace PinkyAndBrain
 
             
             //invoking the function updates the given series with the updated point.
-            ChartControl.BeginInvoke(SetPointDelegate, varyingParameterName, regionPoint, ((double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).TotalRight / (double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).Total), newPoint);
+            ChartControl.BeginInvoke(SetPointDelegate, varyingParameterName, regionPoint, ((double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).TotalRight / (double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).Total), newPoint, _seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).Total > 0);
         }
 
         /// <summary>

@@ -208,13 +208,13 @@ namespace PinkyAndBrain
         /// </summary>
         public void OnlinePsychoGraphClear()
         {
-            _labelStickOnNumber.Series.Clear();
+            _onlinePsychGraphControl.Series.Clear();
 
-            _labelStickOnNumber.ChartAreas.First(area => true).RecalculateAxesScale();
+            _onlinePsychGraphControl.ChartAreas.First(area => true).RecalculateAxesScale();
             
-            _labelStickOnNumber.ChartAreas.First(area => true).AxisY.Maximum = 1.0;
+            _onlinePsychGraphControl.ChartAreas.First(area => true).AxisY.Maximum = 1.0;
 
-            _labelStickOnNumber.Show();
+            _onlinePsychGraphControl.Show();
         }
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace PinkyAndBrain
         /// <param name="x">The x value of the point.</param>
         /// <param name="y">The y balue of the point.</param>
         /// <param name="newPoint">Indicated if it is a new point to add or existing point.</param>
-        public delegate void OnlinePsychoGraphSetPointDelegate(string seriesName, double x, double y, bool newPoint = false);
+        public delegate void OnlinePsychoGraphSetPointDelegate(string seriesName, double x, double y, bool newPoint = false , bool visible = true);
 
         /// <summary>
         /// Setting the given point in the given series.
@@ -233,17 +233,25 @@ namespace PinkyAndBrain
         /// <param name="x">The x value of the point.</param>
         /// <param name="y">The y value of the point.</param>
         /// <param name="newPoint">Indicates if the point is new to the chart or is an existing one.</param>
-        public void OnlinePsychoGraphSetPoint(string seriesName , double x , double y , bool newPoint = false)
+        public void OnlinePsychoGraphSetPoint(string seriesName , double x , double y , bool newPoint = false , bool visible = true)
         {
-            if(newPoint)
-                _labelStickOnNumber.Series[seriesName].Points.AddXY(x, 0);
+            if (newPoint)
+            {
+                if (visible)
+                {
+                    _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x, 0);
+                    _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).IsValueShownAsLabel = false;
+                }
+            }
             else
             {
-                _labelStickOnNumber.Series[seriesName].Points.Remove(_labelStickOnNumber.Series[seriesName].Points.First(point => point.XValue == x));
-                _labelStickOnNumber.Series[seriesName].Points.AddXY(x , y);
+                if (_onlinePsychGraphControl.Series[seriesName].Points.Count(point => point.XValue == x) > 0)
+                    _onlinePsychGraphControl.Series[seriesName].Points.Remove(_onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x));
+                _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x, y);
+                _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).IsValueShownAsLabel = true;
             }
 
-            _labelStickOnNumber.ChartAreas.First(area => true).RecalculateAxesScale();
+            _onlinePsychGraphControl.ChartAreas.First(area => true).RecalculateAxesScale();
         }
 
         /// <summary>
@@ -260,8 +268,8 @@ namespace PinkyAndBrain
         {
             foreach (string seriesName in seriesNames)
             {
-                _labelStickOnNumber.Series.Add(seriesName);
-                _labelStickOnNumber.Series[seriesName].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+                _onlinePsychGraphControl.Series.Add(seriesName);
+                _onlinePsychGraphControl.Series[seriesName].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             }
         }
 
@@ -474,7 +482,7 @@ namespace PinkyAndBrain
             ctrlDictionary.Add("FinishedAllTrialsRound", _stopButtom);
 
             //add the delegate for events changing the online psycho graph for the experiment results.
-            ctrlDictionary.Add("OnlinePsychoGraph", _labelStickOnNumber);
+            ctrlDictionary.Add("OnlinePsychoGraph", _onlinePsychGraphControl);
             
             OnlinePsychoGraphClearDelegate onlinePsychoGraphClearDelegate = new OnlinePsychoGraphClearDelegate(OnlinePsychoGraphClear);
             ctrlDelegatesDic.Add("OnlinePsychoGraphClear", onlinePsychoGraphClearDelegate);
