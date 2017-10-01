@@ -208,13 +208,13 @@ namespace PinkyAndBrain
         /// </summary>
         public void OnlinePsychoGraphClear()
         {
-            _onlinePsychGraphControl.Series.Clear();
+            _labelStickOnNumber.Series.Clear();
 
-            _onlinePsychGraphControl.ChartAreas.First(area => true).RecalculateAxesScale();
+            _labelStickOnNumber.ChartAreas.First(area => true).RecalculateAxesScale();
             
-            _onlinePsychGraphControl.ChartAreas.First(area => true).AxisY.Maximum = 1.0;
+            _labelStickOnNumber.ChartAreas.First(area => true).AxisY.Maximum = 1.0;
 
-            _onlinePsychGraphControl.Show();
+            _labelStickOnNumber.Show();
         }
 
         /// <summary>
@@ -236,14 +236,14 @@ namespace PinkyAndBrain
         public void OnlinePsychoGraphSetPoint(string seriesName , double x , double y , bool newPoint = false)
         {
             if(newPoint)
-                _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x, 0);
+                _labelStickOnNumber.Series[seriesName].Points.AddXY(x, 0);
             else
             {
-                _onlinePsychGraphControl.Series[seriesName].Points.Remove(_onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x));
-                _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x , y);
+                _labelStickOnNumber.Series[seriesName].Points.Remove(_labelStickOnNumber.Series[seriesName].Points.First(point => point.XValue == x));
+                _labelStickOnNumber.Series[seriesName].Points.AddXY(x , y);
             }
 
-            _onlinePsychGraphControl.ChartAreas.First(area => true).RecalculateAxesScale();
+            _labelStickOnNumber.ChartAreas.First(area => true).RecalculateAxesScale();
         }
 
         /// <summary>
@@ -260,8 +260,8 @@ namespace PinkyAndBrain
         {
             foreach (string seriesName in seriesNames)
             {
-                _onlinePsychGraphControl.Series.Add(seriesName);
-                _onlinePsychGraphControl.Series[seriesName].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+                _labelStickOnNumber.Series.Add(seriesName);
+                _labelStickOnNumber.Series[seriesName].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             }
         }
 
@@ -474,7 +474,7 @@ namespace PinkyAndBrain
             ctrlDictionary.Add("FinishedAllTrialsRound", _stopButtom);
 
             //add the delegate for events changing the online psycho graph for the experiment results.
-            ctrlDictionary.Add("OnlinePsychoGraph", _onlinePsychGraphControl);
+            ctrlDictionary.Add("OnlinePsychoGraph", _labelStickOnNumber);
             
             OnlinePsychoGraphClearDelegate onlinePsychoGraphClearDelegate = new OnlinePsychoGraphClearDelegate(OnlinePsychoGraphClear);
             ctrlDelegatesDic.Add("OnlinePsychoGraphClear", onlinePsychoGraphClearDelegate);
@@ -684,6 +684,7 @@ namespace PinkyAndBrain
                         }
 
                         _cntrlLoop.NumOfRepetitions = int.Parse(_numOfRepetitionsTextBox.Text.ToString());
+                        _cntrlLoop.NumOfStickOn = int.Parse(_textboxStickOnNumber.Text.ToString());
                         _cntrlLoop.PercentageOfTurnedOnLeds = double.Parse(_textboxPercentageOfTurnOnLeds.Text.ToString());
                         _cntrlLoop.LEDBrightness = int.Parse(_textboxLEDBrightness.Text.ToString());
                         _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreatorName);

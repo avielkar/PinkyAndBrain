@@ -201,6 +201,11 @@ namespace PinkyAndBrain
         public int NumOfRepetitions { get; set; }
 
         /// <summary>
+        /// The number of stick on number for each specific value in the optional values for rounds (must devide NumOfRepetitions).
+        /// </summary>
+        public int NumOfStickOn { get; set; }
+
+        /// <summary>
         /// The percentage number of turned on LEDS.
         /// </summary>
         public double PercentageOfTurnedOnLeds { get; set; }
@@ -451,7 +456,7 @@ namespace PinkyAndBrain
 
         public void MainControlLoop()
         {
-            for (int i = 0; i < NumOfRepetitions;i++)
+            for (int i = 0; i < NumOfRepetitions / NumOfStickOn;i++)
             {
                 //while all trial are not executed or not come with response stage.
                 while (!_varyingIndexSelector.IsFinished())
@@ -469,79 +474,83 @@ namespace PinkyAndBrain
                     //craetes the trajectory for both robots for the current trial if not one of the training protocols.
                     _currentTrialTrajectories = _trajectoryCreatorHandler.CreateTrajectory(_currentVaryingTrialIndex);
 
-                    //show some trial details to the gui trial details panel.
-                    ShowTrialDetailsToTheDetailsListView();
-                    //show the global experiment details for global experiment details.
-                    ShowGlobalExperimentDetailsListView();
-
-                    //initialize the currebt time parameters and all the current trial variables.
-                    InitializationStage();
-
-                    //wait the rat to first (in the current trial - for "start buttom") move it's head to the center.
-                    bool headEnteredToTheCenterDuringTheTimeoutDuration = WaitForHeadEnteranceToTheCenterStage();
-                    
-                    //indicates if during duration1 time - the rat stays with the eyes in the center.
-                    bool duration1HeadInTheCenterStabilityStage = false;
-
-                    //if the rat entered it's head to the center in the before timeOut time.
-                    if (headEnteredToTheCenterDuringTheTimeoutDuration)
+                    //make that current option strickOn times one after one.
+                    for (int stickOnNumber = 0; stickOnNumber < NumOfStickOn; stickOnNumber++)
                     {
-                        //if the rat head was stable in the center for the startDelay time as required start the movement.
-                        if (duration1HeadInTheCenterStabilityStage = CheckDuration1HeadInTheCenterStabilityStage())
+                        //show some trial details to the gui trial details panel.
+                        ShowTrialDetailsToTheDetailsListView();
+                        //show the global experiment details for global experiment details.
+                        ShowGlobalExperimentDetailsListView();
+
+                        //initialize the currebt time parameters and all the current trial variables.
+                        InitializationStage();
+
+                        //wait the rat to first (in the current trial - for "start buttom") move it's head to the center.
+                        bool headEnteredToTheCenterDuringTheTimeoutDuration = WaitForHeadEnteranceToTheCenterStage();
+
+                        //indicates if during duration1 time - the rat stays with the eyes in the center.
+                        bool duration1HeadInTheCenterStabilityStage = false;
+
+                        //if the rat entered it's head to the center in the before timeOut time.
+                        if (headEnteredToTheCenterDuringTheTimeoutDuration)
                         {
-                            //update the state of the rat decision.
-                            _currentRatDecision = RatDecison.DurationTime;
-
-                            //moving the robot with duration time , and checking for the stability of the head in the center.
-                            if (MovingTheRobotDurationWithHeadCenterStabilityStage())
+                            //if the rat head was stable in the center for the startDelay time as required start the movement.
+                            if (duration1HeadInTheCenterStabilityStage = CheckDuration1HeadInTheCenterStabilityStage())
                             {
-                                //update the number of total head in the center with stability during the duration time.
-                                _totalHeadStabilityInCenterDuringDurationTime++;
-                                _currentRatDecision = RatDecison.PassDurationTime;
+                                //update the state of the rat decision.
+                                _currentRatDecision = RatDecison.DurationTime;
 
-                                //reward the rat in the center with water for duration of rewardCenterDuration for stable head in the center during the movement.
-                                RewardCenterStage(AutoReward , AutoRewardSound);
-
-                                //if not to skip all stages after the fixation stage.
-                                if (!FixationOnlyMode)
+                                //moving the robot with duration time , and checking for the stability of the head in the center.
+                                if (MovingTheRobotDurationWithHeadCenterStabilityStage())
                                 {
-                                    //wait the rat to response to the movement during the response tine.
-                                    Tuple<RatDecison, bool> decision = ResponseTimeStage();
+                                    //update the number of total head in the center with stability during the duration time.
+                                    _totalHeadStabilityInCenterDuringDurationTime++;
+                                    _currentRatDecision = RatDecison.PassDurationTime;
 
-                                    //second reward stage (condition if needed in the stage)
-                                    SecondRewardStage(decision, AutoReward);
+                                    //reward the rat in the center with water for duration of rewardCenterDuration for stable head in the center during the movement.
+                                    RewardCenterStage(AutoReward, AutoRewardSound);
+
+                                    //if not to skip all stages after the fixation stage.
+                                    if (!FixationOnlyMode)
+                                    {
+                                        //wait the rat to response to the movement during the response tine.
+                                        Tuple<RatDecison, bool> decision = ResponseTimeStage();
+
+                                        //second reward stage (condition if needed in the stage)
+                                        SecondRewardStage(decision, AutoReward);
+                                    }
                                 }
+
+                                //if fixation break
+                                else
+                                {
+                                    //update the number of head fixation breaks.
+                                    _totalHeadFixationBreaks++;
+                                }
+
+                                //after the end of rewrad wait a time delay before backword movement to the home poistion.
+                                RewardToBackwardDelayStage();
                             }
 
-                            //if fixation break
+                            //sounds the beep for missing the movement head in the center.
                             else
                             {
-                                //update the number of head fixation breaks.
-                                _totalHeadFixationBreaks++;
+                                Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play(); });
                             }
-
-                            //after the end of rewrad wait a time delay before backword movement to the home poistion.
-                            RewardToBackwardDelayStage();
                         }
 
-                        //sounds the beep for missing the movement head in the center.
+                        //sounds the beep with the missing start gead in the center.
                         else
                         {
-                            Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play(); });
+                            //Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"]; _windowsMediaPlayer.controls.play(); });
                         }
+
+                        //the post trial stage for saving the trial data and for the delay between trials.
+                        PostTrialStage(duration1HeadInTheCenterStabilityStage);
+
+                        //increase the num of trials counter indicator.
+                        _numOfPastTrials++;
                     }
-
-                    //sounds the beep with the missing start gead in the center.
-                    else
-                    {
-                        //Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"]; _windowsMediaPlayer.controls.play(); });
-                    }
-
-                    //the post trial stage for saving the trial data and for the delay between trials.
-                    PostTrialStage(duration1HeadInTheCenterStabilityStage);
-
-                    //increase the num of trials counter indicator.
-                    _numOfPastTrials++;
                 }
 
                 //reset all trials combination statuses for the next repetition.
