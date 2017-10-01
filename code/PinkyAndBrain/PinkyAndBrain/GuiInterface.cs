@@ -712,13 +712,20 @@ namespace PinkyAndBrain
             //if selected rat name is o.k
             if (_selectedRatNameComboBox.SelectedItem!=null)
             {
-                return true;
             }
             else
             {
                 MessageBox.Show("Error - Should select a rat name before starting!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
+            if(int.Parse(_numOfRepetitionsTextBox.Text.ToString()) % int.Parse(_textboxStickOnNumber.Text.ToString()) != 0)
+            {
+                MessageBox.Show("Error - StickOn number should devide Num Of Repetitions!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
