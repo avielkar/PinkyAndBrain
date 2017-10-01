@@ -685,7 +685,7 @@ namespace PinkyAndBrain
 
                         _cntrlLoop.NumOfRepetitions = int.Parse(_numOfRepetitionsTextBox.Text.ToString());
                         _cntrlLoop.PercentageOfTurnedOnLeds = double.Parse(_textboxPercentageOfTurnOnLeds.Text.ToString());
-                        _cntrlLoop.LEDBrightness = _trackBarBrightness.Value;
+                        _cntrlLoop.LEDBrightness = int.Parse(_textboxLEDBrightness.Text.ToString());
                         _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreatorName);
                     }
                 }
@@ -2113,20 +2113,6 @@ namespace PinkyAndBrain
                 //put the default number.
                 _numOfRepetitionsTextBox.Text = "1";
             }
-        }
-
-        /// <summary>
-        /// Handler for changing trackbar brightness value.
-        /// </summary>
-        /// <param name="sender">The trackbar brightness control.</param>
-        /// <param name="e">The args.</param>
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            //only 31 options for brightness offsetes by 1.
-            _trackBarBrightness.Maximum = 31;
-
-            //show the value on the tooltip brightness trackbar.
-            _guiInterfaceToolTip.SetToolTip(sender as Control, (sender as TrackBar).Value.ToString());
         }
     }
 
