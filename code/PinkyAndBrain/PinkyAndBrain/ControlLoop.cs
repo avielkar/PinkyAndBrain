@@ -70,11 +70,6 @@ namespace PinkyAndBrain
         private MLApp.MLApp _matlabApp;
 
         /// <summary>
-        /// The total trials made from the beginning of the experiment.
-        /// </summary>
-        private int _numOfPastTrials;
-
-        /// <summary>
         /// The name of the selected protocol.
         /// </summary>
         private string _selectedProtocolName;
@@ -104,8 +99,15 @@ namespace PinkyAndBrain
         /// </summary>
         private int _totalChoices;
 
-        //The total number of head fixation breaks during the duration time.
+        /// <summary>
+        ///The total number of head fixation breaks during the duration time.
+        /// </summary>
         private int _totalHeadFixationBreaks;
+
+        /// <summary>
+        /// The total number of head fixation breaks only during the start delay time.
+        /// </summary>
+        private int _totalHeadFixationBreaksStartDelay;
 
         /// <summary>
         /// The varying index selector for choosing the current combination index.
@@ -390,11 +392,11 @@ namespace PinkyAndBrain
             //initialize counters and varying selector.
             _totalNumOfTrials = _crossVaryingVals.Count();
             _varyingIndexSelector = new VaryingIndexSelector(_totalNumOfTrials);
-            _numOfPastTrials = 0;
             _totalCorrectAnswers = 0;
             _totalHeadStabilityInCenterDuringDurationTime = 0;
             _totalChoices = 0;
             _totalHeadFixationBreaks = 0;
+            _totalHeadFixationBreaksStartDelay = 0;
 
             _timingRandomizer = new Random();
 
@@ -536,6 +538,7 @@ namespace PinkyAndBrain
                             else
                             {
                                 Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play(); });
+                                _totalHeadFixationBreaksStartDelay++;
                             }
                         }
 
@@ -547,9 +550,6 @@ namespace PinkyAndBrain
 
                         //the post trial stage for saving the trial data and for the delay between trials.
                         PostTrialStage(duration1HeadInTheCenterStabilityStage);
-
-                        //increase the num of trials counter indicator.
-                        _numOfPastTrials++;
                     }
                 }
 
@@ -594,7 +594,7 @@ namespace PinkyAndBrain
 
             //update the number of trials count.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Trial # (count)", ((_totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks + 1)).ToString());
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Trial # (count)", ((_totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks + _totalHeadFixationBreaksStartDelay + 1)).ToString());
 
             //update the number of total correct head in center with stabilty during duration time.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
@@ -602,11 +602,7 @@ namespace PinkyAndBrain
 
             //update the number of total failure trial during duration time.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Failure Trials", (_totalHeadFixationBreaks).ToString());
-
-            //update the number of past trials.
-            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Past Trials", (_numOfPastTrials + 1).ToString());
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Failure Trials", (_totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks + _totalHeadFixationBreaksStartDelay - _totalChoices).ToString());
 
             //update the number of left trials.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
@@ -622,7 +618,7 @@ namespace PinkyAndBrain
 
             //update the number of total fixation breaks.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Total Fixation Breaks", (_totalHeadFixationBreaks).ToString());
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Total Fixation Breaks", (_totalHeadFixationBreaks + _totalHeadFixationBreaksStartDelay).ToString());
         }
 
         /// <summary>
@@ -654,7 +650,7 @@ namespace PinkyAndBrain
         /// </summary>
         public void InitializationStage()
         {
-            _logger.Info("Initialization Stage of trial #" + (_numOfPastTrials+1));
+            _logger.Info("Initialization Stage of trial #" + (_totalHeadStabilityInCenterDuringDurationTime + 1));
 
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
