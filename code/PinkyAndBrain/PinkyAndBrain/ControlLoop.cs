@@ -428,7 +428,7 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["SetWaterRewardsMeasure"].BeginInvoke(
               _mainGuiControlsDelegatesDictionary["SetWaterRewardsMeasure"], true);
 
-            //run the main control loop function in other thread fom the main thread ( that handling events and etc).
+            //run the main control loop function in other thread from the main thread ( that handling events and etc).
             _stopAfterTheEndOfTheCurrentTrial = false;
             Globals._systemState = SystemState.RUNNING;
             _ratSampleResponseTimer.Start();
@@ -600,25 +600,25 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
                 _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Success Trials", (_totalChoices).ToString());
 
+            //update the number of total correct answers.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Correct Answers", (_totalCorrectAnswers).ToString());
+
             //update the number of total failure trial during duration time.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
                 _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Failure Trials", (_totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks + _totalHeadFixationBreaksStartDelay - _totalChoices).ToString());
+
+            //update the number of total fixation breaks.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Fixation Breaks", (_totalHeadFixationBreaks + _totalHeadFixationBreaksStartDelay).ToString());
 
             //update the number of left trials.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
                 _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Remaining Trials", (_varyingIndexSelector.CountRemaining()).ToString());
 
-            //update the number of total correct answers.
-            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Total Correct Answers", (_totalCorrectAnswers).ToString());
-
             //update the number of total correct head in center with stabilty during duration time.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Total Head in Center with Stability", (_totalHeadStabilityInCenterDuringDurationTime).ToString());
-
-            //update the number of total fixation breaks.
-            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Total Fixation Breaks", (_totalHeadFixationBreaks + _totalHeadFixationBreaksStartDelay).ToString());
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "No choices", (_totalHeadStabilityInCenterDuringDurationTime - _totalChoices).ToString());
         }
 
         /// <summary>

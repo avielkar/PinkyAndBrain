@@ -1,0 +1,748 @@
+Trial # 1
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:-60 -60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 2
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:60 60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 3
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:-60 -60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 4
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:60 60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 5
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:-60 -60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 6
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:60 60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 7
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:60 60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 8
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:-60 -60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 9
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:-60 -60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 10
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:60 60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 11
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:-60 -60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 12
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:60 60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 13
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:60 60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 14
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:-60 -60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 15
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:60 60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 16
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:-60 -60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1
+Trial # 17
+Rat Name:0 - Test no rat
+Rat Decison:Left
+RR Inverse:False
+AutoReward False
+AutoFixation True
+AutoStart True
+AutoRewardSound False
+ADAPTATION_ANGLE:0 
+DIST:13 
+ORIGIN:0 0 0 
+SIGMA:3 
+STIMULUS_DURATION:1 
+STIMULUS_TYPE:3 
+DISC_PLANE_AZIMUTH:0 
+DISC_PLANE_ELEVATION:0 
+DISC_PLANE_TILT:0 
+TIMEOUT_TIME:20 
+START_DELAY:0.1 
+RESPONSE_TIME:2 
+REWARD_CENTER_DELAY:0.5 
+REWARD_RIGHT_DELAY:0.5 
+REWARD_LEFT_DELAY:0.5 
+REWARD_CENTER_DURATION:0.05 
+REWARD_RIGHT_DURATION:0.1 
+REWARD_LEFT_DURATION:0.1 
+REWARD_BACKWARD_TIME:0.25 
+POST_TRIAL_TIME:2 
+RR_PROBABILITY:0.5 
+RR_HEADINGS:10 
+TRAJECTORY_CREATOR:1 
+HEADING_DIRECTION:60 60 
+wStartDelay:0.1
+wRewardCenterDelay:0.5
+wRewardRightDelay:0.5
+wRewardLeftDelay:0.5
+wRewardCenterDuration:0.05
+wRewardRightDuration:0.1
+wRewardLeftDuration:0.1
+wRewardToBackwardDelay:0.25
+wPostTrialTime:2
+wTimeOutTime:20
+wResponseTime:2
+wDuration:1

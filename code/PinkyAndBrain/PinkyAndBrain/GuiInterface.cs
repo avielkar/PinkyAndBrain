@@ -181,6 +181,9 @@ namespace PinkyAndBrain
             //add the rat names (as the setting have) to the rat names combo box.
             AddRatNamesToRatNamesComboBox();
 
+            //set the default file browser protocol path directory.
+            SetDefaultProtocolFileBrowserDirectory();
+
             //move the robot to it's home position when startup.
             //avi-insert//
             _cntrlLoop.WriteHomePosFile();
@@ -543,6 +546,7 @@ namespace PinkyAndBrain
             if(_protocolsFolderBrowser.ShowDialog() == DialogResult.OK)
             {
                 _protoclsDirPath = _protocolsFolderBrowser.SelectedPath;
+                _protocolsComboBox.Items.Clear();
                 AddFilesToComboBox(_protocolsComboBox, _protoclsDirPath);
             }
         }
@@ -560,6 +564,15 @@ namespace PinkyAndBrain
             //_protocolsComboBox.SelectedItem = _protocolsComboBox.Items[0];
             SetVariables(_protoclsDirPath + "\\" + _selectedProtocolName);
             ShowVariablesToGui();
+        }
+
+        /// <summary>
+        /// Sets the default file protocol directory.
+        /// </summary>
+        public void SetDefaultProtocolFileBrowserDirectory()
+        {
+            _protoclsDirPath = this._protocolsFolderBrowser.SelectedPath;
+            AddFilesToComboBox(_protocolsComboBox, _protoclsDirPath);
         }
 
         /// <summary>
