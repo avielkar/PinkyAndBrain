@@ -563,6 +563,9 @@ namespace PinkyAndBrain
             //show the final global experiment info (show it the last time)
             ShowGlobalExperimentDetailsListView();
 
+            //Close and release the current saved file.
+            _savedExperimentDataMaker.CloseFile();
+
             //raise an event for the GuiInterface that the trials round is over.
             _mainGuiInterfaceControlsDictionary["FinishedAllTrialsRound"].BeginInvoke(_mainGuiControlsDelegatesDictionary["FinishedAllTrialsRound"]);
 
