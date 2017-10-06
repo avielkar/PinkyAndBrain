@@ -1,6 +1,6 @@
 ﻿namespace PinkyAndBrain
 {
-    partial class _specialModesGroupBox
+    partial class GuiInterface
     {
         /// <summary>
         /// Required designer variable.
@@ -707,7 +707,7 @@
             this._labelPercentageOfturnedOnLeds.TabIndex = 0;
             this._labelPercentageOfturnedOnLeds.Text = "% turn on LEDS";
             // 
-            // _specialModesGroupBox
+            // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -729,7 +729,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._protocolsComboBox);
-            this.Name = "_specialModesGroupBox";
+            this.Name = "GuiInterface";
             this.Text = "GuiInterface";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GuiInterface_Close);
             this._trialParametersGroup.ResumeLayout(false);

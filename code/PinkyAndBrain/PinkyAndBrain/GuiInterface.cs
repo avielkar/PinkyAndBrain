@@ -19,7 +19,7 @@ namespace PinkyAndBrain
     /// <summary>
     /// This partial is used for events callbacks.
     /// </summary>
-    public partial class _specialModesGroupBox : Form
+    public partial class GuiInterface : Form
     {
         #region MEMBERS
 
@@ -123,7 +123,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Constructor.
         /// </summary>
-        public _specialModesGroupBox(ref ExcelProtocolConfigFieLoader excelLoader)
+        public GuiInterface(ref ExcelProtocolConfigFieLoader excelLoader)
         {
             InitializeComponent();
             _excelLoader = excelLoader;
@@ -140,7 +140,7 @@ namespace PinkyAndBrain
             //avi-insert//
             _motocomController = new CYasnac("10.0.0.2", Application.StartupPath);
             //avi-insert//
-            _motocomController.SetServoOn();
+            //_motocomController.SetServoOn();
 
             //creating the logger to writting log file information.
             log4net.Config.XmlConfigurator.Configure(new FileInfo(Application.StartupPath+@"\Log4Net.config"));
@@ -186,8 +186,8 @@ namespace PinkyAndBrain
 
             //move the robot to it's home position when startup.
             //avi-insert//
-            _cntrlLoop.WriteHomePosFile();
-            _cntrlLoop.MoveRobotHomePosition();
+            //_cntrlLoop.WriteHomePosFile();
+            //_cntrlLoop.MoveRobotHomePosition();
 
             //create the result directory in the application path if needed.
             if(!Directory.Exists(Application.StartupPath + "\results"))

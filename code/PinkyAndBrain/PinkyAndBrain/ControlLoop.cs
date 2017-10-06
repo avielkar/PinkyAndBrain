@@ -458,6 +458,11 @@ namespace PinkyAndBrain
 
         public void MainControlLoop()
         {
+            //set robot servo on and go homeposition.
+            _motomanController.SetServoOn();
+            WriteHomePosFile();
+            MoveRobotHomePosition();
+
             for (int i = 0; i < NumOfRepetitions / NumOfStickOn;i++)
             {
                 //while all trial are not executed or not come with response stage.
@@ -559,6 +564,9 @@ namespace PinkyAndBrain
             }
 
             Globals._systemState = SystemState.FINISHED;
+
+            //set robot's servo off.
+            _motomanController.SetServoOff();
 
             //show the final global experiment info (show it the last time)
             ShowGlobalExperimentDetailsListView();
