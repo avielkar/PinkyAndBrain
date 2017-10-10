@@ -12,7 +12,7 @@ using MLApp;
 using MotocomdotNetWrapper;
 using LED.Strip.Adressable;
 using log4net;
-
+using System.Threading;
 
 namespace PinkyAndBrain
 {
@@ -90,6 +90,11 @@ namespace PinkyAndBrain
         /// Locker for starting and stopping button to be enabled not both.
         /// </summary>
         private object _lockerStopStartButton;
+
+        /// <summary>
+        /// Locker for the pause nad resume button to be enabled not both.
+        /// </summary>
+        private object _lockerPauseResumeButton;
 
         /// <summary>
         /// Indicates if can press the start/stop button (that only after makeTrial presses on the init of the program or on changing parameters.
@@ -177,6 +182,12 @@ namespace PinkyAndBrain
             //disable initialy the start and stop buttom untill makeTrials buttom is pressed.
             _startButton.Enabled = false;
             _stopButtom.Enabled = false;
+
+            //allocate the pause/resume nuttom locker.
+            _lockerPauseResumeButton = new object();
+            //disable initially both pause and resume buttoms untill makeTrials buttom is pressed.
+            _btnPause.Enabled = false;
+            _btnResume.Enabled = false;
 
             //add the rat names (as the setting have) to the rat names combo box.
             AddRatNamesToRatNamesComboBox();
@@ -674,6 +685,8 @@ namespace PinkyAndBrain
                     _startButton.Enabled = false;
                     _makeTrials.Enabled = false;
                     _stopButtom.Enabled = true;
+                    _btnPause.Enabled = true;
+                    _btnResume.Enabled = false;
 
                     //if already running - ignore.
                     if (!Globals._systemState.Equals(SystemState.RUNNING))
@@ -793,9 +806,45 @@ namespace PinkyAndBrain
             {
                 _stopButtom.Enabled = false;
                 _startButton.Enabled = true;
+                _btnPause.Enabled = false;
+                _btnResume.Enabled = false;
 
                 //stop the control loop.
                 _cntrlLoop.Stop();
+            }
+        }
+
+        /// <summary>
+        /// Handler for pause experiment button clicked.
+        /// </summary>
+        /// <param name="sender">The pause button object.</param>
+        /// <param name="e">The args.</param>
+        private void _btnPause_Click(object sender, EventArgs e)
+        {
+            lock (_lockerPauseResumeButton)
+            {
+                _btnPause.Enabled = false;
+                _btnResume.Enabled = true;
+
+                Globals._systemState = SystemState.PAUSED;
+                _cntrlLoop.Pause();
+            }
+        }
+        
+        /// <summary>
+        /// Handler for resume experiment button clicked.
+        /// </summary>
+        /// <param name="sender">The pause button object.</param>
+        /// <param name="e">The args.</param>
+        private void _btnResume_Click(object sender, EventArgs e)
+        {
+            lock (_lockerPauseResumeButton)
+            {
+                _btnPause.Enabled = true;
+                _btnResume.Enabled = false;
+
+                Globals._systemState = SystemState.RUNNING;
+                _cntrlLoop.Resume();
             }
         }
         #endregion GLOBAL_EVENTS_HANDLE_FUNCTIONS

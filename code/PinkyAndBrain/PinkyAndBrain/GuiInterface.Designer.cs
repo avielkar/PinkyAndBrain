@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -94,6 +94,8 @@
             this._labelBrightness = new System.Windows.Forms.Label();
             this._textboxPercentageOfTurnOnLeds = new System.Windows.Forms.TextBox();
             this._labelPercentageOfturnedOnLeds = new System.Windows.Forms.Label();
+            this._btnPause = new System.Windows.Forms.Button();
+            this._btnResume = new System.Windows.Forms.Button();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -321,6 +323,8 @@
             // 
             // _varyingControlGroupBox
             // 
+            this._varyingControlGroupBox.Controls.Add(this._btnResume);
+            this._varyingControlGroupBox.Controls.Add(this._btnPause);
             this._varyingControlGroupBox.Controls.Add(this._textboxStickOnNumber);
             this._varyingControlGroupBox.Controls.Add(this._labelStickOnNumber);
             this._varyingControlGroupBox.Controls.Add(this._numOfRepetitionsTextBox);
@@ -544,17 +548,17 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea1.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend3);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series3);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
@@ -707,6 +711,26 @@
             this._labelPercentageOfturnedOnLeds.TabIndex = 0;
             this._labelPercentageOfturnedOnLeds.Text = "% turn on LEDS";
             // 
+            // _btnPause
+            // 
+            this._btnPause.Location = new System.Drawing.Point(6, 170);
+            this._btnPause.Name = "_btnPause";
+            this._btnPause.Size = new System.Drawing.Size(75, 23);
+            this._btnPause.TabIndex = 14;
+            this._btnPause.Text = "Pause";
+            this._btnPause.UseVisualStyleBackColor = true;
+            this._btnPause.Click += new System.EventHandler(this._btnPause_Click);
+            // 
+            // _btnResume
+            // 
+            this._btnResume.Location = new System.Drawing.Point(7, 200);
+            this._btnResume.Name = "_btnResume";
+            this._btnResume.Size = new System.Drawing.Size(75, 23);
+            this._btnResume.TabIndex = 15;
+            this._btnResume.Text = "Resume";
+            this._btnResume.UseVisualStyleBackColor = true;
+            this._btnResume.Click += new System.EventHandler(this._btnResume_Click);
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -828,5 +852,7 @@
         private System.Windows.Forms.TextBox _textboxLEDBrightness;
         private System.Windows.Forms.Label _labelStickOnNumber;
         private System.Windows.Forms.TextBox _textboxStickOnNumber;
+        private System.Windows.Forms.Button _btnResume;
+        private System.Windows.Forms.Button _btnPause;
     }
 }

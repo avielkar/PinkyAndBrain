@@ -115,6 +115,16 @@ namespace PinkyAndBrain
         private VaryingIndexSelector _varyingIndexSelector;
 
         /// <summary>
+        /// The current repetition index number.
+        /// </summary>
+        private int _repetitionIndex;
+
+        /// <summary>
+        /// The current stickOn index number.
+        /// </summary>
+        private int _stickOnNumberIndex;
+
+        /// <summary>
         /// Includes all the currebt trial timings and delays.
         /// </summary>
         private TrialTimings _currentTrialTimings;
@@ -160,6 +170,11 @@ namespace PinkyAndBrain
         /// Indicated if the control loop should not make another trials.
         /// </summary>
         private bool _stopAfterTheEndOfTheCurrentTrial;
+
+        /// <summary>
+        /// Indicated if the control loop should paused until resume button is pressed.
+        /// </summary>
+        private bool _pauseAfterTheEndOfTheCurrentTrial;
 
         /// <summary>
         /// Describes the delegate for a control with it's nick name.
@@ -445,6 +460,24 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Pause the MainControlLoop function.
+        /// </summary>
+        public void Pause()
+        {
+            _pauseAfterTheEndOfTheCurrentTrial = true;
+        }
+
+        /// <summary>
+        /// Resume the MainControlLoop.
+        /// </summary>
+        public void Resume()
+        {
+            _pauseAfterTheEndOfTheCurrentTrial = false;
+
+            Task.Run(()=>MainControlLoop());
+        }
+
+        /// <summary>
         /// Clear all the control loop items and timers.
         /// </summary>
         public void Dispose()
@@ -463,16 +496,16 @@ namespace PinkyAndBrain
             WriteHomePosFile();
             MoveRobotHomePosition();
 
-            for (int i = 0; i < NumOfRepetitions / NumOfStickOn;i++)
+            for (_repetitionIndex = 0; _repetitionIndex < NumOfRepetitions / NumOfStickOn;)
             {
                 //while all trial are not executed or not come with response stage.
                 while (!_varyingIndexSelector.IsFinished())
                 {
                     //if system has stopped , wait for the end of the current trial ans break,
-                    if (Globals._systemState.Equals(SystemState.STOPPED) || _stopAfterTheEndOfTheCurrentTrial)
+                    if (Globals._systemState.Equals(SystemState.STOPPED) || _stopAfterTheEndOfTheCurrentTrial || _pauseAfterTheEndOfTheCurrentTrial)
                     {
                         Globals._systemState = SystemState.STOPPED;
-                        break;
+                        return;
                     }
 
                     //choose the random combination index for the current trial.
@@ -482,7 +515,7 @@ namespace PinkyAndBrain
                     _currentTrialTrajectories = _trajectoryCreatorHandler.CreateTrajectory(_currentVaryingTrialIndex);
 
                     //make that current option strickOn times one after one.
-                    for (int stickOnNumber = 0; stickOnNumber < NumOfStickOn; stickOnNumber++)
+                    for (_stickOnNumberIndex = 0; _stickOnNumberIndex < NumOfStickOn; _stickOnNumberIndex++)
                     {
                         //show some trial details to the gui trial details panel.
                         ShowTrialDetailsToTheDetailsListView();
@@ -560,25 +593,29 @@ namespace PinkyAndBrain
 
                 //reset all trials combination statuses for the next repetition.
                 _varyingIndexSelector.ResetTrialsStatus();
+                _repetitionIndex++;
 
             }
 
-            Globals._systemState = SystemState.FINISHED;
+            if (!_pauseAfterTheEndOfTheCurrentTrial)
+            {
+                Globals._systemState = SystemState.FINISHED;
 
-            //set robot's servo off.
-            _motomanController.SetServoOff();
+                //set robot's servo off.
+                _motomanController.SetServoOff();
 
-            //show the final global experiment info (show it the last time)
-            ShowGlobalExperimentDetailsListView();
+                //show the final global experiment info (show it the last time)
+                ShowGlobalExperimentDetailsListView();
 
-            //Close and release the current saved file.
-            _savedExperimentDataMaker.CloseFile();
+                //Close and release the current saved file.
+                _savedExperimentDataMaker.CloseFile();
 
-            //raise an event for the GuiInterface that the trials round is over.
-            _mainGuiInterfaceControlsDictionary["FinishedAllTrialsRound"].BeginInvoke(_mainGuiControlsDelegatesDictionary["FinishedAllTrialsRound"]);
+                //raise an event for the GuiInterface that the trials round is over.
+                _mainGuiInterfaceControlsDictionary["FinishedAllTrialsRound"].BeginInvoke(_mainGuiControlsDelegatesDictionary["FinishedAllTrialsRound"]);
 
-            //choose none rat in the selected rat
-            _mainGuiInterfaceControlsDictionary["ResetSelectedRatNameCombobox"].BeginInvoke(_mainGuiControlsDelegatesDictionary["ResetSelectedRatNameCombobox"]);
+                //choose none rat in the selected rat
+                _mainGuiInterfaceControlsDictionary["ResetSelectedRatNameCombobox"].BeginInvoke(_mainGuiControlsDelegatesDictionary["ResetSelectedRatNameCombobox"]);
+            }
         }
 
         /// <summary>
