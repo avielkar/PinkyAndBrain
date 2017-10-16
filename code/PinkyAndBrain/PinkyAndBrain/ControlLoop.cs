@@ -413,6 +413,8 @@ namespace PinkyAndBrain
             _totalHeadFixationBreaks = 0;
             _totalHeadFixationBreaksStartDelay = 0;
 
+            _repetitionIndex = 0;
+
             _timingRandomizer = new Random();
 
             //set the trajectory creator name to the given one that should be called in the trajectoryCreatorHandler.
@@ -496,7 +498,7 @@ namespace PinkyAndBrain
             WriteHomePosFile();
             MoveRobotHomePosition();
 
-            for (_repetitionIndex = 0; _repetitionIndex < NumOfRepetitions / NumOfStickOn;)
+            for (; _repetitionIndex < NumOfRepetitions / NumOfStickOn;)
             {
                 //while all trial are not executed or not come with response stage.
                 while (!_varyingIndexSelector.IsFinished())
@@ -505,6 +507,10 @@ namespace PinkyAndBrain
                     if (Globals._systemState.Equals(SystemState.STOPPED) || _stopAfterTheEndOfTheCurrentTrial || _pauseAfterTheEndOfTheCurrentTrial)
                     {
                         Globals._systemState = SystemState.STOPPED;
+
+                        if (!_pauseAfterTheEndOfTheCurrentTrial)
+                            EndControlLoopByStopFunction();
+
                         return;
                     }
 
@@ -594,15 +600,24 @@ namespace PinkyAndBrain
                 //reset all trials combination statuses for the next repetition.
                 _varyingIndexSelector.ResetTrialsStatus();
                 _repetitionIndex++;
-
             }
 
-            if (!_pauseAfterTheEndOfTheCurrentTrial)
-            {
+            //end of all trials and repetitions.
+            EndControlLoopByStopFunction();
+        }
+
+        /// <summary>
+        /// This function is called if the control loop asked to be ended.
+        /// </summary>
+        public void EndControlLoopByStopFunction()
+        {
                 Globals._systemState = SystemState.FINISHED;
 
                 //set robot's servo off.
                 _motomanController.SetServoOff();
+
+                //reset the repetition index.
+                _repetitionIndex = 0;
 
                 //show the final global experiment info (show it the last time)
                 ShowGlobalExperimentDetailsListView();
@@ -615,7 +630,6 @@ namespace PinkyAndBrain
 
                 //choose none rat in the selected rat
                 _mainGuiInterfaceControlsDictionary["ResetSelectedRatNameCombobox"].BeginInvoke(_mainGuiControlsDelegatesDictionary["ResetSelectedRatNameCombobox"]);
-            }
         }
 
         /// <summary>
