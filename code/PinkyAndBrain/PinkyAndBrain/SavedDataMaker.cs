@@ -131,8 +131,25 @@ namespace PinkyAndBrain
         /// </summary>
         public void CreateControlNewFile(string ratName)
         {
+            //Creates a directory with the rat name abd the day in it if not exists.
+            CreateNewDirectory(ratName);
+
             //create a new results file for the new experiment.
-            _currentSavedFileStramWriter = File.CreateText(Application.StartupPath + @"\results\" + DateTime.Now.ToString("yyyy_MM_dd_HH-mm") + " Rat " + ratName + ".txt");
+            _currentSavedFileStramWriter = File.CreateText(Application.StartupPath + @"\results\" + ratName + @"\" + DateTime.Now.ToString("yyyy_MM_dd") + @"\" + DateTime.Now.ToString("yyyy_MM_dd_HH-mm") + " Rat " + ratName + ".txt");
+        }
+
+        /// <summary>
+        /// Creates a directory with the rat name abd the day in it if not exists.
+        /// </summary>
+        /// <param name="ratName">The rat name.</param>
+        public void CreateNewDirectory(string ratName)
+        {
+            //create a rat directory if there is no rat dirextory with it's name.
+            if (!Directory.Exists(Application.StartupPath + @"\results\" + ratName))
+                Directory.CreateDirectory(Application.StartupPath + @"\results\" + ratName);
+
+            if (!Directory.Exists(Application.StartupPath + @"\results\" + ratName + @"\" + DateTime.Now.ToString("yyyy_MM_dd")))
+                Directory.CreateDirectory(Application.StartupPath + @"\results\" + ratName + @"\" + DateTime.Now.ToString("yyy_MM_dd"));
         }
     }
 
