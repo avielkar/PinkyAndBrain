@@ -45,7 +45,7 @@ namespace PinkyAndBrain
             StringBuilder lineBuilder = new StringBuilder();
             
             //append the new trial number.
-            lineBuilder.Append("Trial # ");
+            lineBuilder.Append("Trial:");
             lineBuilder.Append(trialData.TrialNum);
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
@@ -171,6 +171,9 @@ namespace PinkyAndBrain
         /// </summary>
         public int TrialNum { get; set; }
 
+        /// <summary>
+        /// AutoOption class for all Autos values.
+        /// </summary>
         public AutosOptions AutosOptions { get; set; }
 
         /// <summary>
@@ -211,10 +214,10 @@ namespace PinkyAndBrain
         public override string ToString()
         {
             return
-                "AutoReward " + AutoReward + "\r\n" +
-                "AutoFixation " + AutoFixation + "\r\n" +
-                "AutoStart " + AutoStart + "\r\n" +
-                "AutoRewardSound " + AutoRewardSound;
+                "AutoReward:" + AutoReward + "\r\n" +
+                "AutoFixation:" + AutoFixation + "\r\n" +
+                "AutoStart:" + AutoStart + "\r\n" +
+                "AutoRewardSound:" + AutoRewardSound;
         }
     }
 }
