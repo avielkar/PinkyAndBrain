@@ -94,15 +94,21 @@ namespace PinkyAndBrain
         /// Setting a point to the chart with the given series name and the accumulating result.
         /// </summary>
         /// <param name="varyingParameterName">The series name to add the point to it.</param>
+        /// <param name="stimulusType">The stimulus type og the trial decision.</param>
         /// <param name="regionPoint">The x value (heading direction) of the point to be set.</param>
         /// <param name="answerStatus">Indicates if the current result was correct or false.</param>
-        public void AddResult(string varyingParameterName, double regionPoint, AnswerStatus answerStatus)
+        public void AddResult(string varyingParameterName , int stimulusType, double regionPoint, AnswerStatus answerStatus)
         {
-            bool newPoint = _seriesPointsDetails[varyingParameterName].Count(series => series.X == regionPoint) == 0;
+            if (!(_seriesPointsDetails.ContainsKey(stimulusType.ToString())))
+            {
+                _seriesPointsDetails.Add(stimulusType.ToString(),new List<SeriesDetail>());
+            }
+
+            bool newPoint = _seriesPointsDetails[stimulusType.ToString()].Count(series => series.X == regionPoint) == 0;
             //if added artificially by the user after make trial button pressed.
             if(newPoint)
             {
-                _seriesPointsDetails[varyingParameterName].Add(
+                _seriesPointsDetails[stimulusType.ToString()].Add(
                     new SeriesDetail
                     {
                         X = regionPoint,
@@ -114,18 +120,18 @@ namespace PinkyAndBrain
             }
 
             //increase the total number of answers at this point.
-            _seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).Total++;
+            _seriesPointsDetails[stimulusType.ToString()].First(series => series.X == regionPoint).Total++;
 
             //increase the total correct answers to the given point if correct answer.
             if (answerStatus.Equals(AnswerStatus.CORRECT))
-                _seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).SuccessNum++;
+                _seriesPointsDetails[stimulusType.ToString()].First(series => series.X == regionPoint).SuccessNum++;
 
             if ((answerStatus.Equals(AnswerStatus.CORRECT) && regionPoint > 0) || (answerStatus.Equals(AnswerStatus.WRONG) && regionPoint < 0))
-                _seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).TotalRight++;
+                _seriesPointsDetails[stimulusType.ToString()].First(series => series.X == regionPoint).TotalRight++;
 
             
             //invoking the function updates the given series with the updated point.
-            ChartControl.BeginInvoke(SetPointDelegate, varyingParameterName, regionPoint, ((double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).TotalRight / (double)_seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).Total), newPoint, _seriesPointsDetails[varyingParameterName].First(series => series.X == regionPoint).Total > 0);
+            ChartControl.BeginInvoke(SetPointDelegate, stimulusType.ToString(), regionPoint, ((double)_seriesPointsDetails[stimulusType.ToString()].First(series => series.X == regionPoint).TotalRight / (double)_seriesPointsDetails[stimulusType.ToString()].First(series => series.X == regionPoint).Total), newPoint, _seriesPointsDetails[stimulusType.ToString()].First(series => series.X == regionPoint).Total > 0);
         }
 
         /// <summary>

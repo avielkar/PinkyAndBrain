@@ -582,6 +582,7 @@
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
+            this._onlinePsychGraphControl.Click += new System.EventHandler(this._onlinePsychGraphControl_Click);
             // 
             // _autosGroupBox
             // 

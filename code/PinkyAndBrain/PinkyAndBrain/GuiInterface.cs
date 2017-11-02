@@ -251,7 +251,13 @@ namespace PinkyAndBrain
         /// <param name="visible"> Indicates if the point is visibled on th graph.</param>
         public void OnlinePsychoGraphSetPoint(string seriesName , double x , double y , bool newPoint = false , bool visible = true)
         {
-            if (newPoint)
+            if (!(_onlinePsychGraphControl.Series.Count(series => series.Name == seriesName) > 0))
+            {
+                _onlinePsychGraphControl.Series.Add(seriesName);
+                _onlinePsychGraphControl.Series[seriesName].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            }
+
+            /*if (newPoint)
             {
                 if (visible)
                 {
@@ -259,12 +265,15 @@ namespace PinkyAndBrain
                     _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).IsValueShownAsLabel = false;
                 }
             }
-            else
+            else*/
             {
                 if (_onlinePsychGraphControl.Series[seriesName].Points.Count(point => point.XValue == x) > 0)
                     _onlinePsychGraphControl.Series[seriesName].Points.Remove(_onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x));
-                _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x, y);
-                _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).IsValueShownAsLabel = true;
+                if (visible)
+                {
+                    _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x, y);
+                    _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).IsValueShownAsLabel = true;
+                }
             }
 
             _onlinePsychGraphControl.ChartAreas.First(area => true).RecalculateAxesScale();
@@ -287,6 +296,31 @@ namespace PinkyAndBrain
                 _onlinePsychGraphControl.Series.Add(seriesName);
                 _onlinePsychGraphControl.Series[seriesName].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             }
+        }
+
+        /// <summary>
+        /// Event handler when clicking on the graph in order to open it in a new big window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void _onlinePsychGraphControl_Click(object sender, EventArgs e)
+        {
+            //The new window form to show the bigger graph on.
+            Form visualizationForm = new Form();
+
+            //adding the psych graph on it.
+            visualizationForm.Controls.Add(_onlinePsychGraphControl);
+
+            //maximize the graph.
+            visualizationForm.Size = new Size(1600, 1000);
+            _onlinePsychGraphControl.Size = new Size(1500, 900);
+
+            //deleting the event fromk the click event list in order to not make a recurssion when clicking again and again. 
+            _onlinePsychGraphControl.Click -= _onlinePsychGraphControl_Click;
+
+            //showing the new big form window.
+            visualizationForm.ShowDialog();
+            visualizationForm.Show();
         }
 
         /// <summary>

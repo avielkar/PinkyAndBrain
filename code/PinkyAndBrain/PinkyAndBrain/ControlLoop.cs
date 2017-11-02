@@ -806,12 +806,12 @@ namespace PinkyAndBrain
                         _totalCorrectAnswers++;
 
                         //update the psycho online graph.
-                        _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT);
+                        _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType ,  currentHeadingDirection, AnswerStatus.CORRECT);
                         
                         return new Tuple<RatDecison, bool>(RatDecison.Left, true);
                     }
 
-                    _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.WRONG);
+                    _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType ,  currentHeadingDirection, AnswerStatus.WRONG);
                     
                     return new Tuple<RatDecison,bool>(RatDecison.Left , false);
                 }
@@ -833,12 +833,12 @@ namespace PinkyAndBrain
                         _totalCorrectAnswers++;
 
                         //update the psycho online graph.
-                        _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.CORRECT);
+                        _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType ,  currentHeadingDirection, AnswerStatus.CORRECT);
 
                         return new Tuple<RatDecison, bool>(RatDecison.Right, true);
                     }
 
-                    _onlinePsychGraphMaker.AddResult("Heading Direction", currentHeadingDirection, AnswerStatus.WRONG);
+                    _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType ,  currentHeadingDirection, AnswerStatus.WRONG);
 
                     return new Tuple<RatDecison,bool>( RatDecison.Right , false);
                 }
