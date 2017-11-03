@@ -233,6 +233,10 @@ namespace PinkyAndBrain
             
             _fileStreamWriter.WriteLine("NOP");
 
+            //turn on the digital output indication the robot start moving
+            _fileStreamWriter.WriteLine("DOUT OT#(1) ON");
+
+
             StringBuilder sb = new StringBuilder();
             //the selected trajectory is for the for loop to init with r1 or r2 as needed for the UpdateJobType.
             Trajectory selecterRobotTraj = (!updateJobType.Equals(UpdateJobType.R2Only))?(r1Traj):(r2Traj);
@@ -296,6 +300,9 @@ namespace PinkyAndBrain
 
             _fileStreamWriter.WriteLine(sb.ToString());
             sb.Clear();
+
+            //turn off the digital output indication the robot start moving
+            _fileStreamWriter.WriteLine("DOUT OT#(1) OFF");
 
             _fileStreamWriter.WriteLine("END");
 
