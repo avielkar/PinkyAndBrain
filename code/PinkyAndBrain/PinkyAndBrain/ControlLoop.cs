@@ -413,7 +413,9 @@ namespace PinkyAndBrain
             _totalHeadFixationBreaks = 0;
             _totalHeadFixationBreaksStartDelay = 0;
 
+            //reset repetition index and stickOnNumber (would be reset in the loop immediately because the condition == NumOfStickOn).
             _repetitionIndex = 0;
+            _stickOnNumberIndex = NumOfStickOn;
 
             _timingRandomizer = new Random();
 
@@ -514,15 +516,33 @@ namespace PinkyAndBrain
                         return;
                     }
 
-                    //choose the random combination index for the current trial.
-                    _currentVaryingTrialIndex = _varyingIndexSelector.ChooseRandomCombination();
+                    //initialize the stickOnNumber if needed and choose a new varyingIndex.
+                    if (_stickOnNumberIndex == NumOfStickOn)
+                    {
+                        //choose the random combination index for the current trial.
+                        _currentVaryingTrialIndex = _varyingIndexSelector.ChooseRandomCombination();
 
-                    //craetes the trajectory for both robots for the current trial if not one of the training protocols.
-                    _currentTrialTrajectories = _trajectoryCreatorHandler.CreateTrajectory(_currentVaryingTrialIndex);
+                        //craetes the trajectory for both robots for the current trial if not one of the training protocols.
+                        _currentTrialTrajectories = _trajectoryCreatorHandler.CreateTrajectory(_currentVaryingTrialIndex);
+
+                        //reset the stickOnNumber.
+                        _stickOnNumberIndex = 0;
+                    }
 
                     //make that current option strickOn times one after one.
-                    for (_stickOnNumberIndex = 0; _stickOnNumberIndex < NumOfStickOn; _stickOnNumberIndex++)
+                    for (; _stickOnNumberIndex < NumOfStickOn; _stickOnNumberIndex++)
                     {
+                        //if system has stopped , wait for the end of the current trial ans break,
+                        if (Globals._systemState.Equals(SystemState.STOPPED) || _stopAfterTheEndOfTheCurrentTrial || _pauseAfterTheEndOfTheCurrentTrial)
+                        {
+                            Globals._systemState = SystemState.STOPPED;
+
+                            if (!_pauseAfterTheEndOfTheCurrentTrial)
+                                EndControlLoopByStopFunction();
+
+                            return;
+                        }
+
                         //show some trial details to the gui trial details panel.
                         ShowTrialDetailsToTheDetailsListView();
                         //show the global experiment details for global experiment details.
