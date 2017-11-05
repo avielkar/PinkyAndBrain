@@ -530,7 +530,7 @@ namespace PinkyAndBrain
                     }
 
                     //make that current option strickOn times one after one.
-                    for (; _stickOnNumberIndex < NumOfStickOn; _stickOnNumberIndex++)
+                    for (; _stickOnNumberIndex < NumOfStickOn;)
                     {
                         //if system has stopped , wait for the end of the current trial ans break,
                         if (Globals._systemState.Equals(SystemState.STOPPED) || _stopAfterTheEndOfTheCurrentTrial || _pauseAfterTheEndOfTheCurrentTrial)
@@ -613,7 +613,8 @@ namespace PinkyAndBrain
                         }
 
                         //the post trial stage for saving the trial data and for the delay between trials.
-                        PostTrialStage(duration1HeadInTheCenterStabilityStage);
+                        if (PostTrialStage(duration1HeadInTheCenterStabilityStage))
+                            _stickOnNumberIndex++;
                     }
                 }
 
@@ -1439,9 +1440,12 @@ namespace PinkyAndBrain
         /// <summary>
         /// The post trial time - analyaing the response , saving all the trial data into the results file.
         /// <param name="duration1HeadInTheCenterStabilityStage">Indicated if one of the robots ot both moved due to suration 1 head in the center stability stage.</param>
+        /// <returns>True if trial succeed otherwise returns false.</returns>
         /// </summary>
-        public void PostTrialStage(bool duration1HeadInTheCenterStabilityStage)
+        public bool PostTrialStage(bool duration1HeadInTheCenterStabilityStage)
         {
+            bool trialSucceed = true;
+
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Post trial time.");
@@ -1449,11 +1453,13 @@ namespace PinkyAndBrain
             //if no answer in the response time or not even coming to tge response time.
             if (!FixationOnlyMode && !(_currentRatDecision.Equals(RatDecison.Left) || _currentRatDecision.Equals(RatDecison.Right)))
                 //reset status of the current trial combination index if there was no reponse stage at all.
-                _varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
+                //_varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
+                trialSucceed = false;
 
             if (FixationOnlyMode && !_currentRatDecision.Equals(RatDecison.PassDurationTime))
                 //reset status of the current trial combination index if there was no reponse stage at all.
-                _varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
+                //_varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
+                trialSucceed = false;
 
             //Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveRobotHomePosition());
 
@@ -1488,6 +1494,8 @@ namespace PinkyAndBrain
 
             //wait the maximum time of the postTrialTime and the going home position time.
             moveRobotHomePositionTask.Wait();
+
+            return trialSucceed;
         }
         
         /// <summary>
