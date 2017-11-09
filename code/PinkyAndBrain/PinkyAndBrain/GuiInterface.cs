@@ -273,7 +273,9 @@ namespace PinkyAndBrain
                 {
                     _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x, y);
                     _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).IsValueShownAsLabel = true;
-                    string label = _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).LabelFormat = "{0:0.00}";
+                    _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).LabelFormat = "{0:0.00}";
+                    //show the x axis value for all the points.
+                    _onlinePsychGraphControl.Series[seriesName].IsXValueIndexed = true;
                 }
             }
 
