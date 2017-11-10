@@ -746,6 +746,9 @@ namespace PinkyAndBrain
             _currentRatDecision = RatDecison.NoEntryToResponseStage;
             //set the auto option to default values.
             _autosOptionsInRealTime = new AutosOptions();
+
+            //updatre the trial number for the motoman protocol file creator to send it to the alpha omega.
+            _motomanProtocolFileCreator.TrialNum = _totalHeadStabilityInCenterDuringDurationTime + 1;
             
             //Sounds the start beep. Now waiting for the rat to move it's head to the center.
             Console.Beep(2000 ,200);

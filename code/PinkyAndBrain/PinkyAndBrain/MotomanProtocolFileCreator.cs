@@ -43,9 +43,6 @@ namespace PinkyAndBrain
         /// Set or get the frequency the JBIFileCreator rely on.
         /// </summary>
         public int Frequency { get { return _frequency; } set { _frequency = value; } }
-        #endregion SETTERS_GETTERS
-
-        #region FUNCTIONS
         /// <summary>
         /// Get or set the R1 robot trajectory position to be written to the controller JBI file.
         /// </summary>
@@ -56,6 +53,13 @@ namespace PinkyAndBrain
         /// </summary>
         public Trajectory TrajectoryR2Position { get; set; }
 
+        /// <summary>
+        /// The trial number to send to the AlphaOmega (with time sharing - before moving the robot sending half of 14 bits and after moving the robot sending the second half).
+        /// </summary>
+        public int TrialNum { get; set; }
+        #endregion SETTERS_GETTERS
+
+        #region FUNCTIONS
         /// <summary>
         /// Velocity between 3D points.
         /// </summary>
@@ -236,6 +240,8 @@ namespace PinkyAndBrain
             //turn on the digital output indication the robot start moving
             _fileStreamWriter.WriteLine("DOUT OT#(1) ON");
 
+            //add the trial number with turnning the 2-8 indexes bits for the half LSB bits describes the trial.
+            _fileStreamWriter.Write(MakeDoutPins(false, DecToBin(TrialNum)));
 
             StringBuilder sb = new StringBuilder();
             //the selected trajectory is for the for loop to init with r1 or r2 as needed for the UpdateJobType.
@@ -300,6 +306,9 @@ namespace PinkyAndBrain
 
             _fileStreamWriter.WriteLine(sb.ToString());
             sb.Clear();
+
+            //add the trial number with turnning the 2-8 indexes bits for the half MSB bits describes the trial.
+            _fileStreamWriter.Write(MakeDoutPins(true, DecToBin(TrialNum)));
 
             //turn off the digital output indication the robot start moving
             _fileStreamWriter.WriteLine("DOUT OT#(1) OFF");
@@ -394,6 +403,67 @@ namespace PinkyAndBrain
 
             return stringLinesList;
         }
+
+        /// <summary>
+        /// Converts a 14 digits decimal number to a binary array. Throw exception if the number is bigger than 14 disits representation.
+        /// </summary>
+        /// <param name="num">The number top be converted to a binary representation.</param>
+        /// <returns>The binary representation of the number.</returns>
+        public bool[] DecToBin(int num)
+        {
+            if (num > Math.Pow(2, 14))
+            {
+                throw new Exception("The number cannot be represented by 14 digits");
+            }
+
+            else
+            {
+                int index = 13;
+                bool[] binValue = new bool[14];
+
+                while(num > 0)
+                {
+                    binValue[index] = !((num % 2) == 0);
+
+                    index--;
+
+                    num = num / 2;
+                }
+
+                return binValue;
+            }
+        }
+
+        /// <summary>
+        /// Making the string for the output pins (2-8) of the AlphaOmega.
+        /// </summary>
+        /// <param name="MSB">If the pins now have the MSB(13-7) digits or the LSB digits(0-6).</param>
+        /// <param name="binValue">The binary value to be sent to the AlphaOmega.</param>
+        /// <returns>The string represent the command to the AlphaOnega for the number sending.</returns>
+        public string MakeDoutPins(bool MSB , bool [] binValue)
+        {
+            int bitIndex = (MSB) ? 0 : 7;
+            StringBuilder sb = new StringBuilder();
+
+            foreach (bool bitValue in MSB ? binValue.Skip(7) : binValue.Take(7))
+            {
+                sb.Append("DOUT OT#(");
+                sb.Append(((bitIndex) % 7 + 2).ToString("0"));
+
+                if (bitValue)
+                    sb.Append(") ON");
+                else
+                    sb.Append(") OFF");
+
+                sb.AppendLine();
+
+                bitIndex++;
+
+            }
+
+            return sb.ToString();
+        }
+
         #endregion FUNCTIONS
 
         /// <summary>
