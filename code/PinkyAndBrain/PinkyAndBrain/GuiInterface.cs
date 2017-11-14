@@ -228,6 +228,10 @@ namespace PinkyAndBrain
             
             _onlinePsychGraphControl.ChartAreas.First(area => true).AxisY.Maximum = 1.0;
 
+            _onlinePsychGraphControl.ChartAreas.First(area => true).AxisX.Maximum = 100.0;
+
+            _onlinePsychGraphControl.ChartAreas.First(area => true).AxisX.Minimum = -100.0;
+
             _onlinePsychGraphControl.Show();
         }
 

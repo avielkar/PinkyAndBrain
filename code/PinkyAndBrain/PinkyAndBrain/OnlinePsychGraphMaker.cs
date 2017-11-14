@@ -66,6 +66,9 @@ namespace PinkyAndBrain
             //adding the serieses names to the chart.
             ChartControl.BeginInvoke(SetSeriesDelegate, VaryingParametrsNames);
 
+            //clear the old dictionory from the last experiment.
+            _seriesPointsDetails.Clear();
+
             //creating the varying parameter dictionary that holds all points for each.
             foreach (string varyingParameterName in VaryingParametrsNames)
             {
@@ -97,16 +100,16 @@ namespace PinkyAndBrain
         /// <param name="stimulusType">The stimulus type og the trial decision.</param>
         /// <param name="regionPoint">The x value (heading direction) of the point to be set.</param>
         /// <param name="answerStatus">Indicates if the current result was correct or false.</param>
-        public void AddResult(string varyingParameterName , int stimulusType, double regionPoint, AnswerStatus answerStatus)
+        public void AddResult(string varyingParameterName, int stimulusType, double regionPoint, AnswerStatus answerStatus)
         {
             if (!(_seriesPointsDetails.ContainsKey(stimulusType.ToString())))
             {
-                _seriesPointsDetails.Add(stimulusType.ToString(),new List<SeriesDetail>());
+                _seriesPointsDetails.Add(stimulusType.ToString(), new List<SeriesDetail>());
             }
 
             bool newPoint = _seriesPointsDetails[stimulusType.ToString()].Count(series => series.X == regionPoint) == 0;
             //if added artificially by the user after make trial button pressed.
-            if(newPoint)
+            if (newPoint)
             {
                 _seriesPointsDetails[stimulusType.ToString()].Add(
                     new SeriesDetail
@@ -129,9 +132,12 @@ namespace PinkyAndBrain
             if ((answerStatus.Equals(AnswerStatus.CORRECT) && regionPoint > 0) || (answerStatus.Equals(AnswerStatus.WRONG) && regionPoint < 0))
                 _seriesPointsDetails[stimulusType.ToString()].First(series => series.X == regionPoint).TotalRight++;
 
-            
+
             //invoking the function updates the given series with the updated point.
-            ChartControl.BeginInvoke(SetPointDelegate, stimulusType.ToString(), regionPoint, ((double)_seriesPointsDetails[stimulusType.ToString()].First(series => series.X == regionPoint).TotalRight / (double)_seriesPointsDetails[stimulusType.ToString()].First(series => series.X == regionPoint).Total), newPoint, _seriesPointsDetails[stimulusType.ToString()].First(series => series.X == regionPoint).Total > 0);
+            ChartControl.BeginInvoke(SetPointDelegate,
+                stimulusType.ToString(),
+                regionPoint,
+                ((double)_seriesPointsDetails[stimulusType.ToString()].First(series => series.X == regionPoint).TotalRight / (double)_seriesPointsDetails[stimulusType.ToString()].First(series => series.X == regionPoint).Total), newPoint, _seriesPointsDetails[stimulusType.ToString()].First(series => series.X == regionPoint).Total > 0);
         }
 
         /// <summary>
