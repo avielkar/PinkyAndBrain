@@ -244,8 +244,11 @@ namespace PinkyAndBrain
                 //turn on the digital output indication the robot start moving
                 _fileStreamWriter.WriteLine("DOUT OT#(1) ON");
 
-                //add the trial number with turnning the 1-14 indexes bits.
+                //add the trial number with turnning the 2-14 indexes bits.
                 _fileStreamWriter.Write(MakeDoutsPins(DecToBin(TrialNum)));
+
+                //turn on the strobe bit (16)
+                _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
             }
 
             else
@@ -320,11 +323,14 @@ namespace PinkyAndBrain
 
             if (!returnBackMotion)
             {
-                //reset the trial number bits(1-14)
-                _fileStreamWriter.Write(ResetDoutPins());
-
                 //turn off the digital output indication the robot start moving
                 _fileStreamWriter.WriteLine("DOUT OT#(1) OFF");
+
+                //reset the trial number bits(2-14)
+                _fileStreamWriter.Write(ResetDoutPins());
+
+                //turn off the strobe bit (16)
+                _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
             }
 
             else
