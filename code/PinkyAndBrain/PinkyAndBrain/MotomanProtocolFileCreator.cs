@@ -86,11 +86,12 @@ namespace PinkyAndBrain
         /// <summary>
         /// Update (make) the JBI file that would be send to the controller with the new given trajectory.
         /// <param name="updateJobType">The robots type to update the job trajectory with.</param>
+        /// <param name="returnBackMotion">Indicate if the motion is backword.</param>
         /// </summary>
         /// <returns>True if the send was successful.</returns>
-        public bool UpdateJobJBIFile(UpdateJobType updateJobType)
+        public bool UpdateJobJBIFile(UpdateJobType updateJobType ,bool returnBackMotion)
         {
-            DecodeTrajectoriesToJBIFile(TrajectoryR1Position , TrajectoryR2Position , updateJobType);
+            DecodeTrajectoriesToJBIFile(TrajectoryR1Position , TrajectoryR2Position , updateJobType , returnBackMotion);
             return true;
         }
 
@@ -175,8 +176,9 @@ namespace PinkyAndBrain
         /// <param name="r1Traj">The r1 robot traj to be written to the file as the protocol format.</param>
         /// <param name="r2Traj">The r2 robot traj to be written to the file as the protocol format.</param>
         /// <param name="updateJobType">The robots type to update the job trajectory with.</param>
+        /// <param name="returnBackMotion">Indicate if the motion is backword.</param>
         /// </summary>
-        private void DecodeTrajectoriesToJBIFile(Trajectory r1Traj , Trajectory r2Traj , UpdateJobType updateJobType)
+        private void DecodeTrajectoriesToJBIFile(Trajectory r1Traj , Trajectory r2Traj , UpdateJobType updateJobType , bool returnBackMotion)
         {
             StreamWriter _fileStreamWriter = new StreamWriter(_fileName);
 
@@ -237,11 +239,20 @@ namespace PinkyAndBrain
             
             _fileStreamWriter.WriteLine("NOP");
 
-            //turn on the digital output indication the robot start moving
-            _fileStreamWriter.WriteLine("DOUT OT#(1) ON");
+            if (!returnBackMotion)
+            {
+                //turn on the digital output indication the robot start moving
+                _fileStreamWriter.WriteLine("DOUT OT#(1) ON");
 
-            //add the trial number with turnning the 2-8 indexes bits for the half LSB bits describes the trial.
-            _fileStreamWriter.Write(MakeDoutPins(false, DecToBin(TrialNum)));
+                //add the trial number with turnning the 1-14 indexes bits.
+                _fileStreamWriter.Write(MakeDoutsPins(DecToBin(TrialNum)));
+            }
+
+            else
+            {
+                //turn on the digital output indication the robot start moving backword.
+                _fileStreamWriter.WriteLine("DOUT OT#(15) ON");
+            }
 
             StringBuilder sb = new StringBuilder();
             //the selected trajectory is for the for loop to init with r1 or r2 as needed for the UpdateJobType.
@@ -307,11 +318,20 @@ namespace PinkyAndBrain
             _fileStreamWriter.WriteLine(sb.ToString());
             sb.Clear();
 
-            //add the trial number with turnning the 2-8 indexes bits for the half MSB bits describes the trial.
-            _fileStreamWriter.Write(MakeDoutPins(true, DecToBin(TrialNum)));
+            if (!returnBackMotion)
+            {
+                //reset the trial number bits(1-14)
+                _fileStreamWriter.Write(ResetDoutPins());
 
-            //turn off the digital output indication the robot start moving
-            _fileStreamWriter.WriteLine("DOUT OT#(1) OFF");
+                //turn off the digital output indication the robot start moving
+                _fileStreamWriter.WriteLine("DOUT OT#(1) OFF");
+            }
+
+            else
+            {
+                //turn off the digital output indication the robot start moving backword.
+                _fileStreamWriter.WriteLine("DOUT OT#(15) OFF");
+            }
 
             _fileStreamWriter.WriteLine("END");
 
@@ -432,6 +452,48 @@ namespace PinkyAndBrain
 
                 return binValue;
             }
+        }
+
+        /// <summary>
+        /// Reset the Dout Pins 1-13 for the trial data number.
+        /// </summary>
+        /// <returns>The reset trial data number string.</returns>
+        public string ResetDoutPins()
+        {
+            bool[] binValue = new bool[13];
+
+            return MakeDoutsPins(binValue);
+        }
+
+        /// <summary>
+        /// Making the string for the output pins (1-13) for the AlphaOmega.
+        /// </summary>
+        /// <param name="binValue">The binary value to be sent to the AlphaOmega.</param>
+        /// <returns>The string represents the command for the AlphaOmega for the number sending.</returns>
+        public string MakeDoutsPins(bool [] binValue)
+        {
+            int bitIndex = 0;
+            StringBuilder sb = new StringBuilder();
+
+            foreach (bool bitValue in binValue)
+            {
+                sb.Append("DOUT OT#(");
+                if(bitIndex +2 <9)
+                sb.Append((bitIndex+ 2).ToString("0"));
+                else
+                    sb.Append((bitIndex + 2).ToString("00"));    
+
+                if (bitValue)
+                    sb.Append(") ON");
+                else
+                    sb.Append(") OFF");
+
+                sb.AppendLine();
+
+                bitIndex++;
+            }
+
+            return sb.ToString();
         }
 
         /// <summary>

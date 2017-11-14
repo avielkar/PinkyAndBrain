@@ -1227,7 +1227,8 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="traj">The trajectory to be send to the controller.</param>
         /// <param name="updateJobType">The robots type to update the job trajectory with.</param>
-        public void UpdateYasakawaRobotJBIFile(Tuple<Trajectory , Trajectory> traj , MotomanProtocolFileCreator.UpdateJobType updatJobType , bool inverse = false)
+        /// <param name="inverse"> Indicate if the motion of the robot is backword motion.</param>
+        public void UpdateYasakawaRobotJBIFile(Tuple<Trajectory , Trajectory> traj , MotomanProtocolFileCreator.UpdateJobType updateJobType , bool inverse = false)
         {
             _logger.Info("Writing job to the robot.");
 
@@ -1238,7 +1239,7 @@ namespace PinkyAndBrain
             //setting the trajectory for the JBI file creator and update the file that is being senf to the controller with the new commands.
             _motomanProtocolFileCreator.TrajectoryR1Position = traj.Item1;
             _motomanProtocolFileCreator.TrajectoryR2Position = traj.Item2;
-            _motomanProtocolFileCreator.UpdateJobJBIFile(updatJobType);
+            _motomanProtocolFileCreator.UpdateJobJBIFile(updateJobType , inverse);
 
             //Delete the old JBI file commands stored in the controller.
             try
