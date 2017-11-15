@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Configuration;
 
 namespace PinkyAndBrain
 {
@@ -374,17 +375,17 @@ namespace PinkyAndBrain
                     currectStringValue.Append("P");
                     currectStringValue.Append(i.ToString("D" + 5));
                     currectStringValue.Append("=");
-                    currectStringValue.Append(((double)(point * 10 + Properties.Settings.Default.R1OriginalX)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(point * 10 + MotocomSettings.Default.R1OriginalX)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR1.y[i - 1] * 10 + Properties.Settings.Default.R1OriginalY)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR1.y[i - 1] * 10 + MotocomSettings.Default.R1OriginalY)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR1.z[i - 1] * 10 + Properties.Settings.Default.R1OriginalZ)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR1.z[i - 1] * 10 + MotocomSettings.Default.R1OriginalZ)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR1.rx[i - 1] * 10 + Properties.Settings.Default.R1OriginalRX)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR1.rx[i - 1] * 10 + MotocomSettings.Default.R1OriginalRX)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR1.ry[i - 1] * 10 + Properties.Settings.Default.R1OriginalRY)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR1.ry[i - 1] * 10 + MotocomSettings.Default.R1OriginalRY)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR1.rz[i - 1] * 10 + Properties.Settings.Default.R1OriginalRZ)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR1.rz[i - 1] * 10 + MotocomSettings.Default.R1OriginalRZ)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
                     i++;
                     stringLinesList.Add(currectStringValue.ToString());
@@ -409,17 +410,17 @@ namespace PinkyAndBrain
                     currectStringValue.Append("P");
                     currectStringValue.Append(j.ToString("D" + 5));
                     currectStringValue.Append("=");
-                    currectStringValue.Append(((double)(point * 10 + Properties.Settings.Default.R2OriginalX)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(point * 10 + MotocomSettings.Default.R2OriginalX)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR2.y[i - 1] * 10 + Properties.Settings.Default.R2OriginalY)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR2.y[i - 1] * 10 + MotocomSettings.Default.R2OriginalY)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR2.z[i - 1] * 10  +Properties.Settings.Default.R2OriginalZ)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR2.z[i - 1] * 10 + MotocomSettings.Default.R2OriginalZ)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR2.rx[i - 1] * 10 + Properties.Settings.Default.R2OriginalRX)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR2.rx[i - 1] * 10 + MotocomSettings.Default.R2OriginalRX)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR2.ry[i - 1] * 10 + Properties.Settings.Default.R2OriginalRY)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR2.ry[i - 1] * 10 + MotocomSettings.Default.R2OriginalRY)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR2.rz[i - 1] * 10 + Properties.Settings.Default.R2OriginalRZ)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR2.rz[i - 1] * 10 + MotocomSettings.Default.R2OriginalRZ)).ToString("0000.00000000"));
                     i++;
                     j++;
                     stringLinesList.Add(currectStringValue.ToString());

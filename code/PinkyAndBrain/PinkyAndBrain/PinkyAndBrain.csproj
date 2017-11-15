@@ -88,6 +88,7 @@
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\National Instruments\NI ELVISmx Instrument Launcher\NationalInstruments.DAQmx.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -114,6 +115,12 @@
       <DependentUpon>GuiInterface.cs</DependentUpon>
     </Compile>
     <Compile Include="InfraRedController.cs" />
+    <Compile Include="MotocomSettings.cs" />
+    <Compile Include="MotocomSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>MotocomSettings.settings</DependentUpon>
+    </Compile>
     <Compile Include="MotomanProtocolFileCreator.cs" />
     <Compile Include="RewardController.cs" />
     <Compile Include="StaticValuesGenerator.cs" />
@@ -146,6 +153,10 @@
     <Content Include="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="MotocomSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>MotocomSettings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -1517,20 +1517,20 @@ namespace PinkyAndBrain
             MotomanProtocolFileCreator homePositionFile = new MotomanProtocolFileCreator(@"C:\Users\User\Desktop\HOME_POS_BOTH.JBI");
 
             Position r1HomePosition = new Position();
-            r1HomePosition.x=Properties.Settings.Default.R1OriginalX;
-            r1HomePosition.y=Properties.Settings.Default.R1OriginalY;
-            r1HomePosition.z=Properties.Settings.Default.R1OriginalZ;
-            r1HomePosition.rx=Properties.Settings.Default.R1OriginalRX;
-            r1HomePosition.ry=Properties.Settings.Default.R1OriginalRY;
-            r1HomePosition.rz=Properties.Settings.Default.R1OriginalRZ;
+            r1HomePosition.x = MotocomSettings.Default.R1OriginalX;
+            r1HomePosition.y = MotocomSettings.Default.R1OriginalY;
+            r1HomePosition.z = MotocomSettings.Default.R1OriginalZ;
+            r1HomePosition.rx = MotocomSettings.Default.R1OriginalRX;
+            r1HomePosition.ry = MotocomSettings.Default.R1OriginalRY;
+            r1HomePosition.rz = MotocomSettings.Default.R1OriginalRZ;
 
             Position r2HomePosition = new Position();
-            r2HomePosition.x = Properties.Settings.Default.R2OriginalX;
-            r2HomePosition.y = Properties.Settings.Default.R2OriginalY;
-            r2HomePosition.z = Properties.Settings.Default.R2OriginalZ;
-            r2HomePosition.rx=Properties.Settings.Default.R2OriginalRX;
-            r2HomePosition.ry=Properties.Settings.Default.R2OriginalRY;
-            r2HomePosition.rz=Properties.Settings.Default.R2OriginalRZ;
+            r2HomePosition.x = MotocomSettings.Default.R2OriginalX;
+            r2HomePosition.y = MotocomSettings.Default.R2OriginalY;
+            r2HomePosition.z = MotocomSettings.Default.R2OriginalZ;
+            r2HomePosition.rx = MotocomSettings.Default.R2OriginalRX;
+            r2HomePosition.ry = MotocomSettings.Default.R2OriginalRY;
+            r2HomePosition.rz = MotocomSettings.Default.R2OriginalRZ;
 
             //update the home_pos_both file.
             homePositionFile.UpdateHomePosJBIFile(r1HomePosition , r2HomePosition , 60);
