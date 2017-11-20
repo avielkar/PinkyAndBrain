@@ -27,7 +27,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="R1OriginalZ" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">483.095</Value>
+      <Value Profile="(Default)">573.095</Value>
     </Setting>
     <Setting Name="R1OriginalRX" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -63,7 +63,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="R2OriginalZ" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">708.48</Value>
+      <Value Profile="(Default)">798.48</Value>
     </Setting>
     <Setting Name="R2OriginalRX" Type="System.Double" Scope="User">
       <Value Profile="(Default)">180</Value>
