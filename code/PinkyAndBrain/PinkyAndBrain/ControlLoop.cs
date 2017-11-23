@@ -243,14 +243,9 @@ namespace PinkyAndBrain
         private System.Timers.Timer _waterRewardFillingTimer;
 
         /// <summary>
-        /// The JBI protocol file creator for each trial trajectory.
-        /// </summary>
-        private MotomanProtocolFileCreator _motomanProtocolFileCreator;
-
-        /// <summary>
         /// The YASAKAWA motoman robot controller.
         /// </summary>
-        private CYasnac _motomanController;
+        private MotomanController _motomanController;
 
         /// <summary>
         /// The led controller for controlling the leds visibility in the ledstrip connected to the arduino.
@@ -334,7 +329,7 @@ namespace PinkyAndBrain
         /// <param name="mainGuiInterfaceControlsDictionary">The name of each main gui needed control and it's reference.</param>
         /// <param name="logger">The program logger for logging into log file.</param>
         /// </summary>
-        public ControlLoop(MLApp.MLApp matlabApp , CYasnac motomanController , LEDController ledController , InfraRedController infraRedController, Dictionary<string, Delegate> ctrlDelegatesDic, Dictionary<string , Control> mainGuiInterfaceControlsDictionary , ILog logger)
+        public ControlLoop(MLApp.MLApp matlabApp , MotomanController motomanController , LEDController ledController , InfraRedController infraRedController, Dictionary<string, Delegate> ctrlDelegatesDic, Dictionary<string , Control> mainGuiInterfaceControlsDictionary , ILog logger)
         {
             _matlabApp = matlabApp;
             _trajectoryCreatorHandler = new TrajectoryCreatorHandler(_matlabApp);
@@ -354,9 +349,6 @@ namespace PinkyAndBrain
             _waterRewardFillingTimer = new System.Timers.Timer();
             _waterRewardFillingTimer.Interval = 100;
             _waterRewardFillingTimer.Elapsed += WaterRewardFillingTimer_Tick;
-
-            //initialized the motoman JBI file creatotr for each trial (the command file that would be send to the motoman controller).
-            _motomanProtocolFileCreator = new MotomanProtocolFileCreator(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
 
             //take the motoman controller object.
             _motomanController = motomanController;
@@ -427,7 +419,7 @@ namespace PinkyAndBrain
             _rewardController.ResetControllerOutputs();
 
             //set the frequency for the JBI file creator.
-            _motomanProtocolFileCreator.Frequency = _frequency;
+            _motomanController.MotomanProtocolFileCreator.Frequency = _frequency;
 
             //create a new results file for the new experiment.
             _savedExperimentDataMaker.CreateControlNewFile(RatName);
@@ -497,8 +489,8 @@ namespace PinkyAndBrain
         {
             //set robot servo on and go homeposition.
             _motomanController.SetServoOn();
-            WriteHomePosFile();
-            MoveRobotHomePosition();
+            _motomanController.WriteHomePosFile();
+            _motomanController.MoveRobotHomePosition();
 
             for (; _repetitionIndex < NumOfRepetitions / NumOfStickOn;)
             {
@@ -748,7 +740,7 @@ namespace PinkyAndBrain
             _autosOptionsInRealTime = new AutosOptions();
 
             //updatre the trial number for the motoman protocol file creator to send it to the alpha omega.
-            _motomanProtocolFileCreator.TrialNum = _totalHeadStabilityInCenterDuringDurationTime + 1;
+            _motomanController.MotomanProtocolFileCreator.TrialNum = _totalHeadStabilityInCenterDuringDurationTime + 1;
             
             //Sounds the start beep. Now waiting for the rat to move it's head to the center.
             Console.Beep(2000 ,200);
@@ -1083,14 +1075,14 @@ namespace PinkyAndBrain
                     break;
                 case 1://vistibular only.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
-                    UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both);
-                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory());
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both);
+                    robotMotion = Task.Factory.StartNew(() =>  _motomanController.MoveYasakawaRobotWithTrajectory());
                     break;
 
                 case 2://visual only.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
-                    UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only);
-                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory());
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only);
+                    robotMotion = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
 
                     //here should be stimulus type 2 for motion of the second robot for visual only.
                     //should move the robot and also to turn on the leds.
@@ -1102,8 +1094,8 @@ namespace PinkyAndBrain
 
                 case 3://vistibular and visual both.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
-                    UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only);
-                    robotMotion = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory());
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only);
+                    robotMotion = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
                     //should move only r1 robot and also to turn on the leds.
                     LEDsData ledsData2 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData2;
@@ -1220,87 +1212,6 @@ namespace PinkyAndBrain
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterCenter);
 
             return (x == 2);
-        }
-
-        /// <summary>
-        /// Updating the robot working JBI file according to the trajectory and the stimulus type.
-        /// </summary>
-        /// <param name="traj">The trajectory to be send to the controller.</param>
-        /// <param name="updateJobType">The robots type to update the job trajectory with.</param>
-        /// <param name="inverse"> Indicate if the motion of the robot is backword motion.</param>
-        public void UpdateYasakawaRobotJBIFile(Tuple<Trajectory , Trajectory> traj , MotomanProtocolFileCreator.UpdateJobType updateJobType , bool inverse = false)
-        {
-            _logger.Info("Writing job to the robot.");
-
-            //if need to inverse the trajectory in case of PostTrialStage backword trajcetory.
-            if(inverse)
-                traj = new Tuple<Trajectory, Trajectory>(TrajectoryInverse(traj.Item1), TrajectoryInverse(traj.Item2));
-
-            //setting the trajectory for the JBI file creator and update the file that is being senf to the controller with the new commands.
-            _motomanProtocolFileCreator.TrajectoryR1Position = traj.Item1;
-            _motomanProtocolFileCreator.TrajectoryR2Position = traj.Item2;
-            _motomanProtocolFileCreator.UpdateJobJBIFile(updateJobType , inverse);
-
-            //Delete the old JBI file commands stored in the controller.
-            try
-            {
-                _motomanController.DeleteJob("GAUSSIANMOVING2.JBI");
-            }
-            catch { }
-
-            //wruite the new JBI file to the controller.
-            _motomanController.WriteFile(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
-
-            _logger.Info("Writing job to the robot ended.");
-        }
-
-        /// <summary>
-        /// Trajectory inversing function for inversing the points backwords.
-        /// </summary>
-        /// <param name="trajectory">The trajectory to inverse.</param>
-        /// <returns>A new trajectory inversed from the original.</returns>
-        private Trajectory TrajectoryInverse(Trajectory trajectory)
-        {
-            //the inversed trajectory to be returned.
-            Trajectory inverseTrajectory = new Trajectory();
-
-            //initialization for the the trajectorry yo be retund.
-            int length = trajectory.x.Count;
-            inverseTrajectory.x = Vector<double>.Build.Dense(length);
-            inverseTrajectory.y = Vector<double>.Build.Dense(length);
-            inverseTrajectory.z = Vector<double>.Build.Dense(length);
-            inverseTrajectory.rx = Vector<double>.Build.Dense(length);
-            inverseTrajectory.ry = Vector<double>.Build.Dense(length);
-            inverseTrajectory.rz = Vector<double>.Build.Dense(length);
-
-            //inverse the original trajectory into the new trajectory.
-            for (int i = 0; i < length; i++)
-            {
-                int index = length - 1 - i;
-
-                inverseTrajectory.x[i] = trajectory.x[index];
-                inverseTrajectory.y[i] = trajectory.y[index];
-                inverseTrajectory.z[i] = trajectory.z[index];
-                inverseTrajectory.rx[i] = trajectory.rx[index];
-                inverseTrajectory.ry[i] = trajectory.ry[index];
-                inverseTrajectory.rz[i] = trajectory.rz[index];
-            }
-
-            //return the inversed trajectory.
-            return inverseTrajectory;
-        }
-
-        /// <summary>
-        /// Move the motoman with the given trajectory.
-        /// </summary>
-        public void MoveYasakawaRobotWithTrajectory()
-        {
-            _motomanController.StartJob("GAUSSIANMOVING2.JBI");
-            _logger.Info("Moving the robot begin.");
-
-            //wait for the commands to be executed.
-            _motomanController.WaitJobFinished(10000);
-            _logger.Info("Moving the robot finished.");
         }
 
         /// <summary>
@@ -1473,7 +1384,7 @@ namespace PinkyAndBrain
             if (!duration1HeadInTheCenterStabilityStage)
                 moveRobotHomePositionTask = Task.Factory.StartNew(() => NullFunction());
             else
-                moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveYasakawaRobotWithTrajectory());
+                moveRobotHomePositionTask = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
 
             //save the dat into the result file only if the trial is within success trials (that have any stimulus)
             if (!_currentRatDecision.Equals(RatDecison.NoEntryToResponseStage))
@@ -1510,54 +1421,6 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Writing the home_pos file as the readen parameter in the configuration.
-        /// </summary>
-        public void WriteHomePosFile()
-        {
-            MotomanProtocolFileCreator homePositionFile = new MotomanProtocolFileCreator(@"C:\Users\User\Desktop\HOME_POS_BOTH.JBI");
-
-            Position r1HomePosition = new Position();
-            r1HomePosition.x = MotocomSettings.Default.R1OriginalX;
-            r1HomePosition.y = MotocomSettings.Default.R1OriginalY;
-            r1HomePosition.z = MotocomSettings.Default.R1OriginalZ;
-            r1HomePosition.rx = MotocomSettings.Default.R1OriginalRX;
-            r1HomePosition.ry = MotocomSettings.Default.R1OriginalRY;
-            r1HomePosition.rz = MotocomSettings.Default.R1OriginalRZ;
-
-            Position r2HomePosition = new Position();
-            r2HomePosition.x = MotocomSettings.Default.R2OriginalX;
-            r2HomePosition.y = MotocomSettings.Default.R2OriginalY;
-            r2HomePosition.z = MotocomSettings.Default.R2OriginalZ;
-            r2HomePosition.rx = MotocomSettings.Default.R2OriginalRX;
-            r2HomePosition.ry = MotocomSettings.Default.R2OriginalRY;
-            r2HomePosition.rz = MotocomSettings.Default.R2OriginalRZ;
-
-            //update the home_pos_both file.
-            homePositionFile.UpdateHomePosJBIFile(r1HomePosition , r2HomePosition , 60);
-        }
-
-        /// <summary>
-        /// Move the robot to it's home (origin) position.
-        /// </summary>
-        public void MoveRobotHomePosition()
-        {
-            try
-            {
-                _motomanController.DeleteJob("HOME_POS_BOTH.JBI");
-            }
-            catch
-            { }
-
-            _motomanController.WriteFile(@"C:\Users\User\Desktop\HOME_POS_BOTH.JBI");
-
-            _motomanController.StartJob("HOME_POS_BOTH.JBI");
-
-            //should fix this bug
-            //_motomanController.WaitJobFinished(10000);
-            Thread.Sleep(2000);
-        }
-
-        /// <summary>
         /// Update the robot trajectory JBI file to it's home (origin) position.
         /// </summary>
         public void UpdateRobotHomePositionBackwordsJBIFile()
@@ -1567,15 +1430,15 @@ namespace PinkyAndBrain
                 case 0://none
                     break;
                 case 1://vistibular only.
-                    UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both , true);
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both, true);
                     break;
 
                 case 2://visual only.
-                    UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only , true);
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only, true);
                     break;
 
                 case 3://vistibular and visual both.
-                    UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only , true);
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only , true);
                     break;
 
                 default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).

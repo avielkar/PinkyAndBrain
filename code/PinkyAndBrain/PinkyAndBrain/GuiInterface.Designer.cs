@@ -96,6 +96,7 @@
             this._labelBrightness = new System.Windows.Forms.Label();
             this._textboxPercentageOfTurnOnLeds = new System.Windows.Forms.TextBox();
             this._labelPercentageOfturnedOnLeds = new System.Windows.Forms.Label();
+            this._btnPark = new System.Windows.Forms.Button();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -323,6 +324,7 @@
             // 
             // _varyingControlGroupBox
             // 
+            this._varyingControlGroupBox.Controls.Add(this._btnPark);
             this._varyingControlGroupBox.Controls.Add(this._btnResume);
             this._varyingControlGroupBox.Controls.Add(this._btnPause);
             this._varyingControlGroupBox.Controls.Add(this._textboxStickOnNumber);
@@ -732,6 +734,16 @@
             this._labelPercentageOfturnedOnLeds.TabIndex = 0;
             this._labelPercentageOfturnedOnLeds.Text = "% turn on LEDS";
             // 
+            // _btnPark
+            // 
+            this._btnPark.Location = new System.Drawing.Point(7, 351);
+            this._btnPark.Name = "_btnPark";
+            this._btnPark.Size = new System.Drawing.Size(75, 23);
+            this._btnPark.TabIndex = 16;
+            this._btnPark.Text = "Park";
+            this._btnPark.UseVisualStyleBackColor = true;
+            this._btnPark.Click += new System.EventHandler(this._btnPark_Click);
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -855,5 +867,6 @@
         private System.Windows.Forms.TextBox _textboxStickOnNumber;
         private System.Windows.Forms.Button _btnResume;
         private System.Windows.Forms.Button _btnPause;
+        private System.Windows.Forms.Button _btnPark;
     }
 }

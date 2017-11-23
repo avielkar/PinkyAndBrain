@@ -310,5 +310,17 @@ namespace PinkyAndBrain {
                 this["R2OriginalRZ"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public double ParkingBackwordDistance {
+            get {
+                return ((double)(this["ParkingBackwordDistance"]));
+            }
+            set {
+                this["ParkingBackwordDistance"] = value;
+            }
+        }
     }
 }

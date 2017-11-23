@@ -8,7 +8,7 @@ using System.Configuration;
 
 namespace PinkyAndBrain
 {
-    class MotomanProtocolFileCreator
+    public class MotomanProtocolFileCreator
     {
         #region MEMBERS
         /// <summary>
@@ -96,20 +96,14 @@ namespace PinkyAndBrain
             return true;
         }
 
-        /// <summary>
-        /// Updates the home_pos_both file (rewritten it) with the given positions.
-        /// </summary>
-        /// <param name="r1Pos">The r1 robot home position.</param>
-        /// <param name="r2Pos">The r2 robot home position.</param>
-        /// <param name="velocity">The velocity to takes both robots to home position.</param>
-        public void UpdateHomePosJBIFile(Position r1Pos , Position r2Pos , double velocity)
+        public void UpdateSpecificPosJBIFile(string jbiFileName , Position r1Pos, Position r2Pos, double velocity)
         {
             StreamWriter _fileStreamWriter = new StreamWriter(_fileName);
 
             StringBuilder lineStringBuilder = new StringBuilder();
 
             _fileStreamWriter.WriteLine("/JOB");
-            _fileStreamWriter.WriteLine("//NAME HOME_POS_BOTH");
+            _fileStreamWriter.WriteLine("//NAME " + jbiFileName);
             _fileStreamWriter.WriteLine("//POS");
             _fileStreamWriter.WriteLine("///NPOS 0,0,0,4,0,0");
             _fileStreamWriter.WriteLine("///TOOL 0");
@@ -462,14 +456,19 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Reset the Dout Pins 1-13 for the trial data number.
+        /// Reset the Dout Pins 1-14 for the trial data number.
         /// </summary>
         /// <returns>The reset trial data number string.</returns>
         public string ResetDoutPins()
         {
-            bool[] binValue = new bool[13];
+            bool[] binValue = new bool[14];
 
-            return MakeDoutsPins(binValue);
+            for (int i = 0; i < binValue.Length;i++ )
+            {
+                binValue[i] = false;
+            }
+
+                return MakeDoutsPins(binValue);
         }
 
         /// <summary>

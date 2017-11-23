@@ -121,7 +121,7 @@ namespace PinkyAndBrain
     /// <summary>
     /// Describes the trajectory that should be sent to the robot.
     /// </summary>
-    struct Trajectory
+    public struct Trajectory
     {
         #region LINEAR_TRAJECTORIES
 
@@ -159,7 +159,7 @@ namespace PinkyAndBrain
         #endregion ROTATION_TRAJECTORIES
     }
 
-    struct Position
+    public struct Position
     {
         #region LINEAR_TRAJECTORY
 

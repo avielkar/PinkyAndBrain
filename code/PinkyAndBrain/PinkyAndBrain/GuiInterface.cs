@@ -106,7 +106,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// The controller api for the YASAKAWA motoman robot.
         /// </summary>
-        private CYasnac _motocomController;
+        private MotomanController _motocomController;
 
         /// <summary>
         /// Led controller for controlling the led strip.
@@ -141,16 +141,16 @@ namespace PinkyAndBrain
             ShowVaryingControlsOptions(false);
             _matlabApp = new MLApp.MLApp();
 
-            //connect to the robot and turn on it's servos.
-            //avi-insert//
-            _motocomController = new CYasnac("10.0.0.2", Application.StartupPath);
-            //avi-insert//
-            //_motocomController.SetServoOn();
-
             //creating the logger to writting log file information.
-            log4net.Config.XmlConfigurator.Configure(new FileInfo(Application.StartupPath+@"\Log4Net.config"));
+            log4net.Config.XmlConfigurator.Configure(new FileInfo(Application.StartupPath + @"\Log4Net.config"));
             _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
             _logger.Info("Starting program...");
+
+            //connect to the robot and turn on it's servos.
+            //avi-insert//
+            _motocomController = new MotomanController("10.0.0.2" , _logger);
+            //avi-insert//
+            //_motocomController.SetServoOn();
 
             //create the ledstrip controller and initialize it (also turn off leds).
             _ledController = new LEDController("COM4", 2000000, 250 , _logger);
@@ -710,6 +710,21 @@ namespace PinkyAndBrain
             #region PRAMETERS_TEXTBOX_CHANGE_TEXT_SHOW
             SetParametersTextBox(varName , new StringBuilder());
             #endregion PRAMETERS_TEXTBOX_CHANGE_TEXT_SHOW
+        }
+
+
+        private void _btnPark_Click(object sender, EventArgs e)
+        {
+            //set robot servo on and go homeposition.
+            _motocomController.SetServoOn();
+
+            _motocomController.WriteParkPositionFile();
+            _motocomController.MoveRobotParkPosition();
+
+            //TODO : change to deal with the time the job finished and not constant time.
+            Thread.Sleep(8000);
+
+            _motocomController.SetServoOff();
         }
 
         /// <summary>

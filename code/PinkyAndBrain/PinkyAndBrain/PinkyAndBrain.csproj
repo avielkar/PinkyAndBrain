@@ -121,6 +121,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>MotocomSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="MotomanController.cs" />
     <Compile Include="MotomanProtocolFileCreator.cs" />
     <Compile Include="RewardController.cs" />
     <Compile Include="StaticValuesGenerator.cs" />
