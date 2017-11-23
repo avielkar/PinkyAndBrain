@@ -97,7 +97,7 @@ namespace PinkyAndBrain {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("272.805")]
+        [global::System.Configuration.DefaultSettingValueAttribute("572.805")]
         public double R1OriginalX {
             get {
                 return ((double)(this["R1OriginalX"]));
@@ -121,7 +121,7 @@ namespace PinkyAndBrain {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("573.095")]
+        [global::System.Configuration.DefaultSettingValueAttribute("523.095")]
         public double R1OriginalZ {
             get {
                 return ((double)(this["R1OriginalZ"]));
@@ -241,7 +241,7 @@ namespace PinkyAndBrain {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("874.53")]
+        [global::System.Configuration.DefaultSettingValueAttribute("674.53")]
         public double R2OriginalX {
             get {
                 return ((double)(this["R2OriginalX"]));
@@ -265,7 +265,7 @@ namespace PinkyAndBrain {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("798.48")]
+        [global::System.Configuration.DefaultSettingValueAttribute("898.48")]
         public double R2OriginalZ {
             get {
                 return ((double)(this["R2OriginalZ"]));
