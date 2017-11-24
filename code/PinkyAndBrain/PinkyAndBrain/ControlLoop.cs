@@ -382,9 +382,23 @@ namespace PinkyAndBrain
             LoadAllSoundPlayers();
             _windowsMediaPlayer = new WindowsMediaPlayer();
         }
+
+        /// <summary>
+        /// Clear all the control loop items and timers.
+        /// </summary>
+        public void Dispose()
+        {
+            //stop the timer for sampling the rat Noldus response.
+            _ratSampleResponseTimer.Stop();
+
+            //remove the timer for rat Noldus response.
+            _ratSampleResponseTimer.Elapsed -= SetRatReponse;            
+        }
         #endregion CONTRUCTORS
 
         #region FUNCTIONS
+
+        #region GUI_COMMANDS
         /// <summary>
         /// Transfer the control from the main gui to the control loop until a new gui event is handled by the user.
         /// </summary>
@@ -472,19 +486,9 @@ namespace PinkyAndBrain
 
             Task.Run(()=>MainControlLoop());
         }
+        #endregion
 
-        /// <summary>
-        /// Clear all the control loop items and timers.
-        /// </summary>
-        public void Dispose()
-        {
-            //stop the timer for sampling the rat Noldus response.
-            _ratSampleResponseTimer.Stop();
-
-            //remove the timer for rat Noldus response.
-            _ratSampleResponseTimer.Elapsed -= SetRatReponse;            
-        }
-
+        #region STAGES_FUNCTION
         public void MainControlLoop()
         {
             //set robot servo on and go homeposition.
@@ -618,108 +622,6 @@ namespace PinkyAndBrain
             //end of all trials and repetitions.
             EndControlLoopByStopFunction();
         }
-
-        /// <summary>
-        /// This function is called if the control loop asked to be ended.
-        /// </summary>
-        public void EndControlLoopByStopFunction()
-        {
-                Globals._systemState = SystemState.FINISHED;
-
-                //set robot's servo off.
-                _motomanController.SetServoOff();
-
-                //reset the repetition index.
-                _repetitionIndex = 0;
-
-                //show the final global experiment info (show it the last time)
-                ShowGlobalExperimentDetailsListView();
-
-                //Close and release the current saved file.
-                _savedExperimentDataMaker.CloseFile();
-
-                //raise an event for the GuiInterface that the trials round is over.
-                _mainGuiInterfaceControlsDictionary["FinishedAllTrialsRound"].BeginInvoke(_mainGuiControlsDelegatesDictionary["FinishedAllTrialsRound"]);
-
-                //choose none rat in the selected rat
-                _mainGuiInterfaceControlsDictionary["ResetSelectedRatNameCombobox"].BeginInvoke(_mainGuiControlsDelegatesDictionary["ResetSelectedRatNameCombobox"]);
-        }
-
-        /// <summary>
-        /// Load all mp3 files that the MediaPlayer object should use.
-        /// </summary>
-        private void LoadAllSoundPlayers()
-        {
-            _soundPlayerPathDB.Add("CorrectAnswer", Application.StartupPath + @"\SoundEffects\correct sound effect.wav");
-            _soundPlayerPathDB.Add("WrongAnswer", Application.StartupPath + @"\SoundEffects\Wrong Buzzer Sound Effect.wav");
-            _soundPlayerPathDB.Add("Ding", Application.StartupPath + @"\SoundEffects\Ding Sound Effects.wav");
-            _soundPlayerPathDB.Add("MissingAnswer", Application.StartupPath + @"\SoundEffects\Wrong Buzzer Sound Effect.wav");
-            _soundPlayerPathDB.Add("Ding-Left", Application.StartupPath + @"\SoundEffects\Ding Sound Effects - Left.wav");
-            _soundPlayerPathDB.Add("Ding-Right", Application.StartupPath + @"\SoundEffects\Ding Sound Effects - Right.wav");
-        }
-
-        /// <summary>
-        /// Show global experiment parameters.
-        /// </summary>
-        private void ShowGlobalExperimentDetailsListView()
-        {
-            //clear the past global details in the global details listview.
-            _mainGuiInterfaceControlsDictionary["ClearGlobaExperimentlDetailsViewList"].BeginInvoke(
-            _mainGuiControlsDelegatesDictionary["ClearGlobaExperimentlDetailsViewList"]);
-
-            //update the number of trials count.
-            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Trial # (count)", ((_totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks + _totalHeadFixationBreaksStartDelay + 1)).ToString());
-
-            //update the number of total correct head in center with stabilty during duration time.
-            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Success Trials", (_totalChoices).ToString());
-
-            //update the number of total correct answers.
-            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Correct Answers", (_totalCorrectAnswers).ToString());
-
-            //update the number of total failure trial during duration time.
-            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Failure Trials", (_totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks + _totalHeadFixationBreaksStartDelay - _totalChoices).ToString());
-
-            //update the number of total fixation breaks.
-            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Fixation Breaks", (_totalHeadFixationBreaks + _totalHeadFixationBreaksStartDelay).ToString());
-
-            //update the number of left trials.
-            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Remaining Trials", (_varyingIndexSelector.CountRemaining()).ToString());
-
-            //update the number of total correct head in center with stabilty during duration time.
-            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "No choices", (_totalHeadStabilityInCenterDuringDurationTime - _totalChoices).ToString());
-        }
-
-        /// <summary>
-        /// Show the current trial dynamic details to the ListView.
-        /// </summary>
-        public void ShowTrialDetailsToTheDetailsListView()
-        {
-            Dictionary<string , List<double>> currentTrialDetails =  _crossVaryingVals[_currentVaryingTrialIndex];
-            _mainGuiInterfaceControlsDictionary["ClearCurrentTrialDetailsViewList"].BeginInvoke(
-            _mainGuiControlsDelegatesDictionary["ClearCurrentTrialDetailsViewList"]);
-
-            foreach (string varName in currentTrialDetails.Keys)
-            {
-                string currentParameterDetails;
-                //only ratHouseParameter
-                if (currentTrialDetails[varName].Count == 1)
-                    currentParameterDetails = "[" + currentTrialDetails[varName][0].ToString() + "]";
-                else
-                    currentParameterDetails = "[" + currentTrialDetails[varName][0].ToString() + "]" + "[" + currentTrialDetails[varName][1].ToString() + "]";
-                //both ratHouseParameter and landscapeHouseParameter
-                
-                _mainGuiInterfaceControlsDictionary["UpdateCurrentTrialDetailsViewList"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateCurrentTrialDetailsViewList"], varName, currentParameterDetails);
-            }
-        }
-
         /// <summary>
         /// Initializes the variables , points , trajectories , random varibles ,  etc.
         /// </summary>
@@ -1213,6 +1115,172 @@ namespace PinkyAndBrain
 
             return (x == 2);
         }
+        
+        /// <summary>
+        /// The post trial time - analyaing the response , saving all the trial data into the results file.
+        /// <param name="duration1HeadInTheCenterStabilityStage">Indicated if one of the robots ot both moved due to suration 1 head in the center stability stage.</param>
+        /// <returns>True if trial succeed otherwise returns false.</returns>
+        /// </summary>
+        public bool PostTrialStage(bool duration1HeadInTheCenterStabilityStage)
+        {
+            bool trialSucceed = true;
+
+            //update the global details listview with the current stage.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Post trial time.");
+
+            //if no answer in the response time or not even coming to tge response time.
+            if (!FixationOnlyMode && !(_currentRatDecision.Equals(RatDecison.Left) || _currentRatDecision.Equals(RatDecison.Right)))
+                //reset status of the current trial combination index if there was no reponse stage at all.
+                //_varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
+                trialSucceed = false;
+
+            if (FixationOnlyMode && !_currentRatDecision.Equals(RatDecison.PassDurationTime))
+                //reset status of the current trial combination index if there was no reponse stage at all.
+                //_varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
+                trialSucceed = false;
+
+            //Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveRobotHomePosition());
+
+            //need to get the robot backword only if ther was a rat enterance that trigger thr robot motion.
+            UpdateRobotHomePositionBackwordsJBIFile();
+            Task moveRobotHomePositionTask;
+            if (!duration1HeadInTheCenterStabilityStage)
+                moveRobotHomePositionTask = Task.Factory.StartNew(() => NullFunction());
+            else
+                moveRobotHomePositionTask = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+
+            //save the dat into the result file only if the trial is within success trials (that have any stimulus)
+            if (!_currentRatDecision.Equals(RatDecison.NoEntryToResponseStage))
+            {
+                Task.Run(() =>
+                {
+                    _savedExperimentDataMaker.SaveTrialDataToFile(new TrialData()
+                    {
+                        StaticVariables = _staticVariablesList,
+                        VaryingVariables = _crossVaryingVals[_currentVaryingTrialIndex],
+                        TimingsVariables = _currentTrialTimings,
+                        RatName = RatName,
+                        RatDecison = _currentRatDecision,
+                        TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks,
+                        RRInverse = _inverseRRDecision,
+                        AutosOptions = _autosOptionsInRealTime
+                    });
+                });
+            }
+
+            Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
+
+            //wait the maximum time of the postTrialTime and the going home position time.
+            moveRobotHomePositionTask.Wait();
+
+            return trialSucceed;
+        }
+        #endregion
+
+        #region GUI_CONTROLS_FUNCTIONS
+        /// <summary>
+        /// Show global experiment parameters.
+        /// </summary>
+        private void ShowGlobalExperimentDetailsListView()
+        {
+            //clear the past global details in the global details listview.
+            _mainGuiInterfaceControlsDictionary["ClearGlobaExperimentlDetailsViewList"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["ClearGlobaExperimentlDetailsViewList"]);
+
+            //update the number of trials count.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Trial # (count)", ((_totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks + _totalHeadFixationBreaksStartDelay + 1)).ToString());
+
+            //update the number of total correct head in center with stabilty during duration time.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Success Trials", (_totalChoices).ToString());
+
+            //update the number of total correct answers.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Correct Answers", (_totalCorrectAnswers).ToString());
+
+            //update the number of total failure trial during duration time.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Failure Trials", (_totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks + _totalHeadFixationBreaksStartDelay - _totalChoices).ToString());
+
+            //update the number of total fixation breaks.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Fixation Breaks", (_totalHeadFixationBreaks + _totalHeadFixationBreaksStartDelay).ToString());
+
+            //update the number of left trials.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Remaining Trials", (_varyingIndexSelector.CountRemaining()).ToString());
+
+            //update the number of total correct head in center with stabilty during duration time.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "No choices", (_totalHeadStabilityInCenterDuringDurationTime - _totalChoices).ToString());
+        }
+
+        /// <summary>
+        /// Show the current trial dynamic details to the ListView.
+        /// </summary>
+        public void ShowTrialDetailsToTheDetailsListView()
+        {
+            Dictionary<string , List<double>> currentTrialDetails =  _crossVaryingVals[_currentVaryingTrialIndex];
+            _mainGuiInterfaceControlsDictionary["ClearCurrentTrialDetailsViewList"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["ClearCurrentTrialDetailsViewList"]);
+
+            foreach (string varName in currentTrialDetails.Keys)
+            {
+                string currentParameterDetails;
+                //only ratHouseParameter
+                if (currentTrialDetails[varName].Count == 1)
+                    currentParameterDetails = "[" + currentTrialDetails[varName][0].ToString() + "]";
+                else
+                    currentParameterDetails = "[" + currentTrialDetails[varName][0].ToString() + "]" + "[" + currentTrialDetails[varName][1].ToString() + "]";
+                //both ratHouseParameter and landscapeHouseParameter
+                
+                _mainGuiInterfaceControlsDictionary["UpdateCurrentTrialDetailsViewList"].BeginInvoke(
+                _mainGuiControlsDelegatesDictionary["UpdateCurrentTrialDetailsViewList"], varName, currentParameterDetails);
+            }
+        }
+        #endregion
+
+        #region ADDITIONAL_FUNCTIONS
+        /// <summary>
+        /// This function is called if the control loop asked to be ended.
+        /// </summary>
+        public void EndControlLoopByStopFunction()
+        {
+                Globals._systemState = SystemState.FINISHED;
+
+                //set robot's servo off.
+                _motomanController.SetServoOff();
+
+                //reset the repetition index.
+                _repetitionIndex = 0;
+
+                //show the final global experiment info (show it the last time)
+                ShowGlobalExperimentDetailsListView();
+
+                //Close and release the current saved file.
+                _savedExperimentDataMaker.CloseFile();
+
+                //raise an event for the GuiInterface that the trials round is over.
+                _mainGuiInterfaceControlsDictionary["FinishedAllTrialsRound"].BeginInvoke(_mainGuiControlsDelegatesDictionary["FinishedAllTrialsRound"]);
+
+                //choose none rat in the selected rat
+                _mainGuiInterfaceControlsDictionary["ResetSelectedRatNameCombobox"].BeginInvoke(_mainGuiControlsDelegatesDictionary["ResetSelectedRatNameCombobox"]);
+        }
+
+        /// <summary>
+        /// Load all mp3 files that the MediaPlayer object should use.
+        /// </summary>
+        private void LoadAllSoundPlayers()
+        {
+            _soundPlayerPathDB.Add("CorrectAnswer", Application.StartupPath + @"\SoundEffects\correct sound effect.wav");
+            _soundPlayerPathDB.Add("WrongAnswer", Application.StartupPath + @"\SoundEffects\Wrong Buzzer Sound Effect.wav");
+            _soundPlayerPathDB.Add("Ding", Application.StartupPath + @"\SoundEffects\Ding Sound Effects.wav");
+            _soundPlayerPathDB.Add("MissingAnswer", Application.StartupPath + @"\SoundEffects\Wrong Buzzer Sound Effect.wav");
+            _soundPlayerPathDB.Add("Ding-Left", Application.StartupPath + @"\SoundEffects\Ding Sound Effects - Left.wav");
+            _soundPlayerPathDB.Add("Ding-Right", Application.StartupPath + @"\SoundEffects\Ding Sound Effects - Right.wav");
+        }
 
         /// <summary>
         /// Determine the current trial stimulus type bt the stimulus type variable status.
@@ -1344,74 +1412,6 @@ namespace PinkyAndBrain
             //return the result.
             return (double)(randTimeInteger) / 1000;
         }
-
-        /// <summary>
-        /// The main stage - for the trial - moving robot , response and rewards.
-        /// </summary>
-        public void MainTimerStage()
-        {
-        }
-
-        /// <summary>
-        /// The post trial time - analyaing the response , saving all the trial data into the results file.
-        /// <param name="duration1HeadInTheCenterStabilityStage">Indicated if one of the robots ot both moved due to suration 1 head in the center stability stage.</param>
-        /// <returns>True if trial succeed otherwise returns false.</returns>
-        /// </summary>
-        public bool PostTrialStage(bool duration1HeadInTheCenterStabilityStage)
-        {
-            bool trialSucceed = true;
-
-            //update the global details listview with the current stage.
-            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Post trial time.");
-
-            //if no answer in the response time or not even coming to tge response time.
-            if (!FixationOnlyMode && !(_currentRatDecision.Equals(RatDecison.Left) || _currentRatDecision.Equals(RatDecison.Right)))
-                //reset status of the current trial combination index if there was no reponse stage at all.
-                //_varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
-                trialSucceed = false;
-
-            if (FixationOnlyMode && !_currentRatDecision.Equals(RatDecison.PassDurationTime))
-                //reset status of the current trial combination index if there was no reponse stage at all.
-                //_varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
-                trialSucceed = false;
-
-            //Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveRobotHomePosition());
-
-            //need to get the robot backword only if ther was a rat enterance that trigger thr robot motion.
-            UpdateRobotHomePositionBackwordsJBIFile();
-            Task moveRobotHomePositionTask;
-            if (!duration1HeadInTheCenterStabilityStage)
-                moveRobotHomePositionTask = Task.Factory.StartNew(() => NullFunction());
-            else
-                moveRobotHomePositionTask = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
-
-            //save the dat into the result file only if the trial is within success trials (that have any stimulus)
-            if (!_currentRatDecision.Equals(RatDecison.NoEntryToResponseStage))
-            {
-                Task.Run(() =>
-                {
-                    _savedExperimentDataMaker.SaveTrialDataToFile(new TrialData()
-                    {
-                        StaticVariables = _staticVariablesList,
-                        VaryingVariables = _crossVaryingVals[_currentVaryingTrialIndex],
-                        TimingsVariables = _currentTrialTimings,
-                        RatName = RatName,
-                        RatDecison = _currentRatDecision,
-                        TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks,
-                        RRInverse = _inverseRRDecision,
-                        AutosOptions = _autosOptionsInRealTime
-                    });
-                });
-            }
-
-            Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
-
-            //wait the maximum time of the postTrialTime and the going home position time.
-            moveRobotHomePositionTask.Wait();
-
-            return trialSucceed;
-        }
         
         /// <summary>
         /// Null bumper function.
@@ -1518,7 +1518,9 @@ namespace PinkyAndBrain
             if(Globals._systemState.Equals(SystemState.RUNNING))
                 _mainGuiInterfaceControlsDictionary["SetNoldusRatResponseInteractivePanel"].BeginInvoke(_mainGuiControlsDelegatesDictionary["SetNoldusRatResponseInteractivePanel"] , _currentRatResponse);
         }
+        #endregion
 
+        #region EVENTS
         /// <summary>
         /// Handler for raising interval time evemt for the water fill estimation panel.
         /// </summary>
@@ -1529,7 +1531,9 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["SetWaterRewardsMeasure"].BeginInvoke(
                 _mainGuiControlsDelegatesDictionary["SetWaterRewardsMeasure"] , false);
         }
+        #endregion
 
+        #region STRUCT_ENUMS
         /// <summary>
         /// Struct contains all the trial timings.
         /// </summary>
@@ -1657,6 +1661,7 @@ namespace PinkyAndBrain
             /// </summary>
             Right = 0x04,
         };
+        #endregion
         #endregion FUNCTIONS
     }
 }

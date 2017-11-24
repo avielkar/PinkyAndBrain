@@ -37,13 +37,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this._protocolsFolderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this._protocolBrowserBtn = new System.Windows.Forms.Button();
-            this._startButton = new System.Windows.Forms.Button();
+            this._btnStart = new System.Windows.Forms.Button();
             this._varyingListBox = new System.Windows.Forms.ListBox();
             this._addVaryingCobination = new System.Windows.Forms.Button();
             this._removeVaryingCombination = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this._makeTrials = new System.Windows.Forms.Button();
-            this._stopButtom = new System.Windows.Forms.Button();
+            this._btnStop = new System.Windows.Forms.Button();
             this._trialDetailsListView = new System.Windows.Forms.ListView();
             this._trialParametersGroup = new System.Windows.Forms.GroupBox();
             this._dynamicParametersPanel = new System.Windows.Forms.Panel();
@@ -55,6 +55,7 @@
             this._continiousHandRewardButton = new System.Windows.Forms.Button();
             this._autoRewardsCheckBox = new System.Windows.Forms.CheckBox();
             this._varyingControlGroupBox = new System.Windows.Forms.GroupBox();
+            this._btnPark = new System.Windows.Forms.Button();
             this._btnResume = new System.Windows.Forms.Button();
             this._btnPause = new System.Windows.Forms.Button();
             this._textboxStickOnNumber = new System.Windows.Forms.TextBox();
@@ -96,7 +97,6 @@
             this._labelBrightness = new System.Windows.Forms.Label();
             this._textboxPercentageOfTurnOnLeds = new System.Windows.Forms.TextBox();
             this._labelPercentageOfturnedOnLeds = new System.Windows.Forms.Label();
-            this._btnPark = new System.Windows.Forms.Button();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -157,15 +157,15 @@
             this._protocolBrowserBtn.UseVisualStyleBackColor = true;
             this._protocolBrowserBtn.Click += new System.EventHandler(this.protocolBrowserBtn_Click);
             // 
-            // _startButton
+            // _btnStart
             // 
-            this._startButton.Location = new System.Drawing.Point(6, 409);
-            this._startButton.Name = "_startButton";
-            this._startButton.Size = new System.Drawing.Size(75, 23);
-            this._startButton.TabIndex = 4;
-            this._startButton.Text = "Start";
-            this._startButton.UseVisualStyleBackColor = true;
-            this._startButton.Click += new System.EventHandler(this._startButton_Click);
+            this._btnStart.Location = new System.Drawing.Point(6, 409);
+            this._btnStart.Name = "_btnStart";
+            this._btnStart.Size = new System.Drawing.Size(75, 23);
+            this._btnStart.TabIndex = 4;
+            this._btnStart.Text = "Start";
+            this._btnStart.UseVisualStyleBackColor = true;
+            this._btnStart.Click += new System.EventHandler(this._btnStart_Click);
             // 
             // _varyingListBox
             // 
@@ -206,15 +206,15 @@
             this._makeTrials.UseVisualStyleBackColor = true;
             this._makeTrials.Click += new System.EventHandler(this._makeTrials_Click);
             // 
-            // _stopButtom
+            // _btnStop
             // 
-            this._stopButtom.Location = new System.Drawing.Point(6, 438);
-            this._stopButtom.Name = "_stopButtom";
-            this._stopButtom.Size = new System.Drawing.Size(75, 23);
-            this._stopButtom.TabIndex = 9;
-            this._stopButtom.Text = "Stop";
-            this._stopButtom.UseVisualStyleBackColor = true;
-            this._stopButtom.Click += new System.EventHandler(this._stopButtom_Click);
+            this._btnStop.Location = new System.Drawing.Point(6, 438);
+            this._btnStop.Name = "_btnStop";
+            this._btnStop.Size = new System.Drawing.Size(75, 23);
+            this._btnStop.TabIndex = 9;
+            this._btnStop.Text = "Stop";
+            this._btnStop.UseVisualStyleBackColor = true;
+            this._btnStop.Click += new System.EventHandler(this._btnStop_Click);
             // 
             // _trialDetailsListView
             // 
@@ -332,10 +332,10 @@
             this._varyingControlGroupBox.Controls.Add(this._numOfRepetitionsTextBox);
             this._varyingControlGroupBox.Controls.Add(this.label5);
             this._varyingControlGroupBox.Controls.Add(this._varyingListBox);
-            this._varyingControlGroupBox.Controls.Add(this._startButton);
+            this._varyingControlGroupBox.Controls.Add(this._btnStart);
             this._varyingControlGroupBox.Controls.Add(this._makeTrials);
             this._varyingControlGroupBox.Controls.Add(this._addVaryingCobination);
-            this._varyingControlGroupBox.Controls.Add(this._stopButtom);
+            this._varyingControlGroupBox.Controls.Add(this._btnStop);
             this._varyingControlGroupBox.Controls.Add(this._removeVaryingCombination);
             this._varyingControlGroupBox.Location = new System.Drawing.Point(930, 81);
             this._varyingControlGroupBox.Name = "_varyingControlGroupBox";
@@ -343,6 +343,16 @@
             this._varyingControlGroupBox.TabIndex = 13;
             this._varyingControlGroupBox.TabStop = false;
             this._varyingControlGroupBox.Text = "Varying Control";
+            // 
+            // _btnPark
+            // 
+            this._btnPark.Location = new System.Drawing.Point(7, 351);
+            this._btnPark.Name = "_btnPark";
+            this._btnPark.Size = new System.Drawing.Size(75, 23);
+            this._btnPark.TabIndex = 16;
+            this._btnPark.Text = "Park";
+            this._btnPark.UseVisualStyleBackColor = true;
+            this._btnPark.Click += new System.EventHandler(this._btnPark_Click);
             // 
             // _btnResume
             // 
@@ -734,16 +744,6 @@
             this._labelPercentageOfturnedOnLeds.TabIndex = 0;
             this._labelPercentageOfturnedOnLeds.Text = "% turn on LEDS";
             // 
-            // _btnPark
-            // 
-            this._btnPark.Location = new System.Drawing.Point(7, 351);
-            this._btnPark.Name = "_btnPark";
-            this._btnPark.Size = new System.Drawing.Size(75, 23);
-            this._btnPark.TabIndex = 16;
-            this._btnPark.Text = "Park";
-            this._btnPark.UseVisualStyleBackColor = true;
-            this._btnPark.Click += new System.EventHandler(this._btnPark_Click);
-            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -808,13 +808,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.FolderBrowserDialog _protocolsFolderBrowser;
         private System.Windows.Forms.Button _protocolBrowserBtn;
-        private System.Windows.Forms.Button _startButton;
+        private System.Windows.Forms.Button _btnStart;
         private System.Windows.Forms.ListBox _varyingListBox;
         private System.Windows.Forms.Button _addVaryingCobination;
         private System.Windows.Forms.Button _removeVaryingCombination;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button _makeTrials;
-        private System.Windows.Forms.Button _stopButtom;
+        private System.Windows.Forms.Button _btnStop;
         private System.Windows.Forms.ListView _trialDetailsListView;
         private System.Windows.Forms.GroupBox _trialParametersGroup;
         private System.Windows.Forms.Panel _dynamicParametersPanel;

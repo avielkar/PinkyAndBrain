@@ -16,6 +16,7 @@ namespace PinkyAndBrain
     /// </summary>
     public class MotomanController
     {
+        #region MEMBSERS
         /// <summary>
         /// Logger for writing log information.
         /// </summary>
@@ -30,7 +31,9 @@ namespace PinkyAndBrain
         /// The JBI protocol file creator for each trial trajectory.
         /// </summary>
         public MotomanProtocolFileCreator MotomanProtocolFileCreator;
+        #endregion
 
+        #region CONSTRUCTORS
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -44,7 +47,9 @@ namespace PinkyAndBrain
 
             _logger = logger;
         }
+        #endregion
 
+        #region WrappedFunctions
         /// <summary>
         /// Set the robot servo's on.
         /// </summary>
@@ -60,7 +65,9 @@ namespace PinkyAndBrain
         {
             _motomanController.SetServoOff();
         }
+        #endregion
 
+        #region JBI_FILES_CONTROLLS_FUNCTIONS
         /// <summary>
         /// Updating the robot working JBI file according to the trajectory and the stimulus type.
         /// </summary>
@@ -203,7 +210,9 @@ namespace PinkyAndBrain
             _motomanController.WaitJobFinished(10000);
             _logger.Info("Moving the robot finished.");
         }
+        #endregion
 
+        #region ADDITIONAL_FUNCTIONS
         /// <summary>
         /// Trajectory inversing function for inversing the points backwords.
         /// </summary>
@@ -239,5 +248,6 @@ namespace PinkyAndBrain
             //return the inversed trajectory.
             return inverseTrajectory;
         }
+        #endregion
     }
 }

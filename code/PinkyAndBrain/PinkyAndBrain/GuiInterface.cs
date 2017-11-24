@@ -22,7 +22,6 @@ namespace PinkyAndBrain
     public partial class GuiInterface : Form
     {
         #region MEMBERS
-
         /// <summary>
         /// The selected protocols path to view protocols.
         /// </summary>
@@ -180,8 +179,8 @@ namespace PinkyAndBrain
             //allocate the start/stop buttom locker.
             _lockerStopStartButton = new object();
             //disable initialy the start and stop buttom untill makeTrials buttom is pressed.
-            _startButton.Enabled = false;
-            _stopButtom.Enabled = false;
+            _btnStart.Enabled = false;
+            _btnStop.Enabled = false;
 
             //allocate the pause/resume nuttom locker.
             _lockerPauseResumeButton = new object();
@@ -413,8 +412,8 @@ namespace PinkyAndBrain
         /// </summary>
         public void FinishedAllTrialsRound()
         {
-            _stopButtom.Enabled = false;
-            _startButton.Enabled = false;
+            _btnStop.Enabled = false;
+            _btnStart.Enabled = false;
             _makeTrials.Enabled = true;
         }
 
@@ -537,7 +536,7 @@ namespace PinkyAndBrain
             //add the delegate for event indicates finshing all rounds in trial experiment.
             FinishedAllTrialsInRoundDelegate finishedAlltrialRoundDelegate = new FinishedAllTrialsInRoundDelegate(FinishedAllTrialsRound);
             ctrlDelegatesDic.Add("FinishedAllTrialsRound", finishedAlltrialRoundDelegate);
-            ctrlDictionary.Add("FinishedAllTrialsRound", _stopButtom);
+            ctrlDictionary.Add("FinishedAllTrialsRound", _btnStop);
 
             //add the delegate for events changing the online psycho graph for the experiment results.
             ctrlDictionary.Add("OnlinePsychoGraph", _onlinePsychGraphControl);
@@ -588,7 +587,9 @@ namespace PinkyAndBrain
                 _cntrlLoop.Dispose();
             }
         }
+        #endregion GLOBAL_EVENTS_HANDLE_FUNCTIONS
 
+        #region PROTOCOL_GROUPBOX_FUNCTION
         /// <summary>
         /// Event handler for clicking the protocol browser buttom.
         /// </summary>
@@ -627,7 +628,45 @@ namespace PinkyAndBrain
             _protoclsDirPath = this._protocolsFolderBrowser.SelectedPath;
             AddFilesToComboBox(_protocolsComboBox, _protoclsDirPath);
         }
+        
+        /// <summary>
+        /// Add the files ends with .xlsx extension to the protocol ComboBox.
+        /// </summary>
+        private void AddFilesToComboBox(ComboBox comboBox, string dirPath)
+        {
+            if (Directory.Exists(dirPath))
+            {
+                string[] filesEntries = Directory.GetFiles(dirPath);
 
+                foreach (string file in filesEntries)
+                {
+                    if(Path.GetExtension(file).Equals(".xlsx"))
+                    {
+                        _protocolsComboBox.Items.Add(Path.GetFileName(file));
+                    }
+                }
+
+            }
+
+            if (_protocolsComboBox.Items.Count > 0)
+            {
+                _protocolsComboBox.SelectedItem = _protocolsComboBox.Items[0];
+                SetVariables(_protoclsDirPath + "\\" +_protocolsComboBox.Items[0].ToString());
+                //that was deleted because it show the variables already in the two lines before.
+                //ShowVariablesToGui();
+            }
+        }
+        
+        /// <summary>
+        /// Sets the variables in the chosen xslx file and stote them in the class members.
+        /// </summary>
+        private void SetVariables(string dirPath)
+        {
+            _excelLoader.ReadProtocolFile(dirPath , ref _variablesList);
+        }
+        #endregion
+
+        #region SELECTED_RAT_GROUPBOX_FUNCTIONS
         /// <summary>
         /// Adding the rat names to the rat names combo box by the configuration settings.
         /// </summary>
@@ -653,78 +692,53 @@ namespace PinkyAndBrain
             else
                 _cntrlLoop.RatName = "";
         }
+        #endregion  
 
+        #region EXPERIMENT_RUNNING_CHANGING_FUNCTION
         /// <summary>
-        /// Function handler for changing the variable from the Gui according to the textboxes input when leaving the textbox.
+        /// Function handler for parking the robot.
         /// </summary>
-        /// <param name="sender">The textbox sender object have been changed.</param>
-        /// <param name="e">args.</param>
-        /// <param name="varName">The variable name in the variables dictionary to update according to the textbox.</param>
-        private void VariableTextBox_TextBoxLeaved(object sender, EventArgs e , string varName , string varAttibuteName)
-        {
-            TextBox tb = sender as TextBox;
-
-            CheckProperInputSpelling(tb.Text , varName , varAttibuteName);
-        }
-
-        /// <summary>
-        /// Function handler for status variable combobox changed.
-        /// </summary>
-        /// <param name="sender">The combobox object that was changed.</param>
-        /// <param name="e">The args.</param>
-        /// <param name="varName">The var name it's combobox changed.</param>
-        private void statusCombo_SelectedIndexChanged(object sender, EventArgs e , string varName)
-        {
-            ComboBox cb = sender as ComboBox;
-            string selectedIndex="";
-
-            //decide which index in the status list was selected.
-            selectedIndex = StatusIndexByNameDecoder(cb.SelectedItem.ToString());
-
-            //update the status in the variables dictionary.
-            _variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0] = selectedIndex;
-
-            //Check if both he num of staicases and withinstairs is 1 or 0.
-            #region STATUS_NUM_OF_OCCURENCES
-            int withinStairStstusOccurences = NumOfSpecificStatus("WithinStair");
-            int acrossStairStatusOccurences = NumOfSpecificStatus("AcrossStair");
-            if (withinStairStstusOccurences != acrossStairStatusOccurences || acrossStairStatusOccurences > 1)
-            {
-                MessageBox.Show("The number of Withinstairs is the same as AccrossStairs and both not occurs more than 1!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            #endregion STATUS_NUM_OF_OCCURENCES
-
-            #region TEXTBOXES_FREEZING_NEW_STATUS
-            //update the gui textboxes freezing according to the new status.
-            foreach (string attribute in _variablesList._variablesDictionary[varName]._description.Keys)
-            {
-                if(!attribute.Equals("status"))
-                {
-                    if (_dynamicAllocatedTextBoxes.ContainsKey(varName + attribute))
-                        FreezeTextBoxAccordingToStatus((TextBox)_dynamicAllocatedTextBoxes[varName + attribute] , varName , attribute.Equals("parameters"));
-                }
-            }
-            #endregion TEXTBOXES_FREEZING_NEW_STATUS
-
-            //change the parametes attribute textbox for the changed status variable.
-            #region PRAMETERS_TEXTBOX_CHANGE_TEXT_SHOW
-            SetParametersTextBox(varName , new StringBuilder());
-            #endregion PRAMETERS_TEXTBOX_CHANGE_TEXT_SHOW
-        }
-
-
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">Args.</param>
         private void _btnPark_Click(object sender, EventArgs e)
         {
-            //set robot servo on and go homeposition.
-            _motocomController.SetServoOn();
+            lock (_lockerPauseResumeButton)
+            {
+                lock (_lockerPauseResumeButton)
+                {
+                    #region DISABLE_BUTTONS
+                    bool isBtnStartEnabled = _btnStart.Enabled;
+                    bool isBtnStopEnabled = _btnStop.Enabled;
+                    bool isBtnResumeEnabled = _btnResume.Enabled;
+                    bool isBtnPauseEnabled = _btnPause.Enabled;
 
-            _motocomController.WriteParkPositionFile();
-            _motocomController.MoveRobotParkPosition();
+                    _btnStart.Enabled = false;
+                    _btnStop.Enabled = false;
+                    _btnResume.Enabled = false;
+                    _btnPause.Enabled = false;
+                    _btnPark.Enabled = false;
+                    #endregion
 
-            //TODO : change to deal with the time the job finished and not constant time.
-            Thread.Sleep(8000);
+                    //set robot servo on and go homeposition.
+                    _motocomController.SetServoOn();
 
-            _motocomController.SetServoOff();
+                    _motocomController.WriteParkPositionFile();
+                    _motocomController.MoveRobotParkPosition();
+
+                    //TODO : change to deal with the time the job finished and not constant time.
+                    Thread.Sleep(8000);
+
+                    _motocomController.SetServoOff();
+
+                    #region ENABLE_BUTTONS_BACK
+                    _btnStart.Enabled = isBtnStartEnabled;
+                    _btnStop.Enabled = isBtnStopEnabled;
+                    _btnResume.Enabled = isBtnResumeEnabled;
+                    _btnPause.Enabled = isBtnPauseEnabled;
+                    _btnPark.Enabled = true;
+                    #endregion
+                }
+            }
         }
 
         /// <summary>
@@ -732,18 +746,19 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="sender">Sender.</param>
         /// <param name="e">args.</param>
-        private void _startButton_Click(object sender, EventArgs e)
+        private void _btnStart_Click(object sender, EventArgs e)
         {
             //if everything is o.k start the control loop.
             if(StartLoopStartCheck())
             {
                 lock (_lockerStopStartButton)
                 {
-                    _startButton.Enabled = false;
+                    _btnStart.Enabled = false;
                     _makeTrials.Enabled = false;
-                    _stopButtom.Enabled = true;
+                    _btnStop.Enabled = true;
                     _btnPause.Enabled = true;
                     _btnResume.Enabled = false;
+                    _btnPark.Enabled = false;
 
                     //if already running - ignore.
                     if (!Globals._systemState.Equals(SystemState.RUNNING))
@@ -847,7 +862,7 @@ namespace PinkyAndBrain
             ShowVaryingControlsOptions(true);
 
             //show the start button
-            _startButton.Enabled = true;
+            _btnStart.Enabled = true;
         }
 
         /// <summary>
@@ -855,19 +870,22 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="sender">The stop buttom object.</param>
         /// <param name="e">The args.</param>
-        private void _stopButtom_Click(object sender, EventArgs e)
+        private void _btnStop_Click(object sender, EventArgs e)
         {
             //update the system state.
             //Globals._systemState = SystemState.STOPPED;
             lock (_lockerStopStartButton)
             {
-                _stopButtom.Enabled = false;
-                _startButton.Enabled = true;
-                _btnPause.Enabled = false;
-                _btnResume.Enabled = false;
-
                 //stop the control loop.
                 _cntrlLoop.Stop();
+
+                #region ENABLE_DISABLE_BUTTONS
+                _btnStop.Enabled = false;
+                _btnStart.Enabled = true;
+                _btnPause.Enabled = false;
+                _btnResume.Enabled = false;
+                _btnPark.Enabled = true;
+                #endregion
             }
         }
 
@@ -904,7 +922,7 @@ namespace PinkyAndBrain
                 _cntrlLoop.Resume();
             }
         }
-        #endregion GLOBAL_EVENTS_HANDLE_FUNCTIONS
+        #endregion
 
         #region VARYING_LISTBOX_FUNCTIONS
         /// <summary>
@@ -1199,6 +1217,80 @@ namespace PinkyAndBrain
             this._addVaryingCobination.Visible = show;
             this._removeVaryingCombination.Visible = show;
         }
+
+        /// <summary>
+        /// Function handler for changing the variable from the Gui according to the textboxes input when leaving the textbox.
+        /// </summary>
+        /// <param name="sender">The textbox sender object have been changed.</param>
+        /// <param name="e">args.</param>
+        /// <param name="varName">The variable name in the variables dictionary to update according to the textbox.</param>
+        private void VariableTextBox_TextBoxLeaved(object sender, EventArgs e , string varName , string varAttibuteName)
+        {
+            TextBox tb = sender as TextBox;
+
+            CheckProperInputSpelling(tb.Text , varName , varAttibuteName);
+        }
+
+        /// <summary>
+        /// Function handler for status variable combobox changed.
+        /// </summary>
+        /// <param name="sender">The combobox object that was changed.</param>
+        /// <param name="e">The args.</param>
+        /// <param name="varName">The var name it's combobox changed.</param>
+        private void statusCombo_SelectedIndexChanged(object sender, EventArgs e , string varName)
+        {
+            ComboBox cb = sender as ComboBox;
+            string selectedIndex="";
+
+            //decide which index in the status list was selected.
+            selectedIndex = StatusIndexByNameDecoder(cb.SelectedItem.ToString());
+
+            //update the status in the variables dictionary.
+            _variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0] = selectedIndex;
+
+            //Check if both he num of staicases and withinstairs is 1 or 0.
+            #region STATUS_NUM_OF_OCCURENCES
+            int withinStairStstusOccurences = NumOfSpecificStatus("WithinStair");
+            int acrossStairStatusOccurences = NumOfSpecificStatus("AcrossStair");
+            if (withinStairStstusOccurences != acrossStairStatusOccurences || acrossStairStatusOccurences > 1)
+            {
+                MessageBox.Show("The number of Withinstairs is the same as AccrossStairs and both not occurs more than 1!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            #endregion STATUS_NUM_OF_OCCURENCES
+
+            #region TEXTBOXES_FREEZING_NEW_STATUS
+            //update the gui textboxes freezing according to the new status.
+            foreach (string attribute in _variablesList._variablesDictionary[varName]._description.Keys)
+            {
+                if(!attribute.Equals("status"))
+                {
+                    if (_dynamicAllocatedTextBoxes.ContainsKey(varName + attribute))
+                        FreezeTextBoxAccordingToStatus((TextBox)_dynamicAllocatedTextBoxes[varName + attribute] , varName , attribute.Equals("parameters"));
+                }
+            }
+            #endregion TEXTBOXES_FREEZING_NEW_STATUS
+
+            //change the parametes attribute textbox for the changed status variable.
+            #region PRAMETERS_TEXTBOX_CHANGE_TEXT_SHOW
+            SetParametersTextBox(varName , new StringBuilder());
+            #endregion PRAMETERS_TEXTBOX_CHANGE_TEXT_SHOW
+        }
+
+        /// <summary>
+        /// Handler for changing the number of repetition input text.
+        /// </summary>
+        /// <param name="sender">The checkbox control.</param>
+        /// <param name="e">Args.</param>
+        private void _numOfRepetitionsTextBox_Leave(object sender, EventArgs e)
+        {
+            //check if represents an integer number.
+            if (!IntegerChecker(_numOfRepetitionsTextBox.Text.ToString()))
+            {
+                MessageBox.Show("No an integer number entered - returnnig to 1 as default", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //put the default number.
+                _numOfRepetitionsTextBox.Text = "1";
+            }
+        }
         #endregion VARYING_LISTBOX_FUNCTIONS
 
         #region HAND_REWARD_CONTROLL_FUNCTION
@@ -1384,45 +1476,8 @@ namespace PinkyAndBrain
                 _cntrlLoop.EnableFixationBreakSound = false;
         }
         #endregion MODES
-
-        #region my_functions
-
-        /// <summary>
-        /// Add the files ends with .xlsx extension to the protocol ComboBox.
-        /// </summary>
-        private void AddFilesToComboBox(ComboBox comboBox, string dirPath)
-        {
-            if (Directory.Exists(dirPath))
-            {
-                string[] filesEntries = Directory.GetFiles(dirPath);
-
-                foreach (string file in filesEntries)
-                {
-                    if(Path.GetExtension(file).Equals(".xlsx"))
-                    {
-                        _protocolsComboBox.Items.Add(Path.GetFileName(file));
-                    }
-                }
-
-            }
-
-            if (_protocolsComboBox.Items.Count > 0)
-            {
-                _protocolsComboBox.SelectedItem = _protocolsComboBox.Items[0];
-                SetVariables(_protoclsDirPath + "\\" +_protocolsComboBox.Items[0].ToString());
-                //that was deleted because it show the variables already in the two lines before.
-                //ShowVariablesToGui();
-            }
-        }
-
-        /// <summary>
-        /// Sets the variables in the chosen xslx file and stote them in the class members.
-        /// </summary>
-        private void SetVariables(string dirPath)
-        {
-            _excelLoader.ReadProtocolFile(dirPath , ref _variablesList);
-        }
-         
+   
+        #region PARAMETERS_GROUPBOXFUNCTIONS
         /// <summary>
         /// Showing the variables from the readen excel file to the Gui with option to change them.
         /// </summary>
@@ -2235,25 +2290,8 @@ namespace PinkyAndBrain
 
             }
         }
-
-        /// <summary>
-        /// Handler for changing the number of repetition input text.
-        /// </summary>
-        /// <param name="sender">The checkbox control.</param>
-        /// <param name="e">Args.</param>
-        private void _numOfRepetitionsTextBox_Leave(object sender, EventArgs e)
-        {
-            //check if represents an integer number.
-            if (!IntegerChecker(_numOfRepetitionsTextBox.Text.ToString()))
-            {
-                MessageBox.Show("No an integer number entered - returnnig to 1 as default", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //put the default number.
-                _numOfRepetitionsTextBox.Text = "1";
-            }
-        }
+        #endregion
     }
-
-    #endregion my_functions
 
     public class VaryingItem
     {
