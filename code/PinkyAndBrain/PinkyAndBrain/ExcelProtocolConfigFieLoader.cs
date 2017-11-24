@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;       //microsoft Excel 14 object in references-> COM tab
 
+using Params;
+
 namespace PinkyAndBrain
 {
     /// <summary>

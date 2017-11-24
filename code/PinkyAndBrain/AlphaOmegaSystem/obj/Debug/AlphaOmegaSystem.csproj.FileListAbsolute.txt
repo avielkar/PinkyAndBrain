@@ -1,0 +1,7 @@
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\AlphaOmegaSystem\bin\Debug\AlphaOmegaSystem.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\AlphaOmegaSystem\bin\Debug\AlphaOmegaSystem.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\AlphaOmegaSystem\bin\Debug\NationalInstruments.DAQmx.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\AlphaOmegaSystem\bin\Debug\NationalInstruments.Common.Native.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\AlphaOmegaSystem\obj\Debug\AlphaOmegaSystem.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\AlphaOmegaSystem\obj\Debug\AlphaOmegaSystem.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\AlphaOmegaSystem\obj\Debug\AlphaOmegaSystem.csprojResolveAssemblyReference.cache

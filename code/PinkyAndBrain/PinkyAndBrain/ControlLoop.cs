@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using PinkyAndBrain.TrajectoryCreators;
+using Params;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.Distributions;
 using MLApp;
@@ -15,6 +15,10 @@ using LED.Strip.Adressable;
 using System.IO;
 using System.Reflection;
 using log4net;
+using AlphaOmegaSystem;
+using InfraRedSystem;
+using RatResponseSystem;
+using Trajectories;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Media;
 using WMPLib;
@@ -26,7 +30,7 @@ namespace PinkyAndBrain
     /// It calls all the needed other inerfaces to make what it's needed to be created.
     /// The function is called by the GuiInterface after the statButton is clicked.
     /// </summary>
-    class ControlLoop:IDisposable
+    public class ControlLoop:IDisposable
     {
         #region ATTRIBUTES
         /// <summary>

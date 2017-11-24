@@ -8,9 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Params;
+using Trajectories;
 using MLApp;
 using MotocomdotNetWrapper;
 using LED.Strip.Adressable;
+using InfraRedSystem;
 using log4net;
 using System.Threading;
 
@@ -858,6 +861,7 @@ namespace PinkyAndBrain
                 _btnPause.Enabled = false;
                 _btnResume.Enabled = true;
                 _btnPark.Enabled = true;
+                _btnEnagae.Enabled = false;
                 #endregion
 
                 Globals._systemState = SystemState.PAUSED;
@@ -878,6 +882,7 @@ namespace PinkyAndBrain
                 _btnPause.Enabled = true;
                 _btnResume.Enabled = false;
                 _btnPark.Enabled = false;
+                _btnEnagae.Enabled = false;
                 #endregion
 
                 Globals._systemState = SystemState.RUNNING;

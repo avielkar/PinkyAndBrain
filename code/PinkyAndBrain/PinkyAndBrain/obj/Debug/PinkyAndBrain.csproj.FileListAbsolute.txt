@@ -66,3 +66,15 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bi
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\Log4Net.config
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Debug\Interop.WMPLib.dll
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Debug\PinkyAndBrain.GuiInterface.resources
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\AlphaOmegaSystem.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\AlphaOmegaSystem.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\InfraRedSystem.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\InfraRedSystem.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\MotomanSystem.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\Params.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\Trajectories.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\MotomanSystem.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\Params.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\Trajectories.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\RatResponseSystem.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\RatResponseSystem.pdb
