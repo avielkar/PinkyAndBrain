@@ -312,6 +312,11 @@ namespace PinkyAndBrain
         public AutosOptions _autosOptionsInRealTime { get; set; }
 
         /// <summary>
+        /// Indicated if to give the rat a second response chance if it wrong anser at the first time (but not include no answer).
+        /// </summary>
+        public bool SecondResponseChance { get; set; }
+
+        /// <summary>
         /// Dictionary represent a sound name and it's file path.
         /// </summary>
         private Dictionary<string, string> _soundPlayerPathDB;
@@ -587,6 +592,14 @@ namespace PinkyAndBrain
 
                                         //second reward stage (condition if needed in the stage)
                                         SecondRewardStage(decision, AutoReward);
+
+                                        //if second oppertunity for choice after wrong choice is available.
+                                        if(SecondResponseChance && !AutoReward && !decision.Equals(RatDecison.NoDecision))
+                                        {
+                                            Tuple<RatDecison, bool> secondDecision = SecondResponseTimeStage();
+
+                                            SecondRewardStage(secondDecision, false);
+                                        }
                                     }
                                 }
 
@@ -772,6 +785,93 @@ namespace PinkyAndBrain
             _currentRatDecision = RatDecison.NoDecision;
 
             return new Tuple<RatDecison,bool>(RatDecison.NoDecision , false);
+        }
+        
+        /// <summary>
+        /// Waiting the rat to response the movement direction abd update the _totalCorrectAnswers counter.
+        /// <returns>The rat decision value and it's correctness.</returns>
+        /// </summary>
+        public Tuple<RatDecison , bool> SecondResponseTimeStage()
+        {
+            //Thread.Sleep(1000*(int)(_currentTrialTimings.wResponseTime));
+
+            //update the global details listview with the current stage.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Waiting for Second Chance Response");
+
+            //if not trainig continue.
+            if (GetVariableValue(0, "STIMULUS_TYPE") == "0")
+                return new Tuple<RatDecison, bool>(RatDecison.NoDecision, false);
+
+            //get the current stimulus direction.
+            double currentHeadingDirection = double.Parse(GetVariableValue(0, "HEADING_DIRECTION"));
+
+            //determine the current stimulus direaction.
+            RatDecison currentStimulationSide = (currentHeadingDirection == 0) ? (RatDecison.Center) : ((currentHeadingDirection > 0) ? (RatDecison.Right) : RatDecison.Left);
+            //determine if the current stimulus heading direction is in the random heading direction region.
+            if (Math.Abs(currentHeadingDirection) <= double.Parse(_variablesList._variablesDictionary["RR_HEADINGS"]._description["parameters"]._ratHouseParameter[0]))
+            {
+                //get a random side with probability of RR_PROBABILITY to the right side.
+                int sampledBernouli = Bernoulli.Sample(double.Parse(_variablesList._variablesDictionary["RR_PROBABILITY"]._description["parameters"]._ratHouseParameter[0]));
+
+                RatDecison changedStimulusSide = currentStimulationSide;
+
+                if (sampledBernouli == 1)
+                {
+                    currentStimulationSide = RatDecison.Right;
+                }
+                else
+                {
+                    currentStimulationSide = RatDecison.Left;
+                }
+
+                if (changedStimulusSide.Equals(currentStimulationSide))
+                {
+                    _inverseRRDecision = true;
+                }
+            }
+            else
+            {
+                _inverseRRDecision = false;
+            }
+            _correctDecision = currentStimulationSide;
+
+
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            //time to wait for the moving rat response. if decided about a side so break and return the decision and update the _totalCorrectAnsers.
+            while (sw.ElapsedMilliseconds < 1000 * (int)(_currentTrialTimings.wResponseTime))
+            {
+                if (_currentRatResponse == (byte)RatDecison.Left)
+                {
+                    //write the event that te rat enter it's head to the left to the AlphaOmega.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterLeftSecondChance);
+
+                    if (currentStimulationSide.Equals(RatDecison.Left))
+                    {
+                        return new Tuple<RatDecison, bool>(RatDecison.Left, true);
+                    }
+
+                    return new Tuple<RatDecison, bool>(RatDecison.Left, false);
+                }
+
+                else if (_currentRatResponse == (byte)RatDecison.Right)
+                {
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterRightSecondChance);
+
+                    if (currentStimulationSide.Equals(RatDecison.Right))
+                    {
+                        return new Tuple<RatDecison, bool>(RatDecison.Right, true);
+                    }
+
+                    return new Tuple<RatDecison, bool>(RatDecison.Right, false);
+                }
+            }
+
+            _currentRatDecision = RatDecison.NoDecision;
+
+            return new Tuple<RatDecison, bool>(RatDecison.NoDecision, false);
         }
 
         /// <summary>

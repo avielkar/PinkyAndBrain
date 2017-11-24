@@ -125,6 +125,18 @@ namespace AlphaOmegaSystem
         /// The rat decide about the left stimulation direction. (#5)
         /// </summary>
         HeadEnterLeft = 0x21,
+        
+        /// <summary>
+        /// The rat decide about the right stimulation direction at the second chance. (#5)
+        /// </summary>
+        HeadEnterLeftSecondChance = 0x22,
+
+        //TODO : check the number assigned here for the second chance enums values.
+
+        /// <summary>
+        /// The rat decide about the left stimulation direction at the second chance. (#5)
+        /// </summary>
+        HeadEnterRightSecondChance = 0x23,
 
         /// <summary>
         /// The rat got a center water reward. (#6)

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,6 +55,7 @@
             this._continiousHandRewardButton = new System.Windows.Forms.Button();
             this._autoRewardsCheckBox = new System.Windows.Forms.CheckBox();
             this._varyingControlGroupBox = new System.Windows.Forms.GroupBox();
+            this._btnEnagae = new System.Windows.Forms.Button();
             this._btnPark = new System.Windows.Forms.Button();
             this._btnResume = new System.Windows.Forms.Button();
             this._btnPause = new System.Windows.Forms.Button();
@@ -97,7 +98,7 @@
             this._labelBrightness = new System.Windows.Forms.Label();
             this._textboxPercentageOfTurnOnLeds = new System.Windows.Forms.TextBox();
             this._labelPercentageOfturnedOnLeds = new System.Windows.Forms.Label();
-            this._btnEnagae = new System.Windows.Forms.Button();
+            this._checkboxSecondResponseChance = new System.Windows.Forms.CheckBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -346,6 +347,16 @@
             this._varyingControlGroupBox.TabStop = false;
             this._varyingControlGroupBox.Text = "Varying Control";
             // 
+            // _btnEnagae
+            // 
+            this._btnEnagae.Location = new System.Drawing.Point(7, 322);
+            this._btnEnagae.Name = "_btnEnagae";
+            this._btnEnagae.Size = new System.Drawing.Size(75, 23);
+            this._btnEnagae.TabIndex = 17;
+            this._btnEnagae.Text = "Engage";
+            this._btnEnagae.UseVisualStyleBackColor = true;
+            this._btnEnagae.Click += new System.EventHandler(this._btnEnagae_Click);
+            // 
             // _btnPark
             // 
             this._btnPark.Location = new System.Drawing.Point(7, 351);
@@ -582,17 +593,17 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea1.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend2);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series2);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
@@ -667,6 +678,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this._checkboxSecondResponseChance);
             this.groupBox1.Controls.Add(this._breakFixationSoundEnableCheckBox);
             this.groupBox1.Controls.Add(this._autoRewardSound);
             this.groupBox1.Controls.Add(this._fixationOnlyCheckBox);
@@ -746,15 +758,16 @@
             this._labelPercentageOfturnedOnLeds.TabIndex = 0;
             this._labelPercentageOfturnedOnLeds.Text = "% turn on LEDS";
             // 
-            // _btnEnagae
+            // _checkboxSecondResponseChance
             // 
-            this._btnEnagae.Location = new System.Drawing.Point(7, 322);
-            this._btnEnagae.Name = "_btnEnagae";
-            this._btnEnagae.Size = new System.Drawing.Size(75, 23);
-            this._btnEnagae.TabIndex = 17;
-            this._btnEnagae.Text = "Engage";
-            this._btnEnagae.UseVisualStyleBackColor = true;
-            this._btnEnagae.Click += new System.EventHandler(this._btnEnagae_Click);
+            this._checkboxSecondResponseChance.AutoSize = true;
+            this._checkboxSecondResponseChance.Location = new System.Drawing.Point(9, 77);
+            this._checkboxSecondResponseChance.Name = "_checkboxSecondResponseChance";
+            this._checkboxSecondResponseChance.Size = new System.Drawing.Size(113, 17);
+            this._checkboxSecondResponseChance.TabIndex = 13;
+            this._checkboxSecondResponseChance.Text = "Sec Resp Chance";
+            this._checkboxSecondResponseChance.UseVisualStyleBackColor = true;
+            this._checkboxSecondResponseChance.CheckedChanged += new System.EventHandler(this._checkboxSecondResponseChance_CheckedChanged);
             // 
             // GuiInterface
             // 
@@ -881,5 +894,6 @@
         private System.Windows.Forms.Button _btnPause;
         private System.Windows.Forms.Button _btnPark;
         private System.Windows.Forms.Button _btnEnagae;
+        private System.Windows.Forms.CheckBox _checkboxSecondResponseChance;
     }
 }
