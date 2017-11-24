@@ -696,52 +696,6 @@ namespace PinkyAndBrain
 
         #region EXPERIMENT_RUNNING_CHANGING_FUNCTION
         /// <summary>
-        /// Function handler for parking the robot.
-        /// </summary>
-        /// <param name="sender">Sender.</param>
-        /// <param name="e">Args.</param>
-        private void _btnPark_Click(object sender, EventArgs e)
-        {
-            lock (_lockerPauseResumeButton)
-            {
-                lock (_lockerPauseResumeButton)
-                {
-                    #region DISABLE_BUTTONS
-                    bool isBtnStartEnabled = _btnStart.Enabled;
-                    bool isBtnStopEnabled = _btnStop.Enabled;
-                    bool isBtnResumeEnabled = _btnResume.Enabled;
-                    bool isBtnPauseEnabled = _btnPause.Enabled;
-
-                    _btnStart.Enabled = false;
-                    _btnStop.Enabled = false;
-                    _btnResume.Enabled = false;
-                    _btnPause.Enabled = false;
-                    _btnPark.Enabled = false;
-                    #endregion
-
-                    //set robot servo on and go homeposition.
-                    _motocomController.SetServoOn();
-
-                    _motocomController.WriteParkPositionFile();
-                    _motocomController.MoveRobotParkPosition();
-
-                    //TODO : change to deal with the time the job finished and not constant time.
-                    Thread.Sleep(8000);
-
-                    _motocomController.SetServoOff();
-
-                    #region ENABLE_BUTTONS_BACK
-                    _btnStart.Enabled = isBtnStartEnabled;
-                    _btnStop.Enabled = isBtnStopEnabled;
-                    _btnResume.Enabled = isBtnResumeEnabled;
-                    _btnPause.Enabled = isBtnPauseEnabled;
-                    _btnPark.Enabled = true;
-                    #endregion
-                }
-            }
-        }
-
-        /// <summary>
         /// Function handler for starting the experiment tirlas. 
         /// </summary>
         /// <param name="sender">Sender.</param>
@@ -928,6 +882,100 @@ namespace PinkyAndBrain
 
                 Globals._systemState = SystemState.RUNNING;
                 _cntrlLoop.Resume();
+            }
+        }
+
+        /// <summary>
+        /// Function handler for parking the robot.
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">Args.</param>
+        private void _btnPark_Click(object sender, EventArgs e)
+        {
+            lock (_lockerPauseResumeButton)
+            {
+                lock (_lockerPauseResumeButton)
+                {
+                    #region DISABLE_BUTTONS
+                    bool isBtnStartEnabled = _btnStart.Enabled;
+                    bool isBtnStopEnabled = _btnStop.Enabled;
+                    bool isBtnResumeEnabled = _btnResume.Enabled;
+                    bool isBtnPauseEnabled = _btnPause.Enabled;
+
+                    _btnStart.Enabled = false;
+                    _btnStop.Enabled = false;
+                    _btnResume.Enabled = false;
+                    _btnPause.Enabled = false;
+                    _btnEnagae.Enabled = false;
+                    _btnPark.Enabled = false;
+                    #endregion
+
+                    //set robot servo on and go homeposition.
+                    _motocomController.SetServoOn();
+
+                    _motocomController.WriteParkPositionFile();
+                    _motocomController.MoveRobotParkPosition();
+
+                    //TODO : change to deal with the time the job finished and not constant time.
+                    Thread.Sleep(8000);
+
+                    _motocomController.SetServoOff();
+
+                    #region ENABLE_BUTTONS_BACK
+                    _btnStart.Enabled = isBtnStartEnabled;
+                    _btnStop.Enabled = isBtnStopEnabled;
+                    _btnResume.Enabled = isBtnResumeEnabled;
+                    _btnPause.Enabled = isBtnPauseEnabled;
+                    _btnEnagae.Enabled = true;
+                    _btnPark.Enabled = true;
+                    #endregion
+                }
+            }
+        }
+
+        /// <summary>
+        /// Handler for Engaging the rovot to it's start point.
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">Args.</param>
+        private void _btnEnagae_Click(object sender, EventArgs e)
+        {
+            lock (_lockerPauseResumeButton)
+            {
+                lock (_lockerPauseResumeButton)
+                {
+                    #region DISABLE_BUTTONS
+                    bool isBtnStartEnabled = _btnStart.Enabled;
+                    bool isBtnStopEnabled = _btnStop.Enabled;
+                    bool isBtnResumeEnabled = _btnResume.Enabled;
+                    bool isBtnPauseEnabled = _btnPause.Enabled;
+
+                    _btnStart.Enabled = false;
+                    _btnStop.Enabled = false;
+                    _btnResume.Enabled = false;
+                    _btnPause.Enabled = false;
+                    _btnEnagae.Enabled = false;
+                    _btnPark.Enabled = false;
+                    #endregion
+
+                    //set robot servo on and go homeposition.
+                    _motocomController.SetServoOn();
+
+                    _motocomController.WriteHomePosFile();
+                    _motocomController.MoveRobotHomePosition();
+
+                    //TODO : change to deal with the time the job finished and not constant time.
+                    Thread.Sleep(8000);
+
+                    #region ENABLE_BUTTONS_BACK
+                    _btnStart.Enabled = isBtnStartEnabled;
+                    _btnStop.Enabled = isBtnStopEnabled;
+                    _btnResume.Enabled = isBtnResumeEnabled;
+                    _btnPause.Enabled = isBtnPauseEnabled;
+                    _btnEnagae.Enabled = true;
+                    _btnPark.Enabled = true;
+                    #endregion
+                }
             }
         }
         #endregion
