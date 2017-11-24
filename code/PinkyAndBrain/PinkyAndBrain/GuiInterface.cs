@@ -753,12 +753,14 @@ namespace PinkyAndBrain
             {
                 lock (_lockerStopStartButton)
                 {
+                    #region ENABLE_DISABLE_BUTTONS
                     _btnStart.Enabled = false;
                     _makeTrials.Enabled = false;
                     _btnStop.Enabled = true;
                     _btnPause.Enabled = true;
                     _btnResume.Enabled = false;
                     _btnPark.Enabled = false;
+                    #endregion
 
                     //if already running - ignore.
                     if (!Globals._systemState.Equals(SystemState.RUNNING))
@@ -898,8 +900,11 @@ namespace PinkyAndBrain
         {
             lock (_lockerPauseResumeButton)
             {
+                #region ENABLE_DISABLE_BUTTONS
                 _btnPause.Enabled = false;
                 _btnResume.Enabled = true;
+                _btnPark.Enabled = true;
+                #endregion
 
                 Globals._systemState = SystemState.PAUSED;
                 _cntrlLoop.Pause();
@@ -915,8 +920,11 @@ namespace PinkyAndBrain
         {
             lock (_lockerPauseResumeButton)
             {
+                #region ENABLE_DISABLE_BUTTONS
                 _btnPause.Enabled = true;
                 _btnResume.Enabled = false;
+                _btnPark.Enabled = false;
+                #endregion
 
                 Globals._systemState = SystemState.RUNNING;
                 _cntrlLoop.Resume();

@@ -496,6 +496,9 @@ namespace PinkyAndBrain
             _motomanController.WriteHomePosFile();
             _motomanController.MoveRobotHomePosition();
 
+            //TODO : change that to be the time the robot ends the job and not determenistic time.
+            Thread.Sleep(8000);
+
             for (; _repetitionIndex < NumOfRepetitions / NumOfStickOn;)
             {
                 //while all trial are not executed or not come with response stage.
