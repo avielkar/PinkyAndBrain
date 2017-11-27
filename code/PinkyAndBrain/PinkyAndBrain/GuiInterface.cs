@@ -106,6 +106,11 @@ namespace PinkyAndBrain
         private bool _makeTrialsButtonPress;
 
         /// <summary>
+        /// Indicates if the robot was engaged or disengage.
+        /// </summary>
+        private bool _isEngaged;
+
+        /// <summary>
         /// The controller api for the YASAKAWA motoman robot.
         /// </summary>
         private MotomanController _motocomController;
@@ -190,6 +195,12 @@ namespace PinkyAndBrain
             //disable initially both pause and resume buttoms untill makeTrials buttom is pressed.
             _btnPause.Enabled = false;
             _btnResume.Enabled = false;
+
+            //disable the make trials btn untill engaged state.
+            _btnMakeTrials.Enabled = false;
+
+            //the start point is in the disengaged state.
+            _isEngaged = false;
 
             //add the rat names (as the setting have) to the rat names combo box.
             AddRatNamesToRatNamesComboBox();
@@ -417,7 +428,11 @@ namespace PinkyAndBrain
         {
             _btnStop.Enabled = false;
             _btnStart.Enabled = false;
-            _makeTrials.Enabled = true;
+            _btnPause.Enabled = false;
+            _btnResume.Enabled = false;
+            _btnMakeTrials.Enabled = true;
+            _btnEnagae.Enabled = false;
+            _btnPark.Enabled = true;
         }
 
         /// <summary>
@@ -712,7 +727,7 @@ namespace PinkyAndBrain
                 {
                     #region ENABLE_DISABLE_BUTTONS
                     _btnStart.Enabled = false;
-                    _makeTrials.Enabled = false;
+                    _btnMakeTrials.Enabled = false;
                     _btnStop.Enabled = true;
                     _btnPause.Enabled = true;
                     _btnResume.Enabled = false;
@@ -936,6 +951,10 @@ namespace PinkyAndBrain
                     #endregion
                 }
             }
+
+            _isEngaged = false;
+            _btnMakeTrials.Enabled = false;
+            _btnStart.Enabled = false;
         }
 
         /// <summary>
@@ -982,6 +1001,9 @@ namespace PinkyAndBrain
                     #endregion
                 }
             }
+
+            _isEngaged = true;
+            _btnMakeTrials.Enabled = true;
         }
         #endregion
 

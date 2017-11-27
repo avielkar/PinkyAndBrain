@@ -42,7 +42,7 @@
             this._addVaryingCobination = new System.Windows.Forms.Button();
             this._removeVaryingCombination = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this._makeTrials = new System.Windows.Forms.Button();
+            this._btnMakeTrials = new System.Windows.Forms.Button();
             this._btnStop = new System.Windows.Forms.Button();
             this._trialDetailsListView = new System.Windows.Forms.ListView();
             this._trialParametersGroup = new System.Windows.Forms.GroupBox();
@@ -200,13 +200,13 @@
             // 
             // _makeTrials
             // 
-            this._makeTrials.Location = new System.Drawing.Point(6, 380);
-            this._makeTrials.Name = "_makeTrials";
-            this._makeTrials.Size = new System.Drawing.Size(75, 23);
-            this._makeTrials.TabIndex = 8;
-            this._makeTrials.Text = "MakeTrials";
-            this._makeTrials.UseVisualStyleBackColor = true;
-            this._makeTrials.Click += new System.EventHandler(this._makeTrials_Click);
+            this._btnMakeTrials.Location = new System.Drawing.Point(6, 380);
+            this._btnMakeTrials.Name = "_makeTrials";
+            this._btnMakeTrials.Size = new System.Drawing.Size(75, 23);
+            this._btnMakeTrials.TabIndex = 8;
+            this._btnMakeTrials.Text = "MakeTrials";
+            this._btnMakeTrials.UseVisualStyleBackColor = true;
+            this._btnMakeTrials.Click += new System.EventHandler(this._makeTrials_Click);
             // 
             // _btnStop
             // 
@@ -336,7 +336,7 @@
             this._varyingControlGroupBox.Controls.Add(this.label5);
             this._varyingControlGroupBox.Controls.Add(this._varyingListBox);
             this._varyingControlGroupBox.Controls.Add(this._btnStart);
-            this._varyingControlGroupBox.Controls.Add(this._makeTrials);
+            this._varyingControlGroupBox.Controls.Add(this._btnMakeTrials);
             this._varyingControlGroupBox.Controls.Add(this._addVaryingCobination);
             this._varyingControlGroupBox.Controls.Add(this._btnStop);
             this._varyingControlGroupBox.Controls.Add(this._removeVaryingCombination);
@@ -838,7 +838,7 @@
         private System.Windows.Forms.Button _addVaryingCobination;
         private System.Windows.Forms.Button _removeVaryingCombination;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Button _makeTrials;
+        private System.Windows.Forms.Button _btnMakeTrials;
         private System.Windows.Forms.Button _btnStop;
         private System.Windows.Forms.ListView _trialDetailsListView;
         private System.Windows.Forms.GroupBox _trialParametersGroup;

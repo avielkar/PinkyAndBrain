@@ -502,11 +502,11 @@ namespace PinkyAndBrain
         {
             //set robot servo on and go homeposition.
             _motomanController.SetServoOn();
-            _motomanController.WriteHomePosFile();
-            _motomanController.MoveRobotHomePosition();
+            //_motomanController.WriteHomePosFile();
+            //_motomanController.MoveRobotHomePosition();
 
             //TODO : change that to be the time the robot ends the job and not determenistic time.
-            Thread.Sleep(8000);
+            //Thread.Sleep(8000);
 
             for (; _repetitionIndex < NumOfRepetitions / NumOfStickOn;)
             {
