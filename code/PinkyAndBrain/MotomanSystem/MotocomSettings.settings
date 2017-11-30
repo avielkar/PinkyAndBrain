@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PinkyAndBrain" GeneratedClassName="MotocomSettings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MotomanSystem" GeneratedClassName="MotocomSettings">
   <Profiles />
   <Settings>
     <Setting Name="R1OffsetX" Type="System.Double" Scope="User">
@@ -63,7 +63,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="R2OriginalZ" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">898.48</Value>
+      <Value Profile="(Default)">908.48</Value>
     </Setting>
     <Setting Name="R2OriginalRX" Type="System.Double" Scope="User">
       <Value Profile="(Default)">180</Value>

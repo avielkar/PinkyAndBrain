@@ -9,6 +9,7 @@ using log4net;
 using MotocomdotNetWrapper;
 using MathNet.Numerics.LinearAlgebra;
 using System.Windows.Forms;
+using MotomanSystem;
 
 namespace PinkyAndBrain
 {

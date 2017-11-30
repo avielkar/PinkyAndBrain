@@ -27,3 +27,4 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\bi
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\bin\Debug\Params.pdb
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\obj\Debug\MotomanSystem.dll
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\obj\Debug\MotomanSystem.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\bin\Debug\MotomanSystem.dll.config

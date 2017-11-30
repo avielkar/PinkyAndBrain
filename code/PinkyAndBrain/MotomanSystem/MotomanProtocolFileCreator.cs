@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Trajectories;
 using System.Configuration;
+using MotomanSystem;
 
 namespace PinkyAndBrain
 {

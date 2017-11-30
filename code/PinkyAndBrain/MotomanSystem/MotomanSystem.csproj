@@ -67,6 +67,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="MotocomSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>MotocomSettings.Designer.cs</LastGenOutput>

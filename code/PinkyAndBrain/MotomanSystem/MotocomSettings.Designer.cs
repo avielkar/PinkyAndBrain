@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PinkyAndBrain {
+namespace MotomanSystem {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -265,7 +265,7 @@ namespace PinkyAndBrain {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("898.48")]
+        [global::System.Configuration.DefaultSettingValueAttribute("908.48")]
         public double R2OriginalZ {
             get {
                 return ((double)(this["R2OriginalZ"]));
