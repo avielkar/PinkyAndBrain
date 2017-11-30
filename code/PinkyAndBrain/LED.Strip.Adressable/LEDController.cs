@@ -48,7 +48,7 @@ namespace LED.Strip.Adressable
         {
             _ledArduinoSerialPort = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
 
-            byte[] b = new byte[250];
+            byte[] b = new byte[150];
             _ledsData = new LEDsData(0, 0, 0, 0, b);
 
             _logger = logger;

@@ -119,6 +119,11 @@ namespace PinkyAndBrain
         /// Led controller for controlling the led strip.
         /// </summary>
         private LEDController _ledController;
+        
+        /// <summary>
+        /// Second Led controller for controlling the led strip.
+        /// </summary>
+        private LEDController _ledController2;
 
         /// <summary>
         /// Infra red controller for turnnig the InfraRed on/off.
@@ -163,9 +168,17 @@ namespace PinkyAndBrain
             _ledController = new LEDController("COM4", 2000000, 250 , _logger);
             _ledController.OpenConnection();
 
+            //create the second ledstrip controller and initialize it (also turn off leds).
+            _ledController2 = new LEDController("COM5", 2000000, 250, _logger);
+            _ledController2.OpenConnection();
+
             if (!_ledController.Connected)
                 _ardionoPrtWarningLabel.Visible = true;
             _ledController.ResetLeds();
+
+            if (!_ledController2.Connected)
+                _ardionoPrtWarningLabel.Visible = true;
+            _ledController2.ResetLeds();
 
             //set the InfraRed controller object.
             _infraredController = new InfraRedController("Dev1", "AO1", "InfraRedChannel");
@@ -176,7 +189,7 @@ namespace PinkyAndBrain
 
             //make the delegate with it's control object and their nickname as pairs of dictionaries.
             Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>> delegatsControlsTuple = MakeCtrlDelegateAndFunctionDictionary();
-            _cntrlLoop = new ControlLoop(_matlabApp, _motocomController, _ledController, _infraredController, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1, _logger);
+            _cntrlLoop = new ControlLoop(_matlabApp, _motocomController, _ledController, _ledController2 ,  _infraredController, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1, _logger);
 
             //reset the selected direction to be empty.
             _selectedHandRewardDirections = 0;
@@ -594,6 +607,7 @@ namespace PinkyAndBrain
 
             //close the connection with the led strip.
             _ledController.CloseConnection();
+            _ledController2.CloseConnection();
             
             //turn off the InfraRed.
             _infraredController.WriteEvent(true, InfraRedStatus.TurnedOff);

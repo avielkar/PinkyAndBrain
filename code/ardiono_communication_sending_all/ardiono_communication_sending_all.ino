@@ -12,7 +12,7 @@ String currentColor;
 byte colors[4];
 byte colorIndex;
 
-#define NUM_OF_LEDS 250
+#define NUM_OF_LEDS 150
 
 byte placesData[NUM_OF_LEDS];
 byte numOfPlacedData;

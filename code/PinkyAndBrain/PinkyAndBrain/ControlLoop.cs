@@ -257,6 +257,11 @@ namespace PinkyAndBrain
         private LEDController _ledController;
 
         /// <summary>
+        /// The second led controller for controlling the leds visibility in the ledstrip connected to the arduino.
+        /// </summary>
+        private LEDController _ledController2;
+
+        /// <summary>
         /// The leds selector dor selecting different led to turn on.
         /// </summary>
         private VaryingIndexSelector _ledSelector;
@@ -338,7 +343,7 @@ namespace PinkyAndBrain
         /// <param name="mainGuiInterfaceControlsDictionary">The name of each main gui needed control and it's reference.</param>
         /// <param name="logger">The program logger for logging into log file.</param>
         /// </summary>
-        public ControlLoop(MLApp.MLApp matlabApp , MotomanController motomanController , LEDController ledController , InfraRedController infraRedController, Dictionary<string, Delegate> ctrlDelegatesDic, Dictionary<string , Control> mainGuiInterfaceControlsDictionary , ILog logger)
+        public ControlLoop(MLApp.MLApp matlabApp , MotomanController motomanController , LEDController ledController , LEDController ledController2 , InfraRedController infraRedController, Dictionary<string, Delegate> ctrlDelegatesDic, Dictionary<string , Control> mainGuiInterfaceControlsDictionary , ILog logger)
         {
             _matlabApp = matlabApp;
             _trajectoryCreatorHandler = new TrajectoryCreatorHandler(_matlabApp);
@@ -364,6 +369,7 @@ namespace PinkyAndBrain
 
             //take the led controller object.
             _ledController = ledController;
+            _ledController2 = ledController2;
             //initialize the leds index selector.
             _ledSelector = new VaryingIndexSelector(250);
 
@@ -1099,6 +1105,10 @@ namespace PinkyAndBrain
                     _ledController.LEDsDataCommand = ledsData;
                     _ledController.SendData();
                     _ledController.ExecuteCommands();
+                    LEDsData ledsData4 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    _ledController2.LEDsDataCommand = ledsData4;
+                    _ledController2.SendData();
+                    _ledController2.ExecuteCommands();
                     break;
 
                 case 3://vistibular and visual both.
@@ -1110,6 +1120,10 @@ namespace PinkyAndBrain
                     _ledController.LEDsDataCommand = ledsData2;
                     _ledController.SendData();
                     _ledController.ExecuteCommands();
+                    LEDsData ledsData3 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    _ledController2.LEDsDataCommand = ledsData3;
+                    _ledController2.SendData();
+                    _ledController2.ExecuteCommands();
                     break;
 
                 default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
@@ -1148,6 +1162,8 @@ namespace PinkyAndBrain
 
             //and turn off the leds visual vistibular (it is o.k for all cases , just reset).
             _ledController.ResetLeds();
+            //and turn off the leds visual vistibular (it is o.k for all cases , just reset).
+            _ledController2.ResetLeds();
 
             _logger.Info("End MovingTheRobotDurationWithHeadCenterStabilityStage");
             //return the true state of the heading in the center stability during the duration time or always true when AutoFixation.
