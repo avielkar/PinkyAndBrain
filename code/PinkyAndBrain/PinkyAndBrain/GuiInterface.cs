@@ -950,8 +950,7 @@ namespace PinkyAndBrain
                     _motocomController.WriteParkPositionFile();
                     _motocomController.MoveRobotParkPosition();
 
-                    //TODO : change to deal with the time the job finished and not constant time.
-                    Thread.Sleep(8000);
+                    _motocomController.WaitJobFinished();
 
                     _motocomController.SetServoOff();
 
@@ -1002,8 +1001,7 @@ namespace PinkyAndBrain
                     _motocomController.WriteHomePosFile();
                     _motocomController.MoveRobotHomePosition();
 
-                    //TODO : change to deal with the time the job finished and not constant time.
-                    Thread.Sleep(8000);
+                    _motocomController.WaitJobFinished();
 
                     #region ENABLE_BUTTONS_BACK
                     _btnStart.Enabled = isBtnStartEnabled;

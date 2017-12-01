@@ -67,6 +67,36 @@ namespace PinkyAndBrain
         {
             _motomanController.SetServoOff();
         }
+
+        /// <summary>
+        /// Reads one single IO
+        /// </summary>
+        /// <param name="Address">Address of IO to read</param>
+        /// <returns>IO status</returns>
+        public bool ReadSingleIO(int address)
+        {
+            return _motomanController.ReadSingleIO(address);
+        }
+
+        /// <summary>
+        /// Indicate if the robot is making a current job now.
+        /// </summary>
+        /// <returns></returns>
+        public bool JobStatus()
+        {
+            return _motomanController.ReadSingleIO(50070);
+        }
+
+        /// <summary>
+        /// Wait the robot to finisg job action.
+        /// </summary>
+        public void WaitJobFinished()
+        {
+            while(JobStatus())
+            {
+                Thread.Sleep(100);
+            }
+        }
         #endregion
 
         #region JBI_FILES_CONTROLLS_FUNCTIONS
