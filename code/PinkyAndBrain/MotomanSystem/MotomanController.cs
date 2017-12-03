@@ -97,6 +97,11 @@ namespace PinkyAndBrain
                 Thread.Sleep(100);
             }
         }
+
+        public double[] GetRobotPlace()
+        {
+            return _motomanController.BscIsLoc();
+        }
         #endregion
 
         #region JBI_FILES_CONTROLLS_FUNCTIONS

@@ -488,6 +488,19 @@ namespace MotocomdotNetWrapper
                }
            }
 
+
+           public double[] BscIsLoc()
+           {
+               double [] place = new double[12];
+
+               short [] confForm = new short[8];
+
+               CMotocom.BscIsLoc(m_Handle, 0, ref confForm[0], ref place[0]);
+
+               return place;
+           }
+
+
            /// <summary>
            /// Reads multiple IO groups
            /// </summary>
