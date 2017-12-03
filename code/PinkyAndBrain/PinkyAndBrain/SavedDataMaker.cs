@@ -135,7 +135,7 @@ namespace PinkyAndBrain
             CreateNewDirectory(ratName);
 
             //create a new results file for the new experiment.
-            _currentSavedFileStramWriter = File.CreateText(Application.StartupPath + @"\results\" + ratName + @"\" + DateTime.Now.ToString("yyyy_MM_dd") + @"\" + DateTime.Now.ToString("yyyy_MM_dd_HH-mm") + " Rat " + ratName + ".txt");
+            _currentSavedFileStramWriter = File.CreateText(@"C:\results\" + ratName + @"\" + DateTime.Now.ToString("yyyy_MM_dd") + @"\" + DateTime.Now.ToString("yyyy_MM_dd_HH-mm") + " Rat " + ratName + ".txt");
         }
 
         /// <summary>
@@ -145,11 +145,11 @@ namespace PinkyAndBrain
         public void CreateNewDirectory(string ratName)
         {
             //create a rat directory if there is no rat dirextory with it's name.
-            if (!Directory.Exists(Application.StartupPath + @"\results\" + ratName))
-                Directory.CreateDirectory(Application.StartupPath + @"\results\" + ratName);
+            if (!Directory.Exists(@"C:\results\" + ratName));
+            Directory.CreateDirectory(@"C:\results\" + ratName);
 
-            if (!Directory.Exists(Application.StartupPath + @"\results\" + ratName + @"\" + DateTime.Now.ToString("yyyy_MM_dd")))
-                Directory.CreateDirectory(Application.StartupPath + @"\results\" + ratName + @"\" + DateTime.Now.ToString("yyy_MM_dd"));
+            if (!Directory.Exists(@"C:\results\" + ratName + @"\" + DateTime.Now.ToString("yyyy_MM_dd")))
+                Directory.CreateDirectory(@"C:\results\" + ratName + @"\" + DateTime.Now.ToString("yyy_MM_dd"));
         }
     }
 
