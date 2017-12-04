@@ -367,6 +367,10 @@ namespace MotocomdotNetWrapper
                 }
             }
 
+            public short BscSetCtrlGroupXrc(short groupno1 , short groupno2)
+            {
+                return CMotocom.BscSetCtrlGroupXrc(m_Handle, groupno1, groupno2);
+            }
 
             /// <summary>
             /// Reads multiple variables of simple data type

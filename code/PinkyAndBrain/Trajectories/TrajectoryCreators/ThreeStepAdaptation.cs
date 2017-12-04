@@ -280,12 +280,16 @@ namespace Trajectories
                     Trig.Cos(amplitude) *  
                     (Trig.Cos(azimuth) * Trig.Cos(elevation) + Trig.Sin(azimuth) * Trig.Sin(tilt) * Trig.Sin(elevation));
 
-            double yM = -Trig.Sin(amplitude) * Trig.Cos(azimuth) * Trig.Cos(tilt) +
-                        Trig.Cos(amplitude) * 
+            double yM = Trig.Sin(amplitude) * Trig.Cos(azimuth) * Trig.Cos(tilt) +
+                        Trig.Cos(amplitude) *
                         (Trig.Sin(azimuth) * Trig.Cos(elevation) +
-                        -Trig.Sin(azimuth) * Trig.Sin(tilt) * Trig.Sin(elevation));
+                        -Trig.Cos(azimuth) * Trig.Sin(tilt) * Trig.Sin(elevation));
+            //the axis for y and z are opposite in the Moog.
+            yM = -yM;
 
             double zM = -Trig.Sin(amplitude) * Trig.Sin(tilt) - Trig.Cos(amplitude) * Trig.Sin(elevation) * Trig.Cos(tilt);
+            //the axis for y and z are opposite in the Moog.
+            zM = -zM;
 
             //return the requested vector.
             return new Tuple<double, double, double>(xM, yM, zM);

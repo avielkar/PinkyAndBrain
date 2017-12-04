@@ -1104,10 +1104,10 @@ namespace PinkyAndBrain
                     LEDsData ledsData = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData;
                     _ledController.SendData();
-                    _ledController.ExecuteCommands();
                     LEDsData ledsData4 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController2.LEDsDataCommand = ledsData4;
                     _ledController2.SendData();
+                    _ledController.ExecuteCommands();
                     _ledController2.ExecuteCommands();
                     break;
 
@@ -1119,10 +1119,10 @@ namespace PinkyAndBrain
                     LEDsData ledsData2 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData2;
                     _ledController.SendData();
-                    _ledController.ExecuteCommands();
                     LEDsData ledsData3 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController2.LEDsDataCommand = ledsData3;
                     _ledController2.SendData();
+                    _ledController.ExecuteCommands();
                     _ledController2.ExecuteCommands();
                     break;
 
@@ -1164,6 +1164,8 @@ namespace PinkyAndBrain
             _ledController.ResetLeds();
             //and turn off the leds visual vistibular (it is o.k for all cases , just reset).
             _ledController2.ResetLeds();
+            _ledController.ExecuteCommands();
+            _ledController2.ExecuteCommands();
 
             _logger.Info("End MovingTheRobotDurationWithHeadCenterStabilityStage");
             //return the true state of the heading in the center stability during the duration time or always true when AutoFixation.

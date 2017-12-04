@@ -159,9 +159,6 @@ namespace LED.Strip.Adressable
             _ledsData.TurnedOnPlaces = new byte[len];
             SendData();
 
-            //execute the data commands.
-            ExecuteCommands();
-
             _logger.Info("Reset Leds finished");
         }
         #endregion FUNCTIONS
