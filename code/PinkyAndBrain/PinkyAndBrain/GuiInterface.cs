@@ -1026,16 +1026,29 @@ namespace PinkyAndBrain
             _btnMakeTrials.Enabled = true;
         }
 
+        /// <summary>
+        /// Check the both robots exactly at threre park position.
+        /// </summary>
+        /// <returns></returns>
         private bool CheckBothRobotsAtParkPosition()
         {
             return CheckBothRobotsAroundDeltaParkPosition(10);
         }
 
+        /// <summary>
+        /// Check the both robots arounf the park poistion.
+        /// </summary>
+        /// <returns></returns>
         private bool CheckBothRobotsAroundParkPosition()
         {
             return CheckBothRobotsAroundDeltaParkPosition(50);
         }
 
+        /// <summary>
+        /// Check the robots position around delta from there park position.
+        /// </summary>
+        /// <param name="delta"></param>
+        /// <returns></returns>
         private bool CheckBothRobotsAroundDeltaParkPosition(double delta)
         {
             _motocomController.SetRobotControlGroup(1);
@@ -1059,11 +1072,19 @@ namespace PinkyAndBrain
             return robot1PosInPark && robot2PosInPark;
         }
 
+        /// <summary>
+        /// Check the both robots at the park position exactly or the robot R1 is backward x from the park position.
+        /// </summary>
+        /// <returns></returns>
         private bool CheckBothRobotsAtParkPositionOrBackward()
         {
             return CheckBothRobotsAtParkPosition() && Checkrobot1BackwardParkingPosition();
         }
 
+        /// <summary>
+        /// Check if robot1 is in x backward position from it's parking position.
+        /// </summary>
+        /// <returns></returns>
         private bool Checkrobot1BackwardParkingPosition()
         {
             _motocomController.SetRobotControlGroup(1);
@@ -1073,16 +1094,29 @@ namespace PinkyAndBrain
             return robot1Pos[0] - (MotocomSettings.Default.R1OriginalX - 500) < 0;
         }
 
+        /// <summary>
+        /// Check both robots exactly at there enagae position.
+        /// </summary>
+        /// <returns></returns>
         private bool CheckBothRobotsAtEngagePosition()
         {
             return CheckBothRobotAroundDeltaEngagePosition(10);
         }
 
+        /// <summary>
+        /// Check the both robots arounf the engage position.
+        /// </summary>
+        /// <returns></returns>
         private bool CheckBothRobotAroundEngagePosition()
         {
             return CheckBothRobotAroundDeltaEngagePosition(50);
         }
 
+        /// <summary>
+        /// Check the both robots arounf delta from the engage position.
+        /// </summary>
+        /// <param name="delta"></param>
+        /// <returns></returns>
         private bool CheckBothRobotAroundDeltaEngagePosition(double delta)
         {
             _motocomController.SetRobotControlGroup(1);
