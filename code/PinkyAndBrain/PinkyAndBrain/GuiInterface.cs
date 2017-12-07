@@ -948,7 +948,7 @@ namespace PinkyAndBrain
                     //set robot servo on and go homeposition.
                     _motocomController.SetServoOn();
 
-                    if (CheckBothRobotsAtEngagePosition())
+                    if (CheckBothRobotsAtEngagePosition() || CheckBothRobotsAroundParkPosition())
                     {
 
                         _motocomController.WriteParkPositionFile();
@@ -1002,7 +1002,7 @@ namespace PinkyAndBrain
                     //set robot servo on and go homeposition.
                     _motocomController.SetServoOn();
 
-                    if (CheckBothRobotsAtParkPosition())
+                    if (CheckBothRobotsAtParkPosition() || CheckBothRobotAroundEngagePosition())
                     {
 
                         _motocomController.WriteHomePosFile();
@@ -1049,6 +1049,29 @@ namespace PinkyAndBrain
             return robot1PosInPark && robot2PosInPark;
         }
 
+        private bool CheckBothRobotsAroundParkPosition()
+        {
+            _motocomController.SetRobotControlGroup(1);
+
+            double[] robot1Pos = _motocomController.GetRobotPlace();
+
+            bool robot1PosInPark =
+                Math.Abs(robot1Pos[0] - (MotocomSettings.Default.R1OriginalX - 500)) < 50 &&
+                Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY) < 50 &&
+                Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ) < 50;
+
+            _motocomController.SetRobotControlGroup(2);
+
+            double[] robot2Pos = _motocomController.GetRobotPlace();
+
+            bool robot2PosInPark =
+                Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < 50 &&
+                Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < 50 &&
+                Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < 50;
+
+            return robot1PosInPark && robot2PosInPark;
+        }
+
         private bool CheckBothRobotsAtParkPositionOrBackward()
         {
             return CheckBothRobotsAtParkPosition() && Checkrobot1BackwardParkingPosition();
@@ -1080,6 +1103,27 @@ namespace PinkyAndBrain
             bool robot2PosInEngage = Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < 10 &&
                 Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < 10 &&
                 Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < 10;
+
+            return robot1PosInEngage && robot2PosInEngage;
+        }
+
+        private bool CheckBothRobotAroundEngagePosition()
+        {
+            _motocomController.SetRobotControlGroup(1);
+
+            double[] robot1Pos = _motocomController.GetRobotPlace();
+
+            bool robot1PosInEngage = Math.Abs(robot1Pos[0] - MotocomSettings.Default.R1OriginalX) < 50 &&
+                Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY) < 50 &&
+                Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ) < 50;
+
+            _motocomController.SetRobotControlGroup(2);
+
+            double[] robot2Pos = _motocomController.GetRobotPlace();
+
+            bool robot2PosInEngage = Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < 50 &&
+                Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < 50 &&
+                Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < 50;
 
             return robot1PosInEngage && robot2PosInEngage;
         }
