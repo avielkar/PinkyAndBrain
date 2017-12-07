@@ -1025,7 +1025,9 @@ namespace PinkyAndBrain
             _isEngaged = true;
             _btnMakeTrials.Enabled = true;
         }
+        #endregion
 
+        #region CHECK_ROBOTS_POSITION_FUNCTIONS
         /// <summary>
         /// Check the both robots exactly at threre park position.
         /// </summary>
@@ -1137,7 +1139,7 @@ namespace PinkyAndBrain
 
             return robot1PosInEngage && robot2PosInEngage;
         }
-        #endregion
+        #endregion CHECK_ROBOTS_POSITION_FUNCTIONS
 
         #region VARYING_LISTBOX_FUNCTIONS
         /// <summary>
