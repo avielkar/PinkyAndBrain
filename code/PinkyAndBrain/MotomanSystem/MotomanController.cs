@@ -98,10 +98,24 @@ namespace PinkyAndBrain
             }
         }
 
+        /// <summary>
+        /// Get the controled robot place.
+        /// </summary>
+        /// <returns>The vectir place of the control robot.</returns>
         public double[] GetRobotPlace()
         {
             return _motomanController.BscIsLoc();
         }
+
+        /// <summary>
+        /// Set the controlled robot.
+        /// </summary>
+        /// <param name="robotNum">robotNum = 1 for robot 1 or robotNum = 2 for robot 2.</param>
+        public void SetRobotControlGroup(short robotNum)
+        {
+            _motomanController.BscSetCtrlGroupXrc(robotNum, 0);
+        }
+
         #endregion
 
         #region JBI_FILES_CONTROLLS_FUNCTIONS
