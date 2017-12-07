@@ -16,6 +16,7 @@ using LED.Strip.Adressable;
 using InfraRedSystem;
 using log4net;
 using System.Threading;
+using MotomanSystem;
 
 namespace PinkyAndBrain
 {
@@ -947,11 +948,14 @@ namespace PinkyAndBrain
                     //set robot servo on and go homeposition.
                     _motocomController.SetServoOn();
 
-                    _motocomController.WriteParkPositionFile();
-                    _motocomController.MoveRobotParkPosition();
+                    if (CheckBothRobotsAtEngagePosition())
+                    {
 
-                    _motocomController.WaitJobFinished();
+                        _motocomController.WriteParkPositionFile();
+                        _motocomController.MoveRobotParkPosition();
 
+                        _motocomController.WaitJobFinished();
+                    }
                     _motocomController.SetServoOff();
 
                     #region ENABLE_BUTTONS_BACK
@@ -998,10 +1002,14 @@ namespace PinkyAndBrain
                     //set robot servo on and go homeposition.
                     _motocomController.SetServoOn();
 
-                    _motocomController.WriteHomePosFile();
-                    _motocomController.MoveRobotHomePosition();
+                    if (CheckBothRobotsAtParkPosition())
+                    {
 
-                    _motocomController.WaitJobFinished();
+                        _motocomController.WriteHomePosFile();
+                        _motocomController.MoveRobotHomePosition();
+
+                        _motocomController.WaitJobFinished();
+                    }
 
                     #region ENABLE_BUTTONS_BACK
                     _btnStart.Enabled = isBtnStartEnabled;
@@ -1016,6 +1024,64 @@ namespace PinkyAndBrain
 
             _isEngaged = true;
             _btnMakeTrials.Enabled = true;
+        }
+
+        private bool CheckBothRobotsAtParkPosition()
+        {
+            _motocomController.SetRobotControlGroup(1);
+
+            double [] robot1Pos = _motocomController.GetRobotPlace();
+
+            bool robot1PosInPark =
+                Math.Abs( robot1Pos[0] - (MotocomSettings.Default.R1OriginalX -500))<10 &&
+                Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY)<10 && 
+                Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ)<10;
+
+            _motocomController.SetRobotControlGroup(2);
+
+            double[] robot2Pos = _motocomController.GetRobotPlace();
+
+            bool robot2PosInPark = 
+                Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX)<10&&
+                Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY)<10 &&
+                Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ)<10;
+
+            return robot1PosInPark && robot2PosInPark;
+        }
+
+        private bool CheckBothRobotsAtParkPositionOrBackward()
+        {
+            return CheckBothRobotsAtParkPosition() && Checkrobot1BackwardParkingPosition();
+        }
+
+        private bool Checkrobot1BackwardParkingPosition()
+        {
+            _motocomController.SetRobotControlGroup(1);
+
+            double[] robot1Pos = _motocomController.GetRobotPlace();
+
+            return robot1Pos[0] - (MotocomSettings.Default.R1OriginalX - 500) < 0;
+        }
+
+        private bool CheckBothRobotsAtEngagePosition()
+        {
+            _motocomController.SetRobotControlGroup(1);
+
+            double[] robot1Pos = _motocomController.GetRobotPlace();
+
+            bool robot1PosInEngage = Math.Abs(robot1Pos[0] - MotocomSettings.Default.R1OriginalX) < 10 &&
+                Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY)<10 &&
+                Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ)<10;
+
+            _motocomController.SetRobotControlGroup(2);
+
+            double[] robot2Pos = _motocomController.GetRobotPlace();
+
+            bool robot2PosInEngage = Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < 10 &&
+                Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < 10 &&
+                Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < 10;
+
+            return robot1PosInEngage && robot2PosInEngage;
         }
         #endregion
 

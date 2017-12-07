@@ -13,7 +13,7 @@ namespace MotomanSystem {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
-    internal sealed partial class MotocomSettings : global::System.Configuration.ApplicationSettingsBase {
+    public sealed partial class MotocomSettings : global::System.Configuration.ApplicationSettingsBase {
         
         private static MotocomSettings defaultInstance = ((MotocomSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new MotocomSettings())));
         

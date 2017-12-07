@@ -69,7 +69,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="MotocomSettings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>MotocomSettings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
