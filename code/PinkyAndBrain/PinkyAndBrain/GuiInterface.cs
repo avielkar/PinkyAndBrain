@@ -1028,46 +1028,33 @@ namespace PinkyAndBrain
 
         private bool CheckBothRobotsAtParkPosition()
         {
-            _motocomController.SetRobotControlGroup(1);
-
-            double [] robot1Pos = _motocomController.GetRobotPlace();
-
-            bool robot1PosInPark =
-                Math.Abs( robot1Pos[0] - (MotocomSettings.Default.R1OriginalX -500))<10 &&
-                Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY)<10 && 
-                Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ)<10;
-
-            _motocomController.SetRobotControlGroup(2);
-
-            double[] robot2Pos = _motocomController.GetRobotPlace();
-
-            bool robot2PosInPark = 
-                Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX)<10&&
-                Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY)<10 &&
-                Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ)<10;
-
-            return robot1PosInPark && robot2PosInPark;
+            return CheckBothRobotsAroundDeltaParkPosition(10);
         }
 
         private bool CheckBothRobotsAroundParkPosition()
+        {
+            return CheckBothRobotsAroundDeltaParkPosition(50);
+        }
+
+        private bool CheckBothRobotsAroundDeltaParkPosition(double delta)
         {
             _motocomController.SetRobotControlGroup(1);
 
             double[] robot1Pos = _motocomController.GetRobotPlace();
 
             bool robot1PosInPark =
-                Math.Abs(robot1Pos[0] - (MotocomSettings.Default.R1OriginalX - 500)) < 50 &&
-                Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY) < 50 &&
-                Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ) < 50;
+                Math.Abs(robot1Pos[0] - (MotocomSettings.Default.R1OriginalX - 500)) < delta &&
+                Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY) < delta &&
+                Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ) < delta;
 
             _motocomController.SetRobotControlGroup(2);
 
             double[] robot2Pos = _motocomController.GetRobotPlace();
 
             bool robot2PosInPark =
-                Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < 50 &&
-                Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < 50 &&
-                Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < 50;
+                Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < delta &&
+                Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < delta &&
+                Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < delta;
 
             return robot1PosInPark && robot2PosInPark;
         }
@@ -1088,42 +1075,31 @@ namespace PinkyAndBrain
 
         private bool CheckBothRobotsAtEngagePosition()
         {
-            _motocomController.SetRobotControlGroup(1);
-
-            double[] robot1Pos = _motocomController.GetRobotPlace();
-
-            bool robot1PosInEngage = Math.Abs(robot1Pos[0] - MotocomSettings.Default.R1OriginalX) < 10 &&
-                Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY)<10 &&
-                Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ)<10;
-
-            _motocomController.SetRobotControlGroup(2);
-
-            double[] robot2Pos = _motocomController.GetRobotPlace();
-
-            bool robot2PosInEngage = Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < 10 &&
-                Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < 10 &&
-                Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < 10;
-
-            return robot1PosInEngage && robot2PosInEngage;
+            return CheckBothRobotAroundDeltaEngagePosition(10);
         }
 
         private bool CheckBothRobotAroundEngagePosition()
+        {
+            return CheckBothRobotAroundDeltaEngagePosition(50);
+        }
+
+        private bool CheckBothRobotAroundDeltaEngagePosition(double delta)
         {
             _motocomController.SetRobotControlGroup(1);
 
             double[] robot1Pos = _motocomController.GetRobotPlace();
 
-            bool robot1PosInEngage = Math.Abs(robot1Pos[0] - MotocomSettings.Default.R1OriginalX) < 50 &&
-                Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY) < 50 &&
-                Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ) < 50;
+            bool robot1PosInEngage = Math.Abs(robot1Pos[0] - MotocomSettings.Default.R1OriginalX) < delta &&
+                Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY) < delta &&
+                Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ) < delta;
 
             _motocomController.SetRobotControlGroup(2);
 
             double[] robot2Pos = _motocomController.GetRobotPlace();
 
-            bool robot2PosInEngage = Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < 50 &&
-                Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < 50 &&
-                Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < 50;
+            bool robot2PosInEngage = Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < delta &&
+                Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < delta &&
+                Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < delta;
 
             return robot1PosInEngage && robot2PosInEngage;
         }

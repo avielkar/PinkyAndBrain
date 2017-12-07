@@ -32629,3 +32629,14 @@
 2017-12-07 20:01:13,615 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
 2017-12-07 20:01:13,625 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
 2017-12-07 20:01:13,636 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2017-12-07 20:04:42,801 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2017-12-07 20:04:42,887 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2017-12-07 20:04:42,891 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-12-07 20:04:42,902 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-12-07 20:04:42,912 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-12-07 20:04:42,923 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2017-12-07 20:04:42,923 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2017-12-07 20:04:42,926 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-12-07 20:04:42,937 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-12-07 20:04:42,947 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2017-12-07 20:04:42,958 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
