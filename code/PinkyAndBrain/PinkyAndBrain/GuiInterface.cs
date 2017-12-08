@@ -1088,6 +1088,16 @@ namespace PinkyAndBrain
                 Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < delta &&
                 Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < delta;
 
+            string message = "The robot are too much far away from there point (more than 50 mm)\n" +
+                "R1XDelta = " + Math.Abs(robot1Pos[0] - (MotocomSettings.Default.R1OriginalX-500)) + "\n" +
+                "R1YDelta = " + Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY) + "\n" +
+                "R1ZDelta = " + Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ) + "\n" +
+                "R2XDelta = " + Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) + "\n" +
+                "R2YDelta = " + Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) + "\n" +
+                "R2ZDelta = " + Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ);
+
+            MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             return robot1PosInPark && robot2PosInPark;
         }
 
@@ -1153,6 +1163,16 @@ namespace PinkyAndBrain
             bool robot2PosInEngage = Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < delta &&
                 Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < delta &&
                 Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < delta;
+
+            string message = "The robot are too much far away from there point (more than 50 cm)\n" +
+                "R1XDelta = " + Math.Abs(robot1Pos[0] - MotocomSettings.Default.R1OriginalX) + "\n" +
+                "R1YDelta = " + Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY) + "\n" +
+                "R1ZDelta = " + Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ) + "\n" +
+                "R2XDelta = " + Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) + "\n" +
+                "R2YDelta = " + Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) + "\n" +
+                "R2ZDelta = " + Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ);
+
+            MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             return robot1PosInEngage && robot2PosInEngage;
         }
