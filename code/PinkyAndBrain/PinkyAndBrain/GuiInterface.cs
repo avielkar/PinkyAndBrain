@@ -334,31 +334,6 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Event handler when clicking on the graph in order to open it in a new big window.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void _onlinePsychGraphControl_Click(object sender, EventArgs e)
-        {
-            //The new window form to show the bigger graph on.
-            Form visualizationForm = new Form();
-
-            //adding the psych graph on it.
-            visualizationForm.Controls.Add(_onlinePsychGraphControl);
-
-            //maximize the graph.
-            visualizationForm.Size = new Size(1600, 1000);
-            _onlinePsychGraphControl.Size = new Size(1500, 900);
-
-            //deleting the event fromk the click event list in order to not make a recurssion when clicking again and again. 
-            _onlinePsychGraphControl.Click -= _onlinePsychGraphControl_Click;
-
-            //showing the new big form window.
-            visualizationForm.ShowDialog();
-            visualizationForm.Show();
-        }
-
-        /// <summary>
         /// Delegate for the trial details ListView text changing.
         /// </summary>
         /// <param name="text">The name of the variable to be inserted.</param>
@@ -591,6 +566,48 @@ namespace PinkyAndBrain
             return new Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>>(ctrlDictionary, ctrlDelegatesDic);
         }
         #endregion OUTSIDER_EVENTS_HANDLE_FUNCTION
+
+        #region BIGGER_ONLINE_PSYCHO_GRAPH_EVENTS
+        /// <summary>
+        /// Event handler when double clicking on the graph in order to open it in a new big window.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The args.</param>
+        private void _onlinePsychGraphControl_Click(object sender, EventArgs e)
+        {
+            //The new window form to show the bigger graph on.
+            Form visualizationForm = new Form();
+
+            //adding the psych graph on it.
+            visualizationForm.Controls.Add(_onlinePsychGraphControl);
+
+            //maximize the graph.
+            visualizationForm.Size = new Size(1600, 1000);
+            _onlinePsychGraphControl.Size = new Size(1500, 900);
+
+            //deleting the event fromk the click event list in order to not make a recurssion when clicking again and again. 
+            _onlinePsychGraphControl.DoubleClick -= _onlinePsychGraphControl_Click;
+
+            //showing the new big form window.
+            visualizationForm.Show();
+
+            //make the foem unclosable until the main form is closed.
+            visualizationForm.FormClosing += visualizationForm_FormClosing;
+        }
+
+        /// <summary>
+        /// Event for closing the bigger onlinePsychoGrsph form.
+        /// </summary>
+        /// <param name="sender">The bigger graph form.</param>
+        /// <param name="e">The args.</param>
+        void visualizationForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+            }
+        }
+        #endregion BIGGER_ONLINE_PSYCHO_GRAPH_EVENTS
 
         #region GLOBAL_EVENTS_HANDLE_FUNCTIONS
         /// <summary>
