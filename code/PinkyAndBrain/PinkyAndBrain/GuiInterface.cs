@@ -793,6 +793,9 @@ namespace PinkyAndBrain
                             case 2:
                                 trajectoryCreatorName = "Azimuth1D";
                                 break;
+                            case 3:
+                                trajectoryCreatorName = "Azimuth3D";
+                                break;
                             default:
                                 break;
                         }

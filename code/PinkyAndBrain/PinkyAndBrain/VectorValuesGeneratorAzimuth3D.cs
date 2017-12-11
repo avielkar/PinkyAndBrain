@@ -12,13 +12,13 @@ namespace PinkyAndBrain
     /// This class attempt to create all the needed trials 
     /// parmaeters for the whole experiment according to the protocol and th GuiInterfae inputs.
     /// </summary>
-    class AcrossVectorValuesGenerator
+    class VectorValuesGenerator3DAzimuth
     {
         #region ATTRIBUTES
         /// <summary>
         /// Dictionary holds all static variables.
         /// </summary>
-        private Variable  _staticVariables;
+        private Variable _staticVariables;
 
         /// <summary>
         /// Dictionary holds all varying variables.
@@ -70,7 +70,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public AcrossVectorValuesGenerator()
+        public VectorValuesGenerator3DAzimuth()
         {
 
         }
@@ -92,7 +92,7 @@ namespace PinkyAndBrain
         public void MakeTrialsVaringVectors()
         {
             //initialize the matrix that include all the spanning vectors.
-            Dictionary<string ,  Vector<double>> seperatedVaryingValues = MakeSeperatedVaryingVectorsList();
+            Dictionary<string, Vector<double>> seperatedVaryingValues = MakeSeperatedVaryingVectorsList();
 
             //the commulative matrix that incresed 1 line in each iteration and in many rows as the number of values the variables takes.
             Matrix<double> commulativeMatrix = Matrix<double>.Build.DenseOfRowVectors(seperatedVaryingValues[seperatedVaryingValues.Keys.First()]);
@@ -103,12 +103,16 @@ namespace PinkyAndBrain
             //the previous iteration final matrix but also transposed.
             Matrix<double> previousStepMatrixTransposed = previousStepMatrix.ConjugateTranspose();
 
+            
             //indicate to skip the first item in the foreach loop because it was already inserted to the accumulative matrix in the two lines before.
             bool skipFirst = true;
+            
+            //make the first for the DISC_PLANE_AZIMUTH and the DISC_PLANE_ELEVATION (maybe there is DISC_PLANE_AZIMUTH = +-90 so dont make it a lot but only once).
+            Dictionary<string, Vector<double>> azimuthAndPlaneOnly = new Dictionary<string, Vector<double>>();
+            azimuthAndPlaneOnly.Add("DISC_PLANE_AZIMUTH" , seperatedVaryingValues["DISC_PLANE_AZIMUTH"]);
+            azimuthAndPlaneOnly.Add("DISC_PLANE_ELEVATION" , seperatedVaryingValues["DISC_PLANE_ELEVATION"]);
 
-            //run over all the varying variables.
-            //each iteration in this loop add a new line with duplicated previous matrix with current variables values.
-            foreach (KeyValuePair<string ,  Vector<double>> varVecKeyValuePair in seperatedVaryingValues)
+            foreach (KeyValuePair<string, Vector<double>> varVecKeyValuePair in azimuthAndPlaneOnly)
             {
                 if (!skipFirst)
                 {
@@ -123,7 +127,56 @@ namespace PinkyAndBrain
                     //the x means the number of values in the variables.
                     foreach (double value in varVecKeyValuePair.Value)
                     {
+                            Vector<double> addedColumnVector = Vector<double>.Build.Dense(columnLength, value);
 
+                            Matrix<double> addedColumnMatrix = Matrix<double>.Build.DenseOfColumnVectors(addedColumnVector);
+
+                            Matrix<double> addedMatrix = previousStepMatrixTransposed.Append(addedColumnMatrix);
+
+                            //if this is the first iteration, add the new row to the matrix.
+                            if (first)
+                            {
+                                commulativeMatrix = addedMatrix.Transpose();
+                            }
+
+                            //append the added matrix to the commulative matrix.
+                            else
+                            {
+                                commulativeMatrix = commulativeMatrix.Append(addedMatrix.Transpose());
+                            }
+
+                            //from now, append the commulative matrix because it was updated first to the needed size.
+                            first = false;
+                    }
+
+                    //update thr previous matrix to be the commulatiuve matrix.
+                    previousStepMatrixTransposed = commulativeMatrix.Transpose();
+                }
+
+                //skipped the first variable that was already inserted , from now start to insert each variable in the first foreach loop.
+                skipFirst = false;
+            }
+
+            seperatedVaryingValues.Remove("DISC_PLANE_AZIMUTH");
+            seperatedVaryingValues.Remove("DISC_PLANE_ELEVATION");
+
+            //run over all the varying variables.
+            //each iteration in this loop add a new line with duplicated previous matrix with current variables values.
+            foreach (KeyValuePair<string, Vector<double>> varVecKeyValuePair in seperatedVaryingValues)
+            {
+                if (!skipFirst)
+                {
+                    bool first = true;
+
+                    int columnLength = commulativeMatrix.ColumnCount;
+
+                    //run over all values the variable is bounded in.
+                    //each iteration in the loop added the repeated values of each value of the variable to the previous matrix with the matrix above the line.
+                    //also , it concatinating this new matrix to the other matrixes.
+                    //after all the iterations of the loop , there is a previous duplicated matrix x times with new lines of duplicated values(x times).
+                    //the x means the number of values in the variables.
+                    foreach (double value in varVecKeyValuePair.Value)
+                    {
                         Vector<double> addedColumnVector = Vector<double>.Build.Dense(columnLength, value);
 
                         Matrix<double> addedColumnMatrix = Matrix<double>.Build.DenseOfColumnVectors(addedColumnVector);
@@ -161,14 +214,14 @@ namespace PinkyAndBrain
         /// Getting the list of all varying vector. Each veactor is represented by dictionary of variable name and value.
         /// </summary>
         /// <returns>Returns list in the size of generated varying vectors. Each vector represents by the name of the variable and it's value.</returns>
-        public List<Dictionary<string , List<double>>> MakeVaryingMatrix()
+        public List<Dictionary<string, List<double>>> MakeVaryingMatrix()
         {
             //make trials vectoes by matrix operations.
             MakeTrialsVaringVectors();
 
             List<Dictionary<string, List<double>>> returnList = new List<Dictionary<string, List<double>>>();
 
-            List <string> varyingVariablesNames = _varyingVariables._variablesDictionary.Keys.ToList();
+            List<string> varyingVariablesNames = _varyingVariables._variablesDictionary.Keys.ToList();
 
             IEnumerator<string> nameEnumerator = varyingVariablesNames.GetEnumerator();
 
@@ -176,7 +229,7 @@ namespace PinkyAndBrain
             {
                 Dictionary<string, List<double>> dictionaryItem = new Dictionary<string, List<double>>();
                 nameEnumerator.Reset();
-                foreach(double value in varRow)
+                foreach (double value in varRow)
                 {
                     nameEnumerator.MoveNext();
 
@@ -203,7 +256,7 @@ namespace PinkyAndBrain
         /// from the list of rows for the crossVaryingValues of the ratHouseParameters only and the matched values dictionary.
         /// </summary>
         /// <param name="ratHouseVaryingCrossVals"></param>
-        public void CrossVaryingValuesToBothParameters(List<Dictionary<string , List<double>>> ratHouseVaryingCrossVals)
+        public void CrossVaryingValuesToBothParameters(List<Dictionary<string, List<double>>> ratHouseVaryingCrossVals)
         {
             foreach (Dictionary<string, List<double>> varRatHouseRowItem in ratHouseVaryingCrossVals)
             {
@@ -222,10 +275,10 @@ namespace PinkyAndBrain
         /// <summary>
         /// Cretaes varying vectors list according to the varying vectors variables(the list include each variable as a vector with no connection each other).
         /// </summary>
-        private Dictionary<string , Vector<double>> MakeSeperatedVaryingVectorsList()
+        private Dictionary<string, Vector<double>> MakeSeperatedVaryingVectorsList()
         {
             //a list include all varying vectors by themselves only.
-            Dictionary<string, Vector<double>> varyingVectorsList = new Dictionary<string,Vector<double>>();
+            Dictionary<string, Vector<double>> varyingVectorsList = new Dictionary<string, Vector<double>>();
 
             //initiate the dictionary for reading a landScapeParameter value according to the ratHouseParameter value.
             _varyingVectorDictionaryParalelledForLandscapeHouseParameters = new Dictionary<string, Dictionary<double, double>>();
@@ -239,14 +292,14 @@ namespace PinkyAndBrain
                     double low_bound = double.Parse(_varyingVariables._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter[0]);
                     double high_bound = double.Parse(_varyingVariables._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter[0]);
                     double increament = double.Parse(_varyingVariables._variablesDictionary[varName]._description["increament"]._ratHouseParameter[0]);
-                    
+
                     //add the vector to the return list.
                     Vector<double> oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament);
-                    varyingVectorsList.Add(varName , oneVarVector);
+                    varyingVectorsList.Add(varName, oneVarVector);
 
                     //if the lanscapeHouseParameters is also enabled here , save it in the paralleled dictionary
                     // in order to select the value matched to the ratHouseParameter.
-                    if(_varyingVariables._variablesDictionary[varName]._description["low_bound"]._bothParam)
+                    if (_varyingVariables._variablesDictionary[varName]._description["low_bound"]._bothParam)
                     {
                         //make the vector for the lanscapeHouseParameters bounds also.
                         double low_boundLanscape = double.Parse(_varyingVariables._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter[0]);
@@ -255,7 +308,7 @@ namespace PinkyAndBrain
 
                         Vector<double> oneVarVectorLanscape = CreateVectorFromBounds(low_boundLanscape, high_boundLanscape, increamentLanscape);
                         Dictionary<double, double> valuesOfRatHouseParametersToLandscapeParameters = new Dictionary<double, double>();
-                        
+
                         //iterator for the values of the landscapeHouseParameters.
                         IEnumerator<double> landscapeVectorIterator = oneVarVectorLanscape.Enumerate().GetEnumerator();
 
@@ -270,7 +323,7 @@ namespace PinkyAndBrain
                         _varyingVectorDictionaryParalelledForLandscapeHouseParameters.Add(varName, valuesOfRatHouseParametersToLandscapeParameters);
                     }
                 }
-                
+
                 //if the variable has only one attribute and the attrbute is not a scalar(is a vector)
                 else { }
             }
@@ -288,10 +341,10 @@ namespace PinkyAndBrain
         /// <returns>The generated vector from the input bounds.</returns>
         private Vector<double> CreateVectorFromBounds(double lowBound, double highBound, double increment)
         {
-            Vector<double> createdVector = Vector<double>.Build.Dense((int)((highBound-lowBound)/increment + 1));
+            Vector<double> createdVector = Vector<double>.Build.Dense((int)((highBound - lowBound) / increment + 1));
             int index = 0;
 
-            while(lowBound<=highBound)
+            while (lowBound <= highBound)
             {
                 createdVector.At(index, lowBound);
                 lowBound += increment;
