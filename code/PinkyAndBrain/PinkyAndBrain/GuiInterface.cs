@@ -61,7 +61,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Holds the AcrossVectorValuesGenerator generator.
         /// </summary>
-        private AcrossVectorValuesGenerator _acrossVectorValuesGenerator;
+        private IVaryingVectorGenerator _acrossVectorValuesGenerator;
 
         /// <summary>
         /// Holds the StaticValuesGenerator generator.
@@ -148,7 +148,7 @@ namespace PinkyAndBrain
             _variablesList = new Variables();
             _variablesList._variablesDictionary = new Dictionary<string, Variable>();
             _dynamicAllocatedTextBoxes = new Dictionary<string,Control>();
-            _acrossVectorValuesGenerator = new AcrossVectorValuesGenerator();
+            _acrossVectorValuesGenerator = new VectorValuesGenerator3DAzimuth();
             _staticValuesGenerator = new StaticValuesGenerator();
             InitializeTitleLabels();
             ShowVaryingControlsOptions(false);

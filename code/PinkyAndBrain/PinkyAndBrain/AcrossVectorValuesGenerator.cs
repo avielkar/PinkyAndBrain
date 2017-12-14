@@ -12,48 +12,8 @@ namespace PinkyAndBrain
     /// This class attempt to create all the needed trials 
     /// parmaeters for the whole experiment according to the protocol and th GuiInterfae inputs.
     /// </summary>
-    public class AcrossVectorValuesGenerator
+    public class AcrossVectorValuesGenerator:IVaryingVectorGenerator
     {
-        #region ATTRIBUTES
-        /// <summary>
-        /// Dictionary holds all static variables.
-        /// </summary>
-        private Variable  _staticVariables;
-
-        /// <summary>
-        /// Dictionary holds all varying variables.
-        /// </summary>
-        private Variables _varyingVariables;
-
-        /// <summary>
-        /// Dictionary holds all acrossStair variables.
-        /// </summary>
-        private Variables _acrossStairVariables;
-
-        /// <summary>
-        /// Dictionary holds all withinStair variables.
-        /// </summary>
-        private Variables _withinStairVariables;
-
-        /// <summary>
-        /// Initial Dictionary (nor updated later) describes all the vectors sorted by all trials for each variables by index for the varying values generator.
-        /// The vector for each key string (name  of variable) is the paralleled vector for the other strings (variables).
-        /// Each paralleled index in all vector describes a vector for one trial.
-        /// </summary>
-        private Dictionary<string, Vector<double>> _varyingVectorDictionary;
-
-        /// <summary>
-        ///Initial Matrix (not updated later) holds all the generated varying vectors for the experiment. Each row in the matrix represent a varying trial vector.
-        /// The num of the columns should be the number of the trials.
-        /// </summary>
-        private Matrix<double> _varyingMatrix;
-
-        /// <summary>
-        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.
-        /// </summary>
-        public List<Dictionary<string, double>> _crossVaryingValsBoth;
-        #endregion ATTRIBUTES
-
         #region CONSTRUCTOR
         /// <summary>
         /// Default constructor.
@@ -69,7 +29,7 @@ namespace PinkyAndBrain
         /// Sets the variables dictionary into new variables dictionaries ordered by statuses.
         /// </summary>
         /// <param name="vars"></param>
-        public void SetVariablesValues(Variables vars)
+        public override void SetVariablesValues(Variables vars)
         {
             _varyingVariables = vars.FilterVariablesByStatus("2");
         }
@@ -77,7 +37,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Creates all the varying vectors the trial in the experiment would use.
         /// </summary>
-        public void MakeTrialsVaringVectors()
+        public override void MakeTrialsVaringVectors()
         {
             //initialize the matrix that include all the spanning vectors.
             Dictionary<string ,  Vector<double>> seperatedVaryingValues = MakeSeperatedVaryingVectorsList();
@@ -149,7 +109,7 @@ namespace PinkyAndBrain
         /// Getting the list of all varying vector. Each veactor is represented by dictionary of variable name and value.
         /// </summary>
         /// <returns>Returns list in the size of generated varying vectors. Each vector represents by the name of the variable and it's value.</returns>
-        public List<Dictionary<string , double>> MakeVaryingMatrix()
+        public override List<Dictionary<string, double>> MakeVaryingMatrix()
         {
             //make trials vectoes by matrix operations.
             MakeTrialsVaringVectors();
@@ -183,7 +143,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Cretaes varying vectors list according to the varying vectors variables(the list include each variable as a vector with no connection each other).
         /// </summary>
-        private Dictionary<string , Vector<double>> MakeSeperatedVaryingVectorsList()
+        public override Dictionary<string, Vector<double>> MakeSeperatedVaryingVectorsList()
         {
             //a list include all varying vectors by themselves only.
             Dictionary<string, Vector<double>> varyingVectorsList = new Dictionary<string,Vector<double>>();
@@ -211,7 +171,7 @@ namespace PinkyAndBrain
         /// <param name="highBound">The high bound to end with.</param>
         /// <param name="increment">The increament between each elemrnt in the generated vector.</param>
         /// <returns>The generated vector from the input bounds.</returns>
-        private Vector<double> CreateVectorFromBounds(double lowBound, double highBound, double increment)
+        public override Vector<double> CreateVectorFromBounds(double lowBound, double highBound, double increment)
         {
             Vector<double> createdVector = Vector<double>.Build.Dense((int)((highBound-lowBound)/increment + 1));
             int index = 0;
