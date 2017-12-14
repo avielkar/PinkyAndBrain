@@ -96,18 +96,15 @@ namespace Trajectories
         private Variables _variablesList;
 
         /// <summary>
-        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.
+        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters.
         /// </summary>
-        private List<Dictionary<string, List<double>>> _crossVaryingVals;
+        private List<Dictionary<string, double>> _crossVaryingVals;
 
         /// <summary>
         /// The static variables list in double value presentation.
         /// The string is for the variable name.
-        /// The lists is for the values for each of the ratHouseParameter.
-        /// The inners kist is with size 1 if the input is a scalar.
-        /// Otherwise ,  if a vector , it would be a list with the size of the vector.
         /// </summary>
-        private Dictionary<string, List<double>> _staticVars;
+        private Dictionary<string, double> _staticVars;
 
         /// <summary>
         /// The numbers of samples for each trajectory.
@@ -135,7 +132,7 @@ namespace Trajectories
         /// <param name="variablesList">The variables list showen in the readen from the excel and changed by the main gui.</param>
         /// <param name="crossVaryingVals">Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.</param>
         /// <param name="trajectorySampleNumber">The number of sample points for the trajectory.</param>
-        public ThreeStepAdaptation(MLApp.MLApp matlabApp , Variables variablesList , List<Dictionary<string , List<double>>> crossVaryingVals , Dictionary<string , List<double>> staticVals , int trajectorySampleNumber)
+        public ThreeStepAdaptation(MLApp.MLApp matlabApp , Variables variablesList , List<Dictionary<string , double>> crossVaryingVals , Dictionary<string , double> staticVals , int trajectorySampleNumber)
         {
             _matlabApp = matlabApp;
             _variablesList = variablesList;
@@ -280,59 +277,59 @@ namespace Trajectories
         /// </summary>
         public void ReadTrialParameters(int index)
         {
-            Dictionary<string, List<double>> currentVaryingTrialParameters = _crossVaryingVals[index];
+            Dictionary<string, double> currentVaryingTrialParameters = _crossVaryingVals[index];
 
             //if there is no landscapeHouseParameter put the value of the ratHouseParameter for both (and at the sending , and before sending check the status of the stimulus type.
             if (_staticVars.ContainsKey("DIST"))
-                _distance = _staticVars["DIST"][0];
+                _distance = _staticVars["DIST"];
             else if (_crossVaryingVals[index].Keys.Contains("DIST"))
-                _distance = currentVaryingTrialParameters["DIST"][0];
+                _distance = currentVaryingTrialParameters["DIST"];
 
             if (_staticVars.ContainsKey("STIMULUS_DURATION"))
-                _duration = _staticVars["STIMULUS_DURATION"][0];
+                _duration = _staticVars["STIMULUS_DURATION"];
             else if (_crossVaryingVals[index].Keys.Contains("STIMULUS_DURATION"))
-                _duration = currentVaryingTrialParameters["STIMULUS_DURATION"][0];
+                _duration = currentVaryingTrialParameters["STIMULUS_DURATION"];
 
             if (_staticVars.ContainsKey("SIGMA"))
-                _sigma = _staticVars["SIGMA"][0];
+                _sigma = _staticVars["SIGMA"];
             else if (_crossVaryingVals[index].Keys.Contains("SIGMA"))
-                _sigma = currentVaryingTrialParameters["SIGMA"][0];
+                _sigma = currentVaryingTrialParameters["SIGMA"];
 
             if (_staticVars.ContainsKey("ADAPTATION_ANGLE"))
-                _adaptationAngle = _staticVars["ADAPTATION_ANGLE"][0];
+                _adaptationAngle = _staticVars["ADAPTATION_ANGLE"];
             else if (_crossVaryingVals[index].Keys.Contains("ADAPTATION_ANGLE"))
-                _adaptationAngle = currentVaryingTrialParameters["ADAPTATION_ANGLE"][0];
+                _adaptationAngle = currentVaryingTrialParameters["ADAPTATION_ANGLE"];
 
             if (_staticVars.ContainsKey("HEADING_DIRECTION"))
-                _headingDirection = _staticVars["HEADING_DIRECTION"][0];
+                _headingDirection = _staticVars["HEADING_DIRECTION"];
             else if (_crossVaryingVals[index].Keys.Contains("HEADING_DIRECTION"))
-                _headingDirection = currentVaryingTrialParameters["HEADING_DIRECTION"][0];
+                _headingDirection = currentVaryingTrialParameters["HEADING_DIRECTION"];
 
             if (_staticVars.ContainsKey("DISC_PLANE_AZIMUTH"))
-                _discPlaneAzimuth = _staticVars["DISC_PLANE_AZIMUTH"][0];
+                _discPlaneAzimuth = _staticVars["DISC_PLANE_AZIMUTH"];
             else if (_crossVaryingVals[index].Keys.Contains("DISC_PLANE_AZIMUTH"))
-                _discPlaneAzimuth = currentVaryingTrialParameters["DISC_PLANE_AZIMUTH"][0];
+                _discPlaneAzimuth = currentVaryingTrialParameters["DISC_PLANE_AZIMUTH"];
 
             if (_staticVars.ContainsKey("DISC_PLANE_ELEVATION"))
-                _discPlaneElevation = _staticVars["DISC_PLANE_ELEVATION"][0];
+                _discPlaneElevation = _staticVars["DISC_PLANE_ELEVATION"];
             else if (_crossVaryingVals[index].Keys.Contains("DISC_PLANE_ELEVATION"))
-                _discPlaneElevation = currentVaryingTrialParameters["DISC_PLANE_ELEVATION"][0];
+                _discPlaneElevation = currentVaryingTrialParameters["DISC_PLANE_ELEVATION"];
 
             if (_staticVars.ContainsKey("DISC_PLANE_TILT"))
-                _discPlaneTilt = _staticVars["DISC_PLANE_TILT"][0];
+                _discPlaneTilt = _staticVars["DISC_PLANE_TILT"];
             else if (_crossVaryingVals[index].Keys.Contains("DISC_PLANE_TILT"))
-                _discPlaneTilt = currentVaryingTrialParameters["DISC_PLANE_TILT"][0];
+                _discPlaneTilt = currentVaryingTrialParameters["DISC_PLANE_TILT"];
 
             //check what about the stimulus type (that not must be static).
             if (_staticVars.ContainsKey("STIMULUS_TYPE"))
-                _stimulusType = (int)_staticVars["STIMULUS_TYPE"][0];
+                _stimulusType = (int)_staticVars["STIMULUS_TYPE"];
             else if (currentVaryingTrialParameters.ContainsKey("STIMULUS_TYPE"))
             {
-                _stimulusType = (int)currentVaryingTrialParameters["STIMULUS_TYPE"][0];
+                _stimulusType = (int)currentVaryingTrialParameters["STIMULUS_TYPE"];
             }
             else if (_crossVaryingVals[index].Keys.Contains("STIMULUS_TYPE"))
             {
-                _stimulusType = int.Parse(_variablesList._variablesDictionary["STIMULUS_TYPE"]._description["parameters"]._ratHouseParameter[0]);
+                _stimulusType = int.Parse(_variablesList._variablesDictionary["STIMULUS_TYPE"]._description["parameters"]._ratHouseParameter);
             }
         }
 

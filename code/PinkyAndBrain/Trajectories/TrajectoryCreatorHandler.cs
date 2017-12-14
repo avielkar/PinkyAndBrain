@@ -38,19 +38,15 @@ namespace Trajectories
         private Variables _variablesList;
 
         /// <summary>
-        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.
+        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters.
         /// </summary>
-        private List<Dictionary<string, List<double>>> _crossVaryingVals;
+        private List<Dictionary<string, double>> _crossVaryingVals;
 
         /// <summary>
         /// The static variables list in double value presentation.
         /// The string is for the variable name.
-        /// The outer list is for the two inner list (or one , conditioned in the landscapeHouseParameter).
-        /// The inners lists are for the values for each of the ratHouseParameter and landscapeHouseParameter (if there).
-        /// The inners kist is with size 1 if the input is a scalar.
-        /// Otherwise ,  if a vector , it would be a list with the size of the vector.
         /// </summary>
-        private Dictionary<string, List<double>> _staticVals;
+        private Dictionary<string, double> _staticVals;
 
         /// <summary>
         /// The numbers of samples for each trajectory.
@@ -84,10 +80,10 @@ namespace Trajectories
         /// </summary>
         /// <param name="trajectoryName">The trajectoryCreator class name to make and call in order to deliver the trajectory.</param>
         /// <param name="variableList">The variables readen from the xlsx protocol file.</param>
-        /// <param name="crossVaryingVals">Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.</param>
+        /// <param name="crossVaryingVals">Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters.</param>
         /// <param name="staticVariables">The static variables list in double value presentation.</param>
         /// <param name="frequency">The numbers of samples for each trajectory.</param>
-        public void SetTrajectoryAttributes(string trajectoryName, Variables variableList, List<Dictionary<string, List<double>>> crossVaryingVals, Dictionary<string, List<double>> staticVariables, int frequency)
+        public void SetTrajectoryAttributes(string trajectoryName, Variables variableList, List<Dictionary<string, double>> crossVaryingVals, Dictionary<string, double> staticVariables, int frequency)
         {
             //set the variables.
             _trajectoryCreatorName = trajectoryName;

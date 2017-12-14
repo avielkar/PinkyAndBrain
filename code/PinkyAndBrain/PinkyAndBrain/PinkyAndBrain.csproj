@@ -113,6 +113,7 @@
     <Compile Include="GuiInterface.Designer.cs">
       <DependentUpon>GuiInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="IVaryingVectorGenerator.cs" />
     <Compile Include="StaticValuesGenerator.cs" />
     <Compile Include="OnlinePsychGraphMaker.cs" />
     <Compile Include="Program.cs" />

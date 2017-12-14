@@ -25,13 +25,13 @@ namespace Params
         /// <param name="par">The Param to be copied.</param>
         public Param(Param par)
         {
-            _ratHouseParameter = new List<string>(par._ratHouseParameter);
+            _ratHouseParameter = par._ratHouseParameter;
         }
 
         /// <summary>
         /// The rat house parameter values for one attribute of one variable.
         /// </summary>
-        public List<string> _ratHouseParameter
+        public string _ratHouseParameter
         {
             get;
             set;

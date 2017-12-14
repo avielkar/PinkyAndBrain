@@ -83,8 +83,7 @@ namespace PinkyAndBrain
                 {   
                     Param param = new Param();
 
-                    param._ratHouseParameter = new List<string>();
-                    param._ratHouseParameter.Add(excelStringValuesArray[k,i]);
+                    param._ratHouseParameter = excelStringValuesArray[k,i];
 
                     if(excelStringValuesArray[k, i] != null)
                         param = DisassamblyDataAttributeValue(excelStringValuesArray[k, i]);
@@ -93,7 +92,7 @@ namespace PinkyAndBrain
                 }
 
                 //adding the variable (line in the excel data file into the dictionary of variables with the variable name as the key).
-                variables._variablesDictionary.Add(var._description["name"]._ratHouseParameter[0], var);
+                variables._variablesDictionary.Add(var._description["name"]._ratHouseParameter, var);
 
             }
 
@@ -130,12 +129,9 @@ namespace PinkyAndBrain
         private Param DisassamblyDataAttributeValue(string attributeValue)
         {
             Param par = new Param();
-            par._ratHouseParameter = new List<string>();
-
-            //if there are a two attributes in the attribute data. [x] == 1 attributes. [x,y,z,w] == vector for one attribute only.
 
             //split each vector of data for each robot to a list of components.
-            par._ratHouseParameter = string.Join("", attributeValue.SkipWhile(x => x == '[').TakeWhile(x => x != ']').ToArray()).Split(',').ToList();
+            par._ratHouseParameter =attributeValue;
 
             return par;
         }

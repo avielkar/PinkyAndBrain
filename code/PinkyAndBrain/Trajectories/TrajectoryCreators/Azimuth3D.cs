@@ -352,7 +352,7 @@ namespace Trajectories
             }
             else if (_crossVaryingVals[index].Keys.Contains("STIMULUS_TYPE"))
             {
-                _stimulusType = int.Parse(_variablesList._variablesDictionary["STIMULUS_TYPE"]._description["parameters"]._ratHouseParameter[0]);
+                _stimulusType = int.Parse(_variablesList._variablesDictionary["STIMULUS_TYPE"]._description["parameters"]._ratHouseParameter);
             }
         }
 

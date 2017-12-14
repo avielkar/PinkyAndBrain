@@ -78,11 +78,8 @@ namespace PinkyAndBrain
             {
                 lineBuilder.Append(paramName);
                 lineBuilder.Append(":");
-                foreach (double value in trialData.StaticVariables[paramName])
-                {
-                    lineBuilder.Append(value);
-                    lineBuilder.Append(" ");
-                }
+                lineBuilder.Append(trialData.StaticVariables[paramName]);
+                lineBuilder.Append(" ");
 
                 _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
                 lineBuilder.Clear();
@@ -93,11 +90,7 @@ namespace PinkyAndBrain
             {
                 lineBuilder.Append(paramName);
                 lineBuilder.Append(":");
-                foreach (double value in trialData.VaryingVariables[paramName])
-                {
-                    lineBuilder.Append(value);
-                    lineBuilder.Append(" ");
-                }
+                lineBuilder.Append(trialData.VaryingVariables[paramName]);
 
                 _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
                 lineBuilder.Clear();
@@ -161,12 +154,12 @@ namespace PinkyAndBrain
         /// <summary>
         /// The static variables value for one trial.
         /// </summary>
-        public Dictionary<string , List<double>> StaticVariables { get; set; }
+        public Dictionary<string , double> StaticVariables { get; set; }
 
         /// <summary>
         /// The varying varuiables value for one trial.
         /// </summary>
-        public Dictionary<string , List<double>> VaryingVariables { get; set; }
+        public Dictionary<string , double> VaryingVariables { get; set; }
 
         /// <summary>
         /// The timings variables for one trial.

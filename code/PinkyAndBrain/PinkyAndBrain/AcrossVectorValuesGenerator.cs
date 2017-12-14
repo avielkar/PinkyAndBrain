@@ -12,7 +12,7 @@ namespace PinkyAndBrain
     /// This class attempt to create all the needed trials 
     /// parmaeters for the whole experiment according to the protocol and th GuiInterfae inputs.
     /// </summary>
-    class AcrossVectorValuesGenerator
+    public class AcrossVectorValuesGenerator
     {
         #region ATTRIBUTES
         /// <summary>
@@ -51,8 +51,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.
         /// </summary>
-        public List<Dictionary<string, List<double>>> _crossVaryingValsBoth;
-
+        public List<Dictionary<string, double>> _crossVaryingValsBoth;
         #endregion ATTRIBUTES
 
         #region CONSTRUCTOR
@@ -150,12 +149,12 @@ namespace PinkyAndBrain
         /// Getting the list of all varying vector. Each veactor is represented by dictionary of variable name and value.
         /// </summary>
         /// <returns>Returns list in the size of generated varying vectors. Each vector represents by the name of the variable and it's value.</returns>
-        public List<Dictionary<string , List<double>>> MakeVaryingMatrix()
+        public List<Dictionary<string , double>> MakeVaryingMatrix()
         {
             //make trials vectoes by matrix operations.
             MakeTrialsVaringVectors();
 
-            List<Dictionary<string, List<double>>> returnList = new List<Dictionary<string, List<double>>>();
+            List<Dictionary<string, double>> returnList = new List<Dictionary<string, double>>();
 
             List <string> varyingVariablesNames = _varyingVariables._variablesDictionary.Keys.ToList();
 
@@ -163,14 +162,13 @@ namespace PinkyAndBrain
 
             foreach (Vector<double> varRow in _varyingMatrix.EnumerateColumns())
             {
-                Dictionary<string, List<double>> dictionaryItem = new Dictionary<string, List<double>>();
+                Dictionary<string, double> dictionaryItem = new Dictionary<string, double>();
                 nameEnumerator.Reset();
                 foreach(double value in varRow)
                 {
                     nameEnumerator.MoveNext();
 
-                    dictionaryItem[nameEnumerator.Current] = new List<double>();
-                    dictionaryItem[nameEnumerator.Current].Add(value);
+                    dictionaryItem.Add(nameEnumerator.Current , value);
                 }
                 returnList.Add(dictionaryItem);
             }
@@ -193,20 +191,13 @@ namespace PinkyAndBrain
             #region MAKING_VARYING_VECTOR_LIST
             foreach (string varName in _varyingVariables._variablesDictionary.Keys)
             {
-                //if the variable has only one attributes and is the atribute is scalar.
-                if (_varyingVariables._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter.Count == 1)
-                {
-                    double low_bound = double.Parse(_varyingVariables._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter[0]);
-                    double high_bound = double.Parse(_varyingVariables._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter[0]);
-                    double increament = double.Parse(_varyingVariables._variablesDictionary[varName]._description["increament"]._ratHouseParameter[0]);
-                    
-                    //add the vector to the return list.
-                    Vector<double> oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament);
-                    varyingVectorsList.Add(varName , oneVarVector);
-                }
-                
-                //if the variable has only one attribute and the attrbute is not a scalar(is a vector)
-                else { }
+                double low_bound = double.Parse(_varyingVariables._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
+                double high_bound = double.Parse(_varyingVariables._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter);
+                double increament = double.Parse(_varyingVariables._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
+
+                //add the vector to the return list.
+                Vector<double> oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament);
+                varyingVectorsList.Add(varName, oneVarVector);
             }
             #endregion MAKING_VARYING_VECTOR_LIST
 

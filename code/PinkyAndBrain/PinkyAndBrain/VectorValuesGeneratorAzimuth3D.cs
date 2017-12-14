@@ -287,19 +287,13 @@ namespace PinkyAndBrain
             foreach (string varName in _varyingVariables._variablesDictionary.Keys)
             {
                 //if the variable has only one attributes and is the atribute is scalar.
-                if (_varyingVariables._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter.Count == 1)
-                {
-                    double low_bound = double.Parse(_varyingVariables._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter[0]);
-                    double high_bound = double.Parse(_varyingVariables._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter[0]);
-                    double increament = double.Parse(_varyingVariables._variablesDictionary[varName]._description["increament"]._ratHouseParameter[0]);
+                    double low_bound = double.Parse(_varyingVariables._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
+                    double high_bound = double.Parse(_varyingVariables._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter);
+                    double increament = double.Parse(_varyingVariables._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
 
                     //add the vector to the return list.
                     Vector<double> oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament);
                     varyingVectorsList.Add(varName, oneVarVector);
-                }
-
-                //if the variable has only one attribute and the attrbute is not a scalar(is a vector)
-                else { }
             }
             #endregion MAKING_VARYING_VECTOR_LIST
 

@@ -778,7 +778,7 @@ namespace PinkyAndBrain
                         //start the control loop.
                         //need to be changed according to parameters added to which trajectoryname to be called from the excel file.
                         //string trajectoryCreatorName = _variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0];
-                        int trajectoryCreatorNum = int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0]);
+                        int trajectoryCreatorNum = int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter);
                         string trajectoryCreatorName = (trajectoryCreatorNum == 0) ? "Training" : "ThreeStepAdaptation";
 
                         //determine the TrajectoryCreator to call with.
@@ -1186,14 +1186,14 @@ namespace PinkyAndBrain
         /// Adding the generated cross varying values to the varying listbox.
         /// </summary>
         /// <param name="varyingCrossValsBoth">The cross genereated varying values to add to the listbox.</param>
-        private void AddVaryingMatrixToVaryingListBox(List<Dictionary<string, List<double>>> varyingCrossValsBoth)
+        private void AddVaryingMatrixToVaryingListBox(List<Dictionary<string, double>> varyingCrossValsBoth)
         {
             //collect the titles for the listbox columns to a list.
             string listBoxTitleLineText = "";
             List<string> niceNameList = new List<string>();
             foreach (string varName in varyingCrossValsBoth.ElementAt(0).Keys)
             {
-                string varNiceName = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter.ElementAt(0);
+                string varNiceName = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter;
                 niceNameList.Add(varNiceName);
             }
 
@@ -1209,13 +1209,11 @@ namespace PinkyAndBrain
             //_varyingListBox.ValueMember = "_listIndex";
 
 
-            //make the list describes all varying lines to describes both parameters (if should) for the ratHouseParameters and the landscapeHouseParameters.
-            List<Dictionary<string, string>> varyingCrossValsBothStringVersion = CrossVaryingValuesToBothParameters(varyingCrossValsBoth);
 
             //add all varying cross value in new line in the textbox.
             int index = 0;
 
-            foreach (Dictionary<string, string> varRowDictionaryItem in varyingCrossValsBothStringVersion)
+            foreach (Dictionary<string, double> varRowDictionaryItem in varyingCrossValsBoth)
             {
                 string listBoxLineText = string.Join("\t", varRowDictionaryItem.Values);
 
@@ -1301,7 +1299,7 @@ namespace PinkyAndBrain
         private void _addVaryingCombination_Click(object sender, EventArgs e)
         {
             //get the cross varying values list.
-            List<Dictionary<string, List<double>>> crossVaryingVals = _acrossVectorValuesGenerator._crossVaryingValsBoth;
+            List<Dictionary<string, double>> crossVaryingVals = _acrossVectorValuesGenerator._crossVaryingValsBoth;
 
             //make a dictionary with the variable name as key and the belong textbox as value.
             Dictionary<string, TextBox> varNameToTextboxDictionary = new Dictionary<string, TextBox>();
@@ -1316,7 +1314,7 @@ namespace PinkyAndBrain
         /// <param name="crossVaryingVals">The crossVaryingVals list for all the trials.</param>
         /// <param name="varNameToTextboxDictionary">The dictionary map for the variable string (key) to the variable representing textbox(value).</param>
         /// <returns></returns>
-        private Form ShowControlAddingVaryingForm(List<Dictionary<string, List<double>>> crossVaryingVals, Dictionary<string, TextBox> varNameToTextboxDictionary)
+        private Form ShowControlAddingVaryingForm(List<Dictionary<string, double>> crossVaryingVals, Dictionary<string, TextBox> varNameToTextboxDictionary)
         {
             //show thw new little form for the desired variables.
             Form littleTempForm = new Form();
@@ -1328,7 +1326,7 @@ namespace PinkyAndBrain
             //add an input textbox with label show the name for each varying parameter.
             foreach (string varName in crossVaryingVals.ElementAt(0).Keys)
             {
-                string varNiceName = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter.ElementAt(0);
+                string varNiceName = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter;
 
                 Label varyingAttributeLabel = new Label();
                 varyingAttributeLabel.Text = varName;
@@ -1398,16 +1396,14 @@ namespace PinkyAndBrain
         /// <param name="varNameToValueDictionary">
         /// The item that describes the trial by a dictionary.
         /// The key os for the variable name.
-        /// The value is for the value of that variable include for both ratHouseParameter and landscapeHouseParameter,
-        ///if needed by [x][y] string.
+        /// The value is for the value of that variable include ratHouseParameter
         /// </param>
         private void AddNewVaryngCombination(Dictionary<string, string> varNameToValueDictionary)
         {
-            Dictionary<string, List<double>> varNameToValueDictionaryDoubleListVersion = new Dictionary<string, List<double>>();
+            Dictionary<string, double> varNameToValueDictionaryDoubleListVersion = new Dictionary<string, double>();
             foreach (string varName in varNameToValueDictionary.Keys)
             {
-                varNameToValueDictionaryDoubleListVersion.Add(varName,
-                    ConvertStringListToDoubleList(BracketsSplitter(varNameToValueDictionary[varName])));
+                varNameToValueDictionaryDoubleListVersion.Add(varName,double.Parse(varNameToValueDictionary[varName]));
             }
 
             _acrossVectorValuesGenerator._crossVaryingValsBoth.Add(varNameToValueDictionaryDoubleListVersion);
@@ -1503,7 +1499,7 @@ namespace PinkyAndBrain
             selectedIndex = StatusIndexByNameDecoder(cb.SelectedItem.ToString());
 
             //update the status in the variables dictionary.
-            _variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0] = selectedIndex;
+            _variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter = selectedIndex;
 
             //Check if both he num of staicases and withinstairs is 1 or 0.
             #region STATUS_NUM_OF_OCCURENCES
@@ -1772,7 +1768,7 @@ namespace PinkyAndBrain
                 newLabel.Height = height;
                 newLabel.Top = top;
                 newLabel.Left = left;*/
-                ShowVariableLabel(_variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0], top, left, width + 40, height, eachDistance, _variablesList._variablesDictionary[varName]._description["tool_tip"]._ratHouseParameter[0]);
+                ShowVariableLabel(_variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter, top, left, width + 40, height, eachDistance, _variablesList._variablesDictionary[varName]._description["tool_tip"]._ratHouseParameter);
 
                 ShowVariableAttributes(varName, top, left, width, height, eachDistance, 750);
 
@@ -1841,7 +1837,7 @@ namespace PinkyAndBrain
             statusCombo.SelectedIndexChanged += new EventHandler((sender, args) => statusCombo_SelectedIndexChanged(sender, args, varName));
 
             //decide which items on the ComboBox is selected according to the data in the excel sheet.
-            switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0])
+            switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter)
             {
                 case "1":
                     statusCombo.SelectedText = "Static";
@@ -1950,7 +1946,7 @@ namespace PinkyAndBrain
             parametersTextBox.Name = "parameters";
 
             //print the parameter in the gui according to the representation of each status.
-            switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0])
+            switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter)
             {
                 case "1":   //static
                     //show the _ratHouseParameter.
@@ -2147,7 +2143,7 @@ namespace PinkyAndBrain
         private void FreezeTextBoxAccordingToStatus(TextBox textBox , string varName , bool parametersTextbox)
         {
             //decide which items on the ComboBox is selected according to the data in the excel sheet.
-            switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0])
+            switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter)
             {
                 case "1":
                     textBox.Enabled = false;
@@ -2174,61 +2170,29 @@ namespace PinkyAndBrain
         /// <param name="varName">The var name to attributed updated according to the new value if the input is proper.</param>
         /// <param name="attributeName">The attribute of the variable to be pdated if the input was proper.</param>
         /// <returns></returns>
-        private Param CheckProperInputSpelling(string attributeValue , string varName , string attributeName)
+        private Param CheckProperInputSpelling(string attributeValue, string varName, string attributeName)
         {
             Param par = new Param();
-            par._ratHouseParameter = new List<string>();
-
-            //if there are a two attributes in the attribute data. [x][y] == 2 attributes. x,y,z,w == vector for one attribute only.
-            if (attributeValue.Count(x => x == '[') == 2)
-            {
-                string ratHouseParameteString;
-                string landscapeHouseParameteString;
-
-                ratHouseParameteString = string.Join("", attributeValue.Skip(1).TakeWhile(x => x != ']').ToArray());
-                landscapeHouseParameteString = string.Join("", attributeValue.Skip(1).SkipWhile(x => x != '[').Skip(1).TakeWhile(x => x != ']').ToArray());
-
-                //split each vector of data for robot to a list of components.
-                par._ratHouseParameter = ratHouseParameteString.Split(',').ToList();
-
-                //if the input for one value contains more than one dot for precison dot or chars that are not digits.
-                //if true , update the values in the variables dictionary.
-                if (DigitsNumberChecker(par._ratHouseParameter))
-                {
-                    _variablesList._variablesDictionary[varName]._description[attributeName] = par;
-
-                    SetParametersTextBox(varName, new StringBuilder());
-                }
-
-                //show the previous text to the changed textbox (taken from the variable list dictionary).
-                else
-                {
-                    //refresh according to the last.
-                    ShowVariablesToGui();
-                }
-            }
 
             //if one attribute only (can be a scalar either a vector).
+
+            //split each vector of data for robot to a list of components.
+            par._ratHouseParameter = attributeValue;
+
+            //if the input for one value contains more than one dot for precison dot or chars that are not digits.
+            //if true , update the values in the variables dictionary.
+            if (DigitsNumberChecker(par._ratHouseParameter))
+            {
+                _variablesList._variablesDictionary[varName]._description[attributeName] = par;
+
+                SetParametersTextBox(varName, new StringBuilder());
+            }
+
+            //show the previous text to the changed textbox (taken from the variable list dictionary).
             else
             {
-                //split each vector of data for robot to a list of components.
-                par._ratHouseParameter = string.Join("", attributeValue.SkipWhile(x => x == '[').TakeWhile(x => x != ']').ToArray()).Split(',').ToList();
-
-                //if the input for one value contains more than one dot for precison dot or chars that are not digits.
-                //if true , update the values in the variables dictionary.
-                if (DigitsNumberChecker(par._ratHouseParameter))
-                {
-                    _variablesList._variablesDictionary[varName]._description[attributeName] = par;
-
-                    SetParametersTextBox(varName, new StringBuilder());
-                }
-
-                //show the previous text to the changed textbox (taken from the variable list dictionary).
-                else
-                {
-                    //refresh according to the last.
-                    ShowVariablesToGui();
-                }
+                //refresh according to the last.
+                ShowVariablesToGui();
             }
 
             return par;
@@ -2246,7 +2210,7 @@ namespace PinkyAndBrain
             {
                 int firstLeftBracketIndex = toCheckVector[varName].IndexOf('[');
                 int firstRightBracketIndex = toCheckVector[varName].IndexOf(']');
-                string varNiceName = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter.ElementAt(0);
+                string varNiceName = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter;
 
                 //if there are brackets for a scalar.
                 if (firstRightBracketIndex > -1 || firstLeftBracketIndex > -1)
@@ -2329,7 +2293,7 @@ namespace PinkyAndBrain
         {
             statusVal = StatusIndexByNameDecoder(statusVal);
             return _variablesList._variablesDictionary.Count(variable =>
-                _variablesList._variablesDictionary[variable.Key]._description["status"]._ratHouseParameter[0] == statusVal);
+                _variablesList._variablesDictionary[variable.Key]._description["status"]._ratHouseParameter == statusVal);
         }
 
         /// <summary>
@@ -2366,7 +2330,7 @@ namespace PinkyAndBrain
             TextBox parametersTextBox = _dynamicAllocatedTextBoxes[varName + "parameters"] as TextBox;
 
             //print the parameter in the gui according to the representation of each status.
-            switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0])
+            switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter)
             {
                 case "1":   //static
                     //show the _ratHouseParameter.

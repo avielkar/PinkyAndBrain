@@ -49,19 +49,15 @@ namespace PinkyAndBrain
         private Variables _variablesList;
 
         /// <summary>
-        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.
+        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters.
         /// </summary>
-        private List<Dictionary<string, List<double>>> _crossVaryingVals;
+        private List<Dictionary<string, double>> _crossVaryingVals;
 
         /// <summary>
         /// The static variables list in double value presentation.
         /// The string is for the variable name.
-        /// The outer list is for the two inner list (or one , conditioned in the landscapeHouseParameter).
-        /// The inners lists are for the values for each of the ratHouseParameter and landscapeHouseParameter (if there).
-        /// The inners kist is with size 1 if the input is a scalar.
-        /// Otherwise ,  if a vector , it would be a list with the size of the vector.
         /// </summary>
-        private Dictionary<string, List<double>> _staticVariablesList;
+        private Dictionary<string, double> _staticVariablesList;
 
         /// <summary>
         /// The numbers of samples for each trajectory.
@@ -417,7 +413,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Transfer the control from the main gui to the control loop until a new gui event is handled by the user.
         /// </summary>
-        public void Start(Variables variablesList, List<Dictionary<string, List<double>>> crossVaryingList, Dictionary<string, List<double>> staticVariablesList, int frequency, string trajectoryCreatorName)
+        public void Start(Variables variablesList, List<Dictionary<string, double>> crossVaryingList, Dictionary<string, double> staticVariablesList, int frequency, string trajectoryCreatorName)
         {
             //initialize variables.
             _variablesList = variablesList;
@@ -458,9 +454,9 @@ namespace PinkyAndBrain
             _onlinePsychGraphMaker.VaryingParametrsNames = GetVaryingVariablesList();
             _onlinePsychGraphMaker.HeadingDireactionRegion = new Region
             {
-                LowBound = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["low_bound"]._ratHouseParameter[0]),
-                Increament = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["increament"]._ratHouseParameter[0]),
-                HighBound = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["high_bound"]._ratHouseParameter[0])
+                LowBound = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["low_bound"]._ratHouseParameter),
+                Increament = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["increament"]._ratHouseParameter),
+                HighBound = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["high_bound"]._ratHouseParameter)
             };
             _onlinePsychGraphMaker.InitSerieses();
 
@@ -690,19 +686,19 @@ namespace PinkyAndBrain
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Waiting for Response");
 
             //if not trainig continue.
-            if (GetVariableValue(0, "STIMULUS_TYPE") == "0")
+            if (GetVariableValue("STIMULUS_TYPE") == "0")
                 return new Tuple<RatDecison,bool>(RatDecison.NoDecision , false);
 
             //get the current stimulus direction.
-            double currentHeadingDirection = double.Parse(GetVariableValue(0, "HEADING_DIRECTION"));
+            double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
 
             //determine the current stimulus direaction.
             RatDecison currentStimulationSide = (currentHeadingDirection == 0) ? (RatDecison.Center) : ((currentHeadingDirection > 0) ? (RatDecison.Right) : RatDecison.Left);
             //determine if the current stimulus heading direction is in the random heading direction region.
-            if (Math.Abs(currentHeadingDirection) <= double.Parse(_variablesList._variablesDictionary["RR_HEADINGS"]._description["parameters"]._ratHouseParameter[0]))
+            if (Math.Abs(currentHeadingDirection) <= double.Parse(_variablesList._variablesDictionary["RR_HEADINGS"]._description["parameters"]._ratHouseParameter))
             {
                 //get a random side with probability of RR_PROBABILITY to the right side.
-                int sampledBernouli = Bernoulli.Sample(double.Parse(_variablesList._variablesDictionary["RR_PROBABILITY"]._description["parameters"]._ratHouseParameter[0]));
+                int sampledBernouli = Bernoulli.Sample(double.Parse(_variablesList._variablesDictionary["RR_PROBABILITY"]._description["parameters"]._ratHouseParameter));
 
                 RatDecison changedStimulusSide = currentStimulationSide;
 
@@ -806,19 +802,19 @@ namespace PinkyAndBrain
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Waiting for Second Chance Response");
 
             //if not trainig continue.
-            if (GetVariableValue(0, "STIMULUS_TYPE") == "0")
+            if (GetVariableValue("STIMULUS_TYPE") == "0")
                 return new Tuple<RatDecison, bool>(RatDecison.NoDecision, false);
 
             //get the current stimulus direction.
-            double currentHeadingDirection = double.Parse(GetVariableValue(0, "HEADING_DIRECTION"));
+            double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
 
             //determine the current stimulus direaction.
             RatDecison currentStimulationSide = (currentHeadingDirection == 0) ? (RatDecison.Center) : ((currentHeadingDirection > 0) ? (RatDecison.Right) : RatDecison.Left);
             //determine if the current stimulus heading direction is in the random heading direction region.
-            if (Math.Abs(currentHeadingDirection) <= double.Parse(_variablesList._variablesDictionary["RR_HEADINGS"]._description["parameters"]._ratHouseParameter[0]))
+            if (Math.Abs(currentHeadingDirection) <= double.Parse(_variablesList._variablesDictionary["RR_HEADINGS"]._description["parameters"]._ratHouseParameter))
             {
                 //get a random side with probability of RR_PROBABILITY to the right side.
-                int sampledBernouli = Bernoulli.Sample(double.Parse(_variablesList._variablesDictionary["RR_PROBABILITY"]._description["parameters"]._ratHouseParameter[0]));
+                int sampledBernouli = Bernoulli.Sample(double.Parse(_variablesList._variablesDictionary["RR_PROBABILITY"]._description["parameters"]._ratHouseParameter));
 
                 RatDecison changedStimulusSide = currentStimulationSide;
 
@@ -967,7 +963,7 @@ namespace PinkyAndBrain
             else if (AutoReward)
             {
                 //get the current stimulus direction.
-                double currentHeadingDirection = double.Parse(GetVariableValue(0, "HEADING_DIRECTION"));
+                double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
 
                 //determine the current stimulus direaction.
                 RatDecison currentStimulationSide = (currentHeadingDirection == 0) ? (RatDecison.Center) : ((currentHeadingDirection > 0) ? (RatDecison.Right) : RatDecison.Left);
@@ -1347,7 +1343,7 @@ namespace PinkyAndBrain
         /// </summary>
         public void ShowTrialDetailsToTheDetailsListView()
         {
-            Dictionary<string , List<double>> currentTrialDetails =  _crossVaryingVals[_currentVaryingTrialIndex];
+            Dictionary<string , double> currentTrialDetails =  _crossVaryingVals[_currentVaryingTrialIndex];
             _mainGuiInterfaceControlsDictionary["ClearCurrentTrialDetailsViewList"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["ClearCurrentTrialDetailsViewList"]);
 
@@ -1355,11 +1351,7 @@ namespace PinkyAndBrain
             {
                 string currentParameterDetails;
                 //only ratHouseParameter
-                if (currentTrialDetails[varName].Count == 1)
-                    currentParameterDetails = "[" + currentTrialDetails[varName][0].ToString() + "]";
-                else
-                    currentParameterDetails = "[" + currentTrialDetails[varName][0].ToString() + "]" + "[" + currentTrialDetails[varName][1].ToString() + "]";
-                //both ratHouseParameter and landscapeHouseParameter
+                currentParameterDetails = "[" + currentTrialDetails[varName].ToString() + "]";
                 
                 _mainGuiInterfaceControlsDictionary["UpdateCurrentTrialDetailsViewList"].BeginInvoke(
                 _mainGuiControlsDelegatesDictionary["UpdateCurrentTrialDetailsViewList"], varName, currentParameterDetails);
@@ -1413,13 +1405,13 @@ namespace PinkyAndBrain
         /// <returns>The stimulus type.</returns>
         public int DetermineCurrentStimulusType()
         {
-            string stimulusTypeStatus = _variablesList._variablesDictionary["STIMULUS_TYPE"]._description["status"]._ratHouseParameter[0];
+            string stimulusTypeStatus = _variablesList._variablesDictionary["STIMULUS_TYPE"]._description["status"]._ratHouseParameter;
             switch (stimulusTypeStatus)
             {
                 case "1"://static
-                    return int.Parse(_variablesList._variablesDictionary["STIMULUS_TYPE"]._description["parameters"]._ratHouseParameter[0]);
+                    return int.Parse(_variablesList._variablesDictionary["STIMULUS_TYPE"]._description["parameters"]._ratHouseParameter);
                 case "2"://varying
-                    return (int)(_crossVaryingVals[_currentVaryingTrialIndex]["STIMULUS_TYPE"][0]);
+                    return (int)(_crossVaryingVals[_currentVaryingTrialIndex]["STIMULUS_TYPE"]);
             }
             return 0;
         }
@@ -1463,13 +1455,13 @@ namespace PinkyAndBrain
         {
             
            //detrmine variable value by the status of the time type.
-           string timeValue = GetVariableValue(0, timeVarName);
+           string timeValue = GetVariableValue(timeVarName);
 
             //if not found - it is random type varriable.
             if(timeValue == string.Empty)
             {
-                double lowTime = double.Parse(_variablesList._variablesDictionary[timeVarName]._description["low_bound"]._ratHouseParameter[0]);
-                double highTime = double.Parse(_variablesList._variablesDictionary[timeVarName]._description["high_bound"]._ratHouseParameter[0]);
+                double lowTime = double.Parse(_variablesList._variablesDictionary[timeVarName]._description["low_bound"]._ratHouseParameter);
+                double highTime = double.Parse(_variablesList._variablesDictionary[timeVarName]._description["high_bound"]._ratHouseParameter);
                 return RandomTimeUniformly(lowTime, highTime);
             }
 
@@ -1494,22 +1486,21 @@ namespace PinkyAndBrain
         /// <summary>
         /// Determines the asked variable value at the current stage by it's status (not include random types).
         /// </summary>
-        /// <param name="houseParameter">'0' for ratHouseParameter or '1' for landscapeHouseParameter.</param>
         /// <param name="parameterName">The parameter name to get the value for.</param>
         /// <returns>The value of the parameter at the current trial.</returns>
-        public string GetVariableValue(int houseParameter , string parameterName)
+        public string GetVariableValue(string parameterName)
         {
             //detrmine the status of the variable type.
-            string variableStatus = _variablesList._variablesDictionary[parameterName]._description["status"]._ratHouseParameter[houseParameter];
+            string variableStatus = _variablesList._variablesDictionary[parameterName]._description["status"]._ratHouseParameter;
 
             //decide the time value of the time type according to it's status.
             switch (variableStatus)
             {
                 case "1"://static
-                    return _variablesList._variablesDictionary[parameterName]._description["parameters"]._ratHouseParameter[houseParameter];
+                    return _variablesList._variablesDictionary[parameterName]._description["parameters"]._ratHouseParameter;
 
                 case "2"://varying
-                    return _crossVaryingVals[_currentVaryingTrialIndex][parameterName][houseParameter].ToString("000000.00000000");
+                    return _crossVaryingVals[_currentVaryingTrialIndex][parameterName].ToString("000000.00000000");
 
                 default:
                     return string.Empty;
