@@ -42,7 +42,7 @@ namespace Params
 
             foreach (string varName in _variablesDictionary.Keys)
             {
-                if (_variablesDictionary[varName]._description["status"]._ratHouseParameter[0].Equals(status))
+                if (_variablesDictionary[varName]._description["status"]._ratHouseParameter.Equals(status))
                 {
                     filteredVariables._variablesDictionary[varName] = new Variable(_variablesDictionary[varName]);
                 }
