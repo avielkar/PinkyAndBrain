@@ -43,17 +43,6 @@ namespace PinkyAndBrain
         private Dictionary<string, Vector<double>> _varyingVectorDictionary;
 
         /// <summary>
-        /// _varyingVectorDictionary holds only the parameters for varying values for the rat house parameters.
-        /// So , it needed to save the parameters for the landScapeHouseParameters also (if there is both parameters).
-        /// It saved as a dictionary of dictionaries.
-        /// The first dictionary include key for the name of the variable and value as a second dictionary.
-        /// The second dictionary include all values saved in _varyingVectorDictionary with the matched values for landScapeHouseParameters.
-        /// so , if we know a raHouseValue , we can get it's landscapeValue.
-        /// Notice that the values of the dictionary include only the values for the original values created here by the AcrossVectorValuesGenerator.
-        /// </summary>
-        public Dictionary<string, Dictionary<double, double>> _varyingVectorDictionaryParalelledForLandscapeHouseParameters;
-
-        /// <summary>
         ///Initial Matrix (not updated later) holds all the generated varying vectors for the experiment. Each row in the matrix represent a varying trial vector.
         /// The num of the columns should be the number of the trials.
         /// </summary>
@@ -186,37 +175,11 @@ namespace PinkyAndBrain
                 returnList.Add(dictionaryItem);
             }
 
-            //make the crossVaryingVals include both parameters for the ratHouseParameters and landscapeHouseParameters if needed.
-            CrossVaryingValuesToBothParameters(returnList);
-
             //insert this list to the cross varying values attribute.
             _crossVaryingValsBoth = returnList;
 
-
-
             //return this list that can be edited.
             return _crossVaryingValsBoth;
-        }
-
-        /// <summary>
-        /// Creates a list of rows for the crossVaryingVlaues for the both parameters
-        /// from the list of rows for the crossVaryingValues of the ratHouseParameters only and the matched values dictionary.
-        /// </summary>
-        /// <param name="ratHouseVaryingCrossVals"></param>
-        public void CrossVaryingValuesToBothParameters(List<Dictionary<string , List<double>>> ratHouseVaryingCrossVals)
-        {
-            foreach (Dictionary<string, List<double>> varRatHouseRowItem in ratHouseVaryingCrossVals)
-            {
-                //run over all the variables in the row.
-                foreach (string varName in varRatHouseRowItem.Keys)
-                {
-                    //check if the value for the variable in the current line is set to tbot the ratHouseValue and the lanscapeHouseValue.
-                    if (_varyingVectorDictionaryParalelledForLandscapeHouseParameters.Keys.Contains(varName))
-                    {
-                        varRatHouseRowItem[varName].Add(_varyingVectorDictionaryParalelledForLandscapeHouseParameters[varName][varRatHouseRowItem[varName].ElementAt(0)]);
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -226,9 +189,6 @@ namespace PinkyAndBrain
         {
             //a list include all varying vectors by themselves only.
             Dictionary<string, Vector<double>> varyingVectorsList = new Dictionary<string,Vector<double>>();
-
-            //initiate the dictionary for reading a landScapeParameter value according to the ratHouseParameter value.
-            _varyingVectorDictionaryParalelledForLandscapeHouseParameters = new Dictionary<string, Dictionary<double, double>>();
 
             #region MAKING_VARYING_VECTOR_LIST
             foreach (string varName in _varyingVariables._variablesDictionary.Keys)
@@ -243,32 +203,6 @@ namespace PinkyAndBrain
                     //add the vector to the return list.
                     Vector<double> oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament);
                     varyingVectorsList.Add(varName , oneVarVector);
-
-                    //if the lanscapeHouseParameters is also enabled here , save it in the paralleled dictionary
-                    // in order to select the value matched to the ratHouseParameter.
-                    if(_varyingVariables._variablesDictionary[varName]._description["low_bound"]._bothParam)
-                    {
-                        //make the vector for the lanscapeHouseParameters bounds also.
-                        double low_boundLanscape = double.Parse(_varyingVariables._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter[0]);
-                        double high_boundLanscape = double.Parse(_varyingVariables._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter[0]);
-                        double increamentLanscape = double.Parse(_varyingVariables._variablesDictionary[varName]._description["increament"]._ratHouseParameter[0]);
-
-                        Vector<double> oneVarVectorLanscape = CreateVectorFromBounds(low_boundLanscape, high_boundLanscape, increamentLanscape);
-                        Dictionary<double, double> valuesOfRatHouseParametersToLandscapeParameters = new Dictionary<double, double>();
-                        
-                        //iterator for the values of the landscapeHouseParameters.
-                        IEnumerator<double> landscapeVectorIterator = oneVarVectorLanscape.Enumerate().GetEnumerator();
-
-                        //iterae over both of values for the ratHouseParameters and the landScapeParameters and insert them paralelled to the dictionary.
-                        foreach (double valInVector in oneVarVector)
-                        {
-                            landscapeVectorIterator.MoveNext();
-                            valuesOfRatHouseParametersToLandscapeParameters.Add(valInVector, landscapeVectorIterator.Current);
-                        }
-
-                        //adding the dicionary of the matched ratHouseParameters values to the landscapeHouseParameters values.
-                        _varyingVectorDictionaryParalelledForLandscapeHouseParameters.Add(varName, valuesOfRatHouseParametersToLandscapeParameters);
-                    }
                 }
                 
                 //if the variable has only one attribute and the attrbute is not a scalar(is a vector)

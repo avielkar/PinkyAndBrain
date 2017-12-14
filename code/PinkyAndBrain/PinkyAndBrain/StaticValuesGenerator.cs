@@ -21,12 +21,11 @@ namespace PinkyAndBrain
         /// <summary>
         /// The static variables list in double value presentation.
         /// The string is for the variable name.
-        /// The outer list is for the two inner list (or one , conditioned in the landscapeHouseParameter).
-        /// The inners lists are for the values for each of the ratHouseParameter and landscapeHouseParameter (if there).
+        /// The list is for the values for the ratHouseParameter.
         /// The inners kist is with size 1 if the input is a scalar.
         /// Otherwise ,  if a vector , it would be a list with the size of the vector.
         /// </summary>
-        public Dictionary<string, List<List<double>>> _staticVariableList;
+        public Dictionary<string, List<double>> _staticVariableList;
         #endregion ATTRIBUTES
 
         #region CONSTRUCTORS
@@ -55,7 +54,7 @@ namespace PinkyAndBrain
         private void CreateDoubleStaticVariablesList()
         {
             //initialize the dictionary.
-            _staticVariableList = new Dictionary<string,List<List<double>>>();
+            _staticVariableList = new Dictionary<string,List<double>>();
 
             foreach (string varName in _variablesList._variablesDictionary.Keys)
             {
@@ -71,36 +70,18 @@ namespace PinkyAndBrain
         /// <summary>
         /// Convert a Param object with string attributes to be with double attributes.
         /// </summary>
-        /// <param name="par">The Param to be converted into a list of list of doubles.</param>
+        /// <param name="par">The Param to be converted into a list of doubles.</param>
         /// <returns>
-        /// A outer list with inner lists as items.
-        /// The outer list has 2 inner lists if the lanscapeParmeter is turned on.
-        /// The first list item is for the ratHouseParameters.
-        /// The second list item (if has) is for the landscapeHouseParameter.
+        /// A outer list with as items.
         /// </returns>
-        private List<List<double>> CreateDoubleListsFromStringLists(Param par)
+        private List<double> CreateDoubleListsFromStringLists(Param par)
         {
-            List<List<double>> returnedList = new List<List<double>>();
-
-            //put only one inner list.
-            returnedList.Add(new List<double>());
+            List<double> returnedList = new List<double>();
 
             //convert each value in the string list to the double list.
             foreach (string value in par._ratHouseParameter)
             {
-                returnedList[0].Add(double.Parse(value));
-            }
-
-            //if both parameters , add th othe (landscapeHouseParameter inner lists to the outer one.
-            if (par._bothParam)
-            {
-                returnedList.Add(new List<double>());
-
-                //convert each value in the string list to the double list.
-                foreach (string value in par._ratHouseParameter)
-                {
-                    returnedList[1].Add(double.Parse(value));
-                }
+                returnedList.Add(double.Parse(value));
             }
 
             //return the double attributes list.

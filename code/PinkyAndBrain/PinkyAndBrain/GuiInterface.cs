@@ -865,7 +865,7 @@ namespace PinkyAndBrain
             _acrossVectorValuesGenerator.MakeVaryingMatrix();
 
             //add the crossVaryingVals to the listbox.
-            AddVaryingMatrixToVaryingListBox(_acrossVectorValuesGenerator._crossVaryingValsBoth, _acrossVectorValuesGenerator._varyingVectorDictionaryParalelledForLandscapeHouseParameters);
+            AddVaryingMatrixToVaryingListBox(_acrossVectorValuesGenerator._crossVaryingValsBoth);
 
             //show the list box controls(add , remove , etc...)
             ShowVaryingControlsOptions(true);
@@ -1186,7 +1186,7 @@ namespace PinkyAndBrain
         /// Adding the generated cross varying values to the varying listbox.
         /// </summary>
         /// <param name="varyingCrossValsBoth">The cross genereated varying values to add to the listbox.</param>
-        private void AddVaryingMatrixToVaryingListBox(List<Dictionary<string, List<double>>> varyingCrossValsBoth, Dictionary<string, Dictionary<double, double>> varyingVectorDictionaryParalelledForLandscapeHouseParameters)
+        private void AddVaryingMatrixToVaryingListBox(List<Dictionary<string, List<double>>> varyingCrossValsBoth)
         {
             //collect the titles for the listbox columns to a list.
             string listBoxTitleLineText = "";
@@ -1821,7 +1821,7 @@ namespace PinkyAndBrain
         /// <param name="height">The height for each textbox in the line of the attribute.</param>
         /// <param name="eachDistance">The distance between each textbox of the same attribute in the same line.</param>
         /// <param name="offset">The offset for each textbox of the attribute from the left.</param>
-        private void ShowVariableAttributes(string varName , int top , int left , int width  , int height , int eachDistance , int offset)
+        private void ShowVariableAttributes(string varName, int top, int left, int width, int height, int eachDistance, int offset)
         {
             //string builder for making the text to show to the gui.
             StringBuilder sBuilder = new StringBuilder();
@@ -1838,7 +1838,7 @@ namespace PinkyAndBrain
             statusCombo.Items.Add("Random");
 
             //Handle event when a status of a variable is changed.
-            statusCombo.SelectedIndexChanged += new EventHandler((sender , args) => statusCombo_SelectedIndexChanged(sender , args , varName));
+            statusCombo.SelectedIndexChanged += new EventHandler((sender, args) => statusCombo_SelectedIndexChanged(sender, args, varName));
 
             //decide which items on the ComboBox is selected according to the data in the excel sheet.
             switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0])
@@ -1879,30 +1879,17 @@ namespace PinkyAndBrain
             incrementTextBox.Width = width;
 
             //function to change the variable list dictionary according to changes when leave the textbox.
-            incrementTextBox.LostFocus += new EventHandler((sender , e) => VariableTextBox_TextBoxLeaved(sender , e , varName , "increament"));
+            incrementTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "increament"));
 
             //freezing the textbox according to the status
-            FreezeTextBoxAccordingToStatus(incrementTextBox, varName , false);
+            FreezeTextBoxAccordingToStatus(incrementTextBox, varName, false);
 
-            //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
-            //show both parameters.
-            if (_variablesList._variablesDictionary[varName]._description["increament"]._bothParam)
-            {
-                string incrementTextVala = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
-                string incrementTextValb = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._landscapeParameters);
-
-                incrementTextBox.Text = BracketsAppender(sBuilder, incrementTextVala, incrementTextValb);
-            }
-
-            //show only the _ratHouseParameter.
-            else
-            {
-                string lowBoundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
-                incrementTextBox.Text = lowBoundTextVal;
-            }
+            //show the _ratHouseParameter.
+            string lowBoundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
+            incrementTextBox.Text = lowBoundTextVal;
 
             _dynamicParametersPanel.Controls.Add(incrementTextBox);
-            _dynamicAllocatedTextBoxes.Add(varName + "increament" , incrementTextBox);
+            _dynamicAllocatedTextBoxes.Add(varName + "increament", incrementTextBox);
             #endregion INCREMENT_TEXTBOX
 
             offset -= eachDistance;
@@ -1918,27 +1905,14 @@ namespace PinkyAndBrain
             highBoundTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "high_bound"));
 
             //freezing the textbox according to the status
-            FreezeTextBoxAccordingToStatus(highBoundTextBox, varName , false);
+            FreezeTextBoxAccordingToStatus(highBoundTextBox, varName, false);
 
-            //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
-            //show both parameters.
-            if (_variablesList._variablesDictionary[varName]._description["high_bound"]._bothParam)
-            {
-                string highBoundTextVala = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter);
-                string highBoundTextValb = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._landscapeParameters);
-
-                highBoundTextBox.Text = BracketsAppender(sBuilder, highBoundTextVala, highBoundTextValb);
-            }
-
-            //show only the _ratHouseParameter.
-            else
-            {
-                string highBoundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter);
-                highBoundTextBox.Text = highBoundTextVal;
-            }
+            //show the _ratHouseParameter.
+            string highBoundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter);
+            highBoundTextBox.Text = highBoundTextVal;
 
             _dynamicParametersPanel.Controls.Add(highBoundTextBox);
-            this._dynamicAllocatedTextBoxes.Add(varName + "high_bound" , highBoundTextBox);
+            this._dynamicAllocatedTextBoxes.Add(varName + "high_bound", highBoundTextBox);
             #endregion HIGHBOUND_TEXTBOX
 
             offset -= eachDistance;
@@ -1954,27 +1928,14 @@ namespace PinkyAndBrain
             lowBoundTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "low_bound"));
 
             //freezing the textbox according to the status
-            FreezeTextBoxAccordingToStatus(lowBoundTextBox, varName , false);
+            FreezeTextBoxAccordingToStatus(lowBoundTextBox, varName, false);
 
-            //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
-            //show both parameters.
-            if(_variablesList._variablesDictionary[varName]._description["low_bound"]._bothParam)
-            {
-                string lowBoundTextVala = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
-                string lowBoundTextValb = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._landscapeParameters);
-
-                lowBoundTextBox.Text = BracketsAppender(sBuilder, lowBoundTextVala, lowBoundTextValb);
-            }
-
-            //show only the _ratHouseParameter.
-            else
-            {
-                string lowBoundTextVal = string.Join("," , _variablesList._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
-                lowBoundTextBox.Text = lowBoundTextVal;
-            }
+            //show the _ratHouseParameter.
+            lowBoundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
+            lowBoundTextBox.Text = lowBoundTextVal;
 
             _dynamicParametersPanel.Controls.Add(lowBoundTextBox);
-            _dynamicAllocatedTextBoxes.Add(varName + "low_bound" , lowBoundTextBox);
+            _dynamicAllocatedTextBoxes.Add(varName + "low_bound", lowBoundTextBox);
             #endregion LOWBOUND_TEXTBOX
 
             offset -= eachDistance;
@@ -1992,62 +1953,30 @@ namespace PinkyAndBrain
             switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0])
             {
                 case "1":   //static
-                    //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
-                    //show both parameters.
-                    if (_variablesList._variablesDictionary[varName]._description["parameters"]._bothParam)
-                    {
-                        string parametersTextBoxa = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter);
-                        string parametersTextBoxb = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._landscapeParameters);
-
-                        parametersTextBox.Text = BracketsAppender(sBuilder, parametersTextBoxa, parametersTextBoxb);
-                    }
-
-                    //show only the _ratHouseParameter.
-                    else
-                    {
-                        string parametersTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter);
-                        parametersTextBox.Text = parametersTextVal;
-                    }
+                    //show the _ratHouseParameter.
+                    string parametersTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter);
+                    parametersTextBox.Text = parametersTextVal;
                     break;
-                    
+
                 case "2":   //varying
                 case "3":   //acrossstair
                 case "4":   //withinstair
                 case "5":
-                    if (_variablesList._variablesDictionary[varName]._description["parameters"]._bothParam)
-                    {
-                        string lowboundTextVala = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
-                        string highboundTextVala = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter);
-                        string increasingTextVala = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
+                    //show the _ratHouseParameter.
+                    string lowboundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
+                    string highboundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter);
+                    string increasingTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
 
-                        string lowboundTextValb = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._landscapeParameters);
-                        string highboundTextValb = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._landscapeParameters);
-                        string increasingTextValb = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._landscapeParameters);
-
-                        string partA = ThreeStagesRepresentation(sBuilder, lowboundTextVala, increasingTextVala, highboundTextVala);
-                        string partB = ThreeStagesRepresentation(sBuilder, lowboundTextValb, increasingTextValb, highboundTextValb);
-
-                        parametersTextBox.Text = BracketsAppender(sBuilder , partA, partB);
-                    }
-
-                    //show only the _ratHouseParameter.
-                    else
-                    {
-                        string lowboundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
-                        string highboundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter);
-                        string increasingTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
-
-                        parametersTextBox.Text = ThreeStagesRepresentation(sBuilder, lowboundTextVal, increasingTextVal, highboundTextVal);
-                    }
+                    parametersTextBox.Text = ThreeStagesRepresentation(sBuilder, lowboundTextVal, increasingTextVal, highboundTextVal);
                     break;
 
             }
 
             _dynamicParametersPanel.Controls.Add(parametersTextBox);
-            _dynamicAllocatedTextBoxes.Add(varName + "parameters" , parametersTextBox);
+            _dynamicAllocatedTextBoxes.Add(varName + "parameters", parametersTextBox);
 
             //freezing the textbox according to the status
-            FreezeTextBoxAccordingToStatus(parametersTextBox, varName , true);
+            FreezeTextBoxAccordingToStatus(parametersTextBox, varName, true);
 
             //function to change the variable list dictionary according to changes when leave the textbox.
             parametersTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "parameters"));
@@ -2249,7 +2178,6 @@ namespace PinkyAndBrain
         {
             Param par = new Param();
             par._ratHouseParameter = new List<string>();
-            par._landscapeParameters = new List<string>();
 
             //if there are a two attributes in the attribute data. [x][y] == 2 attributes. x,y,z,w == vector for one attribute only.
             if (attributeValue.Count(x => x == '[') == 2)
@@ -2260,30 +2188,17 @@ namespace PinkyAndBrain
                 ratHouseParameteString = string.Join("", attributeValue.Skip(1).TakeWhile(x => x != ']').ToArray());
                 landscapeHouseParameteString = string.Join("", attributeValue.Skip(1).SkipWhile(x => x != '[').Skip(1).TakeWhile(x => x != ']').ToArray());
 
-                //split each vector of data for each robot to a list of components.
+                //split each vector of data for robot to a list of components.
                 par._ratHouseParameter = ratHouseParameteString.Split(',').ToList();
-                par._landscapeParameters = landscapeHouseParameteString.Split(',').ToList();
-                par._bothParam = true;
 
                 //if the input for one value contains more than one dot for precison dot or chars that are not digits.
                 //if true , update the values in the variables dictionary.
                 if (DigitsNumberChecker(par._ratHouseParameter))
                 {
-                    if(DigitsNumberChecker(par._landscapeParameters))
-                    {
-                        _variablesList._variablesDictionary[varName]._description[attributeName] = par;
+                    _variablesList._variablesDictionary[varName]._description[attributeName] = par;
 
-                        SetParametersTextBox(varName, new StringBuilder());
-                    }
-                    
-                    //show the previous text to the changed textbox (taken from the variable list dictionary).
-                    else
-                    {
-                        //refresh according to the last.
-                        ShowVariablesToGui();
-                    }
+                    SetParametersTextBox(varName, new StringBuilder());
                 }
-
 
                 //show the previous text to the changed textbox (taken from the variable list dictionary).
                 else
@@ -2296,13 +2211,12 @@ namespace PinkyAndBrain
             //if one attribute only (can be a scalar either a vector).
             else
             {
-                //split each vector of data for each robot to a list of components.
+                //split each vector of data for robot to a list of components.
                 par._ratHouseParameter = string.Join("", attributeValue.SkipWhile(x => x == '[').TakeWhile(x => x != ']').ToArray()).Split(',').ToList();
-                par._bothParam = false;
 
                 //if the input for one value contains more than one dot for precison dot or chars that are not digits.
                 //if true , update the values in the variables dictionary.
-                if(DigitsNumberChecker(par._ratHouseParameter))
+                if (DigitsNumberChecker(par._ratHouseParameter))
                 {
                     _variablesList._variablesDictionary[varName]._description[attributeName] = par;
 
@@ -2334,70 +2248,18 @@ namespace PinkyAndBrain
                 int firstRightBracketIndex = toCheckVector[varName].IndexOf(']');
                 string varNiceName = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter.ElementAt(0);
 
-                //if both parameters are enabled ,  should check for 2 of [].
-                if(_variablesList._variablesDictionary[varName]._description["parameters"]._bothParam)
+                //if there are brackets for a scalar.
+                if (firstRightBracketIndex > -1 || firstLeftBracketIndex > -1)
                 {
-                    //if no brackets at all there is error because we expect for [x][y]  and not for a scalar.
-                    if (firstRightBracketIndex == -1 || firstLeftBracketIndex == -1)
-                    {
-                        MessageBox.Show("Error : variable " + varNiceName + " need 2 attributes!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-
-                    if (toCheckVector[varName].Count(x => x.Equals('[')) != 2 || toCheckVector[varName].Count(x => x.Equals(']')) != 2)
-                    {
-                        MessageBox.Show("Error : variable " + varNiceName + " need 2 attributes!", "Error" ,  MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-
-                    //check that the first '[' is before the first ']'.
-                    if (firstLeftBracketIndex > firstRightBracketIndex)
-                    {
-                        MessageBox.Show("Error : variable " + varNiceName + " has [x][y] syntax error!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-
-                    //check that the digits between the brackets define a real number.
-                    if (!DigitsNumberChecker(toCheckVector[varName].Substring(firstLeftBracketIndex + 1, firstRightBracketIndex - firstLeftBracketIndex - 1)))
-                    {;
-                        MessageBox.Show("Error : variable " + varNiceName + " has some attributs that are no numbers!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-
-                    int secondLeftBracketIndex = toCheckVector[varName].IndexOf('[', firstLeftBracketIndex + 1);
-                    int secondRightBracketIndex = toCheckVector[varName].IndexOf(']', firstRightBracketIndex + 1);
-
-                    //check that the second '[' is before the second ']'.
-                    if (secondLeftBracketIndex > secondRightBracketIndex)
-                    {
-                        MessageBox.Show("Error : variable " + varNiceName + " has [x][y] syntax error!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-
-                    //check that the digits between the brackets define a real number.
-                    if (!DigitsNumberChecker(toCheckVector[varName].Substring(firstLeftBracketIndex + 1, firstRightBracketIndex - firstLeftBracketIndex - 1)))
-                    {
-                        MessageBox.Show("Error : variable " + varNiceName + " has some attributs that are no numbers!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
+                    MessageBox.Show("Error : variable " + varNiceName + " has brackets but is a scalar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
-                
-                //if only the ratHouseParameter is enabled for this variable.
-                else
-                {
-                    //if there are brackets for a scalar.
-                    if (firstRightBracketIndex > -1 || firstLeftBracketIndex > -1)
-                    {
-                        MessageBox.Show("Error : variable " + varNiceName + " has brackets but is a scalar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
 
-                    //if not represent a number.
-                    if(!DigitsNumberChecker(toCheckVector[varName]))
-                    {
-                        MessageBox.Show("Error : variable " + varNiceName + " has [x][y] syntax error!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
+                //if not represent a number.
+                if (!DigitsNumberChecker(toCheckVector[varName]))
+                {
+                    MessageBox.Show("Error : variable " + varNiceName + " has [x][y] syntax error!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
             }
 
@@ -2507,53 +2369,21 @@ namespace PinkyAndBrain
             switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter[0])
             {
                 case "1":   //static
-                    //check if need to show two parameters of the _landscapeParameters and _ratHouseParameter or only the _ratHouseParameter.
-                    //show both parameters.
-                    if (_variablesList._variablesDictionary[varName]._description["parameters"]._bothParam)
-                    {
-                        string parametersTextBoxa = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter);
-                        string parametersTextBoxb = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._landscapeParameters);
-
-                        parametersTextBox.Text = BracketsAppender(sBuilder, parametersTextBoxa, parametersTextBoxb);
-                    }
-
-                    //show only the _ratHouseParameter.
-                    else
-                    {
-                        string parametersTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter);
-                        parametersTextBox.Text = parametersTextVal;
-                    }
+                    //show the _ratHouseParameter.
+                    string parametersTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter);
+                    parametersTextBox.Text = parametersTextVal;
                     break;
 
                 case "2":   //varying
                 case "3":   //acrossstair
                 case "4":   //withinstair
                 case "5":   //ramdom
-                    if (_variablesList._variablesDictionary[varName]._description["parameters"]._bothParam)
-                    {
-                        string lowboundTextVala = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
-                        string highboundTextVala = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter);
-                        string increasingTextVala = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
+                    //show the _ratHouseParameter.
+                    string lowboundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
+                    string highboundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter);
+                    string increasingTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
 
-                        string lowboundTextValb = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._landscapeParameters);
-                        string highboundTextValb = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._landscapeParameters);
-                        string increasingTextValb = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._landscapeParameters);
-
-                        string partA = ThreeStagesRepresentation(sBuilder, lowboundTextVala, increasingTextVala, highboundTextVala);
-                        string partB = ThreeStagesRepresentation(sBuilder, lowboundTextValb, increasingTextValb, highboundTextValb);
-
-                        parametersTextBox.Text = BracketsAppender(sBuilder, partA, partB);
-                    }
-
-                    //show only the _ratHouseParameter.
-                    else
-                    {
-                        string lowboundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
-                        string highboundTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter);
-                        string increasingTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
-
-                        parametersTextBox.Text = ThreeStagesRepresentation(sBuilder, lowboundTextVal, increasingTextVal, highboundTextVal);
-                    }
+                    parametersTextBox.Text = ThreeStagesRepresentation(sBuilder, lowboundTextVal, increasingTextVal, highboundTextVal);
                     break;
 
             }

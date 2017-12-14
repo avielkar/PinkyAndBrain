@@ -61,7 +61,7 @@ namespace PinkyAndBrain
         /// The inners kist is with size 1 if the input is a scalar.
         /// Otherwise ,  if a vector , it would be a list with the size of the vector.
         /// </summary>
-        private Dictionary<string, List<List<double>>> _staticVariablesList;
+        private Dictionary<string, List<double>> _staticVariablesList;
 
         /// <summary>
         /// The numbers of samples for each trajectory.
@@ -417,7 +417,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Transfer the control from the main gui to the control loop until a new gui event is handled by the user.
         /// </summary>
-        public void Start(Variables variablesList, List<Dictionary<string, List<double>>> crossVaryingList, Dictionary<string, List<List<double>>> staticVariablesList, int frequency, string trajectoryCreatorName)
+        public void Start(Variables variablesList, List<Dictionary<string, List<double>>> crossVaryingList, Dictionary<string, List<double>> staticVariablesList, int frequency, string trajectoryCreatorName)
         {
             //initialize variables.
             _variablesList = variablesList;
@@ -459,8 +459,8 @@ namespace PinkyAndBrain
             _onlinePsychGraphMaker.HeadingDireactionRegion = new Region
             {
                 LowBound = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["low_bound"]._ratHouseParameter[0]),
-                Increament = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["increament"]._landscapeParameters[0]),
-                HighBound = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["high_bound"]._landscapeParameters[0])
+                Increament = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["increament"]._ratHouseParameter[0]),
+                HighBound = double.Parse(_variablesList._variablesDictionary["HEADING_DIRECTION"]._description["high_bound"]._ratHouseParameter[0])
             };
             _onlinePsychGraphMaker.InitSerieses();
 

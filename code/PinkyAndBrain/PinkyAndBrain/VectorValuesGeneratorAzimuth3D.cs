@@ -296,32 +296,6 @@ namespace PinkyAndBrain
                     //add the vector to the return list.
                     Vector<double> oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament);
                     varyingVectorsList.Add(varName, oneVarVector);
-
-                    //if the lanscapeHouseParameters is also enabled here , save it in the paralleled dictionary
-                    // in order to select the value matched to the ratHouseParameter.
-                    if (_varyingVariables._variablesDictionary[varName]._description["low_bound"]._bothParam)
-                    {
-                        //make the vector for the lanscapeHouseParameters bounds also.
-                        double low_boundLanscape = double.Parse(_varyingVariables._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter[0]);
-                        double high_boundLanscape = double.Parse(_varyingVariables._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter[0]);
-                        double increamentLanscape = double.Parse(_varyingVariables._variablesDictionary[varName]._description["increament"]._ratHouseParameter[0]);
-
-                        Vector<double> oneVarVectorLanscape = CreateVectorFromBounds(low_boundLanscape, high_boundLanscape, increamentLanscape);
-                        Dictionary<double, double> valuesOfRatHouseParametersToLandscapeParameters = new Dictionary<double, double>();
-
-                        //iterator for the values of the landscapeHouseParameters.
-                        IEnumerator<double> landscapeVectorIterator = oneVarVectorLanscape.Enumerate().GetEnumerator();
-
-                        //iterae over both of values for the ratHouseParameters and the landScapeParameters and insert them paralelled to the dictionary.
-                        foreach (double valInVector in oneVarVector)
-                        {
-                            landscapeVectorIterator.MoveNext();
-                            valuesOfRatHouseParametersToLandscapeParameters.Add(valInVector, landscapeVectorIterator.Current);
-                        }
-
-                        //adding the dicionary of the matched ratHouseParameters values to the landscapeHouseParameters values.
-                        _varyingVectorDictionaryParalelledForLandscapeHouseParameters.Add(varName, valuesOfRatHouseParametersToLandscapeParameters);
-                    }
                 }
 
                 //if the variable has only one attribute and the attrbute is not a scalar(is a vector)

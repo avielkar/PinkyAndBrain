@@ -78,7 +78,7 @@ namespace PinkyAndBrain
             {
                 lineBuilder.Append(paramName);
                 lineBuilder.Append(":");
-                foreach (double value in trialData.StaticVariables[paramName][0])
+                foreach (double value in trialData.StaticVariables[paramName])
                 {
                     lineBuilder.Append(value);
                     lineBuilder.Append(" ");
@@ -161,7 +161,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// The static variables value for one trial.
         /// </summary>
-        public Dictionary<string , List<List<double>>> StaticVariables { get; set; }
+        public Dictionary<string , List<double>> StaticVariables { get; set; }
 
         /// <summary>
         /// The varying varuiables value for one trial.

@@ -26,37 +26,12 @@ namespace Params
         public Param(Param par)
         {
             _ratHouseParameter = new List<string>(par._ratHouseParameter);
-            
-            if (par._bothParam)
-            {
-                _landscapeParameters = new List<string>(par._landscapeParameters);
-            }
-
-            _bothParam = par._bothParam;
         }
 
         /// <summary>
         /// The rat house parameter values for one attribute of one variable.
         /// </summary>
         public List<string> _ratHouseParameter
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// /// The landscape house parameter values for one attribute of one variable.
-        /// </summary>
-        public List<string> _landscapeParameters
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Flag indicates if the attribute of the landscape parameter is on.
-        /// </summary>
-        public bool _bothParam
         {
             get;
             set;

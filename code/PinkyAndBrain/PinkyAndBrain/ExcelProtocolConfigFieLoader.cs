@@ -131,32 +131,11 @@ namespace PinkyAndBrain
         {
             Param par = new Param();
             par._ratHouseParameter = new List<string>();
-            par._landscapeParameters = new List<string>();
 
-            //if there are a two attributes in the attribute data. [x][y] == 2 attributes. x,y,z,w == vector for one attribute only.
-            if(attributeValue.Count(x => x == '[') == 2)
-            {
-                string ratHouseParameteString;
-                string landscapeHouseParameteString;
+            //if there are a two attributes in the attribute data. [x] == 1 attributes. [x,y,z,w] == vector for one attribute only.
 
-                ratHouseParameteString = string.Join("",attributeValue.Skip(1).TakeWhile(x => x != ']').ToArray());
-                landscapeHouseParameteString = string.Join("", attributeValue.Skip(1).SkipWhile(x => x != '[').Skip(1).TakeWhile(x => x != ']').ToArray());
-
-                //split each vector of data for each robot to a list of components.
-                par._ratHouseParameter = ratHouseParameteString.Split(',').ToList();
-                par._landscapeParameters = landscapeHouseParameteString.Split(',').ToList();
-
-                par._bothParam = true;
-            }
-
-            //if one attribute only (can be a scalar either a vector).
-            else
-            {
-                //split each vector of data for each robot to a list of components.
-                par._ratHouseParameter = string.Join("", attributeValue.SkipWhile(x => x == '[').TakeWhile(x => x != ']').ToArray()).Split(',').ToList() ;
-
-                par._bothParam = false;
-            }
+            //split each vector of data for each robot to a list of components.
+            par._ratHouseParameter = string.Join("", attributeValue.SkipWhile(x => x == '[').TakeWhile(x => x != ']').ToArray()).Split(',').ToList();
 
             return par;
         }

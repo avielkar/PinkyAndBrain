@@ -50,7 +50,7 @@ namespace Trajectories
         /// The inners kist is with size 1 if the input is a scalar.
         /// Otherwise ,  if a vector , it would be a list with the size of the vector.
         /// </summary>
-        private Dictionary<string, List<List<double>>> _staticVals;
+        private Dictionary<string, List<double>> _staticVals;
 
         /// <summary>
         /// The numbers of samples for each trajectory.
@@ -87,7 +87,7 @@ namespace Trajectories
         /// <param name="crossVaryingVals">Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.</param>
         /// <param name="staticVariables">The static variables list in double value presentation.</param>
         /// <param name="frequency">The numbers of samples for each trajectory.</param>
-        public void SetTrajectoryAttributes(string trajectoryName, Variables variableList, List<Dictionary<string, List<double>>> crossVaryingVals, Dictionary<string, List<List<double>>> staticVariables, int frequency)
+        public void SetTrajectoryAttributes(string trajectoryName, Variables variableList, List<Dictionary<string, List<double>>> crossVaryingVals, Dictionary<string, List<double>> staticVariables, int frequency)
         {
             //set the variables.
             _trajectoryCreatorName = trajectoryName;
