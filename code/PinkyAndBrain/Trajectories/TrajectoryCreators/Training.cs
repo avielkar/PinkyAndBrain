@@ -17,10 +17,8 @@ namespace Trajectories
         #region ATTRIBUTES
         /// <summary>
         /// Describes the duration to make the move.
-        /// The first is for the ratHouseDescription.
-        /// The second is for the lanscapeHouseDescription.
         /// </summary>
-        private Tuple<double, double> _duration;
+        private double _duration;
 
         /// <summary>
         /// The variables readen from the xlsx protocol file.
@@ -28,19 +26,15 @@ namespace Trajectories
         private Variables _variablesList;
 
         /// <summary>
-        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.
+        /// Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for ratHouseParameters.
         /// </summary>
-        private List<Dictionary<string, List<double>>> _crossVaryingVals;
+        private List<Dictionary<string, double>> _crossVaryingVals;
 
         /// <summary>
         /// The static variables list in double value presentation.
         /// The string is for the variable name.
-        /// The outer list is for the two inner list (or one , conditioned in the landscapeHouseParameter).
-        /// The inners lists are for the values for each of the ratHouseParameter and landscapeHouseParameter (if there).
-        /// The inners kist is with size 1 if the input is a scalar.
-        /// Otherwise ,  if a vector , it would be a list with the size of the vector.
         /// </summary>
-        private Dictionary<string, List<List<double>>> _staticVars;
+        private Dictionary<string, double> _staticVars;
 
         /// <summary>
         /// The numbers of samples for each trajectory.
@@ -71,9 +65,9 @@ namespace Trajectories
         /// Training Constructor.
         /// </summary>
         /// <param name="variablesList">The variables list showen in the readen from the excel and changed by the main gui.</param>
-        /// <param name="crossVaryingVals">Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for both ratHouseParameters and landscapeHouseParameters.</param>
+        /// <param name="crossVaryingVals">Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for ratHouseParameters.</param>
         /// <param name="trajectorySampleNumber">The number of sample points for the trajectory.</param>
-        public Training(MLApp.MLApp matlabApp, Variables variablesList, List<Dictionary<string, List<double>>> crossVaryingVals, Dictionary<string, List<List<double>>> staticVals, int trajectorySampleNumber)
+        public Training(MLApp.MLApp matlabApp, Variables variablesList, List<Dictionary<string, double>> crossVaryingVals, Dictionary<string, double> staticVals, int trajectorySampleNumber)
         {
             _matlabApp = matlabApp;
             _variablesList = variablesList;
@@ -114,20 +108,20 @@ namespace Trajectories
 
             Trajectory ratHouseTrajectory = new Trajectory();
 
-            ratHouseTrajectory.x = CreateVector.Dense<double>((int)(_frequency * _duration.Item1), 0);
-            ratHouseTrajectory.y = CreateVector.Dense<double>((int)(_frequency * _duration.Item1), 0);
-            ratHouseTrajectory.z = CreateVector.Dense<double>((int)(_frequency * _duration.Item1), 0);
+            ratHouseTrajectory.x = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
+            ratHouseTrajectory.y = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
+            ratHouseTrajectory.z = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
 
             //rx - roll , ry - pitch , rz = yaw
-            ratHouseTrajectory.rx = CreateVector.Dense<double>((int)(_frequency * _duration.Item1), 0);
-            ratHouseTrajectory.ry = CreateVector.Dense<double>((int)(_frequency * _duration.Item1), 0);
-            ratHouseTrajectory.rz = CreateVector.Dense<double>((int)(_frequency * _duration.Item1), 0);
+            ratHouseTrajectory.rx = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
+            ratHouseTrajectory.ry = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
+            ratHouseTrajectory.rz = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
 
 
             Trajectory landscapeHouseTrajectory = new Trajectory();
-            landscapeHouseTrajectory.x = CreateVector.Dense<double>((int)(_frequency * _duration.Item1), 0);
-            landscapeHouseTrajectory.y = CreateVector.Dense<double>((int)(_frequency * _duration.Item1), 0);
-            landscapeHouseTrajectory.z = CreateVector.Dense<double>((int)(_frequency * _duration.Item1), 0);
+            landscapeHouseTrajectory.x = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
+            landscapeHouseTrajectory.y = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
+            landscapeHouseTrajectory.z = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
 
             //rx - roll , ry - pitch , rz = yaw
             landscapeHouseTrajectory.rx = CreateVector.Dense<double>(_frequency, 0);
@@ -148,13 +142,13 @@ namespace Trajectories
         /// </summary>
         public void ReadTrialParameters(int index)
         {
-            Dictionary<string, List<double>> currentVaryingTrialParameters = _crossVaryingVals[index];
+            Dictionary<string, double> currentVaryingTrialParameters = _crossVaryingVals[index];
 
             if (_staticVars.ContainsKey("STIMULUS_DURATION"))
-                _duration = new Tuple<double, double>(_staticVars["STIMULUS_DURATION"][0][0], _staticVars["STIMULUS_DURATION"].Count() > 1 ? _staticVars["STIMULUS_DURATION"][1][0] : _staticVars["STIMULUS_DURATION"][0][0]);
+                _duration = _staticVars["STIMULUS_DURATION"];
             else if (_crossVaryingVals[index].Keys.Contains("STIMULUS_DURATION"))
             {
-                _duration = new Tuple<double, double>(currentVaryingTrialParameters["STIMULUS_DURATION"][0], (currentVaryingTrialParameters["STIMULUS_DURATION"].Count > 1) ? currentVaryingTrialParameters["STIMULUS_DURATION"][1] : currentVaryingTrialParameters["STIMULUS_DURATION"][0]);
+                _duration = currentVaryingTrialParameters["STIMULUS_DURATION"];
             }
         }
 

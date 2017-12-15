@@ -50,6 +50,7 @@ namespace PinkyAndBrain
         public List<Dictionary<string, double>> _crossVaryingValsBoth;
         #endregion ATTRIBUTES
 
+        #region FUNCTIONS
         /// <summary>
         /// Sets the variables dictionary into new variables dictionaries ordered by statuses.
         /// </summary>
@@ -80,5 +81,6 @@ namespace PinkyAndBrain
         /// <param name="increment">The increament between each elemrnt in the generated vector.</param>
         /// <returns>The generated vector from the input bounds.</returns>
         public abstract Vector<double> CreateVectorFromBounds(double lowBound, double highBound, double increment);
+        #endregion FUNCTIONS
     }
 }

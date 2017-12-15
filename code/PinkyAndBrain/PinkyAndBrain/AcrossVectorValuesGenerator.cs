@@ -9,7 +9,7 @@ using MathNet.Numerics.LinearAlgebra;
 namespace PinkyAndBrain
 {
     /// <summary>
-    /// This class attempt to create all the needed trials 
+    /// This class attempt to create all the needed trials  for the Azimuth1D protocol and the ThreeStepAdaptation protocol.
     /// parmaeters for the whole experiment according to the protocol and th GuiInterfae inputs.
     /// </summary>
     public class AcrossVectorValuesGenerator:IVaryingVectorGenerator
@@ -157,6 +157,7 @@ namespace PinkyAndBrain
 
                 //add the vector to the return list.
                 Vector<double> oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament);
+
                 varyingVectorsList.Add(varName, oneVarVector);
             }
             #endregion MAKING_VARYING_VECTOR_LIST

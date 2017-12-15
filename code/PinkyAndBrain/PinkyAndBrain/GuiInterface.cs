@@ -148,7 +148,7 @@ namespace PinkyAndBrain
             _variablesList = new Variables();
             _variablesList._variablesDictionary = new Dictionary<string, Variable>();
             _dynamicAllocatedTextBoxes = new Dictionary<string,Control>();
-            _acrossVectorValuesGenerator = new VectorValuesGenerator3DAzimuth();
+            _acrossVectorValuesGenerator = DecideVaryinVectorsGeneratorByProtocolName();
             _staticValuesGenerator = new StaticValuesGenerator();
             InitializeTitleLabels();
             ShowVaryingControlsOptions(false);
@@ -236,6 +236,49 @@ namespace PinkyAndBrain
             this._varyingControlGroupBox.BackgroundImage = Image.FromFile(Application.StartupPath + @"\Pinky_and_the_Brain_darker.jpg");
         }
         #endregion CONSTRUCTORS
+
+        #region SELECTING_INTERFACES_FUNCTION_for_SELECTEDPROTOCOL
+        /// <summary>
+        /// Decide which of the VaryingVectorsGenerator to call by the protocol type.
+        /// </summary>
+        /// <returns>The mathed IVaryingVectorGenerator for the protocol type.</returns>
+        private IVaryingVectorGenerator DecideVaryinVectorsGeneratorByProtocolName()
+        {
+            switch (_protocolsComboBox.SelectedText)
+            {
+                case "ThreeStepAdaptation":
+                case "Azimuth1D":
+                    return new AcrossVectorValuesGenerator();
+                case "Azimuth3D":
+                    return new VectorValuesGenerator3DAzimuth();
+                default:
+                    return new AcrossVectorValuesGenerator();
+            }
+        }
+
+        /// <summary>
+        /// Returns the ITrajectoryCreator to create trajectories with by the protocol type name.
+        /// </summary>
+        /// <param name="protoclName">he protocol name.</param>
+        /// <returns>The ITrajectoryCreator to create trajectories with for the trials.</returns>
+        private ITrajectoryCreator DecideTrajectoryCreatorByProtocolName(string protoclName)
+        {
+            //determine the TrajectoryCreator to call with.
+            switch (protoclName)
+            {
+                case "Training":
+                    return new Training(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
+                case "ThreeStepAdaptation":
+                    return new ThreeStepAdaptation(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
+                case "Azimuth1D":
+                    return new Azimuth1D(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
+                case "Azimuth3D":
+                    return new Azimuth3D(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
+                default:
+                    return new ThreeStepAdaptation(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
+            }
+        }
+        #endregion SELECTING_INTERFACES_FUNCTION_for_SELECTEDPROTOCOL
 
         #region OUTSIDER_EVENTS_HANDLE_FUNCTION
 
@@ -778,33 +821,14 @@ namespace PinkyAndBrain
                         //start the control loop.
                         //need to be changed according to parameters added to which trajectoryname to be called from the excel file.
                         //string trajectoryCreatorName = _variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0];
-                        int trajectoryCreatorNum = int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter);
-                        string trajectoryCreatorName = (trajectoryCreatorNum == 0) ? "Training" : "ThreeStepAdaptation";
-
-                        //determine the TrajectoryCreator to call with.
-                        switch (trajectoryCreatorNum)
-                        {
-                            case 0:
-                                trajectoryCreatorName = "Training";
-                                break;
-                            case 1:
-                                trajectoryCreatorName = "ThreeStepAdaptation";
-                                break;
-                            case 2:
-                                trajectoryCreatorName = "Azimuth1D";
-                                break;
-                            case 3:
-                                trajectoryCreatorName = "Azimuth3D";
-                                break;
-                            default:
-                                break;
-                        }
+                        //int trajectoryCreatorNum = int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter);
+                        ITrajectoryCreator trajectoryCreator = DecideTrajectoryCreatorByProtocolName(_protocolsComboBox.SelectedText);
 
                         _cntrlLoop.NumOfRepetitions = int.Parse(_numOfRepetitionsTextBox.Text.ToString());
                         _cntrlLoop.NumOfStickOn = int.Parse(_textboxStickOnNumber.Text.ToString());
                         _cntrlLoop.PercentageOfTurnedOnLeds = double.Parse(_textboxPercentageOfTurnOnLeds.Text.ToString());
                         _cntrlLoop.LEDBrightness = int.Parse(_textboxLEDBrightness.Text.ToString());
-                        _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreatorName);
+                        _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreator);
                     }
                 }
             }

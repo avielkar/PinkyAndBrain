@@ -413,7 +413,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Transfer the control from the main gui to the control loop until a new gui event is handled by the user.
         /// </summary>
-        public void Start(Variables variablesList, List<Dictionary<string, double>> crossVaryingList, Dictionary<string, double> staticVariablesList, int frequency, string trajectoryCreatorName)
+        public void Start(Variables variablesList, List<Dictionary<string, double>> crossVaryingList, Dictionary<string, double> staticVariablesList, int frequency, ITrajectoryCreator trajectoryCreatorName)
         {
             //initialize variables.
             _variablesList = variablesList;
