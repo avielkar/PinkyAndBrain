@@ -249,11 +249,11 @@ namespace PinkyAndBrain
             {
                 case "ThreeStepAdaptation":
                 case "Azimuth1D":
-                    return new AcrossVectorValuesGenerator();
+                    return new VaryingValuesGenerator();
                 case "Azimuth3D":
-                    return new VectorValuesGenerator3DAzimuth();
+                    return new VaryingValuesGenerator3DAzimuth();
                 default:
-                    return new AcrossVectorValuesGenerator();
+                    return new VaryingValuesGenerator();
             }
         }
 

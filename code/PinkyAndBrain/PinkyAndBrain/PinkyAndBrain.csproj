@@ -103,7 +103,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AcrossVectorValuesGenerator.cs" />
+    <Compile Include="VaryingValuesGenerator.cs" />
     <Compile Include="ControlLoop.cs" />
     <Compile Include="ExcelProtocolConfigFieLoader.cs" />
     <Compile Include="Globals.cs" />
@@ -120,7 +120,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SavedDataMaker.cs" />
     <Compile Include="VaryingIndexSelector.cs" />
-    <Compile Include="VectorValuesGeneratorAzimuth3D.cs" />
+    <Compile Include="VaryingValuesGeneratorAzimuth3D.cs" />
     <EmbeddedResource Include="GuiInterface.resx">
       <DependentUpon>GuiInterface.cs</DependentUpon>
     </EmbeddedResource>
