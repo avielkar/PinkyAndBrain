@@ -244,7 +244,8 @@ namespace PinkyAndBrain
         /// <returns>The mathed IVaryingVectorGenerator for the protocol type.</returns>
         private IVaryingVectorGenerator DecideVaryinVectorsGeneratorByProtocolName()
         {
-            switch (_protocolsComboBox.SelectedText)
+            //take the name before the .xlsx
+            switch (_protocolsComboBox.Text.Split('.')[0])
             {
                 case "ThreeStepAdaptation":
                 case "Azimuth1D":
@@ -822,7 +823,8 @@ namespace PinkyAndBrain
                         //need to be changed according to parameters added to which trajectoryname to be called from the excel file.
                         //string trajectoryCreatorName = _variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0];
                         //int trajectoryCreatorNum = int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter);
-                        ITrajectoryCreator trajectoryCreator = DecideTrajectoryCreatorByProtocolName(_protocolsComboBox.SelectedText);
+                        //split is to take the protocol name with no .xlsx
+                        ITrajectoryCreator trajectoryCreator = DecideTrajectoryCreatorByProtocolName(_protocolsComboBox.Text.Split('.')[0]);
 
                         _cntrlLoop.NumOfRepetitions = int.Parse(_numOfRepetitionsTextBox.Text.ToString());
                         _cntrlLoop.NumOfStickOn = int.Parse(_textboxStickOnNumber.Text.ToString());
@@ -878,6 +880,9 @@ namespace PinkyAndBrain
                 return;
             }
             #endregion STATUS_NUM_OF_OCCURENCES
+
+            //decide which creator to use depends on the protocol name.
+            _acrossVectorValuesGenerator = DecideVaryinVectorsGeneratorByProtocolName();
 
             //if there ar no errors middwile. Generate crrossvals and run the control loop.
             _acrossVectorValuesGenerator.SetVariablesValues(_variablesList);
