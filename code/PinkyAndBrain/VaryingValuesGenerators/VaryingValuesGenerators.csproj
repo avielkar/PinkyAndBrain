@@ -55,9 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IVaryingVectorGenerator.cs" />
+    <Compile Include="IVaryingValuesGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VaryingValuesGenerator.cs" />
+    <Compile Include="VaryingValuesGeneratorAdamDelta.cs" />
     <Compile Include="VaryingValuesGeneratorAzimuth3D.cs" />
   </ItemGroup>
   <ItemGroup>

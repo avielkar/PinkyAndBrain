@@ -8,7 +8,7 @@ using MathNet.Numerics.LinearAlgebra;
 
 namespace VaryingValuesGenerators
 {
-    public abstract class IVaryingVectorGenerator
+    public abstract class IVaryingValuesGenerator
     {
         #region ATTRIBUTES
         /// <summary>

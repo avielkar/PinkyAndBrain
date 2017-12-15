@@ -12,7 +12,7 @@ namespace VaryingValuesGenerators
     /// This class attempt to create all the needed trials  for the Azimuth3D  protocol.
     /// parmaeters for the whole experiment according to the protocol and th GuiInterfae inputs.
     /// </summary>
-    public class VaryingValuesGenerator3DAzimuth : IVaryingVectorGenerator
+    public class VaryingValuesGenerator3DAzimuth : IVaryingValuesGenerator
     {
         #region CONSTRUCTOR
         /// <summary>

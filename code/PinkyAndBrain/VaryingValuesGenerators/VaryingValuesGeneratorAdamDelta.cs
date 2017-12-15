@@ -9,16 +9,16 @@ using MathNet.Numerics.LinearAlgebra;
 namespace VaryingValuesGenerators
 {
     /// <summary>
-    /// This class attempt to create all the needed trials  for the Azimuth1D protocol and the ThreeStepAdaptation protocol.
+    /// This class attempt to create all the needed trials  for the AdamDelta protocol.
     /// parmaeters for the whole experiment according to the protocol and th GuiInterfae inputs.
     /// </summary>
-    public class VaryingValuesGenerator : IVaryingValuesGenerator
+    public class VaryingValuesGeneratorAdamDelta:IVaryingValuesGenerator
     {
         #region CONSTRUCTOR
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public VaryingValuesGenerator()
+        public VaryingValuesGeneratorAdamDelta()
         {
 
         }

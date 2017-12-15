@@ -1122,6 +1122,22 @@ namespace PinkyAndBrain
                     _ledController2.ExecuteCommands();
                     break;
 
+                case 4://vistibular and visual both with delta+ for visual.
+                case 5://vistibular and visual both with delta+ for vistibular.
+                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both);
+                    robotMotion = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                    //should move only r1 robot and also to turn on the leds.
+                    LEDsData ledsData5 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    _ledController.LEDsDataCommand = ledsData5;
+                    _ledController.SendData();
+                    LEDsData ledsData6 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    _ledController2.LEDsDataCommand = ledsData6;
+                    _ledController2.SendData();
+                    _ledController.ExecuteCommands();
+                    _ledController2.ExecuteCommands();
+                    break;
+
                 default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
                     robotMotion = Task.Factory.StartNew(() => Thread.Sleep((int)(1000 * _currentTrialTimings.wDuration)));
                     break;
@@ -1555,6 +1571,11 @@ namespace PinkyAndBrain
 
                 case 3://vistibular and visual both.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only , true);
+                    break;
+
+                case 4://vistibular and visual both with +delta for visual.
+                case 5://vistibular and visual both with -delta for visual.
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both , true);
                     break;
 
                 default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).

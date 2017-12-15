@@ -62,7 +62,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Holds the AcrossVectorValuesGenerator generator.
         /// </summary>
-        private IVaryingVectorGenerator _acrossVectorValuesGenerator;
+        private IVaryingValuesGenerator _acrossVectorValuesGenerator;
 
         /// <summary>
         /// Holds the StaticValuesGenerator generator.
@@ -243,7 +243,7 @@ namespace PinkyAndBrain
         /// Decide which of the VaryingVectorsGenerator to call by the protocol type.
         /// </summary>
         /// <returns>The mathed IVaryingVectorGenerator for the protocol type.</returns>
-        private IVaryingVectorGenerator DecideVaryinVectorsGeneratorByProtocolName()
+        private IVaryingValuesGenerator DecideVaryinVectorsGeneratorByProtocolName()
         {
             //take the name before the .xlsx
             switch (_protocolsComboBox.Text.Split('.')[0])
@@ -253,6 +253,8 @@ namespace PinkyAndBrain
                     return new VaryingValuesGenerator();
                 case "Azimuth3D":
                     return new VaryingValuesGenerator3DAzimuth();
+                case "AdamDelta":
+                    return new VaryingValuesGeneratorAdamDelta();
                 default:
                     return new VaryingValuesGenerator();
             }
@@ -276,6 +278,8 @@ namespace PinkyAndBrain
                     return new Azimuth1D(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
                 case "Azimuth3D":
                     return new Azimuth3D(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
+                case "AdamDelta":
+                    return new AdamDelta(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
                 default:
                     return new ThreeStepAdaptation(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
             }
