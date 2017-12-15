@@ -78,3 +78,5 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bi
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\Trajectories.pdb
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\RatResponseSystem.dll
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\RatResponseSystem.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\VaryingValuesGenerators.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Debug\VaryingValuesGenerators.pdb

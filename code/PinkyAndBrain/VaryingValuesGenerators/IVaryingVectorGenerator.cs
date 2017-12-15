@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Params;
 using MathNet.Numerics.LinearAlgebra;
 
-namespace PinkyAndBrain
+namespace VaryingValuesGenerators
 {
     public abstract class IVaryingVectorGenerator
     {

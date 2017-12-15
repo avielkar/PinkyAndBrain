@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 using Params;
 using MathNet.Numerics.LinearAlgebra;
 
-namespace PinkyAndBrain
+namespace VaryingValuesGenerators
 {
     /// <summary>
-    /// This class attempt to create all the needed trials  for the Azimuth1D protocol and the ThreeStepAdaptation protocol.
+    /// This class attempt to create all the needed trials  for the Azimuth3D  protocol.
     /// parmaeters for the whole experiment according to the protocol and th GuiInterfae inputs.
     /// </summary>
-    public class VaryingValuesGenerator:IVaryingVectorGenerator
+    public class VaryingValuesGenerator3DAzimuth : IVaryingVectorGenerator
     {
         #region CONSTRUCTOR
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public VaryingValuesGenerator()
+        public VaryingValuesGenerator3DAzimuth()
         {
 
         }
@@ -35,13 +35,12 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Creates all the varying vectors the trial in the experiment would use.
+        /// Making commulative trials matrix for the varying values spanning vectors.
         /// </summary>
-        public override void MakeTrialsVaringVectors()
+        /// <param name="seperatedVaryingValues">The spanning varying matrix.</param>
+        /// <returns>The spanning matrix commulatives all spannig vectors combinations.</returns>
+        public Matrix<double> MakeCommulativeMatrix(Dictionary<string, Vector<double>> seperatedVaryingValues)
         {
-            //initialize the matrix that include all the spanning vectors.
-            Dictionary<string ,  Vector<double>> seperatedVaryingValues = MakeSeperatedVaryingVectorsList();
-
             //the commulative matrix that incresed 1 line in each iteration and in many rows as the number of values the variables takes.
             Matrix<double> commulativeMatrix = Matrix<double>.Build.DenseOfRowVectors(seperatedVaryingValues[seperatedVaryingValues.Keys.First()]);
 
@@ -54,10 +53,9 @@ namespace PinkyAndBrain
             //indicate to skip the first item in the foreach loop because it was already inserted to the accumulative matrix in the two lines before.
             bool skipFirst = true;
 
-            //run over all the varying variables.
-            //each iteration in this loop add a new line with duplicated previous matrix with current variables values.
-            foreach (KeyValuePair<string ,  Vector<double>> varVecKeyValuePair in seperatedVaryingValues)
+            foreach (KeyValuePair<string, Vector<double>> varVecKeyValuePair in seperatedVaryingValues)
             {
+
                 if (!skipFirst)
                 {
                     bool first = true;
@@ -102,6 +100,48 @@ namespace PinkyAndBrain
                 skipFirst = false;
             }
 
+            return commulativeMatrix;
+        }
+
+        /// <summary>
+        /// Creates all the varying vectors the trial in the experiment would use.
+        /// </summary>
+        public override void MakeTrialsVaringVectors()
+        {
+            //initialize the matrix that include all the spanning vectors.
+            Dictionary<string, Vector<double>> seperatedVaryingValues = MakeSeperatedVaryingVectorsList();
+
+            //run over all the varying variables.
+            //each iteration in this loop add a new line with duplicated previous matrix with current variables values.
+            Matrix<double> commulativeMatrix = MakeCommulativeMatrix(seperatedVaryingValues);
+
+            Dictionary<string, Vector<double>> seperatedVaryingValuesWithOnlyOneElevationValue = new Dictionary<string, Vector<double>>();
+            foreach (KeyValuePair<string, Vector<double>> item in seperatedVaryingValues)
+            {
+                //if the azimuth key
+                if (item.Key == "DISC_PLANE_AZIMUTH")
+                {
+                    seperatedVaryingValuesWithOnlyOneElevationValue.Add(item.Key, Vector<double>.Build.Dense(new double[] { -90, 90 }));
+                }
+                //if the elevation key
+                else if (item.Key == "DISC_PLANE_ELEVATION")
+                {
+                    seperatedVaryingValuesWithOnlyOneElevationValue.Add(item.Key, Vector<double>.Build.Dense(1, 0));
+                }
+                else
+                {
+                    seperatedVaryingValuesWithOnlyOneElevationValue.Add(item.Key, item.Value);
+                }
+            }
+
+            var commulativaMatrixAzimuthSpecials = MakeCommulativeMatrix(seperatedVaryingValuesWithOnlyOneElevationValue);
+
+            commulativeMatrix = commulativeMatrix.Append(commulativaMatrixAzimuthSpecials);
+
+            #region SECOND_ITERATION
+            #endregion SECOND_ITERATION
+
+
             _varyingMatrix = commulativeMatrix;
         }
 
@@ -116,7 +156,7 @@ namespace PinkyAndBrain
 
             List<Dictionary<string, double>> returnList = new List<Dictionary<string, double>>();
 
-            List <string> varyingVariablesNames = _varyingVariables._variablesDictionary.Keys.ToList();
+            List<string> varyingVariablesNames = _varyingVariables._variablesDictionary.Keys.ToList();
 
             IEnumerator<string> nameEnumerator = varyingVariablesNames.GetEnumerator();
 
@@ -124,11 +164,11 @@ namespace PinkyAndBrain
             {
                 Dictionary<string, double> dictionaryItem = new Dictionary<string, double>();
                 nameEnumerator.Reset();
-                foreach(double value in varRow)
+                foreach (double value in varRow)
                 {
                     nameEnumerator.MoveNext();
 
-                    dictionaryItem.Add(nameEnumerator.Current , value);
+                    dictionaryItem.Add(nameEnumerator.Current, value);
                 }
                 returnList.Add(dictionaryItem);
             }
@@ -146,7 +186,7 @@ namespace PinkyAndBrain
         public override Dictionary<string, Vector<double>> MakeSeperatedVaryingVectorsList()
         {
             //a list include all varying vectors by themselves only.
-            Dictionary<string, Vector<double>> varyingVectorsList = new Dictionary<string,Vector<double>>();
+            Dictionary<string, Vector<double>> varyingVectorsList = new Dictionary<string, Vector<double>>();
 
             #region MAKING_VARYING_VECTOR_LIST
             foreach (string varName in _varyingVariables._variablesDictionary.Keys)
@@ -156,8 +196,15 @@ namespace PinkyAndBrain
                 double increament = double.Parse(_varyingVariables._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
 
                 //add the vector to the return list.
-                Vector<double> oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament);
-
+                Vector<double> oneVarVector;
+                if (varName != "DISC_PLANE_AZIMUTH")
+                {
+                    oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament);
+                }
+                else
+                {
+                    oneVarVector = CreateVectorFromBoundsAzimuth(low_bound, high_bound, increament);
+                }
                 varyingVectorsList.Add(varName, oneVarVector);
             }
             #endregion MAKING_VARYING_VECTOR_LIST
@@ -174,10 +221,10 @@ namespace PinkyAndBrain
         /// <returns>The generated vector from the input bounds.</returns>
         public override Vector<double> CreateVectorFromBounds(double lowBound, double highBound, double increment)
         {
-            Vector<double> createdVector = Vector<double>.Build.Dense((int)((highBound-lowBound)/increment + 1));
+            Vector<double> createdVector = Vector<double>.Build.Dense((int)((highBound - lowBound) / increment + 1));
             int index = 0;
 
-            while(lowBound<=highBound)
+            while (lowBound <= highBound)
             {
                 createdVector.At(index, lowBound);
                 lowBound += increment;
@@ -185,6 +232,29 @@ namespace PinkyAndBrain
             }
 
             return createdVector;
+        }
+
+        /// <summary>
+        /// Creates the vector boumd for the Azimuth spanning vector wothout the specials values of +90 and -90.
+        /// </summary>
+        /// <param name="lowBound">The low bound to start with.</param>
+        /// <param name="highBound">The high bound to end with.</param>
+        /// <param name="increment">The increament between each elemrnt in the generated vector.</param>
+        /// <returns>The generated vector from the input bounds with no special values of +90 and -90.</returns>
+        private Vector<double> CreateVectorFromBoundsAzimuth(double lowBound, double highBound, double increment)
+        {
+            Vector<double> createdVector = Vector<double>.Build.Dense((int)((highBound - lowBound) / increment + 1));
+            int index = 0;
+
+            while (lowBound <= highBound)
+            {
+                if (lowBound != 90 && lowBound != -90)
+                    createdVector.At(index, lowBound);
+                lowBound += increment;
+                index++;
+            }
+
+            return createdVector.SubVector(0, index);
         }
         #endregion FUNCTIONS
     }

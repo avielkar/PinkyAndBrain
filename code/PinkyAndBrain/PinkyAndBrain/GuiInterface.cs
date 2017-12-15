@@ -17,6 +17,7 @@ using InfraRedSystem;
 using log4net;
 using System.Threading;
 using MotomanSystem;
+using VaryingValuesGenerators;
 
 namespace PinkyAndBrain
 {

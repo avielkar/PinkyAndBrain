@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ACFB6484-F907-45F3-979B-5369E096E18B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VaryingValuesGenerators</RootNamespace>
+    <AssemblyName>VaryingValuesGenerators</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.MLApp">
+      <HintPath>..\PinkyAndBrain\obj\Debug\Interop.MLApp.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>..\packages\MathNet.Numerics.3.17.0\lib\net40\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Charting">
+      <HintPath>..\packages\MindFusion.Charting.4.0.1\lib\net40\MindFusion.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Charting.WinForms">
+      <HintPath>..\packages\MindFusion.Charting.4.0.1\lib\net40\MindFusion.Charting.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Common">
+      <HintPath>..\packages\MindFusion.Charting.4.0.1\lib\net40\MindFusion.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IVaryingVectorGenerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VaryingValuesGenerator.cs" />
+    <Compile Include="VaryingValuesGeneratorAzimuth3D.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Params\Params.csproj">
+      <Project>{e7c1e239-4de3-40e7-9f71-82e5a1de07cc}</Project>
+      <Name>Params</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trajectories\Trajectories.csproj">
+      <Project>{a5458fe9-d869-478d-9268-6205352b36ab}</Project>
+      <Name>Trajectories</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

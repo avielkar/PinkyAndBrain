@@ -103,7 +103,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="VaryingValuesGenerator.cs" />
     <Compile Include="ControlLoop.cs" />
     <Compile Include="ExcelProtocolConfigFieLoader.cs" />
     <Compile Include="Globals.cs" />
@@ -113,14 +112,12 @@
     <Compile Include="GuiInterface.Designer.cs">
       <DependentUpon>GuiInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="IVaryingVectorGenerator.cs" />
     <Compile Include="StaticValuesGenerator.cs" />
     <Compile Include="OnlinePsychGraphMaker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SavedDataMaker.cs" />
     <Compile Include="VaryingIndexSelector.cs" />
-    <Compile Include="VaryingValuesGeneratorAzimuth3D.cs" />
     <EmbeddedResource Include="GuiInterface.resx">
       <DependentUpon>GuiInterface.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,6 +226,10 @@
     <ProjectReference Include="..\Trajectories\Trajectories.csproj">
       <Project>{a5458fe9-d869-478d-9268-6205352b36ab}</Project>
       <Name>Trajectories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VaryingValuesGenerators\VaryingValuesGenerators.csproj">
+      <Project>{acfb6484-f907-45f3-979b-5369e096e18b}</Project>
+      <Name>VaryingValuesGenerators</Name>
     </ProjectReference>
     <ProjectReference Include="..\WaterMeasure\WaterMeasure\WaterMeasure.csproj">
       <Project>{084082d2-54a4-4df0-97b7-0c3e63a5fb4d}</Project>
