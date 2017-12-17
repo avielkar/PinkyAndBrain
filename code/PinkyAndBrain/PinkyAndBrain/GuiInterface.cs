@@ -1002,7 +1002,10 @@ namespace PinkyAndBrain
                     //set robot servo on and go homeposition.
                     _motocomController.SetServoOn();
 
-                    if (CheckBothRobotsAtEngagePosition() || CheckBothRobotsAroundParkPosition())
+                    string checkerParkPosition = CheckBothRobotsAtParkPosition();
+                    string checkerEngagePosition = CheckBothRobotAroundEngagePosition();
+
+                    if (checkerParkPosition.Equals(string.Empty) || checkerEngagePosition.Equals(string.Empty))
                     {
 
                         _motocomController.WriteParkPositionFile();
@@ -1010,6 +1013,14 @@ namespace PinkyAndBrain
 
                         _motocomController.WaitJobFinished();
                     }
+                    else
+                    {
+                        if (checkerEngagePosition.Equals(string.Empty))
+                            MessageBox.Show(checkerEngagePosition, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if (checkerEngagePosition.Equals(string.Empty))
+                            MessageBox.Show(checkerEngagePosition, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
                     _motocomController.SetServoOff();
 
                     #region ENABLE_BUTTONS_BACK
@@ -1056,13 +1067,22 @@ namespace PinkyAndBrain
                     //set robot servo on and go homeposition.
                     _motocomController.SetServoOn();
 
-                    if (CheckBothRobotsAtParkPosition() || CheckBothRobotAroundEngagePosition())
-                    {
+                    string checkerParkPosition = CheckBothRobotsAtParkPosition();
+                    string checkerEngagePosition = CheckBothRobotAroundEngagePosition();
 
+                    if (checkerParkPosition.Equals(string.Empty) || checkerEngagePosition.Equals(string.Empty))
+                    {
                         _motocomController.WriteHomePosFile();
                         _motocomController.MoveRobotHomePosition();
 
                         _motocomController.WaitJobFinished();
+                    }
+                    else
+                    {
+                        if(checkerEngagePosition.Equals(string.Empty))
+                            MessageBox.Show(checkerEngagePosition, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if(checkerEngagePosition.Equals(string.Empty))
+                            MessageBox.Show(checkerEngagePosition, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
                     #region ENABLE_BUTTONS_BACK
@@ -1086,7 +1106,7 @@ namespace PinkyAndBrain
         /// Check the both robots exactly at threre park position.
         /// </summary>
         /// <returns></returns>
-        private bool CheckBothRobotsAtParkPosition()
+        private string CheckBothRobotsAtParkPosition()
         {
             return CheckBothRobotsAroundDeltaParkPosition(10);
         }
@@ -1095,7 +1115,7 @@ namespace PinkyAndBrain
         /// Check the both robots arounf the park poistion.
         /// </summary>
         /// <returns></returns>
-        private bool CheckBothRobotsAroundParkPosition()
+        private string CheckBothRobotsAroundParkPosition()
         {
             return CheckBothRobotsAroundDeltaParkPosition(50);
         }
@@ -1103,9 +1123,9 @@ namespace PinkyAndBrain
         /// <summary>
         /// Check the robots position around delta from there park position.
         /// </summary>
-        /// <param name="delta"></param>
-        /// <returns></returns>
-        private bool CheckBothRobotsAroundDeltaParkPosition(double delta)
+        /// <param name="delta">The delta can be accurated to the park position.</param>
+        /// <returns>Empty string if close enough to the position in delta mm , , otherwise the distance string.</returns>
+        private string CheckBothRobotsAroundDeltaParkPosition(double delta)
         {
             _motocomController.SetRobotControlGroup(1);
 
@@ -1133,9 +1153,7 @@ namespace PinkyAndBrain
                 "R2YDelta = " + Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) + "\n" +
                 "R2ZDelta = " + Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ);
 
-            MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-            return robot1PosInPark && robot2PosInPark;
+            return (robot1PosInPark && robot2PosInPark)?(string.Empty):(message);
         }
 
         /// <summary>
@@ -1144,7 +1162,7 @@ namespace PinkyAndBrain
         /// <returns></returns>
         private bool CheckBothRobotsAtParkPositionOrBackward()
         {
-            return CheckBothRobotsAtParkPosition() && Checkrobot1BackwardParkingPosition();
+            return CheckBothRobotsAtParkPosition().Equals(string.Empty) && Checkrobot1BackwardParkingPosition().Equals(string.Empty);
         }
 
         /// <summary>
@@ -1164,7 +1182,7 @@ namespace PinkyAndBrain
         /// Check both robots exactly at there enagae position.
         /// </summary>
         /// <returns></returns>
-        private bool CheckBothRobotsAtEngagePosition()
+        private string CheckBothRobotsAtEngagePosition()
         {
             return CheckBothRobotAroundDeltaEngagePosition(10);
         }
@@ -1173,7 +1191,7 @@ namespace PinkyAndBrain
         /// Check the both robots arounf the engage position.
         /// </summary>
         /// <returns></returns>
-        private bool CheckBothRobotAroundEngagePosition()
+        private string CheckBothRobotAroundEngagePosition()
         {
             return CheckBothRobotAroundDeltaEngagePosition(50);
         }
@@ -1183,7 +1201,7 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="delta"></param>
         /// <returns></returns>
-        private bool CheckBothRobotAroundDeltaEngagePosition(double delta)
+        private string CheckBothRobotAroundDeltaEngagePosition(double delta)
         {
             _motocomController.SetRobotControlGroup(1);
 
@@ -1209,9 +1227,7 @@ namespace PinkyAndBrain
                 "R2YDelta = " + Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) + "\n" +
                 "R2ZDelta = " + Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ);
 
-            MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-            return robot1PosInEngage && robot2PosInEngage;
+            return (robot1PosInEngage && robot2PosInEngage)?(string.Empty):(message);
         }
         #endregion CHECK_ROBOTS_POSITION_FUNCTIONS
 
