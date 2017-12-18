@@ -212,7 +212,7 @@ namespace PinkyAndBrain
             _btnResume.Enabled = false;
 
             //disable the make trials btn untill engaged state.
-            _btnMakeTrials.Enabled = false;
+            _btnMakeTrials.Enabled = true;
 
             //the start point is in the disengaged state.
             _isEngaged = false;
@@ -804,39 +804,46 @@ namespace PinkyAndBrain
             //if everything is o.k start the control loop.
             if(StartLoopStartCheck())
             {
-                lock (_lockerStopStartButton)
+                if (_isEngaged)
                 {
-                    #region ENABLE_DISABLE_BUTTONS
-                    _btnStart.Enabled = false;
-                    _btnMakeTrials.Enabled = false;
-                    _btnStop.Enabled = true;
-                    _btnPause.Enabled = true;
-                    _btnResume.Enabled = false;
-                    _btnPark.Enabled = false;
-                    #endregion
-
-                    //if already running - ignore.
-                    if (!Globals._systemState.Equals(SystemState.RUNNING))
+                    lock (_lockerStopStartButton)
                     {
-                        //update the system state.
-                        Globals._systemState = SystemState.RUNNING;
+                        #region ENABLE_DISABLE_BUTTONS
+                        _btnStart.Enabled = false;
+                        _btnMakeTrials.Enabled = false;
+                        _btnStop.Enabled = true;
+                        _btnPause.Enabled = true;
+                        _btnResume.Enabled = false;
+                        _btnPark.Enabled = false;
+                        #endregion
 
-                        //add the static variable list of double type values.
-                        _staticValuesGenerator.SetVariables(_variablesList);
+                        //if already running - ignore.
+                        if (!Globals._systemState.Equals(SystemState.RUNNING))
+                        {
+                            //update the system state.
+                            Globals._systemState = SystemState.RUNNING;
 
-                        //start the control loop.
-                        //need to be changed according to parameters added to which trajectoryname to be called from the excel file.
-                        //string trajectoryCreatorName = _variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0];
-                        //int trajectoryCreatorNum = int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter);
-                        //split is to take the protocol name with no .xlsx
-                        ITrajectoryCreator trajectoryCreator = DecideTrajectoryCreatorByProtocolName(_protocolsComboBox.Text.Split('.')[0]);
+                            //add the static variable list of double type values.
+                            _staticValuesGenerator.SetVariables(_variablesList);
 
-                        _cntrlLoop.NumOfRepetitions = int.Parse(_numOfRepetitionsTextBox.Text.ToString());
-                        _cntrlLoop.NumOfStickOn = int.Parse(_textboxStickOnNumber.Text.ToString());
-                        _cntrlLoop.PercentageOfTurnedOnLeds = double.Parse(_textboxPercentageOfTurnOnLeds.Text.ToString());
-                        _cntrlLoop.LEDBrightness = int.Parse(_textboxLEDBrightness.Text.ToString());
-                        _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreator);
+                            //start the control loop.
+                            //need to be changed according to parameters added to which trajectoryname to be called from the excel file.
+                            //string trajectoryCreatorName = _variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0];
+                            //int trajectoryCreatorNum = int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter);
+                            //split is to take the protocol name with no .xlsx
+                            ITrajectoryCreator trajectoryCreator = DecideTrajectoryCreatorByProtocolName(_protocolsComboBox.Text.Split('.')[0]);
+
+                            _cntrlLoop.NumOfRepetitions = int.Parse(_numOfRepetitionsTextBox.Text.ToString());
+                            _cntrlLoop.NumOfStickOn = int.Parse(_textboxStickOnNumber.Text.ToString());
+                            _cntrlLoop.PercentageOfTurnedOnLeds = double.Parse(_textboxPercentageOfTurnOnLeds.Text.ToString());
+                            _cntrlLoop.LEDBrightness = int.Parse(_textboxLEDBrightness.Text.ToString());
+                            _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreator);
+                        }
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Error - Robot is not engaged!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -1012,6 +1019,8 @@ namespace PinkyAndBrain
                         _motocomController.MoveRobotParkPosition();
 
                         _motocomController.WaitJobFinished();
+
+                        _isEngaged = false;
                     }
                     else
                     {
@@ -1034,9 +1043,6 @@ namespace PinkyAndBrain
                 }
             }
 
-            _isEngaged = false;
-            _btnMakeTrials.Enabled = false;
-            _btnStart.Enabled = false;
         }
 
         /// <summary>
@@ -1076,6 +1082,8 @@ namespace PinkyAndBrain
                         _motocomController.MoveRobotHomePosition();
 
                         _motocomController.WaitJobFinished();
+
+                        _isEngaged = true;
                     }
                     else
                     {
@@ -1095,9 +1103,6 @@ namespace PinkyAndBrain
                     #endregion
                 }
             }
-
-            _isEngaged = true;
-            _btnMakeTrials.Enabled = true;
         }
         #endregion
 
