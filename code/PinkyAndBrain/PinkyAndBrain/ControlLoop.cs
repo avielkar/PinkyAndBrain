@@ -1442,12 +1442,16 @@ namespace PinkyAndBrain
             currentTrialTimings.wStartDelay = DetermineTimeByVariable("START_DELAY");
 
             currentTrialTimings.wRewardCenterDelay = DetermineTimeByVariable("REWARD_CENTER_DELAY");
-            currentTrialTimings .wRewardRightDelay= DetermineTimeByVariable("REWARD_RIGHT_DELAY");
-            currentTrialTimings.wRewardLeftDelay= DetermineTimeByVariable("REWARD_LEFT_DELAY");
+            currentTrialTimings.wRewardRightDelay = DetermineTimeByVariable("REWARD_RIGHT_DELAY");
+            currentTrialTimings.wRewardLeftDelay = DetermineTimeByVariable("REWARD_LEFT_DELAY");
+            currentTrialTimings.wRewardLeftDelaySecondChance = DetermineTimeByVariable("REWARD_LEFT_DELAY_SC");
+            currentTrialTimings.wRewardRightDelaySecondChance = DetermineTimeByVariable("REWARD_RIGHT_DELAY_SC");
 
             currentTrialTimings.wRewardCenterDuration = DetermineTimeByVariable("REWARD_CENTER_DURATION");
             currentTrialTimings.wRewardRightDuration = DetermineTimeByVariable("REWARD_RIGHT_DURATION");
             currentTrialTimings.wRewardLeftDuration = DetermineTimeByVariable("REWARD_LEFT_DURATION");
+            currentTrialTimings.wRewardLeftDurationSecondChance = DetermineTimeByVariable("REWARD_LEFT_DURATION");
+            currentTrialTimings.wRewardRightDurationSecondChance = DetermineTimeByVariable("REWARD_RIGHT_DURATION");
 
             currentTrialTimings.wRewardToBackwardDelay = DetermineTimeByVariable("REWARD_BACKWARD_TIME");
 
@@ -1697,6 +1701,16 @@ namespace PinkyAndBrain
             public double wRewardLeftDelay;
 
             /// <summary>
+            /// The delay between the right head tracking (for the trial begin) and the right reward for the second chance.
+            /// </summary>
+            public double wRewardRightDelaySecondChance;
+
+            /// <summary>
+            /// The delay between the left head tracking (for the trial begin) and the left reward for the second chance.
+            /// </summary>
+            public double wRewardLeftDelaySecondChance;
+
+            /// <summary>
             /// The duration for the center reward.
             /// </summary>
             public double wRewardCenterDuration;
@@ -1710,6 +1724,16 @@ namespace PinkyAndBrain
             /// The duration for the left reward.
             /// </summary>
             public double wRewardLeftDuration;
+
+            /// <summary>
+            /// The duration for the right reward second chance.
+            /// </summary>
+            public double wRewardRightDurationSecondChance;
+
+            /// <summary>
+            /// The duration for the left reward seconde chance.
+            /// </summary>
+            public double wRewardLeftDurationSecondChance;
 
             /// <summary>
             /// The delay between end of water reward to the begining of moving rovot to it's home position.
