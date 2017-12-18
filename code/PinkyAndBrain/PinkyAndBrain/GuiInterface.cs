@@ -1015,9 +1015,9 @@ namespace PinkyAndBrain
                     }
                     else
                     {
-                        if (checkerEngagePosition.Equals(string.Empty))
+                        if (!checkerEngagePosition.Equals(string.Empty))
                             MessageBox.Show(checkerEngagePosition, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        if (checkerEngagePosition.Equals(string.Empty))
+                        if (!checkerEngagePosition.Equals(string.Empty))
                             MessageBox.Show(checkerEngagePosition, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
@@ -1079,9 +1079,9 @@ namespace PinkyAndBrain
                     }
                     else
                     {
-                        if(checkerEngagePosition.Equals(string.Empty))
+                        if(!checkerEngagePosition.Equals(string.Empty))
                             MessageBox.Show(checkerEngagePosition, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        if(checkerEngagePosition.Equals(string.Empty))
+                        if(!checkerEngagePosition.Equals(string.Empty))
                             MessageBox.Show(checkerEngagePosition, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
@@ -1108,7 +1108,7 @@ namespace PinkyAndBrain
         /// <returns></returns>
         private string CheckBothRobotsAtParkPosition()
         {
-            return CheckBothRobotsAroundDeltaParkPosition(10);
+            return CheckBothRobotsAroundDeltaParkPosition(50);
         }
 
         /// <summary>
