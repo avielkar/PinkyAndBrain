@@ -91,6 +91,8 @@ namespace AlphaOmegaSystem
     /// </summary>
     public enum AlphaOmegaEvent : byte
     {
+        //The bits for the AlphaOmega in the NationalInstruments are b3-b7.
+
         /// <summary>
         /// Empty event occured between each of the events.
         /// </summary>
@@ -124,19 +126,7 @@ namespace AlphaOmegaSystem
         /// <summary>
         /// The rat decide about the left stimulation direction. (#5)
         /// </summary>
-        HeadEnterLeft = 0x21,
-        
-        /// <summary>
-        /// The rat decide about the right stimulation direction at the second chance. (#5)
-        /// </summary>
-        HeadEnterLeftSecondChance = 0x22,
-
-        //TODO : check the number assigned here for the second chance enums values.
-
-        /// <summary>
-        /// The rat decide about the left stimulation direction at the second chance. (#5)
-        /// </summary>
-        HeadEnterRightSecondChance = 0x23,
+        HeadEnterLeft = 0x28,
 
         /// <summary>
         /// The rat got a center water reward. (#6)
@@ -154,19 +144,19 @@ namespace AlphaOmegaSystem
         LeftReward = 0x40,
 
         /// <summary>
-        /// Audio sounds for a correct left choice.
-        /// </summary>
-        AudioCorrectLeft = 0xb9,
-
-        /// <summary>
-        /// Audio sounds for a correct right choice.
-        /// </summary>
-        AudioCorrectRight = 0x10,
-
-        /// <summary>
         /// Audio sounds for a wrong choice side. (#9)
         /// </summary>
         AudioWrong = 0x48,
+
+        /// <summary>
+        /// The rat decide about the right stimulation direction at the second chance. (#10)
+        /// </summary>
+        HeadEnterLeftSecondChance = 0x50,
+
+        /// <summary>
+        /// The rat decide about the left stimulation direction at the second chance. (#11)
+        /// </summary>
+        HeadEnterRightSecondChance = 0x58,
 
         /// <summary>
         /// Stimulus 1 on set.
