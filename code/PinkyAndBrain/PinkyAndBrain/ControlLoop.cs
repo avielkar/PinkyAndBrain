@@ -665,7 +665,8 @@ namespace PinkyAndBrain
 
             //updatre the trial number for the motoman protocol file creator to send it to the alpha omega.
             //_motomanController.MotomanProtocolFileCreator.TrialNum = _totalHeadStabilityInCenterDuringDurationTime + 1;
-            _motomanController.MotomanProtocolFileCreator.TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks;
+            //the adiitiom of 1 is because the ++ of one of them is only at the end of the movement.
+            _motomanController.MotomanProtocolFileCreator.TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks + 1;
 
             //Sounds the start beep. Now waiting for the rat to move it's head to the center.
             Console.Beep(2000 ,200);

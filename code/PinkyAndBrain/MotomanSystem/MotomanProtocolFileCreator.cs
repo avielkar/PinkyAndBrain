@@ -239,7 +239,7 @@ namespace PinkyAndBrain
             if (!returnBackMotion)
             {
                 //turn on the digital output indication the robot start moving
-                _fileStreamWriter.WriteLine("DOUT OT#(1) ON");
+                _fileStreamWriter.WriteLine("DOUT OT#(14) ON");
 
                 //add the trial number with turnning the 2-14 indexes bits.
                 _fileStreamWriter.Write(MakeDoutsPins(DecToBin(TrialNum)));
@@ -321,7 +321,7 @@ namespace PinkyAndBrain
             if (!returnBackMotion)
             {
                 //turn off the digital output indication the robot start moving
-                _fileStreamWriter.WriteLine("DOUT OT#(1) OFF");
+                _fileStreamWriter.WriteLine("DOUT OT#(14) OFF");
 
                 //reset the trial number bits(2-14)
                 _fileStreamWriter.Write(ResetDoutPins());
@@ -441,14 +441,14 @@ namespace PinkyAndBrain
 
             else
             {
-                int index = 13;
+                int index = 0;
                 bool[] binValue = new bool[14];
 
                 while(num > 0)
                 {
                     binValue[index] = !((num % 2) == 0);
 
-                    index--;
+                    index++;
 
                     num = num / 2;
                 }
@@ -486,10 +486,10 @@ namespace PinkyAndBrain
             foreach (bool bitValue in binValue)
             {
                 sb.Append("DOUT OT#(");
-                if(bitIndex +2 <9)
-                sb.Append((bitIndex+ 2).ToString("0"));
+                if(bitIndex +1 <9)
+                sb.Append((bitIndex+ 1).ToString("0"));
                 else
-                    sb.Append((bitIndex + 2).ToString("00"));    
+                    sb.Append((bitIndex + 1).ToString("00"));    
 
                 if (bitValue)
                     sb.Append(") ON");
@@ -499,36 +499,6 @@ namespace PinkyAndBrain
                 sb.AppendLine();
 
                 bitIndex++;
-            }
-
-            return sb.ToString();
-        }
-
-        /// <summary>
-        /// Making the string for the output pins (2-8) of the AlphaOmega.
-        /// </summary>
-        /// <param name="MSB">If the pins now have the MSB(13-7) digits or the LSB digits(0-6).</param>
-        /// <param name="binValue">The binary value to be sent to the AlphaOmega.</param>
-        /// <returns>The string represent the command to the AlphaOnega for the number sending.</returns>
-        public string MakeDoutPins(bool MSB , bool [] binValue)
-        {
-            int bitIndex = (MSB) ? 0 : 7;
-            StringBuilder sb = new StringBuilder();
-
-            foreach (bool bitValue in MSB ? binValue.Skip(7) : binValue.Take(7))
-            {
-                sb.Append("DOUT OT#(");
-                sb.Append(((bitIndex) % 7 + 2).ToString("0"));
-
-                if (bitValue)
-                    sb.Append(") ON");
-                else
-                    sb.Append(") OFF");
-
-                sb.AppendLine();
-
-                bitIndex++;
-
             }
 
             return sb.ToString();
