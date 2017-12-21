@@ -1129,9 +1129,10 @@ namespace PinkyAndBrain
             _motocomController.SetRobotControlGroup(1);
 
             double[] robot1Pos = _motocomController.GetRobotPlace();
-
+            
+            //when checking that robot position is close to engage for park or park for engage, if delta is small, allow x to be large (it is along the engage-park line).
             bool robot1PosInPark =
-                Math.Abs(robot1Pos[0] - (MotocomSettings.Default.R1OriginalX - MotocomSettings.Default.ParkingBackwordDistance)) < delta &&
+                (Math.Abs(robot1Pos[0] - (MotocomSettings.Default.R1OriginalX - MotocomSettings.Default.ParkingBackwordDistance)) < delta || delta <= 10) &&
                 Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY) < delta &&
                 Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ) < delta;
 
@@ -1140,7 +1141,7 @@ namespace PinkyAndBrain
             double[] robot2Pos = _motocomController.GetRobotPlace();
 
             bool robot2PosInPark =
-                Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < delta &&
+                (Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < delta || delta <= 10) &&
                 Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < delta &&
                 Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < delta;
 
@@ -1197,7 +1198,8 @@ namespace PinkyAndBrain
 
             double[] robot1Pos = _motocomController.GetRobotPlace();
 
-            bool robot1PosInEngage = Math.Abs(robot1Pos[0] - MotocomSettings.Default.R1OriginalX) < delta &&
+            //when checking that robot position is close to engage for park or park for engage, if delta is small, allow x to be large (it is along the engage-park line).
+            bool robot1PosInEngage = (Math.Abs(robot1Pos[0] - MotocomSettings.Default.R1OriginalX) < delta || delta <= 10) &&
                 Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY) < delta &&
                 Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ) < delta;
 
@@ -1205,7 +1207,7 @@ namespace PinkyAndBrain
 
             double[] robot2Pos = _motocomController.GetRobotPlace();
 
-            bool robot2PosInEngage = Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < delta &&
+            bool robot2PosInEngage = (Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < delta || delta <=10) &&
                 Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < delta &&
                 Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < delta;
 
