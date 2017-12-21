@@ -242,7 +242,7 @@ namespace PinkyAndBrain
                 _fileStreamWriter.Write(MakeDoutsPins(DecToBin(TrialNum)));
 
                 //turn on the strobe bit (16)
-                _fileStreamWriter.WriteLine("DOUT OT#(16) ON");
+                //_fileStreamWriter.WriteLine("DOUT OT#(16) ON");
             }
 
             else
@@ -251,7 +251,7 @@ namespace PinkyAndBrain
                 _fileStreamWriter.WriteLine("DOUT OT#(15) ON");
 
                 //turn on the strobe bit (16)
-                _fileStreamWriter.WriteLine("DOUT OT#(16) ON");
+                //_fileStreamWriter.WriteLine("DOUT OT#(16) ON");
             }
 
             StringBuilder sb = new StringBuilder();
@@ -324,7 +324,7 @@ namespace PinkyAndBrain
                 _fileStreamWriter.Write(ResetDoutPins());
 
                 //turn off the strobe bit (16)
-                _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
+                //_fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
             }
 
             else
@@ -333,7 +333,7 @@ namespace PinkyAndBrain
                 _fileStreamWriter.WriteLine("DOUT OT#(15) OFF");
 
                 //turn off the strobe bit (16)
-                _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
+                //_fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
             }
 
             _fileStreamWriter.WriteLine("END");
