@@ -322,5 +322,53 @@ namespace MotomanSystem {
                 this["ParkingBackwordDistance"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public double DeltaParkToPark {
+            get {
+                return ((double)(this["DeltaParkToPark"]));
+            }
+            set {
+                this["DeltaParkToPark"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public double DeltaParkToEngage {
+            get {
+                return ((double)(this["DeltaParkToEngage"]));
+            }
+            set {
+                this["DeltaParkToEngage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public double DeltaEngageToPark {
+            get {
+                return ((double)(this["DeltaEngageToPark"]));
+            }
+            set {
+                this["DeltaEngageToPark"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public double DeltaEngageToEngage {
+            get {
+                return ((double)(this["DeltaEngageToEngage"]));
+            }
+            set {
+                this["DeltaEngageToEngage"] = value;
+            }
+        }
     }
 }

@@ -1009,8 +1009,8 @@ namespace PinkyAndBrain
                     //set robot servo on and go homeposition.
                     _motocomController.SetServoOn();
 
-                    string checkerParkPosition = CheckBothRobotsAtParkPosition(50);
-                    string checkerEngagePosition = CheckBothRobotAroundEngagePosition(10);
+                    string checkerParkPosition = CheckBothRobotsAtParkPosition(MotocomSettings.Default.DeltaParkToPark);
+                    string checkerEngagePosition = CheckBothRobotAroundEngagePosition(MotocomSettings.Default.DeltaEngageToPark);
 
                     if (checkerParkPosition.Equals(string.Empty) || checkerEngagePosition.Equals(string.Empty))
                     {
@@ -1070,8 +1070,8 @@ namespace PinkyAndBrain
                     //set robot servo on and go homeposition.
                     _motocomController.SetServoOn();
 
-                    string checkerParkPosition = CheckBothRobotsAtParkPosition(10);
-                    string checkerEngagePosition = CheckBothRobotAroundEngagePosition(50);
+                    string checkerParkPosition = CheckBothRobotsAtParkPosition(MotocomSettings.Default.DeltaParkToEngage);
+                    string checkerEngagePosition = CheckBothRobotAroundEngagePosition(MotocomSettings.Default.DeltaEngageToEngage);
 
                     if (checkerParkPosition.Equals(string.Empty) || checkerEngagePosition.Equals(string.Empty))
                     {
