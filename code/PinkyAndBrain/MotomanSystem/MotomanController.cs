@@ -258,7 +258,8 @@ namespace PinkyAndBrain
             _logger.Info("Moving the robot begin.");
 
             //wait for the commands to be executed.
-            _motomanController.WaitJobFinished(10000);
+            //_motomanController.WaitJobFinished(10000);
+            WaitJobFinished();
             _logger.Info("Moving the robot finished.");
         }
         #endregion

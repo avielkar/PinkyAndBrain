@@ -159,58 +159,58 @@ namespace AlphaOmegaSystem
         HeadEnterRightSecondChance = 0x58,
 
         /// <summary>
-        /// Stimulus 1 on set.
+        /// The robot get execute to move forward trajectory for stimulus type 1.
         /// </summary>
-        StimulusStart1 = 12,
+        StimulusStart1 = 0x60,
 
         /// <summary>
-        /// Stimulus 2 on set.
+        /// The robot get execute to move forward trajectory for stimulus type 2.
         /// </summary>
-        StimulusStart2 = 13,
+        StimulusStart2 = 0x68,
 
         /// <summary>
-        /// Stimulus 3 on set.
+        /// The robot get execute to move forward trajectory for stimulus type 3.
         /// </summary>
-        StimulusStart3 = 14,
+        StimulusStart3 = 0x70,
 
         /// <summary>
-        /// Stimulus 4 on set.
+        /// The robot get execute to move forward trajectory for stimulus type 4.
         /// </summary>
-        StimulusStart4 = 15,
+        StimulusStart4 = 0x78,
 
         /// <summary>
-        /// Stimulus 5 on set.
+        /// The robot get execute to move forward trajectory for stimulus type 5.
         /// </summary>
-        StimulusStart5 = 16,
+        StimulusStart5 = 0x80,
 
         /// <summary>
-        /// Stimulus 6 on set.
+        /// The robot get execute to move forward trajectory for stimulus type 6.
         /// </summary>
-        StimulusStart6 = 17,
+        StimulusStart6 = 0x88,
 
         /// <summary>
-        /// Stimulus 7 on set.
+        /// The robot get execute to move forward trajectory for stimulus type 7.
         /// </summary>
-        StimulusStart7 = 18,
+        StimulusStart7 = 0x90,
 
         /// <summary>
-        /// Stimulus 8 on set.
+        /// The robot get execute to move forward trajectory for stimulus type 8.
         /// </summary>
-        StimulusStart8 = 19,
+        StimulusStart8 = 0x98,
 
         /// <summary>
-        /// Stimulus 9 on set.
+        /// The robot finish to execute the forward moving trajectory.
         /// </summary>
-        StimulusStart9 = 20,
+        RobotEndMovingForward = 0xa0,
 
         /// <summary>
-        /// Stimulus 10 on set.
+        /// The robot get execute to move backward trajectory.
         /// </summary>
-        StimulusStart10 = 21,
+        RobotStartMovingBackward = 0xa8,
 
         /// <summary>
-        /// Stimulus off set.
+        /// The robot finish to execute the backeard moving trajectory.
         /// </summary>
-        StimulusEnd = 22
+        RobotEndMovingBackward = 0xb0,
     }
 }

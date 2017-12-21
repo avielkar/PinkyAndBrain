@@ -1090,12 +1090,18 @@ namespace PinkyAndBrain
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both);
                     robotMotion = Task.Factory.StartNew(() =>  _motomanController.MoveYasakawaRobotWithTrajectory());
+
+                    //also send the AlphaOmega that motion forward starts.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart1);
                     break;
 
                 case 2://visual only.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only);
                     robotMotion = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+
+                    //also send the AlphaOmega that motion forward starts.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart2);
 
                     //here should be stimulus type 2 for motion of the second robot for visual only.
                     //should move the robot and also to turn on the leds.
@@ -1113,6 +1119,10 @@ namespace PinkyAndBrain
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only);
                     robotMotion = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+
+                    //also send the AlphaOmega that motion forward starts.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart3);
+
                     //should move only r1 robot and also to turn on the leds.
                     LEDsData ledsData2 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData2;
@@ -1129,6 +1139,17 @@ namespace PinkyAndBrain
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both);
                     robotMotion = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+
+                    //also send the AlphaOmega that motion forward starts.
+                    if (_currentTrialStimulusType == 4)
+                    {
+                        _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart4);
+                    }
+                    else
+                    {
+                        _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart5);
+                    }
+
                     //should move only r1 robot and also to turn on the leds.
                     LEDsData ledsData5 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData5;
@@ -1173,6 +1194,8 @@ namespace PinkyAndBrain
 
             //wait the robot to finish the movement.
             robotMotion.Wait();
+            //also send the AlphaOmega that motion forward ends.
+            _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotEndMovingForward);
 
             //and turn off the leds visual vistibular (it is o.k for all cases , just reset).
             _ledController.ResetLeds();
@@ -1287,7 +1310,12 @@ namespace PinkyAndBrain
             if (!duration1HeadInTheCenterStabilityStage)
                 moveRobotHomePositionTask = Task.Factory.StartNew(() => NullFunction());
             else
+            {
                 moveRobotHomePositionTask = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+
+                //also send the AlphaOmega that motion backward starts.
+                _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotStartMovingBackward);
+            }
 
             //save the dat into the result file only if the trial is within success trials (that have any stimulus)
             if (!_currentRatDecision.Equals(RatDecison.NoEntryToResponseStage))
@@ -1312,6 +1340,8 @@ namespace PinkyAndBrain
 
             //wait the maximum time of the postTrialTime and the going home position time.
             moveRobotHomePositionTask.Wait();
+            //also send the AlphaOmega that motion backwards ends.
+            _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotEndMovingBackward);
 
             return trialSucceed;
         }
