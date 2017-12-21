@@ -1131,7 +1131,7 @@ namespace PinkyAndBrain
             double[] robot1Pos = _motocomController.GetRobotPlace();
 
             bool robot1PosInPark =
-                Math.Abs(robot1Pos[0] - (MotocomSettings.Default.R1OriginalX - 500)) < delta &&
+                Math.Abs(robot1Pos[0] - (MotocomSettings.Default.R1OriginalX - MotocomSettings.Default.ParkingBackwordDistance)) < delta &&
                 Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY) < delta &&
                 Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ) < delta;
 
@@ -1145,7 +1145,7 @@ namespace PinkyAndBrain
                 Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < delta;
 
             string message = "Robot is out of Range.\nMove manually to < "+delta.ToString()+"mm of the Park position. Current location from Park:\n" +
-                "R1XDelta = " + (robot1Pos[0] - (MotocomSettings.Default.R1OriginalX-500)).ToString("0.00") + "mm\n" +
+                "R1XDelta = " + (robot1Pos[0] - (MotocomSettings.Default.R1OriginalX-MotocomSettings.Default.ParkingBackwordDistance)).ToString("0.00") + "mm\n" +
                 "R1YDelta = " + (robot1Pos[1] - MotocomSettings.Default.R1OriginalY).ToString("0.00") + "mm\n" +
                 "R1ZDelta = " + (robot1Pos[2] - MotocomSettings.Default.R1OriginalZ).ToString("0.00") + "mm\n" +
                 "R2XDelta = " + (robot2Pos[0] - MotocomSettings.Default.R2OriginalX).ToString("0.00") + "mm\n" +
