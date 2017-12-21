@@ -1009,8 +1009,8 @@ namespace PinkyAndBrain
                     //set robot servo on and go homeposition.
                     _motocomController.SetServoOn();
 
-                    string checkerParkPosition = CheckBothRobotsAtParkPosition();
-                    string checkerEngagePosition = CheckBothRobotAroundEngagePosition();
+                    string checkerParkPosition = CheckBothRobotsAtParkPosition(50);
+                    string checkerEngagePosition = CheckBothRobotAroundEngagePosition(10);
 
                     if (checkerParkPosition.Equals(string.Empty) || checkerEngagePosition.Equals(string.Empty))
                     {
@@ -1024,10 +1024,7 @@ namespace PinkyAndBrain
                     }
                     else
                     {
-                        if (!checkerEngagePosition.Equals(string.Empty))
-                            MessageBox.Show(checkerEngagePosition, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        if (!checkerEngagePosition.Equals(string.Empty))
-                            MessageBox.Show(checkerEngagePosition, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(checkerParkPosition + "\n" + checkerEngagePosition, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
                     _motocomController.SetServoOff();
@@ -1073,8 +1070,8 @@ namespace PinkyAndBrain
                     //set robot servo on and go homeposition.
                     _motocomController.SetServoOn();
 
-                    string checkerParkPosition = CheckBothRobotsAtParkPosition();
-                    string checkerEngagePosition = CheckBothRobotAroundEngagePosition();
+                    string checkerParkPosition = CheckBothRobotsAtParkPosition(10);
+                    string checkerEngagePosition = CheckBothRobotAroundEngagePosition(50);
 
                     if (checkerParkPosition.Equals(string.Empty) || checkerEngagePosition.Equals(string.Empty))
                     {
@@ -1087,10 +1084,7 @@ namespace PinkyAndBrain
                     }
                     else
                     {
-                        if(!checkerEngagePosition.Equals(string.Empty))
-                            MessageBox.Show(checkerEngagePosition, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        if(!checkerEngagePosition.Equals(string.Empty))
-                            MessageBox.Show(checkerEngagePosition, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(checkerParkPosition + "\n" + checkerEngagePosition, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
                     #region ENABLE_BUTTONS_BACK
@@ -1111,18 +1105,18 @@ namespace PinkyAndBrain
         /// Check the both robots exactly at threre park position.
         /// </summary>
         /// <returns></returns>
-        private string CheckBothRobotsAtParkPosition()
+        private string CheckBothRobotsAtParkPosition(double delta)
         {
-            return CheckBothRobotsAroundDeltaParkPosition(50);
+            return CheckBothRobotsAroundDeltaParkPosition(delta);
         }
 
         /// <summary>
         /// Check the both robots arounf the park poistion.
         /// </summary>
         /// <returns></returns>
-        private string CheckBothRobotsAroundParkPosition()
+        private string CheckBothRobotsAroundParkPosition(double delta)
         {
-            return CheckBothRobotsAroundDeltaParkPosition(50);
+            return CheckBothRobotsAroundDeltaParkPosition(delta);
         }
 
         /// <summary>
@@ -1150,24 +1144,15 @@ namespace PinkyAndBrain
                 Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < delta &&
                 Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < delta;
 
-            string message = "The robot are too much far away from there point (more than 50 mm)\n" +
-                "R1XDelta = " + Math.Abs(robot1Pos[0] - (MotocomSettings.Default.R1OriginalX-500)) + "\n" +
-                "R1YDelta = " + Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY) + "\n" +
-                "R1ZDelta = " + Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ) + "\n" +
-                "R2XDelta = " + Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) + "\n" +
-                "R2YDelta = " + Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) + "\n" +
-                "R2ZDelta = " + Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ);
+            string message = "Robot is out of Range.\nMove manually to < "+delta.ToString()+"mm of the Park position. Current location from Park:\n" +
+                "R1XDelta = " + (robot1Pos[0] - (MotocomSettings.Default.R1OriginalX-500)).ToString("0.00") + "mm\n" +
+                "R1YDelta = " + (robot1Pos[1] - MotocomSettings.Default.R1OriginalY).ToString("0.00") + "mm\n" +
+                "R1ZDelta = " + (robot1Pos[2] - MotocomSettings.Default.R1OriginalZ).ToString("0.00") + "mm\n" +
+                "R2XDelta = " + (robot2Pos[0] - MotocomSettings.Default.R2OriginalX).ToString("0.00") + "mm\n" +
+                "R2YDelta = " + (robot2Pos[1] - MotocomSettings.Default.R2OriginalY).ToString("0.00") + "mm\n" +
+                "R2ZDelta = " + (robot2Pos[2] - MotocomSettings.Default.R2OriginalZ).ToString("0.00") + "mm";
 
             return (robot1PosInPark && robot2PosInPark)?(string.Empty):(message);
-        }
-
-        /// <summary>
-        /// Check the both robots at the park position exactly or the robot R1 is backward x from the park position.
-        /// </summary>
-        /// <returns></returns>
-        private bool CheckBothRobotsAtParkPositionOrBackward()
-        {
-            return CheckBothRobotsAtParkPosition().Equals(string.Empty) && Checkrobot1BackwardParkingPosition().Equals(string.Empty);
         }
 
         /// <summary>
@@ -1187,18 +1172,18 @@ namespace PinkyAndBrain
         /// Check both robots exactly at there enagae position.
         /// </summary>
         /// <returns></returns>
-        private string CheckBothRobotsAtEngagePosition()
+        private string CheckBothRobotsAtEngagePosition(double delta)
         {
-            return CheckBothRobotAroundDeltaEngagePosition(10);
+            return CheckBothRobotAroundDeltaEngagePosition(delta);
         }
 
         /// <summary>
         /// Check the both robots arounf the engage position.
         /// </summary>
         /// <returns></returns>
-        private string CheckBothRobotAroundEngagePosition()
+        private string CheckBothRobotAroundEngagePosition(double delta)
         {
-            return CheckBothRobotAroundDeltaEngagePosition(50);
+            return CheckBothRobotAroundDeltaEngagePosition(delta);
         }
 
         /// <summary>
@@ -1224,13 +1209,13 @@ namespace PinkyAndBrain
                 Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < delta &&
                 Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < delta;
 
-            string message = "The robot are too much far away from there point (more than 50 cm)\n" +
-                "R1XDelta = " + Math.Abs(robot1Pos[0] - MotocomSettings.Default.R1OriginalX) + "\n" +
-                "R1YDelta = " + Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1OriginalY) + "\n" +
-                "R1ZDelta = " + Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1OriginalZ) + "\n" +
-                "R2XDelta = " + Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) + "\n" +
-                "R2YDelta = " + Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) + "\n" +
-                "R2ZDelta = " + Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ);
+            string message = "\nOR\nMove manually to < " + delta + "mm of the Engage position. Current location from Engage:\n" +
+                "R1XDelta = " + (robot1Pos[0] - MotocomSettings.Default.R1OriginalX).ToString("0.00") + "mm\n" +
+                "R1YDelta = " + (robot1Pos[1] - MotocomSettings.Default.R1OriginalY).ToString("0.00") + "mm\n" +
+                "R1ZDelta = " + (robot1Pos[2] - MotocomSettings.Default.R1OriginalZ).ToString("0.00") + "mm\n" +
+                "R2XDelta = " + (robot2Pos[0] - MotocomSettings.Default.R2OriginalX).ToString("0.00") + "mm\n" +
+                "R2YDelta = " + (robot2Pos[1] - MotocomSettings.Default.R2OriginalY).ToString("0.00") + "mm\n" +
+                "R2ZDelta = " + (robot2Pos[2] - MotocomSettings.Default.R2OriginalZ).ToString("0.00") + "mm";
 
             return (robot1PosInEngage && robot2PosInEngage)?(string.Empty):(message);
         }
