@@ -592,15 +592,16 @@ namespace PinkyAndBrain
                                         //wait the rat to response to the movement during the response tine.
                                         Tuple<RatDecison, bool> decision = ResponseTimeStage();
 
-                                        //second reward stage (condition if needed in the stage)
-                                        SecondRewardStage(decision, AutoReward);
+                                        //second reward stage (condition if needed in the stage) with false for second chance response.
+                                        SecondRewardStage(decision, AutoReward , false);
 
                                         //if second oppertunity for choice after wrong choice is available.
-                                        if(SecondResponseChance && !AutoReward && !decision.Equals(RatDecison.NoDecision))
+                                        if(SecondResponseChance && !AutoReward && !decision.Equals(RatDecison.NoDecision) && decision.Item2 == false)
                                         {
-                                            Tuple<RatDecison, bool> secondDecision = SecondResponseTimeStage();
+                                            Tuple<RatDecison, bool> secondDecision = SecondChanceResponseTimeStage();
 
-                                            SecondRewardStage(secondDecision, false);
+                                            //second reward stage with flag indicate that it was a second chance.
+                                            SecondRewardStage(secondDecision, false , true);
                                         }
                                     }
                                 }
@@ -792,10 +793,10 @@ namespace PinkyAndBrain
         }
         
         /// <summary>
-        /// Waiting the rat to response the movement direction abd update the _totalCorrectAnswers counter.
+        /// Waiting the rat to second chance response the movement direction with no updating the _totalCorrectAnswers counter and the result psycho graph.
         /// <returns>The rat decision value and it's correctness.</returns>
         /// </summary>
-        public Tuple<RatDecison , bool> SecondResponseTimeStage()
+        public Tuple<RatDecison , bool> SecondChanceResponseTimeStage()
         {
             //Thread.Sleep(1000*(int)(_currentTrialTimings.wResponseTime));
 
@@ -939,7 +940,8 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="decision">The rat decision about the stimulus direction and if correct or not.</param>
         /// <param name="autoReward">Indicated if to give reward automatically in the motion side of the stimulus direction.</param>
-        public void SecondRewardStage(Tuple<RatDecison, bool> decision,  bool autoReward = false)
+        /// <param name="secondChance">Indicates if it was a second chance response.</param>
+        public void SecondRewardStage(Tuple<RatDecison, bool> decision,  bool autoReward = false , bool secondChance = false)
         {
             //check if the decision was correct and reward the rat according that decision.
             if (decision.Item2)
@@ -951,10 +953,10 @@ namespace PinkyAndBrain
                         RewardCenterStage(false , AutoRewardSound);
                         break;
                     case RatDecison.Left:
-                        RewardLeftStage(false, AutoRewardSound);
+                        RewardLeftStage(false, AutoRewardSound, secondChance);
                         break;
                     case RatDecison.Right:
-                        RewardRightStage(false, AutoRewardSound);
+                        RewardRightStage(false, AutoRewardSound, secondChance);
                         break;
                     default:
                         break;
@@ -983,11 +985,11 @@ namespace PinkyAndBrain
                         break;
 
                     case RatDecison.Left:
-                        RewardLeftStage(true , AutoRewardSound);
+                        RewardLeftStage(true , AutoRewardSound , false);
                         break;
 
                     case RatDecison.Right:
-                        RewardRightStage(true , AutoRewardSound);
+                        RewardRightStage(true , AutoRewardSound , false);
                         break;
 
                     default:
@@ -1012,14 +1014,18 @@ namespace PinkyAndBrain
         /// The reward left stage is happening if the rat decide the correct stimulus side.
         /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
         /// <param name="autoRewardSound">Indecation ig to give the suto reard sound during the reward.</param>
+        /// <param name="secondChance">Indicate if it is reward for the second chance.</param>
         /// </summary>
-        public void RewardLeftStage(bool autoReward = false , bool autoRewardSound = false)
+        public void RewardLeftStage(bool autoReward = false , bool autoRewardSound = false , bool secondChance = false)
         {
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Left)");
 
-            Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration, _currentTrialTimings.wRewardLeftDelay, autoReward , autoRewardSound);
+            if (!secondChance)
+                Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration, _currentTrialTimings.wRewardLeftDelay, autoReward, autoRewardSound);
+            else
+                Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDurationSecondChance, _currentTrialTimings.wRewardLeftDelaySecondChance, false, false);
 
             //write that the rat get left reward to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.LeftReward);
@@ -1029,15 +1035,18 @@ namespace PinkyAndBrain
         /// The reward right stage is happening if the rat decide the correct stimulus side.
         /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
         /// <param name="autoRewardSound">Indecation ig to give the suto reard sound during the reward.</param>
+        /// <param name="secondChance">Indicate if it is reward for the second chance.</param>
         /// </summary>
-        public void RewardRightStage(bool autoReward = false, bool autoRewardSound = false)
+        public void RewardRightStage(bool autoReward = false, bool autoRewardSound = false , bool secondChance = false)
         {
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Right)");
 
-
-            Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration, _currentTrialTimings.wRewardRightDelay  , autoReward ,autoRewardSound);
+            if (!secondChance)
+                Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration, _currentTrialTimings.wRewardRightDelay, autoReward, autoRewardSound);
+            else
+                Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDurationSecondChance, _currentTrialTimings.wRewardRightDelaySecondChance, false, false);
 
             //write that the rat get right reward to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RightReward);
@@ -1048,7 +1057,7 @@ namespace PinkyAndBrain
         /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
         /// <param name="autoRewardSound">Indecation ig to give the suto reard sound during the reward.</param>
         /// </summary>
-        public void RewardCenterStage(bool autoReward = false, bool autoRewardSound = false)
+        public void RewardCenterStage(bool autoReward = false, bool autoRewardSound = false , bool secondChance = false)
         {
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
