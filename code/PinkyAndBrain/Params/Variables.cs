@@ -36,19 +36,24 @@ namespace Params
         /// <returns>The filtered Variable dictionary.</returns>
         public Variables FilterVariablesByStatus(string status)
         {
+            return FilterVariablesByStatuses(new string[]{status});
+        }
+
+        public Variables FilterVariablesByStatuses(string[] statuses)
+        {
             Variables filteredVariables = new Variables();
 
             filteredVariables._variablesDictionary = new Dictionary<string, Variable>();
 
             foreach (string varName in _variablesDictionary.Keys)
             {
-                if (_variablesDictionary[varName]._description["status"]._ratHouseParameter.Equals(status))
+                if (statuses.Count(s=> s ==_variablesDictionary[varName]._description["status"]._ratHouseParameter) == 1)
                 {
                     filteredVariables._variablesDictionary[varName] = new Variable(_variablesDictionary[varName]);
                 }
             }
 
-            return filteredVariables;
+            return filteredVariables;        
         }
     }
 }
