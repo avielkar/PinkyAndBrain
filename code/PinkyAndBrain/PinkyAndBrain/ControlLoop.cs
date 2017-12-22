@@ -1088,10 +1088,15 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Stimulus Duration");
 
+            //the leds data for the strip leds light.
+            LEDsData ledsData1;
+            LEDsData ledsData2;
+            
             //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
             Task robotMotion;
             switch (_currentTrialStimulusType)
             {
+
                 case 0://none
                     robotMotion = Task.Factory.StartNew(() => Thread.Sleep((int)(1000 * _currentTrialTimings.wDuration)));
                     break;
@@ -1114,11 +1119,11 @@ namespace PinkyAndBrain
 
                     //here should be stimulus type 2 for motion of the second robot for visual only.
                     //should move the robot and also to turn on the leds.
-                    LEDsData ledsData = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
-                    _ledController.LEDsDataCommand = ledsData;
+                     ledsData1 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    _ledController.LEDsDataCommand = ledsData1;
                     _ledController.SendData();
-                    LEDsData ledsData4 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
-                    _ledController2.LEDsDataCommand = ledsData4;
+                    ledsData2 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     _ledController.ExecuteCommands();
                     _ledController2.ExecuteCommands();
@@ -1133,11 +1138,11 @@ namespace PinkyAndBrain
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart3);
 
                     //should move only r1 robot and also to turn on the leds.
-                    LEDsData ledsData2 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
-                    _ledController.LEDsDataCommand = ledsData2;
+                    ledsData1 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    _ledController.LEDsDataCommand = ledsData1;
                     _ledController.SendData();
-                    LEDsData ledsData3 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
-                    _ledController2.LEDsDataCommand = ledsData3;
+                    ledsData2 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     _ledController.ExecuteCommands();
                     _ledController2.ExecuteCommands();
@@ -1160,14 +1165,31 @@ namespace PinkyAndBrain
                     }
 
                     //should move only r1 robot and also to turn on the leds.
-                    LEDsData ledsData5 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
-                    _ledController.LEDsDataCommand = ledsData5;
+                    ledsData1 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    _ledController.LEDsDataCommand = ledsData1;
                     _ledController.SendData();
-                    LEDsData ledsData6 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
-                    _ledController2.LEDsDataCommand = ledsData6;
+                    ledsData2 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     _ledController.ExecuteCommands();
                     _ledController2.ExecuteCommands();
+                    break;
+                case 10://visual only in the dark.
+                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only);
+                    robotMotion = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+
+                    //also send the AlphaOmega that motion forward starts.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart2);
+                    break;
+
+                case 11://combined in the dark.
+                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only);
+                    robotMotion = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+
+                    //also send the AlphaOmega that motion forward starts.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart3);
                     break;
 
                 default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
@@ -1468,6 +1490,7 @@ namespace PinkyAndBrain
                 case "1"://static
                     return int.Parse(_variablesList._variablesDictionary["STIMULUS_TYPE"]._description["parameters"]._ratHouseParameter);
                 case "2"://varying
+                case "6"://Vector
                     return (int)(_crossVaryingVals[_currentVaryingTrialIndex]["STIMULUS_TYPE"]);
             }
             return 0;
@@ -1611,10 +1634,12 @@ namespace PinkyAndBrain
                     break;
 
                 case 2://visual only.
+                case 10://visual only in the dark.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only, true);
                     break;
 
                 case 3://vistibular and visual both.
+                case 11://vistibular and visual both in the dark.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only , true);
                     break;
 
@@ -1865,5 +1890,7 @@ namespace PinkyAndBrain
         };
         #endregion
         #endregion FUNCTIONS
+
+        public LEDsData ledsData1 { get; set; }
     }
 }

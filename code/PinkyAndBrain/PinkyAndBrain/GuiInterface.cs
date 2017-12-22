@@ -255,6 +255,8 @@ namespace PinkyAndBrain
                     return new VaryingValuesGenerator3DAzimuth();
                 case "AdamDelta":
                     return new VaryingValuesGeneratorAdamDelta();
+                case "AdamDark":
+                    return new VaryingValuesGeneratorAdamDark();
                 default:
                     return new VaryingValuesGenerator();
             }
@@ -279,6 +281,8 @@ namespace PinkyAndBrain
                 case "Azimuth3D":
                     return new Azimuth3D(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
                 case "AdamDelta":
+                    return new AdamDelta(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
+                case "AdamDark":
                     return new AdamDelta(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
                 default:
                     return new ThreeStepAdaptation(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
@@ -1873,6 +1877,7 @@ namespace PinkyAndBrain
             statusCombo.Items.Add("AcrossStair");
             statusCombo.Items.Add("WithinStair");
             statusCombo.Items.Add("Random");
+            statusCombo.Items.Add("Vector");
 
             //Handle event when a status of a variable is changed.
             statusCombo.SelectedIndexChanged += new EventHandler((sender, args) => statusCombo_SelectedIndexChanged(sender, args, varName));
@@ -1898,6 +1903,9 @@ namespace PinkyAndBrain
 
                 case "5":
                     statusCombo.SelectedText = "Random";
+                    break;
+                case "6":
+                    statusCombo.SelectedText = "Vector";
                     break;
             }
 
@@ -1990,6 +1998,7 @@ namespace PinkyAndBrain
             switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter)
             {
                 case "1":   //static
+                case "6":   //vector
                     //show the _ratHouseParameter.
                     string parametersTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter);
                     parametersTextBox.Text = parametersTextVal;
@@ -2187,6 +2196,7 @@ namespace PinkyAndBrain
             switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter)
             {
                 case "1":
+                case "6":
                     textBox.Enabled = false;
                     break;
 
@@ -2220,20 +2230,39 @@ namespace PinkyAndBrain
             //split each vector of data for robot to a list of components.
             par._ratHouseParameter = attributeValue;
 
-            //if the input for one value contains more than one dot for precison dot or chars that are not digits.
-            //if true , update the values in the variables dictionary.
-            if (DigitsNumberChecker(par._ratHouseParameter))
+            //if the input can be only a scalar
+            if (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter != "6")
             {
-                _variablesList._variablesDictionary[varName]._description[attributeName] = par;
+                //if the input for one value contains more than one dot for precison dot or chars that are not digits.
+                //if true , update the values in the variables dictionary.
+                if (DigitsNumberChecker(par._ratHouseParameter))
+                {
+                    _variablesList._variablesDictionary[varName]._description[attributeName] = par;
 
-                SetParametersTextBox(varName, new StringBuilder());
+                    SetParametersTextBox(varName, new StringBuilder());
+                }
+
+                //show the previous text to the changed textbox (taken from the variable list dictionary).
+                else
+                {
+                    //refresh according to the last.
+                    ShowVariablesToGui();
+                }
             }
-
-            //show the previous text to the changed textbox (taken from the variable list dictionary).
+            //if the input can be a scalar either a vector.
             else
             {
-                //refresh according to the last.
-                ShowVariablesToGui();
+                if (VectorNumberChecker(par._ratHouseParameter))
+                {
+                    _variablesList._variablesDictionary[varName]._description[attributeName] = par;
+
+                    SetParametersTextBox(varName, new StringBuilder());
+                }
+                else
+                {
+                                        //refresh according to the last.
+                    ShowVariablesToGui();
+                }
             }
 
             return par;
@@ -2269,6 +2298,29 @@ namespace PinkyAndBrain
             }
 
             //if everything is o.k return true.
+            return true;
+        }
+
+        /// <summary>
+        /// Check if vector input is spelled propperly.
+        /// </summary>
+        /// <param name="str">The string vector to be checked.</param>
+        /// <returns>If the string vector is properlly spelled.</returns>
+        private bool VectorNumberChecker(string str)
+        {
+            if (str.Where(x => (x < '0' || x > '9') && x != ' ').Count() > 0)
+            {
+                MessageBox.Show("Warnning : Vector can include onlt scalar and spaces.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return false;
+            }
+            else if (str.Count(x => x == ' ') + 1 != str.Split(' ').Count())
+            {
+                MessageBox.Show("Warnning : Vector include to much spaces chars.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return false;
+            }
+
             return true;
         }
 
