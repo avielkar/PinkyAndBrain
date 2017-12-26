@@ -1385,6 +1385,7 @@ namespace PinkyAndBrain
                         RatDecison = _currentRatDecision,
                         TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks,
                         StickOnNumber = NumOfStickOn,
+                        NumOfRepetitions = NumOfRepetitions,
                         RRInverse = _inverseRRDecision,
                         AutosOptions = _autosOptionsInRealTime,
                         SpecialModes = _specialModesInRealTime,

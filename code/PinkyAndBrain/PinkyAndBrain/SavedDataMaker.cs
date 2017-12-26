@@ -68,8 +68,30 @@ namespace PinkyAndBrain
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
 
+            //append the stick number value.
+            lineBuilder.Append("StickNumber:");
+            lineBuilder.Append(trialData.StickOnNumber);
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
+            //append the stick number value.
+            lineBuilder.Append("NumOfRepetitions:");
+            lineBuilder.Append(trialData.NumOfRepetitions);
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
             //append the auto's option statuses in the current trial.
             lineBuilder.Append(trialData.AutosOptions.ToString());
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
+            //append the special modes options in the current trial.
+            lineBuilder.Append(trialData.SpecialModes.ToString());
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
+            //append the leds data options in the current trial.
+            lineBuilder.Append(trialData.LedsData.ToString());
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
 
@@ -187,6 +209,11 @@ namespace PinkyAndBrain
         public int StickOnNumber { get; set; }
 
         /// <summary>
+        /// The global number of repetitions for each varying parameter.
+        /// </summary>
+        public int NumOfRepetitions { get; set; }
+
+        /// <summary>
         /// AutoOption class for all Autos values.
         /// </summary>
         public AutosOptions AutosOptions { get; set; }
@@ -237,11 +264,6 @@ namespace PinkyAndBrain
         /// AutoStart state at the current trial.
         /// </summary>
         public bool AutoStart { get; set; }
-
-        /// <summary>
-        /// Indicate if auto choice is enabled.
-        /// </summary>
-        public bool AutoChoice { get; set; }
 
         /// <summary>
         /// AutoRewardSound state at the current trial.
@@ -319,8 +341,8 @@ namespace PinkyAndBrain
         public override string ToString()
         {
             return
-                "TurnsOnPercentage:" + TurnsOnPercentage + "\r\n" +
-                "Brightness:" + Brightness;
+                "LedsTurnsOnPercentage:" + TurnsOnPercentage + "\r\n" +
+                "LedsBrightness:" + Brightness;
         }
     }
 }
