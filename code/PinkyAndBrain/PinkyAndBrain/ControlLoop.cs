@@ -1005,6 +1005,9 @@ namespace PinkyAndBrain
                     default:
                         break;
                 }
+
+                //save the auto reward option true.
+                _autosOptionsInRealTime.AutoReward = true;
             }
 
             //if not AutoReward and the answer is wrong play the wrong answer audio

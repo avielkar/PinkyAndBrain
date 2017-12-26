@@ -239,6 +239,11 @@ namespace PinkyAndBrain
         public bool AutoStart { get; set; }
 
         /// <summary>
+        /// Indicate if auto choice is enabled.
+        /// </summary>
+        public bool AutoChoice { get; set; }
+
+        /// <summary>
         /// AutoRewardSound state at the current trial.
         /// </summary>
         public bool AutoRewardSound { get; set; }
