@@ -76,7 +76,8 @@
             this._waterRewardMeasure = new WaterMeasure.WaterMeasure();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this._selectedRatGroupBox = new System.Windows.Forms.GroupBox();
-            this._selectedRatNameComboBox = new System.Windows.Forms.ComboBox();
+            this._comboBoxStudentName = new System.Windows.Forms.ComboBox();
+            this._comboBoxSelectedRatName = new System.Windows.Forms.ComboBox();
             this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
             this._guiInterfaceToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._trialInfoGroupBox = new System.Windows.Forms.GroupBox();
@@ -532,22 +533,31 @@
             // 
             // _selectedRatGroupBox
             // 
-            this._selectedRatGroupBox.Controls.Add(this._selectedRatNameComboBox);
-            this._selectedRatGroupBox.Location = new System.Drawing.Point(1036, 719);
+            this._selectedRatGroupBox.Controls.Add(this._comboBoxStudentName);
+            this._selectedRatGroupBox.Controls.Add(this._comboBoxSelectedRatName);
+            this._selectedRatGroupBox.Location = new System.Drawing.Point(1036, 707);
             this._selectedRatGroupBox.Name = "_selectedRatGroupBox";
-            this._selectedRatGroupBox.Size = new System.Drawing.Size(230, 69);
+            this._selectedRatGroupBox.Size = new System.Drawing.Size(230, 81);
             this._selectedRatGroupBox.TabIndex = 16;
             this._selectedRatGroupBox.TabStop = false;
-            this._selectedRatGroupBox.Text = "SelectedRat";
+            this._selectedRatGroupBox.Text = "SelectedRatAndStudent";
             // 
-            // _selectedRatNameComboBox
+            // _comboBoxStudentName
             // 
-            this._selectedRatNameComboBox.FormattingEnabled = true;
-            this._selectedRatNameComboBox.Location = new System.Drawing.Point(19, 30);
-            this._selectedRatNameComboBox.Name = "_selectedRatNameComboBox";
-            this._selectedRatNameComboBox.Size = new System.Drawing.Size(121, 21);
-            this._selectedRatNameComboBox.TabIndex = 0;
-            this._selectedRatNameComboBox.SelectedValueChanged += new System.EventHandler(this._selectedRatNameComboBox_SelectedValueChanged);
+            this._comboBoxStudentName.FormattingEnabled = true;
+            this._comboBoxStudentName.Location = new System.Drawing.Point(19, 47);
+            this._comboBoxStudentName.Name = "_comboBoxStudentName";
+            this._comboBoxStudentName.Size = new System.Drawing.Size(121, 21);
+            this._comboBoxStudentName.TabIndex = 1;
+            // 
+            // _comboBoxSelectedRatName
+            // 
+            this._comboBoxSelectedRatName.FormattingEnabled = true;
+            this._comboBoxSelectedRatName.Location = new System.Drawing.Point(19, 20);
+            this._comboBoxSelectedRatName.Name = "_comboBoxSelectedRatName";
+            this._comboBoxSelectedRatName.Size = new System.Drawing.Size(121, 21);
+            this._comboBoxSelectedRatName.TabIndex = 0;
+            this._comboBoxSelectedRatName.SelectedValueChanged += new System.EventHandler(this._selectedRatNameComboBox_SelectedValueChanged);
             // 
             // _guiInterfaceToolTip
             // 
@@ -646,9 +656,9 @@
             // _warningsGroupBox
             // 
             this._warningsGroupBox.Controls.Add(this._ardionoPrtWarningLabel);
-            this._warningsGroupBox.Location = new System.Drawing.Point(1275, 719);
+            this._warningsGroupBox.Location = new System.Drawing.Point(1275, 707);
             this._warningsGroupBox.Name = "_warningsGroupBox";
-            this._warningsGroupBox.Size = new System.Drawing.Size(391, 69);
+            this._warningsGroupBox.Size = new System.Drawing.Size(391, 81);
             this._warningsGroupBox.TabIndex = 21;
             this._warningsGroupBox.TabStop = false;
             this._warningsGroupBox.Text = "Warnings";
@@ -863,7 +873,7 @@
         private System.Windows.Forms.Label label3;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.Windows.Forms.GroupBox _selectedRatGroupBox;
-        private System.Windows.Forms.ComboBox _selectedRatNameComboBox;
+        private System.Windows.Forms.ComboBox _comboBoxSelectedRatName;
         private System.ComponentModel.BackgroundWorker backgroundWorker3;
         private System.Windows.Forms.ToolTip _guiInterfaceToolTip;
         private System.Windows.Forms.GroupBox _trialInfoGroupBox;
@@ -895,5 +905,6 @@
         private System.Windows.Forms.Button _btnPark;
         private System.Windows.Forms.Button _btnEnagae;
         private System.Windows.Forms.CheckBox _checkboxSecondResponseChance;
+        private System.Windows.Forms.ComboBox _comboBoxStudentName;
     }
 }

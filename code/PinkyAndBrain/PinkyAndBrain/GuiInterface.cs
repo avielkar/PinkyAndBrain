@@ -220,6 +220,9 @@ namespace PinkyAndBrain
             //add the rat names (as the setting have) to the rat names combo box.
             AddRatNamesToRatNamesComboBox();
 
+            //add the students names (as the setting have) to the student names combo box.
+            AddStudentsNamesToRatNamesComboBox();
+
             //set the default file browser protocol path directory.
             SetDefaultProtocolFileBrowserDirectory();
 
@@ -541,12 +544,26 @@ namespace PinkyAndBrain
         public delegate void ResetSelectedRatNameComboboxDelegate();
 
         /// <summary>
+        /// Handler for clearing the selected student name in the combobox.
+        /// </summary>
+        public delegate void ResetSelectedStudentNameComboboxDelegate();
+
+        /// <summary>
         /// Clearing the selected rat name in the combobox.
         /// </summary>
         private void ResetSelectedRatNameCombobox()
         {
-            _selectedRatNameComboBox.ResetText();
-            _selectedRatNameComboBox.SelectedItem = null;
+            _comboBoxSelectedRatName.ResetText();
+            _comboBoxSelectedRatName.SelectedItem = null;
+        }
+
+        /// <summary>
+        /// Clearing the selected student name in the combobox.
+        /// </summary>
+        private void ResetSelectedStudentNameComboBox()
+        {
+            _comboBoxStudentName.ResetText();
+            _comboBoxStudentName.SelectedItem = null;
         }
 
         /// <summary>
@@ -613,7 +630,12 @@ namespace PinkyAndBrain
             //add the delegate for clearing the selected rat name.
             ResetSelectedRatNameComboboxDelegate resetSelectedRatNameComboboxDelegate = new ResetSelectedRatNameComboboxDelegate(ResetSelectedRatNameCombobox);
             ctrlDelegatesDic.Add("ResetSelectedRatNameCombobox" , resetSelectedRatNameComboboxDelegate);
-            ctrlDictionary.Add("ResetSelectedRatNameCombobox", _selectedRatNameComboBox);
+            ctrlDictionary.Add("ResetSelectedRatNameCombobox", _comboBoxSelectedRatName);
+
+            //add the delegate for clearing the selected student name.
+            ResetSelectedStudentNameComboboxDelegate resetSelectedStudentNameComboboxDelegate = new ResetSelectedStudentNameComboboxDelegate(ResetSelectedStudentNameComboBox);
+            ctrlDelegatesDic.Add("ResetSelectedStudentNameCombobox", resetSelectedStudentNameComboboxDelegate);
+            ctrlDictionary.Add("ResetSelectedStudentNameCombobox", _comboBoxStudentName);
 
             //return both dictionaries.
             return new Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>>(ctrlDictionary, ctrlDelegatesDic);
@@ -778,7 +800,19 @@ namespace PinkyAndBrain
             //add the rat names in the config file to thw combo box.
             foreach (string ratName in Properties.Settings.Default.RatNames)
             {
-                _selectedRatNameComboBox.Items.Add(ratName);
+                _comboBoxSelectedRatName.Items.Add(ratName);
+            }
+        }
+
+        /// <summary>
+        /// Adding the students names to the rat names combo box by the configuration settings.
+        /// </summary>
+        public void AddStudentsNamesToRatNamesComboBox()
+        {
+            //add the rat names in the config file to thw combo box.
+            foreach (string studentName in Properties.Settings.Default.StudentsName)
+            {
+                _comboBoxStudentName.Items.Add(studentName);
             }
         }
 
@@ -859,7 +893,7 @@ namespace PinkyAndBrain
         private bool StartLoopStartCheck()
         {
             //if selected rat name is o.k
-            if (_selectedRatNameComboBox.SelectedItem!=null)
+            if (_comboBoxSelectedRatName.SelectedItem!=null && _comboBoxStudentName.SelectedItem!=null)
             {
             }
             else

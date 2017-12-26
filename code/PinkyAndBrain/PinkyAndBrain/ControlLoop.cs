@@ -1490,6 +1490,8 @@ namespace PinkyAndBrain
 
                 //choose none rat in the selected rat
                 _mainGuiInterfaceControlsDictionary["ResetSelectedRatNameCombobox"].BeginInvoke(_mainGuiControlsDelegatesDictionary["ResetSelectedRatNameCombobox"]);
+                //choose none student in the selected rat
+                _mainGuiInterfaceControlsDictionary["ResetSelectedStudentNameCombobox"].BeginInvoke(_mainGuiControlsDelegatesDictionary["ResetSelectedStudentNameCombobox"]);
         }
 
         /// <summary>
