@@ -187,6 +187,11 @@ namespace PinkyAndBrain
         public AutosOptions AutosOptions { get; set; }
 
         /// <summary>
+        /// SpecialModes object for all modes values.
+        /// </summary>
+        public SpecialModes SpecialModes { get; set; }
+
+        /// <summary>
         /// Indicates if in case of Random Heading Direction , the descision was converted to be true.
         /// </summary>
         public bool RRInverse { get; set; }

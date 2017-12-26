@@ -1382,7 +1382,8 @@ namespace PinkyAndBrain
                         RatDecison = _currentRatDecision,
                         TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks,
                         RRInverse = _inverseRRDecision,
-                        AutosOptions = _autosOptionsInRealTime
+                        AutosOptions = _autosOptionsInRealTime,
+                        SpecialModes = _specialModesInRealTime
                     });
                 });
             }
