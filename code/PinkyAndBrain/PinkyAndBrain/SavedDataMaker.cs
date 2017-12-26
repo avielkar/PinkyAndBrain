@@ -198,6 +198,17 @@ namespace PinkyAndBrain
     public class AutosOptions
     {
         /// <summary>
+        /// Ctor initialize all properties to false.
+        /// </summary>
+        public AutosOptions()
+        {
+            AutoReward = false;
+            AutoFixation = false;
+            AutoStart = false;
+            AutoRewardSound = false;
+        }
+
+        /// <summary>
         /// AutoReward state at the current trial.
         /// </summary>
         public bool AutoReward { get; set; }
@@ -230,4 +241,41 @@ namespace PinkyAndBrain
                 "AutoRewardSound:" + AutoRewardSound;
         }
     }
+
+    public class SpecialModes
+    {
+        /// <summary>
+        /// Constructor initalize all properties to false.
+        /// </summary>
+        public SpecialModes()
+        {
+            FixationOnly = false;
+            SecondChoice = false;
+            BreakFixationSoundOn = false;
+        }
+
+        /// <summary>
+        /// Indicate fixation only mode for success (not with choices).
+        /// </summary>
+        public bool FixationOnly { get; set; }
+
+        /// <summary>
+        /// Indicates ability for second choice (to correct the answer).
+        /// </summary>
+        public bool SecondChoice { get; set; }
+
+        /// <summary>
+        /// Indicates break fixation sound is on.
+        /// </summary>
+        public bool BreakFixationSoundOn { get; set; }
+
+        public override string ToString()
+        {
+            return
+                "FixationOnly:" + FixationOnly + "\r\n" +
+                "SecondChoice:" + SecondChoice + "\r\n" +
+                "BreakFixationSoundOn:" + BreakFixationSoundOn;
+        }
+    }
 }
+

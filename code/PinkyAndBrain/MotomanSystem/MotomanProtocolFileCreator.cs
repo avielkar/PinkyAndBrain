@@ -238,20 +238,25 @@ namespace PinkyAndBrain
 
             if (!returnBackMotion)
             {
+                _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
+
                 //add the trial number with turnning the 2-14 indexes bits.
                 _fileStreamWriter.Write(MakeDoutsPins(DecToBin(TrialNum)));
 
                 //turn on the strobe bit (16)
-                _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
+                _fileStreamWriter.WriteLine("DOUT OT#(16) ON");
             }
 
             else
             {
-                //turn on the digital output indication the robot start moving backword.
-                _fileStreamWriter.WriteLine("DOUT OT#(15) ON");
-
                 //turn on the strobe bit (16)
                 _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
+
+                //turn on the digital output indication the robot start moving backword.
+                _fileStreamWriter.WriteLine("DOUT OT#(15) ON");
+                
+                //turn on the strobe bit (16)
+                _fileStreamWriter.WriteLine("DOUT OT#(16) ON");
             }
 
             StringBuilder sb = new StringBuilder();
@@ -320,20 +325,33 @@ namespace PinkyAndBrain
 
             if (!returnBackMotion)
             {
-                //turn off the strobe bit (16)
-                _fileStreamWriter.WriteLine("DOUT OT#(16) ON");
+
+                _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
 
                 //reset the trial number bits(2-14)
                 _fileStreamWriter.Write(ResetDoutPins());
+                //_fileStreamWriter.WriteLine("DOUT OT#(14) ON");
+
+                //turn off the strobe bit (16)
+                _fileStreamWriter.WriteLine("DOUT OT#(16) ON");
+
+                _fileStreamWriter.WriteLine("DOUT OT#(14) OFF");
             }
 
             else
             {
+                //turn off the strobe bit (16)
+                _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
+
                 //turn off the digital output indication the robot start moving backword.
                 _fileStreamWriter.WriteLine("DOUT OT#(15) OFF");
+                
+                //_fileStreamWriter.WriteLine("DOUT OT#(14) ON");
 
                 //turn off the strobe bit (16)
                 _fileStreamWriter.WriteLine("DOUT OT#(16) ON");
+
+                _fileStreamWriter.WriteLine("DOUT OT#(14) OFF");
             }
 
             _fileStreamWriter.WriteLine("END");
@@ -436,7 +454,7 @@ namespace PinkyAndBrain
         {
             if (num > Math.Pow(2, 14))
             {
-                throw new Exception("The number cannot be represented by 14 digits");
+                throw new Exception("The number cannot be represented by 13 digits");
             }
 
             else
@@ -458,7 +476,7 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Reset the Dout Pins 1-14 for the trial data number.
+        /// Reset the Dout Pins 1-13 for the trial data number.
         /// </summary>
         /// <returns>The reset trial data number string.</returns>
         public string ResetDoutPins()

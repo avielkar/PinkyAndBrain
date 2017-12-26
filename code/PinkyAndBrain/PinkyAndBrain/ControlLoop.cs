@@ -313,6 +313,11 @@ namespace PinkyAndBrain
         public AutosOptions _autosOptionsInRealTime { get; set; }
 
         /// <summary>
+        /// Indicates t he special modes that are commanded in the real time.
+        /// </summary>
+        public SpecialModes _specialModesInRealTime { get; set; }
+
+        /// <summary>
         /// Indicated if to give the rat a second response chance if it wrong anser at the first time (but not include no answer).
         /// </summary>
         public bool SecondResponseChance { get; set; }
@@ -663,6 +668,8 @@ namespace PinkyAndBrain
             _currentRatDecision = RatDecison.NoEntryToResponseStage;
             //set the auto option to default values.
             _autosOptionsInRealTime = new AutosOptions();
+            //initialize the trial mode options.
+
 
             //updatre the trial number for the motoman protocol file creator to send it to the alpha omega.
             //_motomanController.MotomanProtocolFileCreator.TrialNum = _totalHeadStabilityInCenterDuringDurationTime + 1;
@@ -803,6 +810,9 @@ namespace PinkyAndBrain
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Waiting for Second Chance Response");
+
+            //save the second chance response is on.
+            _specialModesInRealTime.SecondChoice = true;
 
             //if not trainig continue.
             if (GetVariableValue("STIMULUS_TYPE") == "0")
@@ -1213,7 +1223,14 @@ namespace PinkyAndBrain
                         {
                             if(EnableFixationBreakSound)
                             //sound the break fixation sound - aaaahhhh sound.
-                            /*Task.Run(() => */{ _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play(); }/*)*/;
+                            //TODO: checl if need here a task.
+                            {
+                                _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"];
+                                _windowsMediaPlayer.controls.play();
+                            }
+
+                            //save the state of the enable fixation break sound on.
+                            _specialModesInRealTime.BreakFixationSoundOn = EnableFixationBreakSound;
 
                             //write the break fixation event to the AlphaOmega.
                             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadStabilityBreak);
@@ -1321,6 +1338,9 @@ namespace PinkyAndBrain
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Post trial time.");
+
+            //save the fixation only mode
+            _specialModesInRealTime.FixationOnly = FixationOnlyMode;
 
             //if no answer in the response time or not even coming to tge response time.
             if (!FixationOnlyMode && !(_currentRatDecision.Equals(RatDecison.Left) || _currentRatDecision.Equals(RatDecison.Right)))
