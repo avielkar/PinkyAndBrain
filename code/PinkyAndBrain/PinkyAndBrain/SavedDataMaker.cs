@@ -43,7 +43,7 @@ namespace PinkyAndBrain
         {
             //create a new stringBuilder for line filling in the new created results file.
             StringBuilder lineBuilder = new StringBuilder();
-            
+
             //append the new trial number.
             lineBuilder.Append("Trial:");
             lineBuilder.Append(trialData.TrialNum);
@@ -138,7 +138,7 @@ namespace PinkyAndBrain
         public void CreateNewDirectory(string ratName)
         {
             //create a rat directory if there is no rat dirextory with it's name.
-            if (!Directory.Exists(@"C:\results\" + ratName));
+            if (!Directory.Exists(@"C:\results\" + ratName)) ;
             Directory.CreateDirectory(@"C:\results\" + ratName);
 
             if (!Directory.Exists(@"C:\results\" + ratName + @"\" + DateTime.Now.ToString("yyyy_MM_dd")))
@@ -154,12 +154,12 @@ namespace PinkyAndBrain
         /// <summary>
         /// The static variables value for one trial.
         /// </summary>
-        public Dictionary<string , double> StaticVariables { get; set; }
+        public Dictionary<string, double> StaticVariables { get; set; }
 
         /// <summary>
         /// The varying varuiables value for one trial.
         /// </summary>
-        public Dictionary<string , double> VaryingVariables { get; set; }
+        public Dictionary<string, double> VaryingVariables { get; set; }
 
         /// <summary>
         /// The timings variables for one trial.
@@ -182,6 +182,11 @@ namespace PinkyAndBrain
         public int TrialNum { get; set; }
 
         /// <summary>
+        /// The stick on number.
+        /// </summary>
+        public int StickOnNumber { get; set; }
+
+        /// <summary>
         /// AutoOption class for all Autos values.
         /// </summary>
         public AutosOptions AutosOptions { get; set; }
@@ -195,6 +200,11 @@ namespace PinkyAndBrain
         /// Indicates if in case of Random Heading Direction , the descision was converted to be true.
         /// </summary>
         public bool RRInverse { get; set; }
+
+        /// <summary>
+        /// Leds data options.
+        /// </summary>
+        public LedsData LedsData { get; set; }
     }
 
     /// <summary>
@@ -247,6 +257,9 @@ namespace PinkyAndBrain
         }
     }
 
+    /// <summary>
+    /// A class describes all special modes options.
+    /// </summary>
     public class SpecialModes
     {
         /// <summary>
@@ -280,6 +293,29 @@ namespace PinkyAndBrain
                 "FixationOnly:" + FixationOnly + "\r\n" +
                 "SecondChoice:" + SecondChoice + "\r\n" +
                 "BreakFixationSoundOn:" + BreakFixationSoundOn;
+        }
+    }
+
+    /// <summary>
+    /// A class describes all leds data.
+    /// </summary>
+    public class LedsData
+    {
+        /// <summary>
+        /// The percentage of turned on leds for the trial.
+        /// </summary>
+        public double TurnsOnPercentage { get; set; }
+
+        /// <summary>
+        /// The brightness of the turned on leds.
+        /// </summary>
+        public int Brightness { get; set; }
+
+        public override string ToString()
+        {
+            return
+                "TurnsOnPercentage:" + TurnsOnPercentage + "\r\n" +
+                "Brightness:" + Brightness;
         }
     }
 }

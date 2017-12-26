@@ -1381,9 +1381,11 @@ namespace PinkyAndBrain
                         RatName = RatName,
                         RatDecison = _currentRatDecision,
                         TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks,
+                        StickOnNumber = NumOfStickOn,
                         RRInverse = _inverseRRDecision,
                         AutosOptions = _autosOptionsInRealTime,
-                        SpecialModes = _specialModesInRealTime
+                        SpecialModes = _specialModesInRealTime,
+                        LedsData = new LedsData {TurnsOnPercentage = PercentageOfTurnedOnLeds , Brightness = LEDBrightness}
                     });
                 });
             }
