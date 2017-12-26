@@ -669,7 +669,7 @@ namespace PinkyAndBrain
             //set the auto option to default values.
             _autosOptionsInRealTime = new AutosOptions();
             //initialize the trial mode options.
-
+            _specialModesInRealTime = new SpecialModes();
 
             //updatre the trial number for the motoman protocol file creator to send it to the alpha omega.
             //_motomanController.MotomanProtocolFileCreator.TrialNum = _totalHeadStabilityInCenterDuringDurationTime + 1;
