@@ -313,6 +313,11 @@ namespace PinkyAndBrain
         public bool EnableFixationBreakSound { get; set; }
 
         /// <summary>
+        /// Indicates whethear to enable error sound for a wrong choice.
+        /// </summary>
+        public bool EnableErrorSound { get; set; }
+
+        /// <summary>
         /// Indicates the autos options that are commanded in the real time (when the code use it at the conditions and not only if the user change it betweens).
         /// </summary>
         public AutosOptions _autosOptionsInRealTime { get; set; }
@@ -762,6 +767,16 @@ namespace PinkyAndBrain
 
                         //update the psycho online graph.
                         _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType ,  currentHeadingDirection, AnswerStatus.CORRECT);
+
+                        if (EnableErrorSound)
+                        {
+                            //error sound if needed.
+                            Task.Run(() =>
+                            {
+                                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
+                                _windowsMediaPlayer.controls.play();
+                            });
+                        }
                         
                         return new Tuple<RatDecison, bool>(RatDecison.Left, true);
                     }
@@ -792,9 +807,20 @@ namespace PinkyAndBrain
 
                         return new Tuple<RatDecison, bool>(RatDecison.Right, true);
                     }
-
+                    
+                    //update the psycho online graph.
                     _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType ,  currentHeadingDirection, AnswerStatus.WRONG);
 
+                    //error sound if needed.
+                    if (EnableErrorSound)
+                    {
+                        Task.Run(() =>
+                        {
+                            _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
+                            _windowsMediaPlayer.controls.play();
+                        });
+                    }
+                        
                     return new Tuple<RatDecison,bool>( RatDecison.Right , false);
                 }
             }
@@ -1774,6 +1800,24 @@ namespace PinkyAndBrain
                 _mainGuiControlsDelegatesDictionary["SetWaterRewardsMeasure"] , false);
         }
         #endregion
+
+        #region GUI_EVENTS
+        /// <summary>
+        /// Plays the Ding sound file.
+        /// </summary>
+        public void PlayRewardSound()
+        {
+            _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"]; _windowsMediaPlayer.controls.play();
+        }
+
+        /// <summary>
+        /// Plays the WrongAnswer sound file.
+        /// </summary>
+        public void PlayBreakFixationSound()
+        {
+            _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"]; _windowsMediaPlayer.controls.play();
+        }
+        #endregion GUI_EVENTS
 
         #region STRUCT_ENUMS
         /// <summary>

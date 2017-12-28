@@ -1825,13 +1825,23 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Handler for event turnning on.off the SecondResponseChance checkbox.
+        /// Handler for event turnning on/off the SecondResponseChance checkbox.
         /// </summary>
         /// <param name="sender">Sender.</param>
         /// <param name="e">Args.</param>
         private void _checkboxSecondResponseChance_CheckedChanged(object sender, EventArgs e)
         {
             _cntrlLoop.SecondResponseChance = (sender as CheckBox).Checked;
+        }
+
+        /// <summary>
+        /// Handler for event turnning on/off the SoundOn for error choice.
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">Args.</param>
+        private void _checkboxErrorSoundOn_CheckedChanged(object sender, EventArgs e)
+        {
+            _cntrlLoop.EnableErrorSound = (sender as CheckBox).Checked;
         }
         #endregion MODES
    
@@ -2495,6 +2505,34 @@ namespace PinkyAndBrain
             }
         }
         #endregion
+
+        #region HandSounds
+        /// <summary>
+        /// Handler for clicking to play the RewardSound.
+        /// </summary>
+        /// <param name="sender">The bottun.</param>
+        /// <param name="e">The args.</param>
+        private void _btnRewardSound_Click(object sender, EventArgs e)
+        {
+            Task.Run(() =>
+            {
+                _cntrlLoop.PlayRewardSound();
+            });
+        }
+
+        /// <summary>
+        /// Handler for clicking to play the BreakFixation.
+        /// </summary>
+        /// <param name="sender">The bottun.</param>
+        /// <param name="e">The args.</param>
+        private void _btnBreakFixationSound_Click(object sender, EventArgs e)
+        {
+            Task.Run(() =>
+            {
+                _cntrlLoop.PlayBreakFixationSound();
+            });
+        }
+        #endregion HandSounds
     }
 
     public class VaryingItem

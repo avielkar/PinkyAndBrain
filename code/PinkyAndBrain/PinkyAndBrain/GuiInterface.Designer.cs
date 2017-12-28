@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -100,6 +100,10 @@
             this._labelBrightness = new System.Windows.Forms.Label();
             this._textboxPercentageOfTurnOnLeds = new System.Windows.Forms.TextBox();
             this._labelPercentageOfturnedOnLeds = new System.Windows.Forms.Label();
+            this._groupboxHandsSounds = new System.Windows.Forms.GroupBox();
+            this._btnBreakFixationSound = new System.Windows.Forms.Button();
+            this._btnRewardSound = new System.Windows.Forms.Button();
+            this._checkboxErrorSoundOn = new System.Windows.Forms.CheckBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -117,6 +121,7 @@
             this._warningsGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this._groupboxLedsController.SuspendLayout();
+            this._groupboxHandsSounds.SuspendLayout();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -224,7 +229,7 @@
             this._trialDetailsListView.HoverSelection = true;
             this._trialDetailsListView.Location = new System.Drawing.Point(6, 16);
             this._trialDetailsListView.Name = "_trialDetailsListView";
-            this._trialDetailsListView.Size = new System.Drawing.Size(699, 156);
+            this._trialDetailsListView.Size = new System.Drawing.Size(530, 156);
             this._trialDetailsListView.TabIndex = 10;
             this._trialDetailsListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -569,7 +574,7 @@
             this._trialInfoGroupBox.Controls.Add(this._trialDetailsListView);
             this._trialInfoGroupBox.Location = new System.Drawing.Point(15, 722);
             this._trialInfoGroupBox.Name = "_trialInfoGroupBox";
-            this._trialInfoGroupBox.Size = new System.Drawing.Size(711, 178);
+            this._trialInfoGroupBox.Size = new System.Drawing.Size(544, 178);
             this._trialInfoGroupBox.TabIndex = 17;
             this._trialInfoGroupBox.TabStop = false;
             this._trialInfoGroupBox.Text = "Trial Info";
@@ -604,17 +609,17 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea1.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend2);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series2);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
@@ -625,9 +630,9 @@
             this._autosGroupBox.Controls.Add(this._autoStartCheckBox);
             this._autosGroupBox.Controls.Add(this._autoFixationCheckBox);
             this._autosGroupBox.Controls.Add(this._autoRewardsCheckBox);
-            this._autosGroupBox.Location = new System.Drawing.Point(1036, 800);
+            this._autosGroupBox.Location = new System.Drawing.Point(1036, 794);
             this._autosGroupBox.Name = "_autosGroupBox";
-            this._autosGroupBox.Size = new System.Drawing.Size(233, 100);
+            this._autosGroupBox.Size = new System.Drawing.Size(233, 106);
             this._autosGroupBox.TabIndex = 20;
             this._autosGroupBox.TabStop = false;
             this._autosGroupBox.Text = "Autos";
@@ -689,13 +694,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this._checkboxErrorSoundOn);
             this.groupBox1.Controls.Add(this._checkboxSecondResponseChance);
             this.groupBox1.Controls.Add(this._breakFixationSoundEnableCheckBox);
             this.groupBox1.Controls.Add(this._autoRewardSound);
             this.groupBox1.Controls.Add(this._fixationOnlyCheckBox);
-            this.groupBox1.Location = new System.Drawing.Point(1275, 800);
+            this.groupBox1.Location = new System.Drawing.Point(1275, 794);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(123, 100);
+            this.groupBox1.Size = new System.Drawing.Size(189, 106);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Special Modes";
@@ -739,9 +745,9 @@
             this._groupboxLedsController.Controls.Add(this._labelBrightness);
             this._groupboxLedsController.Controls.Add(this._textboxPercentageOfTurnOnLeds);
             this._groupboxLedsController.Controls.Add(this._labelPercentageOfturnedOnLeds);
-            this._groupboxLedsController.Location = new System.Drawing.Point(1404, 800);
+            this._groupboxLedsController.Location = new System.Drawing.Point(1470, 799);
             this._groupboxLedsController.Name = "_groupboxLedsController";
-            this._groupboxLedsController.Size = new System.Drawing.Size(158, 100);
+            this._groupboxLedsController.Size = new System.Drawing.Size(153, 106);
             this._groupboxLedsController.TabIndex = 23;
             this._groupboxLedsController.TabStop = false;
             this._groupboxLedsController.Text = "Leds Controller";
@@ -780,11 +786,54 @@
             this._labelPercentageOfturnedOnLeds.TabIndex = 0;
             this._labelPercentageOfturnedOnLeds.Text = "% turn on LEDS";
             // 
+            // _groupboxHandsSounds
+            // 
+            this._groupboxHandsSounds.Controls.Add(this._btnBreakFixationSound);
+            this._groupboxHandsSounds.Controls.Add(this._btnRewardSound);
+            this._groupboxHandsSounds.Location = new System.Drawing.Point(565, 722);
+            this._groupboxHandsSounds.Name = "_groupboxHandsSounds";
+            this._groupboxHandsSounds.Size = new System.Drawing.Size(161, 178);
+            this._groupboxHandsSounds.TabIndex = 24;
+            this._groupboxHandsSounds.TabStop = false;
+            this._groupboxHandsSounds.Text = "Hands Sounds";
+            // 
+            // _btnBreakFixationSound
+            // 
+            this._btnBreakFixationSound.Location = new System.Drawing.Point(22, 77);
+            this._btnBreakFixationSound.Name = "_btnBreakFixationSound";
+            this._btnBreakFixationSound.Size = new System.Drawing.Size(117, 23);
+            this._btnBreakFixationSound.TabIndex = 1;
+            this._btnBreakFixationSound.Text = "Break Fixation";
+            this._btnBreakFixationSound.UseVisualStyleBackColor = true;
+            this._btnBreakFixationSound.Click += new System.EventHandler(this._btnBreakFixationSound_Click);
+            // 
+            // _btnRewardSound
+            // 
+            this._btnRewardSound.Location = new System.Drawing.Point(22, 32);
+            this._btnRewardSound.Name = "_btnRewardSound";
+            this._btnRewardSound.Size = new System.Drawing.Size(117, 23);
+            this._btnRewardSound.TabIndex = 0;
+            this._btnRewardSound.Text = "Reward Sound";
+            this._btnRewardSound.UseVisualStyleBackColor = true;
+            this._btnRewardSound.Click += new System.EventHandler(this._btnRewardSound_Click);
+            // 
+            // _checkboxErrorSoundOn
+            // 
+            this._checkboxErrorSoundOn.AutoSize = true;
+            this._checkboxErrorSoundOn.Location = new System.Drawing.Point(101, 19);
+            this._checkboxErrorSoundOn.Name = "_checkboxErrorSoundOn";
+            this._checkboxErrorSoundOn.Size = new System.Drawing.Size(82, 17);
+            this._checkboxErrorSoundOn.TabIndex = 14;
+            this._checkboxErrorSoundOn.Text = "Error Sound";
+            this._checkboxErrorSoundOn.UseVisualStyleBackColor = true;
+            this._checkboxErrorSoundOn.CheckedChanged += new System.EventHandler(this._checkboxErrorSoundOn_CheckedChanged);
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1678, 912);
+            this.Controls.Add(this._groupboxHandsSounds);
             this.Controls.Add(this._groupboxLedsController);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this._warningsGroupBox);
@@ -832,6 +881,7 @@
             this.groupBox1.PerformLayout();
             this._groupboxLedsController.ResumeLayout(false);
             this._groupboxLedsController.PerformLayout();
+            this._groupboxHandsSounds.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -907,5 +957,9 @@
         private System.Windows.Forms.Button _btnEnagae;
         private System.Windows.Forms.CheckBox _checkboxSecondResponseChance;
         private System.Windows.Forms.ComboBox _comboBoxStudentName;
+        private System.Windows.Forms.GroupBox _groupboxHandsSounds;
+        private System.Windows.Forms.Button _btnBreakFixationSound;
+        private System.Windows.Forms.Button _btnRewardSound;
+        private System.Windows.Forms.CheckBox _checkboxErrorSoundOn;
     }
 }
