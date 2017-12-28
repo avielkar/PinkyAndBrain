@@ -56,6 +56,12 @@ namespace PinkyAndBrain
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
 
+            //append the student name.
+            lineBuilder.Append("student Name:");
+            lineBuilder.Append(trialData.StudentName);
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
             //append the rat decision for the stimulus direction.
             lineBuilder.Append("Rat Decison:");
             lineBuilder.Append(trialData.RatDecison);
@@ -143,6 +149,7 @@ namespace PinkyAndBrain
 
         /// <summary>
         /// Create a new experiment result file to save in it new experiment data.
+        /// <param name="ratName">The rat name for the current experiment.</param>
         /// </summary>
         public void CreateControlNewFile(string ratName)
         {
@@ -192,6 +199,11 @@ namespace PinkyAndBrain
         /// The name of the rat being experiment.
         /// </summary>
         public String RatName { get; set; }
+
+        /// <summary>
+        /// The student name that makes the experiment.
+        /// </summary>
+        public string StudentName { get; set; }
 
         /// <summary>
         /// The rat decision for the stimulus direction.

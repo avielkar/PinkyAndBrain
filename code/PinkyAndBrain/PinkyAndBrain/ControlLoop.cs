@@ -213,6 +213,11 @@ namespace PinkyAndBrain
         public string RatName { get; set; }
 
         /// <summary>
+        /// The name of the student that makes the experiment.
+        /// </summary>
+        public string StudentName { get; set; }
+
+        /// <summary>
         /// The number of repetitions for the varying set.
         /// </summary>
         public int NumOfRepetitions { get; set; }
@@ -1382,6 +1387,7 @@ namespace PinkyAndBrain
                         VaryingVariables = _crossVaryingVals[_currentVaryingTrialIndex],
                         TimingsVariables = _currentTrialTimings,
                         RatName = RatName,
+                        StudentName =StudentName,
                         RatDecison = _currentRatDecision,
                         TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks,
                         StickOnNumber = NumOfStickOn,

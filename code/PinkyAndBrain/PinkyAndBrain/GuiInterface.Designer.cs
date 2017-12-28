@@ -549,6 +549,7 @@
             this._comboBoxStudentName.Name = "_comboBoxStudentName";
             this._comboBoxStudentName.Size = new System.Drawing.Size(121, 21);
             this._comboBoxStudentName.TabIndex = 1;
+            this._comboBoxStudentName.SelectedIndexChanged += new System.EventHandler(this._comboBoxStudentName_SelectedIndexChanged);
             // 
             // _comboBoxSelectedRatName
             // 

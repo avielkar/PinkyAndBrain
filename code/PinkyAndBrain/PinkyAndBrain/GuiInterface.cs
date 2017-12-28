@@ -829,6 +829,21 @@ namespace PinkyAndBrain
             else
                 _cntrlLoop.RatName = "";
         }
+
+        /// <summary>
+        /// Function handler for changing the student name.
+        /// </summary>
+        /// <param name="sender">The combobox that has changed.</param>
+        /// <param name="e">The args.</param>
+        private void _comboBoxStudentName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //chenge the selected student name as followed by the combobox.
+            //change the selected rat name as followed by the combobox.
+            if ((sender as ComboBox).SelectedItem != null)
+                _cntrlLoop.StudentName = (sender as ComboBox).SelectedItem.ToString();
+            else
+                _cntrlLoop.StudentName = "";
+        }
         #endregion  
 
         #region EXPERIMENT_RUNNING_CHANGING_FUNCTION
