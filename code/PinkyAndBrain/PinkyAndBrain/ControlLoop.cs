@@ -1646,6 +1646,7 @@ namespace PinkyAndBrain
                     return _variablesList._variablesDictionary[parameterName]._description["parameters"]._ratHouseParameter;
 
                 case "2"://varying
+                case "6":
                     return _crossVaryingVals[_currentVaryingTrialIndex][parameterName].ToString("000000.00000000");
 
                 default:

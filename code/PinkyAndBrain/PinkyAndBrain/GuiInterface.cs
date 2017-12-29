@@ -2467,6 +2467,8 @@ namespace PinkyAndBrain
                     return "4";
                 case "Random":
                     return "5";
+                case "Vector":
+                    return "6";
             }
 
             return "4";
@@ -2485,6 +2487,7 @@ namespace PinkyAndBrain
             switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter)
             {
                 case "1":   //static
+                case "6":
                     //show the _ratHouseParameter.
                     string parametersTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter);
                     parametersTextBox.Text = parametersTextVal;
