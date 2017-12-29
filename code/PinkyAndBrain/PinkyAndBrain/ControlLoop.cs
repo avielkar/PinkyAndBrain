@@ -767,22 +767,22 @@ namespace PinkyAndBrain
 
                         //update the psycho online graph.
                         _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType ,  currentHeadingDirection, AnswerStatus.CORRECT);
-
-                        if (EnableErrorSound)
-                        {
-                            //error sound if needed.
-                            Task.Run(() =>
-                            {
-                                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
-                                _windowsMediaPlayer.controls.play();
-                            });
-                        }
                         
                         return new Tuple<RatDecison, bool>(RatDecison.Left, true);
                     }
 
                     _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType ,  currentHeadingDirection, AnswerStatus.WRONG);
-                    
+
+                    if (EnableErrorSound)
+                    {
+                        //error sound if needed.
+                        Task.Run(() =>
+                        {
+                            _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"];
+                            _windowsMediaPlayer.controls.play();
+                        });
+                    }
+
                     return new Tuple<RatDecison,bool>(RatDecison.Left , false);
                 }
 
@@ -816,10 +816,10 @@ namespace PinkyAndBrain
                     {
                         Task.Run(() =>
                         {
-                            _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
+                            _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"];
                             _windowsMediaPlayer.controls.play();
                         });
-                    }
+                        }
                         
                     return new Tuple<RatDecison,bool>( RatDecison.Right , false);
                 }
