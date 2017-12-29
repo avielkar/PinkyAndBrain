@@ -309,6 +309,7 @@ namespace PinkyAndBrain
             FixationOnly = false;
             SecondChoice = false;
             BreakFixationSoundOn = false;
+            ErrorChoiceSouunOn = false;
         }
 
         /// <summary>
@@ -326,12 +327,18 @@ namespace PinkyAndBrain
         /// </summary>
         public bool BreakFixationSoundOn { get; set; }
 
+        /// <summary>
+        /// Indicates if error sound is on/off when a wrong choice occured.
+        /// </summary>
+        public bool ErrorChoiceSouunOn { get; set; }
+
         public override string ToString()
         {
             return
                 "FixationOnly:" + FixationOnly + "\r\n" +
                 "SecondChoice:" + SecondChoice + "\r\n" +
-                "BreakFixationSoundOn:" + BreakFixationSoundOn;
+                "BreakFixationSoundOn:" + BreakFixationSoundOn + "\r\n" +
+                "ErrorChoiceSoundOn:" + ErrorChoiceSouunOn;
         }
     }
 

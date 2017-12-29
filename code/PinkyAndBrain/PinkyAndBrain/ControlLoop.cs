@@ -697,7 +697,7 @@ namespace PinkyAndBrain
         /// Waiting the rat to response the movement direction abd update the _totalCorrectAnswers counter.
         /// <returns>The rat decision value and it's correctness.</returns>
         /// </summary>
-        public Tuple<RatDecison , bool> ResponseTimeStage()
+        public Tuple<RatDecison, bool> ResponseTimeStage()
         {
             //Thread.Sleep(1000*(int)(_currentTrialTimings.wResponseTime));
 
@@ -707,7 +707,7 @@ namespace PinkyAndBrain
 
             //if not trainig continue.
             if (GetVariableValue("STIMULUS_TYPE") == "0")
-                return new Tuple<RatDecison,bool>(RatDecison.NoDecision , false);
+                return new Tuple<RatDecison, bool>(RatDecison.NoDecision, false);
 
             //get the current stimulus direction.
             double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
@@ -742,14 +742,15 @@ namespace PinkyAndBrain
             }
             _correctDecision = currentStimulationSide;
 
+            _specialModesInRealTime.ErrorChoiceSouunOn = EnableErrorSound;
 
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
             //time to wait for the moving rat response. if decided about a side so break and return the decision and update the _totalCorrectAnsers.
-            while(sw.ElapsedMilliseconds < 1000*(int)(_currentTrialTimings.wResponseTime))
+            while (sw.ElapsedMilliseconds < 1000 * (int)(_currentTrialTimings.wResponseTime))
             {
-                if(_currentRatResponse == (byte)RatDecison.Left)
+                if (_currentRatResponse == (byte)RatDecison.Left)
                 {
                     //increase the total choices for wromg or correct choices (some choices).
                     _totalChoices++;
@@ -766,12 +767,12 @@ namespace PinkyAndBrain
                         _totalCorrectAnswers++;
 
                         //update the psycho online graph.
-                        _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType ,  currentHeadingDirection, AnswerStatus.CORRECT);
-                        
+                        _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType, currentHeadingDirection, AnswerStatus.CORRECT);
+
                         return new Tuple<RatDecison, bool>(RatDecison.Left, true);
                     }
 
-                    _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType ,  currentHeadingDirection, AnswerStatus.WRONG);
+                    _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType, currentHeadingDirection, AnswerStatus.WRONG);
 
                     if (EnableErrorSound)
                     {
@@ -783,10 +784,10 @@ namespace PinkyAndBrain
                         });
                     }
 
-                    return new Tuple<RatDecison,bool>(RatDecison.Left , false);
+                    return new Tuple<RatDecison, bool>(RatDecison.Left, false);
                 }
 
-                else if(_currentRatResponse == (byte)RatDecison.Right)
+                else if (_currentRatResponse == (byte)RatDecison.Right)
                 {
                     //update current rat decision state.
                     _currentRatDecision = RatDecison.Right;
@@ -797,19 +798,19 @@ namespace PinkyAndBrain
                     //write the event that te rat enter it's head to the right to the AlphaOmega.
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterRight);
 
-                    if (currentStimulationSide.Equals(RatDecison.Right)) 
-                    { 
+                    if (currentStimulationSide.Equals(RatDecison.Right))
+                    {
                         //increase the total coreect answers.
                         _totalCorrectAnswers++;
 
                         //update the psycho online graph.
-                        _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType ,  currentHeadingDirection, AnswerStatus.CORRECT);
+                        _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType, currentHeadingDirection, AnswerStatus.CORRECT);
 
                         return new Tuple<RatDecison, bool>(RatDecison.Right, true);
                     }
-                    
+
                     //update the psycho online graph.
-                    _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType ,  currentHeadingDirection, AnswerStatus.WRONG);
+                    _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType, currentHeadingDirection, AnswerStatus.WRONG);
 
                     //error sound if needed.
                     if (EnableErrorSound)
@@ -819,15 +820,15 @@ namespace PinkyAndBrain
                             _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"];
                             _windowsMediaPlayer.controls.play();
                         });
-                        }
-                        
-                    return new Tuple<RatDecison,bool>( RatDecison.Right , false);
+                    }
+
+                    return new Tuple<RatDecison, bool>(RatDecison.Right, false);
                 }
             }
 
             _currentRatDecision = RatDecison.NoDecision;
 
-            return new Tuple<RatDecison,bool>(RatDecison.NoDecision , false);
+            return new Tuple<RatDecison, bool>(RatDecison.NoDecision, false);
         }
         
         /// <summary>
