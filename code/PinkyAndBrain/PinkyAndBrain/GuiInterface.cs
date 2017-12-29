@@ -1819,9 +1819,9 @@ namespace PinkyAndBrain
         private void _autoRewardSound_CheckedChanged(object sender, EventArgs e)
         {
             if (_autoRewardSound.Checked)
-                _cntrlLoop.AutoRewardSound = true;
+                _cntrlLoop.RewardSound = true;
             else
-                _cntrlLoop.AutoRewardSound = false;
+                _cntrlLoop.RewardSound = false;
         }
 
         /// <summary>

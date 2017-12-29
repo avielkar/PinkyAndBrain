@@ -300,7 +300,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Indicated if to sound a media during the reward with the same direction.
         /// </summary>
-        public bool AutoRewardSound { get; set; }
+        public bool RewardSound { get; set; }
 
         /// <summary>
         /// Indicates if the mode of the trial is only untill the fixation stage (include).
@@ -599,7 +599,7 @@ namespace PinkyAndBrain
                                     _currentRatDecision = RatDecison.PassDurationTime;
 
                                     //reward the rat in the center with water for duration of rewardCenterDuration for stable head in the center during the movement.
-                                    RewardCenterStage(AutoReward, AutoRewardSound);
+                                    RewardCenterStage(AutoReward, RewardSound);
 
                                     //if not to skip all stages after the fixation stage.
                                     if (!FixationOnlyMode)
@@ -616,7 +616,7 @@ namespace PinkyAndBrain
                                             Tuple<RatDecison, bool> secondDecision = SecondChanceResponseTimeStage();
 
                                             //second reward stage with flag indicate that it was a second chance.
-                                            SecondRewardStage(secondDecision, false , true);
+                                            SecondRewardStage(secondDecision, AutoReward, true);
                                         }
                                     }
                                 }
@@ -846,76 +846,31 @@ namespace PinkyAndBrain
             //save the second chance response is on.
             _specialModesInRealTime.SecondChoice = true;
 
-            //if not trainig continue.
-            if (GetVariableValue("STIMULUS_TYPE") == "0")
-                return new Tuple<RatDecison, bool>(RatDecison.NoDecision, false);
-
-            //get the current stimulus direction.
-            double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
-
-            //determine the current stimulus direaction.
-            RatDecison currentStimulationSide = (currentHeadingDirection == 0) ? (RatDecison.Center) : ((currentHeadingDirection > 0) ? (RatDecison.Right) : RatDecison.Left);
-            //determine if the current stimulus heading direction is in the random heading direction region.
-            if (Math.Abs(currentHeadingDirection) <= double.Parse(_variablesList._variablesDictionary["RR_HEADINGS"]._description["parameters"]._ratHouseParameter))
-            {
-                //get a random side with probability of RR_PROBABILITY to the right side.
-                int sampledBernouli = Bernoulli.Sample(double.Parse(_variablesList._variablesDictionary["RR_PROBABILITY"]._description["parameters"]._ratHouseParameter));
-
-                RatDecison changedStimulusSide = currentStimulationSide;
-
-                if (sampledBernouli == 1)
-                {
-                    currentStimulationSide = RatDecison.Right;
-                }
-                else
-                {
-                    currentStimulationSide = RatDecison.Left;
-                }
-
-                if (changedStimulusSide.Equals(currentStimulationSide))
-                {
-                    _inverseRRDecision = true;
-                }
-            }
-            else
-            {
-                _inverseRRDecision = false;
-            }
-            _correctDecision = currentStimulationSide;
-
-
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
             //time to wait for the moving rat response. if decided about a side so break and return the decision and update the _totalCorrectAnsers.
             while (sw.ElapsedMilliseconds < 1000 * (int)(_currentTrialTimings.wResponseTime))
             {
-                if (_currentRatResponse == (byte)RatDecison.Left)
+                if (_currentRatResponse == (byte)_correctDecision)
                 {
                     //write the event that te rat enter it's head to the left to the AlphaOmega.
-                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterLeftSecondChance);
-
-                    if (currentStimulationSide.Equals(RatDecison.Left))
+                    if (_correctDecision == RatDecison.Left)
                     {
+                        _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterLeftSecondChance);
+
                         return new Tuple<RatDecison, bool>(RatDecison.Left, true);
                     }
-
-                    return new Tuple<RatDecison, bool>(RatDecison.Left, false);
-                }
-
-                else if (_currentRatResponse == (byte)RatDecison.Right)
-                {
-                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterRightSecondChance);
-
-                    if (currentStimulationSide.Equals(RatDecison.Right))
+                    else
                     {
+                        _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterRightSecondChance);
+
                         return new Tuple<RatDecison, bool>(RatDecison.Right, true);
                     }
-
-                    return new Tuple<RatDecison, bool>(RatDecison.Right, false);
                 }
             }
 
+            //if no decision or no error correction.
             _currentRatDecision = RatDecison.NoDecision;
 
             return new Tuple<RatDecison, bool>(RatDecison.NoDecision, false);
@@ -992,13 +947,13 @@ namespace PinkyAndBrain
                 switch (decision.Item1)
                 {
                     case RatDecison.Center:
-                        RewardCenterStage(false , AutoRewardSound);
+                        RewardCenterStage(false , RewardSound);
                         break;
                     case RatDecison.Left:
-                        RewardLeftStage(false, AutoRewardSound, secondChance);
+                        RewardLeftStage(false, RewardSound, secondChance);
                         break;
                     case RatDecison.Right:
-                        RewardRightStage(false, AutoRewardSound, secondChance);
+                        RewardRightStage(false, RewardSound, secondChance);
                         break;
                     default:
                         break;
@@ -1027,11 +982,11 @@ namespace PinkyAndBrain
                         break;
 
                     case RatDecison.Left:
-                        RewardLeftStage(true , AutoRewardSound , false);
+                        RewardLeftStage(true , RewardSound , false);
                         break;
 
                     case RatDecison.Right:
-                        RewardRightStage(true , AutoRewardSound , false);
+                        RewardRightStage(true , RewardSound , false);
                         break;
 
                     default:
@@ -1058,19 +1013,19 @@ namespace PinkyAndBrain
         /// <summary>
         /// The reward left stage is happening if the rat decide the correct stimulus side.
         /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
-        /// <param name="autoRewardSound">Indecation ig to give the suto reard sound during the reward.</param>
+        /// <param name="RewardSound">Indecation ig to give the reward sound during the reward.</param>
         /// <param name="secondChance">Indicate if it is reward for the second chance.</param>
         /// </summary>
-        public void RewardLeftStage(bool autoReward = false , bool autoRewardSound = false , bool secondChance = false)
+        public void RewardLeftStage(bool autoReward = false , bool RewardSound = false , bool secondChance = false)
         {
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Left)");
 
             if (!secondChance)
-                Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration, _currentTrialTimings.wRewardLeftDelay, autoReward, autoRewardSound);
+                Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration, _currentTrialTimings.wRewardLeftDelay, autoReward, RewardSound);
             else
-                Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDurationSecondChance, _currentTrialTimings.wRewardLeftDelaySecondChance, false, false);
+                Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDurationSecondChance, _currentTrialTimings.wRewardLeftDelaySecondChance, false, RewardSound);
 
             //write that the rat get left reward to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.LeftReward);
@@ -1079,19 +1034,19 @@ namespace PinkyAndBrain
         /// <summary>
         /// The reward right stage is happening if the rat decide the correct stimulus side.
         /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
-        /// <param name="autoRewardSound">Indecation ig to give the suto reard sound during the reward.</param>
+        /// <param name="RewardSound">Indecation ig to give the suto reard sound during the reward.</param>
         /// <param name="secondChance">Indicate if it is reward for the second chance.</param>
         /// </summary>
-        public void RewardRightStage(bool autoReward = false, bool autoRewardSound = false , bool secondChance = false)
+        public void RewardRightStage(bool autoReward = false, bool RewardSound = false , bool secondChance = false)
         {
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Right)");
 
             if (!secondChance)
-                Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration, _currentTrialTimings.wRewardRightDelay, autoReward, autoRewardSound);
+                Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration, _currentTrialTimings.wRewardRightDelay, autoReward, RewardSound);
             else
-                Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDurationSecondChance, _currentTrialTimings.wRewardRightDelaySecondChance, false, false);
+                Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDurationSecondChance, _currentTrialTimings.wRewardRightDelaySecondChance, false, RewardSound);
 
             //write that the rat get right reward to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RightReward);
@@ -1733,7 +1688,7 @@ namespace PinkyAndBrain
                 double timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
                 if ((value & (byte)RatDecison.Left) == (byte)RatDecison.Left)
                 {
-                    if (AutoRewardSound)
+                    if (RewardSound)
                     {
                         _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
                         _windowsMediaPlayer.controls.play();
@@ -1742,7 +1697,7 @@ namespace PinkyAndBrain
                 }
                 else if ((value & 0x05) == 0x05)
                 {
-                    if (AutoRewardSound)
+                    if (RewardSound)
                     {
                         _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                         _windowsMediaPlayer.controls.play();
@@ -1751,7 +1706,7 @@ namespace PinkyAndBrain
                 }
                 else if ((value & (byte)RatDecison.Center) == (byte)RatDecison.Center)
                 {
-                    if (AutoRewardSound)
+                    if (RewardSound)
                     {
                         _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                         _windowsMediaPlayer.controls.play();
@@ -1760,7 +1715,7 @@ namespace PinkyAndBrain
                 }
                 else if ((value & (byte)RatDecison.Right) == (byte)RatDecison.Right)
                 {
-                    if (AutoRewardSound)
+                    if (RewardSound)
                     {
                         _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
                         _windowsMediaPlayer.controls.play();
