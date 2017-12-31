@@ -159,58 +159,103 @@ namespace AlphaOmegaSystem
         HeadEnterRightSecondChance = 0x58,
 
         /// <summary>
-        /// The robot get execute to move forward trajectory for stimulus type 1.
+        /// The robot get execute to move forward trajectory for stimulus type 1. (#12)
         /// </summary>
         StimulusStart1 = 0x60,
 
         /// <summary>
-        /// The robot get execute to move forward trajectory for stimulus type 2.
+        /// The robot get execute to move forward trajectory for stimulus type 2. (#13)
         /// </summary>
         StimulusStart2 = 0x68,
 
         /// <summary>
-        /// The robot get execute to move forward trajectory for stimulus type 3.
+        /// The robot get execute to move forward trajectory for stimulus type 3. (#14)
         /// </summary>
         StimulusStart3 = 0x70,
 
         /// <summary>
-        /// The robot get execute to move forward trajectory for stimulus type 4.
+        /// The robot get execute to move forward trajectory for stimulus type 4. (#15)
         /// </summary>
         StimulusStart4 = 0x78,
 
         /// <summary>
-        /// The robot get execute to move forward trajectory for stimulus type 5.
+        /// The robot get execute to move forward trajectory for stimulus type 5. (#16)
         /// </summary>
         StimulusStart5 = 0x80,
 
         /// <summary>
-        /// The robot get execute to move forward trajectory for stimulus type 6.
+        /// The robot get execute to move forward trajectory for stimulus type 6. (#17)
         /// </summary>
         StimulusStart6 = 0x88,
 
         /// <summary>
-        /// The robot get execute to move forward trajectory for stimulus type 7.
+        /// The robot get execute to move forward trajectory for stimulus type 7. (#18)
         /// </summary>
         StimulusStart7 = 0x90,
 
         /// <summary>
-        /// The robot get execute to move forward trajectory for stimulus type 8.
+        /// The robot get execute to move forward trajectory for stimulus type 8. (#19)
         /// </summary>
         StimulusStart8 = 0x98,
 
         /// <summary>
-        /// The robot finish to execute the forward moving trajectory.
+        /// The robot get execute to move forward trajectory for stimulus type 9. (#20)
         /// </summary>
-        RobotEndMovingForward = 0xa0,
+        StimulusStart9 = 0xa0,
 
         /// <summary>
-        /// The robot get execute to move backward trajectory.
+        /// The robot get execute to move forward trajectory for stimulus type 10. (#21)
         /// </summary>
-        RobotStartMovingBackward = 0xa8,
+        StimulusStart10 = 0xa8,
 
         /// <summary>
-        /// The robot finish to execute the backeard moving trajectory.
+        /// The robot get execute to move forward trajectory for stimulus type 11. (#22)
         /// </summary>
-        RobotEndMovingBackward = 0xb0,
+        StimulusStart11 = 0xb0,
+
+        /// <summary>
+        /// The robot get execute to move forward trajectory for stimulus type 12. (#23)
+        /// </summary>
+        StimulusStart12 = 0xb8,
+
+        /// <summary>
+        /// The robot get execute to move forward trajectory for stimulus type 13. (#24)
+        /// </summary>
+        StimulusStart13 = 0xc0,
+
+        /// <summary>
+        /// The robot get execute to move forward trajectory for stimulus type 14. (#25)
+        /// </summary>
+        StimulusStart14 = 0xc8,
+
+        /// <summary>
+        /// The robot get execute to move forward trajectory for stimulus type 15. (#26)
+        /// </summary>
+        StimulusStart15 = 0xd0,
+
+        /// <summary>
+        /// The robot get execute to move forward trajectory for stimulus type 16. (#27)
+        /// </summary>
+        StimulusStart16 = 0xd8,
+
+        /// <summary>
+        /// The robot get execute to move forward trajectory for stimulus type 17. (#28)
+        /// </summary>
+        StimulusStart17 = 0xe0,
+
+        /// <summary>
+        /// The robot finish to execute the forward moving trajectory. (#29)
+        /// </summary>
+        RobotEndMovingForward = 0xe8,
+
+        /// <summary>
+        /// The robot get execute to move backward trajectory. (#30)
+        /// </summary>
+        RobotStartMovingBackward = 0xf0,
+
+        /// <summary>
+        /// The robot finish to execute the backeard moving trajectory. (#31)
+        /// </summary>
+        RobotEndMovingBackward = 0xf8,
     }
 }

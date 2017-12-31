@@ -1184,7 +1184,7 @@ namespace PinkyAndBrain
                     robotMotion = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
 
                     //also send the AlphaOmega that motion forward starts.
-                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart2);
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart10);
                     break;
 
                 case 11://combined in the dark.
@@ -1193,7 +1193,7 @@ namespace PinkyAndBrain
                     robotMotion = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
 
                     //also send the AlphaOmega that motion forward starts.
-                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart3);
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart11);
                     break;
 
                 default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
