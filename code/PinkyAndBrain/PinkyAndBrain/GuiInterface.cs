@@ -258,7 +258,7 @@ namespace PinkyAndBrain
                     return new VaryingValuesGenerator3DAzimuth();
                 case "AdamDelta":
                     return new VaryingValuesGeneratorAdamDelta();
-                case "AdamDark":
+                case "HeadingDescrimination":
                     return new VaryingValuesGeneratorAdamDark();
                 default:
                     return new VaryingValuesGenerator();
@@ -285,7 +285,7 @@ namespace PinkyAndBrain
                     return new Azimuth3D(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
                 case "AdamDelta":
                     return new AdamDelta(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
-                case "AdamDark":
+                case "HeadingDescrimination":
                     return new AdamDelta(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
                 default:
                     return new ThreeStepAdaptation(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
