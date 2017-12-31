@@ -611,7 +611,7 @@ namespace PinkyAndBrain
                                         SecondRewardStage(decision, AutoReward , false);
 
                                         //if second oppertunity for choice after wrong choice is available.
-                                        if(SecondResponseChance && !AutoReward && !(decision.Equals(RatDecison.NoDecision)) && decision.Item2 == false)
+                                        if(SecondResponseChance && !AutoReward && !decision.Item1.Equals(RatDecison.NoDecision) && decision.Item2 == false)
                                         {
                                             Tuple<RatDecison, bool> secondDecision = SecondChanceResponseTimeStage();
 
