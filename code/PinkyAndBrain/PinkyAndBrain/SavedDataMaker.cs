@@ -292,7 +292,7 @@ namespace PinkyAndBrain
                 "AutoReward:" + AutoReward + "\r\n" +
                 "AutoFixation:" + AutoFixation + "\r\n" +
                 "AutoStart:" + AutoStart + "\r\n" +
-                "AutoRewardSound:" + AutoRewardSound;
+                "RewardSound:" + AutoRewardSound;
         }
     }
 

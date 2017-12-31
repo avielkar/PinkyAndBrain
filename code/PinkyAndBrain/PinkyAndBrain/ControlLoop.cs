@@ -611,7 +611,7 @@ namespace PinkyAndBrain
                                         SecondRewardStage(decision, AutoReward , false);
 
                                         //if second oppertunity for choice after wrong choice is available.
-                                        if(SecondResponseChance && !AutoReward && !decision.Equals(RatDecison.NoDecision) && decision.Item2 == false)
+                                        if(SecondResponseChance && !AutoReward && !(decision.Equals(RatDecison.NoDecision)) && decision.Item2 == false)
                                         {
                                             Tuple<RatDecison, bool> secondDecision = SecondChanceResponseTimeStage();
 
@@ -830,6 +830,7 @@ namespace PinkyAndBrain
 
             return new Tuple<RatDecison, bool>(RatDecison.NoDecision, false);
         }
+        
         
         /// <summary>
         /// Waiting the rat to second chance response the movement direction with no updating the _totalCorrectAnswers counter and the result psycho graph.

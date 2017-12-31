@@ -325,14 +325,14 @@ namespace PinkyAndBrain
 
             if (!returnBackMotion)
             {
-
+                //turn off the strobe bit (16)
                 _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
 
                 //reset the trial number bits(2-14)
                 _fileStreamWriter.Write(ResetDoutPins());
                 //_fileStreamWriter.WriteLine("DOUT OT#(14) ON");
 
-                //turn off the strobe bit (16)
+                //turn on the strobe bit (16)
                 _fileStreamWriter.WriteLine("DOUT OT#(16) ON");
 
                 _fileStreamWriter.WriteLine("DOUT OT#(14) OFF");
