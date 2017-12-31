@@ -238,6 +238,7 @@ namespace PinkyAndBrain
 
             if (!returnBackMotion)
             {
+                //turn off the strobe bit (16)
                 _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
 
                 //add the trial number with turnning the 2-14 indexes bits.
@@ -330,12 +331,9 @@ namespace PinkyAndBrain
 
                 //reset the trial number bits(2-14)
                 _fileStreamWriter.Write(ResetDoutPins());
-                //_fileStreamWriter.WriteLine("DOUT OT#(14) ON");
 
                 //turn on the strobe bit (16)
                 _fileStreamWriter.WriteLine("DOUT OT#(16) ON");
-
-                _fileStreamWriter.WriteLine("DOUT OT#(14) OFF");
             }
 
             else
@@ -345,13 +343,9 @@ namespace PinkyAndBrain
 
                 //turn off the digital output indication the robot start moving backword.
                 _fileStreamWriter.WriteLine("DOUT OT#(15) OFF");
-                
-                //_fileStreamWriter.WriteLine("DOUT OT#(14) ON");
 
                 //turn off the strobe bit (16)
                 _fileStreamWriter.WriteLine("DOUT OT#(16) ON");
-
-                _fileStreamWriter.WriteLine("DOUT OT#(14) OFF");
             }
 
             _fileStreamWriter.WriteLine("END");
