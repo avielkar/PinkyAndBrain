@@ -310,6 +310,8 @@ namespace PinkyAndBrain
             SecondChoice = false;
             BreakFixationSoundOn = false;
             ErrorChoiceSouunOn = false;
+            EnableClueSoundInBothSide = false;
+            EnableClueSoundInCorrectSide = false;
         }
 
         /// <summary>
@@ -332,13 +334,19 @@ namespace PinkyAndBrain
         /// </summary>
         public bool ErrorChoiceSouunOn { get; set; }
 
+        public bool EnableClueSoundInCorrectSide { get; set; }
+
+        public bool EnableClueSoundInBothSide { get; set; }
+
         public override string ToString()
         {
             return
                 "FixationOnly:" + FixationOnly + "\r\n" +
                 "SecondChoice:" + SecondChoice + "\r\n" +
                 "BreakFixationSoundOn:" + BreakFixationSoundOn + "\r\n" +
-                "ErrorChoiceSoundOn:" + ErrorChoiceSouunOn;
+                "ErrorChoiceSoundOn:" + ErrorChoiceSouunOn + "\r\n" +
+                "EnableClueSoundInBothSide:" + EnableClueSoundInBothSide + "\r\n" +
+                "EnableClueSoundInCorrectSide" + EnableClueSoundInCorrectSide + "\r\n";
         }
     }
 

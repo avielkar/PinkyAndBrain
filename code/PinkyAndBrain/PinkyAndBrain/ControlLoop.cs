@@ -730,6 +730,8 @@ namespace PinkyAndBrain
             {
                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                 _windowsMediaPlayer.controls.play();
+
+                _specialModesInRealTime.EnableClueSoundInBothSide = true;
             }
 
             else if ( EnableClueSoundInCorrectSide)
@@ -746,6 +748,7 @@ namespace PinkyAndBrain
                     _windowsMediaPlayer.controls.play();
                 }
 
+                _specialModesInRealTime.EnableClueSoundInCorrectSide = true;
             }
         }
 
