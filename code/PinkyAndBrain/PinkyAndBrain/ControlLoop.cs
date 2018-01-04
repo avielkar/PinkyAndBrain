@@ -36,7 +36,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// The trajectory creator interface for making the trajectory for each trial.
         /// </summary>
-        private ITrajectoryCreator _trajectoryCrator;
+        private ITrajectoryCreator _trajectoryCreator;
 
         /// <summary>
         /// The trajectory creation 
@@ -316,6 +316,16 @@ namespace PinkyAndBrain
         /// Indicates whethear to enable error sound for a wrong choice.
         /// </summary>
         public bool EnableErrorSound { get; set; }
+
+        /// <summary>
+        /// Indicates if to enable clue sound in both sides.
+        /// </summary>
+        public bool EnableClueSoundInBothSide { get; set; }
+
+        /// <summary>
+        /// Indicates if to enable clue sound only in the correct side.
+        /// </summary>
+        public bool EnableClueSoundInCorrectSide { get; set; }
 
         /// <summary>
         /// Indicates the autos options that are commanded in the real time (when the code use it at the conditions and not only if the user change it betweens).
@@ -604,6 +614,9 @@ namespace PinkyAndBrain
                                     //if not to skip all stages after the fixation stage.
                                     if (!FixationOnlyMode)
                                     {
+                                        //clue time stage if needed.
+                                        ClueResponseStage();
+
                                         //wait the rat to response to the movement during the response tine.
                                         Tuple<RatDecison, bool> decision = ResponseTimeStage();
 
@@ -694,21 +707,53 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Waiting the rat to response the movement direction abd update the _totalCorrectAnswers counter.
-        /// <returns>The rat decision value and it's correctness.</returns>
+        /// A stage the rat gets a clue where the correct answer is.
         /// </summary>
-        public Tuple<RatDecison, bool> ResponseTimeStage()
+        public void ClueResponseStage()
         {
-            //Thread.Sleep(1000*(int)(_currentTrialTimings.wResponseTime));
-
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Waiting for Response");
+            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Clue Stage");
 
-            //if not trainig continue.
-            if (GetVariableValue("STIMULUS_TYPE") == "0")
-                return new Tuple<RatDecison, bool>(RatDecison.NoDecision, false);
+            //determine the current trial correct answer.
+            DetermineCurrentStimulusAnswer();
 
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            
+            while (sw.ElapsedMilliseconds < 1000 * (int)(_currentTrialTimings.wClueDelay))
+            {
+                
+            }
+
+            if (EnableClueSoundInBothSide)
+            {
+                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
+                _windowsMediaPlayer.controls.play();
+            }
+
+            else if ( EnableClueSoundInCorrectSide)
+            {
+                if (_correctDecision.Equals(RatDecison.Right))
+                {
+                    _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
+                    _windowsMediaPlayer.controls.play();
+                }
+
+                else if (_correctDecision.Equals(RatDecison.Left))
+                {
+                    _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
+                    _windowsMediaPlayer.controls.play();
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Determine the current trial correct side.
+        /// </summary>
+        public void DetermineCurrentStimulusAnswer()
+        {
             //get the current stimulus direction.
             double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
 
@@ -741,8 +786,26 @@ namespace PinkyAndBrain
                 _inverseRRDecision = false;
             }
             _correctDecision = currentStimulationSide;
+        }
 
-            _specialModesInRealTime.ErrorChoiceSouunOn = EnableErrorSound;
+        /// <summary>
+        /// Waiting the rat to response the movement direction abd update the _totalCorrectAnswers counter.
+        /// <returns>The rat decision value and it's correctness.</returns>
+        /// </summary>
+        public Tuple<RatDecison, bool> ResponseTimeStage()
+        {
+            //Thread.Sleep(1000*(int)(_currentTrialTimings.wResponseTime));
+            
+            //if not trainig continue.
+            if (GetVariableValue("STIMULUS_TYPE") == "0")
+                return new Tuple<RatDecison, bool>(RatDecison.NoDecision, false);
+
+            //update the global details listview with the current stage.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Waiting for Response");
+
+            //get the current stimulus direction.
+            double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
 
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -761,7 +824,7 @@ namespace PinkyAndBrain
                     //write the event that te rat enter it's head to the left to the AlphaOmega.
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterLeft);
 
-                    if (currentStimulationSide.Equals(RatDecison.Left))
+                    if (_correctDecision.Equals(RatDecison.Left))
                     {
                         //increase the total correct answers.
                         _totalCorrectAnswers++;
@@ -782,6 +845,8 @@ namespace PinkyAndBrain
                             _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"];
                             _windowsMediaPlayer.controls.play();
                         });
+
+                        _specialModesInRealTime.ErrorChoiceSouunOn = true;
                     }
 
                     return new Tuple<RatDecison, bool>(RatDecison.Left, false);
@@ -798,7 +863,7 @@ namespace PinkyAndBrain
                     //write the event that te rat enter it's head to the right to the AlphaOmega.
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterRight);
 
-                    if (currentStimulationSide.Equals(RatDecison.Right))
+                    if (_correctDecision.Equals(RatDecison.Right))
                     {
                         //increase the total coreect answers.
                         _totalCorrectAnswers++;
@@ -820,6 +885,8 @@ namespace PinkyAndBrain
                             _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"];
                             _windowsMediaPlayer.controls.play();
                         });
+
+                        _specialModesInRealTime.ErrorChoiceSouunOn = true;
                     }
 
                     return new Tuple<RatDecison, bool>(RatDecison.Right, false);
@@ -1548,6 +1615,8 @@ namespace PinkyAndBrain
 
             currentTrialTimings.wDuration = DetermineTimeByVariable("STIMULUS_DURATION");
 
+            currentTrialTimings.wClueDelay = DetermineTimeByVariable("REWARD_CLUE_SOUND_DELAY");
+
             return currentTrialTimings;
         }
 
@@ -1865,6 +1934,11 @@ namespace PinkyAndBrain
             /// The robot movement duration.
             /// </summary>
             public double wDuration;
+
+            /// <summary>
+            /// The delay time between the end of water center reward and the Clue sound.
+            /// </summary>
+            public double wClueDelay;
         };
 
         /// <summary>

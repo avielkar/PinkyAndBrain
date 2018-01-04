@@ -1843,6 +1843,26 @@ namespace PinkyAndBrain
         {
             _cntrlLoop.EnableErrorSound = (sender as CheckBox).Checked;
         }
+
+        /// <summary>
+        /// Handler for event turnning on/off the clue the rat get afet first reward.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void _cbCorrectClueSound_CheckedChanged(object sender, EventArgs e)
+        {
+            _cntrlLoop.EnableClueSoundInCorrectSide = (sender as CheckBox).Checked;
+        }
+
+        /// <summary>
+        /// Handler for event turnning on/off the clue the rat get afet first reward.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void _tbEnableBothSidedClueSound_CheckedChanged(object sender, EventArgs e)
+        {
+            _cntrlLoop.EnableClueSoundInBothSide = (sender as CheckBox).Checked;
+        }
         #endregion MODES
    
         #region PARAMETERS_GROUPBOXFUNCTIONS
@@ -2533,7 +2553,7 @@ namespace PinkyAndBrain
         #endregion
 
         #region HandSounds
-        /// <summary>
+        /// <summary>special
         /// Handler for clicking to play the RewardSound.
         /// </summary>
         /// <param name="sender">The bottun.</param>
