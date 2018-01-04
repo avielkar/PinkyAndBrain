@@ -113,6 +113,11 @@ namespace PinkyAndBrain
         private bool _isEngaged;
 
         /// <summary>
+        /// Dictionary describes all checkboxes names in the gui as keys with their conrol as value.
+        /// </summary>
+        private Dictionary<string, CheckBox> _checkboxesDictionary;
+
+        /// <summary>
         /// The controller api for the YASAKAWA motoman robot.
         /// </summary>
         private MotomanController _motocomController;
@@ -225,6 +230,8 @@ namespace PinkyAndBrain
 
             //set the default file browser protocol path directory.
             SetDefaultProtocolFileBrowserDirectory();
+
+            InitializeCheckBoxesDictionary();
 
             //move the robot to it's home position when startup.
             //avi-insert//
@@ -1750,7 +1757,7 @@ namespace PinkyAndBrain
         /// <param name="e">The param.</param>
         private void _autoRewardsTextBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (_autoRewardsCheckBox.Checked)
+            if (_checkBoxAutoChoice.Checked)
                 _cntrlLoop.AutoReward = true;
             else
                 _cntrlLoop.AutoReward = false;
@@ -1763,7 +1770,7 @@ namespace PinkyAndBrain
         /// <param name="e">The param.</param>
         private void _autoFixation_CheckedChanged(object sender, EventArgs e)
         {
-            if (_autoFixationCheckBox.Checked)
+            if (_checkBoxAutoFixation.Checked)
                 _cntrlLoop.AutoFixation = true;
             else
                 _cntrlLoop.AutoFixation = false;
@@ -1776,7 +1783,7 @@ namespace PinkyAndBrain
         /// <param name="e">The param.</param>
         private void _autoStartcheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (_autoStartCheckBox.Checked)
+            if (_checkBoxAutoStart.Checked)
                 _cntrlLoop.AutoStart = true;
             else
                 _cntrlLoop.AutoStart = false;
@@ -1791,7 +1798,7 @@ namespace PinkyAndBrain
         /// <param name="e">The param.</param>
         private void _fixationOnlyCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (_fixationOnlyCheckBox.Checked)
+            if (_checkBoxFixationOnly.Checked)
                 _cntrlLoop.FixationOnlyMode = true;
             else
                 _cntrlLoop.FixationOnlyMode = false;
@@ -1804,7 +1811,7 @@ namespace PinkyAndBrain
         /// <param name="e">The param.</param>
         private void _breakFixationSoundEnableCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (_breakFixationSoundEnableCheckBox.Checked)
+            if (_checkBoxBreakFixationSoundEnable.Checked)
                 _cntrlLoop.EnableFixationBreakSound = true;
             else
                 _cntrlLoop.EnableFixationBreakSound = false;
@@ -1818,7 +1825,7 @@ namespace PinkyAndBrain
         /// <param name="e">The param.</param>
         private void _autoRewardSound_CheckedChanged(object sender, EventArgs e)
         {
-            if (_autoRewardSound.Checked)
+            if (_checkBoxRewardSound.Checked)
                 _cntrlLoop.RewardSound = true;
             else
                 _cntrlLoop.RewardSound = false;
@@ -1880,24 +1887,18 @@ namespace PinkyAndBrain
             //clear dynamic textboxes and labels from the last uploaded protocol before creating the new dynamic controls..
             ClearDynamicControls();
 
+            //add the labels title for each column.
             AddVariablesLabelsTitles(ref top, left, width, height, eachDistance);
 
-            foreach (string varName in _variablesList._variablesDictionary.Keys)
+            //filter only the variables where the status is not -1 (not for the checkboxes for the gui).
+            foreach (string varName in _variablesList._variablesDictionary.Keys.Where(name => int.Parse(_variablesList._variablesDictionary[name]._description["status"]._ratHouseParameter) != -1))
             {
-                /*Label newLabel = new Label();
-                this.Controls.Add(newLabel);
-                newLabel.Name = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0];
-                newLabel.Text = _variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter[0];
-                newLabel.Width = width - 35;
-                newLabel.Height = height;
-                newLabel.Top = top;
-                newLabel.Left = left;*/
                 ShowVariableLabel(_variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter,
                     top,
                     left,
                     width + 40,
-                    height, 
-                    eachDistance ,
+                    height,
+                    eachDistance,
                     _variablesList._variablesDictionary[varName]._description["tool_tip"]._ratHouseParameter);
 
                 ShowVariableAttributes(varName,
@@ -1906,10 +1907,21 @@ namespace PinkyAndBrain
                     width,
                     height,
                     eachDistance,
-                    750 ,
+                    750,
                     _variablesList._variablesDictionary[varName]._description["color"]._ratHouseParameter);
 
                 top += 35;
+            }
+
+            //filter only the variables where the status is  -1 (for the checkboxes for the gui).
+            foreach (string varName in _variablesList._variablesDictionary.Keys.Where(name => int.Parse(_variablesList._variablesDictionary[name]._description["status"]._ratHouseParameter) == -1))
+            {
+                _checkboxesDictionary[varName].Checked = false;
+
+                if (int.Parse(_variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter) == 1)
+                {
+                    _checkboxesDictionary[varName].Checked = true;
+                }
             }
         }
 
@@ -2145,6 +2157,25 @@ namespace PinkyAndBrain
             }
 
             _dynamicAllocatedTextBoxes.Clear();
+        }
+
+        /// <summary>
+        /// Initializes the checkboxes dictionary with names as key with the control as value.
+        /// </summary>
+        private void InitializeCheckBoxesDictionary()
+        {
+            _checkboxesDictionary = new Dictionary<string, CheckBox>();
+
+            _checkboxesDictionary.Add("AUTO_FIXATION", _checkBoxAutoFixation);
+            _checkboxesDictionary.Add("REWARD_SOUND", _checkBoxRewardSound);
+            _checkboxesDictionary.Add("AUTO_START", _checkBoxAutoStart);
+            _checkboxesDictionary.Add("AUTO_CHOICE", _checkBoxAutoChoice);
+            _checkboxesDictionary.Add("B.F_SOUND_ON", _checkBoxBreakFixationSoundEnable);
+            _checkboxesDictionary.Add("SEC_RESP_CHANCE", _checkboxSecondResponseChance);
+            _checkboxesDictionary.Add("CORRECT_CLUE_SOUND", _checkBoxCorrectClueSound);
+            _checkboxesDictionary.Add("R+L_CLUE_SOUND", _checkBoxEnableBothSidedClueSound);
+            _checkboxesDictionary.Add("ERROR_SOUND", _checkboxErrorSoundOn);
+            _checkboxesDictionary.Add("FIXATION_ONLY", _checkBoxFixationOnly);
         }
 
         /// <summary>

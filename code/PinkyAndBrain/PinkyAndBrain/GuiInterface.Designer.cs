@@ -53,7 +53,7 @@
             this._leftHandRewardCheckBox = new System.Windows.Forms.CheckBox();
             this._digitalHandRewardButton = new System.Windows.Forms.Button();
             this._continiousHandRewardButton = new System.Windows.Forms.Button();
-            this._autoRewardsCheckBox = new System.Windows.Forms.CheckBox();
+            this._checkBoxAutoChoice = new System.Windows.Forms.CheckBox();
             this._varyingControlGroupBox = new System.Windows.Forms.GroupBox();
             this._btnEnagae = new System.Windows.Forms.Button();
             this._btnPark = new System.Windows.Forms.Button();
@@ -86,18 +86,18 @@
             this._onlinePsychGrpahGroupBox = new System.Windows.Forms.GroupBox();
             this._onlinePsychGraphControl = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this._autosGroupBox = new System.Windows.Forms.GroupBox();
-            this._autoStartCheckBox = new System.Windows.Forms.CheckBox();
-            this._autoFixationCheckBox = new System.Windows.Forms.CheckBox();
+            this._checkBoxAutoStart = new System.Windows.Forms.CheckBox();
+            this._checkBoxAutoFixation = new System.Windows.Forms.CheckBox();
             this._warningsGroupBox = new System.Windows.Forms.GroupBox();
             this._ardionoPrtWarningLabel = new System.Windows.Forms.Label();
-            this._autoRewardSound = new System.Windows.Forms.CheckBox();
+            this._checkBoxRewardSound = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this._cbCorrectClueSound = new System.Windows.Forms.CheckBox();
-            this._tbEnableBothSidedClueSound = new System.Windows.Forms.CheckBox();
+            this._checkBoxCorrectClueSound = new System.Windows.Forms.CheckBox();
+            this._checkBoxEnableBothSidedClueSound = new System.Windows.Forms.CheckBox();
             this._checkboxErrorSoundOn = new System.Windows.Forms.CheckBox();
             this._checkboxSecondResponseChance = new System.Windows.Forms.CheckBox();
-            this._breakFixationSoundEnableCheckBox = new System.Windows.Forms.CheckBox();
-            this._fixationOnlyCheckBox = new System.Windows.Forms.CheckBox();
+            this._checkBoxBreakFixationSoundEnable = new System.Windows.Forms.CheckBox();
+            this._checkBoxFixationOnly = new System.Windows.Forms.CheckBox();
             this._groupboxLedsController = new System.Windows.Forms.GroupBox();
             this._textboxLEDBrightness = new System.Windows.Forms.TextBox();
             this._labelBrightness = new System.Windows.Forms.Label();
@@ -321,16 +321,16 @@
             this._continiousHandRewardButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._countiniousHandRewardKeyDown);
             this._continiousHandRewardButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this._continiousHandRewardKeyReleaed);
             // 
-            // _autoRewardsCheckBox
+            // _checkBoxAutoChoice
             // 
-            this._autoRewardsCheckBox.AutoSize = true;
-            this._autoRewardsCheckBox.Location = new System.Drawing.Point(59, 60);
-            this._autoRewardsCheckBox.Name = "_autoRewardsCheckBox";
-            this._autoRewardsCheckBox.Size = new System.Drawing.Size(84, 17);
-            this._autoRewardsCheckBox.TabIndex = 9;
-            this._autoRewardsCheckBox.Text = "Auto Choice";
-            this._autoRewardsCheckBox.UseVisualStyleBackColor = true;
-            this._autoRewardsCheckBox.CheckedChanged += new System.EventHandler(this._autoRewardsTextBox_CheckedChanged);
+            this._checkBoxAutoChoice.AutoSize = true;
+            this._checkBoxAutoChoice.Location = new System.Drawing.Point(59, 60);
+            this._checkBoxAutoChoice.Name = "_checkBoxAutoChoice";
+            this._checkBoxAutoChoice.Size = new System.Drawing.Size(84, 17);
+            this._checkBoxAutoChoice.TabIndex = 9;
+            this._checkBoxAutoChoice.Text = "Auto Choice";
+            this._checkBoxAutoChoice.UseVisualStyleBackColor = true;
+            this._checkBoxAutoChoice.CheckedChanged += new System.EventHandler(this._autoRewardsTextBox_CheckedChanged);
             // 
             // _varyingControlGroupBox
             // 
@@ -629,9 +629,9 @@
             // 
             // _autosGroupBox
             // 
-            this._autosGroupBox.Controls.Add(this._autoStartCheckBox);
-            this._autosGroupBox.Controls.Add(this._autoFixationCheckBox);
-            this._autosGroupBox.Controls.Add(this._autoRewardsCheckBox);
+            this._autosGroupBox.Controls.Add(this._checkBoxAutoStart);
+            this._autosGroupBox.Controls.Add(this._checkBoxAutoFixation);
+            this._autosGroupBox.Controls.Add(this._checkBoxAutoChoice);
             this._autosGroupBox.Location = new System.Drawing.Point(1036, 794);
             this._autosGroupBox.Name = "_autosGroupBox";
             this._autosGroupBox.Size = new System.Drawing.Size(233, 106);
@@ -639,27 +639,27 @@
             this._autosGroupBox.TabStop = false;
             this._autosGroupBox.Text = "Autos";
             // 
-            // _autoStartCheckBox
+            // _checkBoxAutoStart
             // 
-            this._autoStartCheckBox.AutoSize = true;
-            this._autoStartCheckBox.Location = new System.Drawing.Point(59, 14);
-            this._autoStartCheckBox.Name = "_autoStartCheckBox";
-            this._autoStartCheckBox.Size = new System.Drawing.Size(73, 17);
-            this._autoStartCheckBox.TabIndex = 11;
-            this._autoStartCheckBox.Text = "Auto Start";
-            this._autoStartCheckBox.UseVisualStyleBackColor = true;
-            this._autoStartCheckBox.CheckedChanged += new System.EventHandler(this._autoStartcheckBox_CheckedChanged);
+            this._checkBoxAutoStart.AutoSize = true;
+            this._checkBoxAutoStart.Location = new System.Drawing.Point(59, 14);
+            this._checkBoxAutoStart.Name = "_checkBoxAutoStart";
+            this._checkBoxAutoStart.Size = new System.Drawing.Size(73, 17);
+            this._checkBoxAutoStart.TabIndex = 11;
+            this._checkBoxAutoStart.Text = "Auto Start";
+            this._checkBoxAutoStart.UseVisualStyleBackColor = true;
+            this._checkBoxAutoStart.CheckedChanged += new System.EventHandler(this._autoStartcheckBox_CheckedChanged);
             // 
-            // _autoFixationCheckBox
+            // _checkBoxAutoFixation
             // 
-            this._autoFixationCheckBox.AutoSize = true;
-            this._autoFixationCheckBox.Location = new System.Drawing.Point(59, 37);
-            this._autoFixationCheckBox.Name = "_autoFixationCheckBox";
-            this._autoFixationCheckBox.Size = new System.Drawing.Size(87, 17);
-            this._autoFixationCheckBox.TabIndex = 10;
-            this._autoFixationCheckBox.Text = "Auto Fixation";
-            this._autoFixationCheckBox.UseVisualStyleBackColor = true;
-            this._autoFixationCheckBox.CheckedChanged += new System.EventHandler(this._autoFixation_CheckedChanged);
+            this._checkBoxAutoFixation.AutoSize = true;
+            this._checkBoxAutoFixation.Location = new System.Drawing.Point(59, 37);
+            this._checkBoxAutoFixation.Name = "_checkBoxAutoFixation";
+            this._checkBoxAutoFixation.Size = new System.Drawing.Size(87, 17);
+            this._checkBoxAutoFixation.TabIndex = 10;
+            this._checkBoxAutoFixation.Text = "Auto Fixation";
+            this._checkBoxAutoFixation.UseVisualStyleBackColor = true;
+            this._checkBoxAutoFixation.CheckedChanged += new System.EventHandler(this._autoFixation_CheckedChanged);
             // 
             // _warningsGroupBox
             // 
@@ -683,26 +683,26 @@
             this._ardionoPrtWarningLabel.Text = "The COM4 (Arduino) port is not connected-LEDS not work properly";
             this._ardionoPrtWarningLabel.Visible = false;
             // 
-            // _autoRewardSound
+            // _checkBoxRewardSound
             // 
-            this._autoRewardSound.AutoSize = true;
-            this._autoRewardSound.Location = new System.Drawing.Point(9, 60);
-            this._autoRewardSound.Name = "_autoRewardSound";
-            this._autoRewardSound.Size = new System.Drawing.Size(97, 17);
-            this._autoRewardSound.TabIndex = 12;
-            this._autoRewardSound.Text = "Reward Sound";
-            this._autoRewardSound.UseVisualStyleBackColor = true;
-            this._autoRewardSound.CheckedChanged += new System.EventHandler(this._autoRewardSound_CheckedChanged);
+            this._checkBoxRewardSound.AutoSize = true;
+            this._checkBoxRewardSound.Location = new System.Drawing.Point(9, 60);
+            this._checkBoxRewardSound.Name = "_checkBoxRewardSound";
+            this._checkBoxRewardSound.Size = new System.Drawing.Size(97, 17);
+            this._checkBoxRewardSound.TabIndex = 12;
+            this._checkBoxRewardSound.Text = "Reward Sound";
+            this._checkBoxRewardSound.UseVisualStyleBackColor = true;
+            this._checkBoxRewardSound.CheckedChanged += new System.EventHandler(this._autoRewardSound_CheckedChanged);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this._cbCorrectClueSound);
-            this.groupBox1.Controls.Add(this._tbEnableBothSidedClueSound);
+            this.groupBox1.Controls.Add(this._checkBoxCorrectClueSound);
+            this.groupBox1.Controls.Add(this._checkBoxEnableBothSidedClueSound);
             this.groupBox1.Controls.Add(this._checkboxErrorSoundOn);
             this.groupBox1.Controls.Add(this._checkboxSecondResponseChance);
-            this.groupBox1.Controls.Add(this._breakFixationSoundEnableCheckBox);
-            this.groupBox1.Controls.Add(this._autoRewardSound);
-            this.groupBox1.Controls.Add(this._fixationOnlyCheckBox);
+            this.groupBox1.Controls.Add(this._checkBoxBreakFixationSoundEnable);
+            this.groupBox1.Controls.Add(this._checkBoxRewardSound);
+            this.groupBox1.Controls.Add(this._checkBoxFixationOnly);
             this.groupBox1.Location = new System.Drawing.Point(1275, 794);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(203, 106);
@@ -710,27 +710,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Special Modes";
             // 
-            // _cbCorrectClueSound
+            // _checkBoxCorrectClueSound
             // 
-            this._cbCorrectClueSound.AutoSize = true;
-            this._cbCorrectClueSound.Location = new System.Drawing.Point(101, 65);
-            this._cbCorrectClueSound.Name = "_cbCorrectClueSound";
-            this._cbCorrectClueSound.Size = new System.Drawing.Size(118, 17);
-            this._cbCorrectClueSound.TabIndex = 16;
-            this._cbCorrectClueSound.Text = "Correct Clue Sound";
-            this._cbCorrectClueSound.UseVisualStyleBackColor = true;
-            this._cbCorrectClueSound.CheckedChanged += new System.EventHandler(this._cbCorrectClueSound_CheckedChanged);
+            this._checkBoxCorrectClueSound.AutoSize = true;
+            this._checkBoxCorrectClueSound.Location = new System.Drawing.Point(101, 65);
+            this._checkBoxCorrectClueSound.Name = "_checkBoxCorrectClueSound";
+            this._checkBoxCorrectClueSound.Size = new System.Drawing.Size(118, 17);
+            this._checkBoxCorrectClueSound.TabIndex = 16;
+            this._checkBoxCorrectClueSound.Text = "Correct Clue Sound";
+            this._checkBoxCorrectClueSound.UseVisualStyleBackColor = true;
+            this._checkBoxCorrectClueSound.CheckedChanged += new System.EventHandler(this._cbCorrectClueSound_CheckedChanged);
             // 
-            // _tbEnableBothSidedClueSound
+            // _checkBoxEnableBothSidedClueSound
             // 
-            this._tbEnableBothSidedClueSound.AutoSize = true;
-            this._tbEnableBothSidedClueSound.Location = new System.Drawing.Point(101, 42);
-            this._tbEnableBothSidedClueSound.Name = "_tbEnableBothSidedClueSound";
-            this._tbEnableBothSidedClueSound.Size = new System.Drawing.Size(104, 17);
-            this._tbEnableBothSidedClueSound.TabIndex = 15;
-            this._tbEnableBothSidedClueSound.Text = "R+L Clue Sound";
-            this._tbEnableBothSidedClueSound.UseVisualStyleBackColor = true;
-            this._tbEnableBothSidedClueSound.CheckedChanged += new System.EventHandler(this._tbEnableBothSidedClueSound_CheckedChanged);
+            this._checkBoxEnableBothSidedClueSound.AutoSize = true;
+            this._checkBoxEnableBothSidedClueSound.Location = new System.Drawing.Point(101, 42);
+            this._checkBoxEnableBothSidedClueSound.Name = "_checkBoxEnableBothSidedClueSound";
+            this._checkBoxEnableBothSidedClueSound.Size = new System.Drawing.Size(104, 17);
+            this._checkBoxEnableBothSidedClueSound.TabIndex = 15;
+            this._checkBoxEnableBothSidedClueSound.Text = "R+L Clue Sound";
+            this._checkBoxEnableBothSidedClueSound.UseVisualStyleBackColor = true;
+            this._checkBoxEnableBothSidedClueSound.CheckedChanged += new System.EventHandler(this._tbEnableBothSidedClueSound_CheckedChanged);
             // 
             // _checkboxErrorSoundOn
             // 
@@ -754,27 +754,27 @@
             this._checkboxSecondResponseChance.UseVisualStyleBackColor = true;
             this._checkboxSecondResponseChance.CheckedChanged += new System.EventHandler(this._checkboxSecondResponseChance_CheckedChanged);
             // 
-            // _breakFixationSoundEnableCheckBox
+            // _checkBoxBreakFixationSoundEnable
             // 
-            this._breakFixationSoundEnableCheckBox.AutoSize = true;
-            this._breakFixationSoundEnableCheckBox.Location = new System.Drawing.Point(9, 37);
-            this._breakFixationSoundEnableCheckBox.Name = "_breakFixationSoundEnableCheckBox";
-            this._breakFixationSoundEnableCheckBox.Size = new System.Drawing.Size(93, 17);
-            this._breakFixationSoundEnableCheckBox.TabIndex = 1;
-            this._breakFixationSoundEnableCheckBox.Text = "B.F Sound On";
-            this._breakFixationSoundEnableCheckBox.UseVisualStyleBackColor = true;
-            this._breakFixationSoundEnableCheckBox.CheckedChanged += new System.EventHandler(this._breakFixationSoundEnableCheckBox_CheckedChanged);
+            this._checkBoxBreakFixationSoundEnable.AutoSize = true;
+            this._checkBoxBreakFixationSoundEnable.Location = new System.Drawing.Point(9, 37);
+            this._checkBoxBreakFixationSoundEnable.Name = "_checkBoxBreakFixationSoundEnable";
+            this._checkBoxBreakFixationSoundEnable.Size = new System.Drawing.Size(93, 17);
+            this._checkBoxBreakFixationSoundEnable.TabIndex = 1;
+            this._checkBoxBreakFixationSoundEnable.Text = "B.F Sound On";
+            this._checkBoxBreakFixationSoundEnable.UseVisualStyleBackColor = true;
+            this._checkBoxBreakFixationSoundEnable.CheckedChanged += new System.EventHandler(this._breakFixationSoundEnableCheckBox_CheckedChanged);
             // 
-            // _fixationOnlyCheckBox
+            // _checkBoxFixationOnly
             // 
-            this._fixationOnlyCheckBox.AutoSize = true;
-            this._fixationOnlyCheckBox.Location = new System.Drawing.Point(9, 19);
-            this._fixationOnlyCheckBox.Name = "_fixationOnlyCheckBox";
-            this._fixationOnlyCheckBox.Size = new System.Drawing.Size(86, 17);
-            this._fixationOnlyCheckBox.TabIndex = 0;
-            this._fixationOnlyCheckBox.Text = "Fixation Only";
-            this._fixationOnlyCheckBox.UseVisualStyleBackColor = true;
-            this._fixationOnlyCheckBox.CheckedChanged += new System.EventHandler(this._fixationOnlyCheckBox_CheckedChanged);
+            this._checkBoxFixationOnly.AutoSize = true;
+            this._checkBoxFixationOnly.Location = new System.Drawing.Point(9, 19);
+            this._checkBoxFixationOnly.Name = "_checkBoxFixationOnly";
+            this._checkBoxFixationOnly.Size = new System.Drawing.Size(86, 17);
+            this._checkBoxFixationOnly.TabIndex = 0;
+            this._checkBoxFixationOnly.Text = "Fixation Only";
+            this._checkBoxFixationOnly.UseVisualStyleBackColor = true;
+            this._checkBoxFixationOnly.CheckedChanged += new System.EventHandler(this._fixationOnlyCheckBox_CheckedChanged);
             // 
             // _groupboxLedsController
             // 
@@ -782,7 +782,7 @@
             this._groupboxLedsController.Controls.Add(this._labelBrightness);
             this._groupboxLedsController.Controls.Add(this._textboxPercentageOfTurnOnLeds);
             this._groupboxLedsController.Controls.Add(this._labelPercentageOfturnedOnLeds);
-            this._groupboxLedsController.Location = new System.Drawing.Point(1501, 799);
+            this._groupboxLedsController.Location = new System.Drawing.Point(1484, 794);
             this._groupboxLedsController.Name = "_groupboxLedsController";
             this._groupboxLedsController.Size = new System.Drawing.Size(145, 106);
             this._groupboxLedsController.TabIndex = 23;
@@ -960,16 +960,16 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox _onlinePsychGrpahGroupBox;
         private System.Windows.Forms.DataVisualization.Charting.Chart _onlinePsychGraphControl;
-        private System.Windows.Forms.CheckBox _autoRewardsCheckBox;
+        private System.Windows.Forms.CheckBox _checkBoxAutoChoice;
         private System.Windows.Forms.GroupBox _autosGroupBox;
-        private System.Windows.Forms.CheckBox _autoStartCheckBox;
-        private System.Windows.Forms.CheckBox _autoFixationCheckBox;
+        private System.Windows.Forms.CheckBox _checkBoxAutoStart;
+        private System.Windows.Forms.CheckBox _checkBoxAutoFixation;
         private System.Windows.Forms.GroupBox _warningsGroupBox;
         private System.Windows.Forms.Label _ardionoPrtWarningLabel;
-        private System.Windows.Forms.CheckBox _autoRewardSound;
+        private System.Windows.Forms.CheckBox _checkBoxRewardSound;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox _fixationOnlyCheckBox;
-        private System.Windows.Forms.CheckBox _breakFixationSoundEnableCheckBox;
+        private System.Windows.Forms.CheckBox _checkBoxFixationOnly;
+        private System.Windows.Forms.CheckBox _checkBoxBreakFixationSoundEnable;
         private System.Windows.Forms.GroupBox _groupboxLedsController;
         private System.Windows.Forms.TextBox _textboxPercentageOfTurnOnLeds;
         private System.Windows.Forms.Label _labelPercentageOfturnedOnLeds;
@@ -987,7 +987,7 @@
         private System.Windows.Forms.Button _btnBreakFixationSound;
         private System.Windows.Forms.Button _btnRewardSound;
         private System.Windows.Forms.CheckBox _checkboxErrorSoundOn;
-        private System.Windows.Forms.CheckBox _cbCorrectClueSound;
-        private System.Windows.Forms.CheckBox _tbEnableBothSidedClueSound;
+        private System.Windows.Forms.CheckBox _checkBoxCorrectClueSound;
+        private System.Windows.Forms.CheckBox _checkBoxEnableBothSidedClueSound;
     }
 }
