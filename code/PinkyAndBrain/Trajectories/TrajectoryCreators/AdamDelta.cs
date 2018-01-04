@@ -188,7 +188,7 @@ namespace Trajectories
             else if(_stimulusType == 2)
             {
                 multiplyRatDistance = new Tuple<double, double, double>(0, 0, 0);
-                multiplyLandscapeDistance = CreateMultiplyTuple(180 + _headingDirection, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
+                multiplyLandscapeDistance = CreateMultiplyTuple(_headingDirection, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
             }
             //if not to move the landscapeHouseRobot.
             else if (_stimulusType == 3)
@@ -200,13 +200,13 @@ namespace Trajectories
             else if (_stimulusType == 4)
             {
                 multiplyRatDistance = CreateMultiplyTuple(_headingDirection - _deltaHeading / 2, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
-                multiplyLandscapeDistance = CreateMultiplyTuple(180 + _headingDirection + _deltaHeading / 2, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
+                multiplyLandscapeDistance = CreateMultiplyTuple(_headingDirection + _deltaHeading / 2, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
             }
             //_stimulusType = 5 move the landscapeHouseParameter with  positive delta.
             else
             {
                 multiplyRatDistance = CreateMultiplyTuple(_headingDirection + _deltaHeading / 2, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
-                multiplyLandscapeDistance = CreateMultiplyTuple(180 + _headingDirection - _deltaHeading / 2, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
+                multiplyLandscapeDistance = CreateMultiplyTuple(_headingDirection - _deltaHeading / 2, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
             }
 
             //multuply the distance vectors for ratHouseRobot.
@@ -224,9 +224,9 @@ namespace Trajectories
             {
                 Tuple<double, double, double> multiplyLandscapeDistanceOriginal;
                 if (_stimulusType == 4)
-                    multiplyLandscapeDistanceOriginal = CreateMultiplyTuple(180 + _headingDirection, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
+                    multiplyLandscapeDistanceOriginal = CreateMultiplyTuple(_headingDirection, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
                 else
-                    multiplyLandscapeDistanceOriginal = CreateMultiplyTuple(180 + _headingDirection, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
+                    multiplyLandscapeDistanceOriginal = CreateMultiplyTuple(_headingDirection, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
                 //decreaere the needed value for the delta to the landscapeHouseRobot.
                 lateralLandscapeHouse = lateralLandscapeHouse - multiplyLandscapeDistanceOriginal.Item1 * ratHouseDistanceVector;
                 surgeLandscapeHouse = surgeLandscapeHouse - multiplyLandscapeDistanceOriginal.Item2 * ratHouseDistanceVector;

@@ -31,7 +31,7 @@ namespace VaryingValuesGenerators
         /// <param name="vars"></param>
         public override void SetVariablesValues(Variables vars)
         {
-            _varyingVariables = vars.FilterVariablesByStatus("2");
+            _varyingVariables = vars.FilterVariablesByStatuses(new string[]{"2" , "6"});
         }
 
         /// <summary>
@@ -149,16 +149,25 @@ namespace VaryingValuesGenerators
             Dictionary<string, Vector<double>> varyingVectorsList = new Dictionary<string, Vector<double>>();
 
             #region MAKING_VARYING_VECTOR_LIST
-            foreach (string varName in _varyingVariables._variablesDictionary.Keys)
+            foreach (KeyValuePair<string, Variable> item in _varyingVariables._variablesDictionary)
             {
-                double low_bound = double.Parse(_varyingVariables._variablesDictionary[varName]._description["low_bound"]._ratHouseParameter);
-                double high_bound = double.Parse(_varyingVariables._variablesDictionary[varName]._description["high_bound"]._ratHouseParameter);
-                double increament = double.Parse(_varyingVariables._variablesDictionary[varName]._description["increament"]._ratHouseParameter);
+                Vector<double> oneVarVector;
 
-                //add the vector to the return list.
-                Vector<double> oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament);
+                if (item.Value._description["status"]._ratHouseParameter == "2")
+                {
+                    double low_bound = double.Parse(item.Value._description["low_bound"]._ratHouseParameter);
+                    double high_bound = double.Parse(item.Value._description["high_bound"]._ratHouseParameter);
+                    double increament = double.Parse(item.Value._description["increament"]._ratHouseParameter);
 
-                varyingVectorsList.Add(varName, oneVarVector);
+                    //add the vector to the return list.
+                    oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament);
+                }
+                else // equals "6"
+                {
+                    oneVarVector = CreateVectorFromStringVector(item.Value._description["parameters"]._ratHouseParameter);
+                }
+
+                varyingVectorsList.Add(item.Key, oneVarVector);
             }
             #endregion MAKING_VARYING_VECTOR_LIST
 
@@ -185,6 +194,25 @@ namespace VaryingValuesGenerators
             }
 
             return createdVector;
+        }
+
+        /// <summary>
+        /// Converts a tring numbers array to a double Vector.
+        /// </summary>
+        /// <param name="vector">The string vector nums.</param>
+        /// <returns>The double vector.</returns>
+        public Vector<double> CreateVectorFromStringVector(string vector)
+        {
+            string[] seperatedValues = vector.Split(' ');
+
+            double[] seperatedDoubleValues = new double[seperatedValues.Length];
+
+            for (int i = 0; i < seperatedValues.Length; i++)
+            {
+                seperatedDoubleValues[i] = double.Parse(seperatedValues[i]);
+            }
+
+            return Vector<double>.Build.Dense(seperatedDoubleValues);
         }
         #endregion FUNCTIONS
     }

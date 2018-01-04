@@ -31,7 +31,7 @@ namespace VaryingValuesGenerators
         /// <param name="vars"></param>
         public override void SetVariablesValues(Variables vars)
         {
-            _varyingVariables = vars.FilterVariablesByStatus("2");
+            _varyingVariables = vars.FilterVariablesByStatuses(new string []{"2" , "6"});
         }
 
         /// <summary>
