@@ -1872,9 +1872,22 @@ namespace PinkyAndBrain
                 newLabel.Height = height;
                 newLabel.Top = top;
                 newLabel.Left = left;*/
-                ShowVariableLabel(_variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter, top, left, width + 40, height, eachDistance, _variablesList._variablesDictionary[varName]._description["tool_tip"]._ratHouseParameter);
+                ShowVariableLabel(_variablesList._variablesDictionary[varName]._description["nice_name"]._ratHouseParameter,
+                    top,
+                    left,
+                    width + 40,
+                    height, 
+                    eachDistance ,
+                    _variablesList._variablesDictionary[varName]._description["tool_tip"]._ratHouseParameter);
 
-                ShowVariableAttributes(varName, top, left, width, height, eachDistance, 750);
+                ShowVariableAttributes(varName,
+                    top,
+                    left,
+                    width,
+                    height,
+                    eachDistance,
+                    750 ,
+                    _variablesList._variablesDictionary[varName]._description["color"]._ratHouseParameter);
 
                 top += 35;
             }
@@ -1921,7 +1934,8 @@ namespace PinkyAndBrain
         /// <param name="height">The height for each textbox in the line of the attribute.</param>
         /// <param name="eachDistance">The distance between each textbox of the same attribute in the same line.</param>
         /// <param name="offset">The offset for each textbox of the attribute from the left.</param>
-        private void ShowVariableAttributes(string varName, int top, int left, int width, int height, int eachDistance, int offset)
+        /// <param name="color">The color to be in the background of wach textbox.</param>
+        private void ShowVariableAttributes(string varName, int top, int left, int width, int height, int eachDistance, int offset , string color)
         {
             //string builder for making the text to show to the gui.
             StringBuilder sBuilder = new StringBuilder();
@@ -1981,6 +1995,8 @@ namespace PinkyAndBrain
             incrementTextBox.Left = offset;
             incrementTextBox.Top = top;
             incrementTextBox.Width = width;
+            //add the color to the textbox
+            incrementTextBox.BackColor = Color.FromName(color);
 
             //function to change the variable list dictionary according to changes when leave the textbox.
             incrementTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "increament"));
@@ -2004,6 +2020,8 @@ namespace PinkyAndBrain
             highBoundTextBox.Left = offset;
             highBoundTextBox.Top = top;
             highBoundTextBox.Width = width;
+            //add the colr to the textbox
+            highBoundTextBox.BackColor = Color.FromName(color);
 
             //function to change the variable list dictionary according to changes when leave the textbox.
             highBoundTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "high_bound"));
@@ -2027,6 +2045,8 @@ namespace PinkyAndBrain
             lowBoundTextBox.Left = offset;
             lowBoundTextBox.Top = top;
             lowBoundTextBox.Width = width;
+            //add the color to the textbox
+            lowBoundTextBox.BackColor = Color.FromName(color);
 
             //function to change the variable list dictionary according to changes when leave the textbox.
             lowBoundTextBox.LostFocus += new EventHandler((sender, e) => VariableTextBox_TextBoxLeaved(sender, e, varName, "low_bound"));
@@ -2076,6 +2096,9 @@ namespace PinkyAndBrain
                     break;
 
             }
+
+            //add the color to the texctbox
+            parametersTextBox.BackColor = Color.FromName(color);
 
             _dynamicParametersPanel.Controls.Add(parametersTextBox);
             _dynamicAllocatedTextBoxes.Add(varName + "parameters", parametersTextBox);
