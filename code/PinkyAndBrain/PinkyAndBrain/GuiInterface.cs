@@ -80,7 +80,12 @@ namespace PinkyAndBrain
         private MLApp.MLApp _matlabApp;
 
         /// <summary>
-        /// The selected protocol file name.
+        /// The selected protocol file full name.
+        /// </summary>
+        private string _selectedProtocolFullName;
+
+        /// <summary>
+        /// The selected protocol name with no .xlsx extension and ('-') additional name.
         /// </summary>
         private string _selectedProtocolName;
 
@@ -255,8 +260,8 @@ namespace PinkyAndBrain
         /// <returns>The mathed IVaryingVectorGenerator for the protocol type.</returns>
         private IVaryingValuesGenerator DecideVaryinVectorsGeneratorByProtocolName()
         {
-            //take the name before the .xlsx
-            switch (_protocolsComboBox.Text.Split('.')[0])
+            //take the name before the .xlsx and the generic name before the additional name (if added with '-' char).
+            switch (_selectedProtocolName)
             {
                 case "ThreeStepAdaptation":
                 case "Azimuth1D":
@@ -745,10 +750,12 @@ namespace PinkyAndBrain
         private void _protocolsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //update the name of the selected protocol.
-            _selectedProtocolName = _protocolsComboBox.SelectedItem.ToString();
+            _selectedProtocolFullName = _protocolsComboBox.SelectedItem.ToString();
+            //delete the extension and the additional name from the full name to get the short name.
+            _selectedProtocolName = _selectedProtocolFullName.Split('.')[0].Split('-')[0];
 
             //_protocolsComboBox.SelectedItem = _protocolsComboBox.Items[0];
-            SetVariables(_protoclsDirPath + "\\" + _selectedProtocolName);
+            SetVariables(_protoclsDirPath + "\\" + _selectedProtocolFullName);
             ShowVariablesToGui();
         }
 
@@ -890,13 +897,13 @@ namespace PinkyAndBrain
                             //need to be changed according to parameters added to which trajectoryname to be called from the excel file.
                             //string trajectoryCreatorName = _variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter[0];
                             //int trajectoryCreatorNum = int.Parse(_variablesList._variablesDictionary["TRAJECTORY_CREATOR"]._description["parameters"]._ratHouseParameter);
-                            //split is to take the protocol name with no .xlsx
-                            ITrajectoryCreator trajectoryCreator = DecideTrajectoryCreatorByProtocolName(_protocolsComboBox.Text.Split('.')[0]);
+                            ITrajectoryCreator trajectoryCreator = DecideTrajectoryCreatorByProtocolName(_selectedProtocolName);
 
                             _cntrlLoop.NumOfRepetitions = int.Parse(_numOfRepetitionsTextBox.Text.ToString());
                             _cntrlLoop.NumOfStickOn = int.Parse(_textboxStickOnNumber.Text.ToString());
                             _cntrlLoop.PercentageOfTurnedOnLeds = double.Parse(_textboxPercentageOfTurnOnLeds.Text.ToString());
                             _cntrlLoop.LEDBrightness = int.Parse(_textboxLEDBrightness.Text.ToString());
+                            _cntrlLoop.ProtocolFullName = _selectedProtocolFullName.Split('.')[0];//delete the.xlsx extension from the protocol file name.
                             _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreator);
                         }
                     }

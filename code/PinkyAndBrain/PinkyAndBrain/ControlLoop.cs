@@ -72,7 +72,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// The name of the selected protocol.
         /// </summary>
-        private string _selectedProtocolName;
+        public string ProtocolFullName;
 
         /// <summary>
         /// The current varying trial combination that should be selected to make the trajectory from.
@@ -1442,6 +1442,7 @@ namespace PinkyAndBrain
                         StaticVariables = _staticVariablesList,
                         VaryingVariables = _crossVaryingVals[_currentVaryingTrialIndex],
                         TimingsVariables = _currentTrialTimings,
+                        ProtocolName = ProtocolFullName,
                         RatName = RatName,
                         StudentName =StudentName,
                         RatDecison = _currentRatDecision,

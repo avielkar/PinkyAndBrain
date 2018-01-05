@@ -50,6 +50,12 @@ namespace PinkyAndBrain
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
 
+            //apend the protocol full name
+            lineBuilder.Append("Protocol Name:");
+            lineBuilder.Append(trialData.ProtocolName);
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
             //append the rat name.
             lineBuilder.Append("Rat Name:");
             lineBuilder.Append(trialData.RatName);
@@ -204,6 +210,11 @@ namespace PinkyAndBrain
         /// The student name that makes the experiment.
         /// </summary>
         public string StudentName { get; set; }
+
+        /// <summary>
+        /// The running protocol file name.
+        /// </summary>
+        public string ProtocolName { get; set; }
 
         /// <summary>
         /// The rat decision for the stimulus direction.
