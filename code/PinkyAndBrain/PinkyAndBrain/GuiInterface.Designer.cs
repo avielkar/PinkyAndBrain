@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -106,6 +106,9 @@
             this._groupboxHandsSounds = new System.Windows.Forms.GroupBox();
             this._btnBreakFixationSound = new System.Windows.Forms.Button();
             this._btnRewardSound = new System.Windows.Forms.Button();
+            this._btnSaveProtocol = new System.Windows.Forms.Button();
+            this._textboxNewProtocolName = new System.Windows.Forms.TextBox();
+            this._labelNewProtocolName = new System.Windows.Forms.Label();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -611,17 +614,17 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea2.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend3);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series3);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
@@ -854,11 +857,40 @@
             this._btnRewardSound.UseVisualStyleBackColor = true;
             this._btnRewardSound.Click += new System.EventHandler(this._btnRewardSound_Click);
             // 
+            // _btnSaveProtocol
+            // 
+            this._btnSaveProtocol.Location = new System.Drawing.Point(576, 47);
+            this._btnSaveProtocol.Name = "_btnSaveProtocol";
+            this._btnSaveProtocol.Size = new System.Drawing.Size(75, 23);
+            this._btnSaveProtocol.TabIndex = 25;
+            this._btnSaveProtocol.Text = "Save Protocol";
+            this._btnSaveProtocol.UseVisualStyleBackColor = true;
+            this._btnSaveProtocol.Click += new System.EventHandler(this._btnSaveProtocol_Click);
+            // 
+            // _textboxNewProtocolName
+            // 
+            this._textboxNewProtocolName.Location = new System.Drawing.Point(470, 49);
+            this._textboxNewProtocolName.Name = "_textboxNewProtocolName";
+            this._textboxNewProtocolName.Size = new System.Drawing.Size(100, 20);
+            this._textboxNewProtocolName.TabIndex = 26;
+            // 
+            // _labelNewProtocolName
+            // 
+            this._labelNewProtocolName.AutoSize = true;
+            this._labelNewProtocolName.Location = new System.Drawing.Point(362, 54);
+            this._labelNewProtocolName.Name = "_labelNewProtocolName";
+            this._labelNewProtocolName.Size = new System.Drawing.Size(102, 13);
+            this._labelNewProtocolName.TabIndex = 27;
+            this._labelNewProtocolName.Text = "New Protocol Name";
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1678, 912);
+            this.Controls.Add(this._labelNewProtocolName);
+            this.Controls.Add(this._textboxNewProtocolName);
+            this.Controls.Add(this._btnSaveProtocol);
             this.Controls.Add(this._groupboxHandsSounds);
             this.Controls.Add(this._groupboxLedsController);
             this.Controls.Add(this.groupBox1);
@@ -989,5 +1021,8 @@
         private System.Windows.Forms.CheckBox _checkboxErrorSoundOn;
         private System.Windows.Forms.CheckBox _checkBoxCorrectClueSound;
         private System.Windows.Forms.CheckBox _checkBoxEnableBothSidedClueSound;
+        private System.Windows.Forms.Button _btnSaveProtocol;
+        private System.Windows.Forms.TextBox _textboxNewProtocolName;
+        private System.Windows.Forms.Label _labelNewProtocolName;
     }
 }

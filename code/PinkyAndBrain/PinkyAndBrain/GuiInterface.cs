@@ -50,14 +50,14 @@ namespace PinkyAndBrain
         private Dictionary<string , Control> _dynamicAllocatedTextBoxes;
 
         /// <summary>
+        /// Dictionary describes all checkboxes names in the gui as keys with their conrol as value.
+        /// </summary>
+        private Dictionary<string, CheckBox> _checkboxesDictionary;
+
+        /// <summary>
         /// A list holds all the titles for the variables attribute to show in the title of the table.
         /// </summary>
         private List<Label> _titlesLabelsList;
-
-        /// <summary>
-        /// Holds the trajectory creator object.
-        /// </summary>
-        private TrajectoryCreatorHandler _trajectoryCreator;
 
         /// <summary>
         /// Holds the AcrossVectorValuesGenerator generator.
@@ -106,21 +106,9 @@ namespace PinkyAndBrain
         private object _lockerPauseResumeButton;
 
         /// <summary>
-        /// Indicates if can press the start/stop button (that only after makeTrial presses on the init of the program or on changing parameters.
-        /// When false - it means that casnt start the trials because no makeTrial presses.
-        /// When true - it means that the make trials presses for the most updates properties in the gui and can press atsrt the trials.
-        /// </summary>
-        private bool _makeTrialsButtonPress;
-
-        /// <summary>
         /// Indicates if the robot was engaged or disengage.
         /// </summary>
         private bool _isEngaged;
-
-        /// <summary>
-        /// Dictionary describes all checkboxes names in the gui as keys with their conrol as value.
-        /// </summary>
-        private Dictionary<string, CheckBox> _checkboxesDictionary;
 
         /// <summary>
         /// The controller api for the YASAKAWA motoman robot.
@@ -803,7 +791,17 @@ namespace PinkyAndBrain
         {
             _excelLoader.ReadProtocolFile(dirPath , ref _variablesList);
         }
-        #endregion
+
+        /// <summary>
+        /// Save the variables in the gui to an excell sheet parameters file.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The args.</param>
+        private void _btnSaveProtocol_Click(object sender, EventArgs e)
+        {
+            _excelLoader.WriteProtocolFile(_protoclsDirPath + @"\" + _textboxNewProtocolName.Text.ToString(), _variablesList, _checkboxesDictionary);
+        }
+        #endregion PROTOCOL_GROUPBOX_FUNCTION
 
         #region SELECTED_RAT_GROUPBOX_FUNCTIONS
         /// <summary>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows.Forms;
 
 //For excel file reading.
 using System.Runtime.InteropServices;
@@ -93,12 +94,100 @@ namespace PinkyAndBrain
 
                 //adding the variable (line in the excel data file into the dictionary of variables with the variable name as the key).
                 variables._variablesDictionary.Add(var._description["name"]._ratHouseParameter, var);
-
             }
 
             //clost the file.
             xlWorkbook.Close();
+        }
 
+        /// <summary>
+        /// Writes a protocol file to the protocols folder.
+        /// </summary>
+        /// <param name="protocolFilePath">The protocol folder path with protocol name.</param>
+        /// <param name="variables">The variables to write to the protocol.</param>
+        /// <param name="checkboxesDictionary">A dictionary consists all gui checkboxes and their states.</param>
+        public void WriteProtocolFile(string protocolFilePath , Variables variables , Dictionary<string, CheckBox> checkboxesDictionary)
+        {
+            Excel.Workbook newProtocolFile = _xlApp.Workbooks.Add();
+
+            Excel.Worksheet workSheet = newProtocolFile.Worksheets.Add();
+
+            //change the sheet name to variables.
+            workSheet.Name = "variables";
+
+            //add the first line of heades titles to each column
+            int columnIndex = 1;
+            foreach (string title in variables._variablesDictionary.ElementAt(0).Value._description.Keys)
+            {
+                //add the title for each column of the excel file.
+                workSheet.Cells[1, columnIndex] = title;
+                //move next column title.
+                columnIndex++;
+            }
+
+            //save each line according to the variable parameters.
+            int rowIndex = 2;
+            foreach (KeyValuePair<string, Variable> item in variables._variablesDictionary)
+            {
+                //reset the column index for the new line.
+                columnIndex = 1;
+
+                foreach (string titleName in item.Value._description.Keys)
+                {
+                    //write the column to the variable
+                    workSheet.Cells[rowIndex, columnIndex] = item.Value._description[titleName]._ratHouseParameter;
+                    //go next column for the same variable.
+                    columnIndex++;
+                }
+
+                //go next line (for next variable)
+                rowIndex++;
+            }
+
+            //add to each checkbox in the gui it's state.
+            foreach (KeyValuePair<string , CheckBox> item in checkboxesDictionary)
+            {
+                //reset the column index for the new line.
+                columnIndex = 1;
+
+                foreach (string titleName in  variables._variablesDictionary.ElementAt(0).Value._description.Keys)
+                {
+                    //add the name of the variable checkbox.
+                    if (titleName == "name")
+                    {
+                        workSheet.Cells[rowIndex, columnIndex] = item.Key;
+                    }
+                    else if (titleName == "parameters")
+                    {
+                        //write the column to the variable
+                        workSheet.Cells[rowIndex, columnIndex] = item.Value.Checked ? "1" : "0";
+                    }
+                    else if(titleName == "status")
+                    {
+                        //write the column to the variable
+                        workSheet.Cells[rowIndex, columnIndex] = "-1";
+                    }
+                    else
+                    {
+                        //write the column to the variable
+                        workSheet.Cells[rowIndex, columnIndex] = "0";
+                    }
+
+                    //go next column for the same variable.
+                    columnIndex++;
+                }
+
+                //move to next line.
+                rowIndex++;
+            }
+
+            try//it is for the event when the file with the same name exists and the user cnceked the saving.
+            {
+                //save the file and close it.
+                newProtocolFile.SaveAs(protocolFilePath + ".xlsx");
+                newProtocolFile.Close();
+            }
+            catch { }
         }
 
         /// <summary>
