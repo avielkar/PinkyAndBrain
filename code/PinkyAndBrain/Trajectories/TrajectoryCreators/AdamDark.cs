@@ -219,18 +219,12 @@ namespace Trajectories
             Vector<double> surgeLandscapeHouse = multiplyLandscapeDistance.Item2 * ratHouseDistanceVector;
             Vector<double> heaveLandscapeHouse = multiplyLandscapeDistance.Item3 * ratHouseDistanceVector;
 
-            //ask Adam what to do here because ther is a proble with the delta.
             if (_stimulusType == 4 || _stimulusType == 5)
             {
-                Tuple<double, double, double> multiplyLandscapeDistanceOriginal;
-                if (_stimulusType == 4)
-                    multiplyLandscapeDistanceOriginal = CreateMultiplyTuple(_headingDirection, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
-                else
-                    multiplyLandscapeDistanceOriginal = CreateMultiplyTuple(_headingDirection, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
                 //decreaere the needed value for the delta to the landscapeHouseRobot.
-                lateralLandscapeHouse = lateralLandscapeHouse - multiplyLandscapeDistanceOriginal.Item1 * ratHouseDistanceVector;
-                surgeLandscapeHouse = surgeLandscapeHouse - multiplyLandscapeDistanceOriginal.Item2 * ratHouseDistanceVector;
-                heaveLandscapeHouse = heaveLandscapeHouse - multiplyLandscapeDistanceOriginal.Item3 * ratHouseDistanceVector;
+                lateralLandscapeHouse = lateralLandscapeHouse - lateralRatHouse;
+                surgeLandscapeHouse = surgeLandscapeHouse - surgeRatHouse;
+                heaveLandscapeHouse = heaveLandscapeHouse - heaveRatHouse;
             }
 
             Trajectory ratHouseTrajectory = new Trajectory();
