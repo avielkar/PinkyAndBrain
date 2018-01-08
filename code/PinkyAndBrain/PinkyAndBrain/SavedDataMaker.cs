@@ -357,7 +357,7 @@ namespace PinkyAndBrain
                 "BreakFixationSoundOn:" + BreakFixationSoundOn + "\r\n" +
                 "ErrorChoiceSoundOn:" + ErrorChoiceSouunOn + "\r\n" +
                 "EnableClueSoundInBothSide:" + EnableClueSoundInBothSide + "\r\n" +
-                "EnableClueSoundInCorrectSide" + EnableClueSoundInCorrectSide + "\r\n";
+                "EnableClueSoundInCorrectSide:" + EnableClueSoundInCorrectSide + "\r\n";
         }
     }
 
