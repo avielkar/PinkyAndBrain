@@ -1225,7 +1225,13 @@ namespace PinkyAndBrain
                 case 4://vistibular and visual both with delta+ for visual.
                 case 5://vistibular and visual both with delta+ for vistibular.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
-                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both);
+                    double deltaHeading = 0;
+                    if (_staticVariablesList.ContainsKey("DELTA "))
+                        deltaHeading = _staticVariablesList["DELTA "];
+                    else if (_crossVaryingVals[_currentVaryingTrialIndex].Keys.Contains("DELTA "))
+                        deltaHeading = _crossVaryingVals[_currentVaryingTrialIndex]["DELTA "];
+                    //if delta is 0 move only the R1 robot.
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, (deltaHeading!=0)?MotomanProtocolFileCreator.UpdateJobType.Both:MotomanProtocolFileCreator.UpdateJobType.R1Only);
                     robotMotion = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
 
                     //also send the AlphaOmega that motion forward starts.
@@ -1740,7 +1746,13 @@ namespace PinkyAndBrain
 
                 case 4://vistibular and visual both with +delta for visual.
                 case 5://vistibular and visual both with -delta for visual.
-                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both , true);
+                    //move only R1 if delta is 0
+                    double deltaHeading = 0;
+                    if (_staticVariablesList.ContainsKey("DELTA "))
+                        deltaHeading = _staticVariablesList["DELTA "];
+                    else if (_crossVaryingVals[_currentVaryingTrialIndex].Keys.Contains("DELTA "))
+                        deltaHeading = _crossVaryingVals[_currentVaryingTrialIndex]["DELTA "];
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, (deltaHeading != 0) ? MotomanProtocolFileCreator.UpdateJobType.Both : MotomanProtocolFileCreator.UpdateJobType.R1Only, true);
                     break;
 
                 default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
