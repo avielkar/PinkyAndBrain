@@ -11,6 +11,8 @@ namespace VaryingValuesGenerators
 {
     public class VaryingValuesGeneratorHeadingDiscrimination:IVaryingValuesGenerator
     {
+        private bool _containsStimulusType0;
+
         #region CONSTRUCTOR
         /// <summary>
         /// Default constructor.
@@ -145,6 +147,8 @@ namespace VaryingValuesGenerators
             //a list include all varying vectors by themselves only.
             Dictionary<string, Vector<double>> varyingVectorsList = new Dictionary<string, Vector<double>>();
 
+            _containsStimulusType0 = false;
+
             #region MAKING_VARYING_VECTOR_LIST
             foreach (KeyValuePair<string , Variable> item in _varyingVariables._variablesDictionary)
             {
@@ -156,12 +160,18 @@ namespace VaryingValuesGenerators
                     double high_bound = double.Parse(item.Value._description["high_bound"]._ratHouseParameter);
                     double increament = double.Parse(item.Value._description["increament"]._ratHouseParameter);
 
-                    //add the vector to the return list.
-                    oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament); 
+                    //add the vector to the return list (if it include stimulus type == 0 remove it).
+                    if(item.Key == "STIMULUS_TYPE" && low_bound == 0)
+                        oneVarVector = CreateVectorFromBounds(low_bound+1, high_bound, increament); 
+                    else
+                        oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament); 
                 }
                 else // equals "6"
                 {
-                    oneVarVector = CreateVectorFromStringVector(item.Value._description["parameters"]._ratHouseParameter); 
+                    string []  splittedVectorValues = item.Value._description["parameters"]._ratHouseParameter.Split(' ');
+                    if (splittedVectorValues.Contains("0"))
+                        _containsStimulusType0 = true;
+                    oneVarVector = CreateVectorFromStringVector(string.Join(" ", splittedVectorValues.Where(s => s != "0")));
                 }
 
                 varyingVectorsList.Add(item.Key, oneVarVector);
