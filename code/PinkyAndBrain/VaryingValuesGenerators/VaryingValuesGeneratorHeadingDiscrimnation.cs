@@ -100,8 +100,6 @@ namespace VaryingValuesGenerators
                 //skipped the first variable that was already inserted , from now start to insert each variable in the first foreach loop.
                 skipFirst = false;
             }
-
-            _varyingMatrix = commulativeMatrix;
         }
 
         /// <summary>
@@ -130,6 +128,16 @@ namespace VaryingValuesGenerators
                     dictionaryItem.Add(nameEnumerator.Current, value);
                 }
                 returnList.Add(dictionaryItem);
+            }
+
+            //add back the stimulus type 0 for one line only in the varying mztrix list.
+            if (_containsStimulusType0)
+            {
+                returnList.Add(returnList[returnList.Count]);
+                foreach (string key in returnList[returnList.Count].Keys)
+                {
+                    returnList[returnList.Count][key] = 0;
+                }
             }
 
             //insert this list to the cross varying values attribute.
