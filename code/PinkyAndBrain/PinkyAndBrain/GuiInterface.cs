@@ -259,7 +259,7 @@ namespace PinkyAndBrain
                 case "AdamDelta":
                     return new VaryingValuesGeneratorAdamDelta();
                 case "HeadingDescrimination":
-                    return new VaryingValuesGeneratorAdamDark();
+                    return new VaryingValuesGeneratorHeadingDiscrimination();
                 default:
                     return new VaryingValuesGenerator();
             }
@@ -286,7 +286,7 @@ namespace PinkyAndBrain
                 case "AdamDelta":
                     return new AdamDelta(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
                 case "HeadingDescrimination":
-                    return new AdamDark(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
+                    return new HeadingDiscrimination(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
                 default:
                     return new ThreeStepAdaptation(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
             }
