@@ -100,6 +100,8 @@ namespace VaryingValuesGenerators
                 //skipped the first variable that was already inserted , from now start to insert each variable in the first foreach loop.
                 skipFirst = false;
             }
+
+            _varyingMatrix = commulativeMatrix;
         }
 
         /// <summary>
@@ -133,11 +135,21 @@ namespace VaryingValuesGenerators
             //add back the stimulus type 0 for one line only in the varying mztrix list.
             if (_containsStimulusType0)
             {
-                returnList.Add(returnList[returnList.Count]);
-                foreach (string key in returnList[returnList.Count].Keys)
+                //cop all keys strings.
+                string[] copiedDictionaryKeys = new string[returnList[returnList.Count - 1].Keys.Count];
+                returnList[returnList.Count - 1].Keys.CopyTo(copiedDictionaryKeys, 0);
+
+                //the dictionary inclue the line for stim type 0 and all other 0 values.
+                Dictionary<string, double> addedDictionary = new Dictionary<string, double>();
+
+                //add each dictionary key to the copied dicationary and zero it.
+                foreach (string item in copiedDictionaryKeys)
                 {
-                    returnList[returnList.Count][key] = 0;
+                    addedDictionary.Add(item, 0);
                 }
+
+                //add the zeroed dictionary to the return list.
+                returnList.Add(addedDictionary);
             }
 
             //insert this list to the cross varying values attribute.
