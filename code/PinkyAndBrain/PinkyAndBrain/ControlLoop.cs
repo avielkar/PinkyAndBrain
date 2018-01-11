@@ -757,6 +757,12 @@ namespace PinkyAndBrain
         /// </summary>
         public void DetermineCurrentStimulusAnswer()
         {
+            //if stim tupe 0 chose uniformly random side.
+            if (GetVariableValue("STIMULUS_TYPE") == "0")
+            {
+                _correctDecision = (Bernoulli.Sample(0.5)==1)?RatDecison.Right:RatDecison.Left;
+            }
+
             //get the current stimulus direction.
             double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
 
@@ -801,7 +807,11 @@ namespace PinkyAndBrain
             
             //if not trainig continue.
             if (GetVariableValue("STIMULUS_TYPE") == "0")
-                return new Tuple<RatDecison, bool>(RatDecison.NoDecision, false);
+            {
+                //delete that line for stim 0.
+                //return new Tuple<RatDecison, bool>(RatDecison.NoDecision, false);
+            }
+
 
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
@@ -1311,7 +1321,8 @@ namespace PinkyAndBrain
             });
 
             //wait the robot to finish the movement.
-            robotMotion.Wait();
+            if (_currentTrialStimulusType != 0)
+                robotMotion.Wait();
             //also send the AlphaOmega that motion forward ends.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotEndMovingForward);
 

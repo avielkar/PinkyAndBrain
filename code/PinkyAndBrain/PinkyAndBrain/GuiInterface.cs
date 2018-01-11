@@ -153,6 +153,8 @@ namespace PinkyAndBrain
             ShowVaryingControlsOptions(false);
             _matlabApp = new MLApp.MLApp();
 
+            InitializeCheckBoxesDictionary();
+
             //creating the logger to writting log file information.
             log4net.Config.XmlConfigurator.Configure(new FileInfo(Application.StartupPath + @"\Log4Net.config"));
             _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -223,8 +225,6 @@ namespace PinkyAndBrain
 
             //set the default file browser protocol path directory.
             SetDefaultProtocolFileBrowserDirectory();
-
-            InitializeCheckBoxesDictionary();
 
             //move the robot to it's home position when startup.
             //avi-insert//

@@ -132,52 +132,48 @@ namespace PinkyAndBrain
                 //reset the column index for the new line.
                 columnIndex = 1;
 
-                foreach (string titleName in item.Value._description.Keys)
+                //if not a checkbox property
+                if (checkboxesDictionary.Keys.Count(x => x == item.Key) == 0)
                 {
-                    //write the column to the variable
-                    workSheet.Cells[rowIndex, columnIndex] = item.Value._description[titleName]._ratHouseParameter;
-                    //go next column for the same variable.
-                    columnIndex++;
+                    foreach (string titleName in item.Value._description.Keys)
+                    {
+                        //write the column to the variable
+                        workSheet.Cells[rowIndex, columnIndex] = item.Value._description[titleName]._ratHouseParameter;
+                        //go next column for the same variable.
+                        columnIndex++;
+                    }
                 }
+                //if a checkbox property.
+                else
+                {
+                    foreach (string titleName in item.Value._description.Keys)
+                    {
+                        //add the name of the variable checkbox.
+                        if (titleName == "name")
+                        {
+                            workSheet.Cells[rowIndex, columnIndex] = item.Key;
+                        }
+                        else if (titleName == "parameters")
+                        {
+                            //write the column to the variable
+                            workSheet.Cells[rowIndex, columnIndex] = checkboxesDictionary[item.Key].Checked ? "1" : "0";
+                        }
+                        else if (titleName == "status")
+                        {
+                            //write the column to the variable
+                            workSheet.Cells[rowIndex, columnIndex] = "-1";
+                        }
+                        else
+                        {
+                            //write the column to the variable
+                            workSheet.Cells[rowIndex, columnIndex] = "0";
+                        }
 
+                        //go next column for the same variable.
+                        columnIndex++;
+                    }
+                }
                 //go next line (for next variable)
-                rowIndex++;
-            }
-
-            //add to each checkbox in the gui it's state.
-            foreach (KeyValuePair<string , CheckBox> item in checkboxesDictionary)
-            {
-                //reset the column index for the new line.
-                columnIndex = 1;
-
-                foreach (string titleName in  variables._variablesDictionary.ElementAt(0).Value._description.Keys)
-                {
-                    //add the name of the variable checkbox.
-                    if (titleName == "name")
-                    {
-                        workSheet.Cells[rowIndex, columnIndex] = item.Key;
-                    }
-                    else if (titleName == "parameters")
-                    {
-                        //write the column to the variable
-                        workSheet.Cells[rowIndex, columnIndex] = item.Value.Checked ? "1" : "0";
-                    }
-                    else if(titleName == "status")
-                    {
-                        //write the column to the variable
-                        workSheet.Cells[rowIndex, columnIndex] = "-1";
-                    }
-                    else
-                    {
-                        //write the column to the variable
-                        workSheet.Cells[rowIndex, columnIndex] = "0";
-                    }
-
-                    //go next column for the same variable.
-                    columnIndex++;
-                }
-
-                //move to next line.
                 rowIndex++;
             }
 
