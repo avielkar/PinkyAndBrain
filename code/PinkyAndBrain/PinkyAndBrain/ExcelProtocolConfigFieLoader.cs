@@ -51,9 +51,19 @@ namespace PinkyAndBrain
         public void ReadProtocolFile(string protocolFilePath , ref Variables variables)
         {
             Excel.Workbook xlWorkbook = _xlApp.Workbooks.Open(protocolFilePath);
-
+            
+            Excel._Worksheet xlWorksheet;
             //TODO : take care when there is no such sheet.
-            Excel._Worksheet xlWorksheet = xlWorkbook.Sheets["variables"];
+            try
+            {
+                xlWorksheet = xlWorkbook.Sheets["variables"];
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("The sheets does not contain variables sheet or contain more than that specific sheets", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            
             Excel.Range xlRange = xlWorksheet.UsedRange;
 
             object[,] valueArray = (object[,])xlRange.get_Value(
@@ -89,11 +99,26 @@ namespace PinkyAndBrain
                     if(excelStringValuesArray[k, i] != null)
                         param = DisassamblyDataAttributeValue(excelStringValuesArray[k, i]);
 
-                    var._description.Add(attributes[i], param);
+                    try
+                    {
+                        var._description.Add(attributes[i], param);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("The attribute named " + attributes[i] + " is showing tiice in the columns.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                 }
 
-                //adding the variable (line in the excel data file into the dictionary of variables with the variable name as the key).
-                variables._variablesDictionary.Add(var._description["name"]._ratHouseParameter, var);
+                try
+                {
+                    //adding the variable (line in the excel data file into the dictionary of variables with the variable name as the key).
+                    variables._variablesDictionary.Add(var._description["name"]._ratHouseParameter, var);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("The sheet contain a parameter named " + var._description["name"]._ratHouseParameter + " showing twice.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
 
             //clost the file.
