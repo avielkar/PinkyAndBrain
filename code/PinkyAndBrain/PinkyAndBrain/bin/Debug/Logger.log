@@ -482,3 +482,1454 @@
 2018-01-11 23:50:29,380 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
 2018-01-11 23:50:29,391 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
 2018-01-11 23:50:29,402 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-11 23:51:22,259 INFO [8] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2018-01-11 23:51:22,336 INFO [8] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-11 23:51:22,340 INFO [8] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:51:22,351 INFO [8] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:51:22,361 INFO [8] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:51:22,372 INFO [8] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-11 23:51:22,372 INFO [8] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-11 23:51:22,375 INFO [8] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:51:22,386 INFO [8] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:51:22,396 INFO [8] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:51:22,407 INFO [8] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-11 23:54:07,398 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2018-01-11 23:54:07,481 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-11 23:54:07,486 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:54:07,497 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:54:07,507 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:54:07,518 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-11 23:54:07,518 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-11 23:54:07,521 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:54:07,532 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:54:07,542 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:54:07,553 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-11 23:57:30,814 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2018-01-11 23:57:30,894 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-11 23:57:30,897 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:57:30,908 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:57:30,918 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:57:30,929 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-11 23:57:30,929 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-11 23:57:30,932 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:57:30,943 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:57:30,953 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-11 23:57:30,964 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:01:54,078 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2018-01-12 00:01:54,159 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:01:54,162 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:01:54,173 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:01:54,183 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:01:54,194 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:01:54,194 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:01:54,197 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:01:54,208 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:01:54,218 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:01:54,229 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:02:17,940 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2018-01-12 00:02:17,974 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2018-01-12 00:02:18,321 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:02:18,560 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:02:18,616 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:18,628 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:18,640 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:18,651 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:18,662 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:18,678 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:18,689 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:18,696 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:02:18,700 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:18,711 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:18,722 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:18,734 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:02:18,736 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:02:19,856 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:02:19,896 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:02:19,899 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:19,910 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:19,920 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:19,930 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:19,940 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:19,951 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:02:19,951 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:02:19,954 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:19,965 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:19,975 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:19,985 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:19,995 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:20,006 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:02:20,006 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:02:20,007 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:02:20,008 INFO [6] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:02:20,490 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:02:20,907 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:02:21,031 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:02:22,068 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:02:39,209 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2018-01-12 00:02:47,153 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2018-01-12 00:02:47,230 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:02:47,233 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:47,244 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:47,254 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:47,265 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:02:47,265 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:02:47,268 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:47,279 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:47,289 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:02:47,300 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:03:02,002 INFO [10] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2018-01-12 00:03:02,029 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2018-01-12 00:03:02,411 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:03:02,414 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:03:02,425 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:03:02,435 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:03:02,446 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:03:02,446 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:03:02,449 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:03:02,460 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:03:02,470 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:03:02,481 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:03:02,481 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:03:02,482 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:03:02,483 INFO [6] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:03:03,230 INFO [17] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:03:13,609 INFO [17] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:03:13,682 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2018-01-12 00:03:14,023 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:03:14,487 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:03:35,367 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2018-01-12 00:03:35,445 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:03:35,448 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:03:35,459 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:03:35,469 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:03:35,480 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:03:35,480 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:03:35,483 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:03:35,494 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:03:35,504 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:03:35,515 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:11,219 INFO [9] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2018-01-12 00:04:11,281 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2018-01-12 00:04:11,631 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:11,900 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:11,942 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:11,953 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:11,963 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:11,973 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:11,983 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:11,997 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:12,008 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:12,018 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:12,021 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:12,028 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:12,038 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:12,049 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:12,050 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:13,167 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:13,206 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:13,209 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:13,220 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:13,237 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:13,247 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:13,257 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:13,268 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:13,268 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:13,271 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:13,282 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:13,292 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:13,302 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:13,312 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:13,323 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:13,323 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:13,324 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:13,325 INFO [6] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:04:13,807 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:14,041 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:14,163 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:15,209 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:16,119 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2018-01-12 00:04:16,458 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:16,866 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:16,993 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:18,175 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:18,214 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:18,217 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:18,228 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:18,238 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:18,248 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:18,258 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:18,269 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:18,269 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:18,272 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:18,283 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:18,293 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:18,303 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:18,313 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:18,324 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:18,324 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:18,325 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:18,326 INFO [6] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:04:19,000 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:19,381 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:19,510 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:20,589 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:21,460 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2018-01-12 00:04:21,801 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:22,202 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:22,321 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:23,375 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:23,414 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:23,417 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:23,428 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:23,438 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:23,448 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:23,458 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:23,469 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:23,469 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:23,475 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:23,486 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:23,496 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:23,506 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:23,516 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:23,527 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:23,527 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:23,528 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:23,529 INFO [6] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:04:24,009 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:24,403 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:24,520 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:25,594 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:26,479 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2018-01-12 00:04:26,819 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:27,067 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:27,113 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:27,124 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:27,135 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:27,146 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:27,157 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:27,172 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:27,176 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:27,183 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:27,194 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:27,205 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:27,216 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:27,228 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:27,229 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:28,201 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:28,239 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:28,242 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:28,253 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:28,264 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:28,274 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:28,285 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:28,296 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:28,296 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:28,299 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:28,310 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:28,320 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:28,330 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:28,341 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:28,353 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:28,353 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:28,354 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:28,355 INFO [6] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:04:28,833 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:29,059 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:29,177 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:30,204 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:31,136 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
+2018-01-12 00:04:31,474 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:31,727 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:31,771 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:31,782 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:31,793 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:31,804 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:31,815 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:31,830 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:31,840 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:31,841 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:31,852 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:31,863 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:31,874 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:31,886 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:31,887 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:32,986 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:33,024 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:33,027 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:33,038 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:33,049 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:33,059 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:33,069 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:33,080 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:33,080 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:33,083 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:33,094 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:33,104 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:33,114 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:33,125 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:33,137 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:33,137 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:33,138 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:33,139 INFO [6] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:04:33,811 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:34,248 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:34,361 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:35,397 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:36,324 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
+2018-01-12 00:04:36,662 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:37,116 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:37,160 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:37,171 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:37,182 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:37,193 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:37,204 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:37,219 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:37,234 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:37,238 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:37,247 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:37,258 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:37,269 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:37,281 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:37,282 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:38,375 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:38,414 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:38,417 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:38,428 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:38,438 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:38,448 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:38,458 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:38,469 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:38,469 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:38,472 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:38,483 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:38,493 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:38,503 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:38,513 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:38,525 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:38,525 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:38,526 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:38,527 INFO [6] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:04:39,199 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:39,434 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:39,550 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:40,584 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:41,510 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
+2018-01-12 00:04:41,849 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:42,101 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:42,147 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:42,158 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:42,169 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:42,180 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:42,191 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:42,205 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:42,216 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:42,226 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:42,228 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:42,236 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:42,246 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:42,257 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:42,258 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:43,373 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:43,412 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:43,415 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:43,426 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:43,436 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:43,446 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:43,456 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:43,467 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:43,467 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:43,470 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:43,481 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:43,491 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:43,501 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:43,511 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:43,522 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:43,522 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:43,523 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:43,524 INFO [6] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:04:44,004 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:44,227 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:44,346 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:45,377 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:46,304 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #8
+2018-01-12 00:04:46,642 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:47,053 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:47,171 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:48,351 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:48,389 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:48,392 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:48,403 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:48,413 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:48,423 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:48,433 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:48,444 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:48,444 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:48,447 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:48,458 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:48,468 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:48,479 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:48,490 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:48,501 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:48,501 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:48,502 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:48,503 INFO [6] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:04:48,982 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:49,359 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:49,479 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:50,556 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:51,436 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #9
+2018-01-12 00:04:51,775 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:52,021 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:52,063 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:52,074 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:52,084 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:52,094 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:52,104 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:52,118 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:52,129 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:52,137 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:52,139 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:52,149 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:52,159 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:52,170 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:52,171 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:53,281 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:53,324 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:53,327 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:53,338 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:53,349 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:53,360 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:53,371 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:53,383 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:53,384 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:53,387 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:53,398 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:53,410 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:53,421 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:53,432 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:53,445 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:53,445 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:53,446 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:53,447 INFO [6] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:04:54,121 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:54,345 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:54,475 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:55,627 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:56,422 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #10
+2018-01-12 00:04:56,760 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:57,201 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:57,243 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:57,254 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:57,264 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:57,274 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:57,284 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:57,298 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:57,309 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:57,319 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:57,326 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:04:57,329 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:57,339 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:57,350 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:57,351 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:58,372 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:04:58,413 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:58,417 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:58,429 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:58,440 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:58,450 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:58,460 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:58,471 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:58,471 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:04:58,474 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:58,485 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:58,495 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:58,505 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:58,515 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:04:58,528 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:04:58,528 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:58,529 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:04:58,530 INFO [6] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:04:59,211 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:04:59,455 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:04:59,575 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:00,739 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:01,533 INFO [6] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #11
+2018-01-12 00:05:01,872 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:02,326 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:02,368 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:02,379 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:02,389 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:02,399 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:02,409 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:02,423 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:02,434 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:02,444 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:02,448 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:02,454 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:02,464 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:02,475 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:02,476 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:03,613 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:03,653 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:03,657 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:03,668 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:03,679 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:03,690 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:03,701 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:03,713 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:03,714 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:03,717 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:03,728 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:03,739 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:03,750 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:03,761 INFO [6] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:03,773 INFO [6] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:03,774 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:03,775 INFO [6] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:03,776 INFO [6] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:05:04,262 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:04,485 INFO [6] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:04,612 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:05,631 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:27,129 INFO [9] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2018-01-12 00:05:27,669 INFO [20] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2018-01-12 00:05:28,009 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:28,267 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:28,308 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:28,319 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:28,330 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:28,340 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:28,350 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:28,364 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:28,375 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:28,385 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:28,386 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:28,396 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:28,406 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:28,417 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:28,418 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:29,521 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:29,559 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:29,562 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:29,573 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:29,584 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:29,595 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:29,605 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:29,616 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:29,616 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:29,619 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:29,630 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:29,640 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:29,650 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:29,661 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:29,673 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:29,673 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:29,674 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:29,675 INFO [20] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:05:30,156 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:30,380 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:30,501 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:31,534 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:32,457 INFO [20] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2018-01-12 00:05:32,798 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:33,050 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:33,093 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:33,104 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:33,115 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:33,126 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:33,137 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:33,152 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:33,163 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:33,174 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:33,182 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:33,185 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:33,196 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:33,208 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:33,209 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:34,318 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:34,357 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:34,360 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:34,371 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:34,381 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:34,391 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:34,401 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:34,412 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:34,412 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:34,415 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:34,426 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:34,436 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:34,446 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:34,456 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:34,467 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:34,467 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:34,468 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:34,469 INFO [20] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:05:35,145 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:35,382 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:35,497 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:36,531 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:37,459 INFO [20] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2018-01-12 00:05:37,799 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:38,048 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:38,090 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:38,101 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:38,112 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:38,123 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:38,134 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:38,149 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:38,160 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:38,166 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:38,171 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:38,182 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:38,193 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:38,205 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:38,206 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:39,197 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:39,236 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:39,239 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:39,250 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:39,260 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:39,270 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:39,280 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:39,292 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:39,292 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:39,295 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:39,306 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:39,316 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:39,326 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:39,339 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:39,350 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:39,350 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:39,351 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:39,352 INFO [20] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:05:39,832 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:40,262 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:40,382 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:41,407 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:42,339 INFO [20] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2018-01-12 00:05:42,678 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:42,932 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:42,975 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:42,987 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:42,999 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:43,010 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:43,021 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:43,037 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:43,048 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:43,056 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:43,059 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:43,070 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:43,081 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:43,093 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:43,094 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:44,210 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:44,248 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:44,251 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:44,262 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:44,272 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:44,282 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:44,292 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:44,303 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:44,303 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:44,306 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:44,317 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:44,327 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:44,337 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:44,347 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:44,358 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:44,358 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:44,359 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:44,360 INFO [20] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:05:45,034 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:45,267 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:45,383 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:46,408 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:47,345 INFO [20] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
+2018-01-12 00:05:47,683 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:47,933 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:47,974 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:47,985 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:47,997 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:48,008 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:48,019 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:48,035 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:48,046 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:48,057 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:48,062 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:48,068 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:48,079 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:48,091 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:48,092 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:49,090 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:49,128 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:49,131 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:49,142 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:49,152 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:49,163 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:49,173 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:49,184 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:49,184 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:49,187 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:49,198 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:49,208 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:49,218 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:49,228 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:49,240 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:49,240 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:49,241 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:49,242 INFO [20] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:05:49,914 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:50,343 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:50,459 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:51,500 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:52,420 INFO [20] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
+2018-01-12 00:05:52,758 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:53,003 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:53,134 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:54,176 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:54,215 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:54,218 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:54,229 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:54,239 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:54,249 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:54,259 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:54,270 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:54,270 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:54,273 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:54,284 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:54,294 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:54,304 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:54,314 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:54,325 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:54,325 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:54,326 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:54,327 INFO [20] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:05:55,000 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:55,228 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:55,355 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:56,381 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:57,304 INFO [20] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
+2018-01-12 00:05:57,642 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:05:58,095 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:05:58,216 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:05:59,246 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:05:59,286 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:59,290 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:59,301 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:59,312 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:59,323 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:59,334 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:59,346 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:59,347 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:05:59,350 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:59,362 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:59,384 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:59,395 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:59,406 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:05:59,417 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:05:59,417 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:59,418 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:05:59,419 INFO [20] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:06:00,093 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:00,330 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:00,441 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:01,478 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:02,407 INFO [20] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #8
+2018-01-12 00:06:02,746 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:03,153 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:03,286 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:04,475 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:04,517 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:04,521 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:04,532 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:04,543 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:04,554 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:04,565 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:04,577 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:04,578 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:04,581 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:04,592 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:04,603 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:04,614 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:04,625 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:04,637 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:04,638 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:04,638 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:04,639 INFO [20] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:06:05,316 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:05,813 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:05,931 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:07,002 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:07,889 INFO [20] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #9
+2018-01-12 00:06:08,227 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:08,748 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:08,867 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:10,048 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:10,086 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:10,089 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:10,100 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:10,110 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:10,120 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:10,130 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:10,141 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:10,141 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:10,144 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:10,155 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:10,165 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:10,175 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:10,185 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:10,196 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:10,196 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:10,197 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:10,198 INFO [20] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:06:10,677 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:11,056 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:11,177 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:12,262 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:13,133 INFO [20] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #10
+2018-01-12 00:06:13,471 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:13,718 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:13,837 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:14,862 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:14,904 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:14,908 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:14,919 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:14,930 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:14,941 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:14,951 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:14,962 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:14,962 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:14,965 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:14,977 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:14,988 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:15,000 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:15,011 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:15,024 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:15,024 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:15,025 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:15,026 INFO [20] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:06:15,511 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:15,742 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:15,875 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:16,904 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:17,820 INFO [20] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #11
+2018-01-12 00:06:18,159 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:18,409 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:18,450 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:18,461 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:18,471 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:18,481 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:18,491 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:18,505 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:18,516 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:18,520 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:18,526 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:18,536 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:18,546 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:18,557 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:18,558 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:19,569 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:19,611 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:19,614 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:19,625 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:19,635 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:19,645 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:19,655 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:19,666 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:19,667 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:19,670 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:19,681 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:19,692 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:19,703 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:19,714 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:19,726 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:19,727 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:19,728 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:19,729 INFO [20] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:06:20,208 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:20,666 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:20,775 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:21,818 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:22,743 INFO [20] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #12
+2018-01-12 00:06:23,081 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:23,524 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:23,644 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:24,804 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:24,845 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:24,848 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:24,859 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:24,870 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:24,881 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:24,892 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:24,904 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:24,905 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:24,908 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:24,919 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:24,930 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:24,941 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:24,952 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:24,964 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:24,965 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:24,965 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:24,967 INFO [20] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:06:25,451 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:25,708 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:25,832 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:26,846 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:27,784 INFO [20] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #13
+2018-01-12 00:06:28,122 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:28,367 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:28,409 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:28,420 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:28,430 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:28,440 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:28,450 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:28,464 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:28,475 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:28,485 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:28,492 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:28,495 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:28,505 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:28,516 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:28,517 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:29,640 INFO [19] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:29,679 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:29,682 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:29,693 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:29,703 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:29,713 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:29,723 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:29,734 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:29,734 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:29,737 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:29,748 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:29,758 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:29,768 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:29,778 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:29,789 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:29,789 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:29,790 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:29,791 INFO [20] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:06:30,467 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:30,929 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:31,046 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:32,068 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:33,007 INFO [20] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #14
+2018-01-12 00:06:33,346 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:33,605 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:33,646 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:33,657 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:33,667 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:33,677 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:33,687 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:33,701 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:33,712 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:33,714 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:33,722 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:33,732 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:33,742 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:33,753 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:33,754 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:34,859 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:34,898 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:34,901 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:34,912 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:34,922 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:34,932 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:34,942 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:34,953 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:34,953 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:34,956 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:34,967 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:34,978 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:34,989 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:34,999 INFO [20] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:35,010 INFO [20] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:35,010 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:35,011 INFO [20] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:35,012 INFO [20] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:06:35,499 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:35,967 INFO [20] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:36,086 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:37,107 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:55,422 INFO [9] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2018-01-12 00:06:55,939 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2018-01-12 00:06:56,281 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:56,527 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:56,655 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:57,696 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:06:57,736 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:57,739 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:57,750 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:57,760 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:57,770 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:57,780 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:57,791 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:57,791 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:06:57,794 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:57,805 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:57,815 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:57,825 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:57,835 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:06:57,846 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:06:57,846 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:57,847 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:06:57,848 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:06:58,328 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:06:58,565 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:06:58,680 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:06:59,709 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:00,643 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2018-01-12 00:07:00,983 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:01,225 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:01,344 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:02,506 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:02,545 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:02,548 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:02,559 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:02,569 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:02,579 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:02,589 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:02,600 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:02,600 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:02,603 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:02,614 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:02,624 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:02,634 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:02,644 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:02,655 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:02,655 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:02,656 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:02,657 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:07:03,332 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:03,560 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:03,690 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:04,722 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:05,637 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #3
+2018-01-12 00:07:05,977 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:06,464 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:06,508 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:06,519 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:06,529 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:06,539 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:06,550 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:06,565 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:06,576 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:06,578 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:06,588 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:06,600 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:06,611 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:06,624 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:06,625 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:07,608 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:07,647 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:07,650 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:07,661 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:07,671 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:07,681 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:07,691 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:07,702 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:07,702 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:07,705 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:07,716 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:07,726 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:07,736 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:07,746 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:07,757 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:07,757 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:07,758 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:07,759 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:07:08,434 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:08,665 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:08,784 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:09,818 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:10,742 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #4
+2018-01-12 00:07:11,081 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:11,484 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:11,607 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:12,679 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:12,718 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:12,721 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:12,732 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:12,742 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:12,752 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:12,762 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:12,773 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:12,773 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:12,776 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:12,787 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:12,797 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:12,807 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:12,817 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:12,828 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:12,828 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:12,829 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:12,830 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:07:13,505 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:13,898 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:14,015 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:15,086 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:15,977 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #5
+2018-01-12 00:07:16,316 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:16,560 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:16,677 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:17,826 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:17,865 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:17,868 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:17,879 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:17,889 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:17,900 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:17,911 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:17,923 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:17,923 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:17,926 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:17,937 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:17,947 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:17,957 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:17,967 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:17,978 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:17,978 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:17,979 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:17,980 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:07:18,460 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:18,687 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:18,800 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:19,839 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:20,764 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #6
+2018-01-12 00:07:21,102 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:21,353 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:21,395 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:21,406 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:21,416 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:21,426 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:21,436 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:21,450 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:21,461 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:21,467 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:21,471 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:21,481 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:21,491 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:21,503 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:21,504 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:22,606 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:22,645 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:22,648 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:22,659 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:22,669 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:22,679 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:22,689 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:22,700 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:22,700 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:22,703 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:22,714 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:22,724 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:22,734 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:22,744 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:22,755 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:22,755 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:22,756 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:22,757 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:07:23,431 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:23,653 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:23,772 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:24,800 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:25,731 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #7
+2018-01-12 00:07:26,070 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:26,330 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:26,373 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:26,384 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:26,394 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:26,404 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:26,414 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:26,428 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:26,439 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:26,446 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:26,449 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:26,459 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:26,469 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:26,480 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:26,481 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:27,588 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:27,628 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:27,632 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:27,644 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:27,655 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:27,666 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:27,677 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:27,689 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:27,689 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:27,692 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:27,703 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:27,713 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:27,723 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:27,733 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:27,744 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:27,744 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:27,745 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:27,746 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:07:28,226 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:28,447 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:28,572 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:29,602 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:30,523 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #8
+2018-01-12 00:07:30,861 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:31,109 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:31,150 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:31,161 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:31,171 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:31,181 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:31,191 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:31,205 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:31,216 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:31,226 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:31,227 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:31,236 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:31,246 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:31,257 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:31,258 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:32,270 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:32,313 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:32,316 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:32,327 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:32,337 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:32,347 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:32,357 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:32,368 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:32,368 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:32,371 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:32,382 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:32,393 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:32,404 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:32,415 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:32,427 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:32,428 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:32,428 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:32,430 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:07:32,919 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:33,165 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:33,293 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:34,322 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:35,241 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #9
+2018-01-12 00:07:35,580 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:35,830 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:35,947 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:36,984 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:37,022 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:37,025 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:37,036 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:37,046 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:37,056 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:37,066 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:37,077 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:37,077 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:37,080 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:37,091 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:37,101 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:37,111 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:37,121 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:37,132 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:37,132 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:37,133 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:37,134 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:07:37,816 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:38,275 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:38,392 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:39,408 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:40,352 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #10
+2018-01-12 00:07:40,691 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:40,940 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:40,981 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:40,992 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:41,002 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:41,012 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:41,022 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:41,036 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:41,047 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:41,057 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:41,062 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:41,067 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:41,077 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:41,088 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:41,089 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:42,090 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:42,129 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:42,132 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:42,143 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:42,153 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:42,163 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:42,173 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:42,184 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:42,184 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:42,187 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:42,198 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:42,208 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:42,218 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:42,228 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:42,239 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:42,239 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:42,240 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:42,241 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:07:42,722 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:42,981 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:43,104 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:44,138 INFO [20] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:45,061 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #11
+2018-01-12 00:07:45,400 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:45,643 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:45,685 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:45,696 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:45,706 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:45,716 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:45,726 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:45,740 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:45,751 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:45,761 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:45,762 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:45,771 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:45,781 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:45,792 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:45,793 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:46,906 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:46,944 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:46,947 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:46,958 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:46,968 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:46,978 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:46,988 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:47,000 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:47,000 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:47,003 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:47,014 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:47,024 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:47,034 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:47,044 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:47,055 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:47,055 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:47,056 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:47,057 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:07:47,730 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:07:47,990 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:07:48,112 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:07:49,150 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:07:50,072 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #12
+2018-01-12 00:07:50,449 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:50,452 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:50,463 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:50,473 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:50,483 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:50,493 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:50,504 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:50,504 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:07:50,507 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:50,518 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:50,528 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:50,538 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:50,548 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:07:50,559 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:07:50,559 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:50,560 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:07:50,561 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:07:51,112 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:08:15,654 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:08:15,697 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #13
+2018-01-12 00:08:16,039 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:08:16,300 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:08:16,341 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:16,352 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:16,362 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:16,372 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:16,382 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:16,396 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:16,407 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:16,417 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:16,423 INFO [22] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:08:16,427 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:16,437 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:16,448 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:08:16,449 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:08:17,564 INFO [22] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:08:17,603 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:08:17,606 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:17,617 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:17,627 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:17,637 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:17,647 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:17,658 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:08:17,658 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:08:17,661 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:17,672 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:17,682 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:17,692 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:17,702 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:17,713 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:08:17,713 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:08:17,714 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:08:17,715 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:08:18,195 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:08:18,429 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:08:18,542 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:08:19,574 INFO [18] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:08:20,508 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #14
+2018-01-12 00:08:20,848 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:08:21,275 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:08:21,400 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:08:22,586 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:08:22,624 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:08:22,627 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:22,638 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:22,648 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:22,658 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:22,669 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:22,681 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:08:22,681 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:08:22,684 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:22,695 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:22,705 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:22,715 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:22,725 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:22,736 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:08:22,736 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:08:22,737 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:08:22,738 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:08:23,218 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:08:23,610 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:08:23,724 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:08:24,799 INFO [10] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:08:25,691 INFO [19] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #15
+2018-01-12 00:08:26,033 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:08:26,289 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:08:26,334 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:26,345 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:26,356 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:26,368 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:26,379 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:26,395 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:26,406 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:26,409 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:08:26,417 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:26,427 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:26,437 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:26,448 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:08:26,449 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:08:27,547 INFO [6] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
+2018-01-12 00:08:27,585 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:08:27,588 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:27,599 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:27,610 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:27,620 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:27,631 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:27,643 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:08:27,643 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-01-12 00:08:27,646 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:27,657 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:27,667 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:27,677 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:27,687 INFO [19] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-01-12 00:08:27,698 INFO [19] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-01-12 00:08:27,698 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:08:27,699 INFO [19] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-01-12 00:08:27,700 INFO [19] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage
+2018-01-12 00:08:28,373 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot.
+2018-01-12 00:08:28,602 INFO [19] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job to the robot ended.
+2018-01-12 00:08:28,719 INFO [22] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot begin.
+2018-01-12 00:08:29,744 INFO [22] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot finished.
