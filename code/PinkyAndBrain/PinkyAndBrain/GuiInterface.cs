@@ -160,11 +160,15 @@ namespace PinkyAndBrain
             _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
             _logger.Info("Starting program...");
 
-            //connect to the robot and turn on it's servos.
-            //avi-insert//
-            _motocomController = new MotomanController("10.0.0.2" , _logger);
-            //avi-insert//
-            //_motocomController.SetServoOn();
+            try
+            {
+                //connect to the robot and turn on it's servos.
+                _motocomController = new MotomanController("10.0.0.2", _logger);
+            }
+            catch
+            {
+                MessageBox.Show("Cannot connect to the robot BSC - check if robot is conncted in play mode and also not turned off", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
             //create the ledstrip controller and initialize it (also turn off leds).
             _ledController = new LEDController("COM4", 2000000, 250 , _logger);
@@ -1131,8 +1135,15 @@ namespace PinkyAndBrain
                     _btnPark.Enabled = false;
                     #endregion
 
-                    //set robot servo on and go homeposition.
-                    _motocomController.SetServoOn();
+                    try
+                    {
+                        //set robot servo on and go homeposition.
+                        _motocomController.SetServoOn();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Cannot set the servos on - check if robot is conncted in play mode and also not turned off", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
 
                     string checkerParkPosition = CheckBothRobotsAtParkPosition(MotocomSettings.Default.DeltaParkToEngage);
                     string checkerEngagePosition = CheckBothRobotAroundEngagePosition(MotocomSettings.Default.DeltaEngageToEngage);

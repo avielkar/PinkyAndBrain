@@ -528,12 +528,14 @@ namespace PinkyAndBrain
         public void MainControlLoop()
         {
             //set robot servo on and go homeposition.
-            _motomanController.SetServoOn();
-            //_motomanController.WriteHomePosFile();
-            //_motomanController.MoveRobotHomePosition();
-
-            //TODO : change that to be the time the robot ends the job and not determenistic time.
-            //Thread.Sleep(8000);
+            try
+            {
+                _motomanController.SetServoOn();
+            }
+            catch 
+            {
+                MessageBox.Show("Cannot set the servos on - check if robot is conncted in play mode and also not turned off", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
             for (; _repetitionIndex < NumOfRepetitions / NumOfStickOn;)
             {
