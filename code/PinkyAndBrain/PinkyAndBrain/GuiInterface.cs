@@ -168,6 +168,7 @@ namespace PinkyAndBrain
             catch
             {
                 MessageBox.Show("Cannot connect to the robot BSC - check if robot is conncted in play mode and also not turned off", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
             //create the ledstrip controller and initialize it (also turn off leds).
@@ -1143,6 +1144,7 @@ namespace PinkyAndBrain
                     catch
                     {
                         MessageBox.Show("Cannot set the servos on - check if robot is conncted in play mode and also not turned off", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
 
                     string checkerParkPosition = CheckBothRobotsAtParkPosition(MotocomSettings.Default.DeltaParkToEngage);

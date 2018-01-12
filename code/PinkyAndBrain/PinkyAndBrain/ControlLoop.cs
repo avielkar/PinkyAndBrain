@@ -535,6 +535,7 @@ namespace PinkyAndBrain
             catch 
             {
                 MessageBox.Show("Cannot set the servos on - check if robot is conncted in play mode and also not turned off", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
             for (; _repetitionIndex < NumOfRepetitions / NumOfStickOn;)
@@ -664,6 +665,21 @@ namespace PinkyAndBrain
                         //the post trial stage for saving the trial data and for the delay between trials.
                         if (PostTrialStage(duration1HeadInTheCenterStabilityStage))
                             _stickOnNumberIndex++;
+                        else//if the the trual not succeed - choose another varting index randomly and not the same index (also , if stick number exists make it only of happens at the first time fot the stick on index).
+                        {
+                            if(_stickOnNumberIndex == 0)
+                            {
+                                //reset the current trial varying index because it was not successful.
+                                _varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
+
+                                //choose the random combination index for the current trial.
+                                _currentVaryingTrialIndex = _varyingIndexSelector.ChooseRandomCombination();
+
+                                //craetes the trajectory for both robots for the current trial if not one of the training protocols.
+                                _currentTrialTrajectories = _trajectoryCreatorHandler.CreateTrajectory(_currentVaryingTrialIndex);
+                            }
+
+                        }
                     }
                 }
 
