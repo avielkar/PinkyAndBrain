@@ -202,6 +202,47 @@ namespace PinkyAndBrain
                 rowIndex++;
             }
 
+            //add all checkboxes that not in the excel file from the beggining.
+            foreach (var item in checkboxesDictionary)
+            {
+                //reset the column index for the new line.
+                columnIndex = 1;
+
+                //if the checkbox not included in the variable dictionary.
+                if (variables._variablesDictionary.Keys.Count(key => key == item.Key) == 0)
+                {
+                    foreach (string titleName in variables._variablesDictionary.ElementAt(0).Value._description.Keys)
+                    {
+                        //add the name of the variable checkbox.
+                        if (titleName == "name")
+                        {
+                            workSheet.Cells[rowIndex, columnIndex] = item.Key;
+                        }
+                        else if (titleName == "parameters")
+                        {
+                            //write the column to the variable
+                            workSheet.Cells[rowIndex, columnIndex] = item.Value.Checked ? "1" : "0";
+                        }
+                        else if (titleName == "status")
+                        {
+                            //write the column to the variable
+                            workSheet.Cells[rowIndex, columnIndex] = "-1";
+                        }
+                        else
+                        {
+                            //write the column to the variable
+                            workSheet.Cells[rowIndex, columnIndex] = "0";
+                        }
+
+                        //go next column for the same variable.
+                        columnIndex++;
+                    }
+
+                    //go next line (for next variable)
+                    rowIndex++;
+                }
+            }
+
             try//it is for the event when the file with the same name exists and the user cnceked the saving.
             {
                 //save the file and close it.

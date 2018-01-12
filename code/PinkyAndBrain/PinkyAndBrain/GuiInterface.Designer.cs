@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -109,6 +109,7 @@
             this._btnSaveProtocol = new System.Windows.Forms.Button();
             this._textboxNewProtocolName = new System.Windows.Forms.TextBox();
             this._labelNewProtocolName = new System.Windows.Forms.Label();
+            this._checkBoxRightAndLeftSame = new System.Windows.Forms.CheckBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -614,17 +615,17 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea3.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend3);
+            chartArea2.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend2);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series3);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series2);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
@@ -689,7 +690,7 @@
             // _checkBoxRewardSound
             // 
             this._checkBoxRewardSound.AutoSize = true;
-            this._checkBoxRewardSound.Location = new System.Drawing.Point(9, 60);
+            this._checkBoxRewardSound.Location = new System.Drawing.Point(2, 56);
             this._checkBoxRewardSound.Name = "_checkBoxRewardSound";
             this._checkBoxRewardSound.Size = new System.Drawing.Size(97, 17);
             this._checkBoxRewardSound.TabIndex = 12;
@@ -699,6 +700,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this._checkBoxRightAndLeftSame);
             this.groupBox1.Controls.Add(this._checkBoxCorrectClueSound);
             this.groupBox1.Controls.Add(this._checkBoxEnableBothSidedClueSound);
             this.groupBox1.Controls.Add(this._checkboxErrorSoundOn);
@@ -708,7 +710,7 @@
             this.groupBox1.Controls.Add(this._checkBoxFixationOnly);
             this.groupBox1.Location = new System.Drawing.Point(1275, 794);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(203, 106);
+            this.groupBox1.Size = new System.Drawing.Size(209, 106);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Special Modes";
@@ -716,7 +718,7 @@
             // _checkBoxCorrectClueSound
             // 
             this._checkBoxCorrectClueSound.AutoSize = true;
-            this._checkBoxCorrectClueSound.Location = new System.Drawing.Point(101, 65);
+            this._checkBoxCorrectClueSound.Location = new System.Drawing.Point(97, 57);
             this._checkBoxCorrectClueSound.Name = "_checkBoxCorrectClueSound";
             this._checkBoxCorrectClueSound.Size = new System.Drawing.Size(118, 17);
             this._checkBoxCorrectClueSound.TabIndex = 16;
@@ -727,7 +729,7 @@
             // _checkBoxEnableBothSidedClueSound
             // 
             this._checkBoxEnableBothSidedClueSound.AutoSize = true;
-            this._checkBoxEnableBothSidedClueSound.Location = new System.Drawing.Point(101, 42);
+            this._checkBoxEnableBothSidedClueSound.Location = new System.Drawing.Point(97, 38);
             this._checkBoxEnableBothSidedClueSound.Name = "_checkBoxEnableBothSidedClueSound";
             this._checkBoxEnableBothSidedClueSound.Size = new System.Drawing.Size(104, 17);
             this._checkBoxEnableBothSidedClueSound.TabIndex = 15;
@@ -738,7 +740,7 @@
             // _checkboxErrorSoundOn
             // 
             this._checkboxErrorSoundOn.AutoSize = true;
-            this._checkboxErrorSoundOn.Location = new System.Drawing.Point(101, 19);
+            this._checkboxErrorSoundOn.Location = new System.Drawing.Point(97, 20);
             this._checkboxErrorSoundOn.Name = "_checkboxErrorSoundOn";
             this._checkboxErrorSoundOn.Size = new System.Drawing.Size(82, 17);
             this._checkboxErrorSoundOn.TabIndex = 14;
@@ -749,18 +751,18 @@
             // _checkboxSecondResponseChance
             // 
             this._checkboxSecondResponseChance.AutoSize = true;
-            this._checkboxSecondResponseChance.Location = new System.Drawing.Point(9, 77);
+            this._checkboxSecondResponseChance.Location = new System.Drawing.Point(2, 75);
             this._checkboxSecondResponseChance.Name = "_checkboxSecondResponseChance";
-            this._checkboxSecondResponseChance.Size = new System.Drawing.Size(113, 17);
+            this._checkboxSecondResponseChance.Size = new System.Drawing.Size(103, 17);
             this._checkboxSecondResponseChance.TabIndex = 13;
-            this._checkboxSecondResponseChance.Text = "Sec Resp Chance";
+            this._checkboxSecondResponseChance.Text = "2ndRes Chance";
             this._checkboxSecondResponseChance.UseVisualStyleBackColor = true;
             this._checkboxSecondResponseChance.CheckedChanged += new System.EventHandler(this._checkboxSecondResponseChance_CheckedChanged);
             // 
             // _checkBoxBreakFixationSoundEnable
             // 
             this._checkBoxBreakFixationSoundEnable.AutoSize = true;
-            this._checkBoxBreakFixationSoundEnable.Location = new System.Drawing.Point(9, 37);
+            this._checkBoxBreakFixationSoundEnable.Location = new System.Drawing.Point(2, 37);
             this._checkBoxBreakFixationSoundEnable.Name = "_checkBoxBreakFixationSoundEnable";
             this._checkBoxBreakFixationSoundEnable.Size = new System.Drawing.Size(93, 17);
             this._checkBoxBreakFixationSoundEnable.TabIndex = 1;
@@ -771,7 +773,7 @@
             // _checkBoxFixationOnly
             // 
             this._checkBoxFixationOnly.AutoSize = true;
-            this._checkBoxFixationOnly.Location = new System.Drawing.Point(9, 19);
+            this._checkBoxFixationOnly.Location = new System.Drawing.Point(2, 19);
             this._checkBoxFixationOnly.Name = "_checkBoxFixationOnly";
             this._checkBoxFixationOnly.Size = new System.Drawing.Size(86, 17);
             this._checkBoxFixationOnly.TabIndex = 0;
@@ -882,6 +884,17 @@
             this._labelNewProtocolName.Size = new System.Drawing.Size(102, 13);
             this._labelNewProtocolName.TabIndex = 27;
             this._labelNewProtocolName.Text = "New Protocol Name";
+            // 
+            // _checkBoxRightAndLeftSame
+            // 
+            this._checkBoxRightAndLeftSame.AutoSize = true;
+            this._checkBoxRightAndLeftSame.Location = new System.Drawing.Point(99, 76);
+            this._checkBoxRightAndLeftSame.Name = "_checkBoxRightAndLeftSame";
+            this._checkBoxRightAndLeftSame.Size = new System.Drawing.Size(82, 17);
+            this._checkBoxRightAndLeftSame.TabIndex = 17;
+            this._checkBoxRightAndLeftSame.Text = "R + L Same";
+            this._checkBoxRightAndLeftSame.UseVisualStyleBackColor = true;
+            this._checkBoxRightAndLeftSame.CheckedChanged += new System.EventHandler(this._checkBoxRightAndLeftSame_CheckedChanged);
             // 
             // GuiInterface
             // 
@@ -1024,5 +1037,6 @@
         private System.Windows.Forms.Button _btnSaveProtocol;
         private System.Windows.Forms.TextBox _textboxNewProtocolName;
         private System.Windows.Forms.Label _labelNewProtocolName;
+        private System.Windows.Forms.CheckBox _checkBoxRightAndLeftSame;
     }
 }

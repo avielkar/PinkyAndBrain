@@ -323,6 +323,11 @@ namespace PinkyAndBrain
         public bool EnableClueSoundInBothSide { get; set; }
 
         /// <summary>
+        /// Indicates if to enable that right parameters values and left parameters values must be equals.
+        /// </summary>
+        public bool EnableRightLeftMustEquals { get; set; }
+
+        /// <summary>
         /// Indicates if to enable clue sound only in the correct side.
         /// </summary>
         public bool EnableClueSoundInCorrectSide { get; set; }
@@ -722,6 +727,8 @@ namespace PinkyAndBrain
 
             //write the beep start event to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.AudioStart);
+
+            _specialModesInRealTime.EnableRightLeftMustEquals = EnableRightLeftMustEquals;
         }
 
         /// <summary>

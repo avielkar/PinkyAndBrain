@@ -323,6 +323,7 @@ namespace PinkyAndBrain
             ErrorChoiceSouunOn = false;
             EnableClueSoundInBothSide = false;
             EnableClueSoundInCorrectSide = false;
+            EnableRightLeftMustEquals = false;
         }
 
         /// <summary>
@@ -345,9 +346,20 @@ namespace PinkyAndBrain
         /// </summary>
         public bool ErrorChoiceSouunOn { get; set; }
 
+        /// <summary>
+        /// Indicates to enable sound onlt at the correct side.
+        /// </summary>
         public bool EnableClueSoundInCorrectSide { get; set; }
 
+        /// <summary>
+        /// Indicate if to enable clue sounds on both the side no matter what is the correct side.
+        /// </summary>
         public bool EnableClueSoundInBothSide { get; set; }
+
+        /// <summary>
+        /// Indicates if the right and the left parameters should be the same.
+        /// </summary>
+        public bool EnableRightLeftMustEquals { get; set; }
 
         public override string ToString()
         {
@@ -357,7 +369,8 @@ namespace PinkyAndBrain
                 "BreakFixationSoundOn:" + BreakFixationSoundOn + "\r\n" +
                 "ErrorChoiceSoundOn:" + ErrorChoiceSouunOn + "\r\n" +
                 "EnableClueSoundInBothSide:" + EnableClueSoundInBothSide + "\r\n" +
-                "EnableClueSoundInCorrectSide:" + EnableClueSoundInCorrectSide;
+                "EnableClueSoundInCorrectSide:" + EnableClueSoundInCorrectSide + "\r\n" +
+                "EnableRightLeftMustEquals:" + EnableRightLeftMustEquals;
         }
     }
 

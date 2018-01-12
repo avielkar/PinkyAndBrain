@@ -1601,6 +1601,9 @@ namespace PinkyAndBrain
             TextBox tb = sender as TextBox;
 
             CheckProperInputSpelling(tb.Text , varName , varAttibuteName);
+
+            //if a left textbox updated and need to equalize the right checkbox also.
+            UpdateRightTextBoxesAvailability(_checkBoxRightAndLeftSame.Checked);
         }
 
         /// <summary>
@@ -1835,7 +1838,6 @@ namespace PinkyAndBrain
                 _cntrlLoop.EnableFixationBreakSound = false;
         }
 
-
         /// <summary>
         /// Event for changing the AutoRewardSound status.
         /// </summary>
@@ -1882,12 +1884,61 @@ namespace PinkyAndBrain
         /// <summary>
         /// Handler for event turnning on/off the clue the rat get afet first reward.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender checkbox.</param>
+        /// <param name="e">The args.</param>
         private void _tbEnableBothSidedClueSound_CheckedChanged(object sender, EventArgs e)
         {
             _cntrlLoop.EnableClueSoundInBothSide = (sender as CheckBox).Checked;
         }
+
+        /// <summary>
+        /// Handler for event turnning on/off the right + left parameters must be the same.
+        /// </summary>
+        /// <param name="sender">The sender CheckBox.</param>
+        /// <param name="e">The args.</param>
+        private void _checkBoxRightAndLeftSame_CheckedChanged(object sender, EventArgs e)
+        {
+            _cntrlLoop.EnableRightLeftMustEquals = (sender as CheckBox).Checked;
+            
+            //make the textboxes for all pairs of right and left to be the same (disable the right textboxes and make thier values the same as the left textboxes).
+            UpdateRightTextBoxesAvailability((sender as CheckBox).Checked);
+        }
+
+        /// <summary>
+        /// Update and disabled all Right textboxes according to the equalization of the right textboxes and the left checkboxes.
+        /// </summary>
+        /// <param name="equals">If right checkboxes should equal the left checkboxes.</param>
+        public void UpdateRightTextBoxesAvailability(bool equals)
+        {
+            UpdateRightCheckBoxAvailability("REWARD_RIGHT_DELAY" ,"REWARD_LEFT_DELAY" , equals);
+            UpdateRightCheckBoxAvailability("REWARD_RIGHT_DURATION", "REWARD_LEFT_DURATION", equals);
+            UpdateRightCheckBoxAvailability("REWARD_RIGHT_DELAY_SC", "REWARD_LEFT_DELAY_SC", equals);
+            UpdateRightCheckBoxAvailability("REWARD_RIGHT_DURATION_SC", "REWARD_LEFT_DURATION_SC", equals);
+        }
+
+        /// <summary>
+        /// Update a right textboxe with the given name to be equals and disabled according to equals parameter.
+        /// </summary>
+        /// <param name="checkboxRightName">The right textbox to be disabled and equaled to the left textbox.</param>
+        /// <param name="cehckBoxLeftName">The left textbox to be equals to.</param>
+        /// <param name="equals">Inducate if equals and disable or to enable.</param>
+        public void UpdateRightCheckBoxAvailability(string checkboxRightName , string cehckBoxLeftName , bool equals)
+        {
+            if (_dynamicAllocatedTextBoxes.Keys.Contains(checkboxRightName + "parameters"))
+            {
+                if (equals)
+                {
+                    _dynamicAllocatedTextBoxes[checkboxRightName + "parameters"].Enabled = false;
+                    _dynamicAllocatedTextBoxes[checkboxRightName + "parameters"].Text = _dynamicAllocatedTextBoxes[cehckBoxLeftName + "parameters"].Text;
+                    _variablesList._variablesDictionary[checkboxRightName]._description["parameters"]._ratHouseParameter = _variablesList._variablesDictionary[cehckBoxLeftName]._description["parameters"]._ratHouseParameter;
+                }
+                else
+                {
+                    _dynamicAllocatedTextBoxes[checkboxRightName + "parameters"].Enabled = true;
+                }
+            }
+        }
+
         #endregion MODES
    
         #region PARAMETERS_GROUPBOXFUNCTIONS
@@ -1931,6 +1982,12 @@ namespace PinkyAndBrain
                 top += 35;
             }
 
+            //reset checkboxes statuses before matching them to the protocol file.
+            foreach (CheckBox item in _checkboxesDictionary.Values)
+            {
+                item.Checked = false;
+            }
+
             //filter only the variables where the status is  -1 (for the checkboxes for the gui).
             foreach (string varName in _variablesList._variablesDictionary.Keys.Where(name => int.Parse(_variablesList._variablesDictionary[name]._description["status"]._ratHouseParameter) == -1))
             {
@@ -1941,6 +1998,9 @@ namespace PinkyAndBrain
                     _checkboxesDictionary[varName].Checked = true;
                 }
             }
+
+            //update if right equals to left according to the checkbox status.
+            UpdateRightTextBoxesAvailability(_checkBoxRightAndLeftSame.Checked);
         }
 
         /// <summary>
@@ -2194,6 +2254,7 @@ namespace PinkyAndBrain
             _checkboxesDictionary.Add("R+L_CLUE_SOUND", _checkBoxEnableBothSidedClueSound);
             _checkboxesDictionary.Add("ERROR_SOUND", _checkboxErrorSoundOn);
             _checkboxesDictionary.Add("FIXATION_ONLY", _checkBoxFixationOnly);
+            _checkboxesDictionary.Add("RIGHT_LEFT_PARAMETERS_EQUALS", _checkBoxRightAndLeftSame);
         }
 
         /// <summary>
