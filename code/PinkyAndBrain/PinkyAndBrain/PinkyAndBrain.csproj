@@ -120,6 +120,7 @@
     <Compile Include="VaryingIndexSelector.cs" />
     <EmbeddedResource Include="GuiInterface.resx">
       <DependentUpon>GuiInterface.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

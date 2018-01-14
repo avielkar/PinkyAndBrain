@@ -55,8 +55,9 @@ namespace PinkyAndBrain
 
             foreach (string varName in _variablesList._variablesDictionary.Keys)
             {
-                //if the variable is static type , add it to the static variables list with it's attributes.
-                if(_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter.Equals("1"))
+                //if the variable is static type or const type , add it to the static variables list with it's attributes.
+                if (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter.Equals("1")
+                    || _variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter.Equals("0"))
                 {
                     //it's static variable , so need to take only it's parameters value to the experiment round.
                     _staticVariableList.Add(varName, double.Parse(_variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter));

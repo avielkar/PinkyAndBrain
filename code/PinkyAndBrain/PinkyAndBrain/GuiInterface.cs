@@ -2055,6 +2055,7 @@ namespace PinkyAndBrain
             ComboBox statusCombo = new ComboBox();
             statusCombo.Left = left + offset;
             statusCombo.Top = top;
+            statusCombo.Items.Add("Const");
             statusCombo.Items.Add("Static");
             statusCombo.Items.Add("Varying");
             statusCombo.Items.Add("AcrossStair");
@@ -2068,6 +2069,10 @@ namespace PinkyAndBrain
             //decide which items on the ComboBox is selected according to the data in the excel sheet.
             switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter)
             {
+                case "0":
+                    statusCombo.SelectedText = "Const";
+                    break;
+
                 case "1":
                     statusCombo.SelectedText = "Static";
                     break;
@@ -2183,14 +2188,15 @@ namespace PinkyAndBrain
             //add name to the control in order to get it from the list if needed.
             parametersTextBox.Name = "parameters";
 
+
             //print the parameter in the gui according to the representation of each status.
             switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter)
             {
+                case "0":   //const
                 case "1":   //static
                 case "6":   //vector
                     //show the _ratHouseParameter.
-                    string parametersTextVal = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter);
-                    parametersTextBox.Text = parametersTextVal;
+                    parametersTextBox.Text = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter);;
                     break;
 
                 case "2":   //varying
@@ -2401,9 +2407,16 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="textBox">The textbox to freeze or not.</param>
         /// <param name="varName">The variable name for chaecing the status for the textbox. </param>
-        /// <param name="parametersTextbox">Is the textbox describe a parameters attribute textbox. </param>
+        /// <param name="parametersTextbox">Is the textbox describe a parameters attribute textbox or vector attribute or const attribute values. </param>
         private void FreezeTextBoxAccordingToStatus(TextBox textBox , string varName , bool parametersTextbox)
         {
+            //if const disabled textbox and break no matter what.
+            if (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter == "0")
+            {
+                textBox.Enabled = false;
+                return;
+            }
+
             //decide which items on the ComboBox is selected according to the data in the excel sheet.
             switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter)
             {
@@ -2615,6 +2628,8 @@ namespace PinkyAndBrain
         {
             switch (statusValueByName)
             {
+                case "Const":
+                    return "0";
                 case "Static":
                     return "1";
                 case "Varying":
@@ -2644,6 +2659,7 @@ namespace PinkyAndBrain
             //print the parameter in the gui according to the representation of each status.
             switch (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter)
             {
+                case "0":   //const
                 case "1":   //static
                 case "6":
                     //show the _ratHouseParameter.
