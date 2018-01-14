@@ -2520,13 +2520,15 @@ namespace PinkyAndBrain
         /// <returns>If the string vector is properlly spelled.</returns>
         private bool VectorNumberChecker(string str)
         {
-            if (str.Where(x => (x < '0' || x > '9') && x != ' ').Count() > 0)
+                int x1 = str.Count(x => x == ' ') + 1;
+                int y1 = str.Split(' ').Count();
+            if (str.Where(x => (x < '0' || x > '9') && x != ' ' && x != '-').Count() > 0)
             {
                 MessageBox.Show("Warnning : Vector can include onlt scalar and spaces.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 return false;
             }
-            else if (str.Count(x => x == ' ') + 1 != str.Split(' ').Count())
+            else if (!DigitsNumberChecker(str.Split(' ').ToList()))
             {
                 MessageBox.Show("Warnning : Vector include to much spaces chars.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -2561,6 +2563,9 @@ namespace PinkyAndBrain
         /// <returns>True if the string can be a number , False otherwise.</returns>
         private bool DigitsNumberChecker(string str)
         {
+            if (str == "")
+                return false;
+
             //can starts with negative sign.
             if(str.StartsWith("-"))
             {
