@@ -180,7 +180,14 @@ namespace VaryingValuesGenerators
                     double high_bound = double.Parse(item.Value._description["high_bound"]._ratHouseParameter);
                     double increament = double.Parse(item.Value._description["increament"]._ratHouseParameter);
 
-                    oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament);
+                    //add the vector to the return list (if it include stimulus type == 0 remove it).
+                    if (item.Key == "STIMULUS_TYPE" && low_bound == 0)
+                    {
+                        oneVarVector = CreateVectorFromBounds(low_bound + 1, high_bound, increament);
+                        _containsStimulusType0 = true;
+                    }
+                    else
+                        oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament); 
                 }
                 else // equals "6"
                 {
