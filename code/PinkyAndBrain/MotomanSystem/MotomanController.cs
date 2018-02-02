@@ -48,6 +48,8 @@ namespace PinkyAndBrain
             MotomanProtocolFileCreator = new MotomanProtocolFileCreator(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
 
             _logger = logger;
+
+            _logger.Info("MotomanController created.");
         }
         #endregion
 
@@ -57,6 +59,8 @@ namespace PinkyAndBrain
         /// </summary>
         public void SetServoOn()
         {
+            _logger.Info("Setting Yaskawa robot servo on.");
+
             _motomanController.SetServoOn();
         }
 
@@ -65,6 +69,8 @@ namespace PinkyAndBrain
         /// </summary>
         public void SetServoOff()
         {
+            _logger.Info("Setting Yaskawa robot servo off.");
+
             _motomanController.SetServoOff();
         }
 
@@ -75,6 +81,8 @@ namespace PinkyAndBrain
         /// <returns>IO status</returns>
         public bool ReadSingleIO(int address)
         {
+            _logger.Info("Reading Single IO from adress " + address + ".");
+
             return _motomanController.ReadSingleIO(address);
         }
 
@@ -84,7 +92,13 @@ namespace PinkyAndBrain
         /// <returns></returns>
         public bool JobStatus()
         {
-            return _motomanController.ReadSingleIO(50070);
+            _logger.Info("Reading Job status.");
+
+            bool jobStatus = _motomanController.ReadSingleIO(50070);
+
+            _logger.Info("Job finished is " + jobStatus);
+
+            return jobStatus;
         }
 
         /// <summary>
@@ -92,10 +106,14 @@ namespace PinkyAndBrain
         /// </summary>
         public void WaitJobFinished()
         {
+            _logger.Info("Waiting Job to be finished.");
+
             while(JobStatus())
             {
                 Thread.Sleep(100);
             }
+
+            _logger.Info("Job status finished.");
         }
 
         /// <summary>
@@ -127,7 +145,7 @@ namespace PinkyAndBrain
         /// <param name="inverse"> Indicate if the motion of the robot is backword motion.</param>
         public void UpdateYasakawaRobotJBIFile(Tuple<Trajectory, Trajectory> traj, MotomanProtocolFileCreator.UpdateJobType updateJobType, bool inverse = false)
         {
-            _logger.Info("Writing job to the robot.");
+            _logger.Info("Writing job file to the robot.");
 
             //if need to inverse the trajectory in case of PostTrialStage backword trajcetory.
             if (inverse)
@@ -143,12 +161,15 @@ namespace PinkyAndBrain
             {
                 _motomanController.DeleteJob("GAUSSIANMOVING2.JBI");
             }
-            catch { }
+            catch (Exception e)
+            {
+                _logger.Info("Delete the old JBI file commands stored in the controller exception " + e.Data);
+            }
 
             //wruite the new JBI file to the controller.
             _motomanController.WriteFile(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
 
-            _logger.Info("Writing job to the robot ended.");
+            _logger.Info("Writing job file to the robot ended.");
         }
 
         /// <summary>
@@ -156,6 +177,8 @@ namespace PinkyAndBrain
         /// </summary>
         public void WriteHomePosFile()
         {
+            _logger.Info("Writing home position file.");
+
             Position r1HomePosition = new Position();
             r1HomePosition.x = MotocomSettings.Default.R1OriginalX;
             r1HomePosition.y = MotocomSettings.Default.R1OriginalY;
@@ -173,14 +196,8 @@ namespace PinkyAndBrain
             r2HomePosition.rz = MotocomSettings.Default.R2OriginalRZ;
 
             WriteOneTargetPositionFile("HOME_POS_BOTH" ,r1HomePosition, r2HomePosition);
-        }
 
-        /// <summary>
-        /// Move the robot to it's home (origin) position.
-        /// </summary>
-        public void MoveRobotHomePosition()
-        {
-            MoveRobotSpecificPosition("HOME_POS_BOTH.JBI");
+            _logger.Info("Writing home position file ended.");
         }
 
         /// <summary>
@@ -188,6 +205,8 @@ namespace PinkyAndBrain
         /// </summary>
         public void WriteParkPositionFile()
         {
+            _logger.Info("Writing park position file.");
+
             Position r1ParkPosition;
 
             r1ParkPosition.x = MotocomSettings.Default.R1OriginalX - MotocomSettings.Default.ParkingBackwordDistance;
@@ -206,6 +225,8 @@ namespace PinkyAndBrain
             r2ParkPosition.rz = MotocomSettings.Default.R2OriginalRZ;
 
             WriteOneTargetPositionFile("PARK_POS_BOTH" , r1ParkPosition, r2ParkPosition);
+
+            _logger.Info("Writing park position file ended.");
         }
 
         /// <summary>
@@ -220,11 +241,27 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Move the robot to it's home (origin) position.
+        /// </summary>
+        public void MoveRobotHomePosition()
+        {
+            _logger.Info("Moving the robot home position begin.");
+
+            MoveRobotSpecificPosition("HOME_POS_BOTH.JBI");
+
+            _logger.Info("Moving the robot home position ended.");
+        }
+
+        /// <summary>
         /// Move the robot to it's park position.
         /// </summary>
         public void MoveRobotParkPosition()
         {
+            _logger.Info("Moving the robot park position begin.");
+
             MoveRobotSpecificPosition("PARK_POS_BOTH.JBI");
+
+            _logger.Info("Moving the robot park position ended.");
         }
 
         /// <summary>
@@ -244,9 +281,7 @@ namespace PinkyAndBrain
 
             _motomanController.StartJob(jobName);
 
-            //should fix this bug
-            //_motomanController.WaitJobFinished(10000);
-            Thread.Sleep(2000);
+            WaitJobFinished();
         }
 
         /// <summary>
@@ -255,12 +290,11 @@ namespace PinkyAndBrain
         public void MoveYasakawaRobotWithTrajectory()
         {
             _motomanController.StartJob("GAUSSIANMOVING2.JBI");
-            _logger.Info("Moving the robot begin.");
+            _logger.Info("Moving the robot with trajectory begin.");
 
             //wait for the commands to be executed.
-            //_motomanController.WaitJobFinished(10000);
             WaitJobFinished();
-            _logger.Info("Moving the robot finished.");
+            _logger.Info("Moving the robot with trajectory finished.");
         }
         #endregion
 

@@ -625,7 +625,7 @@ namespace PinkyAndBrain
                                         //clue time stage if needed.
                                         ClueResponseStage();
 
-                                        //wait the rat to response to the movement during the response tine.
+                                        //wait the rat to response to the movement during the response time.
                                         Tuple<RatDecison, bool> decision = ResponseTimeStage();
 
                                         //second reward stage (condition if needed in the stage) with false for second chance response.
