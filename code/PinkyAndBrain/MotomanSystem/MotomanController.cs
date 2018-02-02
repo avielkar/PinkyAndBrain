@@ -96,7 +96,7 @@ namespace PinkyAndBrain
 
             bool jobStatus = _motomanController.ReadSingleIO(50070);
 
-            _logger.Info("Job finished is " + jobStatus);
+            _logger.Info("Job working is " + jobStatus);
 
             return jobStatus;
         }
