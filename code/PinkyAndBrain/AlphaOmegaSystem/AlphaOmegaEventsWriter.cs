@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NationalInstruments.DAQmx;
 using System.Threading;
+using log4net;
 
 using NationalInstrumentsDaq = NationalInstruments.DAQmx;
 
@@ -36,6 +37,11 @@ namespace AlphaOmegaSystem
         private DigitalSingleChannelWriter _digitalWriterStrobe;
 
         /// <summary>
+        /// Logger for writing the information.
+        /// </summary>
+        private ILog _logger;
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="deviceName">The device name to be connected to.</param>
@@ -45,8 +51,11 @@ namespace AlphaOmegaSystem
         /// <param name="strobePort">The strobe port to listen to.</param>
         /// <param name="strobeLines">The line in the strobe port to listen to.</param>
         /// <param name="strobeChannelNickName">The strobe channel nickname.</param>
-        public AlphaOmegaEventsWriter(string deviceName, string port, string lines, string channelsNickName ,string strobePort , string strobeLines , string strobeChannelNickName)
+        public AlphaOmegaEventsWriter(string deviceName, string port, string lines, string channelsNickName ,string strobePort , string strobeLines , string strobeChannelNickName , ILog logger)
         {
+            _logger = logger;
+            _logger.Info("AlphaOmegaEventsWriter created.");
+
             //make the full name to access the device.
             string channelLines = string.Join("/", deviceName, port, lines);
             string strobeChannelLine = string.Join("/", deviceName, strobePort, strobeLines);
@@ -70,7 +79,9 @@ namespace AlphaOmegaSystem
         /// <param name="autoStart">Auto start flag.</param>
         /// <param name="alphaOmegaEvent">The data (byte) to be written as l7l6l5l4l3l2l1l0 (lines).</param>
         public void WriteEvent(bool autoStart, AlphaOmegaEvent alphaOmegaEvent)
-        {         
+        {
+            _logger.Info("Writing event. AlphaOmegaEvent = " + alphaOmegaEvent.ToString() + ".");
+     
             _digitalWriter.WriteSingleSamplePort(autoStart, (byte)alphaOmegaEvent);
             
             Thread.Sleep(10);
