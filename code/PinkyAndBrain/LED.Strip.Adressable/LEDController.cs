@@ -46,6 +46,8 @@ namespace LED.Strip.Adressable
         /// </summary>
         public LEDController(string portName , int baudRate , int numOfLeds , ILog logger)
         {
+            _logger.Info("LEDController created.");
+
             _ledArduinoSerialPort = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
 
             byte[] b = new byte[150];
@@ -61,6 +63,8 @@ namespace LED.Strip.Adressable
         /// </summary>
         public void OpenConnection()
         {
+            _logger.Info("Openning Connection.");
+
             try
             {
                 _ledArduinoSerialPort.Open();
@@ -70,6 +74,7 @@ namespace LED.Strip.Adressable
             {
                 //show the error window.
                 MessageBox.Show("Error - The COM4 port for LED Arduino is not available , Exit and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _logger.Info("Openning Connection failed.");
 
                 //connection failed
                 Connected = false;
@@ -87,6 +92,8 @@ namespace LED.Strip.Adressable
         /// </summary>
         public void CloseConnection()
         {
+            _logger.Info("Closing Connection.");
+
             //if not connected nothing to do.
             if (!Connected) return;
 
@@ -98,6 +105,8 @@ namespace LED.Strip.Adressable
         /// </summary>
         public void SendData()
         {
+            _logger.Info("SendData begin.");
+
             //if not connected nothing to do.
             if (!Connected) return;
 
@@ -124,6 +133,8 @@ namespace LED.Strip.Adressable
             //means the end of the data.
             _ledArduinoSerialPort.Write("#");
             _ledArduinoSerialPort.Write("#");
+
+            _logger.Info("SendData ended.");
         }
 
         /// <summary>
