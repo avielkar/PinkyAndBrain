@@ -532,6 +532,8 @@ namespace PinkyAndBrain
         #region STAGES_FUNCTION
         public void MainControlLoop()
         {
+            _logger.Info("Main ControlLoop begin.");
+
             //set robot servo on and go homeposition.
             try
             {
@@ -701,6 +703,7 @@ namespace PinkyAndBrain
         /// </summary>
         public void InitializationStage()
         {
+            //TODO : change the index of the trial to be identical to the trial number in the result file.
             _logger.Info("Initialization Stage of trial #" + (_totalHeadStabilityInCenterDuringDurationTime + 1));
 
             //update the global details listview with the current stage.
@@ -736,6 +739,8 @@ namespace PinkyAndBrain
         /// </summary>
         public void ClueResponseStage()
         {
+            _logger.Info("ClueResponseStage begin. EnableClueSoundInBothSide = " + EnableClueSoundInBothSide + ";EnableClueSoundInCorrectSide" + EnableClueSoundInCorrectSide + ".");
+
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Clue Stage");
@@ -775,6 +780,8 @@ namespace PinkyAndBrain
 
                 _specialModesInRealTime.EnableClueSoundInCorrectSide = true;
             }
+
+            _logger.Info("ClueResponseStage ended.");
         }
 
         /// <summary>
@@ -828,7 +835,7 @@ namespace PinkyAndBrain
         /// </summary>
         public Tuple<RatDecison, bool> ResponseTimeStage()
         {
-            //Thread.Sleep(1000*(int)(_currentTrialTimings.wResponseTime));
+            _logger.Info("ResponseTimeStage begin.");
             
             //if not trainig continue.
             if (GetVariableValue("STIMULUS_TYPE") == "0")
@@ -870,6 +877,7 @@ namespace PinkyAndBrain
                         //update the psycho online graph.
                         _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType, currentHeadingDirection, AnswerStatus.CORRECT);
 
+                        _logger.Info("ResponseTimeStage ended. RatDecison = RatDecison.Left" + "; Correct = True.");
                         return new Tuple<RatDecison, bool>(RatDecison.Left, true);
                     }
 
@@ -887,6 +895,7 @@ namespace PinkyAndBrain
                         _specialModesInRealTime.ErrorChoiceSouunOn = true;
                     }
 
+                    _logger.Info("ResponseTimeStage ended. RatDecison = RatDecison.Left" + "; Correct = False.");
                     return new Tuple<RatDecison, bool>(RatDecison.Left, false);
                 }
 
@@ -909,6 +918,7 @@ namespace PinkyAndBrain
                         //update the psycho online graph.
                         _onlinePsychGraphMaker.AddResult("Heading Direction", _currentTrialStimulusType, currentHeadingDirection, AnswerStatus.CORRECT);
 
+                        _logger.Info("ResponseTimeStage ended. RatDecison = RatDecison.Right" + "; Correct = True.");
                         return new Tuple<RatDecison, bool>(RatDecison.Right, true);
                     }
 
@@ -927,12 +937,13 @@ namespace PinkyAndBrain
                         _specialModesInRealTime.ErrorChoiceSouunOn = true;
                     }
 
+                    _logger.Info("ResponseTimeStage ended. RatDecison = RatDecison.Right" + "; Correct = False.");
                     return new Tuple<RatDecison, bool>(RatDecison.Right, false);
                 }
             }
 
+            _logger.Info("ResponseTimeStage ended. RatDecison = RatDecison.NoDecision; Correct = False.");
             _currentRatDecision = RatDecison.NoDecision;
-
             return new Tuple<RatDecison, bool>(RatDecison.NoDecision, false);
         }
         
@@ -1046,6 +1057,8 @@ namespace PinkyAndBrain
         /// <param name="secondChance">Indicates if it was a second chance response.</param>
         public void SecondRewardStage(Tuple<RatDecison, bool> decision,  bool autoReward = false , bool secondChance = false)
         {
+            _logger.Info("SecondRewardStage begin. AutoReward = " + AutoReward + "; SecondChance =" + secondChance + ".");
+
             //check if the decision was correct and reward the rat according that decision.
             if (decision.Item2)
             {
@@ -1117,6 +1130,8 @@ namespace PinkyAndBrain
             }
 
             _autosOptionsInRealTime.AutoReward = autoReward;
+
+            _logger.Info("SecondRewardStage ended.");
         }
 
         /// <summary>
@@ -1127,6 +1142,8 @@ namespace PinkyAndBrain
         /// </summary>
         public void RewardLeftStage(bool autoReward = false , bool RewardSound = false , bool secondChance = false)
         {
+            _logger.Info("RewardLeftStage begin with AutoReward  = " + autoReward + ".");
+
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Left)");
@@ -1138,6 +1155,8 @@ namespace PinkyAndBrain
 
             //write that the rat get left reward to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.LeftReward);
+
+            _logger.Info("RewardLeftStage ended.");
         }
 
         /// <summary>
@@ -1148,6 +1167,8 @@ namespace PinkyAndBrain
         /// </summary>
         public void RewardRightStage(bool autoReward = false, bool RewardSound = false , bool secondChance = false)
         {
+            _logger.Info("RewardRightStage begin with AutoReward  = " + autoReward + ".");
+
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Right)");
@@ -1159,6 +1180,8 @@ namespace PinkyAndBrain
 
             //write that the rat get right reward to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RightReward);
+
+            _logger.Info("RewardRightStage ended.");
         }
 
         /// <summary>
@@ -1168,6 +1191,8 @@ namespace PinkyAndBrain
         /// </summary>
         public void RewardCenterStage(bool autoReward = false, bool autoRewardSound = false , bool secondChance = false)
         {
+            _logger.Info("RewardCenterStage begin with AutoReward  = " + autoReward + ".");
+
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Center)");
@@ -1176,6 +1201,8 @@ namespace PinkyAndBrain
 
             //write that the rat get center reward to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.CenterReward);
+
+            _logger.Info("RewardCenterStage ended.");
         }
 
         /// <summary>
@@ -1183,7 +1210,11 @@ namespace PinkyAndBrain
         /// </summary>
         private void RewardToBackwardDelayStage()
         {
+            _logger.Info("RewardToBackwardDelayStage begin.");
+
             Thread.Sleep((int)(_currentTrialTimings.wRewardToBackwardDelay*1000));
+
+            _logger.Info("RewardToBackwardDelayStage ended.");
         }
 
         /// <summary>
@@ -1193,6 +1224,8 @@ namespace PinkyAndBrain
         /// <returns>True if the head was stable consistently in the center during the movement time.</returns>
         public bool MovingTheRobotDurationWithHeadCenterStabilityStage()
         {
+            _logger.Info("Moving the robot with duration time and head center stability check stage is begin.");
+
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Stimulus Duration");
@@ -1205,7 +1238,6 @@ namespace PinkyAndBrain
             Task robotMotion;
             switch (_currentTrialStimulusType)
             {
-
                 case 0://none
                     robotMotion = Task.Factory.StartNew(() => Thread.Sleep((int)(1000 * _currentTrialTimings.wDuration)));
                     break;
@@ -1322,13 +1354,15 @@ namespace PinkyAndBrain
                     Thread.Sleep((int)(Properties.Settings.Default.NoldusRatReponseSampleRate));
                     if (_currentRatResponse != 2 && headInCenterAllTheTime)
                     {
+                        _logger.Info("Break fixation during the movement.");
+
                         headInCenterAllTheTime = false;
 
                         if (!AutoFixation)
                         {
                             if(EnableFixationBreakSound)
                             //sound the break fixation sound - aaaahhhh sound.
-                            //TODO: checl if need here a task.
+                            //TODO: check if need here a task.
                             {
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"];
                                 _windowsMediaPlayer.controls.play();
@@ -1345,7 +1379,7 @@ namespace PinkyAndBrain
                 }
             });
 
-            //wait the robot to finish the movement.
+            //wait the robot task to finish the movement.
             if (_currentTrialStimulusType != 0)
                 robotMotion.Wait();
             //also send the AlphaOmega that motion forward ends.
@@ -1358,7 +1392,7 @@ namespace PinkyAndBrain
             _ledController.ExecuteCommands();
             _ledController2.ExecuteCommands();
 
-            _logger.Info("End MovingTheRobotDurationWithHeadCenterStabilityStage");
+            _logger.Info("End MovingTheRobotDurationWithHeadCenterStabilityStage with AutoFixation = " + AutoFixation + ".");
             //return the true state of the heading in the center stability during the duration time or always true when AutoFixation.
             return headInCenterAllTheTime || AutoFixation;
         }
@@ -1369,6 +1403,8 @@ namespace PinkyAndBrain
         /// <returns></returns>
         public bool CheckDuration1HeadInTheCenterStabilityStage()
         {
+            _logger.Info("Head in the center stability stage is begin.");
+
             //waits the startdelay time before starting the motion of the robot for the rat to ensure stability with head in the center.
             //reset the stopwatch for new measurement time cycle of startDelay.
             Stopwatch sw = new Stopwatch();
@@ -1386,10 +1422,14 @@ namespace PinkyAndBrain
                     //if the head sample mentioned that the head was not in the center during the startDelay time , break , and move to the post trial time.
                     if (_currentRatResponse != 2)
                     {
+                        _logger.Info("Breaking head fixation during the stability stage occured.");
+
                         return false;
                     }
                 }
             }
+
+            _logger.Info("Heading stability stage successfull with AutoFixation = " + AutoFixation + ".");
 
             return true;
         }
@@ -1400,6 +1440,8 @@ namespace PinkyAndBrain
         /// <returns>True if the rat enter the head to the center during the limit of the timeoutTime.</returns>
         public bool WaitForHeadEnteranceToTheCenterStage()
         {
+            _logger.Info("Waiting for Head to be entered to the center stage for the first time.");
+
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Waiting for rat to start trial");
@@ -1408,6 +1450,8 @@ namespace PinkyAndBrain
             _autosOptionsInRealTime.AutoStart = AutoStart;
             if(AutoStart)
             {
+                _logger.Info("AutoStart is On so no wait.");
+
                 return true;
             }
 
@@ -1429,6 +1473,11 @@ namespace PinkyAndBrain
             //write the event of HeadEnterCenter to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterCenter);
 
+            if (x == 2)
+                _logger.Info("Waiting for Head to be entered to the center for the first occured.");
+            else
+                _logger.Info("Waiting for Head to be entered to the center stage for the first time expired.");
+
             return (x == 2);
         }
         
@@ -1439,6 +1488,8 @@ namespace PinkyAndBrain
         /// </summary>
         public bool PostTrialStage(bool duration1HeadInTheCenterStabilityStage)
         {
+            _logger.Info("PostTrialStage begin.");
+
             bool trialSucceed = true;
 
             //update the global details listview with the current stage.
@@ -1465,7 +1516,10 @@ namespace PinkyAndBrain
             UpdateRobotHomePositionBackwordsJBIFile();
             Task moveRobotHomePositionTask;
             if (!duration1HeadInTheCenterStabilityStage)
+            {
+                _logger.Info("Backward not executed because duration1HeadInTheCenterStabilityStage = false. Calling NullFunction().");
                 moveRobotHomePositionTask = Task.Factory.StartNew(() => NullFunction());
+            }
             else
             {
                 moveRobotHomePositionTask = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
@@ -1479,6 +1533,7 @@ namespace PinkyAndBrain
             {
                 Task.Run(() =>
                 {
+                    _logger.Info("Saving trial# " + (_totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks) + "to the result file.");
                     _savedExperimentDataMaker.SaveTrialDataToFile(new TrialData()
                     {
                         StaticVariables = _staticVariablesList,
@@ -1506,6 +1561,7 @@ namespace PinkyAndBrain
             //also send the AlphaOmega that motion backwards ends.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotEndMovingBackward);
 
+            _logger.Info("PostTrialStage ended. TrialSucceed = " + trialSucceed + ".");
             return trialSucceed;
         }
         #endregion

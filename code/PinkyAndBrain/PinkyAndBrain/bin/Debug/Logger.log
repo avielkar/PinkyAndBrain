@@ -11,3 +11,16 @@
 2018-02-02 11:48:39,959 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
 2018-02-02 11:48:39,970 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
 2018-02-02 11:48:41,882 INFO [9] PinkyAndBrain.MotomanController.SetServoOff - Setting Yaskawa robot servo off.
+2018-02-02 12:25:07,589 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2018-02-02 12:25:07,634 INFO [9] PinkyAndBrain.MotomanController..ctor - MotomanController created.
+2018-02-02 12:25:07,679 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-02-02 12:25:07,683 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-02 12:25:07,694 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-02 12:25:07,704 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-02 12:25:07,715 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-02-02 12:25:07,715 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-02-02 12:25:07,718 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-02 12:25:07,729 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-02 12:25:07,739 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-02 12:25:07,750 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-02-02 12:25:10,068 INFO [9] PinkyAndBrain.MotomanController.SetServoOff - Setting Yaskawa robot servo off.
