@@ -1,0 +1,7 @@
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\bin\Release\InfraRedSystem.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\bin\Release\InfraRedSystem.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\bin\Release\NationalInstruments.DAQmx.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\bin\Release\NationalInstruments.Common.Native.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\obj\Release\InfraRedSystem.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\obj\Release\InfraRedSystem.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\obj\Release\InfraRedSystem.pdb

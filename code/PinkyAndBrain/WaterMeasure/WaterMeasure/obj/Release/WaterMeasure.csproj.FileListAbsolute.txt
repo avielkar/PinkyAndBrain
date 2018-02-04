@@ -2,3 +2,6 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\WaterMeasure\Wat
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\WaterMeasure\WaterMeasure\bin\Release\WaterMeasure.pdb
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\WaterMeasure\WaterMeasure\obj\Release\WaterMeasure.dll
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\WaterMeasure\WaterMeasure\obj\Release\WaterMeasure.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\WaterMeasure\WaterMeasure\bin\Release\log4net.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\WaterMeasure\WaterMeasure\bin\Release\log4net.xml
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\WaterMeasure\WaterMeasure\obj\Release\WaterMeasure.csprojResolveAssemblyReference.cache
