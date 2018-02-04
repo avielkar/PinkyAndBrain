@@ -1650,6 +1650,16 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Handle event if the number of repetitions for the experiments changed dynamically.
+        /// </summary>
+        /// <param name="sender">The textbox sendr.</param>
+        /// <param name="e">The args</param>
+        private void _numOfRepetitionsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _cntrlLoop.NumOfRepetitions = int.Parse((sender as TextBox).Text.ToString());
+        }
+
+        /// <summary>
         /// Handler for changing the number of repetition input text.
         /// </summary>
         /// <param name="sender">The checkbox control.</param>

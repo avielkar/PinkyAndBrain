@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -92,6 +92,7 @@
             this._ardionoPrtWarningLabel = new System.Windows.Forms.Label();
             this._checkBoxRewardSound = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._checkBoxRightAndLeftSame = new System.Windows.Forms.CheckBox();
             this._checkBoxCorrectClueSound = new System.Windows.Forms.CheckBox();
             this._checkBoxEnableBothSidedClueSound = new System.Windows.Forms.CheckBox();
             this._checkboxErrorSoundOn = new System.Windows.Forms.CheckBox();
@@ -109,7 +110,6 @@
             this._btnSaveProtocol = new System.Windows.Forms.Button();
             this._textboxNewProtocolName = new System.Windows.Forms.TextBox();
             this._labelNewProtocolName = new System.Windows.Forms.Label();
-            this._checkBoxRightAndLeftSame = new System.Windows.Forms.CheckBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -423,6 +423,7 @@
             this._numOfRepetitionsTextBox.Size = new System.Drawing.Size(45, 20);
             this._numOfRepetitionsTextBox.TabIndex = 11;
             this._numOfRepetitionsTextBox.Text = "1";
+            this._numOfRepetitionsTextBox.TextChanged += new System.EventHandler(this._numOfRepetitionsTextBox_TextChanged);
             this._numOfRepetitionsTextBox.Leave += new System.EventHandler(this._numOfRepetitionsTextBox_Leave);
             // 
             // label5
@@ -615,17 +616,17 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea2.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend1);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series1);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
@@ -714,6 +715,17 @@
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Special Modes";
+            // 
+            // _checkBoxRightAndLeftSame
+            // 
+            this._checkBoxRightAndLeftSame.AutoSize = true;
+            this._checkBoxRightAndLeftSame.Location = new System.Drawing.Point(99, 76);
+            this._checkBoxRightAndLeftSame.Name = "_checkBoxRightAndLeftSame";
+            this._checkBoxRightAndLeftSame.Size = new System.Drawing.Size(82, 17);
+            this._checkBoxRightAndLeftSame.TabIndex = 17;
+            this._checkBoxRightAndLeftSame.Text = "R + L Same";
+            this._checkBoxRightAndLeftSame.UseVisualStyleBackColor = true;
+            this._checkBoxRightAndLeftSame.CheckedChanged += new System.EventHandler(this._checkBoxRightAndLeftSame_CheckedChanged);
             // 
             // _checkBoxCorrectClueSound
             // 
@@ -884,17 +896,6 @@
             this._labelNewProtocolName.Size = new System.Drawing.Size(102, 13);
             this._labelNewProtocolName.TabIndex = 27;
             this._labelNewProtocolName.Text = "New Protocol Name";
-            // 
-            // _checkBoxRightAndLeftSame
-            // 
-            this._checkBoxRightAndLeftSame.AutoSize = true;
-            this._checkBoxRightAndLeftSame.Location = new System.Drawing.Point(99, 76);
-            this._checkBoxRightAndLeftSame.Name = "_checkBoxRightAndLeftSame";
-            this._checkBoxRightAndLeftSame.Size = new System.Drawing.Size(82, 17);
-            this._checkBoxRightAndLeftSame.TabIndex = 17;
-            this._checkBoxRightAndLeftSame.Text = "R + L Same";
-            this._checkBoxRightAndLeftSame.UseVisualStyleBackColor = true;
-            this._checkBoxRightAndLeftSame.CheckedChanged += new System.EventHandler(this._checkBoxRightAndLeftSame_CheckedChanged);
             // 
             // GuiInterface
             // 
