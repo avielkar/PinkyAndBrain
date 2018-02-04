@@ -5,3 +5,5 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\AlphaOmegaSystem
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\AlphaOmegaSystem\obj\Debug\AlphaOmegaSystem.dll
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\AlphaOmegaSystem\obj\Debug\AlphaOmegaSystem.pdb
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\AlphaOmegaSystem\obj\Debug\AlphaOmegaSystem.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\AlphaOmegaSystem\bin\Debug\log4net.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\AlphaOmegaSystem\bin\Debug\log4net.xml

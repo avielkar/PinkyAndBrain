@@ -2533,7 +2533,7 @@ namespace PinkyAndBrain
         {
                 int x1 = str.Count(x => x == ' ') + 1;
                 int y1 = str.Split(' ').Count();
-            if (str.Where(x => (x < '0' || x > '9') && x != ' ' && x != '-').Count() > 0)
+            if (str.Where(x => (x < '0' || x > '9') && x != ' ' && x != '-' && x!= '.').Count() > 0)
             {
                 MessageBox.Show("Warnning : Vector can include onlt scalar and spaces.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 

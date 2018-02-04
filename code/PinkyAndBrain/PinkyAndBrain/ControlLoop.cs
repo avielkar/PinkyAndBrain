@@ -373,10 +373,13 @@ namespace PinkyAndBrain
         {
             _matlabApp = matlabApp;
             _trajectoryCreatorHandler = new TrajectoryCreatorHandler(_matlabApp);
+
+            //copy the logger reference to writing lof information
+            _logger = logger;
             
             _rewardController = new RewardController("Dev1" , "Port1" ,"Line0:2", "RewardChannels");
             _ratResponseController = new RatResponseController("Dev1", "Port0", "Line0:2", "RatResponseChannels");
-            _alphaOmegaEventsWriter = new AlphaOmegaEventsWriter("Dev1", "Port0", "Line3:7", "AlphaOmegaEventsChannels" , "Port1" , "Line3" , "AlphaOmegaStrobeChannel");
+            _alphaOmegaEventsWriter = new AlphaOmegaEventsWriter("Dev1", "Port0", "Line3:7", "AlphaOmegaEventsChannels" , "Port1" , "Line3" , "AlphaOmegaStrobeChannel" , _logger);
             _infraredController = infraRedController;
             
             _stopAfterTheEndOfTheCurrentTrial = false;
@@ -401,9 +404,6 @@ namespace PinkyAndBrain
 
             //initialize the savedDataMaker object once.
             _savedExperimentDataMaker = new SavedDataMaker();
-
-            //copy the logger reference to writing lof information
-            _logger = logger;
 
             //initialize the controls changed by the controlLoop and their invoking functions.
             _mainGuiControlsDelegatesDictionary = ctrlDelegatesDic;

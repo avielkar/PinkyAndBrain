@@ -46,6 +46,8 @@ namespace LED.Strip.Adressable
         /// </summary>
         public LEDController(string portName , int baudRate , int numOfLeds , ILog logger)
         {
+            _logger = logger;
+
             _logger.Info("LEDController created.");
 
             _ledArduinoSerialPort = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
