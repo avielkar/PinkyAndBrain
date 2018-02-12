@@ -904,6 +904,9 @@ namespace PinkyAndBrain
                             _cntrlLoop.NumOfStickOn = int.Parse(_textboxStickOnNumber.Text.ToString());
                             _cntrlLoop.PercentageOfTurnedOnLeds = double.Parse(_textboxPercentageOfTurnOnLeds.Text.ToString());
                             _cntrlLoop.LEDBrightness = int.Parse(_textboxLEDBrightness.Text.ToString());
+                            _cntrlLoop.LEDcolorRed = int.Parse(_textBoxLedRedColor.Text.ToString());
+                            _cntrlLoop.LEDcolorGreen = int.Parse(_textBoxLedGreenColor.Text.ToString());
+                            _cntrlLoop.LEDcolorBlue = int.Parse(_textBoxLedBlueColor.Text.ToString());
                             _cntrlLoop.ProtocolFullName = _selectedProtocolFullName.Split('.')[0];//delete the.xlsx extension from the protocol file name.
                             _cntrlLoop.Start(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency, trajectoryCreator);
                         }

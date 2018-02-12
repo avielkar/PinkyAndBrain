@@ -238,6 +238,21 @@ namespace PinkyAndBrain
         public int LEDBrightness { get; set; }
 
         /// <summary>
+        /// The red color value for the leds.
+        /// </summary>
+        public int LEDcolorRed { get; set; }
+
+        /// <summary>
+        /// The green color value for the leds.
+        /// </summary>
+        public int LEDcolorGreen { get; set; }
+
+        /// <summary>
+        /// The blue color value for the leds.
+        /// </summary>
+        public int LEDcolorBlue { get; set; }
+
+        /// <summary>
         /// Timer for raising event to sample the Noldus reponse direction and store it in _currentRatResponse.
         /// </summary>
         private System.Timers.Timer _ratSampleResponseTimer;
@@ -1260,10 +1275,10 @@ namespace PinkyAndBrain
 
                     //here should be stimulus type 2 for motion of the second robot for visual only.
                     //should move the robot and also to turn on the leds.
-                     ledsData1 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData1;
                     _ledController.SendData();
-                    ledsData2 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     _ledController.ExecuteCommands();
@@ -1279,10 +1294,10 @@ namespace PinkyAndBrain
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart3);
 
                     //should move only r1 robot and also to turn on the leds.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData1;
                     _ledController.SendData();
-                    ledsData2 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     _ledController.ExecuteCommands();
@@ -1312,10 +1327,10 @@ namespace PinkyAndBrain
                     }
 
                     //should move only r1 robot and also to turn on the leds.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData1;
                     _ledController.SendData();
-                    ledsData2 = new LEDsData((byte)LEDBrightness, 0, 255, 0, _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     _ledController.ExecuteCommands();
