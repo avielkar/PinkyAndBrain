@@ -1394,9 +1394,53 @@ namespace PinkyAndBrain
                 }
             });
 
+            //token to cancel the coherence task.
+            CancellationTokenSource cancelTurningCoherenceLeds = new CancellationTokenSource();
+
+            //if coherence enabled and also has a visual stimulus.
+            if (_currentTrialStimulusType == 2 ||
+                _currentTrialStimulusType == 3 ||
+                _currentTrialStimulusType == 4 ||
+                _currentTrialStimulusType == 5 ||
+                _currentTrialStimulusType == 10 ||
+                _currentTrialStimulusType == 11)
+            {
+
+                Task coherenceLedTask = Task.Factory.StartNew(() => { });
+                Thread.Sleep(1);
+                coherenceLedTask = Task.Factory.StartNew(() =>
+                {
+                    while (!robotMotion.IsCompleted)
+                    {
+                        Thread.Sleep(100);
+
+                        _logger.Info("New Data Leds Sending for COHERENCE frame");
+
+                        Stopwatch sw = new Stopwatch();
+                        sw.Start();
+
+                        ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombinationCoherence(0.5));
+                        _ledController.LEDsDataCommand = ledsData1;
+                        _ledController.SendData();
+                        ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombinationCoherence(0.5));
+                        _ledController2.LEDsDataCommand = ledsData2;
+                        _ledController2.SendData();
+
+                        _ledController.ExecuteCommands();
+                        _ledController2.ExecuteCommands();
+                    }
+                }, cancelTurningCoherenceLeds.Token);
+            }
+
             //wait the robot task to finish the movement.
             if (_currentTrialStimulusType != 0)
+            {
                 robotMotion.Wait();
+
+                //cancel the coherence led task.
+                cancelTurningCoherenceLeds.Cancel();
+            }
+
             //also send the AlphaOmega that motion forward ends.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotEndMovingForward);
 
@@ -1410,7 +1454,7 @@ namespace PinkyAndBrain
             _logger.Info("End MovingTheRobotDurationWithHeadCenterStabilityStage with AutoFixation = " + AutoFixation + ".");
             //return the true state of the heading in the center stability during the duration time or always true when AutoFixation.
             return headInCenterAllTheTime || AutoFixation;
-        }
+            }
 
         /// <summary>
         /// Stage to check (after the rat enter the head to the center) that the head is stable in the center for startDelay time.

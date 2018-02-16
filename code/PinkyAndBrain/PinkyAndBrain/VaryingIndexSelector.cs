@@ -98,13 +98,68 @@ namespace PinkyAndBrain
             byte[] returnedArray = new byte[_trialsCombinationIndexesStatus.Length];
 
             //choosing numOfFillings percentage to fill with '1' value.
-            for (int i = 0; i < returnedArray.Length; i++)
+            for (int i = 0; i < _trialsCombinationIndexesStatus.Length; i++)
             {
-                returnedArray[i] = (byte)Bernoulli.Sample(percentageOfFillings);
+                _trialsCombinationIndexesStatus[i] = (Bernoulli.Sample(percentageOfFillings) == 1)?(true):(false);
+                returnedArray[i] = (byte)(_trialsCombinationIndexesStatus[i] ? 1 : 0);
             }
             
             //return the random array with selected bytes to be with '1' value and '0 values.
             return returnedArray;
+        }
+
+        /// <summary>
+        /// Fullify the array with specific number of '1' and '0'.
+        /// </summary>
+        /// <param name="numOfFillings">The percentage of '1' to be in the random array of bytes.</param>
+        /// <returns>The random array fullified with '1' and '0'.</returns>
+        public byte[] FillWithBinaryRandomCombinationCoherence(double coherencePercentage = 1.0)
+        {
+            byte[] returnedArray = UpdateTrialsStatus(coherencePercentage);
+
+            //return the random array with selected bytes to be with '1' value and '0 values.
+            return returnedArray;
+        }
+
+        /// <summary>
+        /// Updates the trials statuses according to the coherence value.
+        /// </summary>
+        /// <param name="coherencePercentage">The cohernce value between 0 and 1.0 which means in each fram what probability each led that set on countinued to be set on , otherwise choose another led randomaly.</param>
+        /// <returns>The leds value array.</returns>
+        private byte[] UpdateTrialsStatus(double coherencePercentage)
+        {
+            for (int i = 0; i < _trialsCombinationIndexesStatus.Length; i++)
+            {
+                double bernouliSample = Bernoulli.Sample(coherencePercentage);
+
+                if (_trialsCombinationIndexesStatus[i])
+                {
+                    //1 means stay the same state for that led , 0 means change the state.
+                    if (bernouliSample == 1)
+                    {
+                    }
+                    else
+                    {
+                        //change that star place in a random place.
+                        _trialsCombinationIndexesStatus[i] = false;
+
+                        //choose another star.
+                        //TODO: ask Adam if to peek a new randomly star the not choosed yet (the same size ad before) or proably not be the same size because the same star could be choosen.
+                        int rand = _randGenerator.Next(0, _trialsCombinationIndexesStatus.Length);
+                        _trialsCombinationIndexesStatus[rand] = true;
+                    }
+                }
+            }
+
+            //convert bool array to byte array.
+            byte [] returnArray = new byte[_trialsCombinationIndexesStatus.Length];
+
+            for (int i = 0; i < _trialsCombinationIndexesStatus.Length; i++)
+            {
+                returnArray[i] = (byte)(_trialsCombinationIndexesStatus[i] ? 1 : 0);
+            }
+
+            return returnArray;
         }
 
         /// <summary>
