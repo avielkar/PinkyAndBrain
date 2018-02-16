@@ -389,11 +389,29 @@ namespace PinkyAndBrain
         /// </summary>
         public int Brightness { get; set; }
 
+        /// <summary>
+        /// The red color value.
+        /// </summary>
+        public int RedValue { get; set; }
+
+        /// <summary>
+        /// The green color value.
+        /// </summary>
+        public int GreenValue { get; set; }
+
+        /// <summary>
+        /// The blue color value.
+        /// </summary>
+        public int BlueValue { get; set; }
+
         public override string ToString()
         {
             return
                 "LedsTurnsOnPercentage:" + TurnsOnPercentage + "\r\n" +
-                "LedsBrightness:" + Brightness;
+                "LedsBrightness:" + Brightness + "\r\n" +
+                "RedValue:" + RedValue + "\r\n" +
+                "GreenValue:" + GreenValue + "\r\n" +
+                "BlueValue:" + BlueValue;
         }
     }
 }

@@ -1564,7 +1564,7 @@ namespace PinkyAndBrain
                         RRInverse = _inverseRRDecision,
                         AutosOptions = _autosOptionsInRealTime,
                         SpecialModes = _specialModesInRealTime,
-                        LedsData = new LedsData {TurnsOnPercentage = PercentageOfTurnedOnLeds , Brightness = LEDBrightness}
+                        LedsData = new LedsData {TurnsOnPercentage = PercentageOfTurnedOnLeds , Brightness = LEDBrightness , RedValue = LEDcolorRed , GreenValue = LEDcolorGreen , BlueValue = LEDcolorBlue}
                     });
                 });
             }
