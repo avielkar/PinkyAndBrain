@@ -20,6 +20,8 @@ namespace PinkyAndBrain
         /// </summary>
         private bool[] _trialsCombinationIndexesStatus;
 
+        private List<int> _turnedOnPlaces;
+
         /// <summary>
         /// Random number generator.
         /// </summary>
@@ -39,6 +41,7 @@ namespace PinkyAndBrain
         {
             _randGenerator = new Random();
             _trialsCombinationIndexesStatus = new bool[trialsCount];
+            _turnedOnPlaces = new List<int>();
             ResetTrialsStatus();
         }
         #endregion CONSTRUCTORS

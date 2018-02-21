@@ -280,7 +280,12 @@ namespace PinkyAndBrain
         /// <summary>
         /// The leds selector dor selecting different led to turn on.
         /// </summary>
-        private VaryingIndexSelector _ledSelector;
+        private VaryingIndexSelector _ledSelector1;
+
+        /// <summary>
+        /// The leds selector dor selecting different led to turn on.
+        /// </summary>
+        private VaryingIndexSelector _ledSelector2;
 
         /// <summary>
         /// The SavedDataMaker object to create new result file for each experiment.
@@ -415,7 +420,8 @@ namespace PinkyAndBrain
             _ledController = ledController;
             _ledController2 = ledController2;
             //initialize the leds index selector.
-            _ledSelector = new VaryingIndexSelector(250);
+            _ledSelector1 = new VaryingIndexSelector(250);
+            _ledSelector2 = new VaryingIndexSelector(250);
 
             //initialize the savedDataMaker object once.
             _savedExperimentDataMaker = new SavedDataMaker();
@@ -1275,10 +1281,10 @@ namespace PinkyAndBrain
 
                     //here should be stimulus type 2 for motion of the second robot for visual only.
                     //should move the robot and also to turn on the leds.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData1;
                     _ledController.SendData();
-                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     _ledController.ExecuteCommands();
@@ -1294,10 +1300,10 @@ namespace PinkyAndBrain
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart3);
 
                     //should move only r1 robot and also to turn on the leds.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData1;
                     _ledController.SendData();
-                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     _ledController.ExecuteCommands();
@@ -1327,10 +1333,10 @@ namespace PinkyAndBrain
                     }
 
                     //should move only r1 robot and also to turn on the leds.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData1;
                     _ledController.SendData();
-                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     _ledController.ExecuteCommands();
@@ -1419,10 +1425,10 @@ namespace PinkyAndBrain
                         Stopwatch sw = new Stopwatch();
                         sw.Start();
 
-                        ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombinationCoherence(0.5));
+                        ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombinationCoherence(0.9));
                         _ledController.LEDsDataCommand = ledsData1;
                         _ledController.SendData();
-                        ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector.FillWithBinaryRandomCombinationCoherence(0.5));
+                        ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombinationCoherence(0.9));
                         _ledController2.LEDsDataCommand = ledsData2;
                         _ledController2.SendData();
 
@@ -1439,6 +1445,7 @@ namespace PinkyAndBrain
 
                 //cancel the coherence led task.
                 cancelTurningCoherenceLeds.Cancel();
+                //coherenceLedTask.Wait();
             }
 
             //also send the AlphaOmega that motion forward ends.
