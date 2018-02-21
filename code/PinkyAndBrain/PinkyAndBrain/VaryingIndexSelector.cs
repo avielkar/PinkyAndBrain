@@ -56,6 +56,8 @@ namespace PinkyAndBrain
             {
                 _trialsCombinationIndexesStatus[i] = false;
             }
+
+            _turnedOnPlaces.RemoveAll(x => true);
         }
 
         /// <summary>
@@ -105,6 +107,9 @@ namespace PinkyAndBrain
             {
                 _trialsCombinationIndexesStatus[i] = (Bernoulli.Sample(percentageOfFillings) == 1)?(true):(false);
                 returnedArray[i] = (byte)(_trialsCombinationIndexesStatus[i] ? 1 : 0);
+
+                if (_trialsCombinationIndexesStatus[i])
+                    _turnedOnPlaces.Add(i);
             }
             
             //return the random array with selected bytes to be with '1' value and '0 values.
@@ -131,35 +136,30 @@ namespace PinkyAndBrain
         /// <returns>The leds value array.</returns>
         private byte[] UpdateTrialsStatus(double coherencePercentage)
         {
-            for (int i = 0; i < _trialsCombinationIndexesStatus.Length; i++)
+            for (int i = 0; i < _turnedOnPlaces.Count; i++)
             {
                 double bernouliSample = Bernoulli.Sample(coherencePercentage);
-
-                if (_trialsCombinationIndexesStatus[i])
+                //1 means stay the same state for that led , 0 means change the state.
+                if (bernouliSample == 1)
                 {
-                    //1 means stay the same state for that led , 0 means change the state.
-                    if (bernouliSample == 1)
-                    {
-                    }
-                    else
-                    {
-                        //change that star place in a random place.
-                        _trialsCombinationIndexesStatus[i] = false;
-
-                        //choose another star.
-                        //TODO: ask Adam if to peek a new randomly star the not choosed yet (the same size ad before) or proably not be the same size because the same star could be choosen.
-                        int rand = _randGenerator.Next(0, _trialsCombinationIndexesStatus.Length);
-                        _trialsCombinationIndexesStatus[rand] = true;
-                    }
                 }
+                else
+                {
+                    int rand;
+
+                    rand = _randGenerator.Next();
+
+                    _turnedOnPlaces[i] = rand;
+                }
+
             }
 
             //convert bool array to byte array.
             byte [] returnArray = new byte[_trialsCombinationIndexesStatus.Length];
 
-            for (int i = 0; i < _trialsCombinationIndexesStatus.Length; i++)
+            foreach (int val in _turnedOnPlaces)
             {
-                returnArray[i] = (byte)(_trialsCombinationIndexesStatus[i] ? 1 : 0);
+                returnArray[val] = 1;
             }
 
             return returnArray;

@@ -1425,10 +1425,10 @@ namespace PinkyAndBrain
                         Stopwatch sw = new Stopwatch();
                         sw.Start();
 
-                        ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombinationCoherence(0.9));
+                        ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombinationCoherence(1.0));
                         _ledController.LEDsDataCommand = ledsData1;
                         _ledController.SendData();
-                        ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombinationCoherence(0.9));
+                        ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombinationCoherence(1.0));
                         _ledController2.LEDsDataCommand = ledsData2;
                         _ledController2.SendData();
 
