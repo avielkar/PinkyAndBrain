@@ -147,7 +147,7 @@ namespace PinkyAndBrain
                 {
                     int rand;
 
-                    rand = _randGenerator.Next();
+                    rand = _randGenerator.Next(0 , _trialsCombinationIndexesStatus.Count());
 
                     _turnedOnPlaces[i] = rand;
                 }
