@@ -1,0 +1,21 @@
+﻿2018-02-21 20:37:40,436 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2018-02-21 20:37:40,485 INFO [10] PinkyAndBrain.MotomanController..ctor - MotomanController created.
+2018-02-21 20:37:40,486 INFO [10] LED.Strip.Adressable.LEDController..ctor - LEDController created.
+2018-02-21 20:37:40,487 INFO [10] LED.Strip.Adressable.LEDController.OpenConnection - Openning Connection.
+2018-02-21 20:37:40,505 INFO [10] LED.Strip.Adressable.LEDController..ctor - LEDController created.
+2018-02-21 20:37:40,506 INFO [10] LED.Strip.Adressable.LEDController.OpenConnection - Openning Connection.
+2018-02-21 20:37:40,531 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-02-21 20:37:40,532 INFO [10] LED.Strip.Adressable.LEDController.SendData - SendData begin.
+2018-02-21 20:37:40,534 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-21 20:37:40,545 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-21 20:37:40,555 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-21 20:37:40,566 INFO [10] LED.Strip.Adressable.LEDController.SendData - SendData ended.
+2018-02-21 20:37:40,566 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-02-21 20:37:40,566 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-02-21 20:37:40,566 INFO [10] LED.Strip.Adressable.LEDController.SendData - SendData begin.
+2018-02-21 20:37:40,569 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-21 20:37:40,580 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-21 20:37:40,590 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-21 20:37:40,601 INFO [10] LED.Strip.Adressable.LEDController.SendData - SendData ended.
+2018-02-21 20:37:40,601 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-02-21 20:37:40,714 INFO [10] AlphaOmegaSystem.AlphaOmegaEventsWriter..ctor - AlphaOmegaEventsWriter created.

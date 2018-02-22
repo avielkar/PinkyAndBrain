@@ -420,8 +420,8 @@ namespace PinkyAndBrain
             _ledController = ledController;
             _ledController2 = ledController2;
             //initialize the leds index selector.
-            _ledSelector1 = new VaryingIndexSelector(250);
-            _ledSelector2 = new VaryingIndexSelector(250);
+            _ledSelector1 = new VaryingIndexSelector(150);
+            _ledSelector2 = new VaryingIndexSelector(150);
 
             //initialize the savedDataMaker object once.
             _savedExperimentDataMaker = new SavedDataMaker();
@@ -1402,6 +1402,8 @@ namespace PinkyAndBrain
 
             //token to cancel the coherence task.
             CancellationTokenSource cancelTurningCoherenceLeds = new CancellationTokenSource();
+            Task coherenceLedTask = Task.Factory.StartNew(() => { });
+            Task innerCoherenceLedTask = Task.Factory.StartNew(() => { });
 
             //if coherence enabled and also has a visual stimulus.
             if (_currentTrialStimulusType == 2 ||
@@ -1411,29 +1413,32 @@ namespace PinkyAndBrain
                 _currentTrialStimulusType == 10 ||
                 _currentTrialStimulusType == 11)
             {
-
-                Task coherenceLedTask = Task.Factory.StartNew(() => { });
                 Thread.Sleep(1);
                 coherenceLedTask = Task.Factory.StartNew(() =>
                 {
-                    while (!robotMotion.IsCompleted)
+                    //while (!robotMotion.IsCompleted)
+                    for (int i = 1; i < 6;i++ )
                     {
-                        Thread.Sleep(100);
+                            Thread.Sleep(120);
 
-                        _logger.Info("New Data Leds Sending for COHERENCE frame");
+                            _logger.Info("New Data Leds Sending for COHERENCE frame");
 
-                        Stopwatch sw = new Stopwatch();
-                        sw.Start();
+                            Stopwatch sw = new Stopwatch();
+                            sw.Start();
 
-                        ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombinationCoherence(0.9));
-                        _ledController.LEDsDataCommand = ledsData1;
-                        _ledController.SendData();
-                        ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombinationCoherence(1.0));
-                        _ledController2.LEDsDataCommand = ledsData2;
-                        _ledController2.SendData();
+                            ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombinationCoherence(0.9));
+                            _ledController.LEDsDataCommand = ledsData1;
+                            _ledController.SendData();
+                            ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombinationCoherence(0.9));
+                            _ledController2.LEDsDataCommand = ledsData2;
+                            _ledController2.SendData();
 
-                        _ledController.ExecuteCommands();
-                        _ledController2.ExecuteCommands();
+                            sw.Stop();
+
+                            int x;
+
+                            _ledController.ExecuteCommands();
+                            _ledController2.ExecuteCommands();
                     }
                 }, cancelTurningCoherenceLeds.Token);
             }
@@ -1444,8 +1449,10 @@ namespace PinkyAndBrain
                 robotMotion.Wait();
 
                 //cancel the coherence led task.
-                cancelTurningCoherenceLeds.Cancel();
+                //cancelTurningCoherenceLeds.Cancel();
                 //coherenceLedTask.Wait();
+
+                //innerCoherenceLedTask.Wait();
             }
 
             //also send the AlphaOmega that motion forward ends.

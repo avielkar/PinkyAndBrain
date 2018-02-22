@@ -172,11 +172,11 @@ namespace PinkyAndBrain
             }
 
             //create the ledstrip controller and initialize it (also turn off leds).
-            _ledController = new LEDController("COM4", 2000000, 250 , _logger);
+            _ledController = new LEDController("COM4", 2000000, 150 , _logger);
             _ledController.OpenConnection();
 
             //create the second ledstrip controller and initialize it (also turn off leds).
-            _ledController2 = new LEDController("COM5", 2000000, 250, _logger);
+            _ledController2 = new LEDController("COM5", 2000000, 150, _logger);
             _ledController2.OpenConnection();
 
             if (!_ledController.Connected)
