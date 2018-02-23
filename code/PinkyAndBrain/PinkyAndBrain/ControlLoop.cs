@@ -1889,7 +1889,7 @@ namespace PinkyAndBrain
 
             currentTrialTimings.wRewardToBackwardDelay = DetermineTimeByVariable("REWARD_BACKWARD_TIME");
 
-            currentTrialTimings.wPreTrialTime = 1.0;
+            currentTrialTimings.wPreTrialTime = DetermineTimeByVariable("PRE_TRIAL_TIME");
 
             currentTrialTimings.wPostTrialTime = DetermineTimeByVariable("POST_TRIAL_TIME");
 
