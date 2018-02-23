@@ -32324,3 +32324,273 @@
 2018-02-23 13:21:41,149 INFO [8] PinkyAndBrain.MotomanController.SetServoOff - Setting Yaskawa robot servo off.
 2018-02-23 13:21:41,167 INFO [8] LED.Strip.Adressable.LEDController.CloseConnection - Closing Connection.
 2018-02-23 13:21:41,169 INFO [8] LED.Strip.Adressable.LEDController.CloseConnection - Closing Connection.
+2018-02-23 17:34:19,845 INFO [10] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2018-02-23 17:34:19,890 INFO [10] PinkyAndBrain.MotomanController..ctor - MotomanController created.
+2018-02-23 17:34:19,891 INFO [10] LED.Strip.Adressable.LEDController..ctor - LEDController created.
+2018-02-23 17:34:19,892 INFO [10] LED.Strip.Adressable.LEDController.OpenConnection - Openning Connection.
+2018-02-23 17:34:19,910 INFO [10] LED.Strip.Adressable.LEDController..ctor - LEDController created.
+2018-02-23 17:34:19,911 INFO [10] LED.Strip.Adressable.LEDController.OpenConnection - Openning Connection.
+2018-02-23 17:34:19,930 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-02-23 17:34:19,931 INFO [10] LED.Strip.Adressable.LEDController.SendData - SendData begin.
+2018-02-23 17:34:19,933 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:34:19,944 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:34:19,954 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:34:19,965 INFO [10] LED.Strip.Adressable.LEDController.SendData - SendData ended.
+2018-02-23 17:34:19,965 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-02-23 17:34:19,965 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-02-23 17:34:19,965 INFO [10] LED.Strip.Adressable.LEDController.SendData - SendData begin.
+2018-02-23 17:34:19,968 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:34:19,979 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:34:19,989 INFO [10] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:34:20,000 INFO [10] LED.Strip.Adressable.LEDController.SendData - SendData ended.
+2018-02-23 17:34:20,000 INFO [10] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-02-23 17:34:20,128 INFO [10] AlphaOmegaSystem.AlphaOmegaEventsWriter..ctor - AlphaOmegaEventsWriter created.
+2018-02-23 17:34:50,243 INFO [9] PinkyAndBrain.GuiInterface..ctor - Starting program...
+2018-02-23 17:34:50,286 INFO [9] PinkyAndBrain.MotomanController..ctor - MotomanController created.
+2018-02-23 17:34:50,287 INFO [9] LED.Strip.Adressable.LEDController..ctor - LEDController created.
+2018-02-23 17:34:50,287 INFO [9] LED.Strip.Adressable.LEDController.OpenConnection - Openning Connection.
+2018-02-23 17:34:50,305 INFO [9] LED.Strip.Adressable.LEDController..ctor - LEDController created.
+2018-02-23 17:34:50,306 INFO [9] LED.Strip.Adressable.LEDController.OpenConnection - Openning Connection.
+2018-02-23 17:34:50,325 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-02-23 17:34:50,325 INFO [9] LED.Strip.Adressable.LEDController.SendData - SendData begin.
+2018-02-23 17:34:50,329 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:34:50,340 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:34:50,350 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:34:50,361 INFO [9] LED.Strip.Adressable.LEDController.SendData - SendData ended.
+2018-02-23 17:34:50,361 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-02-23 17:34:50,361 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-02-23 17:34:50,361 INFO [9] LED.Strip.Adressable.LEDController.SendData - SendData begin.
+2018-02-23 17:34:50,364 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:34:50,375 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:34:50,385 INFO [9] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:34:50,396 INFO [9] LED.Strip.Adressable.LEDController.SendData - SendData ended.
+2018-02-23 17:34:50,396 INFO [9] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-02-23 17:34:50,520 INFO [9] AlphaOmegaSystem.AlphaOmegaEventsWriter..ctor - AlphaOmegaEventsWriter created.
+2018-02-23 17:36:24,722 INFO [9] PinkyAndBrain.MotomanController.SetServoOn - Setting Yaskawa robot servo on.
+2018-02-23 17:36:25,523 INFO [9] PinkyAndBrain.MotomanController.WriteHomePosFile - Writing home position file.
+2018-02-23 17:36:25,531 INFO [9] PinkyAndBrain.MotomanController.WriteHomePosFile - Writing home position file ended.
+2018-02-23 17:36:25,532 INFO [9] PinkyAndBrain.MotomanController.MoveRobotHomePosition - Moving the robot home position begin.
+2018-02-23 17:36:25,944 INFO [9] PinkyAndBrain.MotomanController.WaitJobFinished - Waiting Job to be finished.
+2018-02-23 17:36:25,944 INFO [9] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:36:25,973 INFO [9] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:36:26,074 INFO [9] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:36:26,092 INFO [9] PinkyAndBrain.MotomanController.JobStatus - Job working is False
+2018-02-23 17:36:26,093 INFO [9] PinkyAndBrain.MotomanController.WaitJobFinished - Job status finished.
+2018-02-23 17:36:26,093 INFO [9] PinkyAndBrain.MotomanController.MoveRobotHomePosition - Moving the robot home position ended.
+2018-02-23 17:36:26,093 INFO [9] PinkyAndBrain.MotomanController.WaitJobFinished - Waiting Job to be finished.
+2018-02-23 17:36:26,093 INFO [9] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:36:26,122 INFO [9] PinkyAndBrain.MotomanController.JobStatus - Job working is False
+2018-02-23 17:36:26,123 INFO [9] PinkyAndBrain.MotomanController.WaitJobFinished - Job status finished.
+2018-02-23 17:36:28,424 INFO [17] PinkyAndBrain.ControlLoop.MainControlLoop - Main ControlLoop begin.
+2018-02-23 17:36:28,424 INFO [17] PinkyAndBrain.MotomanController.SetServoOn - Setting Yaskawa robot servo on.
+2018-02-23 17:36:28,424 INFO [9] PinkyAndBrain.GuiInterface.SetWaterRewardsMeasure - Reseting reward measure interactive panel....
+2018-02-23 17:36:28,462 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #1
+2018-02-23 17:36:28,464 INFO [17] PinkyAndBrain.ControlLoop.PreTrialStage - Pre trail stage begin.
+2018-02-23 17:36:28,466 INFO [17] PinkyAndBrain.ControlLoop.SendDataToLedControllers - Send data to LEDs controller begin.
+2018-02-23 17:36:28,468 INFO [18] PinkyAndBrain.ControlLoop.SendDataToRobots - Sending trajectories data to robots begin.
+2018-02-23 17:36:28,469 INFO [18] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job file to the robot.
+2018-02-23 17:36:28,480 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData begin.
+2018-02-23 17:36:28,483 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:36:28,494 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:36:28,504 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:36:28,515 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData ended.
+2018-02-23 17:36:28,515 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData begin.
+2018-02-23 17:36:28,518 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:36:28,529 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:36:28,539 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:36:28,550 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData ended.
+2018-02-23 17:36:28,550 INFO [17] PinkyAndBrain.ControlLoop.SendDataToLedControllers - Send data to LEDs controller end.
+2018-02-23 17:36:28,713 INFO [18] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job file to the robot ended.
+2018-02-23 17:36:28,713 INFO [18] PinkyAndBrain.ControlLoop.SendDataToRobots - Sending trajectories data to robots end.
+2018-02-23 17:36:29,678 INFO [17] AlphaOmegaSystem.AlphaOmegaEventsWriter.WriteEvent - Writing event. AlphaOmegaEvent = AudioStart.
+2018-02-23 17:36:29,717 INFO [17] PinkyAndBrain.ControlLoop.WaitForHeadEnteranceToTheCenterStage - Waiting for Head to be entered to the center stage for the first time.
+2018-02-23 17:36:29,717 INFO [17] PinkyAndBrain.ControlLoop.WaitForHeadEnteranceToTheCenterStage - AutoStart is On so no wait.
+2018-02-23 17:36:29,717 INFO [17] PinkyAndBrain.ControlLoop.CheckDuration1HeadInTheCenterStabilityStage - Head in the center stability stage is begin.
+2018-02-23 17:36:29,817 INFO [17] PinkyAndBrain.ControlLoop.CheckDuration1HeadInTheCenterStabilityStage - Heading stability stage successfull with AutoFixation = True.
+2018-02-23 17:36:29,818 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - Moving the robot with duration time and head center stability check stage is begin.
+2018-02-23 17:36:29,818 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - Send Executing robot trajectory data starty command
+2018-02-23 17:36:29,819 INFO [23] PinkyAndBrain.ControlLoop.ExecuteLedControllersCommand - New Data Leds Execution for COHERENCE frame for LedController1
+2018-02-23 17:36:29,819 INFO [20] PinkyAndBrain.ControlLoop.WriteAlphaOmegaStimulusBegin - Writing AlphaOmega stimulus event start
+2018-02-23 17:36:29,819 INFO [23] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-02-23 17:36:29,819 INFO [20] AlphaOmegaSystem.AlphaOmegaEventsWriter.WriteEvent - Writing event. AlphaOmegaEvent = StimulusStart2.
+2018-02-23 17:36:29,829 INFO [19] PinkyAndBrain.ControlLoop+<>c__DisplayClass21.<MovingTheRobotDurationWithHeadCenterStabilityStage>b__1f - Break fixation during the movement.
+2018-02-23 17:36:29,883 INFO [22] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot with trajectory begin.
+2018-02-23 17:36:29,883 INFO [22] PinkyAndBrain.MotomanController.WaitJobFinished - Waiting Job to be finished.
+2018-02-23 17:36:29,883 INFO [22] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:36:50,183 INFO [23] PinkyAndBrain.ControlLoop.ExecuteLedControllersCommand - New Data Leds Execution for COHERENCE frame for LedController2
+2018-02-23 17:36:50,183 INFO [23] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-02-23 17:36:50,183 INFO [22] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:36:55,194 INFO [22] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:36:55,216 INFO [22] PinkyAndBrain.MotomanController.JobStatus - Job working is False
+2018-02-23 17:36:55,216 INFO [22] PinkyAndBrain.MotomanController.WaitJobFinished - Job status finished.
+2018-02-23 17:36:55,216 INFO [22] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot with trajectory finished.
+2018-02-23 17:36:55,217 INFO [17] AlphaOmegaSystem.AlphaOmegaEventsWriter.WriteEvent - Writing event. AlphaOmegaEvent = RobotEndMovingForward.
+2018-02-23 17:36:55,256 INFO [17] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-02-23 17:36:55,256 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData begin.
+2018-02-23 17:36:55,259 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:36:55,270 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:36:55,280 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:36:55,292 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData ended.
+2018-02-23 17:36:55,293 INFO [17] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-02-23 17:36:55,293 INFO [17] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-02-23 17:36:55,293 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData begin.
+2018-02-23 17:36:55,296 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:36:55,307 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:36:55,318 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:36:55,330 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData ended.
+2018-02-23 17:36:55,331 INFO [17] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-02-23 17:36:55,332 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - New Data Leds RESET Execution for COHERENCE frame for LedController1
+2018-02-23 17:36:55,332 INFO [17] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-02-23 17:36:56,915 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - New Data Leds RESET Execution for COHERENCE frame for LedController2
+2018-02-23 17:36:56,916 INFO [17] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-02-23 17:36:57,455 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage with AutoFixation = True.
+2018-02-23 17:36:57,456 INFO [17] PinkyAndBrain.ControlLoop.RewardCenterStage - RewardCenterStage begin with AutoReward  = True.
+2018-02-23 17:36:57,685 INFO [17] AlphaOmegaSystem.AlphaOmegaEventsWriter.WriteEvent - Writing event. AlphaOmegaEvent = CenterReward.
+2018-02-23 17:36:57,724 INFO [17] PinkyAndBrain.ControlLoop.RewardCenterStage - RewardCenterStage ended.
+2018-02-23 17:36:57,725 INFO [17] PinkyAndBrain.ControlLoop.ClueResponseStage - ClueResponseStage begin. EnableClueSoundInBothSide = False;EnableClueSoundInCorrectSideFalse.
+2018-02-23 17:36:57,725 INFO [17] PinkyAndBrain.ControlLoop.ClueResponseStage - ClueResponseStage ended.
+2018-02-23 17:36:57,726 INFO [17] PinkyAndBrain.ControlLoop.ResponseTimeStage - ResponseTimeStage begin.
+2018-02-23 17:36:59,726 INFO [17] PinkyAndBrain.ControlLoop.ResponseTimeStage - ResponseTimeStage ended. RatDecison = RatDecison.NoDecision; Correct = False.
+2018-02-23 17:36:59,727 INFO [17] PinkyAndBrain.ControlLoop.SecondRewardStage - SecondRewardStage begin. AutoReward = True; SecondChance =False.
+2018-02-23 17:36:59,727 INFO [17] PinkyAndBrain.ControlLoop.RewardLeftStage - RewardLeftStage begin with AutoReward  = True.
+2018-02-23 17:36:59,988 INFO [17] AlphaOmegaSystem.AlphaOmegaEventsWriter.WriteEvent - Writing event. AlphaOmegaEvent = LeftReward.
+2018-02-23 17:37:00,026 INFO [17] PinkyAndBrain.ControlLoop.RewardLeftStage - RewardLeftStage ended.
+2018-02-23 17:37:00,026 INFO [17] PinkyAndBrain.ControlLoop.SecondRewardStage - SecondRewardStage ended.
+2018-02-23 17:37:00,026 INFO [17] PinkyAndBrain.ControlLoop.RewardToBackwardDelayStage - RewardToBackwardDelayStage begin.
+2018-02-23 17:37:00,276 INFO [17] PinkyAndBrain.ControlLoop.RewardToBackwardDelayStage - RewardToBackwardDelayStage ended.
+2018-02-23 17:37:00,278 INFO [17] PinkyAndBrain.ControlLoop.PostTrialStage - PostTrialStage begin.
+2018-02-23 17:37:00,280 INFO [17] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job file to the robot.
+2018-02-23 17:37:00,526 INFO [17] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job file to the robot ended.
+2018-02-23 17:37:00,526 INFO [17] AlphaOmegaSystem.AlphaOmegaEventsWriter.WriteEvent - Writing event. AlphaOmegaEvent = RobotStartMovingBackward.
+2018-02-23 17:37:00,564 INFO [26] PinkyAndBrain.ControlLoop.<PostTrialStage>b__2b - Saving trial# 1to the result file.
+2018-02-23 17:37:00,636 INFO [24] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot with trajectory begin.
+2018-02-23 17:37:00,636 INFO [24] PinkyAndBrain.MotomanController.WaitJobFinished - Waiting Job to be finished.
+2018-02-23 17:37:00,636 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:37:00,695 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:37:00,795 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:37:00,817 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:37:00,917 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:37:00,941 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:37:01,041 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:37:01,063 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:37:01,163 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:37:01,187 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:37:01,287 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:37:01,305 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:37:01,405 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:37:01,425 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:37:01,525 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:37:01,545 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:37:01,645 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:37:01,665 INFO [24] PinkyAndBrain.MotomanController.JobStatus - Job working is False
+2018-02-23 17:37:01,665 INFO [24] PinkyAndBrain.MotomanController.WaitJobFinished - Job status finished.
+2018-02-23 17:37:01,665 INFO [24] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot with trajectory finished.
+2018-02-23 17:37:01,665 INFO [17] AlphaOmegaSystem.AlphaOmegaEventsWriter.WriteEvent - Writing event. AlphaOmegaEvent = RobotEndMovingBackward.
+2018-02-23 17:37:01,704 INFO [17] PinkyAndBrain.ControlLoop.PostTrialStage - PostTrialStage ended. TrialSucceed = True.
+2018-02-23 17:37:01,704 INFO [17] PinkyAndBrain.ControlLoop.InitializationStage - Initialization Stage of trial #2
+2018-02-23 17:37:01,704 INFO [17] PinkyAndBrain.ControlLoop.PreTrialStage - Pre trail stage begin.
+2018-02-23 17:37:01,704 INFO [17] PinkyAndBrain.ControlLoop.SendDataToLedControllers - Send data to LEDs controller begin.
+2018-02-23 17:37:01,704 INFO [26] PinkyAndBrain.ControlLoop.SendDataToRobots - Sending trajectories data to robots begin.
+2018-02-23 17:37:01,705 INFO [26] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job file to the robot.
+2018-02-23 17:37:01,705 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData begin.
+2018-02-23 17:37:01,707 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:37:01,718 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:37:01,729 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:37:01,740 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData ended.
+2018-02-23 17:37:01,740 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData begin.
+2018-02-23 17:37:01,743 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:37:01,754 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:37:01,764 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:37:01,778 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData ended.
+2018-02-23 17:37:01,778 INFO [17] PinkyAndBrain.ControlLoop.SendDataToLedControllers - Send data to LEDs controller end.
+2018-02-23 17:37:01,944 INFO [26] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job file to the robot ended.
+2018-02-23 17:37:01,944 INFO [26] PinkyAndBrain.ControlLoop.SendDataToRobots - Sending trajectories data to robots end.
+2018-02-23 17:37:02,904 INFO [17] AlphaOmegaSystem.AlphaOmegaEventsWriter.WriteEvent - Writing event. AlphaOmegaEvent = AudioStart.
+2018-02-23 17:37:02,942 INFO [17] PinkyAndBrain.ControlLoop.WaitForHeadEnteranceToTheCenterStage - Waiting for Head to be entered to the center stage for the first time.
+2018-02-23 17:37:02,942 INFO [17] PinkyAndBrain.ControlLoop.WaitForHeadEnteranceToTheCenterStage - AutoStart is On so no wait.
+2018-02-23 17:37:02,942 INFO [17] PinkyAndBrain.ControlLoop.CheckDuration1HeadInTheCenterStabilityStage - Head in the center stability stage is begin.
+2018-02-23 17:37:03,042 INFO [17] PinkyAndBrain.ControlLoop.CheckDuration1HeadInTheCenterStabilityStage - Heading stability stage successfull with AutoFixation = True.
+2018-02-23 17:37:03,042 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - Moving the robot with duration time and head center stability check stage is begin.
+2018-02-23 17:37:03,043 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - Send Executing robot trajectory data starty command
+2018-02-23 17:37:03,043 INFO [23] PinkyAndBrain.ControlLoop.WriteAlphaOmegaStimulusBegin - Writing AlphaOmega stimulus event start
+2018-02-23 17:37:03,043 INFO [23] AlphaOmegaSystem.AlphaOmegaEventsWriter.WriteEvent - Writing event. AlphaOmegaEvent = StimulusStart2.
+2018-02-23 17:37:03,043 INFO [26] PinkyAndBrain.ControlLoop.ExecuteLedControllersCommand - New Data Leds Execution for COHERENCE frame for LedController1
+2018-02-23 17:37:03,043 INFO [26] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-02-23 17:37:03,053 INFO [25] PinkyAndBrain.ControlLoop+<>c__DisplayClass21.<MovingTheRobotDurationWithHeadCenterStabilityStage>b__1f - Break fixation during the movement.
+2018-02-23 17:37:03,105 INFO [28] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot with trajectory begin.
+2018-02-23 17:37:03,105 INFO [28] PinkyAndBrain.MotomanController.WaitJobFinished - Waiting Job to be finished.
+2018-02-23 17:37:03,105 INFO [28] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:37:07,731 INFO [28] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:37:07,731 INFO [26] PinkyAndBrain.ControlLoop.ExecuteLedControllersCommand - New Data Leds Execution for COHERENCE frame for LedController2
+2018-02-23 17:37:07,733 INFO [26] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-02-23 17:37:14,007 INFO [28] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:37:14,025 INFO [28] PinkyAndBrain.MotomanController.JobStatus - Job working is False
+2018-02-23 17:37:14,026 INFO [28] PinkyAndBrain.MotomanController.WaitJobFinished - Job status finished.
+2018-02-23 17:37:14,026 INFO [28] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot with trajectory finished.
+2018-02-23 17:37:14,026 INFO [17] AlphaOmegaSystem.AlphaOmegaEventsWriter.WriteEvent - Writing event. AlphaOmegaEvent = RobotEndMovingForward.
+2018-02-23 17:37:14,066 INFO [17] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-02-23 17:37:14,066 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData begin.
+2018-02-23 17:37:14,069 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:37:14,080 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:37:14,090 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:37:14,101 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData ended.
+2018-02-23 17:37:14,101 INFO [17] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-02-23 17:37:14,101 INFO [17] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds begin
+2018-02-23 17:37:14,101 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData begin.
+2018-02-23 17:37:14,104 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:37:14,115 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:37:14,125 INFO [17] LED.Strip.Adressable.LEDController.SendData - Leds packet send.
+2018-02-23 17:37:14,136 INFO [17] LED.Strip.Adressable.LEDController.SendData - SendData ended.
+2018-02-23 17:37:14,136 INFO [17] LED.Strip.Adressable.LEDController.ResetLeds - Reset Leds finished
+2018-02-23 17:37:14,136 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - New Data Leds RESET Execution for COHERENCE frame for LedController1
+2018-02-23 17:37:14,136 INFO [17] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-02-23 17:37:19,920 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - New Data Leds RESET Execution for COHERENCE frame for LedController2
+2018-02-23 17:37:19,920 INFO [17] LED.Strip.Adressable.LEDController.ExecuteCommands - Leds execution command sent
+2018-02-23 17:38:04,326 INFO [17] PinkyAndBrain.ControlLoop.MovingTheRobotDurationWithHeadCenterStabilityStage - End MovingTheRobotDurationWithHeadCenterStabilityStage with AutoFixation = True.
+2018-02-23 17:38:04,327 INFO [17] PinkyAndBrain.ControlLoop.RewardCenterStage - RewardCenterStage begin with AutoReward  = True.
+2018-02-23 17:38:04,538 INFO [17] AlphaOmegaSystem.AlphaOmegaEventsWriter.WriteEvent - Writing event. AlphaOmegaEvent = CenterReward.
+2018-02-23 17:38:04,576 INFO [17] PinkyAndBrain.ControlLoop.RewardCenterStage - RewardCenterStage ended.
+2018-02-23 17:38:04,576 INFO [17] PinkyAndBrain.ControlLoop.ClueResponseStage - ClueResponseStage begin. EnableClueSoundInBothSide = False;EnableClueSoundInCorrectSideFalse.
+2018-02-23 17:38:04,576 INFO [17] PinkyAndBrain.ControlLoop.ClueResponseStage - ClueResponseStage ended.
+2018-02-23 17:38:04,576 INFO [17] PinkyAndBrain.ControlLoop.ResponseTimeStage - ResponseTimeStage begin.
+2018-02-23 17:38:06,577 INFO [17] PinkyAndBrain.ControlLoop.ResponseTimeStage - ResponseTimeStage ended. RatDecison = RatDecison.NoDecision; Correct = False.
+2018-02-23 17:38:06,578 INFO [17] PinkyAndBrain.ControlLoop.SecondRewardStage - SecondRewardStage begin. AutoReward = True; SecondChance =False.
+2018-02-23 17:38:06,578 INFO [17] PinkyAndBrain.ControlLoop.RewardRightStage - RewardRightStage begin with AutoReward  = True.
+2018-02-23 17:38:06,919 INFO [17] AlphaOmegaSystem.AlphaOmegaEventsWriter.WriteEvent - Writing event. AlphaOmegaEvent = RightReward.
+2018-02-23 17:38:06,957 INFO [17] PinkyAndBrain.ControlLoop.RewardRightStage - RewardRightStage ended.
+2018-02-23 17:38:06,957 INFO [17] PinkyAndBrain.ControlLoop.SecondRewardStage - SecondRewardStage ended.
+2018-02-23 17:38:06,957 INFO [17] PinkyAndBrain.ControlLoop.RewardToBackwardDelayStage - RewardToBackwardDelayStage begin.
+2018-02-23 17:38:07,207 INFO [17] PinkyAndBrain.ControlLoop.RewardToBackwardDelayStage - RewardToBackwardDelayStage ended.
+2018-02-23 17:38:07,207 INFO [17] PinkyAndBrain.ControlLoop.PostTrialStage - PostTrialStage begin.
+2018-02-23 17:38:07,208 INFO [17] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job file to the robot.
+2018-02-23 17:38:07,454 INFO [17] PinkyAndBrain.MotomanController.UpdateYasakawaRobotJBIFile - Writing job file to the robot ended.
+2018-02-23 17:38:07,455 INFO [17] AlphaOmegaSystem.AlphaOmegaEventsWriter.WriteEvent - Writing event. AlphaOmegaEvent = RobotStartMovingBackward.
+2018-02-23 17:38:07,494 INFO [14] PinkyAndBrain.ControlLoop.<PostTrialStage>b__2b - Saving trial# 2to the result file.
+2018-02-23 17:38:07,564 INFO [15] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot with trajectory begin.
+2018-02-23 17:38:07,565 INFO [15] PinkyAndBrain.MotomanController.WaitJobFinished - Waiting Job to be finished.
+2018-02-23 17:38:07,565 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:38:07,623 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:38:07,724 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:38:07,751 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:38:07,852 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:38:07,870 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:38:07,970 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:38:07,994 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:38:08,094 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:38:08,117 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:38:08,217 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:38:08,238 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:38:08,338 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:38:08,358 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:38:08,458 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:38:08,478 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Job working is True
+2018-02-23 17:38:08,578 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Reading Job status.
+2018-02-23 17:38:08,598 INFO [15] PinkyAndBrain.MotomanController.JobStatus - Job working is False
+2018-02-23 17:38:08,598 INFO [15] PinkyAndBrain.MotomanController.WaitJobFinished - Job status finished.
+2018-02-23 17:38:08,598 INFO [15] PinkyAndBrain.MotomanController.MoveYasakawaRobotWithTrajectory - Moving the robot with trajectory finished.
+2018-02-23 17:38:08,599 INFO [17] AlphaOmegaSystem.AlphaOmegaEventsWriter.WriteEvent - Writing event. AlphaOmegaEvent = RobotEndMovingBackward.
+2018-02-23 17:38:08,638 INFO [17] PinkyAndBrain.ControlLoop.PostTrialStage - PostTrialStage ended. TrialSucceed = True.
+2018-02-23 17:38:08,638 INFO [17] PinkyAndBrain.MotomanController.SetServoOff - Setting Yaskawa robot servo off.
+2018-02-23 17:38:09,874 INFO [9] PinkyAndBrain.MotomanController.SetServoOff - Setting Yaskawa robot servo off.
+2018-02-23 17:38:09,898 INFO [9] LED.Strip.Adressable.LEDController.CloseConnection - Closing Connection.
+2018-02-23 17:38:09,901 INFO [9] LED.Strip.Adressable.LEDController.CloseConnection - Closing Connection.

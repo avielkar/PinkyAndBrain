@@ -7,6 +7,7 @@ using System.IO.Ports;
 using System.Threading;
 using System.Windows.Forms;
 using log4net;
+using System.Diagnostics;
 
 namespace LED.Strip.Adressable
 {
@@ -150,6 +151,23 @@ namespace LED.Strip.Adressable
             //means the data execution command.
             _logger.Info("Leds execution command sent");
             _ledArduinoSerialPort.Write("!");
+
+            #region Checking time arduino executing the command.
+            /*Stopwatch sw = new Stopwatch();
+            sw.Start();
+            string str = _ledArduinoSerialPort.ReadLine();
+            while (str == "")
+            {
+                str = _ledArduinoSerialPort.ReadLine();    
+            }
+            str = "";
+            str = _ledArduinoSerialPort.ReadLine();
+            while (str == "")
+            {
+                str = _ledArduinoSerialPort.ReadLine();
+            }
+            sw.Stop();*/
+            #endregion
         }
 
         /// <summary>
