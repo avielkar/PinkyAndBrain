@@ -270,7 +270,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// The led controller for controlling the leds visibility in the ledstrip connected to the arduino.
         /// </summary>
-        private LEDController _ledController;
+        private LEDController _ledController1;
 
         /// <summary>
         /// The second led controller for controlling the leds visibility in the ledstrip connected to the arduino.
@@ -417,7 +417,7 @@ namespace PinkyAndBrain
             _motomanController = motomanController;
 
             //take the led controller object.
-            _ledController = ledController;
+            _ledController1 = ledController;
             _ledController2 = ledController2;
             //initialize the leds index selector.
             _ledSelector1 = new VaryingIndexSelector(150);
@@ -617,6 +617,8 @@ namespace PinkyAndBrain
                         //initialize the currebt time parameters and all the current trial variables.
                         InitializationStage();
 
+                        PreTrialStage();
+
                         //wait the rat to first (in the current trial - for "start buttom") move it's head to the center.
                         bool headEnteredToTheCenterDuringTheTimeoutDuration = WaitForHeadEnteranceToTheCenterStage();
 
@@ -745,9 +747,12 @@ namespace PinkyAndBrain
             //_motomanController.MotomanProtocolFileCreator.TrialNum = _totalHeadStabilityInCenterDuringDurationTime + 1;
             //the adiitiom of 1 is because the ++ of one of them is only at the end of the movement.
             _motomanController.MotomanProtocolFileCreator.TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks + 1;
+        }
 
+        public void PreTrialStage()
+        {
             //Sounds the start beep. Now waiting for the rat to move it's head to the center.
-            Console.Beep(2000 ,200);
+            Console.Beep(2000, 200);
 
             //write the beep start event to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.AudioStart);
@@ -1254,6 +1259,10 @@ namespace PinkyAndBrain
             //the leds data for the strip leds light.
             LEDsData ledsData1;
             LEDsData ledsData2;
+
+            //send data to the leds cintroller for pre processing even if no need.
+            SendLedsDataToController(ref _ledController1 , ref _ledSelector1);
+            SendLedsDataToController(ref _ledController2 , ref _ledSelector2);
             
             //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
             Task robotMotion;
@@ -1273,7 +1282,10 @@ namespace PinkyAndBrain
 
                 case 2://visual only.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only);
+                    sw.Stop();
                     robotMotion = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
 
                     //also send the AlphaOmega that motion forward starts.
@@ -1281,14 +1293,14 @@ namespace PinkyAndBrain
 
                     //here should be stimulus type 2 for motion of the second robot for visual only.
                     //should move the robot and also to turn on the leds.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    /*ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData1;
                     _ledController.SendData();
                     ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     _ledController.ExecuteCommands();
-                    _ledController2.ExecuteCommands();
+                    _ledController2.ExecuteCommands();*/
                     break;
 
                 case 3://vistibular and visual both.
@@ -1300,14 +1312,14 @@ namespace PinkyAndBrain
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart3);
 
                     //should move only r1 robot and also to turn on the leds.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    /*ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData1;
                     _ledController.SendData();
                     ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     _ledController.ExecuteCommands();
-                    _ledController2.ExecuteCommands();
+                    _ledController2.ExecuteCommands();*/
                     break;
 
                 case 4://vistibular and visual both with delta+ for visual.
@@ -1333,14 +1345,14 @@ namespace PinkyAndBrain
                     }
 
                     //should move only r1 robot and also to turn on the leds.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    /*ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController.LEDsDataCommand = ledsData1;
                     _ledController.SendData();
                     ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
                     _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     _ledController.ExecuteCommands();
-                    _ledController2.ExecuteCommands();
+                    _ledController2.ExecuteCommands();*/
                     break;
                 case 10://visual only in the dark.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
@@ -1409,11 +1421,9 @@ namespace PinkyAndBrain
             if (_currentTrialStimulusType == 2 ||
                 _currentTrialStimulusType == 3 ||
                 _currentTrialStimulusType == 4 ||
-                _currentTrialStimulusType == 5 ||
-                _currentTrialStimulusType == 10 ||
-                _currentTrialStimulusType == 11)
+                _currentTrialStimulusType == 5 )
             {
-                Thread.Sleep(1);
+                /*Thread.Sleep(1);
                 coherenceLedTask = Task.Factory.StartNew(() =>
                 {
                     //while (!robotMotion.IsCompleted)
@@ -1440,35 +1450,94 @@ namespace PinkyAndBrain
                             _ledController.ExecuteCommands();
                             _ledController2.ExecuteCommands();
                     }
-                }, cancelTurningCoherenceLeds.Token);
+                }, cancelTurningCoherenceLeds.Token);*/
+
+                for (int i = 0; i < 4; i++)
+                {
+                    ExecuteLedControllersCommand();
+                    Thread.Sleep(100);
+                    if (i != 3)
+                    {
+                        TurnOnLedsThread();
+                    }
+                }
             }
 
             //wait the robot task to finish the movement.
             if (_currentTrialStimulusType != 0)
             {
                 robotMotion.Wait();
-
-                //cancel the coherence led task.
-                //cancelTurningCoherenceLeds.Cancel();
-                //coherenceLedTask.Wait();
-
-                //innerCoherenceLedTask.Wait();
             }
 
             //also send the AlphaOmega that motion forward ends.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotEndMovingForward);
 
             //and turn off the leds visual vistibular (it is o.k for all cases , just reset).
-            _ledController.ResetLeds();
+            _ledController1.ResetLeds();
             //and turn off the leds visual vistibular (it is o.k for all cases , just reset).
             _ledController2.ResetLeds();
-            _ledController.ExecuteCommands();
+            _logger.Info("New Data Leds RESET Execution for COHERENCE frame for LedController1");
+            _ledController1.ExecuteCommands();
+            _logger.Info("New Data Leds RESET Execution for COHERENCE frame for LedController2");
             _ledController2.ExecuteCommands();
 
             _logger.Info("End MovingTheRobotDurationWithHeadCenterStabilityStage with AutoFixation = " + AutoFixation + ".");
             //return the true state of the heading in the center stability during the duration time or always true when AutoFixation.
             return headInCenterAllTheTime || AutoFixation;
             }
+
+        private void ExecuteLedControllersCommand()
+        {
+            _logger.Info("New Data Leds Execution for COHERENCE frame for LedController1");
+            _ledController1.ExecuteCommands();
+
+            _logger.Info("New Data Leds Execution for COHERENCE frame for LedController2");
+            _ledController2.ExecuteCommands();
+        }
+
+        private void TurnOnLedsThread()
+        {                        
+            //the leds data for the strip leds light.
+            LEDsData ledsData1;
+            LEDsData ledsData2;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            Task leds1DataSendTask = Task.Factory.StartNew(() =>
+            {
+                _logger.Info("New Data Leds Sending for COHERENCE frame for LedController1");
+                LEDsData ledsData = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombinationCoherence(1.0));
+                _ledController1.LEDsDataCommand = ledsData;
+                _ledController1.SendData();
+            });
+
+            Task leds2DataSendTask = Task.Factory.StartNew(() =>
+            {
+                _logger.Info("New Data Leds Sending for COHERENCE frame for LedController2");
+                LEDsData ledsData = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombinationCoherence(1.0));
+                _ledController2.LEDsDataCommand = ledsData;
+                _ledController2.SendData();
+            });
+
+            Task waitigMinTime = Task.Factory.StartNew(() => 
+            {
+                Thread.Sleep(100);
+            });
+            
+            leds1DataSendTask.Wait();
+            leds2DataSendTask.Wait();
+
+            sw.Stop();
+
+            waitigMinTime.Wait();
+        }
+
+        private void SendLedsDataToController(ref LEDController ledController , ref VaryingIndexSelector ledsSelector)
+        {
+            LEDsData ledsData = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), ledsSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+            ledController.LEDsDataCommand = ledsData;
+            ledController.SendData();
+        }
 
         /// <summary>
         /// Stage to check (after the rat enter the head to the center) that the head is stable in the center for startDelay time.
@@ -1781,6 +1850,8 @@ namespace PinkyAndBrain
             currentTrialTimings.wRewardRightDurationSecondChance = DetermineTimeByVariable("REWARD_RIGHT_DURATION");
 
             currentTrialTimings.wRewardToBackwardDelay = DetermineTimeByVariable("REWARD_BACKWARD_TIME");
+
+            currentTrialTimings.wPreTrialTime = 1.0;
 
             currentTrialTimings.wPostTrialTime = DetermineTimeByVariable("POST_TRIAL_TIME");
 
@@ -2095,6 +2166,12 @@ namespace PinkyAndBrain
             /// The delay between end of water reward to the begining of moving rovot to it's home position.
             /// </summary>
             public double wRewardToBackwardDelay;
+
+
+            /// <summary>
+            /// The pre trial time before start beep and trial starts.
+            /// </summary>
+            public double wPreTrialTime;
 
             /// <summary>
             /// The duration to wait between the end of the previous trial and the begining of the next trial.
