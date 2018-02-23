@@ -760,6 +760,12 @@ namespace PinkyAndBrain
         /// </summary>
         public void PreTrialStage()
         {
+            _logger.Info("Pre trail stage begin.");
+
+            //update the global details listview with the current stage.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Intialization");
+
             _specialModesInRealTime.EnableRightLeftMustEquals = EnableRightLeftMustEquals;
 
             Task sendDataToRobotTask = new Task(()=>
@@ -789,6 +795,8 @@ namespace PinkyAndBrain
         /// </summary>
         private void SendDataToLedControllers()
         {
+            _logger.Info("Send data to LEDs controller begin.");
+
             LEDsData ledsData1;
             LEDsData ledsData2;
 
@@ -837,6 +845,8 @@ namespace PinkyAndBrain
                 default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
                     break;
             }
+
+            _logger.Info("Send data to LEDs controller end.");
         }
 
         /// <summary>
@@ -844,6 +854,8 @@ namespace PinkyAndBrain
         /// </summary>
         private void WriteAlphaOmegaStimulusBegin()
         {
+            _logger.Info("Writing AlphaOmega stimulus event start");
+
             switch (_currentTrialStimulusType)
             {
                 case 0://none
@@ -886,6 +898,7 @@ namespace PinkyAndBrain
         /// </summary>
         private void SendDataToRobots()
         {
+            _logger.Info("Sending trajectories data to robots begin.");
             //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
             switch (_currentTrialStimulusType)
             {
@@ -939,6 +952,7 @@ namespace PinkyAndBrain
                     _robotMotionTask = new Task(() => Thread.Sleep((int)(1000 * _currentTrialTimings.wDuration)));
                     break;
             };
+            _logger.Info("Sending trajectories data to robots end.");
         }
 
         /// <summary>
@@ -1437,6 +1451,7 @@ namespace PinkyAndBrain
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Stimulus Duration");
 
             //start moving the robot according to the stimulus type.
+            _logger.Info("Send Executing robot trajectory data starty command");
             _robotMotionTask.Start();
 
             //write alpha omega that the stimulus start.
