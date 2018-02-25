@@ -172,20 +172,20 @@ namespace PinkyAndBrain
             }
 
             //create the ledstrip controller and initialize it (also turn off leds).
-            _ledController = new LEDController("COM4", 2000000, 150 , _logger);
+            _ledController = new LEDController("COM4", 2000000, 150 , 10 , _logger);
             _ledController.OpenConnection();
 
             //create the second ledstrip controller and initialize it (also turn off leds).
-            _ledController2 = new LEDController("COM5", 2000000, 150, _logger);
+            _ledController2 = new LEDController("COM5", 2000000, 150 , 10, _logger);
             _ledController2.OpenConnection();
 
             if (!_ledController.Connected)
                 _ardionoPrtWarningLabel.Visible = true;
-            _ledController.ResetLeds();
+            //_ledController.ResetLeds();
 
             if (!_ledController2.Connected)
                 _ardionoPrtWarningLabel.Visible = true;
-            _ledController2.ResetLeds();
+            //_ledController2.ResetLeds();
 
             //set the InfraRed controller object.
             _infraredController = new InfraRedController("Dev1", "AO1", "InfraRedChannel");

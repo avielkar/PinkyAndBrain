@@ -36,6 +36,8 @@ namespace LED.Strip.Adressable
         /// Indicated if the port is connected or not.
         /// </summary>
         public bool Connected { get; set; }
+
+        public int _numOfFrames;
         #endregion MEMBERS
 
         #region CONSTRUCTORS
@@ -45,7 +47,7 @@ namespace LED.Strip.Adressable
         /// <param name="baudRate">The communication baud rate.</param>
         /// <param name="numOfLeds">The number of leds to controll with in the strip.</param>
         /// </summary>
-        public LEDController(string portName , int baudRate , int numOfLeds , ILog logger)
+        public LEDController(string portName , int baudRate , int numOfLeds , int numOfFrames , ILog logger)
         {
             _logger = logger;
 
@@ -53,10 +55,10 @@ namespace LED.Strip.Adressable
 
             _ledArduinoSerialPort = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
 
-            byte[] b = new byte[150];
+            byte[] b = new byte[numOfLeds * numOfFrames];
             _ledsData = new LEDsData(0, 0, 0, 0, b);
 
-            _logger = logger;
+            _numOfFrames = numOfFrames;
         }
         #endregion CONSTRUCTORS
 
@@ -103,26 +105,18 @@ namespace LED.Strip.Adressable
             _ledArduinoSerialPort.Close();
         }
 
-        /// <summary>
-        /// Send the data to the arduino led contoller.
-        /// </summary>
-        public void SendData()
+        public void SendLedsColorData()
         {
-            _logger.Info("SendData begin.");
-
-            //if not connected nothing to do.
-            if (!Connected) return;
-
-            //means a start of data transmit.
-            _ledArduinoSerialPort.Write("#");
-
             //sending the colors.
-            byte[] colorData = {_ledsData.Brightness,  _ledsData.Red, _ledsData.Green , _ledsData.Blue };
+            byte[] colorData = { _ledsData.Brightness, _ledsData.Red, _ledsData.Green, _ledsData.Blue };
             _ledArduinoSerialPort.Write(colorData, 0, colorData.Length);
 
             //means end sending te colors and start sending te points of places to turn on it's places.
             _ledArduinoSerialPort.Write("@");
+        }
 
+        public void SendPlacesDataFrames()
+        {
             //sending the places.
             _ledArduinoSerialPort.WriteTimeout = 1000;
             for (int i = 0; i < _ledsData.TurnedOnPlaces.Length / 50; i++)
@@ -132,12 +126,60 @@ namespace LED.Strip.Adressable
                 catch { _logger.Error("Timeout Writing Leds."); }
                 Thread.Sleep(10);
             }
+        }
 
+        public void SendInitDataSign()
+        {
+            _logger.Info("SendData begin.");
+
+            //if not connected nothing to do.
+            if (!Connected) return;
+
+            //means a start of data transmit.
+            _ledArduinoSerialPort.Write("#");
+        }
+
+        public void SendEndOfDataSign()
+        {
             //means the end of the data.
             _ledArduinoSerialPort.Write("#");
             _ledArduinoSerialPort.Write("#");
 
             _logger.Info("SendData ended.");
+        }
+
+        public void ExecuteFrame()
+        {
+            //if not connected nothing to do.
+            if (!Connected) return;
+
+            //means the data execution command.
+            _logger.Info("Leds execution command sent");
+            _ledArduinoSerialPort.Write("!");
+        }
+
+        public void ExecuteAllFrames()
+        {
+            for (int i  = 0; i  < _numOfFrames; i ++)
+            {
+                ExecuteFrame();
+
+                Thread.Sleep(100);
+            }
+        }
+
+        /// <summary>
+        /// Send the data to the arduino led contoller.
+        /// </summary>
+        public void SendData()
+        {
+            SendInitDataSign();
+
+            SendLedsColorData();
+
+            SendPlacesDataFrames();
+
+            SendEndOfDataSign();
         }
 
         /// <summary>

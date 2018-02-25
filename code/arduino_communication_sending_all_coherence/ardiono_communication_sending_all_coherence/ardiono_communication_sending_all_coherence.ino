@@ -11,6 +11,7 @@ String currentColor;
 
 byte colors[4];
 byte colorIndex;
+int numOfRenderedFrames;
 
 #define NUM_OF_LEDS 150
 
@@ -28,6 +29,7 @@ void setup() {
  // pinMode(dataPin , OUTPUT);
   //placesData = new byte[250];
   colorIndex = 0;
+  numOfRenderedFrames = 0;
 }
 
 void loop() {
@@ -89,16 +91,18 @@ void loop() {
         if(Serial.read() == '!')
         {
           //Serial.print("arduino execution begin\n");
-          for(int i = 0; i < NUM_OF_FRAMES; i++)
-          {
-            LedStripRoundDataExecution();
-            delay(90);
-          }
-          command_stage = false;
-          init_stage = true;
-          numOfPlacedData = 0;
+          LedStripRoundDataExecution(numOfRenderedFrames);
+          numOfRenderedFrames++;
           //Serial.print("arduino execution over\n");
         }
+      }
+
+      if(numOfRenderedFrames == NUM_OF_FRAMES)
+      {
+        numOfRenderedFrames = 0;
+        command_stage = false;
+        init_stage = true;
+        numOfPlacedData = 0;
       }
     }
   }
@@ -108,14 +112,14 @@ void PrintData()
 {
 }
 
-void LedStripRoundDataExecution()
+void LedStripRoundDataExecution(int offset)
 {
   startFrame();
   byte currentIndex = placesData[0];
   byte placeIndex = 1;
   for(byte i=0;i<(byte)NUM_OF_LEDS;i = i +(byte)(1))
   {
-    if(placesData[i] == 1)
+    if(placesData[i + offset * NUM_OF_LEDS] == 1)
     {
       sendColor(colors[1] , colors[2] , colors[3] , colors[0]);
     }

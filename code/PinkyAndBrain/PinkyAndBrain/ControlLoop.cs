@@ -280,12 +280,12 @@ namespace PinkyAndBrain
         /// <summary>
         /// The leds selector dor selecting different led to turn on.
         /// </summary>
-        private VaryingIndexSelector _ledSelector1;
+        private LedsSelector _ledSelector1;
 
         /// <summary>
         /// The leds selector dor selecting different led to turn on.
         /// </summary>
-        private VaryingIndexSelector _ledSelector2;
+        private LedsSelector _ledSelector2;
 
         /// <summary>
         /// The SavedDataMaker object to create new result file for each experiment.
@@ -425,8 +425,8 @@ namespace PinkyAndBrain
             _ledController1 = ledController;
             _ledController2 = ledController2;
             //initialize the leds index selector.
-            _ledSelector1 = new VaryingIndexSelector(150);
-            _ledSelector2 = new VaryingIndexSelector(150);
+            _ledSelector1 = new LedsSelector(150 , 10);
+            _ledSelector2 = new LedsSelector(150 , 10);
 
             //initialize the savedDataMaker object once.
             _savedExperimentDataMaker = new SavedDataMaker();
@@ -810,29 +810,29 @@ namespace PinkyAndBrain
                     break;
 
                 case 2://visual only.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , 1.0));
                     _ledController1.LEDsDataCommand = ledsData1;
                     _ledController1.SendData();
-                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , 0.5));
                     _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     break;
 
                 case 3://vistibular and visual both.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds ,1.0));
                     _ledController1.LEDsDataCommand = ledsData1;
                     _ledController1.SendData();
-                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , 1.0));
                     _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     break;
 
                 case 4://vistibular and visual both with delta+ for visual.
                 case 5://vistibular and visual both with delta+ for vistibular.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , 1.0));
                     _ledController1.LEDsDataCommand = ledsData1;
                     _ledController1.SendData();
-                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
+                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , 1.0));
                     _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     break;
@@ -1517,13 +1517,13 @@ namespace PinkyAndBrain
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotEndMovingForward);
 
             //and turn off the leds visual vistibular (it is o.k for all cases , just reset).
-            _ledController1.ResetLeds();
+            //_ledController1.ResetLeds();
             //and turn off the leds visual vistibular (it is o.k for all cases , just reset).
-            _ledController2.ResetLeds();
+            //_ledController2.ResetLeds();
             _logger.Info("New Data Leds RESET Execution for COHERENCE frame for LedController1");
-            _ledController1.ExecuteCommands();
+            //_ledController1.ExecuteCommands();
             _logger.Info("New Data Leds RESET Execution for COHERENCE frame for LedController2");
-            _ledController2.ExecuteCommands();
+            //_ledController2.ExecuteCommands();
 
             _logger.Info("End MovingTheRobotDurationWithHeadCenterStabilityStage with AutoFixation = " + AutoFixation + ".");
             //return the true state of the heading in the center stability during the duration time or always true when AutoFixation.
@@ -1535,11 +1535,17 @@ namespace PinkyAndBrain
         /// </summary>
         private void ExecuteLedControllersCommand()
         {
-            _logger.Info("New Data Leds Execution for COHERENCE frame for LedController1");
-            _ledController1.ExecuteCommands();
+            Task.Run(() =>
+            {
+                _logger.Info("New Data Leds Execution for COHERENCE frame for LedController1");
+                _ledController1.ExecuteAllFrames();
+            });
 
-            _logger.Info("New Data Leds Execution for COHERENCE frame for LedController2");
-            _ledController2.ExecuteCommands();
+            Task.Run(() =>
+            {
+                _logger.Info("New Data Leds Execution for COHERENCE frame for LedController2");
+                _ledController2.ExecuteAllFrames();
+            });
         }
 
         private void TurnOnLedsThread()
@@ -1553,7 +1559,7 @@ namespace PinkyAndBrain
             Task leds1DataSendTask = Task.Factory.StartNew(() =>
             {
                 _logger.Info("New Data Leds Sending for COHERENCE frame for LedController1");
-                LEDsData ledsData = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombinationCoherence(1.0));
+                LEDsData ledsData = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds, 0.5));
                 _ledController1.LEDsDataCommand = ledsData;
                 _ledController1.SendData();
             });
@@ -1561,7 +1567,7 @@ namespace PinkyAndBrain
             Task leds2DataSendTask = Task.Factory.StartNew(() =>
             {
                 _logger.Info("New Data Leds Sending for COHERENCE frame for LedController2");
-                LEDsData ledsData = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombinationCoherence(1.0));
+                LEDsData ledsData = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds, 1.0));
                 _ledController2.LEDsDataCommand = ledsData;
                 _ledController2.SendData();
             });
