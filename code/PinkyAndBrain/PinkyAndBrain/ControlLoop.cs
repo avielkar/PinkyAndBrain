@@ -270,22 +270,22 @@ namespace PinkyAndBrain
         /// <summary>
         /// The led controller for controlling the leds visibility in the ledstrip connected to the arduino.
         /// </summary>
-        private LEDController _ledController1;
+        private LEDController _ledControllerRight;
 
         /// <summary>
         /// The second led controller for controlling the leds visibility in the ledstrip connected to the arduino.
         /// </summary>
-        private LEDController _ledController2;
+        private LEDController _ledControllerLeft;
 
         /// <summary>
         /// The leds selector dor selecting different led to turn on.
         /// </summary>
-        private LedsSelector _ledSelector1;
+        private LedsSelector _ledSelectorRight;
 
         /// <summary>
         /// The leds selector dor selecting different led to turn on.
         /// </summary>
-        private LedsSelector _ledSelector2;
+        private LedsSelector _ledSelectorLeft;
 
         /// <summary>
         /// The SavedDataMaker object to create new result file for each experiment.
@@ -422,11 +422,11 @@ namespace PinkyAndBrain
             _motomanController = motomanController;
 
             //take the led controller object.
-            _ledController1 = ledController;
-            _ledController2 = ledController2;
+            _ledControllerRight = ledController;
+            _ledControllerLeft = ledController2;
             //initialize the leds index selector.
-            _ledSelector1 = new LedsSelector(150 , 10);
-            _ledSelector2 = new LedsSelector(150 , 10);
+            _ledSelectorRight = new LedsSelector(150 , 10);
+            _ledSelectorLeft = new LedsSelector(150 , 10);
 
             //initialize the savedDataMaker object once.
             _savedExperimentDataMaker = new SavedDataMaker();
@@ -797,8 +797,11 @@ namespace PinkyAndBrain
         {
             _logger.Info("Send data to LEDs controller begin.");
 
-            LEDsData ledsData1;
-            LEDsData ledsData2;
+            LEDsData ledsDataRight;
+            LEDsData ledsDataLeft;
+
+            double coherenceLeftStrip = double.Parse(GetVariableValue("COHERENCE_LEFT_STRIP"));
+            double coherenceRightStrip = double.Parse(GetVariableValue("COHERENCE_RIGHT_STRIP"));
 
             //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
             switch (_currentTrialStimulusType)
@@ -810,32 +813,17 @@ namespace PinkyAndBrain
                     break;
 
                 case 2://visual only.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , 0.8));
-                    _ledController1.LEDsDataCommand = ledsData1;
-                    _ledController1.SendData();
-                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , 1.0));
-                    _ledController2.LEDsDataCommand = ledsData2;
-                    _ledController2.SendData();
-                    break;
-
                 case 3://vistibular and visual both.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds ,1.0));
-                    _ledController1.LEDsDataCommand = ledsData1;
-                    _ledController1.SendData();
-                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , 1.0));
-                    _ledController2.LEDsDataCommand = ledsData2;
-                    _ledController2.SendData();
-                    break;
-
                 case 4://vistibular and visual both with delta+ for visual.
                 case 5://vistibular and visual both with delta+ for vistibular.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , 1.0));
-                    _ledController1.LEDsDataCommand = ledsData1;
-                    _ledController1.SendData();
-                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , 1.0));
-                    _ledController2.LEDsDataCommand = ledsData2;
-                    _ledController2.SendData();
+                    ledsDataRight = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelectorRight.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , coherenceRightStrip));
+                    _ledControllerRight.LEDsDataCommand = ledsDataRight;
+                    _ledControllerRight.SendData();
+                    ledsDataLeft = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelectorLeft.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , coherenceLeftStrip));
+                    _ledControllerLeft.LEDsDataCommand = ledsDataLeft;
+                    _ledControllerLeft.SendData();
                     break;
+
                 case 10://visual only in the dark.
                     break;
 
@@ -1538,13 +1526,13 @@ namespace PinkyAndBrain
             Task.Run(() =>
             {
                 _logger.Info("New Data Leds Execution for COHERENCE frame for LedController1");
-                _ledController1.ExecuteAllFrames();
+                _ledControllerRight.ExecuteAllFrames();
             });
 
             Task.Run(() =>
             {
                 _logger.Info("New Data Leds Execution for COHERENCE frame for LedController2");
-                _ledController2.ExecuteAllFrames();
+                _ledControllerLeft.ExecuteAllFrames();
             });
         }
 
@@ -1559,17 +1547,17 @@ namespace PinkyAndBrain
             Task leds1DataSendTask = Task.Factory.StartNew(() =>
             {
                 _logger.Info("New Data Leds Sending for COHERENCE frame for LedController1");
-                LEDsData ledsData = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds, 0.5));
-                _ledController1.LEDsDataCommand = ledsData;
-                _ledController1.SendData();
+                LEDsData ledsData = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelectorRight.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds, 0.5));
+                _ledControllerRight.LEDsDataCommand = ledsData;
+                _ledControllerRight.SendData();
             });
 
             Task leds2DataSendTask = Task.Factory.StartNew(() =>
             {
                 _logger.Info("New Data Leds Sending for COHERENCE frame for LedController2");
-                LEDsData ledsData = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds, 1.0));
-                _ledController2.LEDsDataCommand = ledsData;
-                _ledController2.SendData();
+                LEDsData ledsData = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelectorLeft.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds, 1.0));
+                _ledControllerLeft.LEDsDataCommand = ledsData;
+                _ledControllerLeft.SendData();
             });
 
             Task waitigMinTime = Task.Factory.StartNew(() => 
@@ -1969,24 +1957,34 @@ namespace PinkyAndBrain
         /// <returns>The value of the parameter at the current trial.</returns>
         public string GetVariableValue(string parameterName)
         {
-            //detrmine the status of the variable type.
-            string variableStatus = _variablesList._variablesDictionary[parameterName]._description["status"]._ratHouseParameter;
-
-            //decide the time value of the time type according to it's status.
-            switch (variableStatus)
+            try
             {
-                case "1"://static
-                    return _variablesList._variablesDictionary[parameterName]._description["parameters"]._ratHouseParameter;
+                //detrmine the status of the variable type.
+                string variableStatus = _variablesList._variablesDictionary[parameterName]._description["status"]._ratHouseParameter;
 
-                case "2"://varying
-                case "6":
-                    return _crossVaryingVals[_currentVaryingTrialIndex][parameterName].ToString("000000.00000000");
 
-                default:
-                    return string.Empty;
+                //decide the time value of the time type according to it's status.
+                switch (variableStatus)
+                {
+                    case "1"://static
+                        return _variablesList._variablesDictionary[parameterName]._description["parameters"]._ratHouseParameter;
 
+                    case "2"://varying
+                    case "6":
+                        return _crossVaryingVals[_currentVaryingTrialIndex][parameterName].ToString("000000.00000000");
+
+                    default:
+                        return string.Empty;
+
+                }
             }
 
+            catch
+            {
+                MessageBox.Show("Error", "The parameter " + parameterName + " is not in the excel sheet.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return string.Empty;
+            }
         }
 
         /// <summary>

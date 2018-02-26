@@ -133,9 +133,12 @@ namespace LED.Strip.Adressable
             }
         }
 
+        /// <summary>
+        /// Sending a sign that the data is coming to be sent.
+        /// </summary>
         public void SendInitDataSign()
         {
-            _logger.Info("SendData begin.");
+            _logger.Info("Sending a sign of init data.");
 
             //if not connected nothing to do.
             if (!Connected) return;
@@ -144,15 +147,21 @@ namespace LED.Strip.Adressable
             _ledArduinoSerialPort.Write("#");
         }
 
+        /// <summary>
+        /// Sending a sign that data sending is over.
+        /// </summary>
         public void SendEndOfDataSign()
         {
             //means the end of the data.
             _ledArduinoSerialPort.Write("#");
             _ledArduinoSerialPort.Write("#");
 
-            _logger.Info("SendData ended.");
+            _logger.Info("Sending sign of data ended.");
         }
 
+        /// <summary>
+        /// Send a command to execute one frame.
+        /// </summary>
         public void ExecuteFrame()
         {
             //if not connected nothing to do.
@@ -163,8 +172,13 @@ namespace LED.Strip.Adressable
             _ledArduinoSerialPort.Write("!");
         }
 
+        /// <summary>
+        /// Sends commands one by one to execute all frames.
+        /// </summary>
         public void ExecuteAllFrames()
         {
+            _logger.Info("Executing all frames one by one");
+
             //_numOfFrames + 1 because the last reset frame.
             for (int i  = 0; i  < _numOfFrames + 1; i ++)
             {

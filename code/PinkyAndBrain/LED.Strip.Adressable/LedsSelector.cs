@@ -56,9 +56,42 @@ namespace LED.Strip.Adressable
             //reset all indexes to be with false.
             ResetLedsStatus();
 
-            //the returned array with the numOfFillings '1' in thae arry values.
-            byte[] returnedArray = new byte[_ledsIndexesStatus.Length];
+            FillFirstFrame(percentageOfFillings);
 
+            for (int offset = 1; offset < _numOfFrames; offset++)
+            {
+                //make the coherence to the other indexes
+                for (int i = 0; i < _turnedOnPlaces.Count; i++)
+                {
+                    double bernouliSample = Bernoulli.Sample(coherencePercentage);
+                    //1 means stay the same state for that led , 0 means change the state.
+                    if (bernouliSample == 1)
+                    {
+                        _ledsIndexesStatus[offset * _numOfLeds + _turnedOnPlaces[i]] = 1;//_ledsIndexesStatus[(offset - 1) * _numOfLeds + i];
+                    }
+                    else
+                    {
+                        int rand;
+
+                        rand = _randGenerator.Next(0, _numOfLeds);
+
+                        _turnedOnPlaces[i] = rand;
+
+                        //_ledsIndexesStatus[offset * _numOfLeds + i] = 0;
+                        _ledsIndexesStatus[offset * _numOfLeds + _turnedOnPlaces[i]] = (byte)1;
+                    }
+                }
+            }
+
+            AddResetFrame();
+
+            sw.Stop();
+
+            return _ledsIndexesStatus;
+        }
+
+        public void FillFirstFrame(double percentageOfFillings)
+        {
             //choosing numOfFillings percentage to fill with '1' value.
             for (int i = 0; i < _numOfLeds; i++)
             {
@@ -67,41 +100,15 @@ namespace LED.Strip.Adressable
                 if (_ledsIndexesStatus[i] == 1)
                     _turnedOnPlaces.Add(i);
             }
+        }
 
-            for (int offset = 1; offset < _numOfFrames; offset++)
-            {
-                //make the coherence to the other indexes
-                for (int i = 0; i < _numOfLeds; i++)
-                {
-                    double bernouliSample = Bernoulli.Sample(coherencePercentage);
-                    //1 means stay the same state for that led , 0 means change the state.
-                    if (bernouliSample == 1)
-                    {
-                        _ledsIndexesStatus[offset * _numOfLeds + i] = _ledsIndexesStatus[(offset - 1) * _numOfLeds + i];
-                    }
-                    else
-                    {
-                        int rand;
-
-                        rand = _randGenerator.Next(0, _numOfLeds);
-
-                        //_turnedOnPlaces[i] = rand;
-
-                        _ledsIndexesStatus[offset * _numOfLeds + i] = 0;
-                        _ledsIndexesStatus[offset * _numOfLeds + rand] = (byte)1;
-                    }
-                }
-            }
-
+        public void AddResetFrame()
+        {
             int resetStartIndex = _numOfLeds * _numOfFrames;
-            for (int i = 0; i < _numOfLeds;i++)
+            for (int i = 0; i < _numOfLeds; i++)
             {
                 _ledsIndexesStatus[resetStartIndex + i] = 0;
             }
-
-            sw.Stop();
-
-            return _ledsIndexesStatus;
         }
     }
 }
