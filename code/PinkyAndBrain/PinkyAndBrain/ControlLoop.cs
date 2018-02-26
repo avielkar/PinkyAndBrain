@@ -810,10 +810,10 @@ namespace PinkyAndBrain
                     break;
 
                 case 2://visual only.
-                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , 1.0));
+                    ledsData1 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector1.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , 0.8));
                     _ledController1.LEDsDataCommand = ledsData1;
                     _ledController1.SendData();
-                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , 0.5));
+                    ledsData2 = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelector2.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , 1.0));
                     _ledController2.LEDsDataCommand = ledsData2;
                     _ledController2.SendData();
                     break;

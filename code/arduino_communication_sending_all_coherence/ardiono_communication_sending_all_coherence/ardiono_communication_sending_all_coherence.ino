@@ -15,9 +15,11 @@ int numOfRenderedFrames;
 
 #define NUM_OF_LEDS 150
 
+//without the last rest frame
 #define NUM_OF_FRAMES 10
 
-byte placesData[NUM_OF_LEDS * NUM_OF_FRAMES];
+//NUM_OF_FRAMES + 1 for the last reset frame
+byte placesData[NUM_OF_LEDS * (NUM_OF_FRAMES + 1)];
 int numOfPlacedData;
 
 
@@ -78,7 +80,8 @@ void loop() {
         placesData[numOfPlacedData] = data;
         numOfPlacedData++;
       }
-      if(numOfPlacedData == NUM_OF_LEDS * NUM_OF_FRAMES)
+      //NUM_OF_FRAMES + 1 for the last reset frame
+      if(numOfPlacedData == NUM_OF_LEDS * (NUM_OF_FRAMES + 1))
       {
         places_stage = false;
         command_stage = true;
@@ -97,7 +100,8 @@ void loop() {
         }
       }
 
-      if(numOfRenderedFrames == NUM_OF_FRAMES)
+      //NUM_OF_FRAMES + 1 for the last reset frame
+      if(numOfRenderedFrames == NUM_OF_FRAMES + 1)
       {
         numOfRenderedFrames = 0;
         command_stage = false;

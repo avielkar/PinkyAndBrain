@@ -20,13 +20,19 @@ namespace LED.Strip.Adressable
 
         private Random _randGenerator;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="numOfLeds">The number of leds in the strip.</param>
+        /// <param name="numOfFrames">The number of total frames to render without the last reset frame.</param>
         public LedsSelector(int numOfLeds , int numOfFrames)
         {
             _numOfLeds = numOfLeds;
 
             _numOfFrames = numOfFrames;
 
-            _ledsIndexesStatus = new byte[numOfFrames*numOfLeds];
+            //numOfFrames + 1 in order to add the last reset frame.
+            _ledsIndexesStatus = new byte[(numOfFrames + 1) * numOfLeds];
             _turnedOnPlaces = new List<int>();
 
             _randGenerator = new Random();
@@ -85,6 +91,12 @@ namespace LED.Strip.Adressable
                         _ledsIndexesStatus[offset * _numOfLeds + rand] = (byte)1;
                     }
                 }
+            }
+
+            int resetStartIndex = _numOfLeds * _numOfFrames;
+            for (int i = 0; i < _numOfLeds;i++)
+            {
+                _ledsIndexesStatus[resetStartIndex + i] = 0;
             }
 
             sw.Stop();

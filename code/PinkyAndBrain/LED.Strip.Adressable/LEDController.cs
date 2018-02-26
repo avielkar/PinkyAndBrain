@@ -37,6 +37,9 @@ namespace LED.Strip.Adressable
         /// </summary>
         public bool Connected { get; set; }
 
+        /// <summary>
+        /// The number of data leds frames with out the last reset frame.
+        /// </summary>
         public int _numOfFrames;
         #endregion MEMBERS
 
@@ -46,6 +49,8 @@ namespace LED.Strip.Adressable
         /// <param name="portName">The port COM to connect with.</param>
         /// <param name="baudRate">The communication baud rate.</param>
         /// <param name="numOfLeds">The number of leds to controll with in the strip.</param>
+        /// <param name="numOfFrames">The number of data leds frames without the last reset frame.</param>
+        /// <param name="logger">The program main logger.</param>
         /// </summary>
         public LEDController(string portName , int baudRate , int numOfLeds , int numOfFrames , ILog logger)
         {
@@ -160,7 +165,8 @@ namespace LED.Strip.Adressable
 
         public void ExecuteAllFrames()
         {
-            for (int i  = 0; i  < _numOfFrames; i ++)
+            //_numOfFrames + 1 because the last reset frame.
+            for (int i  = 0; i  < _numOfFrames + 1; i ++)
             {
                 ExecuteFrame();
 
