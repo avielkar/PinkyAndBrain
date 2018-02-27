@@ -741,7 +741,11 @@ namespace PinkyAndBrain
 
             //determine all current trial timings and delays.
             _currentTrialTimings = DetermineCurrentTrialTimings();
+            CheckDurationTimeAcceptableValue();
+
+            //determine current stimulus type.
             _currentTrialStimulusType = DetermineCurrentStimulusType();
+
             //set the reposne to the stimulus direction as no entry to descision stage (and change it after if needed as well).
             _currentRatDecision = RatDecison.NoEntryToResponseStage;
             //set the auto option to default values.
@@ -1701,6 +1705,34 @@ namespace PinkyAndBrain
                 _inverseRRDecision = false;
             }
             _correctDecision = currentStimulationSide;
+        }
+
+        /// <summary>
+        /// Return true if the duration time is according to the rules of the duration time variable.
+        /// </summary>
+        private void CheckDurationTimeAcceptableValue()
+        {
+            if (_currentTrialTimings.wDuration > 1.0)
+            {
+                MessageBox.Show("The current trial timing for robot movement is bigger than 1 second - Arduino doesnt have enough memory for more than 10 frames per second.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                throw new ArgumentException("The current trial timing for robot movement is bigger than 1 second - Arduino doesnt have enough memory for more than 10 frames per second.",
+                    "_currentTrialTimings.wDuration");
+            }
+
+            if ((int)(_currentTrialTimings.wDuration * 1000000) % 1000000 != 0)
+            {
+                MessageBox.Show("The current trial timing for robot movement is not a 0.1 multiplication than 1 second.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                throw new ArgumentException("The current trial timing for robot movement is not a 0.1 multiplication than 1 second.",
+                    "_currentTrialTimings.wDuration");
+            }
         }
         #endregion STAGES_ADDIION_FUNCTION
 
