@@ -687,7 +687,14 @@ namespace PinkyAndBrain
                             //sounds the beep for missing the movement head in the center.
                             else
                             {
-                                Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play(); });
+                                Task.Run(() =>
+                                {
+                                    _logger.Info("Start playing missing sound in the center");
+
+                                    _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play();
+
+                                    _logger.Info("End playing missing sound in the center");
+                                });
                                 _totalHeadFixationBreaksStartDelay++;
                             }
                         }
@@ -818,24 +825,36 @@ namespace PinkyAndBrain
 
             if (EnableClueSoundInBothSide)
             {
+                _logger.Info("Satrt playing EnableClueSoundInBothSide");
+
                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                 _windowsMediaPlayer.controls.play();
 
                 _specialModesInRealTime.EnableClueSoundInBothSide = true;
+
+                _logger.Info("End playing EnableClueSoundInBothSide");
             }
 
             else if ( EnableClueSoundInCorrectSide)
             {
                 if (_correctDecision.Equals(RatDecison.Right))
                 {
+                    _logger.Info("Satrt playing EnableClueSoundInBothSide");
+
                     _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
                     _windowsMediaPlayer.controls.play();
+
+                    _logger.Info("End playing EnableClueSoundInBothSide");
                 }
 
                 else if (_correctDecision.Equals(RatDecison.Left))
                 {
+                    _logger.Info("Satrt playing EnableClueSoundInBothSide");
+
                     _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
                     _windowsMediaPlayer.controls.play();
+
+                    _logger.Info("End playing EnableClueSoundInBothSide");
                 }
 
                 _specialModesInRealTime.EnableClueSoundInCorrectSide = true;
@@ -903,8 +922,12 @@ namespace PinkyAndBrain
                         //error sound if needed.
                         Task.Run(() =>
                         {
+                            _logger.Info("Start playing error sound");
+
                             _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"];
                             _windowsMediaPlayer.controls.play();
+
+                            _logger.Info("End playing error sound");
                         });
 
                         _specialModesInRealTime.ErrorChoiceSouunOn = true;
@@ -945,8 +968,12 @@ namespace PinkyAndBrain
                     {
                         Task.Run(() =>
                         {
+                            _logger.Info("Start playing wrong answer");
+
                             _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"];
                             _windowsMediaPlayer.controls.play();
+
+                            _logger.Info("End playing wrong answer");
                         });
 
                         _specialModesInRealTime.ErrorChoiceSouunOn = true;
@@ -1024,6 +1051,8 @@ namespace PinkyAndBrain
             _autosOptionsInRealTime.AutoRewardSound = autoRewardSound;
             if(autoRewardSound)
             {
+                _logger.Info("Start getting the reward position sound.");
+
                 //play the selected reward side mono sound.
                 switch (position)
                 {
@@ -1042,6 +1071,8 @@ namespace PinkyAndBrain
                     default:
                         break;
                 }
+
+                _logger.Info("End getting the reward position sound.");
             }
 
             //wait the reward delay time befor openning the reward if not autoReward.
@@ -1286,8 +1317,12 @@ namespace PinkyAndBrain
                             //sound the break fixation sound - aaaahhhh sound.
                             //TODO: check if need here a task.
                             {
+                                _logger.Info("Start playing the missing answer sound");
+
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"];
                                 _windowsMediaPlayer.controls.play();
+
+                                _logger.Info("End playing the missing answer sound");
                             }
 
                             //save the state of the enable fixation break sound on.
@@ -1457,12 +1492,13 @@ namespace PinkyAndBrain
             {
                 Task.Run(() =>
                 {
-                    _logger.Info("Saving trial# " + (_totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks) + "to the result file.");
+                    _logger.Info("Saving trial# " + (_totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks) + " to the result file.");
                     _savedExperimentDataMaker.SaveTrialDataToFile(new TrialData()
                     {
-                        StaticVariables = _staticVariablesList,
+                        StaticVariables = _staticVariablesList,//
                         VaryingVariables = _crossVaryingVals[_currentVaryingTrialIndex],
                         TimingsVariables = _currentTrialTimings,
+                        ApplicationVersionNumber = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(),
                         ProtocolName = ProtocolFullName,
                         RatName = RatName,
                         StudentName =StudentName,
@@ -2053,8 +2089,12 @@ namespace PinkyAndBrain
                 {
                     if (RewardSound)
                     {
+                        _logger.Info("Start handreward sound");
+
                         _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
                         _windowsMediaPlayer.controls.play();
+
+                        _logger.Info("End handreward sound");
                     }
                     timeByVariable = DetermineTimeByVariable("REWARD_LEFT_DURATION");
                 }
@@ -2062,8 +2102,12 @@ namespace PinkyAndBrain
                 {
                     if (RewardSound)
                     {
+                        _logger.Info("Start handreward sound");
+
                         _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                         _windowsMediaPlayer.controls.play();
+
+                        _logger.Info("End handreward sound");
                     }
                     timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
                 }
@@ -2071,8 +2115,12 @@ namespace PinkyAndBrain
                 {
                     if (RewardSound)
                     {
+                        _logger.Info("Start handreward sound");
+
                         _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                         _windowsMediaPlayer.controls.play();
+
+                        _logger.Info("End handreward sound");
                     }
                     timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
                 }
@@ -2080,8 +2128,12 @@ namespace PinkyAndBrain
                 {
                     if (RewardSound)
                     {
+                        _logger.Info("Start handreward sound");
+
                         _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
                         _windowsMediaPlayer.controls.play();
+
+                        _logger.Info("End handreward sound");
                     }
                     timeByVariable = DetermineTimeByVariable("REWARD_RIGHT_DURATION");
                 }
@@ -2127,7 +2179,11 @@ namespace PinkyAndBrain
         /// </summary>
         public void PlayRewardSound()
         {
+            _logger.Info("Start playing reward sound from gui");
+
             _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"]; _windowsMediaPlayer.controls.play();
+            
+            _logger.Info("End playing reward sound from gui");
         }
 
         /// <summary>
@@ -2135,7 +2191,11 @@ namespace PinkyAndBrain
         /// </summary>
         public void PlayBreakFixationSound()
         {
+            _logger.Info("Start playing break fixation sound from gui");
+
             _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"]; _windowsMediaPlayer.controls.play();
+
+            _logger.Info("End playing break fixation sound from gui");
         }
         #endregion GUI_EVENTS
 

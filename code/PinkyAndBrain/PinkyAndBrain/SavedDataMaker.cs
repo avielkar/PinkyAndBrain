@@ -50,6 +50,12 @@ namespace PinkyAndBrain
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
 
+            //append the application version number.
+            lineBuilder.Append("Application Version Number:");
+            lineBuilder.Append(trialData.ApplicationVersionNumber);
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
             //apend the protocol full name
             lineBuilder.Append("Protocol Name:");
             lineBuilder.Append(trialData.ProtocolName);
@@ -215,6 +221,11 @@ namespace PinkyAndBrain
         /// The running protocol file name.
         /// </summary>
         public string ProtocolName { get; set; }
+
+        /// <summary>
+        /// The application version number.
+        /// </summary>
+        public string ApplicationVersionNumber { get; set; }
 
         /// <summary>
         /// The rat decision for the stimulus direction.
