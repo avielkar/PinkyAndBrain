@@ -1077,20 +1077,24 @@ namespace PinkyAndBrain
 
             //wait the reward delay time befor openning the reward if not autoReward.
             //if (!autoreward)
-                Thread.Sleep((int)(rewardDelay * 1000));
+            Thread.Sleep((int)(rewardDelay * 1000));
 
             sw.Restart();
 
             //open the center reward for the rat to be rewarded.
             //after the reward duration time and than close it.
+            _logger.Info("Opening the water tupple");
             _rewardController.WriteSingleSamplePort(true, (byte)position);
 
             //wait the reward time and fill the interactive water fill estimation panel.
+            _logger.Info("Start updating interactive water filling window");
             _waterRewardFillingTimer.Start();
             Thread.Sleep((int)(rewardDuration * 1000));
             _waterRewardFillingTimer.Stop();
+            _logger.Info("End updating interactive water filling window");
 
             //close again the reward port.
+            _logger.Info("Closing the water tupple");
             _rewardController.WriteSingleSamplePort(true, 0x00);
         }
 

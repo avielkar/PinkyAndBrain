@@ -442,9 +442,13 @@ namespace PinkyAndBrain
         /// <param name="value">The value of the parameter to show.</param>
         private void ChangeGlobalExperimentDetailsListView(string name , string value)
         {
+            _logger.Info("Start updating details list view");
+
             ListViewItem lvi = new ListViewItem(name);
             lvi.SubItems.Add(value);
             _globaExperimentlInfoListView.Items.Add(lvi);
+
+            _logger.Info("End updating details list view");
         }
 
         /// <summary>
