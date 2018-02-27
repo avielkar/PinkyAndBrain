@@ -111,12 +111,20 @@ namespace LED.Strip.Adressable
         }
 
         /// <summary>
+        /// Sends the number of frames not include the last reset frame.
+        /// </summary>
+        private void SendNumberOfFrames(int numberOfFrames)
+        {
+            byte[] numOfFrames = { (byte)numberOfFrames };
+            _ledArduinoSerialPort.Write(numOfFrames , 0 , 1);
+        }
+
+        /// <summary>
         /// Sebd the led strip color.
         /// </summary>
-        public void SendLedsColorData()
+        private void SendLedsColorData(byte [] colorData)
         {
             //sending the colors.
-            byte[] colorData = { _ledsData.Brightness, _ledsData.Red, _ledsData.Green, _ledsData.Blue };
             _ledArduinoSerialPort.Write(colorData, 0, colorData.Length);
 
             //means end sending te colors and start sending te points of places to turn on it's places.
@@ -126,14 +134,14 @@ namespace LED.Strip.Adressable
         /// <summary>
         /// Send all frames with teir places statuses for the led strip to each frame.
         /// </summary>
-        public void SendPlacesDataFrames()
+        private void SendPlacesDataFrames(byte[] ledsStatuses)
         {
             //sending the places.
             _ledArduinoSerialPort.WriteTimeout = 1000;
-            for (int i = 0; i < _ledsData.TurnedOnPlaces.Length / 50; i++)
+            for (int i = 0; i < ledsStatuses.Length / 50; i++)
             {
                 _logger.Info("Leds packet send.");
-                try { _ledArduinoSerialPort.Write(_ledsData.TurnedOnPlaces, i * 50, 50); }
+                try { _ledArduinoSerialPort.Write(ledsStatuses, i * 50, 50); }
                 catch { _logger.Error("Timeout Writing Leds."); }
                 Thread.Sleep(10);
             }
@@ -142,7 +150,7 @@ namespace LED.Strip.Adressable
         /// <summary>
         /// Sending a sign that the data is coming to be sent.
         /// </summary>
-        public void SendInitDataSign()
+        private void SendInitDataSign()
         {
             _logger.Info("Sending a sign of init data.");
 
@@ -156,7 +164,7 @@ namespace LED.Strip.Adressable
         /// <summary>
         /// Sending a sign that data sending is over.
         /// </summary>
-        public void SendEndOfDataSign()
+        private void SendEndOfDataSign()
         {
             //means the end of the data.
             _ledArduinoSerialPort.Write("#");
@@ -168,7 +176,7 @@ namespace LED.Strip.Adressable
         /// <summary>
         /// Send a command to execute one frame.
         /// </summary>
-        public void ExecuteFrame()
+        private void ExecuteFrame()
         {
             //if not connected nothing to do.
             if (!Connected) return;
@@ -201,9 +209,24 @@ namespace LED.Strip.Adressable
         {
             SendInitDataSign();
 
-            SendLedsColorData();
+            SendNumberOfFrames(_numOfFrames);
 
-            SendPlacesDataFrames();
+            SendLedsColorData(new byte [] { _ledsData.Brightness, _ledsData.Red, _ledsData.Green, _ledsData.Blue });
+
+            SendPlacesDataFrames(_ledsData.TurnedOnPlaces);
+
+            SendEndOfDataSign();
+        }
+
+        private void SendResetdata()
+        {
+            SendInitDataSign();
+
+            SendNumberOfFrames(0);
+
+            SendLedsColorData(new byte[] { 0, 0, 0, 0 });
+
+            SendPlacesDataFrames(new byte[150]);
 
             SendEndOfDataSign();
         }
@@ -256,7 +279,9 @@ namespace LED.Strip.Adressable
             //send the data for leds turning on/off as the default value of arrays (which is 0).
             int len = _ledsData.TurnedOnPlaces.Length;
             _ledsData.TurnedOnPlaces = new byte[len];
-            SendData();
+
+            SendResetdata();
+            ExecuteFrame();
 
             _logger.Info("Reset Leds finished");
         }

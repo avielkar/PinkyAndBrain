@@ -3,6 +3,7 @@ int dataPin = 3;
 int count = 300;
 uint8_t color = 255;
 bool init_stage = true;
+bool getting_num_of_frames_stage = false;
 bool color_stage = false;
 bool places_stage = false;
 bool command_stage = false;
@@ -17,6 +18,9 @@ int numOfRenderedFrames;
 
 //without the last rest frame
 #define NUM_OF_FRAMES 10
+
+//the reak number of frames
+byte num_of_frames;
 
 //NUM_OF_FRAMES + 1 for the last reset frame
 byte placesData[NUM_OF_LEDS * (NUM_OF_FRAMES + 1)];
@@ -45,6 +49,16 @@ void loop() {
       {
         //Serial.print('#');
         init_stage = false;
+        getting_num_of_frames_stage = true;
+      }
+    }
+    else if(getting_num_of_frames_stage)
+    {
+      if(Serial.available() > 0)
+      {
+        num_of_frames = Serial.read();
+        
+        getting_num_of_frames_stage = false;
         color_stage = true;
       }
     }
@@ -81,7 +95,7 @@ void loop() {
         numOfPlacedData++;
       }
       //NUM_OF_FRAMES + 1 for the last reset frame
-      if(numOfPlacedData == NUM_OF_LEDS * (NUM_OF_FRAMES + 1))
+      if(numOfPlacedData == NUM_OF_LEDS * (num_of_frames + 1))
       {
         places_stage = false;
         command_stage = true;
@@ -101,7 +115,7 @@ void loop() {
       }
 
       //NUM_OF_FRAMES + 1 for the last reset frame
-      if(numOfRenderedFrames == NUM_OF_FRAMES + 1)
+      if(numOfRenderedFrames == num_of_frames + 1)
       {
         numOfRenderedFrames = 0;
         command_stage = false;
