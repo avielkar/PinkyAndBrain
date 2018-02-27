@@ -181,11 +181,11 @@ namespace PinkyAndBrain
 
             if (!_ledController.Connected)
                 _ardionoPrtWarningLabel.Visible = true;
-            //_ledController.ResetLeds();
+            _ledController.ResetLeds();
 
             if (!_ledController2.Connected)
                 _ardionoPrtWarningLabel.Visible = true;
-            //_ledController2.ResetLeds();
+            _ledController2.ResetLeds();
 
             //set the InfraRed controller object.
             _infraredController = new InfraRedController("Dev1", "AO1", "InfraRedChannel");

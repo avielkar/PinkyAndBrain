@@ -1452,7 +1452,7 @@ namespace PinkyAndBrain
             if (_currentTrialStimulusType == 2 ||
                 _currentTrialStimulusType == 3 ||
                 _currentTrialStimulusType == 4 ||
-                _currentTrialStimulusType == 5 )
+                _currentTrialStimulusType == 5)
             {
                 Task.Run(() =>
                 {
@@ -1476,7 +1476,7 @@ namespace PinkyAndBrain
 
                         if (!AutoFixation)
                         {
-                            if(EnableFixationBreakSound)
+                            if (EnableFixationBreakSound)
                             //sound the break fixation sound - aaaahhhh sound.
                             //TODO: check if need here a task.
                             {
@@ -1504,19 +1504,10 @@ namespace PinkyAndBrain
             //also send the AlphaOmega that motion forward ends.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotEndMovingForward);
 
-            //and turn off the leds visual vistibular (it is o.k for all cases , just reset).
-            //_ledController1.ResetLeds();
-            //and turn off the leds visual vistibular (it is o.k for all cases , just reset).
-            //_ledController2.ResetLeds();
-            _logger.Info("New Data Leds RESET Execution for COHERENCE frame for LedController1");
-            //_ledController1.ExecuteCommands();
-            _logger.Info("New Data Leds RESET Execution for COHERENCE frame for LedController2");
-            //_ledController2.ExecuteCommands();
-
             _logger.Info("End MovingTheRobotDurationWithHeadCenterStabilityStage with AutoFixation = " + AutoFixation + ".");
             //return the true state of the heading in the center stability during the duration time or always true when AutoFixation.
             return headInCenterAllTheTime || AutoFixation;
-            }
+        }
 
         /// <summary>
         /// Executing the leds command (tell the controllers to execute the commands have sent to them before).
@@ -1534,50 +1525,6 @@ namespace PinkyAndBrain
                 _logger.Info("New Data Leds Execution for COHERENCE frame for LedController2");
                 _ledControllerLeft.ExecuteAllFrames();
             });
-        }
-
-        private void TurnOnLedsThread()
-        {                        
-            //the leds data for the strip leds light.
-            LEDsData ledsData1;
-            LEDsData ledsData2;
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-
-            Task leds1DataSendTask = Task.Factory.StartNew(() =>
-            {
-                _logger.Info("New Data Leds Sending for COHERENCE frame for LedController1");
-                LEDsData ledsData = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelectorRight.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds, 0.5));
-                _ledControllerRight.LEDsDataCommand = ledsData;
-                _ledControllerRight.SendData();
-            });
-
-            Task leds2DataSendTask = Task.Factory.StartNew(() =>
-            {
-                _logger.Info("New Data Leds Sending for COHERENCE frame for LedController2");
-                LEDsData ledsData = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelectorLeft.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds, 1.0));
-                _ledControllerLeft.LEDsDataCommand = ledsData;
-                _ledControllerLeft.SendData();
-            });
-
-            Task waitigMinTime = Task.Factory.StartNew(() => 
-            {
-                Thread.Sleep(100);
-            });
-            
-            leds1DataSendTask.Wait();
-            leds2DataSendTask.Wait();
-
-            sw.Stop();
-
-            waitigMinTime.Wait();
-        }
-
-        private void SendLedsDataToController(ref LEDController ledController , ref VaryingIndexSelector ledsSelector)
-        {
-            LEDsData ledsData = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), ledsSelector.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds));
-            ledController.LEDsDataCommand = ledsData;
-            ledController.SendData();
         }
 
         /// <summary>

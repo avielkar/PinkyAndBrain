@@ -110,6 +110,9 @@ namespace LED.Strip.Adressable
             _ledArduinoSerialPort.Close();
         }
 
+        /// <summary>
+        /// Sebd the led strip color.
+        /// </summary>
         public void SendLedsColorData()
         {
             //sending the colors.
@@ -120,6 +123,9 @@ namespace LED.Strip.Adressable
             _ledArduinoSerialPort.Write("@");
         }
 
+        /// <summary>
+        /// Send all frames with teir places statuses for the led strip to each frame.
+        /// </summary>
         public void SendPlacesDataFrames()
         {
             //sending the places.
