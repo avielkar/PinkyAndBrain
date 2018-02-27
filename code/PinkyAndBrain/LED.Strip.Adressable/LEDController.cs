@@ -38,9 +38,14 @@ namespace LED.Strip.Adressable
         public bool Connected { get; set; }
 
         /// <summary>
+        /// The number of leds in the strip.
+        /// </summary>
+        private int _numOfLeds;
+
+        /// <summary>
         /// The number of data leds frames with out the last reset frame.
         /// </summary>
-        public int _numOfFrames;
+        private int _numOfFrames;
         #endregion MEMBERS
 
         #region CONSTRUCTORS
@@ -63,6 +68,7 @@ namespace LED.Strip.Adressable
             byte[] b = new byte[numOfLeds * numOfFrames];
             _ledsData = new LEDsData(0, 0, 0, 0, b);
 
+            _numOfLeds = numOfLeds;
             _numOfFrames = numOfFrames;
         }
         #endregion CONSTRUCTORS
@@ -112,6 +118,7 @@ namespace LED.Strip.Adressable
 
         /// <summary>
         /// Sends the number of frames not include the last reset frame.
+        /// <param name="numberOfFrames">The number of frames to be rendered per one stimulus type not including the last reset frame.</param>
         /// </summary>
         private void SendNumberOfFrames(int numberOfFrames)
         {
@@ -133,6 +140,7 @@ namespace LED.Strip.Adressable
 
         /// <summary>
         /// Send all frames with teir places statuses for the led strip to each frame.
+        /// <param name="ledsStatuses">The leds atatuses array for all frames.</param>
         /// </summary>
         private void SendPlacesDataFrames(byte[] ledsStatuses)
         {
@@ -218,6 +226,9 @@ namespace LED.Strip.Adressable
             SendEndOfDataSign();
         }
 
+        /// <summary>
+        /// Send a reset dat frame to reset all leds in the strip.
+        /// </summary>
         private void SendResetdata()
         {
             SendInitDataSign();
@@ -226,39 +237,9 @@ namespace LED.Strip.Adressable
 
             SendLedsColorData(new byte[] { 0, 0, 0, 0 });
 
-            SendPlacesDataFrames(new byte[150]);
+            SendPlacesDataFrames(new byte[_numOfLeds]);
 
             SendEndOfDataSign();
-        }
-
-        /// <summary>
-        /// Execute the transmitted data on the arduino led controller.
-        /// </summary>
-        public void ExecuteCommands()
-        {
-            //if not connected nothing to do.
-            if (!Connected) return;
-
-            //means the data execution command.
-            _logger.Info("Leds execution command sent");
-            _ledArduinoSerialPort.Write("!");
-
-            #region Checking time arduino executing the command.
-            /*Stopwatch sw = new Stopwatch();
-            sw.Start();
-            string str = _ledArduinoSerialPort.ReadLine();
-            while (str == "")
-            {
-                str = _ledArduinoSerialPort.ReadLine();    
-            }
-            str = "";
-            str = _ledArduinoSerialPort.ReadLine();
-            while (str == "")
-            {
-                str = _ledArduinoSerialPort.ReadLine();
-            }
-            sw.Stop();*/
-            #endregion
         }
 
         /// <summary>

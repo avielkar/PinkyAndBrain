@@ -20,8 +20,6 @@ namespace PinkyAndBrain
         /// </summary>
         private bool[] _trialsCombinationIndexesStatus;
 
-        private List<int> _turnedOnPlaces;
-
         /// <summary>
         /// Random number generator.
         /// </summary>
@@ -37,11 +35,14 @@ namespace PinkyAndBrain
             _randGenerator = new Random();
         }
         
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="trialsCount">The number of trials.</param>
         public VaryingIndexSelector(int trialsCount)
         {
             _randGenerator = new Random();
             _trialsCombinationIndexesStatus = new bool[trialsCount];
-            _turnedOnPlaces = new List<int>();
             ResetTrialsStatus();
         }
         #endregion CONSTRUCTORS
@@ -56,8 +57,6 @@ namespace PinkyAndBrain
             {
                 _trialsCombinationIndexesStatus[i] = false;
             }
-
-            _turnedOnPlaces.RemoveAll(x => true);
         }
 
         /// <summary>
@@ -87,82 +86,6 @@ namespace PinkyAndBrain
 
             //return the selected combination index.
             return rand;
-        }
-
-        /// <summary>
-        /// Fullify the array with specific number of '1' and '0'.
-        /// </summary>
-        /// <param name="numOfFillings">The percentage of '1' to be in the random array of bytes.</param>
-        /// <returns>The random array fullified with '1' and '0'.</returns>
-        public byte[] FillWithBinaryRandomCombination(double percentageOfFillings)
-        {
-            //reset all indexes to be with false.
-            ResetTrialsStatus();
-
-            //the returned array with the numOfFillings '1' in thae arry values.
-            byte[] returnedArray = new byte[_trialsCombinationIndexesStatus.Length];
-
-            //choosing numOfFillings percentage to fill with '1' value.
-            for (int i = 0; i < _trialsCombinationIndexesStatus.Length; i++)
-            {
-                _trialsCombinationIndexesStatus[i] = (Bernoulli.Sample(percentageOfFillings) == 1)?(true):(false);
-                returnedArray[i] = (byte)(_trialsCombinationIndexesStatus[i] ? 1 : 0);
-
-                if (_trialsCombinationIndexesStatus[i])
-                    _turnedOnPlaces.Add(i);
-            }
-            
-            //return the random array with selected bytes to be with '1' value and '0 values.
-            return returnedArray;
-        }
-
-        /// <summary>
-        /// Fullify the array with specific number of '1' and '0'.
-        /// </summary>
-        /// <param name="numOfFillings">The percentage of '1' to be in the random array of bytes.</param>
-        /// <returns>The random array fullified with '1' and '0'.</returns>
-        public byte[] FillWithBinaryRandomCombinationCoherence(double coherencePercentage = 1.0)
-        {
-            byte[] returnedArray = UpdateTrialsStatus(coherencePercentage);
-
-            //return the random array with selected bytes to be with '1' value and '0 values.
-            return returnedArray;
-        }
-
-        /// <summary>
-        /// Updates the trials statuses according to the coherence value.
-        /// </summary>
-        /// <param name="coherencePercentage">The cohernce value between 0 and 1.0 which means in each fram what probability each led that set on countinued to be set on , otherwise choose another led randomaly.</param>
-        /// <returns>The leds value array.</returns>
-        private byte[] UpdateTrialsStatus(double coherencePercentage)
-        {
-            for (int i = 0; i < _turnedOnPlaces.Count; i++)
-            {
-                double bernouliSample = Bernoulli.Sample(coherencePercentage);
-                //1 means stay the same state for that led , 0 means change the state.
-                if (bernouliSample == 1)
-                {
-                }
-                else
-                {
-                    int rand;
-
-                    rand = _randGenerator.Next(0 , _trialsCombinationIndexesStatus.Count());
-
-                    _turnedOnPlaces[i] = rand;
-                }
-
-            }
-
-            //convert bool array to byte array.
-            byte [] returnArray = new byte[_trialsCombinationIndexesStatus.Length];
-
-            foreach (int val in _turnedOnPlaces)
-            {
-                returnArray[val] = 1;
-            }
-
-            return returnArray;
         }
 
         /// <summary>

@@ -791,159 +791,6 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Sending the leds data to the leds controllers (without execution).
-        /// </summary>
-        private void SendDataToLedControllers()
-        {
-            _logger.Info("Send data to LEDs controller begin.");
-
-            LEDsData ledsDataRight;
-            LEDsData ledsDataLeft;
-
-            double coherenceLeftStrip = double.Parse(GetVariableValue("COHERENCE_LEFT_STRIP"));
-            double coherenceRightStrip = double.Parse(GetVariableValue("COHERENCE_RIGHT_STRIP"));
-
-            //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
-            switch (_currentTrialStimulusType)
-            {
-                case 0://none
-                    break;
-
-                case 1://vistibular only.
-                    break;
-
-                case 2://visual only.
-                case 3://vistibular and visual both.
-                case 4://vistibular and visual both with delta+ for visual.
-                case 5://vistibular and visual both with delta+ for vistibular.
-                    ledsDataRight = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelectorRight.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , coherenceRightStrip));
-                    _ledControllerRight.LEDsDataCommand = ledsDataRight;
-                    _ledControllerRight.SendData();
-                    ledsDataLeft = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelectorLeft.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds , coherenceLeftStrip));
-                    _ledControllerLeft.LEDsDataCommand = ledsDataLeft;
-                    _ledControllerLeft.SendData();
-                    break;
-
-                case 10://visual only in the dark.
-                    break;
-
-                case 11://combined in the dark.
-                    break;
-
-                default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
-                    break;
-            }
-
-            _logger.Info("Send data to LEDs controller end.");
-        }
-
-        /// <summary>
-        /// Writing the stimulus type to the AlphaOmega according to the current stimulus type.
-        /// </summary>
-        private void WriteAlphaOmegaStimulusBegin()
-        {
-            _logger.Info("Writing AlphaOmega stimulus event start");
-
-            switch (_currentTrialStimulusType)
-            {
-                case 0://none
-                    break;
-                case 1://vistibular only.
-                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart1);
-                    break;
-
-                case 2://visual only.
-                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart2);
-                    break;
-
-                case 3://vistibular and visual both.
-                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart3);
-                    break;
-
-                case 4://vistibular and visual both with delta+ for visual.
-                        _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart4);
-                    break;
-
-                case 5://vistibular and visual both with delta+ for vistibular.
-                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart5);
-                    break;
-
-                case 10://visual only in the dark.
-                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart10);
-                    break;
-
-                case 11://combined in the dark.
-                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart11);
-                    break;
-
-                default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// Sending the data trajectories to the robots according to the current trial stimulus type (without executing).
-        /// </summary>
-        private void SendDataToRobots()
-        {
-            _logger.Info("Sending trajectories data to robots begin.");
-            //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
-            switch (_currentTrialStimulusType)
-            {
-                case 0://none
-                    _robotMotionTask = Task.Factory.StartNew(() => Thread.Sleep((int)(1000 * _currentTrialTimings.wDuration)));
-                    break;
-                case 1://vistibular only.
-                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
-                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both);
-                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
-                    break;
-
-                case 2://visual only.
-                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
-                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only);
-                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
-                    break;
-
-                case 3://vistibular and visual both.
-                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
-                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only);
-                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
-                    break;
-
-                case 4://vistibular and visual both with delta+ for visual.
-                case 5://vistibular and visual both with delta+ for vistibular.
-                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
-                    double deltaHeading = 0;
-                    if (_staticVariablesList.ContainsKey("DELTA "))
-                        deltaHeading = _staticVariablesList["DELTA "];
-                    else if (_crossVaryingVals[_currentVaryingTrialIndex].Keys.Contains("DELTA "))
-                        deltaHeading = _crossVaryingVals[_currentVaryingTrialIndex]["DELTA "];
-                    //if delta is 0 move only the R1 robot.
-                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, (deltaHeading != 0) ? MotomanProtocolFileCreator.UpdateJobType.Both : MotomanProtocolFileCreator.UpdateJobType.R1Only);
-                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
-                    break;
-
-                case 10://visual only in the dark.
-                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
-                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only);
-                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
-                    break;
-
-                case 11://combined in the dark.
-                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
-                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only);
-                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
-                    break;
-
-                default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
-                    _robotMotionTask = new Task(() => Thread.Sleep((int)(1000 * _currentTrialTimings.wDuration)));
-                    break;
-            };
-            _logger.Info("Sending trajectories data to robots end.");
-        }
-
-        /// <summary>
         /// A stage the rat gets a clue where the correct answer is.
         /// </summary>
         public void ClueResponseStage()
@@ -991,51 +838,6 @@ namespace PinkyAndBrain
             }
 
             _logger.Info("ClueResponseStage ended.");
-        }
-
-        /// <summary>
-        /// Determine the current trial correct side.
-        /// </summary>
-        public void DetermineCurrentStimulusAnswer()
-        {
-            //if stim tupe 0 chose uniformly random side.
-            if (GetVariableValue("STIMULUS_TYPE") == "0")
-            {
-                _correctDecision = (Bernoulli.Sample(0.5)==1)?RatDecison.Right:RatDecison.Left;
-            }
-
-            //get the current stimulus direction.
-            double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
-
-            //determine the current stimulus direaction.
-            RatDecison currentStimulationSide = (currentHeadingDirection == 0) ? (RatDecison.Center) : ((currentHeadingDirection > 0) ? (RatDecison.Right) : RatDecison.Left);
-            //determine if the current stimulus heading direction is in the random heading direction region.
-            if (Math.Abs(currentHeadingDirection) <= double.Parse(_variablesList._variablesDictionary["RR_HEADINGS"]._description["parameters"]._ratHouseParameter))
-            {
-                //get a random side with probability of RR_PROBABILITY to the right side.
-                int sampledBernouli = Bernoulli.Sample(double.Parse(_variablesList._variablesDictionary["RR_PROBABILITY"]._description["parameters"]._ratHouseParameter));
-
-                RatDecison changedStimulusSide = currentStimulationSide;
-
-                if (sampledBernouli == 1)
-                {
-                    currentStimulationSide = RatDecison.Right;
-                }
-                else
-                {
-                    currentStimulationSide = RatDecison.Left;
-                }
-
-                if (changedStimulusSide.Equals(currentStimulationSide))
-                {
-                    _inverseRRDecision = true;
-                }
-            }
-            else
-            {
-                _inverseRRDecision = false;
-            }
-            _correctDecision = currentStimulationSide;
         }
 
         /// <summary>
@@ -1510,24 +1312,6 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Executing the leds command (tell the controllers to execute the commands have sent to them before).
-        /// </summary>
-        private void ExecuteLedControllersCommand()
-        {
-            Task.Run(() =>
-            {
-                _logger.Info("New Data Leds Execution for COHERENCE frame for LedController1");
-                _ledControllerRight.ExecuteAllFrames();
-            });
-
-            Task.Run(() =>
-            {
-                _logger.Info("New Data Leds Execution for COHERENCE frame for LedController2");
-                _ledControllerLeft.ExecuteAllFrames();
-            });
-        }
-
-        /// <summary>
         /// Stage to check (after the rat enter the head to the center) that the head is stable in the center for startDelay time.
         /// </summary>
         /// <returns></returns>
@@ -1701,6 +1485,224 @@ namespace PinkyAndBrain
             return trialSucceed;
         }
         #endregion
+
+        #region STAGES_ADDIION_FUNCTION
+        /// <summary>
+        /// Sending the leds data to the leds controllers (without execution).
+        /// </summary>
+        private void SendDataToLedControllers()
+        {
+            _logger.Info("Send data to LEDs controller begin.");
+
+            LEDsData ledsDataRight;
+            LEDsData ledsDataLeft;
+
+            double coherenceLeftStrip = double.Parse(GetVariableValue("COHERENCE_LEFT_STRIP"));
+            double coherenceRightStrip = double.Parse(GetVariableValue("COHERENCE_RIGHT_STRIP"));
+
+            //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
+            switch (_currentTrialStimulusType)
+            {
+                case 0://none
+                    break;
+
+                case 1://vistibular only.
+                    break;
+
+                case 2://visual only.
+                case 3://vistibular and visual both.
+                case 4://vistibular and visual both with delta+ for visual.
+                case 5://vistibular and visual both with delta+ for vistibular.
+                    ledsDataRight = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelectorRight.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds, coherenceRightStrip));
+                    _ledControllerRight.LEDsDataCommand = ledsDataRight;
+                    _ledControllerRight.SendData();
+                    ledsDataLeft = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelectorLeft.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds, coherenceLeftStrip));
+                    _ledControllerLeft.LEDsDataCommand = ledsDataLeft;
+                    _ledControllerLeft.SendData();
+                    break;
+
+                case 10://visual only in the dark.
+                    break;
+
+                case 11://combined in the dark.
+                    break;
+
+                default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
+                    break;
+            }
+
+            _logger.Info("Send data to LEDs controller end.");
+        }
+
+        /// <summary>
+        /// Executing the leds command (tell the controllers to execute the commands have sent to them before).
+        /// </summary>
+        private void ExecuteLedControllersCommand()
+        {
+            Task.Run(() =>
+            {
+                _logger.Info("New Data Leds Execution for COHERENCE frame for LedController1");
+                _ledControllerRight.ExecuteAllFrames();
+            });
+
+            Task.Run(() =>
+            {
+                _logger.Info("New Data Leds Execution for COHERENCE frame for LedController2");
+                _ledControllerLeft.ExecuteAllFrames();
+            });
+        }
+        
+        /// <summary>
+        /// Writing the stimulus type to the AlphaOmega according to the current stimulus type.
+        /// </summary>
+        private void WriteAlphaOmegaStimulusBegin()
+        {
+            _logger.Info("Writing AlphaOmega stimulus event start");
+
+            switch (_currentTrialStimulusType)
+            {
+                case 0://none
+                    break;
+                case 1://vistibular only.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart1);
+                    break;
+
+                case 2://visual only.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart2);
+                    break;
+
+                case 3://vistibular and visual both.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart3);
+                    break;
+
+                case 4://vistibular and visual both with delta+ for visual.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart4);
+                    break;
+
+                case 5://vistibular and visual both with delta+ for vistibular.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart5);
+                    break;
+
+                case 10://visual only in the dark.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart10);
+                    break;
+
+                case 11://combined in the dark.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart11);
+                    break;
+
+                default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Sending the data trajectories to the robots according to the current trial stimulus type (without executing).
+        /// </summary>
+        private void SendDataToRobots()
+        {
+            _logger.Info("Sending trajectories data to robots begin.");
+            //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
+            switch (_currentTrialStimulusType)
+            {
+                case 0://none
+                    _robotMotionTask = Task.Factory.StartNew(() => Thread.Sleep((int)(1000 * _currentTrialTimings.wDuration)));
+                    break;
+                case 1://vistibular only.
+                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both);
+                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                    break;
+
+                case 2://visual only.
+                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only);
+                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                    break;
+
+                case 3://vistibular and visual both.
+                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only);
+                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                    break;
+
+                case 4://vistibular and visual both with delta+ for visual.
+                case 5://vistibular and visual both with delta+ for vistibular.
+                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
+                    double deltaHeading = 0;
+                    if (_staticVariablesList.ContainsKey("DELTA "))
+                        deltaHeading = _staticVariablesList["DELTA "];
+                    else if (_crossVaryingVals[_currentVaryingTrialIndex].Keys.Contains("DELTA "))
+                        deltaHeading = _crossVaryingVals[_currentVaryingTrialIndex]["DELTA "];
+                    //if delta is 0 move only the R1 robot.
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, (deltaHeading != 0) ? MotomanProtocolFileCreator.UpdateJobType.Both : MotomanProtocolFileCreator.UpdateJobType.R1Only);
+                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                    break;
+
+                case 10://visual only in the dark.
+                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only);
+                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                    break;
+
+                case 11://combined in the dark.
+                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only);
+                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                    break;
+
+                default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
+                    _robotMotionTask = new Task(() => Thread.Sleep((int)(1000 * _currentTrialTimings.wDuration)));
+                    break;
+            };
+            _logger.Info("Sending trajectories data to robots end.");
+        }
+
+        /// <summary>
+        /// Determine the current trial correct side.
+        /// </summary>
+        public void DetermineCurrentStimulusAnswer()
+        {
+            //if stim tupe 0 chose uniformly random side.
+            if (GetVariableValue("STIMULUS_TYPE") == "0")
+            {
+                _correctDecision = (Bernoulli.Sample(0.5) == 1) ? RatDecison.Right : RatDecison.Left;
+            }
+
+            //get the current stimulus direction.
+            double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
+
+            //determine the current stimulus direaction.
+            RatDecison currentStimulationSide = (currentHeadingDirection == 0) ? (RatDecison.Center) : ((currentHeadingDirection > 0) ? (RatDecison.Right) : RatDecison.Left);
+            //determine if the current stimulus heading direction is in the random heading direction region.
+            if (Math.Abs(currentHeadingDirection) <= double.Parse(_variablesList._variablesDictionary["RR_HEADINGS"]._description["parameters"]._ratHouseParameter))
+            {
+                //get a random side with probability of RR_PROBABILITY to the right side.
+                int sampledBernouli = Bernoulli.Sample(double.Parse(_variablesList._variablesDictionary["RR_PROBABILITY"]._description["parameters"]._ratHouseParameter));
+
+                RatDecison changedStimulusSide = currentStimulationSide;
+
+                if (sampledBernouli == 1)
+                {
+                    currentStimulationSide = RatDecison.Right;
+                }
+                else
+                {
+                    currentStimulationSide = RatDecison.Left;
+                }
+
+                if (changedStimulusSide.Equals(currentStimulationSide))
+                {
+                    _inverseRRDecision = true;
+                }
+            }
+            else
+            {
+                _inverseRRDecision = false;
+            }
+            _correctDecision = currentStimulationSide;
+        }
+        #endregion STAGES_ADDIION_FUNCTION
 
         #region GUI_CONTROLS_FUNCTIONS
         /// <summary>

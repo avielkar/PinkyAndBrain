@@ -8,16 +8,34 @@ using System.Diagnostics;
 
 namespace LED.Strip.Adressable
 {
+    /// <summary>
+    /// A class creating the bytes array statuses of all eds to all rendered frames in the stimulus.
+    /// </summary>
     public class LedsSelector
     {
+        /// <summary>
+        /// The array of all leds statuses for all frames including the furest frame and the last reset frame.
+        /// </summary>
         private byte[] _ledsIndexesStatus;
 
+        /// <summary>
+        /// A list of all turned on places for a one frame (can include a value more than one time).
+        /// </summary>
         private List<int> _turnedOnPlaces;
 
+        /// <summary>
+        /// The number of leds in the strip.
+        /// </summary>
         private int _numOfLeds;
 
+        /// <summary>
+        /// The number of frames to be rendered during the stimulus except the last frame.
+        /// </summary>
         private int _numOfFrames;
 
+        /// <summary>
+        /// A random generator for generating the random places of leds to be turned on in each frame and on the first frame.
+        /// </summary>
         private Random _randGenerator;
 
         /// <summary>
@@ -48,6 +66,12 @@ namespace LED.Strip.Adressable
             _turnedOnPlaces.RemoveAll(x => true);
         }
 
+        /// <summary>
+        /// Fill all frames (except of the first frame) with the given coherence and the first frame with the given percentage.
+        /// </summary>
+        /// <param name="percentageOfFillings">The percentage of fillings.</param>
+        /// <param name="coherencePercentage">The coherence percentage.</param>
+        /// <returns>The byte array statuses for all leds and all frames from the first frame to the last frame include  the last reset frame.</returns>
         public byte[] FillWithBinaryRandomCombination(double percentageOfFillings , double coherencePercentage)
         {
             Stopwatch sw = new Stopwatch();
@@ -67,7 +91,7 @@ namespace LED.Strip.Adressable
                     //1 means stay the same state for that led , 0 means change the state.
                     if (bernouliSample == 1)
                     {
-                        _ledsIndexesStatus[offset * _numOfLeds + _turnedOnPlaces[i]] = 1;//_ledsIndexesStatus[(offset - 1) * _numOfLeds + i];
+                        _ledsIndexesStatus[offset * _numOfLeds + _turnedOnPlaces[i]] = 1;
                     }
                     else
                     {
@@ -77,7 +101,6 @@ namespace LED.Strip.Adressable
 
                         _turnedOnPlaces[i] = rand;
 
-                        //_ledsIndexesStatus[offset * _numOfLeds + i] = 0;
                         _ledsIndexesStatus[offset * _numOfLeds + _turnedOnPlaces[i]] = (byte)1;
                     }
                 }
@@ -90,6 +113,10 @@ namespace LED.Strip.Adressable
             return _ledsIndexesStatus;
         }
 
+        /// <summary>
+        /// Fill the first frame with the given percentage of fillings.
+        /// </summary>
+        /// <param name="percentageOfFillings"></param>
         public void FillFirstFrame(double percentageOfFillings)
         {
             //choosing numOfFillings percentage to fill with '1' value.
@@ -102,6 +129,9 @@ namespace LED.Strip.Adressable
             }
         }
 
+        /// <summary>
+        /// Adding a reset frame ath the end of all frames.
+        /// </summary>
         public void AddResetFrame()
         {
             int resetStartIndex = _numOfLeds * _numOfFrames;
