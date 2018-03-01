@@ -1541,8 +1541,8 @@ namespace PinkyAndBrain
             LEDsData ledsDataRight;
             LEDsData ledsDataLeft;
 
-            double coherenceLeftStrip = double.Parse(GetVariableValue("COHERENCE_LEFT_STRIP"));
-            double coherenceRightStrip = double.Parse(GetVariableValue("COHERENCE_RIGHT_STRIP"));
+            double coherenceLeftStrip = double.Parse(GetVariableValue("COHERENCE_LEFT_STRIP")) / 100;
+            double coherenceRightStrip = double.Parse(GetVariableValue("COHERENCE_RIGHT_STRIP")) / 100;
 
             //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
             switch (_currentTrialStimulusType)
