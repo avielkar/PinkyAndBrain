@@ -1044,9 +1044,6 @@ namespace PinkyAndBrain
         /// <param name="autoRewardSound">Indecation ig to give the suto reard sound during the reward.</param>
         public void Reward(RewardPosition position, double rewardDuration, double rewardDelay, bool autoreward = false , bool autoRewardSound = false)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-
             //if autoReward than play the sound in the slected side of the water reward in order to help the rat to understand the water reward side.
             _autosOptionsInRealTime.AutoRewardSound = autoRewardSound;
             if(autoRewardSound)
@@ -1075,16 +1072,15 @@ namespace PinkyAndBrain
                 _logger.Info("End getting the reward position sound.");
             }
 
-            //wait the reward delay time befor openning the reward if not autoReward.
-            //if (!autoreward)
+            //wait the reward delay time.
             Thread.Sleep((int)(rewardDelay * 1000));
-
-            sw.Restart();
 
             //open the center reward for the rat to be rewarded.
             //after the reward duration time and than close it.
             _logger.Info("Opening the water tupple");
             _rewardController.WriteSingleSamplePort(true, (byte)position);
+            //send the alpha omega that a reward is given.
+            SendAlphaOmegaRewardEvent(position);
 
             //wait the reward time and fill the interactive water fill estimation panel.
             _logger.Info("Start updating interactive water filling window");
@@ -1202,9 +1198,6 @@ namespace PinkyAndBrain
             else
                 Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDurationSecondChance, _currentTrialTimings.wRewardLeftDelaySecondChance, false, RewardSound);
 
-            //write that the rat get left reward to the AlphaOmega.
-            _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.LeftReward);
-
             _logger.Info("RewardLeftStage ended.");
         }
 
@@ -1227,9 +1220,6 @@ namespace PinkyAndBrain
             else
                 Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDurationSecondChance, _currentTrialTimings.wRewardRightDelaySecondChance, false, RewardSound);
 
-            //write that the rat get right reward to the AlphaOmega.
-            _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RightReward);
-
             _logger.Info("RewardRightStage ended.");
         }
 
@@ -1247,9 +1237,6 @@ namespace PinkyAndBrain
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Center)");
 
             Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration, _currentTrialTimings.wRewardCenterDelay, autoReward ,autoRewardSound);
-
-            //write that the rat get center reward to the AlphaOmega.
-            _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.CenterReward);
 
             _logger.Info("RewardCenterStage ended.");
         }
@@ -1774,6 +1761,35 @@ namespace PinkyAndBrain
                     "_currentTrialTimings.wDuration");
             }
         }
+
+        /// <summary>
+        /// Send Alpha Omega that a reward is given in the specific position.
+        /// </summary>
+        /// <param name="position">The position the reward is giiven at.</param>
+        private void SendAlphaOmegaRewardEvent(RewardPosition position)
+        {
+            switch (position)
+            {
+                //write that the rat get center reward to the AlphaOmega.
+                case RewardPosition.Center:
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.CenterReward);
+                    break;
+
+                //write that the rat get left reward to the AlphaOmega.
+                case RewardPosition.Left:
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.LeftReward);
+                    break;
+                    
+                //write that the rat get right reward to the AlphaOmega.
+                case RewardPosition.Right:
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RightReward);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
         #endregion STAGES_ADDIION_FUNCTION
 
         #region GUI_CONTROLS_FUNCTIONS
