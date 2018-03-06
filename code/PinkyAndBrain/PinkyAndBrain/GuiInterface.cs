@@ -1930,6 +1930,7 @@ namespace PinkyAndBrain
             UpdateRightCheckBoxAvailability("REWARD_RIGHT_DELAY_SC", "REWARD_LEFT_DELAY_SC", equals);
             UpdateRightCheckBoxAvailability("REWARD_RIGHT_DURATION_SC", "REWARD_LEFT_DURATION_SC", equals);
             UpdateRightCheckBoxAvailability("COHERENCE_RIGHT_STRIP", "COHERENCE_LEFT_STRIP", equals);
+            UpdateRightCheckBoxAvailability("FLICKER_RIGHT", "FLICKER_LEFT", equals);
         }
 
         /// <summary>
