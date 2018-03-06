@@ -71,8 +71,9 @@ namespace LED.Strip.Adressable
         /// </summary>
         /// <param name="percentageOfFillings">The percentage of fillings.</param>
         /// <param name="coherencePercentage">The coherence percentage.</param>
+        /// <param name="flicker">The flicker (discoo) parameter - in how many frames to turn on the leds (1 says each frame , 2 says 1 in each 2 frames , 3 says 1 in each 3 frames).</param>
         /// <returns>The byte array statuses for all leds and all frames from the first frame to the last frame include  the last reset frame.</returns>
-        public byte[] FillWithBinaryRandomCombination(double percentageOfFillings , double coherencePercentage)
+        public byte[] FillWithBinaryRandomCombination(double percentageOfFillings , double coherencePercentage , int flicker)
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -84,25 +85,34 @@ namespace LED.Strip.Adressable
 
             for (int offset = 1; offset < _numOfFrames; offset++)
             {
-                //make the coherence to the other indexes
-                for (int i = 0; i < _turnedOnPlaces.Count; i++)
+                //turn on the frame regulary only if the flicker is on for the frame index.
+                if (offset % flicker == 0)
                 {
-                    double bernouliSample = Bernoulli.Sample(coherencePercentage);
-                    //1 means stay the same state for that led , 0 means change the state.
-                    if (bernouliSample == 1)
+                    //make the coherence to the other indexes
+                    for (int i = 0; i < _turnedOnPlaces.Count; i++)
                     {
-                        _ledsIndexesStatus[offset * _numOfLeds + _turnedOnPlaces[i]] = 1;
+                        double bernouliSample = Bernoulli.Sample(coherencePercentage);
+                        //1 means stay the same state for that led , 0 means change the state.
+                        if (bernouliSample == 1)
+                        {
+                            _ledsIndexesStatus[offset * _numOfLeds + _turnedOnPlaces[i]] = 1;
+                        }
+                        else
+                        {
+                            int rand;
+
+                            rand = _randGenerator.Next(0, _numOfLeds);
+
+                            _turnedOnPlaces[i] = rand;
+
+                            _ledsIndexesStatus[offset * _numOfLeds + _turnedOnPlaces[i]] = (byte)1;
+                        }
                     }
-                    else
-                    {
-                        int rand;
+                }
+                //turn off the frame.
+                else
+                {
 
-                        rand = _randGenerator.Next(0, _numOfLeds);
-
-                        _turnedOnPlaces[i] = rand;
-
-                        _ledsIndexesStatus[offset * _numOfLeds + _turnedOnPlaces[i]] = (byte)1;
-                    }
                 }
             }
 

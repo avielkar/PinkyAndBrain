@@ -1530,6 +1530,8 @@ namespace PinkyAndBrain
 
             double coherenceLeftStrip = double.Parse(GetVariableValue("COHERENCE_LEFT_STRIP")) / 100;
             double coherenceRightStrip = double.Parse(GetVariableValue("COHERENCE_RIGHT_STRIP")) / 100;
+            int flickerLeft =  int.Parse(GetVariableValue("FLICKER_LEFT"));
+            int flickerRight = int.Parse(GetVariableValue("FLICKER_RIGHT"));
 
             //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
             switch (_currentTrialStimulusType)
@@ -1544,10 +1546,10 @@ namespace PinkyAndBrain
                 case 3://vistibular and visual both.
                 case 4://vistibular and visual both with delta+ for visual.
                 case 5://vistibular and visual both with delta+ for vistibular.
-                    ledsDataRight = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelectorRight.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds, coherenceRightStrip));
+                    ledsDataRight = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelectorRight.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds, coherenceRightStrip , flickerRight));
                     _ledControllerRight.LEDsDataCommand = ledsDataRight;
                     _ledControllerRight.SendData();
-                    ledsDataLeft = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelectorLeft.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds, coherenceLeftStrip));
+                    ledsDataLeft = new LEDsData((byte)LEDBrightness, (byte)(LEDcolorRed), (byte)(LEDcolorGreen), (byte)(LEDcolorBlue), _ledSelectorLeft.FillWithBinaryRandomCombination(PercentageOfTurnedOnLeds, coherenceLeftStrip , flickerLeft));
                     _ledControllerLeft.LEDsDataCommand = ledsDataLeft;
                     _ledControllerLeft.SendData();
                     break;
