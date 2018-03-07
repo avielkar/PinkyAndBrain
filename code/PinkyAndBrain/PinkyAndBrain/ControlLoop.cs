@@ -1752,7 +1752,7 @@ namespace PinkyAndBrain
                     "_currentTrialTimings.wDuration");
             }
 
-            if ((int)(_currentTrialTimings.wDuration * 1000000) % 1000000 != 0)
+            if (_currentTrialTimings.wDuration * 1 - double.Parse(_currentTrialTimings.wDuration.ToString("0.0")) !=  0)
             {
                 MessageBox.Show("The current trial timing for robot movement is not a 0.1 multiplication than 1 second.",
                     "Error",
