@@ -100,6 +100,12 @@
             this._checkBoxBreakFixationSoundEnable = new System.Windows.Forms.CheckBox();
             this._checkBoxFixationOnly = new System.Windows.Forms.CheckBox();
             this._groupboxLedsController = new System.Windows.Forms.GroupBox();
+            this._textBoxLedBlueColor = new System.Windows.Forms.TextBox();
+            this._textBoxLedGreenColor = new System.Windows.Forms.TextBox();
+            this._textBoxLedRedColor = new System.Windows.Forms.TextBox();
+            this._labelBlueLed = new System.Windows.Forms.Label();
+            this._labelGreenLed = new System.Windows.Forms.Label();
+            this._labelRedLed = new System.Windows.Forms.Label();
             this._textboxLEDBrightness = new System.Windows.Forms.TextBox();
             this._labelBrightness = new System.Windows.Forms.Label();
             this._textboxPercentageOfTurnOnLeds = new System.Windows.Forms.TextBox();
@@ -110,12 +116,6 @@
             this._btnSaveProtocol = new System.Windows.Forms.Button();
             this._textboxNewProtocolName = new System.Windows.Forms.TextBox();
             this._labelNewProtocolName = new System.Windows.Forms.Label();
-            this._labelRedLed = new System.Windows.Forms.Label();
-            this._labelGreenLed = new System.Windows.Forms.Label();
-            this._labelBlueLed = new System.Windows.Forms.Label();
-            this._textBoxLedRedColor = new System.Windows.Forms.TextBox();
-            this._textBoxLedGreenColor = new System.Windows.Forms.TextBox();
-            this._textBoxLedBlueColor = new System.Windows.Forms.TextBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -818,6 +818,57 @@
             this._groupboxLedsController.TabStop = false;
             this._groupboxLedsController.Text = "Leds Controller";
             // 
+            // _textBoxLedBlueColor
+            // 
+            this._textBoxLedBlueColor.Location = new System.Drawing.Point(118, 72);
+            this._textBoxLedBlueColor.Name = "_textBoxLedBlueColor";
+            this._textBoxLedBlueColor.Size = new System.Drawing.Size(22, 20);
+            this._textBoxLedBlueColor.TabIndex = 10;
+            this._textBoxLedBlueColor.Text = "0";
+            // 
+            // _textBoxLedGreenColor
+            // 
+            this._textBoxLedGreenColor.Location = new System.Drawing.Point(71, 73);
+            this._textBoxLedGreenColor.Name = "_textBoxLedGreenColor";
+            this._textBoxLedGreenColor.Size = new System.Drawing.Size(24, 20);
+            this._textBoxLedGreenColor.TabIndex = 9;
+            this._textBoxLedGreenColor.Text = "255";
+            // 
+            // _textBoxLedRedColor
+            // 
+            this._textBoxLedRedColor.Location = new System.Drawing.Point(22, 73);
+            this._textBoxLedRedColor.Name = "_textBoxLedRedColor";
+            this._textBoxLedRedColor.Size = new System.Drawing.Size(26, 20);
+            this._textBoxLedRedColor.TabIndex = 8;
+            this._textBoxLedRedColor.Text = "0";
+            // 
+            // _labelBlueLed
+            // 
+            this._labelBlueLed.AutoSize = true;
+            this._labelBlueLed.Location = new System.Drawing.Point(100, 76);
+            this._labelBlueLed.Name = "_labelBlueLed";
+            this._labelBlueLed.Size = new System.Drawing.Size(14, 13);
+            this._labelBlueLed.TabIndex = 7;
+            this._labelBlueLed.Text = "B";
+            // 
+            // _labelGreenLed
+            // 
+            this._labelGreenLed.AutoSize = true;
+            this._labelGreenLed.Location = new System.Drawing.Point(52, 77);
+            this._labelGreenLed.Name = "_labelGreenLed";
+            this._labelGreenLed.Size = new System.Drawing.Size(15, 13);
+            this._labelGreenLed.TabIndex = 6;
+            this._labelGreenLed.Text = "G";
+            // 
+            // _labelRedLed
+            // 
+            this._labelRedLed.AutoSize = true;
+            this._labelRedLed.Location = new System.Drawing.Point(6, 76);
+            this._labelRedLed.Name = "_labelRedLed";
+            this._labelRedLed.Size = new System.Drawing.Size(15, 13);
+            this._labelRedLed.TabIndex = 5;
+            this._labelRedLed.Text = "R";
+            // 
             // _textboxLEDBrightness
             // 
             this._textboxLEDBrightness.Location = new System.Drawing.Point(93, 44);
@@ -908,57 +959,6 @@
             this._labelNewProtocolName.Size = new System.Drawing.Size(102, 13);
             this._labelNewProtocolName.TabIndex = 27;
             this._labelNewProtocolName.Text = "New Protocol Name";
-            // 
-            // _labelRedLed
-            // 
-            this._labelRedLed.AutoSize = true;
-            this._labelRedLed.Location = new System.Drawing.Point(6, 76);
-            this._labelRedLed.Name = "_labelRedLed";
-            this._labelRedLed.Size = new System.Drawing.Size(15, 13);
-            this._labelRedLed.TabIndex = 5;
-            this._labelRedLed.Text = "R";
-            // 
-            // _labelGreenLed
-            // 
-            this._labelGreenLed.AutoSize = true;
-            this._labelGreenLed.Location = new System.Drawing.Point(52, 77);
-            this._labelGreenLed.Name = "_labelGreenLed";
-            this._labelGreenLed.Size = new System.Drawing.Size(15, 13);
-            this._labelGreenLed.TabIndex = 6;
-            this._labelGreenLed.Text = "G";
-            // 
-            // _labelBlueLed
-            // 
-            this._labelBlueLed.AutoSize = true;
-            this._labelBlueLed.Location = new System.Drawing.Point(100, 76);
-            this._labelBlueLed.Name = "_labelBlueLed";
-            this._labelBlueLed.Size = new System.Drawing.Size(14, 13);
-            this._labelBlueLed.TabIndex = 7;
-            this._labelBlueLed.Text = "B";
-            // 
-            // _textBoxRedLedColor
-            // 
-            this._textBoxLedRedColor.Location = new System.Drawing.Point(22, 73);
-            this._textBoxLedRedColor.Name = "_textBoxRedLedColor";
-            this._textBoxLedRedColor.Size = new System.Drawing.Size(26, 20);
-            this._textBoxLedRedColor.TabIndex = 8;
-            this._textBoxLedRedColor.Text = "0";
-            // 
-            // _textBoxGreenLedColor
-            // 
-            this._textBoxLedGreenColor.Location = new System.Drawing.Point(71, 73);
-            this._textBoxLedGreenColor.Name = "_textBoxGreenLedColor";
-            this._textBoxLedGreenColor.Size = new System.Drawing.Size(24, 20);
-            this._textBoxLedGreenColor.TabIndex = 9;
-            this._textBoxLedGreenColor.Text = "255";
-            // 
-            // _textBoxLedBlueColor
-            // 
-            this._textBoxLedBlueColor.Location = new System.Drawing.Point(118, 72);
-            this._textBoxLedBlueColor.Name = "_textBoxLedBlueColor";
-            this._textBoxLedBlueColor.Size = new System.Drawing.Size(22, 20);
-            this._textBoxLedBlueColor.TabIndex = 10;
-            this._textBoxLedBlueColor.Text = "0";
             // 
             // GuiInterface
             // 

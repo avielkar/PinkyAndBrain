@@ -192,6 +192,11 @@ namespace PinkyAndBrain
         private Stopwatch _controlLoopTrialTimer;
 
         /// <summary>
+        /// A stopwatch for total time of handreward time counter.
+        /// </summary>
+        private Stopwatch _handRewardTotalTimer;
+
+        /// <summary>
         /// A dictionary include a key for the ecvent name and a double for the time of the event since the start of the trial. Each trial the dictionary cleared.
         /// </summary>
         private Dictionary<string, double> _trialEventRealTiming;
@@ -438,6 +443,13 @@ namespace PinkyAndBrain
             _ledSelectorRight = new LedsSelector(150 , 10);
             _ledSelectorLeft = new LedsSelector(150 , 10);
 
+            //init the trial events details.
+            _trialEventRealTiming = new Dictionary<string, double>();
+            _controlLoopTrialTimer = new Stopwatch();
+
+            //init the hand reward stopwatch time account.
+            _handRewardTotalTimer = new Stopwatch();
+
             //initialize the savedDataMaker object once.
             _savedExperimentDataMaker = new SavedDataMaker();
 
@@ -459,7 +471,7 @@ namespace PinkyAndBrain
             LoadAllSoundPlayers();
             _windowsMediaPlayer = new WindowsMediaPlayer();
         }
-
+        
         /// <summary>
         /// Clear all the control loop items and timers.
         /// </summary>
@@ -501,6 +513,9 @@ namespace PinkyAndBrain
             _stickOnNumberIndex = NumOfStickOn;
 
             _timingRandomizer = new Random();
+
+            //reset the experiement total reward stopwatch accounting.
+            _handRewardTotalTimer.Reset();
 
             //set the trajectory creator name to the given one that should be called in the trajectoryCreatorHandler.
             //also , set the other properties.
@@ -755,10 +770,6 @@ namespace PinkyAndBrain
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Intialization");
-
-            //init the trial events details.
-            _trialEventRealTiming = new Dictionary<string, double>();
-            _controlLoopTrialTimer = new Stopwatch();
 
             //determine all current trial timings and delays.
             _currentTrialTimings = DetermineCurrentTrialTimings();
@@ -2135,6 +2146,12 @@ namespace PinkyAndBrain
             if (continious)
             {
                 _rewardController.WriteSingleSamplePort(true, value);
+                
+                //for the manual reward stopwatch accounting.
+                if(value != 0)
+                    _handRewardTotalTimer.Start();
+                else
+                    _handRewardTotalTimer.Stop();
             }
             else
             {
@@ -2194,7 +2211,9 @@ namespace PinkyAndBrain
                 }
 
                 _rewardController.WriteSingleSamplePort(true, value);
+                _handRewardTotalTimer.Start();
                 Thread.Sleep((int)(timeByVariable * 1000));
+                _handRewardTotalTimer.Stop();
                 _rewardController.WriteSingleSamplePort(true, 0);
             }
         }
