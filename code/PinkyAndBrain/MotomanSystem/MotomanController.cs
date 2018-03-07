@@ -110,7 +110,7 @@ namespace PinkyAndBrain
 
             while(JobStatus())
             {
-                Thread.Sleep(100);
+                Thread.Sleep(10);
             }
 
             _logger.Info("Job status finished.");

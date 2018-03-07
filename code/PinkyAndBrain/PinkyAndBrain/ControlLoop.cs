@@ -187,6 +187,16 @@ namespace PinkyAndBrain
         private Dictionary<string , Control> _mainGuiInterfaceControlsDictionary;
 
         /// <summary>
+        /// Timer initialize each trial start and reset onlt at he end of the trial.
+        /// </summary>
+        private Stopwatch _controlLoopTrialTimer;
+
+        /// <summary>
+        /// A dictionary include a key for the ecvent name and a double for the time of the event since the start of the trial. Each trial the dictionary cleared.
+        /// </summary>
+        private Dictionary<string, double> _trialEventRealTiming;
+
+        /// <summary>
         /// The current rat sampling response come from the Noldus.
         /// The sampling rate is readen from solution settings configuration.
         /// </summary>
@@ -746,6 +756,10 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Intialization");
 
+            //init the trial events details.
+            _trialEventRealTiming = new Dictionary<string, double>();
+            _controlLoopTrialTimer = new Stopwatch();
+
             //determine all current trial timings and delays.
             _currentTrialTimings = DetermineCurrentTrialTimings();
             CheckDurationTimeAcceptableValue();
@@ -778,6 +792,11 @@ namespace PinkyAndBrain
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Intialization");
 
             _specialModesInRealTime.EnableRightLeftMustEquals = EnableRightLeftMustEquals;
+
+            //reset the trial stopwatch and add the start event trial to the trial events list and timings.
+            _controlLoopTrialTimer.Restart();
+            _trialEventRealTiming.Clear();
+            _trialEventRealTiming.Add("TrialBegin", _controlLoopTrialTimer.ElapsedMilliseconds);
 
             Task sendDataToRobotTask = new Task(()=>
             {
@@ -1172,6 +1191,7 @@ namespace PinkyAndBrain
 
                 //write the alpha omega event for playing a wrong answer audio.
                 _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.AudioWrong);
+                _trialEventRealTiming.Add("AudioWrong", _controlLoopTrialTimer.ElapsedMilliseconds);
             }
 
             _autosOptionsInRealTime.AutoReward = autoReward;
@@ -1267,13 +1287,14 @@ namespace PinkyAndBrain
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Stimulus Duration");
 
             //start moving the robot according to the stimulus type.
-            _logger.Info("Send Executing robot trajectory data starty command");
+            _logger.Info("Send Executing robot trajectory data start command");
             _robotMotionTask.Start();
 
             //write alpha omega that the stimulus start.
             Task.Run(() =>
             {
                 WriteAlphaOmegaStimulusBegin();
+                _trialEventRealTiming.Add("StimulusStart", _controlLoopTrialTimer.ElapsedMilliseconds);
             });
 
             //execute the leds command if necessary.
@@ -1321,6 +1342,7 @@ namespace PinkyAndBrain
 
                             //write the break fixation event to the AlphaOmega.
                             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadStabilityBreak);
+                            _trialEventRealTiming.Add("HeadStabilityBreak", _controlLoopTrialTimer.ElapsedMilliseconds);
                         }
                         _autosOptionsInRealTime.AutoFixation = AutoFixation;
                     }
@@ -1335,6 +1357,7 @@ namespace PinkyAndBrain
 
             //also send the AlphaOmega that motion forward ends.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotEndMovingForward);
+            _trialEventRealTiming.Add("RobotEndMovingForward", _controlLoopTrialTimer.ElapsedMilliseconds);
 
             _logger.Info("End MovingTheRobotDurationWithHeadCenterStabilityStage with AutoFixation = " + AutoFixation + ".");
             //return the true state of the heading in the center stability during the duration time or always true when AutoFixation.
@@ -1385,10 +1408,14 @@ namespace PinkyAndBrain
         public bool WaitForHeadEnteranceToTheCenterStage()
         {
             //Sounds the start beep. Now waiting for the rat to move it's head to the center.
-            Console.Beep(2000, 200);
+            Task.Run(() => 
+            {
+                Console.Beep(2000, 200);
+            });
 
             //write the beep start event to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.AudioStart);
+            _trialEventRealTiming.Add("AudioStart", _controlLoopTrialTimer.ElapsedMilliseconds);
 
             _logger.Info("Waiting for Head to be entered to the center stage for the first time.");
 
@@ -1422,6 +1449,7 @@ namespace PinkyAndBrain
 
             //write the event of HeadEnterCenter to the AlphaOmega.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterCenter);
+            _trialEventRealTiming.Add("HeadEnterCenter", _controlLoopTrialTimer.ElapsedMilliseconds);
 
             if (x == 2)
                 _logger.Info("Waiting for Head to be entered to the center for the first occured.");
@@ -1476,6 +1504,7 @@ namespace PinkyAndBrain
 
                 //also send the AlphaOmega that motion backward starts.
                 _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotStartMovingBackward);
+                _trialEventRealTiming.Add("RobotStartMovingBackward", _controlLoopTrialTimer.ElapsedMilliseconds);
             }
 
             //save the dat into the result file only if the trial is within success trials (that have any stimulus)
@@ -1500,7 +1529,8 @@ namespace PinkyAndBrain
                         RRInverse = _inverseRRDecision,
                         AutosOptions = _autosOptionsInRealTime,
                         SpecialModes = _specialModesInRealTime,
-                        LedsData = new LedsData {TurnsOnPercentage = PercentageOfTurnedOnLeds , Brightness = LEDBrightness , RedValue = LEDcolorRed , GreenValue = LEDcolorGreen , BlueValue = LEDcolorBlue}
+                        LedsData = new LedsData {TurnsOnPercentage = PercentageOfTurnedOnLeds , Brightness = LEDBrightness , RedValue = LEDcolorRed , GreenValue = LEDcolorGreen , BlueValue = LEDcolorBlue},
+                        TrialEventsTiming = _trialEventRealTiming
                     });
                 });
             }
@@ -1775,16 +1805,19 @@ namespace PinkyAndBrain
                 //write that the rat get center reward to the AlphaOmega.
                 case RewardPosition.Center:
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.CenterReward);
+                    _trialEventRealTiming.Add("CenterReward", _controlLoopTrialTimer.ElapsedMilliseconds);
                     break;
 
                 //write that the rat get left reward to the AlphaOmega.
                 case RewardPosition.Left:
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.LeftReward);
+                    _trialEventRealTiming.Add("LeftReward", _controlLoopTrialTimer.ElapsedMilliseconds);
                     break;
                     
                 //write that the rat get right reward to the AlphaOmega.
                 case RewardPosition.Right:
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RightReward);
+                    _trialEventRealTiming.Add("RightReward", _controlLoopTrialTimer.ElapsedMilliseconds);
                     break;
 
                 default:

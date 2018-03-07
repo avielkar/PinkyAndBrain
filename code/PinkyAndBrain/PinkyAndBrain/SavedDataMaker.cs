@@ -147,8 +147,27 @@ namespace PinkyAndBrain
                 lineBuilder.Clear();
             }
 
+            //save all trial events with their real time timings.
+            SaveTheRealTimingEvents(trialData.TrialEventsTiming);
+
             //flush the taxt to be written immediately.
             _currentSavedFileStramWriter.Flush();
+        }
+
+        private void SaveTheRealTimingEvents(Dictionary<string , double> eventRealTimingDictionary)
+        {
+            StringBuilder lineBuilder = new StringBuilder();
+
+            foreach (KeyValuePair<string , double> eventTimePair in eventRealTimingDictionary)
+            {
+                lineBuilder.Append(eventTimePair.Key + "RealTime");
+                lineBuilder.Append(":");
+                lineBuilder.Append(eventTimePair.Value.ToString());
+
+                _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+
+                lineBuilder.Clear();
+            }
         }
 
         /// <summary>
@@ -266,6 +285,11 @@ namespace PinkyAndBrain
         /// Leds data options.
         /// </summary>
         public LedsData LedsData { get; set; }
+
+        /// <summary>
+        /// A dictionary include a key for the ecvent name and a double for the time of the event since the start of the trial. Each trial the dictionary cleared.
+        /// </summary>
+        public Dictionary<string , double> TrialEventsTiming { get; set; }
     }
 
     /// <summary>
