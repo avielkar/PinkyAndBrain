@@ -1526,7 +1526,7 @@ namespace PinkyAndBrain
                     _logger.Info("Saving trial# " + (_totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks) + " to the result file.");
                     _savedExperimentDataMaker.SaveTrialDataToFile(new TrialData()
                     {
-                        StaticVariables = _staticVariablesList,//
+                        StaticVariables = _staticVariablesList,
                         VaryingVariables = _crossVaryingVals[_currentVaryingTrialIndex],
                         TimingsVariables = _currentTrialTimings,
                         ApplicationVersionNumber = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(),
@@ -1541,7 +1541,8 @@ namespace PinkyAndBrain
                         AutosOptions = _autosOptionsInRealTime,
                         SpecialModes = _specialModesInRealTime,
                         LedsData = new LedsData {TurnsOnPercentage = PercentageOfTurnedOnLeds , Brightness = LEDBrightness , RedValue = LEDcolorRed , GreenValue = LEDcolorGreen , BlueValue = LEDcolorBlue},
-                        TrialEventsTiming = _trialEventRealTiming
+                        TrialEventsTiming = _trialEventRealTiming,
+                        TotalHabdRewardTime = _handRewardTotalTimer.ElapsedMilliseconds
                     });
                 });
             }

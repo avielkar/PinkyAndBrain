@@ -150,10 +150,21 @@ namespace PinkyAndBrain
             //save all trial events with their real time timings.
             SaveTheRealTimingEvents(trialData.TrialEventsTiming);
 
-            //flush the taxt to be written immediately.
+            //save the total manual reward was given during all the experiment.
+            lineBuilder.Append("TotalManualReward");
+            lineBuilder.Append(":");
+            lineBuilder.Append(trialData.TotalHabdRewardTime);
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
+            //flush the text to be written immediately.
             _currentSavedFileStramWriter.Flush();
         }
 
+        /// <summary>
+        /// Saving all real times events and values dictionary to the results file.
+        /// </summary>
+        /// <param name="eventRealTimingDictionary">The real time events name - time dictionary.</param>
         private void SaveTheRealTimingEvents(Dictionary<string , double> eventRealTimingDictionary)
         {
             StringBuilder lineBuilder = new StringBuilder();
@@ -290,6 +301,11 @@ namespace PinkyAndBrain
         /// A dictionary include a key for the ecvent name and a double for the time of the event since the start of the trial. Each trial the dictionary cleared.
         /// </summary>
         public Dictionary<string , double> TrialEventsTiming { get; set; }
+
+        /// <summary>
+        /// The total time in the experiment a manual reward was given.
+        /// </summary>
+        public double TotalHabdRewardTime { get; set; }
     }
 
     /// <summary>
