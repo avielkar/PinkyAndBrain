@@ -847,49 +847,51 @@ namespace PinkyAndBrain
 
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            
+
             while (sw.ElapsedMilliseconds < 1000 * (int)(_currentTrialTimings.wClueDelay))
             {
-                
+
             }
 
-            if (EnableClueSoundInBothSide)
-            {
-                _logger.Info("Satrt playing EnableClueSoundInBothSide");
-
-                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
-                _windowsMediaPlayer.controls.play();
-
-                _specialModesInRealTime.EnableClueSoundInBothSide = true;
-
-                _logger.Info("End playing EnableClueSoundInBothSide");
-            }
-
-            else if ( EnableClueSoundInCorrectSide)
-            {
-                if (_correctDecision.Equals(RatDecison.Right))
+            Task.Run(() =>
                 {
-                    _logger.Info("Satrt playing EnableClueSoundInBothSide");
+                    if (EnableClueSoundInBothSide)
+                    {
+                        _logger.Info("Satrt playing EnableClueSoundInBothSide");
 
-                    _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
-                    _windowsMediaPlayer.controls.play();
+                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
+                        _windowsMediaPlayer.controls.play();
 
-                    _logger.Info("End playing EnableClueSoundInBothSide");
-                }
+                        _specialModesInRealTime.EnableClueSoundInBothSide = true;
 
-                else if (_correctDecision.Equals(RatDecison.Left))
-                {
-                    _logger.Info("Satrt playing EnableClueSoundInBothSide");
+                        _logger.Info("End playing EnableClueSoundInBothSide");
+                    }
 
-                    _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
-                    _windowsMediaPlayer.controls.play();
+                    else if (EnableClueSoundInCorrectSide)
+                    {
+                        if (_correctDecision.Equals(RatDecison.Right))
+                        {
+                            _logger.Info("Satrt playing EnableClueSoundInBothSide");
 
-                    _logger.Info("End playing EnableClueSoundInBothSide");
-                }
+                            _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
+                            _windowsMediaPlayer.controls.play();
 
-                _specialModesInRealTime.EnableClueSoundInCorrectSide = true;
-            }
+                            _logger.Info("End playing EnableClueSoundInBothSide");
+                        }
 
+                        else if (_correctDecision.Equals(RatDecison.Left))
+                        {
+                            _logger.Info("Satrt playing EnableClueSoundInBothSide");
+
+                            _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
+                            _windowsMediaPlayer.controls.play();
+
+                            _logger.Info("End playing EnableClueSoundInBothSide");
+                        }
+
+                        _specialModesInRealTime.EnableClueSoundInCorrectSide = true;
+                    }
+                });
             _logger.Info("ClueResponseStage ended.");
         }
 
@@ -1078,50 +1080,57 @@ namespace PinkyAndBrain
             _autosOptionsInRealTime.AutoRewardSound = autoRewardSound;
             if(autoRewardSound)
             {
-                _logger.Info("Start getting the reward position sound.");
+                Task.Run(() =>
+                    {
+                        _logger.Info("Start getting the reward position sound.");
 
-                //play the selected reward side mono sound.
-                switch (position)
-                {
-                    case RewardPosition.Center:
-                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
-                        _windowsMediaPlayer.controls.play();
-                        break;
-                    case RewardPosition.Left:
-                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
-                        _windowsMediaPlayer.controls.play();
-                        break;
-                    case RewardPosition.Right:
-                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
-                        _windowsMediaPlayer.controls.play();
-                        break;
-                    default:
-                        break;
-                }
+                        //play the selected reward side mono sound.
+                        switch (position)
+                        {
+                            case RewardPosition.Center:
+                                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
+                                _windowsMediaPlayer.controls.play();
+                                break;
+                            case RewardPosition.Left:
+                                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
+                                _windowsMediaPlayer.controls.play();
+                                break;
+                            case RewardPosition.Right:
+                                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
+                                _windowsMediaPlayer.controls.play();
+                                break;
+                            default:
+                                break;
+                        }
 
-                _logger.Info("End getting the reward position sound.");
+                        _logger.Info("End getting the reward position sound.");
+                    });
             }
 
             //wait the reward delay time.
             Thread.Sleep((int)(rewardDelay * 1000));
 
-            //open the center reward for the rat to be rewarded.
-            //after the reward duration time and than close it.
-            _logger.Info("Opening the water tupple");
-            _rewardController.WriteSingleSamplePort(true, (byte)position);
-            //send the alpha omega that a reward is given.
-            SendAlphaOmegaRewardEvent(position);
+            //if 0 dont even open the reward tupple.
+            if (rewardDuration > 0)
+            {
+                //open the center reward for the rat to be rewarded.
+                //after the reward duration time and than close it.
+                _logger.Info("Opening the water tupple");
+                _rewardController.WriteSingleSamplePort(true, (byte)position);
+                //send the alpha omega that a reward is given.
+                SendAlphaOmegaRewardEvent(position);
 
-            //wait the reward time and fill the interactive water fill estimation panel.
-            _logger.Info("Start updating interactive water filling window");
-            _waterRewardFillingTimer.Start();
-            Thread.Sleep((int)(rewardDuration * 1000));
-            _waterRewardFillingTimer.Stop();
-            _logger.Info("End updating interactive water filling window");
+                //wait the reward time and fill the interactive water fill estimation panel.
+                _logger.Info("Start updating interactive water filling window");
+                _waterRewardFillingTimer.Start();
+                Thread.Sleep((int)(rewardDuration * 1000));
+                _waterRewardFillingTimer.Stop();
+                _logger.Info("End updating interactive water filling window");
 
-            //close again the reward port.
-            _logger.Info("Closing the water tupple");
-            _rewardController.WriteSingleSamplePort(true, 0x00);
+                //close again the reward port.
+                _logger.Info("Closing the water tupple");
+                _rewardController.WriteSingleSamplePort(true, 0x00);
+            }
         }
 
         /// <summary>
@@ -1338,14 +1347,16 @@ namespace PinkyAndBrain
                         {
                             if (EnableFixationBreakSound)
                             //sound the break fixation sound - aaaahhhh sound.
-                            //TODO: check if need here a task.
                             {
-                                _logger.Info("Start playing the missing answer sound");
+                                Task.Run(() =>
+                                {
+                                    _logger.Info("Start playing the missing answer sound");
 
-                                _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"];
-                                _windowsMediaPlayer.controls.play();
+                                    _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"];
+                                    _windowsMediaPlayer.controls.play();
 
-                                _logger.Info("End playing the missing answer sound");
+                                    _logger.Info("End playing the missing answer sound");
+                                });
                             }
 
                             //save the state of the enable fixation break sound on.
@@ -2009,7 +2020,7 @@ namespace PinkyAndBrain
            string timeValue = GetVariableValue(timeVarName);
 
             //if not found - it is random type varriable.
-            if(timeValue == string.Empty)
+            if(timeValue == string.Empty) 
             {
                 double lowTime = double.Parse(_variablesList._variablesDictionary[timeVarName]._description["low_bound"]._ratHouseParameter);
                 double highTime = double.Parse(_variablesList._variablesDictionary[timeVarName]._description["high_bound"]._ratHouseParameter);
@@ -2158,58 +2169,62 @@ namespace PinkyAndBrain
             {
                 //wait the delat time before opening the water and make a sound if AutoSound is on.
                 double timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
-                if ((value & (byte)RatDecison.Left) == (byte)RatDecison.Left)
-                {
-                    if (RewardSound)
+
+                Task.Run(() =>
                     {
-                        _logger.Info("Start handreward sound");
+                        if ((value & (byte)RatDecison.Left) == (byte)RatDecison.Left)
+                        {
+                            if (RewardSound)
+                            {
+                                _logger.Info("Start handreward sound");
 
-                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
-                        _windowsMediaPlayer.controls.play();
+                                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
+                                _windowsMediaPlayer.controls.play();
 
-                        _logger.Info("End handreward sound");
-                    }
-                    timeByVariable = DetermineTimeByVariable("REWARD_LEFT_DURATION");
-                }
-                else if ((value & 0x05) == 0x05)
-                {
-                    if (RewardSound)
-                    {
-                        _logger.Info("Start handreward sound");
+                                _logger.Info("End handreward sound");
+                            }
+                            timeByVariable = DetermineTimeByVariable("REWARD_LEFT_DURATION");
+                        }
+                        else if ((value & 0x05) == 0x05)
+                        {
+                            if (RewardSound)
+                            {
+                                _logger.Info("Start handreward sound");
 
-                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
-                        _windowsMediaPlayer.controls.play();
+                                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
+                                _windowsMediaPlayer.controls.play();
 
-                        _logger.Info("End handreward sound");
-                    }
-                    timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
-                }
-                else if ((value & (byte)RatDecison.Center) == (byte)RatDecison.Center)
-                {
-                    if (RewardSound)
-                    {
-                        _logger.Info("Start handreward sound");
+                                _logger.Info("End handreward sound");
+                            }
+                            timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
+                        }
+                        else if ((value & (byte)RatDecison.Center) == (byte)RatDecison.Center)
+                        {
+                            if (RewardSound)
+                            {
+                                _logger.Info("Start handreward sound");
 
-                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
-                        _windowsMediaPlayer.controls.play();
+                                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
+                                _windowsMediaPlayer.controls.play();
 
-                        _logger.Info("End handreward sound");
-                    }
-                    timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
-                }
-                else if ((value & (byte)RatDecison.Right) == (byte)RatDecison.Right)
-                {
-                    if (RewardSound)
-                    {
-                        _logger.Info("Start handreward sound");
+                                _logger.Info("End handreward sound");
+                            }
+                            timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
+                        }
+                        else if ((value & (byte)RatDecison.Right) == (byte)RatDecison.Right)
+                        {
+                            if (RewardSound)
+                            {
+                                _logger.Info("Start handreward sound");
 
-                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
-                        _windowsMediaPlayer.controls.play();
+                                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
+                                _windowsMediaPlayer.controls.play();
 
-                        _logger.Info("End handreward sound");
-                    }
-                    timeByVariable = DetermineTimeByVariable("REWARD_RIGHT_DURATION");
-                }
+                                _logger.Info("End handreward sound");
+                            }
+                            timeByVariable = DetermineTimeByVariable("REWARD_RIGHT_DURATION");
+                        }
+                    });
 
                 _rewardController.WriteSingleSamplePort(true, value);
                 _handRewardTotalTimer.Start();
