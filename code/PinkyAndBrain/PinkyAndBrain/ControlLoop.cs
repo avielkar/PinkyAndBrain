@@ -1812,7 +1812,7 @@ namespace PinkyAndBrain
                     //get the current stimulus direction.
                     double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
                     double delta = double.Parse(GetVariableValue("DELTA"));
-                    if(Math.Abs(currentHeadingDirection) <  Math.Abs(delta/2)
+                    if (Math.Abs(currentHeadingDirection) < Math.Abs(delta / 2));
                         return true;
                     return false;
                 default: //other stimulses

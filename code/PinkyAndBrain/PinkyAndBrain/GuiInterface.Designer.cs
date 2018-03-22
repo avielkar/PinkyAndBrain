@@ -92,6 +92,7 @@
             this._ardionoPrtWarningLabel = new System.Windows.Forms.Label();
             this._checkBoxRewardSound = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._checkboxRRDelta = new System.Windows.Forms.CheckBox();
             this._checkBoxRightAndLeftSame = new System.Windows.Forms.CheckBox();
             this._checkBoxCorrectClueSound = new System.Windows.Forms.CheckBox();
             this._checkBoxEnableBothSidedClueSound = new System.Windows.Forms.CheckBox();
@@ -116,7 +117,6 @@
             this._btnSaveProtocol = new System.Windows.Forms.Button();
             this._textboxNewProtocolName = new System.Windows.Forms.TextBox();
             this._labelNewProtocolName = new System.Windows.Forms.Label();
-            this._checkbixRRDelta = new System.Windows.Forms.CheckBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -708,7 +708,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this._checkbixRRDelta);
+            this.groupBox1.Controls.Add(this._checkboxRRDelta);
             this.groupBox1.Controls.Add(this._checkBoxRightAndLeftSame);
             this.groupBox1.Controls.Add(this._checkBoxCorrectClueSound);
             this.groupBox1.Controls.Add(this._checkBoxEnableBothSidedClueSound);
@@ -723,6 +723,17 @@
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Special Modes";
+            // 
+            // _checkboxRRDelta
+            // 
+            this._checkboxRRDelta.AutoSize = true;
+            this._checkboxRRDelta.Location = new System.Drawing.Point(2, 93);
+            this._checkboxRRDelta.Name = "_checkboxRRDelta";
+            this._checkboxRRDelta.Size = new System.Drawing.Size(73, 17);
+            this._checkboxRRDelta.TabIndex = 18;
+            this._checkboxRRDelta.Text = "R.R Delta";
+            this._checkboxRRDelta.UseVisualStyleBackColor = true;
+            this._checkboxRRDelta.CheckedChanged += new System.EventHandler(this._checkbixRRDelta_CheckedChanged);
             // 
             // _checkBoxRightAndLeftSame
             // 
@@ -962,17 +973,6 @@
             this._labelNewProtocolName.TabIndex = 27;
             this._labelNewProtocolName.Text = "New Protocol Name";
             // 
-            // _checkbixRRDelta
-            // 
-            this._checkbixRRDelta.AutoSize = true;
-            this._checkbixRRDelta.Location = new System.Drawing.Point(2, 93);
-            this._checkbixRRDelta.Name = "_checkbixRRDelta";
-            this._checkbixRRDelta.Size = new System.Drawing.Size(73, 17);
-            this._checkbixRRDelta.TabIndex = 18;
-            this._checkbixRRDelta.Text = "R.R Delta";
-            this._checkbixRRDelta.UseVisualStyleBackColor = true;
-            this._checkbixRRDelta.CheckedChanged += new System.EventHandler(this._checkbixRRDelta_CheckedChanged);
-            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1121,6 +1121,6 @@
         private System.Windows.Forms.Label _labelBlueLed;
         private System.Windows.Forms.Label _labelGreenLed;
         private System.Windows.Forms.Label _labelRedLed;
-        private System.Windows.Forms.CheckBox _checkbixRRDelta;
+        private System.Windows.Forms.CheckBox _checkboxRRDelta;
     }
 }

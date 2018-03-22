@@ -2288,6 +2288,7 @@ namespace PinkyAndBrain
             _checkboxesDictionary.Add("ERROR_SOUND", _checkboxErrorSoundOn);
             _checkboxesDictionary.Add("FIXATION_ONLY", _checkBoxFixationOnly);
             _checkboxesDictionary.Add("RIGHT_LEFT_PARAMETERS_EQUALS", _checkBoxRightAndLeftSame);
+            _checkboxesDictionary.Add("RR_DELTA", _checkboxRRDelta);
         }
 
         /// <summary>
