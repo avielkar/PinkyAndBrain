@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -116,6 +116,7 @@
             this._btnSaveProtocol = new System.Windows.Forms.Button();
             this._textboxNewProtocolName = new System.Windows.Forms.TextBox();
             this._labelNewProtocolName = new System.Windows.Forms.Label();
+            this._checkbixRRDelta = new System.Windows.Forms.CheckBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -622,17 +623,17 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea1.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend2);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series2);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
@@ -707,6 +708,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this._checkbixRRDelta);
             this.groupBox1.Controls.Add(this._checkBoxRightAndLeftSame);
             this.groupBox1.Controls.Add(this._checkBoxCorrectClueSound);
             this.groupBox1.Controls.Add(this._checkBoxEnableBothSidedClueSound);
@@ -960,6 +962,17 @@
             this._labelNewProtocolName.TabIndex = 27;
             this._labelNewProtocolName.Text = "New Protocol Name";
             // 
+            // _checkbixRRDelta
+            // 
+            this._checkbixRRDelta.AutoSize = true;
+            this._checkbixRRDelta.Location = new System.Drawing.Point(2, 93);
+            this._checkbixRRDelta.Name = "_checkbixRRDelta";
+            this._checkbixRRDelta.Size = new System.Drawing.Size(73, 17);
+            this._checkbixRRDelta.TabIndex = 18;
+            this._checkbixRRDelta.Text = "R.R Delta";
+            this._checkbixRRDelta.UseVisualStyleBackColor = true;
+            this._checkbixRRDelta.CheckedChanged += new System.EventHandler(this._checkbixRRDelta_CheckedChanged);
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1108,5 +1121,6 @@
         private System.Windows.Forms.Label _labelBlueLed;
         private System.Windows.Forms.Label _labelGreenLed;
         private System.Windows.Forms.Label _labelRedLed;
+        private System.Windows.Forms.CheckBox _checkbixRRDelta;
     }
 }

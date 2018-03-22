@@ -363,6 +363,11 @@ namespace PinkyAndBrain
         public bool EnableClueSoundInBothSide { get; set; }
 
         /// <summary>
+        /// Indicates if to enable random correct answer in delta's protocols while the stimulus direction's are inversed in the sign.
+        /// </summary>
+        public bool EnableRRDelta { get; set; }
+
+        /// <summary>
         /// Indicates if to enable that right parameters values and left parameters values must be equals.
         /// </summary>
         public bool EnableRightLeftMustEquals { get; set; }

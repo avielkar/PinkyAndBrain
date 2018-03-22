@@ -1920,6 +1920,16 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Handles a changed in the state of RRDelta,
+        /// </summary>
+        /// <param name="sender">The checkbox.</param>
+        /// <param name="e">Args.</param>
+        private void _checkbixRRDelta_CheckedChanged(object sender, EventArgs e)
+        {
+            _cntrlLoop.EnableRRDelta = (sender as CheckBox).Checked;
+        }
+
+        /// <summary>
         /// Update and disabled all Right textboxes according to the equalization of the right textboxes and the left checkboxes.
         /// </summary>
         /// <param name="equals">If right checkboxes should equal the left checkboxes.</param>
