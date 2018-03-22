@@ -49,3 +49,4 @@ Temporary Items
 code/PinkyAndBrain/PinkyAndBrain/bin/Release/Logger.log
 *.Cache
 *.pdb
+*.suo
