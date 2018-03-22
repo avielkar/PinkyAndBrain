@@ -1763,10 +1763,14 @@ namespace PinkyAndBrain
             //get the current stimulus direction.
             double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
 
+            //determine if the current stimulses sign are invered (may be dur to the delta protocol and etc).
+            bool inversedStimulusesSign = IsVisualAndVistibularInversesSign();
+
             //determine the current stimulus direaction.
             RatDecison currentStimulationSide = (currentHeadingDirection == 0) ? (RatDecison.Center) : ((currentHeadingDirection > 0) ? (RatDecison.Right) : RatDecison.Left);
             //determine if the current stimulus heading direction is in the random heading direction region.
-            if (Math.Abs(currentHeadingDirection) <= double.Parse(_variablesList._variablesDictionary["RR_HEADINGS"]._description["parameters"]._ratHouseParameter))
+            if (Math.Abs(currentHeadingDirection) <= double.Parse(_variablesList._variablesDictionary["RR_HEADINGS"]._description["parameters"]._ratHouseParameter)
+                || inversedStimulusesSign)
             {
                 //get a random side with probability of RR_PROBABILITY to the right side.
                 int sampledBernouli = Bernoulli.Sample(double.Parse(_variablesList._variablesDictionary["RR_PROBABILITY"]._description["parameters"]._ratHouseParameter));
@@ -1791,7 +1795,29 @@ namespace PinkyAndBrain
             {
                 _inverseRRDecision = false;
             }
+
             _correctDecision = currentStimulationSide;
+        }
+
+        /// <summary>
+        /// Indicates if the current trial visual heading and visttibular heading are different in the sign.
+        /// </summary>
+        /// <returns>True if headings are inversed , otherwise false.</returns>
+        private bool IsVisualAndVistibularInversesSign()
+        {
+            switch (GetVariableValue("STIMULUS_TYPE"))
+            {       
+                case "4"://stimulus with delta+ for visual.
+                case "5"://stimulus with delta+ for vistibular.
+                    //get the current stimulus direction.
+                    double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
+                    double delta = double.Parse(GetVariableValue("DELTA"));
+                    if(Math.Abs(currentHeadingDirection) <  Math.Abs(delta/2)
+                        return true;
+                    return false;
+                default: //other stimulses
+                    return false;
+            }
         }
 
         /// <summary>
@@ -2066,6 +2092,7 @@ namespace PinkyAndBrain
                 //decide the time value of the time type according to it's status.
                 switch (variableStatus)
                 {
+                    case "0"://const
                     case "1"://static
                         return _variablesList._variablesDictionary[parameterName]._description["parameters"]._ratHouseParameter;
 
