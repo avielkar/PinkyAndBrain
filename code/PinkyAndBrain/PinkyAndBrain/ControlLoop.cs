@@ -1721,10 +1721,10 @@ namespace PinkyAndBrain
                 case 5://vistibular and visual both with delta+ for vistibular.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     double deltaHeading = 0;
-                    if (_staticVariablesList.ContainsKey("DELTA "))
-                        deltaHeading = _staticVariablesList["DELTA "];
-                    else if (_crossVaryingVals[_currentVaryingTrialIndex].Keys.Contains("DELTA "))
-                        deltaHeading = _crossVaryingVals[_currentVaryingTrialIndex]["DELTA "];
+                    if (_staticVariablesList.ContainsKey("DELTA"))
+                        deltaHeading = _staticVariablesList["DELTA"];
+                    else if (_crossVaryingVals[_currentVaryingTrialIndex].Keys.Contains("DELTA"))
+                        deltaHeading = _crossVaryingVals[_currentVaryingTrialIndex]["DELTA"];
                     //if delta is 0 move only the R1 robot.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, (deltaHeading != 0) ? MotomanProtocolFileCreator.UpdateJobType.Both : MotomanProtocolFileCreator.UpdateJobType.R1Only);
                     _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
@@ -1805,14 +1805,14 @@ namespace PinkyAndBrain
         /// <returns>True if headings are inversed , otherwise false.</returns>
         private bool IsVisualAndVistibularInversesSign()
         {
-            switch (GetVariableValue("STIMULUS_TYPE"))
+            switch ((int)(double.Parse(GetVariableValue("STIMULUS_TYPE"))))
             {       
-                case "4"://stimulus with delta+ for visual.
-                case "5"://stimulus with delta+ for vistibular.
+                case 4://stimulus with delta+ for visual.
+                case 5://stimulus with delta+ for vistibular.
                     //get the current stimulus direction.
                     double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
                     double delta = double.Parse(GetVariableValue("DELTA"));
-                    if (Math.Abs(currentHeadingDirection) < Math.Abs(delta / 2));
+                    if (Math.Abs(currentHeadingDirection) <= Math.Abs(delta / 2));
                         return true;
                     return false;
                 default: //other stimulses
@@ -2168,10 +2168,10 @@ namespace PinkyAndBrain
                 case 5://vistibular and visual both with -delta for visual.
                     //move only R1 if delta is 0
                     double deltaHeading = 0;
-                    if (_staticVariablesList.ContainsKey("DELTA "))
-                        deltaHeading = _staticVariablesList["DELTA "];
-                    else if (_crossVaryingVals[_currentVaryingTrialIndex].Keys.Contains("DELTA "))
-                        deltaHeading = _crossVaryingVals[_currentVaryingTrialIndex]["DELTA "];
+                    if (_staticVariablesList.ContainsKey("DELTA"))
+                        deltaHeading = _staticVariablesList["DELTA"];
+                    else if (_crossVaryingVals[_currentVaryingTrialIndex].Keys.Contains("DELTA"))
+                        deltaHeading = _crossVaryingVals[_currentVaryingTrialIndex]["DELTA"];
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, (deltaHeading != 0) ? MotomanProtocolFileCreator.UpdateJobType.Both : MotomanProtocolFileCreator.UpdateJobType.R1Only, true);
                     break;
 

@@ -355,10 +355,10 @@ namespace Trajectories
             else if (_crossVaryingVals[index].Keys.Contains("DISC_PLANE_TILT"))
                 _discPlaneTilt = currentVaryingTrialParameters["DISC_PLANE_TILT"];
 
-            if (_staticVars.ContainsKey("DELTA "))
-                _deltaHeading = _staticVars["DELTA "];
-            else if (_crossVaryingVals[index].Keys.Contains("DELTA "))
-                _deltaHeading = currentVaryingTrialParameters["DELTA "];
+            if (_staticVars.ContainsKey("DELTA"))
+                _deltaHeading = _staticVars["DELTA"];
+            else if (_crossVaryingVals[index].Keys.Contains("DELTA"))
+                _deltaHeading = currentVaryingTrialParameters["DELTA"];
 
             //check what about the stimulus type (that not must be static).
             if (_staticVars.ContainsKey("STIMULUS_TYPE"))
