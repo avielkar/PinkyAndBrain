@@ -50,3 +50,8 @@ code/PinkyAndBrain/PinkyAndBrain/bin/Release/Logger.log
 *.Cache
 *.pdb
 *.suo
+*.pdb
+*.ide-wal
+*.dll
+*.pdb
+*.CopyComplete
