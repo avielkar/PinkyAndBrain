@@ -25,6 +25,8 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\bi
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\bin\Release\log4net.xml
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\bin\Release\MathNet.Numerics.xml
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\bin\Release\Params.pdb
-C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\obj\Release\MotomanSystem.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\obj\Release\MotomanSystem.dll
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\obj\Release\MotomanSystem.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\obj\Release\MotomanSystem.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\obj\Release\MotomanSystem.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotomanSystem\obj\Release\MotomanSystem.csproj.CopyComplete

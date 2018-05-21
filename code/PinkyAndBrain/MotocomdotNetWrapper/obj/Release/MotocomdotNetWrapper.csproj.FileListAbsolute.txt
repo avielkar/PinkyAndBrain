@@ -10,4 +10,6 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWra
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWrapper\obj\Release\MotocomdotNetWrapper.pdb
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWrapper\bin\Release\log4net.dll
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWrapper\bin\Release\log4net.xml
-C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWrapper\obj\Release\MotocomdotNetWrapper.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWrapper\obj\Release\MotocomdotNetWrapper.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWrapper\obj\Release\MotocomdotNetWrapper.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\MotocomdotNetWrapper\obj\Release\MotocomdotNetWrapper.csproj.CopyComplete

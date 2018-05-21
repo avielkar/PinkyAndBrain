@@ -14,6 +14,8 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\VaryingValuesGen
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\VaryingValuesGenerators\bin\Release\Params.pdb
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\VaryingValuesGenerators\bin\Release\Trajectories.pdb
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\VaryingValuesGenerators\bin\Release\MathNet.Numerics.xml
-C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\VaryingValuesGenerators\obj\Release\VaryingValuesGenerators.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\VaryingValuesGenerators\obj\Release\VaryingValuesGenerators.dll
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\VaryingValuesGenerators\obj\Release\VaryingValuesGenerators.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\VaryingValuesGenerators\obj\Release\VaryingValuesGenerators.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\VaryingValuesGenerators\obj\Release\VaryingValuesGenerators.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\VaryingValuesGenerators\obj\Release\VaryingValuesGenerators.csproj.CopyComplete

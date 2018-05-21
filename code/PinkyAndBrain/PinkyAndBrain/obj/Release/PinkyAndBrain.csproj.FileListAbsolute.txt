@@ -49,7 +49,6 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bi
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Release\MotocomdotNetWrapper.xml
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Release\WaterMeasure.pdb
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Release\MathNet.Numerics.xml
-C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Release\PinkyAndBrain.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Release\PinkyAndBrain.GuiInterface.resources
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Release\PinkyAndBrain.Properties.Resources.resources
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Release\PinkyAndBrain.csproj.GenerateResource.Cache
@@ -71,3 +70,11 @@ C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bi
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Release\Trajectories.pdb
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Release\VaryingValuesGenerators.pdb
 C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Release\log4net.xml
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Release\NationalInstruments.Common.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Release\NationalInstruments.NiLmClientDLL.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Release\NationalInstruments.MStudioCLM.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Release\MotomanSystem.dll.config
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\bin\Release\NationalInstruments.Common.xml
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Release\PinkyAndBrain.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Release\PinkyAndBrain.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\PinkyAndBrain\obj\Release\PinkyAndBrain.csproj.CopyComplete
