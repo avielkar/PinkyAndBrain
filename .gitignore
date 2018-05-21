@@ -56,3 +56,5 @@ code/PinkyAndBrain/PinkyAndBrain/bin/Release/Logger.log
 *.pdb
 *.CopyComplete
 *.xml
+*.ide-shm
+*.ide-shm
