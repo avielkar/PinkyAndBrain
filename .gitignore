@@ -60,3 +60,5 @@ code/PinkyAndBrain/PinkyAndBrain/bin/Release/Logger.log
 *.ide-shm
 *.config
 *.exe
+*.log
+*.ide
