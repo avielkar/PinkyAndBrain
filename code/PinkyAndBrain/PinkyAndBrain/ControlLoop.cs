@@ -862,7 +862,7 @@ namespace PinkyAndBrain
                 {
                     if (EnableClueSoundInBothSide)
                     {
-                        _logger.Info("Satrt playing EnableClueSoundInBothSide");
+                        _logger.Info("Start playing EnableClueSoundInBothSide");
 
                         _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                         _windowsMediaPlayer.controls.play();
@@ -876,7 +876,7 @@ namespace PinkyAndBrain
                     {
                         if (_correctDecision.Equals(RatDecison.Right))
                         {
-                            _logger.Info("Satrt playing EnableClueSoundInCorrectSide - Right");
+                            _logger.Info("Start playing EnableClueSoundInCorrectSide - Right");
 
                             _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
                             _windowsMediaPlayer.controls.play();
@@ -886,7 +886,7 @@ namespace PinkyAndBrain
 
                         else if (_correctDecision.Equals(RatDecison.Left))
                         {
-                            _logger.Info("Satrt playing EnableClueSoundInCorrectSide - Left");
+                            _logger.Info("Start playing EnableClueSoundInCorrectSide - Left");
 
                             _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
                             _windowsMediaPlayer.controls.play();
