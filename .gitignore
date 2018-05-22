@@ -60,3 +60,8 @@ code/PinkyAndBrain/PinkyAndBrain/bin/Release/Logger.log
 *.ide-shm
 *.config
 *.exe
+*.txt
+code/PinkyAndBrain/LED.Strip.Adressable/obj/Debug/LED.Strip.Adressable.csproj.FileListAbsolute.txt
+*.JBI
+*.ide
+*.txt
