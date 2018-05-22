@@ -1719,6 +1719,8 @@ namespace PinkyAndBrain
 
                 case 4://vistibular and visual both with delta+ for visual.
                 case 5://vistibular and visual both with delta+ for vistibular.
+                case 14://vistibular and visual both with delta+ for visual in the dark.
+                case 15://vistibular and visual both with delta+ for vistibular in the dark.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     double deltaHeading = 0;
                     if (_staticVariablesList.ContainsKey("DELTA"))
@@ -1739,19 +1741,6 @@ namespace PinkyAndBrain
                 case 11://combined in the dark.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only);
-                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
-                    break;
-
-                case 14://vistibular and visual both with delta+ for visual in the dark.
-                case 15://vistibular and visual both with delta+ for vistibular in the dark.
-                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
-                    deltaHeading = 0;
-                    if (_staticVariablesList.ContainsKey("DELTA"))
-                        deltaHeading = _staticVariablesList["DELTA"];
-                    else if (_crossVaryingVals[_currentVaryingTrialIndex].Keys.Contains("DELTA"))
-                        deltaHeading = _crossVaryingVals[_currentVaryingTrialIndex]["DELTA"];
-                    //if delta is 0 move only the R1 robot.
-                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, (deltaHeading != 0) ? MotomanProtocolFileCreator.UpdateJobType.Both : MotomanProtocolFileCreator.UpdateJobType.R1Only);
                     _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
                     break;
 
@@ -2179,6 +2168,8 @@ namespace PinkyAndBrain
 
                 case 4://vistibular and visual both with +delta for visual.
                 case 5://vistibular and visual both with -delta for visual.
+                case 14://vistibular and visual both with +delta for visual in the dark.
+                case 15://vistibular and visual both with -delta for visual in the dark.
                     //move only R1 if delta is 0
                     double deltaHeading = 0;
                     if (_staticVariablesList.ContainsKey("DELTA"))
