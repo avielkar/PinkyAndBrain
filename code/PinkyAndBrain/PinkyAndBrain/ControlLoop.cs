@@ -1742,6 +1742,19 @@ namespace PinkyAndBrain
                     _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
                     break;
 
+                case 14://vistibular and visual both with delta+ for visual in the dark.
+                case 15://vistibular and visual both with delta+ for vistibular in the dark.
+                    //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
+                    deltaHeading = 0;
+                    if (_staticVariablesList.ContainsKey("DELTA"))
+                        deltaHeading = _staticVariablesList["DELTA"];
+                    else if (_crossVaryingVals[_currentVaryingTrialIndex].Keys.Contains("DELTA"))
+                        deltaHeading = _crossVaryingVals[_currentVaryingTrialIndex]["DELTA"];
+                    //if delta is 0 move only the R1 robot.
+                    _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, (deltaHeading != 0) ? MotomanProtocolFileCreator.UpdateJobType.Both : MotomanProtocolFileCreator.UpdateJobType.R1Only);
+                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                    break;
+
                 default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
                     _robotMotionTask = new Task(() => Thread.Sleep((int)(1000 * _currentTrialTimings.wDuration)));
                     break;
