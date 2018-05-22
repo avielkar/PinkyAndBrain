@@ -61,3 +61,5 @@ code/PinkyAndBrain/PinkyAndBrain/bin/Release/Logger.log
 *.config
 *.exe
 code/PinkyAndBrain/.vs/PinkyAndBrain/v15/Server/sqlite3/storage.ide
+*.log
+*.ide

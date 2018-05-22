@@ -1613,9 +1613,11 @@ namespace PinkyAndBrain
                     break;
 
                 case 10://visual only in the dark.
+                case 12://will replace visual only in the dark.
                     break;
 
                 case 11://combined in the dark.
+                case 13://will replace combined in the dark.
                     break;
 
                 default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
@@ -1675,10 +1677,12 @@ namespace PinkyAndBrain
                     break;
 
                 case 10://visual only in the dark.
+                case 12://will replace visual only in the dark.
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart10);
                     break;
 
                 case 11://combined in the dark.
+                case 13://will replace combined in the dark.
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart11);
                     break;
 
@@ -1731,12 +1735,14 @@ namespace PinkyAndBrain
                     break;
 
                 case 10://visual only in the dark.
+                case 12://will replace visual only in the dark.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only);
                     _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
                     break;
 
                 case 11://combined in the dark.
+                case 13://will replace combined in the dark.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only);
                     _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
@@ -2156,11 +2162,13 @@ namespace PinkyAndBrain
 
                 case 2://visual only.
                 case 10://visual only in the dark.
+                case 12://will replace visual only in the dark.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only, true);
                     break;
 
                 case 3://vistibular and visual both.
                 case 11://vistibular and visual both in the dark.
+                case 13://will replace vistibular and visual both in the dark.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only , true);
                     break;
 
