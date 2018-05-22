@@ -60,6 +60,11 @@ code/PinkyAndBrain/PinkyAndBrain/bin/Release/Logger.log
 *.ide-shm
 *.config
 *.exe
+code/PinkyAndBrain/.vs/PinkyAndBrain/v15/Server/sqlite3/storage.ide
+*.log
+*.ide
+*.lock
+*.ide
 *.txt
 code/PinkyAndBrain/LED.Strip.Adressable/obj/Debug/LED.Strip.Adressable.csproj.FileListAbsolute.txt
 *.JBI
