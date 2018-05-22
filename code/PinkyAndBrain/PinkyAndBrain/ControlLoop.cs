@@ -1613,9 +1613,9 @@ namespace PinkyAndBrain
                     break;
 
                 case 10://visual only in the dark.
-                    break;
-
                 case 11://combined in the dark.
+                case 14://vistibular and visual both with delta+ for visual in the dark.
+                case 15://vistibular and visual both with delta+ for vistibular in the dark.
                     break;
 
                 default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
