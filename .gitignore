@@ -65,3 +65,10 @@ code/PinkyAndBrain/.vs/PinkyAndBrain/v15/Server/sqlite3/storage.ide
 *.ide
 *.lock
 *.ide
+*.txt
+code/PinkyAndBrain/LED.Strip.Adressable/obj/Debug/LED.Strip.Adressable.csproj.FileListAbsolute.txt
+*.JBI
+*.ide
+*.txt
+code/PinkyAndBrain/.vs/PinkyAndBrain/v15/Server/sqlite3/db.lock
+*.lock

@@ -1893,7 +1893,7 @@ namespace PinkyAndBrain
         /// <param name="e"></param>
         private void _cbCorrectClueSound_CheckedChanged(object sender, EventArgs e)
         {
-            _cntrlLoop.EnableClueSoundInCorrectSide = (sender as CheckBox).Checked;
+            _cntrlLoop.EnableClueSoundCorrectSide = (sender as CheckBox).Checked;
         }
 
         /// <summary>
