@@ -1,0 +1,7 @@
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\RatResponseSystem\obj\Debug\RatResponseSystem.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\RatResponseSystem\bin\Debug\RatResponseSystem.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\RatResponseSystem\bin\Debug\RatResponseSystem.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\RatResponseSystem\bin\Debug\NationalInstruments.DAQmx.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\RatResponseSystem\bin\Debug\NationalInstruments.Common.Native.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\RatResponseSystem\obj\Debug\RatResponseSystem.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\RatResponseSystem\obj\Debug\RatResponseSystem.pdb

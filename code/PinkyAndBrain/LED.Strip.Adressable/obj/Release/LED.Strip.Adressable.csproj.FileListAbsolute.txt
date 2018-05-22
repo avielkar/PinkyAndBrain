@@ -1,0 +1,11 @@
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\bin\Release\LED.Strip.Adressable.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\bin\Release\LED.Strip.Adressable.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\obj\Release\LED.Strip.Adressable.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\obj\Release\LED.Strip.Adressable.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\bin\Release\log4net.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\bin\Release\log4net.xml
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\bin\Release\MathNet.Numerics.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\bin\Release\MathNet.Numerics.xml
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\obj\Release\LED.Strip.Adressable.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\obj\Release\LED.Strip.Adressable.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\LED.Strip.Adressable\obj\Release\LED.Strip.Adressable.csproj.CopyComplete

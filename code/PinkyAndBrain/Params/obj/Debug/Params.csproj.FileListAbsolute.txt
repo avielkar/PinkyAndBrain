@@ -1,0 +1,5 @@
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\Params\obj\Debug\Params.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\Params\bin\Debug\Params.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\Params\bin\Debug\Params.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\Params\obj\Debug\Params.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\Params\obj\Debug\Params.pdb

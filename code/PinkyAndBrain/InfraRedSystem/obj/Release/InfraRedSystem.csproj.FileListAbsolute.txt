@@ -1,0 +1,13 @@
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\bin\Release\InfraRedSystem.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\bin\Release\InfraRedSystem.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\bin\Release\NationalInstruments.DAQmx.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\bin\Release\NationalInstruments.Common.Native.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\obj\Release\InfraRedSystem.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\obj\Release\InfraRedSystem.pdb
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\bin\Release\NationalInstruments.Common.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\bin\Release\NationalInstruments.NiLmClientDLL.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\bin\Release\NationalInstruments.MStudioCLM.dll
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\bin\Release\NationalInstruments.Common.xml
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\obj\Release\InfraRedSystem.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\obj\Release\InfraRedSystem.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\InfraRedSystem\obj\Release\InfraRedSystem.csproj.CopyComplete
