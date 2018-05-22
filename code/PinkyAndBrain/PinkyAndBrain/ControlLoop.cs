@@ -21,6 +21,7 @@ using RatResponseSystem;
 using Trajectories;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Media;
+using Microsoft.Office.Core;
 using WMPLib;
 
 namespace PinkyAndBrain
@@ -1618,6 +1619,8 @@ namespace PinkyAndBrain
 
                 case 11://combined in the dark.
                 case 13://will replace combined in the dark.
+                case 14://vistibular and visual both with delta+ for visual in the dark.
+                case 15://vistibular and visual both with delta+ for vistibular in the dark.
                     break;
 
                 default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
@@ -1686,6 +1689,14 @@ namespace PinkyAndBrain
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart11);
                     break;
 
+                case 14://vistibular and visual both with delta+ for visual in the dark.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart14);
+                    break;
+                case 15://vistibular and visual both with delta+ for vistibular in the dark.
+                    _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.StimulusStart15);
+                    break;
+
+
                 default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
                     break;
             }
@@ -1723,6 +1734,8 @@ namespace PinkyAndBrain
 
                 case 4://vistibular and visual both with delta+ for visual.
                 case 5://vistibular and visual both with delta+ for vistibular.
+                case 14://vistibular and visual both with delta+ for visual in the dark.
+                case 15://vistibular and visual both with delta+ for vistibular in the dark.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     double deltaHeading = 0;
                     if (_staticVariablesList.ContainsKey("DELTA"))
@@ -2174,6 +2187,8 @@ namespace PinkyAndBrain
 
                 case 4://vistibular and visual both with +delta for visual.
                 case 5://vistibular and visual both with -delta for visual.
+                case 14://vistibular and visual both with +delta for visual in the dark.
+                case 15://vistibular and visual both with -delta for visual in the dark.
                     //move only R1 if delta is 0
                     double deltaHeading = 0;
                     if (_staticVariablesList.ContainsKey("DELTA"))
