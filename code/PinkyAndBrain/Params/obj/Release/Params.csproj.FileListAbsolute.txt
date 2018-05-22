@@ -1,6 +1,0 @@
-C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\Params\bin\Release\Params.dll
-C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\Params\bin\Release\Params.pdb
-C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\Params\obj\Release\Params.dll
-C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\Params\obj\Release\Params.pdb
-C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\Params\obj\Release\Params.csprojAssemblyReference.cache
-C:\Users\User\Documents\GitHub\PinkyAndBrain\code\PinkyAndBrain\Params\obj\Release\Params.csproj.CoreCompileInputs.cache
