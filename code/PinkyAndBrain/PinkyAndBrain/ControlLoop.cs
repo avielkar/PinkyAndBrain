@@ -375,7 +375,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Indicates if to enable clue sound only in the correct side.
         /// </summary>
-        public bool EnableClueSoundInCorrectSide { get; set; }
+        public bool EnableClueSoundCorrectSide { get; set; }
 
         /// <summary>
         /// Indicates the autos options that are commanded in the real time (when the code use it at the conditions and not only if the user change it betweens).
@@ -841,7 +841,7 @@ namespace PinkyAndBrain
         /// </summary>
         public void ClueResponseStage()
         {
-            _logger.Info("ClueResponseStage begin. EnableClueSoundInBothSide = " + EnableClueSoundInBothSide + ";EnableClueSoundInCorrectSide" + EnableClueSoundInCorrectSide + ".");
+            _logger.Info("ClueResponseStage begin. EnableClueSoundInBothSide = " + EnableClueSoundInBothSide + ";EnableClueSoundCorrectSide" + EnableClueSoundCorrectSide + ".");
 
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
@@ -872,11 +872,11 @@ namespace PinkyAndBrain
                         _logger.Info("End playing EnableClueSoundInBothSide");
                     }
 
-                    else if (EnableClueSoundInCorrectSide)
+                    else if (EnableClueSoundCorrectSide)
                     {
                         if (_correctDecision.Equals(RatDecison.Right))
                         {
-                            _logger.Info("Start playing EnableClueSoundInCorrectSide - Right");
+                            _logger.Info("Start playing EnableClueSoundCorrectSide - Right");
 
                             _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
                             _windowsMediaPlayer.controls.play();
@@ -886,7 +886,7 @@ namespace PinkyAndBrain
 
                         else if (_correctDecision.Equals(RatDecison.Left))
                         {
-                            _logger.Info("Start playing EnableClueSoundInCorrectSide - Left");
+                            _logger.Info("Start playing EnableClueSoundCorrectSide - Left");
 
                             _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
                             _windowsMediaPlayer.controls.play();
