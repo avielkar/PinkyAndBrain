@@ -684,9 +684,6 @@ namespace PinkyAndBrain
                                     //if not to skip all stages after the fixation stage.
                                     if (!FixationOnlyMode)
                                     {
-                                        //clue time stage if needed.
-                                        ClueResponseStage();
-
                                         //wait the rat to response to the movement during the response time.
                                         Tuple<RatDecison, bool> decision = ResponseTimeStage();
 
@@ -840,9 +837,9 @@ namespace PinkyAndBrain
         /// <summary>
         /// A stage the rat gets a clue where the correct answer is.
         /// </summary>
-        public void ClueResponseStage()
+        public void ClueStage()
         {
-            _logger.Info("ClueResponseStage begin. EnableClueSoundInBothSide = " + EnableClueSoundInBothSide + ";EnableClueSoundCorrectSide" + EnableClueSoundCorrectSide + ".");
+            _logger.Info("ClueStage begin. EnableClueSoundInBothSide = " + EnableClueSoundInBothSide + ";EnableClueSoundCorrectSide" + EnableClueSoundCorrectSide + ".");
 
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
@@ -898,7 +895,7 @@ namespace PinkyAndBrain
                         _specialModesInRealTime.EnableClueSoundInCorrectSide = true;
                     }
                 });
-            _logger.Info("ClueResponseStage ended.");
+            _logger.Info("ClueStage ended.");
         }
 
         /// <summary>
@@ -1117,26 +1114,48 @@ namespace PinkyAndBrain
             Thread.Sleep((int)(rewardDelay * 1000));
 
             //if 0 dont even open the reward tupple.
-            if (rewardDuration > 0)
+            Task rewardTask = Task.Factory.StartNew(() =>
             {
-                //open the center reward for the rat to be rewarded.
-                //after the reward duration time and than close it.
-                _logger.Info("Opening the water tupple");
-                _rewardController.WriteSingleSamplePort(true, (byte)position);
-                //send the alpha omega that a reward is given.
-                SendAlphaOmegaRewardEvent(position);
+                if (rewardDuration > 0)
+                {
+                    //open the center reward for the rat to be rewarded.
+                    //after the reward duration time and than close it.
+                    _logger.Info("Opening the water tupple");
+                    _rewardController.WriteSingleSamplePort(true, (byte)position);
+                    //send the alpha omega that a reward is given.
+                    SendAlphaOmegaRewardEvent(position);
 
-                //wait the reward time and fill the interactive water fill estimation panel.
-                _logger.Info("Start updating interactive water filling window");
-                _waterRewardFillingTimer.Start();
-                Thread.Sleep((int)(rewardDuration * 1000));
-                _waterRewardFillingTimer.Stop();
-                _logger.Info("End updating interactive water filling window");
+                    //wait the reward time and fill the interactive water fill estimation panel.
+                    _logger.Info("Start updating interactive water filling window");
+                    _waterRewardFillingTimer.Start();
+                    Thread.Sleep((int)(rewardDuration * 1000));
+                    _waterRewardFillingTimer.Stop();
+                    _logger.Info("End updating interactive water filling window");
 
-                //close again the reward port.
-                _logger.Info("Closing the water tupple");
-                _rewardController.WriteSingleSamplePort(true, 0x00);
-            }
+                    //close again the reward port.
+                    _logger.Info("Closing the water tupple");
+                    _rewardController.WriteSingleSamplePort(true, 0x00);
+                }
+            });
+
+            Task clueDelayTask = Task.Factory.StartNew(() =>
+            {
+                if (EnableClueSoundCorrectSide || EnableClueSoundInBothSide)
+                {
+                    //give the cue only if it is a cebter reward
+                    if (position.Equals(RewardPosition.Center))
+                    {
+                        //and only if it is not a fixation only trial.
+                        if (FixationOnlyMode)
+                        {
+                            Thread.Sleep((int) (1000 * _currentTrialTimings.wClueDelay));
+                        }
+                    }
+                }
+            });
+
+            clueDelayTask.Wait();
+            rewardTask.Wait();
         }
 
         /// <summary>
