@@ -684,9 +684,6 @@ namespace PinkyAndBrain
                                     //if not to skip all stages after the fixation stage.
                                     if (!FixationOnlyMode)
                                     {
-                                        //clue time stage if needed.
-                                        ClueResponseStage();
-
                                         //wait the rat to response to the movement during the response time.
                                         Tuple<RatDecison, bool> decision = ResponseTimeStage();
 
@@ -840,65 +837,57 @@ namespace PinkyAndBrain
         /// <summary>
         /// A stage the rat gets a clue where the correct answer is.
         /// </summary>
-        public void ClueResponseStage()
+        public void ClueSoundPlayer()
         {
-            _logger.Info("ClueResponseStage begin. EnableClueSoundInBothSide = " + EnableClueSoundInBothSide + ";EnableClueSoundCorrectSide" + EnableClueSoundCorrectSide + ".");
+            _logger.Info("ClueSoundPlayer begin. EnableClueSoundInBothSide = " + EnableClueSoundInBothSide +
+                         ";EnableClueSoundCorrectSide" + EnableClueSoundCorrectSide + ".");
 
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Clue Stage");
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage",
+                "Clue Stage");
 
             //determine the current trial correct answer.
             DetermineCurrentStimulusAnswer();
 
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-
-            while (sw.ElapsedMilliseconds < (int)(1000 * _currentTrialTimings.wClueDelay))
+            if (EnableClueSoundInBothSide)
             {
+                _logger.Info("Start playing EnableClueSoundInBothSide");
 
+                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
+                _windowsMediaPlayer.controls.play();
+
+                _specialModesInRealTime.EnableClueSoundInBothSide = true;
+
+                _logger.Info("End playing EnableClueSoundInBothSide");
             }
 
-            Task.Run(() =>
+            else if (EnableClueSoundCorrectSide)
+            {
+                if (_correctDecision.Equals(RatDecison.Right))
                 {
-                    if (EnableClueSoundInBothSide)
-                    {
-                        _logger.Info("Start playing EnableClueSoundInBothSide");
+                    _logger.Info("Start playing EnableClueSoundCorrectSide - Right");
 
-                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
-                        _windowsMediaPlayer.controls.play();
+                    _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
+                    _windowsMediaPlayer.controls.play();
 
-                        _specialModesInRealTime.EnableClueSoundInBothSide = true;
+                    _logger.Info("End playing EnableClueSoundInBothSide");
+                }
 
-                        _logger.Info("End playing EnableClueSoundInBothSide");
-                    }
+                else if (_correctDecision.Equals(RatDecison.Left))
+                {
+                    _logger.Info("Start playing EnableClueSoundCorrectSide - Left");
 
-                    else if (EnableClueSoundCorrectSide)
-                    {
-                        if (_correctDecision.Equals(RatDecison.Right))
-                        {
-                            _logger.Info("Start playing EnableClueSoundCorrectSide - Right");
+                    _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
+                    _windowsMediaPlayer.controls.play();
 
-                            _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
-                            _windowsMediaPlayer.controls.play();
+                    _logger.Info("End playing EnableClueSoundInBothSide");
+                }
 
-                            _logger.Info("End playing EnableClueSoundInBothSide");
-                        }
+                _specialModesInRealTime.EnableClueSoundInCorrectSide = true;
+            }
 
-                        else if (_correctDecision.Equals(RatDecison.Left))
-                        {
-                            _logger.Info("Start playing EnableClueSoundCorrectSide - Left");
-
-                            _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
-                            _windowsMediaPlayer.controls.play();
-
-                            _logger.Info("End playing EnableClueSoundInBothSide");
-                        }
-
-                        _specialModesInRealTime.EnableClueSoundInCorrectSide = true;
-                    }
-                });
-            _logger.Info("ClueResponseStage ended.");
+            _logger.Info("ClueSoundPlayer ended.");
         }
 
         /// <summary>
@@ -924,9 +913,13 @@ namespace PinkyAndBrain
             //get the current stimulus direction.
             double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
 
+
+            //make the sound of the clue (after that in the reward stage it was with the ckue sound delay - paralleled).
+            //make it parallel to the response time duration.
+            Task.Run(() => ClueSoundPlayer());
+
             Stopwatch sw = new Stopwatch();
             sw.Start();
-
             //time to wait for the moving rat response. if decided about a side so break and return the decision and update the _totalCorrectAnsers.
             while (sw.ElapsedMilliseconds < (int)(1000 * _currentTrialTimings.wResponseTime))
             {
@@ -1117,26 +1110,44 @@ namespace PinkyAndBrain
             Thread.Sleep((int)(rewardDelay * 1000));
 
             //if 0 dont even open the reward tupple.
-            if (rewardDuration > 0)
+            Task rewardTask = Task.Factory.StartNew(() =>
             {
-                //open the center reward for the rat to be rewarded.
-                //after the reward duration time and than close it.
-                _logger.Info("Opening the water tupple");
-                _rewardController.WriteSingleSamplePort(true, (byte)position);
-                //send the alpha omega that a reward is given.
-                SendAlphaOmegaRewardEvent(position);
+                if (rewardDuration > 0)
+                {
+                    //open the center reward for the rat to be rewarded.
+                    //after the reward duration time and than close it.
+                    _logger.Info("Opening the water tupple");
+                    _rewardController.WriteSingleSamplePort(true, (byte)position);
+                    //send the alpha omega that a reward is given.
+                    SendAlphaOmegaRewardEvent(position);
 
-                //wait the reward time and fill the interactive water fill estimation panel.
-                _logger.Info("Start updating interactive water filling window");
-                _waterRewardFillingTimer.Start();
-                Thread.Sleep((int)(rewardDuration * 1000));
-                _waterRewardFillingTimer.Stop();
-                _logger.Info("End updating interactive water filling window");
+                    //wait the reward time and fill the interactive water fill estimation panel.
+                    _logger.Info("Start updating interactive water filling window");
+                    _waterRewardFillingTimer.Start();
+                    Thread.Sleep((int)(rewardDuration * 1000));
+                    _waterRewardFillingTimer.Stop();
+                    _logger.Info("End updating interactive water filling window");
 
-                //close again the reward port.
-                _logger.Info("Closing the water tupple");
-                _rewardController.WriteSingleSamplePort(true, 0x00);
-            }
+                    //close again the reward port.
+                    _logger.Info("Closing the water tupple");
+                    _rewardController.WriteSingleSamplePort(true, 0x00);
+                }
+            });
+
+            Task clueDelayTask = Task.Factory.StartNew(() =>
+            {
+                if (!EnableClueSoundCorrectSide && !EnableClueSoundInBothSide) return;
+                //give the cue only if it is a cebter reward
+                if (!position.Equals(RewardPosition.Center)) return;
+                //and only if it is not a fixation only trial.
+                if (FixationOnlyMode)
+                {
+                    Thread.Sleep((int) (1000 * _currentTrialTimings.wClueDelay));
+                }
+            });
+
+            clueDelayTask.Wait();
+            rewardTask.Wait();
         }
 
         /// <summary>
