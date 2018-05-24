@@ -837,65 +837,57 @@ namespace PinkyAndBrain
         /// <summary>
         /// A stage the rat gets a clue where the correct answer is.
         /// </summary>
-        public void ClueStage()
+        public void ClueSoundPlayer()
         {
-            _logger.Info("ClueStage begin. EnableClueSoundInBothSide = " + EnableClueSoundInBothSide + ";EnableClueSoundCorrectSide" + EnableClueSoundCorrectSide + ".");
+            _logger.Info("ClueSoundPlayer begin. EnableClueSoundInBothSide = " + EnableClueSoundInBothSide +
+                         ";EnableClueSoundCorrectSide" + EnableClueSoundCorrectSide + ".");
 
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Clue Stage");
+                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage",
+                "Clue Stage");
 
             //determine the current trial correct answer.
             DetermineCurrentStimulusAnswer();
 
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-
-            while (sw.ElapsedMilliseconds < (int)(1000 * _currentTrialTimings.wClueDelay))
+            if (EnableClueSoundInBothSide)
             {
+                _logger.Info("Start playing EnableClueSoundInBothSide");
 
+                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
+                _windowsMediaPlayer.controls.play();
+
+                _specialModesInRealTime.EnableClueSoundInBothSide = true;
+
+                _logger.Info("End playing EnableClueSoundInBothSide");
             }
 
-            Task.Run(() =>
+            else if (EnableClueSoundCorrectSide)
+            {
+                if (_correctDecision.Equals(RatDecison.Right))
                 {
-                    if (EnableClueSoundInBothSide)
-                    {
-                        _logger.Info("Start playing EnableClueSoundInBothSide");
+                    _logger.Info("Start playing EnableClueSoundCorrectSide - Right");
 
-                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
-                        _windowsMediaPlayer.controls.play();
+                    _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
+                    _windowsMediaPlayer.controls.play();
 
-                        _specialModesInRealTime.EnableClueSoundInBothSide = true;
+                    _logger.Info("End playing EnableClueSoundInBothSide");
+                }
 
-                        _logger.Info("End playing EnableClueSoundInBothSide");
-                    }
+                else if (_correctDecision.Equals(RatDecison.Left))
+                {
+                    _logger.Info("Start playing EnableClueSoundCorrectSide - Left");
 
-                    else if (EnableClueSoundCorrectSide)
-                    {
-                        if (_correctDecision.Equals(RatDecison.Right))
-                        {
-                            _logger.Info("Start playing EnableClueSoundCorrectSide - Right");
+                    _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
+                    _windowsMediaPlayer.controls.play();
 
-                            _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
-                            _windowsMediaPlayer.controls.play();
+                    _logger.Info("End playing EnableClueSoundInBothSide");
+                }
 
-                            _logger.Info("End playing EnableClueSoundInBothSide");
-                        }
+                _specialModesInRealTime.EnableClueSoundInCorrectSide = true;
+            }
 
-                        else if (_correctDecision.Equals(RatDecison.Left))
-                        {
-                            _logger.Info("Start playing EnableClueSoundCorrectSide - Left");
-
-                            _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
-                            _windowsMediaPlayer.controls.play();
-
-                            _logger.Info("End playing EnableClueSoundInBothSide");
-                        }
-
-                        _specialModesInRealTime.EnableClueSoundInCorrectSide = true;
-                    }
-                });
-            _logger.Info("ClueStage ended.");
+            _logger.Info("ClueSoundPlayer ended.");
         }
 
         /// <summary>
@@ -921,9 +913,13 @@ namespace PinkyAndBrain
             //get the current stimulus direction.
             double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
 
+
+            //make the sound of the clue (after that in the reward stage it was with the ckue sound delay - paralleled).
+            //make it parallel to the response time duration.
+            Task.Run(() => ClueSoundPlayer());
+
             Stopwatch sw = new Stopwatch();
             sw.Start();
-
             //time to wait for the moving rat response. if decided about a side so break and return the decision and update the _totalCorrectAnsers.
             while (sw.ElapsedMilliseconds < (int)(1000 * _currentTrialTimings.wResponseTime))
             {
@@ -1140,17 +1136,13 @@ namespace PinkyAndBrain
 
             Task clueDelayTask = Task.Factory.StartNew(() =>
             {
-                if (EnableClueSoundCorrectSide || EnableClueSoundInBothSide)
+                if (!EnableClueSoundCorrectSide && !EnableClueSoundInBothSide) return;
+                //give the cue only if it is a cebter reward
+                if (!position.Equals(RewardPosition.Center)) return;
+                //and only if it is not a fixation only trial.
+                if (FixationOnlyMode)
                 {
-                    //give the cue only if it is a cebter reward
-                    if (position.Equals(RewardPosition.Center))
-                    {
-                        //and only if it is not a fixation only trial.
-                        if (FixationOnlyMode)
-                        {
-                            Thread.Sleep((int) (1000 * _currentTrialTimings.wClueDelay));
-                        }
-                    }
+                    Thread.Sleep((int) (1000 * _currentTrialTimings.wClueDelay));
                 }
             });
 
