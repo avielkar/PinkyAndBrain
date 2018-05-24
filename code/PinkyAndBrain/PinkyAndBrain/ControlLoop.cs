@@ -928,7 +928,7 @@ namespace PinkyAndBrain
             sw.Start();
 
             //time to wait for the moving rat response. if decided about a side so break and return the decision and update the _totalCorrectAnsers.
-            while (sw.ElapsedMilliseconds < 1000 * (int)(_currentTrialTimings.wResponseTime))
+            while (sw.ElapsedMilliseconds < (int)(1000 * _currentTrialTimings.wResponseTime))
             {
                 if (_currentRatResponse == (byte)RatDecison.Left)
                 {
