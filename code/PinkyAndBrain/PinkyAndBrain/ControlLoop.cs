@@ -854,7 +854,7 @@ namespace PinkyAndBrain
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            while (sw.ElapsedMilliseconds < 1000 * (int)(_currentTrialTimings.wClueDelay))
+            while (sw.ElapsedMilliseconds < (int)(1000 * _currentTrialTimings.wClueDelay))
             {
 
             }
