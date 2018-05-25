@@ -47,7 +47,7 @@ namespace PinkyAndBrain
         /// It saves the dynamic TextBox reference.
         /// The string represent the name of the varName concatinating with the attributename for each textbox.
         /// </summary>
-        private Dictionary<string , Control> _dynamicAllocatedTextBoxes;
+        private Dictionary<string, Control> _dynamicAllocatedTextBoxes;
 
         /// <summary>
         /// Dictionary describes all ButtonBase (checkboxes and radiobuttons) names in the gui as keys with their conrol as value.
@@ -119,7 +119,7 @@ namespace PinkyAndBrain
         /// Led controller for controlling the led strip.
         /// </summary>
         private LEDController _ledController;
-        
+
         /// <summary>
         /// Second Led controller for controlling the led strip.
         /// </summary>
@@ -146,7 +146,7 @@ namespace PinkyAndBrain
             _excelLoader = excelLoader;
             _variablesList = new Variables();
             _variablesList._variablesDictionary = new Dictionary<string, Variable>();
-            _dynamicAllocatedTextBoxes = new Dictionary<string,Control>();
+            _dynamicAllocatedTextBoxes = new Dictionary<string, Control>();
             _acrossVectorValuesGenerator = DecideVaryinVectorsGeneratorByProtocolName();
             _staticValuesGenerator = new StaticValuesGenerator();
             InitializeTitleLabels();
@@ -172,11 +172,11 @@ namespace PinkyAndBrain
             }
 
             //create the ledstrip controller and initialize it (also turn off leds).
-            _ledController = new LEDController("COM4", 2000000, 150 , 10 , _logger);
+            _ledController = new LEDController("COM4", 2000000, 150, 10, _logger);
             _ledController.OpenConnection();
 
             //create the second ledstrip controller and initialize it (also turn off leds).
-            _ledController2 = new LEDController("COM5", 2000000, 150 , 10, _logger);
+            _ledController2 = new LEDController("COM5", 2000000, 150, 10, _logger);
             _ledController2.OpenConnection();
 
             if (!_ledController.Connected)
@@ -196,7 +196,7 @@ namespace PinkyAndBrain
 
             //make the delegate with it's control object and their nickname as pairs of dictionaries.
             Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>> delegatsControlsTuple = MakeCtrlDelegateAndFunctionDictionary();
-            _cntrlLoop = new ControlLoop(_matlabApp, _motocomController, _ledController, _ledController2 ,  _infraredController, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1, _logger);
+            _cntrlLoop = new ControlLoop(_matlabApp, _motocomController, _ledController, _ledController2, _infraredController, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1, _logger);
 
             //reset the selected direction to be empty.
             _selectedHandRewardDirections = 0;
@@ -237,7 +237,7 @@ namespace PinkyAndBrain
             //_cntrlLoop.MoveRobotHomePosition();
 
             //create the result directory in the application path if needed.
-            if(!Directory.Exists(Application.StartupPath + "\results"))
+            if (!Directory.Exists(Application.StartupPath + "\results"))
                 Directory.CreateDirectory(Application.StartupPath + @"\results\");
 
             //adding background image to the window.
@@ -311,7 +311,7 @@ namespace PinkyAndBrain
             _onlinePsychGraphControl.Series.Clear();
 
             _onlinePsychGraphControl.ChartAreas.First(area => true).RecalculateAxesScale();
-            
+
             _onlinePsychGraphControl.ChartAreas.First(area => true).AxisY.Maximum = 1.0;
 
             _onlinePsychGraphControl.ChartAreas.First(area => true).AxisX.Maximum = 100.0;
@@ -329,7 +329,7 @@ namespace PinkyAndBrain
         /// <param name="y">The y balue of the point.</param>
         /// <param name="newPoint">Indicated if it is a new point to add or existing point.</param>
         /// <param name="visible">Indicates if the point is visibbled on the graph.</param>
-        public delegate void OnlinePsychoGraphSetPointDelegate(string seriesName, double x, double y, bool newPoint = false , bool visible = true);
+        public delegate void OnlinePsychoGraphSetPointDelegate(string seriesName, double x, double y, bool newPoint = false, bool visible = true);
 
         /// <summary>
         /// Setting the given point in the given series.
@@ -339,7 +339,7 @@ namespace PinkyAndBrain
         /// <param name="y">The y value of the point.</param>
         /// <param name="newPoint">Indicates if the point is new to the chart or is an existing one.</param>
         /// <param name="visible"> Indicates if the point is visibled on th graph.</param>
-        public void OnlinePsychoGraphSetPoint(string seriesName , double x , double y , bool newPoint = false , bool visible = true)
+        public void OnlinePsychoGraphSetPoint(string seriesName, double x, double y, bool newPoint = false, bool visible = true)
         {
             if (!(_onlinePsychGraphControl.Series.Count(series => series.Name == seriesName) > 0))
             {
@@ -378,7 +378,7 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="seriesNames">The series list to set to the graph.</param>
         public delegate void OnlinePsychoGraphSetSeriesDelegate(List<string> seriesNames);
-     
+
         /// <summary>
         /// Setting the online psycho graph series by the given series names list.
         /// </summary>
@@ -397,7 +397,7 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="text">The name of the variable to be inserted.</param>
         /// <param name="value">The value of the parameter to  be inserted.</param>
-        public delegate void ChangeCurrentTrialDetailsListViewText(string text , string value);
+        public delegate void ChangeCurrentTrialDetailsListViewText(string text, string value);
 
         /// <summary>
         /// Updates the trial details ListView with the given text.
@@ -419,8 +419,8 @@ namespace PinkyAndBrain
         /// <summary>
         /// Clear the trial details ListView text.
         /// </summary>
-        private void ClearCurrentTrialDetailsListView() 
-        { 
+        private void ClearCurrentTrialDetailsListView()
+        {
             _trialDetailsListView.Items.Clear();
             _trialDetailsListView.Columns.Clear();
             _trialDetailsListView.Columns.Add("Name", "Name", 350);
@@ -433,14 +433,14 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="name">The name of the variable to be inserted.</param>
         /// <param name="value">The value of the variable to be inserted.</param>
-        public delegate void ChangeGlobalDetailsListViewText(string name , string value);
+        public delegate void ChangeGlobalDetailsListViewText(string name, string value);
 
         /// <summary>
         /// Update the global experiment details ListView with that parameter.
         /// </summary>
         /// <param name="name">The parameter name to show.</param>
         /// <param name="value">The value of the parameter to show.</param>
-        private void ChangeGlobalExperimentDetailsListView(string name , string value)
+        private void ChangeGlobalExperimentDetailsListView(string name, string value)
         {
             _logger.Info("Start updating details list view");
 
@@ -503,7 +503,7 @@ namespace PinkyAndBrain
 
             _centerNoldusCommunicationRadioButton.Checked = (data & 2) > 0;
 
-            _rightNoldusCommunicationRadioButton.Checked =  (data & 4) > 0;
+            _rightNoldusCommunicationRadioButton.Checked = (data & 4) > 0;
 
             _leftHandRewardCheckBox.Show();
 
@@ -624,7 +624,7 @@ namespace PinkyAndBrain
 
             //add the delegate for events changing the online psycho graph for the experiment results.
             ctrlDictionary.Add("OnlinePsychoGraph", _onlinePsychGraphControl);
-            
+
             OnlinePsychoGraphClearDelegate onlinePsychoGraphClearDelegate = new OnlinePsychoGraphClearDelegate(OnlinePsychoGraphClear);
             ctrlDelegatesDic.Add("OnlinePsychoGraphClear", onlinePsychoGraphClearDelegate);
 
@@ -636,7 +636,7 @@ namespace PinkyAndBrain
 
             //add the delegate for clearing the selected rat name.
             ResetSelectedRatNameComboboxDelegate resetSelectedRatNameComboboxDelegate = new ResetSelectedRatNameComboboxDelegate(ResetSelectedRatNameCombobox);
-            ctrlDelegatesDic.Add("ResetSelectedRatNameCombobox" , resetSelectedRatNameComboboxDelegate);
+            ctrlDelegatesDic.Add("ResetSelectedRatNameCombobox", resetSelectedRatNameComboboxDelegate);
             ctrlDictionary.Add("ResetSelectedRatNameCombobox", _comboBoxSelectedRatName);
 
             //add the delegate for clearing the selected student name.
@@ -697,7 +697,7 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">args</param>
-        private void GuiInterface_Close(object sender , EventArgs e)
+        private void GuiInterface_Close(object sender, EventArgs e)
         {
             _excelLoader.CloseExcelProtocoConfigFilelLoader();
 
@@ -708,7 +708,7 @@ namespace PinkyAndBrain
             //close the connection with the led strip.
             _ledController.CloseConnection();
             _ledController2.CloseConnection();
-            
+
             //turn off the InfraRed.
             _infraredController.WriteEvent(true, InfraRedStatus.TurnedOff);
 
@@ -729,7 +729,7 @@ namespace PinkyAndBrain
         /// <param name="e">args.</param>
         private void protocolBrowserBtn_Click(object sender, EventArgs e)
         {
-            if(_protocolsFolderBrowser.ShowDialog() == DialogResult.OK)
+            if (_protocolsFolderBrowser.ShowDialog() == DialogResult.OK)
             {
                 _protoclsDirPath = _protocolsFolderBrowser.SelectedPath;
                 _protocolsComboBox.Items.Clear();
@@ -762,7 +762,7 @@ namespace PinkyAndBrain
             _protoclsDirPath = this._protocolsFolderBrowser.SelectedPath;
             AddFilesToComboBox(_protocolsComboBox, _protoclsDirPath);
         }
-        
+
         /// <summary>
         /// Add the files ends with .xlsx extension to the protocol ComboBox.
         /// </summary>
@@ -774,7 +774,7 @@ namespace PinkyAndBrain
 
                 foreach (string file in filesEntries)
                 {
-                    if(Path.GetExtension(file).Equals(".xlsx"))
+                    if (Path.GetExtension(file).Equals(".xlsx"))
                     {
                         _protocolsComboBox.Items.Add(Path.GetFileName(file));
                     }
@@ -785,18 +785,18 @@ namespace PinkyAndBrain
             if (_protocolsComboBox.Items.Count > 0)
             {
                 _protocolsComboBox.SelectedItem = _protocolsComboBox.Items[0];
-                SetVariables(_protoclsDirPath + "\\" +_protocolsComboBox.Items[0].ToString());
+                SetVariables(_protoclsDirPath + "\\" + _protocolsComboBox.Items[0].ToString());
                 //that was deleted because it show the variables already in the two lines before.
                 //ShowVariablesToGui();
             }
         }
-        
+
         /// <summary>
         /// Sets the variables in the chosen xslx file and stote them in the class members.
         /// </summary>
         private void SetVariables(string dirPath)
         {
-            _excelLoader.ReadProtocolFile(dirPath , ref _variablesList);
+            _excelLoader.ReadProtocolFile(dirPath, ref _variablesList);
         }
 
         /// <summary>
@@ -874,7 +874,7 @@ namespace PinkyAndBrain
         private void _btnStart_Click(object sender, EventArgs e)
         {
             //if everything is o.k start the control loop.
-            if(StartLoopStartCheck())
+            if (StartLoopStartCheck())
             {
                 if (_isEngaged)
                 {
@@ -930,7 +930,7 @@ namespace PinkyAndBrain
         private bool StartLoopStartCheck()
         {
             //if selected rat name is o.k
-            if (_comboBoxSelectedRatName.SelectedItem!=null && _comboBoxStudentName.SelectedItem!=null)
+            if (_comboBoxSelectedRatName.SelectedItem != null && _comboBoxStudentName.SelectedItem != null)
             {
             }
             else
@@ -939,7 +939,7 @@ namespace PinkyAndBrain
                 return false;
             }
 
-            if(int.Parse(_numOfRepetitionsTextBox.Text.ToString()) % int.Parse(_textboxStickOnNumber.Text.ToString()) != 0)
+            if (int.Parse(_numOfRepetitionsTextBox.Text.ToString()) % int.Parse(_textboxStickOnNumber.Text.ToString()) != 0)
             {
                 MessageBox.Show("Error - StickOn number should devide Num Of Repetitions!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -1033,7 +1033,7 @@ namespace PinkyAndBrain
                 _cntrlLoop.Pause();
             }
         }
-        
+
         /// <summary>
         /// Handler for resume experiment button clicked.
         /// </summary>
@@ -1211,7 +1211,7 @@ namespace PinkyAndBrain
             _motocomController.SetRobotControlGroup(1);
 
             double[] robot1Pos = _motocomController.GetRobotPlace();
-            
+
             //when checking that robot position is close to engage for park or park for engage, if delta is small, allow x to be large (it is along the engage-park line).
             bool robot1PosInPark =
                 (Math.Abs(robot1Pos[0] - (MotocomSettings.Default.R1OriginalX - MotocomSettings.Default.ParkingBackwordDistance)) < delta || delta <= 10) &&
@@ -1227,15 +1227,15 @@ namespace PinkyAndBrain
                 Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < delta &&
                 Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < delta;
 
-            string message = "Robot is out of Range.\nMove manually to < "+delta.ToString()+"mm of the Park position. Current location from Park:\n" +
-                "R1XDelta = " + (robot1Pos[0] - (MotocomSettings.Default.R1OriginalX-MotocomSettings.Default.ParkingBackwordDistance)).ToString("0.00") + "mm\n" +
+            string message = "Robot is out of Range.\nMove manually to < " + delta.ToString() + "mm of the Park position. Current location from Park:\n" +
+                "R1XDelta = " + (robot1Pos[0] - (MotocomSettings.Default.R1OriginalX - MotocomSettings.Default.ParkingBackwordDistance)).ToString("0.00") + "mm\n" +
                 "R1YDelta = " + (robot1Pos[1] - MotocomSettings.Default.R1OriginalY).ToString("0.00") + "mm\n" +
                 "R1ZDelta = " + (robot1Pos[2] - MotocomSettings.Default.R1OriginalZ).ToString("0.00") + "mm\n" +
                 "R2XDelta = " + (robot2Pos[0] - MotocomSettings.Default.R2OriginalX).ToString("0.00") + "mm\n" +
                 "R2YDelta = " + (robot2Pos[1] - MotocomSettings.Default.R2OriginalY).ToString("0.00") + "mm\n" +
                 "R2ZDelta = " + (robot2Pos[2] - MotocomSettings.Default.R2OriginalZ).ToString("0.00") + "mm";
 
-            return (robot1PosInPark && robot2PosInPark)?(string.Empty):(message);
+            return (robot1PosInPark && robot2PosInPark) ? (string.Empty) : (message);
         }
 
         /// <summary>
@@ -1289,7 +1289,7 @@ namespace PinkyAndBrain
 
             double[] robot2Pos = _motocomController.GetRobotPlace();
 
-            bool robot2PosInEngage = (Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < delta || delta <=10) &&
+            bool robot2PosInEngage = (Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < delta || delta <= 10) &&
                 Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < delta &&
                 Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < delta;
 
@@ -1301,7 +1301,7 @@ namespace PinkyAndBrain
                 "R2YDelta = " + (robot2Pos[1] - MotocomSettings.Default.R2OriginalY).ToString("0.00") + "mm\n" +
                 "R2ZDelta = " + (robot2Pos[2] - MotocomSettings.Default.R2OriginalZ).ToString("0.00") + "mm";
 
-            return (robot1PosInEngage && robot2PosInEngage)?(string.Empty):(message);
+            return (robot1PosInEngage && robot2PosInEngage) ? (string.Empty) : (message);
         }
         #endregion CHECK_ROBOTS_POSITION_FUNCTIONS
 
@@ -1527,7 +1527,7 @@ namespace PinkyAndBrain
             Dictionary<string, double> varNameToValueDictionaryDoubleListVersion = new Dictionary<string, double>();
             foreach (string varName in varNameToValueDictionary.Keys)
             {
-                varNameToValueDictionaryDoubleListVersion.Add(varName,double.Parse(varNameToValueDictionary[varName]));
+                varNameToValueDictionaryDoubleListVersion.Add(varName, double.Parse(varNameToValueDictionary[varName]));
             }
 
             _acrossVectorValuesGenerator._crossVaryingValsBoth.Add(varNameToValueDictionaryDoubleListVersion);
@@ -1601,11 +1601,11 @@ namespace PinkyAndBrain
         /// <param name="sender">The textbox sender object have been changed.</param>
         /// <param name="e">args.</param>
         /// <param name="varName">The variable name in the variables dictionary to update according to the textbox.</param>
-        private void VariableTextBox_TextBoxLeaved(object sender, EventArgs e , string varName , string varAttibuteName)
+        private void VariableTextBox_TextBoxLeaved(object sender, EventArgs e, string varName, string varAttibuteName)
         {
             TextBox tb = sender as TextBox;
 
-            CheckProperInputSpelling(tb.Text , varName , varAttibuteName);
+            CheckProperInputSpelling(tb.Text, varName, varAttibuteName);
 
             //if a left textbox updated and need to equalize the right checkbox also.
             UpdateRightTextBoxesAvailability(_checkBoxRightAndLeftSame.Checked);
@@ -1617,10 +1617,10 @@ namespace PinkyAndBrain
         /// <param name="sender">The combobox object that was changed.</param>
         /// <param name="e">The args.</param>
         /// <param name="varName">The var name it's combobox changed.</param>
-        private void statusCombo_SelectedIndexChanged(object sender, EventArgs e , string varName)
+        private void statusCombo_SelectedIndexChanged(object sender, EventArgs e, string varName)
         {
             ComboBox cb = sender as ComboBox;
-            string selectedIndex="";
+            string selectedIndex = "";
 
             //decide which index in the status list was selected.
             selectedIndex = StatusIndexByNameDecoder(cb.SelectedItem.ToString());
@@ -1642,17 +1642,17 @@ namespace PinkyAndBrain
             //update the gui textboxes freezing according to the new status.
             foreach (string attribute in _variablesList._variablesDictionary[varName]._description.Keys)
             {
-                if(!attribute.Equals("status"))
+                if (!attribute.Equals("status"))
                 {
                     if (_dynamicAllocatedTextBoxes.ContainsKey(varName + attribute))
-                        FreezeTextBoxAccordingToStatus((TextBox)_dynamicAllocatedTextBoxes[varName + attribute] , varName , attribute.Equals("parameters"));
+                        FreezeTextBoxAccordingToStatus((TextBox)_dynamicAllocatedTextBoxes[varName + attribute], varName, attribute.Equals("parameters"));
                 }
             }
             #endregion TEXTBOXES_FREEZING_NEW_STATUS
 
             //change the parametes attribute textbox for the changed status variable.
             #region PRAMETERS_TEXTBOX_CHANGE_TEXT_SHOW
-            SetParametersTextBox(varName , new StringBuilder());
+            SetParametersTextBox(varName, new StringBuilder());
             #endregion PRAMETERS_TEXTBOX_CHANGE_TEXT_SHOW
         }
 
@@ -1916,6 +1916,26 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Handler for event turnning on/off the clue both side option the rat get afet first reward.
+        /// </summary>
+        /// <param name="sender">The sender checkbox.</param>
+        /// <param name="e">The args.</param>
+        private void _radiobuttonGoCueBothSide_CheckedChanged(object sender, EventArgs e)
+        {
+            _cntrlLoop.EnableCueSoundInBothSide = (sender as RadioButton).Checked;
+        }
+
+        /// <summary>
+        /// Handler for event turnning on/off the clue correct side option the rat get afet first reward.
+        /// </summary>
+        /// <param name="sender">The sender checkbox.</param>
+        /// <param name="e">The args.</param>
+        private void _radiobuttonGoCueCorrectSide_CheckedChanged(object sender, EventArgs e)
+        {
+            _cntrlLoop.EnableCueSoundCorrectSide = (sender as RadioButton).Checked;
+        }
+
+        /// <summary>
         /// Handler for event turnning on/off the right + left parameters must be the same.
         /// </summary>
         /// <param name="sender">The sender CheckBox.</param>
@@ -1923,7 +1943,7 @@ namespace PinkyAndBrain
         private void _checkBoxRightAndLeftSame_CheckedChanged(object sender, EventArgs e)
         {
             _cntrlLoop.EnableRightLeftMustEquals = (sender as CheckBox).Checked;
-            
+
             //make the textboxes for all pairs of right and left to be the same (disable the right textboxes and make thier values the same as the left textboxes).
             UpdateRightTextBoxesAvailability((sender as CheckBox).Checked);
         }
@@ -1944,7 +1964,7 @@ namespace PinkyAndBrain
         /// <param name="equals">If right checkboxes should equal the left checkboxes.</param>
         public void UpdateRightTextBoxesAvailability(bool equals)
         {
-            UpdateRightCheckBoxAvailability("REWARD_RIGHT_DELAY" ,"REWARD_LEFT_DELAY" , equals);
+            UpdateRightCheckBoxAvailability("REWARD_RIGHT_DELAY", "REWARD_LEFT_DELAY", equals);
             UpdateRightCheckBoxAvailability("REWARD_RIGHT_DURATION", "REWARD_LEFT_DURATION", equals);
             UpdateRightCheckBoxAvailability("REWARD_RIGHT_DELAY_SC", "REWARD_LEFT_DELAY_SC", equals);
             UpdateRightCheckBoxAvailability("REWARD_RIGHT_DURATION_SC", "REWARD_LEFT_DURATION_SC", equals);
@@ -1975,7 +1995,7 @@ namespace PinkyAndBrain
         /// <param name="checkboxRightName">The right textbox to be disabled and equaled to the left textbox.</param>
         /// <param name="cehckBoxLeftName">The left textbox to be equals to.</param>
         /// <param name="equals">Inducate if equals and disable or to enable.</param>
-        public void UpdateRightCheckBoxAvailability(string checkboxRightName , string cehckBoxLeftName , bool equals)
+        public void UpdateRightCheckBoxAvailability(string checkboxRightName, string cehckBoxLeftName, bool equals)
         {
             if (_dynamicAllocatedTextBoxes.Keys.Contains(checkboxRightName + "parameters"))
             {
@@ -1993,7 +2013,7 @@ namespace PinkyAndBrain
         }
 
         #endregion MODES
-   
+
         #region PARAMETERS_GROUPBOXFUNCTIONS
         /// <summary>
         /// Showing the variables from the readen excel file to the Gui with option to change them.
@@ -2061,7 +2081,7 @@ namespace PinkyAndBrain
                     if (int.Parse(_variablesList._variablesDictionary[varName]._description["parameters"]
                             ._ratHouseParameter) == 1)
                     {
-                        (_buttonbasesDictionary[varName]as RadioButton).Checked = true;
+                        (_buttonbasesDictionary[varName] as RadioButton).Checked = true;
                     }
                 }
                 else if (_buttonbasesDictionary[varName] is CheckBox)
@@ -2091,11 +2111,11 @@ namespace PinkyAndBrain
         /// <param name="height">The height of the label.</param>
         /// <param name="eachDistance">The distance between each label.</param>
         /// <param name="toolTipString">The tooltipper string to add to the label.</param>
-        public void ShowVariableLabel(string varName , int top , int left , int width  , int height , int eachDistance , string toolTipString = "")
+        public void ShowVariableLabel(string varName, int top, int left, int width, int height, int eachDistance, string toolTipString = "")
         {
             //create the new label to show on the gui.
             Label newLabel = new Label();
-            
+
             //add the label on thr gui.
             _dynamicParametersPanel.Controls.Add(newLabel);
             newLabel.Name = varName;
@@ -2123,7 +2143,7 @@ namespace PinkyAndBrain
         /// <param name="eachDistance">The distance between each textbox of the same attribute in the same line.</param>
         /// <param name="offset">The offset for each textbox of the attribute from the left.</param>
         /// <param name="color">The color to be in the background of wach textbox.</param>
-        private void ShowVariableAttributes(string varName, int top, int left, int width, int height, int eachDistance, int offset , string color)
+        private void ShowVariableAttributes(string varName, int top, int left, int width, int height, int eachDistance, int offset, string color)
         {
             //string builder for making the text to show to the gui.
             StringBuilder sBuilder = new StringBuilder();
@@ -2274,7 +2294,7 @@ namespace PinkyAndBrain
                 case "1":   //static
                 case "6":   //vector
                     //show the _ratHouseParameter.
-                    parametersTextBox.Text = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter);;
+                    parametersTextBox.Text = string.Join(",", _variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter); ;
                     break;
 
                 case "2":   //varying
@@ -2380,7 +2400,7 @@ namespace PinkyAndBrain
         /// <param name="width">The width for each label in the line of the titles.</param>
         /// <param name="height">The height for each label in the line of the titles.</param>
         /// <param name="eachDistance">The distance between each label in the titles line.</param>
-        private void AddVariablesLabelsTitles(ref int top , int left , int width , int height , int eachDistance)
+        private void AddVariablesLabelsTitles(ref int top, int left, int width, int height, int eachDistance)
         {
             //add offset for the first.
             left += eachDistance;
@@ -2409,7 +2429,7 @@ namespace PinkyAndBrain
         /// <param name="partA">The first part to put to the string.</param>
         /// <param name="partB">The second part to put to the string.</param>
         /// <returns>[partA][partB]</returns>
-        private string BracketsAppender(StringBuilder sBuilder , string partA , string partB)
+        private string BracketsAppender(StringBuilder sBuilder, string partA, string partB)
         {
             sBuilder.Clear();
             sBuilder.Append("[");
@@ -2435,9 +2455,9 @@ namespace PinkyAndBrain
             splittedList.RemoveAt(0);
 
             //drop the ']' brackets which appears in the end.
-            for(int i=0;i<splittedList.Count;i++)
+            for (int i = 0; i < splittedList.Count; i++)
             {
-                splittedList[i] = splittedList.ElementAt(i).Substring(0 , splittedList.ElementAt(i).Length-1);
+                splittedList[i] = splittedList.ElementAt(i).Substring(0, splittedList.ElementAt(i).Length - 1);
             }
 
             //return the splitted list.
@@ -2472,7 +2492,7 @@ namespace PinkyAndBrain
         /// <param name="increasingPart">Increament.</param>
         /// <param name="highPart">The high bound.</param>
         /// <returns>The string to the gui by [low:inc:high].</returns>
-        private string ThreeStagesRepresentation(StringBuilder sBuilder , string lowPart , string increasingPart , string highPart)
+        private string ThreeStagesRepresentation(StringBuilder sBuilder, string lowPart, string increasingPart, string highPart)
         {
             sBuilder.Clear();
             sBuilder.Append(lowPart);
@@ -2489,7 +2509,7 @@ namespace PinkyAndBrain
         /// <param name="textBox">The textbox to freeze or not.</param>
         /// <param name="varName">The variable name for chaecing the status for the textbox. </param>
         /// <param name="parametersTextbox">Is the textbox describe a parameters attribute textbox or vector attribute or const attribute values. </param>
-        private void FreezeTextBoxAccordingToStatus(TextBox textBox , string varName , bool parametersTextbox)
+        private void FreezeTextBoxAccordingToStatus(TextBox textBox, string varName, bool parametersTextbox)
         {
             //if const disabled textbox and break no matter what.
             if (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter == "0")
@@ -2514,7 +2534,7 @@ namespace PinkyAndBrain
             }
 
             //reverse the result.
-            if(parametersTextbox)
+            if (parametersTextbox)
             {
                 textBox.Enabled = !textBox.Enabled;
             }
@@ -2566,7 +2586,7 @@ namespace PinkyAndBrain
                 }
                 else
                 {
-                                        //refresh according to the last.
+                    //refresh according to the last.
                     ShowVariablesToGui();
                 }
             }
@@ -2579,7 +2599,7 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="toCheckVector">The list of variables with values to be checked.</param>
         /// <returns>True or false if the input is propper.</returns>
-        private bool CheckVaryingListBoxProperInput(Dictionary<string , string> toCheckVector)
+        private bool CheckVaryingListBoxProperInput(Dictionary<string, string> toCheckVector)
         {
             //check if each attribute is according to both parameters if needed and the brackets also.
             foreach (string varName in toCheckVector.Keys)
@@ -2614,9 +2634,9 @@ namespace PinkyAndBrain
         /// <returns>If the string vector is properlly spelled.</returns>
         private bool VectorNumberChecker(string str)
         {
-                int x1 = str.Count(x => x == ' ') + 1;
-                int y1 = str.Split(' ').Count();
-            if (str.Where(x => (x < '0' || x > '9') && x != ' ' && x != '-' && x!= '.').Count() > 0)
+            int x1 = str.Count(x => x == ' ') + 1;
+            int y1 = str.Split(' ').Count();
+            if (str.Where(x => (x < '0' || x > '9') && x != ' ' && x != '-' && x != '.').Count() > 0)
             {
                 MessageBox.Show("Warnning : Vector can include onlt scalar and spaces.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -2661,7 +2681,7 @@ namespace PinkyAndBrain
                 return false;
 
             //can starts with negative sign.
-            if(str.StartsWith("-"))
+            if (str.StartsWith("-"))
             {
                 str = str.Substring(1, str.Length - 1);
             }
@@ -2791,16 +2811,6 @@ namespace PinkyAndBrain
             });
         }
         #endregion HandSounds
-
-        private void _radiobuttonGoCueBothSide_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void _radiobuttonGoCueCorrectSide_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 
     public class VaryingItem
@@ -2816,16 +2826,16 @@ namespace PinkyAndBrain
         /// <summary>
         /// The text the item have to show.
         /// </summary>
-        public string _text 
+        public string _text
         {
-            get; 
+            get;
             set;
         }
 
         /// <summary>
         /// The index in the varying cross vals list to be referenced to.
         /// </summary>
-        public int _listIndex 
+        public int _listIndex
         {
             get;
             set;
@@ -2846,7 +2856,7 @@ namespace PinkyAndBrain
         /// The system has been stopped by the user.
         /// </summary>
         STOPPED = 1,
-        
+
         /// <summary>
         /// The system has been paused by the user.
         /// </summary>
