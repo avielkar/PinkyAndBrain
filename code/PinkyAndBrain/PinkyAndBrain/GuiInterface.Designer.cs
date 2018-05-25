@@ -92,6 +92,7 @@
             this._ardionoPrtWarningLabel = new System.Windows.Forms.Label();
             this._checkBoxCenterRewardSound = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._checkboxSideRewardSound = new System.Windows.Forms.CheckBox();
             this._checkboxRRDelta = new System.Windows.Forms.CheckBox();
             this._checkBoxRightAndLeftSame = new System.Windows.Forms.CheckBox();
             this._checkBoxCorrectClueSound = new System.Windows.Forms.CheckBox();
@@ -117,7 +118,6 @@
             this._btnSaveProtocol = new System.Windows.Forms.Button();
             this._textboxNewProtocolName = new System.Windows.Forms.TextBox();
             this._labelNewProtocolName = new System.Windows.Forms.Label();
-            this._checkboxSideRewardSound = new System.Windows.Forms.CheckBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -336,7 +336,7 @@
             // _checkBoxAutoChoice
             // 
             this._checkBoxAutoChoice.AutoSize = true;
-            this._checkBoxAutoChoice.Location = new System.Drawing.Point(11, 69);
+            this._checkBoxAutoChoice.Location = new System.Drawing.Point(5, 69);
             this._checkBoxAutoChoice.Name = "_checkBoxAutoChoice";
             this._checkBoxAutoChoice.Size = new System.Drawing.Size(84, 17);
             this._checkBoxAutoChoice.TabIndex = 9;
@@ -647,7 +647,7 @@
             this._autosGroupBox.Controls.Add(this._checkBoxAutoChoice);
             this._autosGroupBox.Location = new System.Drawing.Point(1036, 794);
             this._autosGroupBox.Name = "_autosGroupBox";
-            this._autosGroupBox.Size = new System.Drawing.Size(109, 106);
+            this._autosGroupBox.Size = new System.Drawing.Size(95, 106);
             this._autosGroupBox.TabIndex = 20;
             this._autosGroupBox.TabStop = false;
             this._autosGroupBox.Text = "Autos";
@@ -655,7 +655,7 @@
             // _checkBoxAutoStart
             // 
             this._checkBoxAutoStart.AutoSize = true;
-            this._checkBoxAutoStart.Location = new System.Drawing.Point(11, 23);
+            this._checkBoxAutoStart.Location = new System.Drawing.Point(5, 23);
             this._checkBoxAutoStart.Name = "_checkBoxAutoStart";
             this._checkBoxAutoStart.Size = new System.Drawing.Size(73, 17);
             this._checkBoxAutoStart.TabIndex = 11;
@@ -666,7 +666,7 @@
             // _checkBoxAutoFixation
             // 
             this._checkBoxAutoFixation.AutoSize = true;
-            this._checkBoxAutoFixation.Location = new System.Drawing.Point(11, 46);
+            this._checkBoxAutoFixation.Location = new System.Drawing.Point(5, 46);
             this._checkBoxAutoFixation.Name = "_checkBoxAutoFixation";
             this._checkBoxAutoFixation.Size = new System.Drawing.Size(87, 17);
             this._checkBoxAutoFixation.TabIndex = 10;
@@ -719,17 +719,28 @@
             this.groupBox1.Controls.Add(this._checkBoxBreakFixationSoundEnable);
             this.groupBox1.Controls.Add(this._checkBoxCenterRewardSound);
             this.groupBox1.Controls.Add(this._checkBoxFixationOnly);
-            this.groupBox1.Location = new System.Drawing.Point(1151, 794);
+            this.groupBox1.Location = new System.Drawing.Point(1137, 794);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(333, 106);
+            this.groupBox1.Size = new System.Drawing.Size(347, 106);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Special Modes";
             // 
+            // _checkboxSideRewardSound
+            // 
+            this._checkboxSideRewardSound.AutoSize = true;
+            this._checkboxSideRewardSound.Location = new System.Drawing.Point(2, 84);
+            this._checkboxSideRewardSound.Name = "_checkboxSideRewardSound";
+            this._checkboxSideRewardSound.Size = new System.Drawing.Size(118, 17);
+            this._checkboxSideRewardSound.TabIndex = 19;
+            this._checkboxSideRewardSound.Text = "Side Rewad Sound";
+            this._checkboxSideRewardSound.UseVisualStyleBackColor = true;
+            this._checkboxSideRewardSound.CheckedChanged += new System.EventHandler(this._checkboxSideRewardSound_CheckedChanged);
+            // 
             // _checkboxRRDelta
             // 
             this._checkboxRRDelta.AutoSize = true;
-            this._checkboxRRDelta.Location = new System.Drawing.Point(101, 48);
+            this._checkboxRRDelta.Location = new System.Drawing.Point(131, 48);
             this._checkboxRRDelta.Name = "_checkboxRRDelta";
             this._checkboxRRDelta.Size = new System.Drawing.Size(73, 17);
             this._checkboxRRDelta.TabIndex = 18;
@@ -740,7 +751,7 @@
             // _checkBoxRightAndLeftSame
             // 
             this._checkBoxRightAndLeftSame.AutoSize = true;
-            this._checkBoxRightAndLeftSame.Location = new System.Drawing.Point(207, 76);
+            this._checkBoxRightAndLeftSame.Location = new System.Drawing.Point(236, 76);
             this._checkBoxRightAndLeftSame.Name = "_checkBoxRightAndLeftSame";
             this._checkBoxRightAndLeftSame.Size = new System.Drawing.Size(82, 17);
             this._checkBoxRightAndLeftSame.TabIndex = 17;
@@ -751,7 +762,7 @@
             // _checkBoxCorrectClueSound
             // 
             this._checkBoxCorrectClueSound.AutoSize = true;
-            this._checkBoxCorrectClueSound.Location = new System.Drawing.Point(205, 57);
+            this._checkBoxCorrectClueSound.Location = new System.Drawing.Point(234, 57);
             this._checkBoxCorrectClueSound.Name = "_checkBoxCorrectClueSound";
             this._checkBoxCorrectClueSound.Size = new System.Drawing.Size(118, 17);
             this._checkBoxCorrectClueSound.TabIndex = 16;
@@ -762,18 +773,18 @@
             // _checkBoxEnableBothSidedClueSound
             // 
             this._checkBoxEnableBothSidedClueSound.AutoSize = true;
-            this._checkBoxEnableBothSidedClueSound.Location = new System.Drawing.Point(205, 38);
+            this._checkBoxEnableBothSidedClueSound.Location = new System.Drawing.Point(234, 38);
             this._checkBoxEnableBothSidedClueSound.Name = "_checkBoxEnableBothSidedClueSound";
-            this._checkBoxEnableBothSidedClueSound.Size = new System.Drawing.Size(104, 17);
+            this._checkBoxEnableBothSidedClueSound.Size = new System.Drawing.Size(98, 17);
             this._checkBoxEnableBothSidedClueSound.TabIndex = 15;
-            this._checkBoxEnableBothSidedClueSound.Text = "R+L Clue Sound";
+            this._checkBoxEnableBothSidedClueSound.Text = "Go Clue Sound";
             this._checkBoxEnableBothSidedClueSound.UseVisualStyleBackColor = true;
             this._checkBoxEnableBothSidedClueSound.CheckedChanged += new System.EventHandler(this._tbEnableBothSidedClueSound_CheckedChanged);
             // 
             // _checkboxErrorSoundOn
             // 
             this._checkboxErrorSoundOn.AutoSize = true;
-            this._checkboxErrorSoundOn.Location = new System.Drawing.Point(205, 20);
+            this._checkboxErrorSoundOn.Location = new System.Drawing.Point(234, 20);
             this._checkboxErrorSoundOn.Name = "_checkboxErrorSoundOn";
             this._checkboxErrorSoundOn.Size = new System.Drawing.Size(82, 17);
             this._checkboxErrorSoundOn.TabIndex = 14;
@@ -784,7 +795,7 @@
             // _checkboxSecondResponseChance
             // 
             this._checkboxSecondResponseChance.AutoSize = true;
-            this._checkboxSecondResponseChance.Location = new System.Drawing.Point(101, 21);
+            this._checkboxSecondResponseChance.Location = new System.Drawing.Point(131, 21);
             this._checkboxSecondResponseChance.Name = "_checkboxSecondResponseChance";
             this._checkboxSecondResponseChance.Size = new System.Drawing.Size(103, 17);
             this._checkboxSecondResponseChance.TabIndex = 13;
@@ -974,17 +985,6 @@
             this._labelNewProtocolName.Size = new System.Drawing.Size(102, 13);
             this._labelNewProtocolName.TabIndex = 27;
             this._labelNewProtocolName.Text = "New Protocol Name";
-            // 
-            // _checkboxSideRewardSound
-            // 
-            this._checkboxSideRewardSound.AutoSize = true;
-            this._checkboxSideRewardSound.Location = new System.Drawing.Point(2, 84);
-            this._checkboxSideRewardSound.Name = "_checkboxSideRewardSound";
-            this._checkboxSideRewardSound.Size = new System.Drawing.Size(118, 17);
-            this._checkboxSideRewardSound.TabIndex = 19;
-            this._checkboxSideRewardSound.Text = "Side Rewad Sound";
-            this._checkboxSideRewardSound.UseVisualStyleBackColor = true;
-            this._checkboxSideRewardSound.CheckedChanged += new System.EventHandler(this._checkboxSideRewardSound_CheckedChanged);
             // 
             // GuiInterface
             // 
