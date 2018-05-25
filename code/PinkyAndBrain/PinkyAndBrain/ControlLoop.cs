@@ -343,6 +343,8 @@ namespace PinkyAndBrain
         /// </summary>
         public bool CenterRewardSound { get; set; }
 
+        public bool SideRewardSound { get; set; }
+
         /// <summary>
         /// Indicates if the mode of the trial is only untill the fixation stage (include).
         /// </summary>
