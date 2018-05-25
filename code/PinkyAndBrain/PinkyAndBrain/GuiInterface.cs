@@ -1963,6 +1963,23 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Updates the cue radio buttons disable/enable status according to the cue checkbox status.
+        /// </summary>
+        public void UpdateCueGroupRadioButtons()
+        {
+            if ((_buttonbasesDictionary["GO_CUE_SOUND"] as CheckBox).Checked)
+            {
+                (_buttonbasesDictionary["CORRECT_CUE_SOUND"] as RadioButton).Enabled = true;
+                (_buttonbasesDictionary["BOTH_SIDE_CUE_SOUND"] as RadioButton).Enabled = true;
+            }
+            else
+            {
+                (_buttonbasesDictionary["CORRECT_CUE_SOUND"] as RadioButton).Enabled = false;
+                (_buttonbasesDictionary["BOTH_SIDE_CUE_SOUND"] as RadioButton).Enabled = false;
+            }
+        }
+
+        /// <summary>
         /// Update a right textboxe with the given name to be equals and disabled according to equals parameter.
         /// </summary>
         /// <param name="checkboxRightName">The right textbox to be disabled and equaled to the left textbox.</param>
@@ -2031,11 +2048,17 @@ namespace PinkyAndBrain
             //reset checkboxes statuses before matching them to the protocol file.
             foreach (ButtonBase item in _buttonbasesDictionary.Values)
             {
-                if(item is CheckBox)
+                if (item is CheckBox)
+                {
                     (item as CheckBox).Checked = false;
+                }
                 else if (item is RadioButton)
+                {
                     (item as RadioButton).Checked = false;
-                //todo: add exception if not of these types.
+                    (item as RadioButton).Enabled = false;
+                }
+
+                //todo: add exception if not of these types
             }
 
             //filter only the variables where the status is  -1 (for the checkboxes for the gui).
@@ -2065,6 +2088,7 @@ namespace PinkyAndBrain
 
             //update if right equals to left according to the checkbox status.
             UpdateRightTextBoxesAvailability(_checkBoxRightAndLeftSame.Checked);
+            UpdateCueGroupRadioButtons();
         }
 
         /// <summary>
