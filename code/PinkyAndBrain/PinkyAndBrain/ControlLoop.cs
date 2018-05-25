@@ -1070,11 +1070,17 @@ namespace PinkyAndBrain
                     {
                         _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterLeftSecondChance);
 
+                        //add the 2nd response real time to the real times dictionary.
+                        _trialEventRealTiming.Add("RatSecondDecision", _controlLoopTrialTimer.ElapsedMilliseconds);
+
                         return new Tuple<RatDecison, bool>(RatDecison.Left, true);
                     }
                     else
                     {
                         _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterRightSecondChance);
+
+                        //add the 2nd response real time to the real times dictionary.
+                        _trialEventRealTiming.Add("RatSecondDecision", _controlLoopTrialTimer.ElapsedMilliseconds);
 
                         return new Tuple<RatDecison, bool>(RatDecison.Right, true);
                     }
