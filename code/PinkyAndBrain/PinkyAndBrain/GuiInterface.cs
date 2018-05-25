@@ -1897,19 +1897,9 @@ namespace PinkyAndBrain
         /// <summary>
         /// Handler for event turnning on/off the clue the rat get afet first reward.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void _cbCorrectClueSound_CheckedChanged(object sender, EventArgs e)
-        {
-            _cntrlLoop.EnableClueSoundCorrectSide = (sender as CheckBox).Checked;
-        }
-
-        /// <summary>
-        /// Handler for event turnning on/off the clue the rat get afet first reward.
-        /// </summary>
         /// <param name="sender">The sender checkbox.</param>
         /// <param name="e">The args.</param>
-        private void _tbEnableBothSidedClueSound_CheckedChanged(object sender, EventArgs e)
+        private void _tbEnableGoClueSound_CheckedChanged(object sender, EventArgs e)
         {
             _cntrlLoop.EnableClueSoundInBothSide = (sender as CheckBox).Checked;
 

@@ -789,7 +789,7 @@
             this._checkBoxEnableGoCue.TabIndex = 15;
             this._checkBoxEnableGoCue.Text = "Go Cue";
             this._checkBoxEnableGoCue.UseVisualStyleBackColor = true;
-            this._checkBoxEnableGoCue.CheckedChanged += new System.EventHandler(this._tbEnableBothSidedClueSound_CheckedChanged);
+            this._checkBoxEnableGoCue.CheckedChanged += new System.EventHandler(this._tbEnableGoClueSound_CheckedChanged);
             // 
             // _checkboxErrorSoundOn
             // 
