@@ -947,6 +947,9 @@ namespace PinkyAndBrain
                     //update the current rat decision state.
                     _currentRatDecision = RatDecison.Left;
 
+                    //add the response real time to the real times dictionary.
+                    _trialEventRealTiming.Add("RatDecision", _controlLoopTrialTimer.ElapsedMilliseconds);
+
                     //write the event that te rat enter it's head to the left to the AlphaOmega.
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterLeft);
 
@@ -991,6 +994,9 @@ namespace PinkyAndBrain
 
                     //increase the total choices for wromg or correct choices (some choices).
                     _totalChoices++;
+
+                    //add the response real time to the real times dictionary.
+                    _trialEventRealTiming.Add("RatDecision", _controlLoopTrialTimer.ElapsedMilliseconds);
 
                     //write the event that te rat enter it's head to the right to the AlphaOmega.
                     _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadEnterRight);
