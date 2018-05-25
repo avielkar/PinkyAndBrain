@@ -92,15 +92,14 @@
             this._ardionoPrtWarningLabel = new System.Windows.Forms.Label();
             this._checkBoxCenterRewardSound = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this._checkboxSideRewardSound = new System.Windows.Forms.CheckBox();
             this._checkboxRRDelta = new System.Windows.Forms.CheckBox();
             this._checkBoxRightAndLeftSame = new System.Windows.Forms.CheckBox();
-            this._checkBoxCorrectClueSound = new System.Windows.Forms.CheckBox();
-            this._checkBoxEnableBothSidedClueSound = new System.Windows.Forms.CheckBox();
-            this._checkboxErrorSoundOn = new System.Windows.Forms.CheckBox();
             this._checkboxSecondResponseChance = new System.Windows.Forms.CheckBox();
-            this._checkBoxBreakFixationSoundEnable = new System.Windows.Forms.CheckBox();
             this._checkBoxFixationOnly = new System.Windows.Forms.CheckBox();
+            this._checkboxSideRewardSound = new System.Windows.Forms.CheckBox();
+            this._checkBoxEnableGoCue = new System.Windows.Forms.CheckBox();
+            this._checkboxErrorSoundOn = new System.Windows.Forms.CheckBox();
+            this._checkBoxBreakFixationSoundEnable = new System.Windows.Forms.CheckBox();
             this._groupboxLedsController = new System.Windows.Forms.GroupBox();
             this._textBoxLedBlueColor = new System.Windows.Forms.TextBox();
             this._textBoxLedGreenColor = new System.Windows.Forms.TextBox();
@@ -119,6 +118,9 @@
             this._textboxNewProtocolName = new System.Windows.Forms.TextBox();
             this._labelNewProtocolName = new System.Windows.Forms.Label();
             this._groupboxSoundModes = new System.Windows.Forms.GroupBox();
+            this._groupboxGoCue = new System.Windows.Forms.GroupBox();
+            this._radiobuttonGoCueCorrectSide = new System.Windows.Forms.RadioButton();
+            this._radiobuttonGoCueBothSide = new System.Windows.Forms.RadioButton();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -138,6 +140,7 @@
             this._groupboxLedsController.SuspendLayout();
             this._groupboxHandsSounds.SuspendLayout();
             this._groupboxSoundModes.SuspendLayout();
+            this._groupboxGoCue.SuspendLayout();
             this.SuspendLayout();
             // 
             // _protocolsComboBox
@@ -701,7 +704,7 @@
             // _checkBoxCenterRewardSound
             // 
             this._checkBoxCenterRewardSound.AutoSize = true;
-            this._checkBoxCenterRewardSound.Location = new System.Drawing.Point(7, 19);
+            this._checkBoxCenterRewardSound.Location = new System.Drawing.Point(4, 19);
             this._checkBoxCenterRewardSound.Name = "_checkBoxCenterRewardSound";
             this._checkBoxCenterRewardSound.Size = new System.Drawing.Size(97, 17);
             this._checkBoxCenterRewardSound.TabIndex = 12;
@@ -721,17 +724,6 @@
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Special Modes";
-            // 
-            // _checkboxSideRewardSound
-            // 
-            this._checkboxSideRewardSound.AutoSize = true;
-            this._checkboxSideRewardSound.Location = new System.Drawing.Point(7, 40);
-            this._checkboxSideRewardSound.Name = "_checkboxSideRewardSound";
-            this._checkboxSideRewardSound.Size = new System.Drawing.Size(84, 17);
-            this._checkboxSideRewardSound.TabIndex = 19;
-            this._checkboxSideRewardSound.Text = "Side Rewad";
-            this._checkboxSideRewardSound.UseVisualStyleBackColor = true;
-            this._checkboxSideRewardSound.CheckedChanged += new System.EventHandler(this._checkboxSideRewardSound_CheckedChanged);
             // 
             // _checkboxRRDelta
             // 
@@ -755,39 +747,6 @@
             this._checkBoxRightAndLeftSame.UseVisualStyleBackColor = true;
             this._checkBoxRightAndLeftSame.CheckedChanged += new System.EventHandler(this._checkBoxRightAndLeftSame_CheckedChanged);
             // 
-            // _checkBoxCorrectClueSound
-            // 
-            this._checkBoxCorrectClueSound.AutoSize = true;
-            this._checkBoxCorrectClueSound.Location = new System.Drawing.Point(106, 20);
-            this._checkBoxCorrectClueSound.Name = "_checkBoxCorrectClueSound";
-            this._checkBoxCorrectClueSound.Size = new System.Drawing.Size(84, 17);
-            this._checkBoxCorrectClueSound.TabIndex = 16;
-            this._checkBoxCorrectClueSound.Text = "Correct Clue";
-            this._checkBoxCorrectClueSound.UseVisualStyleBackColor = true;
-            this._checkBoxCorrectClueSound.CheckedChanged += new System.EventHandler(this._cbCorrectClueSound_CheckedChanged);
-            // 
-            // _checkBoxEnableBothSidedClueSound
-            // 
-            this._checkBoxEnableBothSidedClueSound.AutoSize = true;
-            this._checkBoxEnableBothSidedClueSound.Location = new System.Drawing.Point(107, 40);
-            this._checkBoxEnableBothSidedClueSound.Name = "_checkBoxEnableBothSidedClueSound";
-            this._checkBoxEnableBothSidedClueSound.Size = new System.Drawing.Size(62, 17);
-            this._checkBoxEnableBothSidedClueSound.TabIndex = 15;
-            this._checkBoxEnableBothSidedClueSound.Text = "Go Cue";
-            this._checkBoxEnableBothSidedClueSound.UseVisualStyleBackColor = true;
-            this._checkBoxEnableBothSidedClueSound.CheckedChanged += new System.EventHandler(this._tbEnableBothSidedClueSound_CheckedChanged);
-            // 
-            // _checkboxErrorSoundOn
-            // 
-            this._checkboxErrorSoundOn.AutoSize = true;
-            this._checkboxErrorSoundOn.Location = new System.Drawing.Point(7, 82);
-            this._checkboxErrorSoundOn.Name = "_checkboxErrorSoundOn";
-            this._checkboxErrorSoundOn.Size = new System.Drawing.Size(48, 17);
-            this._checkboxErrorSoundOn.TabIndex = 14;
-            this._checkboxErrorSoundOn.Text = "Error";
-            this._checkboxErrorSoundOn.UseVisualStyleBackColor = true;
-            this._checkboxErrorSoundOn.CheckedChanged += new System.EventHandler(this._checkboxErrorSoundOn_CheckedChanged);
-            // 
             // _checkboxSecondResponseChance
             // 
             this._checkboxSecondResponseChance.AutoSize = true;
@@ -799,17 +758,6 @@
             this._checkboxSecondResponseChance.UseVisualStyleBackColor = true;
             this._checkboxSecondResponseChance.CheckedChanged += new System.EventHandler(this._checkboxSecondResponseChance_CheckedChanged);
             // 
-            // _checkBoxBreakFixationSoundEnable
-            // 
-            this._checkBoxBreakFixationSoundEnable.AutoSize = true;
-            this._checkBoxBreakFixationSoundEnable.Location = new System.Drawing.Point(7, 61);
-            this._checkBoxBreakFixationSoundEnable.Name = "_checkBoxBreakFixationSoundEnable";
-            this._checkBoxBreakFixationSoundEnable.Size = new System.Drawing.Size(42, 17);
-            this._checkBoxBreakFixationSoundEnable.TabIndex = 1;
-            this._checkBoxBreakFixationSoundEnable.Text = "B.F";
-            this._checkBoxBreakFixationSoundEnable.UseVisualStyleBackColor = true;
-            this._checkBoxBreakFixationSoundEnable.CheckedChanged += new System.EventHandler(this._breakFixationSoundEnableCheckBox_CheckedChanged);
-            // 
             // _checkBoxFixationOnly
             // 
             this._checkBoxFixationOnly.AutoSize = true;
@@ -820,6 +768,50 @@
             this._checkBoxFixationOnly.Text = "Fixation Only";
             this._checkBoxFixationOnly.UseVisualStyleBackColor = true;
             this._checkBoxFixationOnly.CheckedChanged += new System.EventHandler(this._fixationOnlyCheckBox_CheckedChanged);
+            // 
+            // _checkboxSideRewardSound
+            // 
+            this._checkboxSideRewardSound.AutoSize = true;
+            this._checkboxSideRewardSound.Location = new System.Drawing.Point(4, 40);
+            this._checkboxSideRewardSound.Name = "_checkboxSideRewardSound";
+            this._checkboxSideRewardSound.Size = new System.Drawing.Size(84, 17);
+            this._checkboxSideRewardSound.TabIndex = 19;
+            this._checkboxSideRewardSound.Text = "Side Rewad";
+            this._checkboxSideRewardSound.UseVisualStyleBackColor = true;
+            this._checkboxSideRewardSound.CheckedChanged += new System.EventHandler(this._checkboxSideRewardSound_CheckedChanged);
+            // 
+            // _checkBoxEnableGoCue
+            // 
+            this._checkBoxEnableGoCue.AutoSize = true;
+            this._checkBoxEnableGoCue.Location = new System.Drawing.Point(101, 19);
+            this._checkBoxEnableGoCue.Name = "_checkBoxEnableGoCue";
+            this._checkBoxEnableGoCue.Size = new System.Drawing.Size(62, 17);
+            this._checkBoxEnableGoCue.TabIndex = 15;
+            this._checkBoxEnableGoCue.Text = "Go Cue";
+            this._checkBoxEnableGoCue.UseVisualStyleBackColor = true;
+            this._checkBoxEnableGoCue.CheckedChanged += new System.EventHandler(this._tbEnableBothSidedClueSound_CheckedChanged);
+            // 
+            // _checkboxErrorSoundOn
+            // 
+            this._checkboxErrorSoundOn.AutoSize = true;
+            this._checkboxErrorSoundOn.Location = new System.Drawing.Point(4, 82);
+            this._checkboxErrorSoundOn.Name = "_checkboxErrorSoundOn";
+            this._checkboxErrorSoundOn.Size = new System.Drawing.Size(48, 17);
+            this._checkboxErrorSoundOn.TabIndex = 14;
+            this._checkboxErrorSoundOn.Text = "Error";
+            this._checkboxErrorSoundOn.UseVisualStyleBackColor = true;
+            this._checkboxErrorSoundOn.CheckedChanged += new System.EventHandler(this._checkboxErrorSoundOn_CheckedChanged);
+            // 
+            // _checkBoxBreakFixationSoundEnable
+            // 
+            this._checkBoxBreakFixationSoundEnable.AutoSize = true;
+            this._checkBoxBreakFixationSoundEnable.Location = new System.Drawing.Point(4, 61);
+            this._checkBoxBreakFixationSoundEnable.Name = "_checkBoxBreakFixationSoundEnable";
+            this._checkBoxBreakFixationSoundEnable.Size = new System.Drawing.Size(42, 17);
+            this._checkBoxBreakFixationSoundEnable.TabIndex = 1;
+            this._checkBoxBreakFixationSoundEnable.Text = "B.F";
+            this._checkBoxBreakFixationSoundEnable.UseVisualStyleBackColor = true;
+            this._checkBoxBreakFixationSoundEnable.CheckedChanged += new System.EventHandler(this._breakFixationSoundEnableCheckBox_CheckedChanged);
             // 
             // _groupboxLedsController
             // 
@@ -984,11 +976,11 @@
             // 
             // _groupboxSoundModes
             // 
+            this._groupboxSoundModes.Controls.Add(this._groupboxGoCue);
             this._groupboxSoundModes.Controls.Add(this._checkboxSideRewardSound);
             this._groupboxSoundModes.Controls.Add(this._checkBoxCenterRewardSound);
-            this._groupboxSoundModes.Controls.Add(this._checkBoxCorrectClueSound);
             this._groupboxSoundModes.Controls.Add(this._checkBoxBreakFixationSoundEnable);
-            this._groupboxSoundModes.Controls.Add(this._checkBoxEnableBothSidedClueSound);
+            this._groupboxSoundModes.Controls.Add(this._checkBoxEnableGoCue);
             this._groupboxSoundModes.Controls.Add(this._checkboxErrorSoundOn);
             this._groupboxSoundModes.Location = new System.Drawing.Point(1254, 794);
             this._groupboxSoundModes.Name = "_groupboxSoundModes";
@@ -996,6 +988,41 @@
             this._groupboxSoundModes.TabIndex = 28;
             this._groupboxSoundModes.TabStop = false;
             this._groupboxSoundModes.Text = "Sound Modes";
+            // 
+            // _groupboxGoCue
+            // 
+            this._groupboxGoCue.Controls.Add(this._radiobuttonGoCueCorrectSide);
+            this._groupboxGoCue.Controls.Add(this._radiobuttonGoCueBothSide);
+            this._groupboxGoCue.Location = new System.Drawing.Point(103, 37);
+            this._groupboxGoCue.Name = "_groupboxGoCue";
+            this._groupboxGoCue.Size = new System.Drawing.Size(117, 50);
+            this._groupboxGoCue.TabIndex = 20;
+            this._groupboxGoCue.TabStop = false;
+            this._groupboxGoCue.Text = "GoCue";
+            // 
+            // _radiobuttonGoCueCorrectSide
+            // 
+            this._radiobuttonGoCueCorrectSide.AutoSize = true;
+            this._radiobuttonGoCueCorrectSide.Location = new System.Drawing.Point(7, 31);
+            this._radiobuttonGoCueCorrectSide.Name = "_radiobuttonGoCueCorrectSide";
+            this._radiobuttonGoCueCorrectSide.Size = new System.Drawing.Size(83, 17);
+            this._radiobuttonGoCueCorrectSide.TabIndex = 1;
+            this._radiobuttonGoCueCorrectSide.TabStop = true;
+            this._radiobuttonGoCueCorrectSide.Text = "Correct Side";
+            this._radiobuttonGoCueCorrectSide.UseVisualStyleBackColor = true;
+            this._radiobuttonGoCueCorrectSide.CheckedChanged += new System.EventHandler(this._radiobuttonGoCueCorrectSide_CheckedChanged);
+            // 
+            // _radiobuttonGoCueBothSide
+            // 
+            this._radiobuttonGoCueBothSide.AutoSize = true;
+            this._radiobuttonGoCueBothSide.Location = new System.Drawing.Point(7, 14);
+            this._radiobuttonGoCueBothSide.Name = "_radiobuttonGoCueBothSide";
+            this._radiobuttonGoCueBothSide.Size = new System.Drawing.Size(71, 17);
+            this._radiobuttonGoCueBothSide.TabIndex = 0;
+            this._radiobuttonGoCueBothSide.TabStop = true;
+            this._radiobuttonGoCueBothSide.Text = "Both Side";
+            this._radiobuttonGoCueBothSide.UseVisualStyleBackColor = true;
+            this._radiobuttonGoCueBothSide.CheckedChanged += new System.EventHandler(this._radiobuttonGoCueBothSide_CheckedChanged);
             // 
             // GuiInterface
             // 
@@ -1057,6 +1084,8 @@
             this._groupboxHandsSounds.ResumeLayout(false);
             this._groupboxSoundModes.ResumeLayout(false);
             this._groupboxSoundModes.PerformLayout();
+            this._groupboxGoCue.ResumeLayout(false);
+            this._groupboxGoCue.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1136,8 +1165,7 @@
         private System.Windows.Forms.Button _btnBreakFixationSound;
         private System.Windows.Forms.Button _btnRewardSound;
         private System.Windows.Forms.CheckBox _checkboxErrorSoundOn;
-        private System.Windows.Forms.CheckBox _checkBoxCorrectClueSound;
-        private System.Windows.Forms.CheckBox _checkBoxEnableBothSidedClueSound;
+        private System.Windows.Forms.CheckBox _checkBoxEnableGoCue;
         private System.Windows.Forms.Button _btnSaveProtocol;
         private System.Windows.Forms.TextBox _textboxNewProtocolName;
         private System.Windows.Forms.Label _labelNewProtocolName;
@@ -1151,5 +1179,8 @@
         private System.Windows.Forms.CheckBox _checkboxRRDelta;
         private System.Windows.Forms.CheckBox _checkboxSideRewardSound;
         private System.Windows.Forms.GroupBox _groupboxSoundModes;
+        private System.Windows.Forms.GroupBox _groupboxGoCue;
+        private System.Windows.Forms.RadioButton _radiobuttonGoCueCorrectSide;
+        private System.Windows.Forms.RadioButton _radiobuttonGoCueBothSide;
     }
 }

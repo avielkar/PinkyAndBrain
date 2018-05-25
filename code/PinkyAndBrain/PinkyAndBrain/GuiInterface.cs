@@ -50,9 +50,9 @@ namespace PinkyAndBrain
         private Dictionary<string , Control> _dynamicAllocatedTextBoxes;
 
         /// <summary>
-        /// Dictionary describes all checkboxes names in the gui as keys with their conrol as value.
+        /// Dictionary describes all ButtonBase (checkboxes and radiobuttons) names in the gui as keys with their conrol as value.
         /// </summary>
-        private Dictionary<string, CheckBox> _checkboxesDictionary;
+        private Dictionary<string, ButtonBase> _buttonbasesDictionary;
 
         /// <summary>
         /// A list holds all the titles for the variables attribute to show in the title of the table.
@@ -806,7 +806,7 @@ namespace PinkyAndBrain
         /// <param name="e">The args.</param>
         private void _btnSaveProtocol_Click(object sender, EventArgs e)
         {
-            _excelLoader.WriteProtocolFile(_protoclsDirPath + @"\" + _textboxNewProtocolName.Text.ToString(), _variablesList, _checkboxesDictionary);
+            _excelLoader.WriteProtocolFile(_protoclsDirPath + @"\" + _textboxNewProtocolName.Text.ToString(), _variablesList, _buttonbasesDictionary);
         }
         #endregion PROTOCOL_GROUPBOX_FUNCTION
 
@@ -2018,19 +2018,37 @@ namespace PinkyAndBrain
             }
 
             //reset checkboxes statuses before matching them to the protocol file.
-            foreach (CheckBox item in _checkboxesDictionary.Values)
+            foreach (ButtonBase item in _buttonbasesDictionary.Values)
             {
-                item.Checked = false;
+                if(item is CheckBox)
+                    (item as CheckBox).Checked = false;
+                else if (item is RadioButton)
+                    (item as RadioButton).Checked = false;
+                //todo: add exception if not of these types.
             }
 
             //filter only the variables where the status is  -1 (for the checkboxes for the gui).
             foreach (string varName in _variablesList._variablesDictionary.Keys.Where(name => int.Parse(_variablesList._variablesDictionary[name]._description["status"]._ratHouseParameter) == -1))
             {
-                _checkboxesDictionary[varName].Checked = false;
-
-                if (int.Parse(_variablesList._variablesDictionary[varName]._description["parameters"]._ratHouseParameter) == 1)
+                if (_buttonbasesDictionary[varName] is RadioButton)
                 {
-                    _checkboxesDictionary[varName].Checked = true;
+                    (_buttonbasesDictionary[varName] as RadioButton).Checked = false;
+
+                    if (int.Parse(_variablesList._variablesDictionary[varName]._description["parameters"]
+                            ._ratHouseParameter) == 1)
+                    {
+                        (_buttonbasesDictionary[varName]as RadioButton).Checked = true;
+                    }
+                }
+                else if (_buttonbasesDictionary[varName] is CheckBox)
+                {
+                    (_buttonbasesDictionary[varName] as CheckBox).Checked = false;
+
+                    if (int.Parse(_variablesList._variablesDictionary[varName]._description["parameters"]
+                            ._ratHouseParameter) == 1)
+                    {
+                        (_buttonbasesDictionary[varName] as CheckBox).Checked = true;
+                    }
                 }
             }
 
@@ -2283,21 +2301,23 @@ namespace PinkyAndBrain
         /// </summary>
         private void InitializeCheckBoxesDictionary()
         {
-            _checkboxesDictionary = new Dictionary<string, CheckBox>();
+            _buttonbasesDictionary = new Dictionary<string, ButtonBase>();
 
-            _checkboxesDictionary.Add("AUTO_FIXATION", _checkBoxAutoFixation);
-            _checkboxesDictionary.Add("CENTER_REWARD_SOUND", _checkBoxCenterRewardSound);
-            _checkboxesDictionary.Add("SIDE_REWARD_SOUND", _checkboxSideRewardSound);
-            _checkboxesDictionary.Add("AUTO_START", _checkBoxAutoStart);
-            _checkboxesDictionary.Add("AUTO_CHOICE", _checkBoxAutoChoice);
-            _checkboxesDictionary.Add("B.F_SOUND_ON", _checkBoxBreakFixationSoundEnable);
-            _checkboxesDictionary.Add("SEC_RESP_CHANCE", _checkboxSecondResponseChance);
-            _checkboxesDictionary.Add("CORRECT_CLUE_SOUND", _checkBoxCorrectClueSound);
-            _checkboxesDictionary.Add("R+L_CLUE_SOUND", _checkBoxEnableBothSidedClueSound);
-            _checkboxesDictionary.Add("ERROR_SOUND", _checkboxErrorSoundOn);
-            _checkboxesDictionary.Add("FIXATION_ONLY", _checkBoxFixationOnly);
-            _checkboxesDictionary.Add("RIGHT_LEFT_PARAMETERS_EQUALS", _checkBoxRightAndLeftSame);
-            _checkboxesDictionary.Add("RR_DELTA", _checkboxRRDelta);
+            _buttonbasesDictionary.Add("AUTO_FIXATION", _checkBoxAutoFixation);
+            _buttonbasesDictionary.Add("CENTER_REWARD_SOUND", _checkBoxCenterRewardSound);
+            _buttonbasesDictionary.Add("SIDE_REWARD_SOUND", _checkboxSideRewardSound);
+            _buttonbasesDictionary.Add("AUTO_START", _checkBoxAutoStart);
+            _buttonbasesDictionary.Add("AUTO_CHOICE", _checkBoxAutoChoice);
+            _buttonbasesDictionary.Add("B.F_SOUND_ON", _checkBoxBreakFixationSoundEnable);
+            _buttonbasesDictionary.Add("SEC_RESP_CHANCE", _checkboxSecondResponseChance);
+            _buttonbasesDictionary.Add("GO_CUE_SOUND", _checkBoxEnableGoCue);
+            _buttonbasesDictionary.Add("CORRECT_CUE_SOUND", _radiobuttonGoCueCorrectSide);
+            _buttonbasesDictionary.Add("BOTH_SIDE_CUE_SOUND", _radiobuttonGoCueBothSide);
+            _buttonbasesDictionary.Add("R+L_CLUE_SOUND", _checkBoxEnableGoCue);
+            _buttonbasesDictionary.Add("ERROR_SOUND", _checkboxErrorSoundOn);
+            _buttonbasesDictionary.Add("FIXATION_ONLY", _checkBoxFixationOnly);
+            _buttonbasesDictionary.Add("RIGHT_LEFT_PARAMETERS_EQUALS", _checkBoxRightAndLeftSame);
+            _buttonbasesDictionary.Add("RR_DELTA", _checkboxRRDelta);
         }
 
         /// <summary>
@@ -2747,6 +2767,16 @@ namespace PinkyAndBrain
             });
         }
         #endregion HandSounds
+
+        private void _radiobuttonGoCueBothSide_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _radiobuttonGoCueCorrectSide_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class VaryingItem

@@ -131,7 +131,7 @@ namespace PinkyAndBrain
         /// <param name="protocolFilePath">The protocol folder path with protocol name.</param>
         /// <param name="variables">The variables to write to the protocol.</param>
         /// <param name="checkboxesDictionary">A dictionary consists all gui checkboxes and their states.</param>
-        public void WriteProtocolFile(string protocolFilePath , Variables variables , Dictionary<string, CheckBox> checkboxesDictionary)
+        public void WriteProtocolFile(string protocolFilePath , Variables variables , Dictionary<string, ButtonBase> checkboxesDictionary)
         {
             Excel.Workbook newProtocolFile = _xlApp.Workbooks.Add();
 
@@ -181,7 +181,14 @@ namespace PinkyAndBrain
                         else if (titleName == "parameters")
                         {
                             //write the column to the variable
-                            workSheet.Cells[rowIndex, columnIndex] = checkboxesDictionary[item.Key].Checked ? "1" : "0";
+                            if (checkboxesDictionary[item.Key] is RadioButton)
+                                workSheet.Cells[rowIndex, columnIndex] =
+                                    (checkboxesDictionary[item.Key] as RadioButton).Checked ? "1" : "0";
+                            else if (checkboxesDictionary[item.Key] is CheckBox)
+                                workSheet.Cells[rowIndex, columnIndex] =
+                                    (checkboxesDictionary[item.Key] as CheckBox).Checked ? "1" : "0";
+                            //todo:exception if the type is else.
+
                         }
                         else if (titleName == "status")
                         {
@@ -221,7 +228,12 @@ namespace PinkyAndBrain
                         else if (titleName == "parameters")
                         {
                             //write the column to the variable
-                            workSheet.Cells[rowIndex, columnIndex] = item.Value.Checked ? "1" : "0";
+                            if (item.Value is CheckBox)
+                                workSheet.Cells[rowIndex, columnIndex] = (item.Value as CheckBox).Checked ? "1" : "0";
+                            else if (item.Value is RadioButton)
+                                workSheet.Cells[rowIndex, columnIndex] =
+                                    (item.Value as RadioButton).Checked ? "1" : "0";
+                            //todo:exception if the type is else.
                         }
                         else if (titleName == "status")
                         {
