@@ -851,10 +851,10 @@ namespace PinkyAndBrain
         /// <summary>
         /// A stage the rat gets a clue where the correct answer is.
         /// </summary>
-        public void ClueSoundPlayer()
+        public void CueSoundPlayer()
         {
             //todo:add all this logic in if statement for the sound should play.
-            _logger.Info("ClueSoundPlayer begin. EnableCueSoundInBothSide = " + (EnableCueSoundInBothSide & EnableGoCueSound) +
+            _logger.Info("CueSoundPlayer begin. EnableCueSoundInBothSide = " + (EnableCueSoundInBothSide & EnableGoCueSound) +
                          ";EnableCueSoundCorrectSide" + (EnableCueSoundCorrectSide & EnableGoCueSound) + ".");
 
             //update the global details listview with the current stage.
@@ -903,7 +903,7 @@ namespace PinkyAndBrain
                 }
             }
 
-            _logger.Info("ClueSoundPlayer ended.");
+            _logger.Info("CueSoundPlayer ended.");
         }
 
         /// <summary>
@@ -932,7 +932,7 @@ namespace PinkyAndBrain
 
             //make the sound of the clue (after that in the reward stage it was with the ckue sound delay - paralleled).
             //make it parallel to the response time duration.
-            Task.Run(() => ClueSoundPlayer());
+            Task.Run(() => CueSoundPlayer());
 
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -1157,7 +1157,7 @@ namespace PinkyAndBrain
                 //give the cue only if it is a cebter reward
                 if (!position.Equals(RewardPosition.Center)) return;
                 //and only if it is not a fixation only trial.
-                if (FixationOnlyMode)
+                if (!FixationOnlyMode)
                 {
                     Thread.Sleep((int) (1000 * _currentTrialTimings.wClueDelay));
                 }
