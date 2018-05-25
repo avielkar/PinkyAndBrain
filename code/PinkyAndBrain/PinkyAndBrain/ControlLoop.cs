@@ -341,7 +341,9 @@ namespace PinkyAndBrain
         /// <summary>
         /// Indicated if to sound a media during the reward with the same direction.
         /// </summary>
-        public bool RewardSound { get; set; }
+        public bool CenterRewardSound { get; set; }
+
+        public bool SideRewardSound { get; set; }
 
         /// <summary>
         /// Indicates if the mode of the trial is only untill the fixation stage (include).
@@ -361,7 +363,17 @@ namespace PinkyAndBrain
         /// <summary>
         /// Indicates if to enable clue sound in both sides.
         /// </summary>
-        public bool EnableClueSoundInBothSide { get; set; }
+        public bool EnableCueSoundInBothSide { get; set; }
+
+        /// <summary>
+        /// Indicates if to enable clue sound only in the correct side.
+        /// </summary>
+        public bool EnableCueSoundCorrectSide { get; set; }
+
+        /// <summary>
+        /// Indicates if to enable clue sound (can be one of the both sided or correct side option).
+        /// </summary>
+        public bool EnableGoCueSound { get; set; }
 
         /// <summary>
         /// Indicates if to enable random correct answer in delta's protocols while the stimulus direction's are inversed in the sign.
@@ -374,19 +386,19 @@ namespace PinkyAndBrain
         public bool EnableRightLeftMustEquals { get; set; }
 
         /// <summary>
-        /// Indicates if to enable clue sound only in the correct side.
-        /// </summary>
-        public bool EnableClueSoundCorrectSide { get; set; }
-
-        /// <summary>
         /// Indicates the autos options that are commanded in the real time (when the code use it at the conditions and not only if the user change it betweens).
         /// </summary>
         public AutosOptions _autosOptionsInRealTime { get; set; }
 
         /// <summary>
-        /// Indicates t he special modes that are commanded in the real time.
+        /// Indicates the special modes that are commanded in the real time.
         /// </summary>
         public SpecialModes _specialModesInRealTime { get; set; }
+
+        /// <summary>
+        /// Indicates the sounds modes that are commanded in the real time.
+        /// </summary>
+        public SoundsMode _soundsMode { get; set; }
 
         /// <summary>
         /// Indicated if to give the rat a second response chance if it wrong anser at the first time (but not include no answer).
@@ -679,7 +691,7 @@ namespace PinkyAndBrain
                                     _currentRatDecision = RatDecison.PassDurationTime;
 
                                     //reward the rat in the center with water for duration of rewardCenterDuration for stable head in the center during the movement.
-                                    RewardCenterStage(AutoReward, RewardSound);
+                                    RewardCenterStage(AutoReward, CenterRewardSound);
 
                                     //if not to skip all stages after the fixation stage.
                                     if (!FixationOnlyMode)
@@ -785,8 +797,10 @@ namespace PinkyAndBrain
             _currentRatDecision = RatDecison.NoEntryToResponseStage;
             //set the auto option to default values.
             _autosOptionsInRealTime = new AutosOptions();
-            //initialize the trial mode options.
+            //initialize the trial spcial mode options.
             _specialModesInRealTime = new SpecialModes();
+            //initialize the trial sounds mode options.
+            _soundsMode = new SoundsMode();
 
             //updatre the trial number for the motoman protocol file creator to send it to the alpha omega.
             //_motomanController.MotomanProtocolFileCreator.TrialNum = _totalHeadStabilityInCenterDuringDurationTime + 1;
@@ -839,8 +853,9 @@ namespace PinkyAndBrain
         /// </summary>
         public void ClueSoundPlayer()
         {
-            _logger.Info("ClueSoundPlayer begin. EnableClueSoundInBothSide = " + EnableClueSoundInBothSide +
-                         ";EnableClueSoundCorrectSide" + EnableClueSoundCorrectSide + ".");
+            //todo:add all this logic in if statement for the sound should play.
+            _logger.Info("ClueSoundPlayer begin. EnableCueSoundInBothSide = " + (EnableCueSoundInBothSide & EnableGoCueSound) +
+                         ";EnableCueSoundCorrectSide" + (EnableCueSoundCorrectSide & EnableGoCueSound) + ".");
 
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
@@ -850,41 +865,42 @@ namespace PinkyAndBrain
             //determine the current trial correct answer.
             DetermineCurrentStimulusAnswer();
 
-            if (EnableClueSoundInBothSide)
+            //updates special modes according to the real time values.
+            _soundsMode.EnableGoCueSound = EnableGoCueSound;
+            _soundsMode.EnableCueSoundInBothSide = EnableCueSoundInBothSide;
+            _soundsMode.EnableCueSoundInCorrectSide = EnableCueSoundCorrectSide;
+
+            if (EnableCueSoundInBothSide & EnableGoCueSound)
             {
-                _logger.Info("Start playing EnableClueSoundInBothSide");
+                _logger.Info("Start playing EnableCueSoundInBothSide");
 
                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                 _windowsMediaPlayer.controls.play();
 
-                _specialModesInRealTime.EnableClueSoundInBothSide = true;
-
-                _logger.Info("End playing EnableClueSoundInBothSide");
+                _logger.Info("End playing EnableCueSoundInBothSide");
             }
 
-            else if (EnableClueSoundCorrectSide)
+            else if (EnableCueSoundCorrectSide & EnableGoCueSound)
             {
                 if (_correctDecision.Equals(RatDecison.Right))
                 {
-                    _logger.Info("Start playing EnableClueSoundCorrectSide - Right");
+                    _logger.Info("Start playing EnableCueSoundCorrectSide - Right");
 
                     _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
                     _windowsMediaPlayer.controls.play();
 
-                    _logger.Info("End playing EnableClueSoundInBothSide");
+                    _logger.Info("End playing EnableCueSoundInBothSide");
                 }
 
                 else if (_correctDecision.Equals(RatDecison.Left))
                 {
-                    _logger.Info("Start playing EnableClueSoundCorrectSide - Left");
+                    _logger.Info("Start playing EnableCueSoundCorrectSide - Left");
 
                     _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
                     _windowsMediaPlayer.controls.play();
 
-                    _logger.Info("End playing EnableClueSoundInBothSide");
+                    _logger.Info("End playing EnableCueSoundInBothSide");
                 }
-
-                _specialModesInRealTime.EnableClueSoundInCorrectSide = true;
             }
 
             _logger.Info("ClueSoundPlayer ended.");
@@ -961,7 +977,7 @@ namespace PinkyAndBrain
                             _logger.Info("End playing error sound");
                         });
 
-                        _specialModesInRealTime.ErrorChoiceSouunOn = true;
+                        _soundsMode.ErrorChoiceSoundOn = true;
                     }
 
                     _logger.Info("ResponseTimeStage ended. RatDecison = RatDecison.Left" + "; Correct = False.");
@@ -1007,7 +1023,7 @@ namespace PinkyAndBrain
                             _logger.Info("End playing wrong answer");
                         });
 
-                        _specialModesInRealTime.ErrorChoiceSouunOn = true;
+                        _soundsMode.ErrorChoiceSoundOn = true;
                     }
 
                     _logger.Info("ResponseTimeStage ended. RatDecison = RatDecison.Right" + "; Correct = False.");
@@ -1136,7 +1152,8 @@ namespace PinkyAndBrain
 
             Task clueDelayTask = Task.Factory.StartNew(() =>
             {
-                if (!EnableClueSoundCorrectSide && !EnableClueSoundInBothSide) return;
+                if (!EnableGoCueSound) return;
+                if (!EnableCueSoundCorrectSide && !EnableCueSoundInBothSide) return;
                 //give the cue only if it is a cebter reward
                 if (!position.Equals(RewardPosition.Center)) return;
                 //and only if it is not a fixation only trial.
@@ -1167,13 +1184,13 @@ namespace PinkyAndBrain
                 switch (decision.Item1)
                 {
                     case RatDecison.Center:
-                        RewardCenterStage(false , RewardSound);
+                        RewardCenterStage(false , CenterRewardSound);
                         break;
                     case RatDecison.Left:
-                        RewardLeftStage(false, RewardSound, secondChance);
+                        RewardLeftStage(false, SideRewardSound, secondChance);
                         break;
                     case RatDecison.Right:
-                        RewardRightStage(false, RewardSound, secondChance);
+                        RewardRightStage(false, SideRewardSound, secondChance);
                         break;
                     default:
                         break;
@@ -1205,11 +1222,11 @@ namespace PinkyAndBrain
                         break;
 
                     case RatDecison.Left:
-                        RewardLeftStage(true , RewardSound , false);
+                        RewardLeftStage(true , SideRewardSound , false);
                         break;
 
                     case RatDecison.Right:
-                        RewardRightStage(true , RewardSound , false);
+                        RewardRightStage(true , SideRewardSound , false);
                         break;
 
                     default:
@@ -1377,7 +1394,7 @@ namespace PinkyAndBrain
                             }
 
                             //save the state of the enable fixation break sound on.
-                            _specialModesInRealTime.BreakFixationSoundOn = EnableFixationBreakSound;
+                            _soundsMode.BreakFixationSoundOn = EnableFixationBreakSound;
 
                             //write the break fixation event to the AlphaOmega.
                             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadStabilityBreak);
@@ -1565,9 +1582,9 @@ namespace PinkyAndBrain
                         TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks,
                         StickOnNumber = NumOfStickOn,
                         NumOfRepetitions = NumOfRepetitions,
-                        RRInverse = _inverseRRDecision,
                         AutosOptions = _autosOptionsInRealTime,
                         SpecialModes = _specialModesInRealTime,
+                        SoundsMode = _soundsMode,
                         LedsData = new LedsData {TurnsOnPercentage = PercentageOfTurnedOnLeds , Brightness = LEDBrightness , RedValue = LEDcolorRed , GreenValue = LEDcolorGreen , BlueValue = LEDcolorBlue},
                         TrialEventsTiming = _trialEventRealTiming,
                         TotalHabdRewardTime = _handRewardTotalTimer.ElapsedMilliseconds
@@ -1825,6 +1842,9 @@ namespace PinkyAndBrain
             {
                 _inverseRRDecision = false;
             }
+
+            //update the specail mode RRInverse parameter.
+            _specialModesInRealTime.RRInverse = _inverseRRDecision;
 
             _correctDecision = currentStimulationSide;
         }
@@ -2240,53 +2260,53 @@ namespace PinkyAndBrain
                     {
                         if ((value & (byte)RatDecison.Left) == (byte)RatDecison.Left)
                         {
-                            if (RewardSound)
+                            if (SideRewardSound)
                             {
-                                _logger.Info("Start handreward sound");
+                                _logger.Info("Start handreward sound - left");
 
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
                                 _windowsMediaPlayer.controls.play();
 
-                                _logger.Info("End handreward sound");
+                                _logger.Info("End handreward sound - left");
                             }
                             timeByVariable = DetermineTimeByVariable("REWARD_LEFT_DURATION");
                         }
-                        else if ((value & 0x05) == 0x05)
+                        else if ((value & 0x05) == 0x05)//if both sides (right and left).
                         {
-                            if (RewardSound)
+                            if (CenterRewardSound)
                             {
-                                _logger.Info("Start handreward sound");
+                                _logger.Info("Start handreward sound - center (left and right)");
 
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                                 _windowsMediaPlayer.controls.play();
 
-                                _logger.Info("End handreward sound");
+                                _logger.Info("End handreward sound - center (left and right)");
                             }
                             timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
                         }
                         else if ((value & (byte)RatDecison.Center) == (byte)RatDecison.Center)
                         {
-                            if (RewardSound)
+                            if (CenterRewardSound)
                             {
-                                _logger.Info("Start handreward sound");
+                                _logger.Info("Start handreward sound - center");
 
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                                 _windowsMediaPlayer.controls.play();
 
-                                _logger.Info("End handreward sound");
+                                _logger.Info("End handreward sound - center");
                             }
                             timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
                         }
                         else if ((value & (byte)RatDecison.Right) == (byte)RatDecison.Right)
                         {
-                            if (RewardSound)
+                            if (SideRewardSound)
                             {
-                                _logger.Info("Start handreward sound");
+                                _logger.Info("Start handreward sound - right");
 
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
                                 _windowsMediaPlayer.controls.play();
 
-                                _logger.Info("End handreward sound");
+                                _logger.Info("End handreward sound - right");
                             }
                             timeByVariable = DetermineTimeByVariable("REWARD_RIGHT_DURATION");
                         }

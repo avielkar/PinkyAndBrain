@@ -80,12 +80,6 @@ namespace PinkyAndBrain
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
 
-            //append the RR inverse value (if flipped decision).
-            lineBuilder.Append("RR Inverse:");
-            lineBuilder.Append(trialData.RRInverse);
-            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
-            lineBuilder.Clear();
-
             //append the stick number value.
             lineBuilder.Append("StickNumber:");
             lineBuilder.Append(trialData.StickOnNumber);
@@ -105,6 +99,11 @@ namespace PinkyAndBrain
 
             //append the special modes options in the current trial.
             lineBuilder.Append(trialData.SpecialModes.ToString());
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
+            //append the sounds modes options in the current trial.
+            lineBuilder.Append(trialData.SoundsMode.ToString());
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
 
@@ -283,14 +282,14 @@ namespace PinkyAndBrain
         public AutosOptions AutosOptions { get; set; }
 
         /// <summary>
-        /// SpecialModes object for all modes values.
+        /// SpecialModes object for all special modes values.
         /// </summary>
         public SpecialModes SpecialModes { get; set; }
 
         /// <summary>
-        /// Indicates if in case of Random Heading Direction , the descision was converted to be true.
-        /// </summary>
-        public bool RRInverse { get; set; }
+        /// SoundsModes object for all sounds modes values.
+        /// </summary>        
+        public SoundsMode SoundsMode { get; set; }
 
         /// <summary>
         /// Leds data options.
@@ -354,7 +353,7 @@ namespace PinkyAndBrain
                 "AutoReward:" + AutoReward + "\r\n" +
                 "AutoFixation:" + AutoFixation + "\r\n" +
                 "AutoStart:" + AutoStart + "\r\n" +
-                "RewardSound:" + AutoRewardSound;
+                "CenterRewardSound:" + AutoRewardSound;
         }
     }
 
@@ -370,11 +369,8 @@ namespace PinkyAndBrain
         {
             FixationOnly = false;
             SecondChoice = false;
-            BreakFixationSoundOn = false;
-            ErrorChoiceSouunOn = false;
-            EnableClueSoundInBothSide = false;
-            EnableClueSoundInCorrectSide = false;
             EnableRightLeftMustEquals = false;
+            RRInverse = false;
         }
 
         /// <summary>
@@ -388,6 +384,40 @@ namespace PinkyAndBrain
         public bool SecondChoice { get; set; }
 
         /// <summary>
+        /// Indicates if the right and the left parameters should be the same.
+        /// </summary>
+        public bool EnableRightLeftMustEquals { get; set; }
+        
+        /// <summary>
+        /// Indicates if in case of Random Heading Direction , the descision was converted to be true.
+        /// </summary>
+        public bool RRInverse { get; set; }
+
+        public override string ToString()
+        {
+            return
+                "FixationOnly:" + FixationOnly + "\r\n" +
+                "SecondChoice:" + SecondChoice + "\r\n" +
+                "RR Inverse:" + RRInverse + "\r\n" +
+                "EnableRightLeftMustEquals:" + EnableRightLeftMustEquals;
+        }
+    }
+
+    /// <summary>
+    /// A class describes all sounds modes options.
+    /// </summary>
+    public class SoundsMode
+    {
+        public SoundsMode()
+        {
+            BreakFixationSoundOn = false;
+            ErrorChoiceSoundOn = false;
+            EnableGoCueSound = false;
+            EnableCueSoundInBothSide = false;
+            EnableCueSoundInCorrectSide = false;
+        }
+
+        /// <summary>
         /// Indicates break fixation sound is on.
         /// </summary>
         public bool BreakFixationSoundOn { get; set; }
@@ -395,33 +425,31 @@ namespace PinkyAndBrain
         /// <summary>
         /// Indicates if error sound is on/off when a wrong choice occured.
         /// </summary>
-        public bool ErrorChoiceSouunOn { get; set; }
+        public bool ErrorChoiceSoundOn { get; set; }
+
+        /// <summary>
+        /// Indicates if go cue sound is enabled (can be one of the correct side cue or the both sides option).
+        /// </summary>
+        public bool EnableGoCueSound { get; set; }
 
         /// <summary>
         /// Indicates to enable sound onlt at the correct side.
         /// </summary>
-        public bool EnableClueSoundInCorrectSide { get; set; }
+        public bool EnableCueSoundInCorrectSide { get; set; }
 
         /// <summary>
         /// Indicate if to enable clue sounds on both the side no matter what is the correct side.
         /// </summary>
-        public bool EnableClueSoundInBothSide { get; set; }
-
-        /// <summary>
-        /// Indicates if the right and the left parameters should be the same.
-        /// </summary>
-        public bool EnableRightLeftMustEquals { get; set; }
+        public bool EnableCueSoundInBothSide { get; set; }
 
         public override string ToString()
         {
             return
-                "FixationOnly:" + FixationOnly + "\r\n" +
-                "SecondChoice:" + SecondChoice + "\r\n" +
                 "BreakFixationSoundOn:" + BreakFixationSoundOn + "\r\n" +
-                "ErrorChoiceSoundOn:" + ErrorChoiceSouunOn + "\r\n" +
-                "EnableClueSoundInBothSide:" + EnableClueSoundInBothSide + "\r\n" +
-                "EnableClueSoundCorrectSide:" + EnableClueSoundInCorrectSide + "\r\n" +
-                "EnableRightLeftMustEquals:" + EnableRightLeftMustEquals;
+                "ErrorChoiceSoundOn:" + ErrorChoiceSoundOn + "\r\n" +
+                "EnableGoCueSound:" + EnableGoCueSound + "\r\n" +
+                "EnableCueSoundInBothSide:" + EnableCueSoundInBothSide + "\r\n" +
+                "EnableCueSoundCorrectSide:" + EnableCueSoundInCorrectSide;
         }
     }
 
