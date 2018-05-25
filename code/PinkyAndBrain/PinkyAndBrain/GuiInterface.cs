@@ -1912,6 +1912,17 @@ namespace PinkyAndBrain
         private void _tbEnableBothSidedClueSound_CheckedChanged(object sender, EventArgs e)
         {
             _cntrlLoop.EnableClueSoundInBothSide = (sender as CheckBox).Checked;
+
+            if ((sender as CheckBox).Checked)
+            {
+                _radiobuttonGoCueBothSide.Enabled = true;
+                _radiobuttonGoCueCorrectSide.Enabled = true;
+            }
+            else
+            {
+                _radiobuttonGoCueBothSide.Enabled = false;
+                _radiobuttonGoCueCorrectSide.Enabled = false;
+            }
         }
 
         /// <summary>
