@@ -2313,7 +2313,6 @@ namespace PinkyAndBrain
             _buttonbasesDictionary.Add("GO_CUE_SOUND", _checkBoxEnableGoCue);
             _buttonbasesDictionary.Add("CORRECT_CUE_SOUND", _radiobuttonGoCueCorrectSide);
             _buttonbasesDictionary.Add("BOTH_SIDE_CUE_SOUND", _radiobuttonGoCueBothSide);
-            _buttonbasesDictionary.Add("R+L_CLUE_SOUND", _checkBoxEnableGoCue);
             _buttonbasesDictionary.Add("ERROR_SOUND", _checkboxErrorSoundOn);
             _buttonbasesDictionary.Add("FIXATION_ONLY", _checkBoxFixationOnly);
             _buttonbasesDictionary.Add("RIGHT_LEFT_PARAMETERS_EQUALS", _checkBoxRightAndLeftSame);
