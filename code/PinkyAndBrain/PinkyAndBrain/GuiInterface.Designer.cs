@@ -117,6 +117,7 @@
             this._btnSaveProtocol = new System.Windows.Forms.Button();
             this._textboxNewProtocolName = new System.Windows.Forms.TextBox();
             this._labelNewProtocolName = new System.Windows.Forms.Label();
+            this._sideRewardSoundCheckbox = new System.Windows.Forms.CheckBox();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -704,10 +705,11 @@
             this._checkBoxCenterRewardSound.TabIndex = 12;
             this._checkBoxCenterRewardSound.Text = "Center Reward Sound";
             this._checkBoxCenterRewardSound.UseVisualStyleBackColor = true;
-            this._checkBoxCenterRewardSound.CheckedChanged += new System.EventHandler(this._autoRewardSound_CheckedChanged);
+            this._checkBoxCenterRewardSound.CheckedChanged += new System.EventHandler(this._centerRewardSound_CheckedChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this._sideRewardSoundCheckbox);
             this.groupBox1.Controls.Add(this._checkboxRRDelta);
             this.groupBox1.Controls.Add(this._checkBoxRightAndLeftSame);
             this.groupBox1.Controls.Add(this._checkBoxCorrectClueSound);
@@ -973,6 +975,17 @@
             this._labelNewProtocolName.TabIndex = 27;
             this._labelNewProtocolName.Text = "New Protocol Name";
             // 
+            // _sideRewardSoundCheckbox
+            // 
+            this._sideRewardSoundCheckbox.AutoSize = true;
+            this._sideRewardSoundCheckbox.Location = new System.Drawing.Point(2, 84);
+            this._sideRewardSoundCheckbox.Name = "_sideRewardSoundCheckbox";
+            this._sideRewardSoundCheckbox.Size = new System.Drawing.Size(118, 17);
+            this._sideRewardSoundCheckbox.TabIndex = 19;
+            this._sideRewardSoundCheckbox.Text = "Side Rewad Sound";
+            this._sideRewardSoundCheckbox.UseVisualStyleBackColor = true;
+            this._sideRewardSoundCheckbox.CheckedChanged += new System.EventHandler(this._sideRewardSoundCheckbox_CheckedChanged);
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1122,5 +1135,6 @@
         private System.Windows.Forms.Label _labelGreenLed;
         private System.Windows.Forms.Label _labelRedLed;
         private System.Windows.Forms.CheckBox _checkboxRRDelta;
+        private System.Windows.Forms.CheckBox _sideRewardSoundCheckbox;
     }
 }

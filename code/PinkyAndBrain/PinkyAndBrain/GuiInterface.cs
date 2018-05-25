@@ -1858,12 +1858,17 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="sender">The checkbox.</param>
         /// <param name="e">The param.</param>
-        private void _autoRewardSound_CheckedChanged(object sender, EventArgs e)
+        private void _centerRewardSound_CheckedChanged(object sender, EventArgs e)
         {
             if (_checkBoxCenterRewardSound.Checked)
                 _cntrlLoop.CenterRewardSound = true;
             else
                 _cntrlLoop.CenterRewardSound = false;
+        }
+
+        private void _sideRewardSoundCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
         /// <summary>
