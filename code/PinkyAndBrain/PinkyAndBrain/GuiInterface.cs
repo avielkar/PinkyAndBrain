@@ -1860,10 +1860,10 @@ namespace PinkyAndBrain
         /// <param name="e">The param.</param>
         private void _autoRewardSound_CheckedChanged(object sender, EventArgs e)
         {
-            if (_checkBoxRewardSound.Checked)
-                _cntrlLoop.RewardSound = true;
+            if (_checkBoxCenterRewardSound.Checked)
+                _cntrlLoop.CenterRewardSound = true;
             else
-                _cntrlLoop.RewardSound = false;
+                _cntrlLoop.CenterRewardSound = false;
         }
 
         /// <summary>
@@ -2278,7 +2278,7 @@ namespace PinkyAndBrain
             _checkboxesDictionary = new Dictionary<string, CheckBox>();
 
             _checkboxesDictionary.Add("AUTO_FIXATION", _checkBoxAutoFixation);
-            _checkboxesDictionary.Add("REWARD_SOUND", _checkBoxRewardSound);
+            _checkboxesDictionary.Add("REWARD_SOUND", _checkBoxCenterRewardSound);
             _checkboxesDictionary.Add("AUTO_START", _checkBoxAutoStart);
             _checkboxesDictionary.Add("AUTO_CHOICE", _checkBoxAutoChoice);
             _checkboxesDictionary.Add("B.F_SOUND_ON", _checkBoxBreakFixationSoundEnable);
@@ -2713,7 +2713,7 @@ namespace PinkyAndBrain
 
         #region HandSounds
         /// <summary>special
-        /// Handler for clicking to play the RewardSound.
+        /// Handler for clicking to play the CenterRewardSound.
         /// </summary>
         /// <param name="sender">The bottun.</param>
         /// <param name="e">The args.</param>

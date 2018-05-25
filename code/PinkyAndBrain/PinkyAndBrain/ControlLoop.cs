@@ -341,7 +341,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Indicated if to sound a media during the reward with the same direction.
         /// </summary>
-        public bool RewardSound { get; set; }
+        public bool CenterRewardSound { get; set; }
 
         /// <summary>
         /// Indicates if the mode of the trial is only untill the fixation stage (include).
@@ -679,7 +679,7 @@ namespace PinkyAndBrain
                                     _currentRatDecision = RatDecison.PassDurationTime;
 
                                     //reward the rat in the center with water for duration of rewardCenterDuration for stable head in the center during the movement.
-                                    RewardCenterStage(AutoReward, RewardSound);
+                                    RewardCenterStage(AutoReward, CenterRewardSound);
 
                                     //if not to skip all stages after the fixation stage.
                                     if (!FixationOnlyMode)
@@ -1167,13 +1167,13 @@ namespace PinkyAndBrain
                 switch (decision.Item1)
                 {
                     case RatDecison.Center:
-                        RewardCenterStage(false , RewardSound);
+                        RewardCenterStage(false , CenterRewardSound);
                         break;
                     case RatDecison.Left:
-                        RewardLeftStage(false, RewardSound, secondChance);
+                        RewardLeftStage(false, CenterRewardSound, secondChance);
                         break;
                     case RatDecison.Right:
-                        RewardRightStage(false, RewardSound, secondChance);
+                        RewardRightStage(false, CenterRewardSound, secondChance);
                         break;
                     default:
                         break;
@@ -1205,11 +1205,11 @@ namespace PinkyAndBrain
                         break;
 
                     case RatDecison.Left:
-                        RewardLeftStage(true , RewardSound , false);
+                        RewardLeftStage(true , CenterRewardSound , false);
                         break;
 
                     case RatDecison.Right:
-                        RewardRightStage(true , RewardSound , false);
+                        RewardRightStage(true , CenterRewardSound , false);
                         break;
 
                     default:
@@ -2240,7 +2240,7 @@ namespace PinkyAndBrain
                     {
                         if ((value & (byte)RatDecison.Left) == (byte)RatDecison.Left)
                         {
-                            if (RewardSound)
+                            if (CenterRewardSound)
                             {
                                 _logger.Info("Start handreward sound");
 
@@ -2253,7 +2253,7 @@ namespace PinkyAndBrain
                         }
                         else if ((value & 0x05) == 0x05)
                         {
-                            if (RewardSound)
+                            if (CenterRewardSound)
                             {
                                 _logger.Info("Start handreward sound");
 
@@ -2266,7 +2266,7 @@ namespace PinkyAndBrain
                         }
                         else if ((value & (byte)RatDecison.Center) == (byte)RatDecison.Center)
                         {
-                            if (RewardSound)
+                            if (CenterRewardSound)
                             {
                                 _logger.Info("Start handreward sound");
 
@@ -2279,7 +2279,7 @@ namespace PinkyAndBrain
                         }
                         else if ((value & (byte)RatDecison.Right) == (byte)RatDecison.Right)
                         {
-                            if (RewardSound)
+                            if (CenterRewardSound)
                             {
                                 _logger.Info("Start handreward sound");
 
