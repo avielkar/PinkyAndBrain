@@ -108,6 +108,11 @@ namespace PinkyAndBrain
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
 
+            //append the sounds modes options in the current trial.
+            lineBuilder.Append(trialData.SoundsMode.ToString());
+            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
+            lineBuilder.Clear();
+
             //append the leds data options in the current trial.
             lineBuilder.Append(trialData.LedsData.ToString());
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
@@ -283,9 +288,14 @@ namespace PinkyAndBrain
         public AutosOptions AutosOptions { get; set; }
 
         /// <summary>
-        /// SpecialModes object for all modes values.
+        /// SpecialModes object for all special modes values.
         /// </summary>
         public SpecialModes SpecialModes { get; set; }
+
+        /// <summary>
+        /// SoundsModes object for all sounds modes values.
+        /// </summary>        
+        public SoundsMode SoundsMode { get; set; }
 
         /// <summary>
         /// Indicates if in case of Random Heading Direction , the descision was converted to be true.
@@ -370,11 +380,6 @@ namespace PinkyAndBrain
         {
             FixationOnly = false;
             SecondChoice = false;
-            BreakFixationSoundOn = false;
-            ErrorChoiceSouunOn = false;
-            EnableGoCueSound = false;
-            EnableCueSoundInBothSide = false;
-            EnableCueSoundInCorrectSide = false;
             EnableRightLeftMustEquals = false;
         }
 
@@ -389,6 +394,37 @@ namespace PinkyAndBrain
         public bool SecondChoice { get; set; }
 
         /// <summary>
+        /// Indicates if the right and the left parameters should be the same.
+        /// </summary>
+        public bool EnableRightLeftMustEquals { get; set; }
+
+
+        //todo:add r.r delta option.
+
+        public override string ToString()
+        {
+            return
+                "FixationOnly:" + FixationOnly + "\r\n" +
+                "SecondChoice:" + SecondChoice + "\r\n" +
+                "EnableRightLeftMustEquals:" + EnableRightLeftMustEquals;
+        }
+    }
+
+    /// <summary>
+    /// A class describes all sounds modes options.
+    /// </summary>
+    public class SoundsMode
+    {
+        public SoundsMode()
+        {
+            BreakFixationSoundOn = false;
+            ErrorChoiceSoundOn = false;
+            EnableGoCueSound = false;
+            EnableCueSoundInBothSide = false;
+            EnableCueSoundInCorrectSide = false;
+        }
+
+        /// <summary>
         /// Indicates break fixation sound is on.
         /// </summary>
         public bool BreakFixationSoundOn { get; set; }
@@ -396,7 +432,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Indicates if error sound is on/off when a wrong choice occured.
         /// </summary>
-        public bool ErrorChoiceSouunOn { get; set; }
+        public bool ErrorChoiceSoundOn { get; set; }
 
         /// <summary>
         /// Indicates if go cue sound is enabled (can be one of the correct side cue or the both sides option).
@@ -413,22 +449,14 @@ namespace PinkyAndBrain
         /// </summary>
         public bool EnableCueSoundInBothSide { get; set; }
 
-        /// <summary>
-        /// Indicates if the right and the left parameters should be the same.
-        /// </summary>
-        public bool EnableRightLeftMustEquals { get; set; }
-
         public override string ToString()
         {
             return
-                "FixationOnly:" + FixationOnly + "\r\n" +
-                "SecondChoice:" + SecondChoice + "\r\n" +
                 "BreakFixationSoundOn:" + BreakFixationSoundOn + "\r\n" +
-                "ErrorChoiceSoundOn:" + ErrorChoiceSouunOn + "\r\n" +
+                "ErrorChoiceSoundOn:" + ErrorChoiceSoundOn + "\r\n" +
                 "EnableGoCueSound:" + EnableGoCueSound + "\r\n" +
                 "EnableCueSoundInBothSide:" + EnableCueSoundInBothSide + "\r\n" +
-                "EnableCueSoundCorrectSide:" + EnableCueSoundInCorrectSide + "\r\n" +
-                "EnableRightLeftMustEquals:" + EnableRightLeftMustEquals;
+                "EnableCueSoundCorrectSide:" + EnableCueSoundInCorrectSide;
         }
     }
 

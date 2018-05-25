@@ -391,9 +391,14 @@ namespace PinkyAndBrain
         public AutosOptions _autosOptionsInRealTime { get; set; }
 
         /// <summary>
-        /// Indicates t he special modes that are commanded in the real time.
+        /// Indicates the special modes that are commanded in the real time.
         /// </summary>
         public SpecialModes _specialModesInRealTime { get; set; }
+
+        /// <summary>
+        /// Indicates the sounds modes that are commanded in the real time.
+        /// </summary>
+        public SoundsMode _soundsMode { get; set; }
 
         /// <summary>
         /// Indicated if to give the rat a second response chance if it wrong anser at the first time (but not include no answer).
@@ -792,8 +797,10 @@ namespace PinkyAndBrain
             _currentRatDecision = RatDecison.NoEntryToResponseStage;
             //set the auto option to default values.
             _autosOptionsInRealTime = new AutosOptions();
-            //initialize the trial mode options.
+            //initialize the trial spcial mode options.
             _specialModesInRealTime = new SpecialModes();
+            //initialize the trial sounds mode options.
+            _soundsMode = new SoundsMode();
 
             //updatre the trial number for the motoman protocol file creator to send it to the alpha omega.
             //_motomanController.MotomanProtocolFileCreator.TrialNum = _totalHeadStabilityInCenterDuringDurationTime + 1;
@@ -859,9 +866,9 @@ namespace PinkyAndBrain
             DetermineCurrentStimulusAnswer();
 
             //updates special modes according to the real time values.
-            _specialModesInRealTime.EnableGoCueSound = EnableGoCueSound;
-            _specialModesInRealTime.EnableCueSoundInBothSide = EnableCueSoundInBothSide;
-            _specialModesInRealTime.EnableCueSoundInCorrectSide = EnableCueSoundCorrectSide;
+            _soundsMode.EnableGoCueSound = EnableGoCueSound;
+            _soundsMode.EnableCueSoundInBothSide = EnableCueSoundInBothSide;
+            _soundsMode.EnableCueSoundInCorrectSide = EnableCueSoundCorrectSide;
 
             if (EnableCueSoundInBothSide & EnableGoCueSound)
             {
@@ -970,7 +977,7 @@ namespace PinkyAndBrain
                             _logger.Info("End playing error sound");
                         });
 
-                        _specialModesInRealTime.ErrorChoiceSouunOn = true;
+                        _soundsMode.ErrorChoiceSoundOn = true;
                     }
 
                     _logger.Info("ResponseTimeStage ended. RatDecison = RatDecison.Left" + "; Correct = False.");
@@ -1016,7 +1023,7 @@ namespace PinkyAndBrain
                             _logger.Info("End playing wrong answer");
                         });
 
-                        _specialModesInRealTime.ErrorChoiceSouunOn = true;
+                        _soundsMode.ErrorChoiceSoundOn = true;
                     }
 
                     _logger.Info("ResponseTimeStage ended. RatDecison = RatDecison.Right" + "; Correct = False.");
@@ -1387,7 +1394,7 @@ namespace PinkyAndBrain
                             }
 
                             //save the state of the enable fixation break sound on.
-                            _specialModesInRealTime.BreakFixationSoundOn = EnableFixationBreakSound;
+                            _soundsMode.BreakFixationSoundOn = EnableFixationBreakSound;
 
                             //write the break fixation event to the AlphaOmega.
                             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadStabilityBreak);
@@ -1578,6 +1585,7 @@ namespace PinkyAndBrain
                         RRInverse = _inverseRRDecision,
                         AutosOptions = _autosOptionsInRealTime,
                         SpecialModes = _specialModesInRealTime,
+                        SoundsMode = _soundsMode,
                         LedsData = new LedsData {TurnsOnPercentage = PercentageOfTurnedOnLeds , Brightness = LEDBrightness , RedValue = LEDcolorRed , GreenValue = LEDcolorGreen , BlueValue = LEDcolorBlue},
                         TrialEventsTiming = _trialEventRealTiming,
                         TotalHabdRewardTime = _handRewardTotalTimer.ElapsedMilliseconds
