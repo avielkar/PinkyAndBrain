@@ -1157,7 +1157,7 @@ namespace PinkyAndBrain
                 //give the cue only if it is a cebter reward
                 if (!position.Equals(RewardPosition.Center)) return;
                 //and only if it is not a fixation only trial.
-                if (FixationOnlyMode)
+                if (!FixationOnlyMode)
                 {
                     Thread.Sleep((int) (1000 * _currentTrialTimings.wClueDelay));
                 }
