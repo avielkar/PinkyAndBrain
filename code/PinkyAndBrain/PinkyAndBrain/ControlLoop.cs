@@ -1172,10 +1172,10 @@ namespace PinkyAndBrain
                         RewardCenterStage(false , CenterRewardSound);
                         break;
                     case RatDecison.Left:
-                        RewardLeftStage(false, CenterRewardSound, secondChance);
+                        RewardLeftStage(false, SideRewardSound, secondChance);
                         break;
                     case RatDecison.Right:
-                        RewardRightStage(false, CenterRewardSound, secondChance);
+                        RewardRightStage(false, SideRewardSound, secondChance);
                         break;
                     default:
                         break;
@@ -1207,11 +1207,11 @@ namespace PinkyAndBrain
                         break;
 
                     case RatDecison.Left:
-                        RewardLeftStage(true , CenterRewardSound , false);
+                        RewardLeftStage(true , SideRewardSound , false);
                         break;
 
                     case RatDecison.Right:
-                        RewardRightStage(true , CenterRewardSound , false);
+                        RewardRightStage(true , SideRewardSound , false);
                         break;
 
                     default:
@@ -2242,27 +2242,27 @@ namespace PinkyAndBrain
                     {
                         if ((value & (byte)RatDecison.Left) == (byte)RatDecison.Left)
                         {
-                            if (CenterRewardSound)
+                            if (SideRewardSound)
                             {
-                                _logger.Info("Start handreward sound");
+                                _logger.Info("Start handreward sound - left");
 
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
                                 _windowsMediaPlayer.controls.play();
 
-                                _logger.Info("End handreward sound");
+                                _logger.Info("End handreward sound - left");
                             }
                             timeByVariable = DetermineTimeByVariable("REWARD_LEFT_DURATION");
                         }
-                        else if ((value & 0x05) == 0x05)
+                        else if ((value & 0x05) == 0x05)//if both sides (right and left).
                         {
                             if (CenterRewardSound)
                             {
-                                _logger.Info("Start handreward sound");
+                                _logger.Info("Start handreward sound - center (left and right)");
 
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                                 _windowsMediaPlayer.controls.play();
 
-                                _logger.Info("End handreward sound");
+                                _logger.Info("End handreward sound - center (left and right)");
                             }
                             timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
                         }
@@ -2270,25 +2270,25 @@ namespace PinkyAndBrain
                         {
                             if (CenterRewardSound)
                             {
-                                _logger.Info("Start handreward sound");
+                                _logger.Info("Start handreward sound - center");
 
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                                 _windowsMediaPlayer.controls.play();
 
-                                _logger.Info("End handreward sound");
+                                _logger.Info("End handreward sound - center");
                             }
                             timeByVariable = DetermineTimeByVariable("REWARD_CENTER_DURATION");
                         }
                         else if ((value & (byte)RatDecison.Right) == (byte)RatDecison.Right)
                         {
-                            if (CenterRewardSound)
+                            if (SideRewardSound)
                             {
-                                _logger.Info("Start handreward sound");
+                                _logger.Info("Start handreward sound - right");
 
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
                                 _windowsMediaPlayer.controls.play();
 
-                                _logger.Info("End handreward sound");
+                                _logger.Info("End handreward sound - right");
                             }
                             timeByVariable = DetermineTimeByVariable("REWARD_RIGHT_DURATION");
                         }
