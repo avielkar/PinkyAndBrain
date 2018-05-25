@@ -1901,7 +1901,7 @@ namespace PinkyAndBrain
         /// <param name="e">The args.</param>
         private void _tbEnableGoClueSound_CheckedChanged(object sender, EventArgs e)
         {
-            _cntrlLoop.EnableClueSoundInBothSide = (sender as CheckBox).Checked;
+            _cntrlLoop.EnableGoCueSound = (sender as CheckBox).Checked;
 
             if ((sender as CheckBox).Checked)
             {

@@ -372,8 +372,8 @@ namespace PinkyAndBrain
             SecondChoice = false;
             BreakFixationSoundOn = false;
             ErrorChoiceSouunOn = false;
-            EnableClueSoundInBothSide = false;
-            EnableClueSoundInCorrectSide = false;
+            EnableCueSoundInBothSide = false;
+            EnableCueSoundInCorrectSide = false;
             EnableRightLeftMustEquals = false;
         }
 
@@ -400,12 +400,12 @@ namespace PinkyAndBrain
         /// <summary>
         /// Indicates to enable sound onlt at the correct side.
         /// </summary>
-        public bool EnableClueSoundInCorrectSide { get; set; }
+        public bool EnableCueSoundInCorrectSide { get; set; }
 
         /// <summary>
         /// Indicate if to enable clue sounds on both the side no matter what is the correct side.
         /// </summary>
-        public bool EnableClueSoundInBothSide { get; set; }
+        public bool EnableCueSoundInBothSide { get; set; }
 
         /// <summary>
         /// Indicates if the right and the left parameters should be the same.
@@ -419,8 +419,8 @@ namespace PinkyAndBrain
                 "SecondChoice:" + SecondChoice + "\r\n" +
                 "BreakFixationSoundOn:" + BreakFixationSoundOn + "\r\n" +
                 "ErrorChoiceSoundOn:" + ErrorChoiceSouunOn + "\r\n" +
-                "EnableClueSoundInBothSide:" + EnableClueSoundInBothSide + "\r\n" +
-                "EnableClueSoundCorrectSide:" + EnableClueSoundInCorrectSide + "\r\n" +
+                "EnableCueSoundInBothSide:" + EnableCueSoundInBothSide + "\r\n" +
+                "EnableCueSoundCorrectSide:" + EnableCueSoundInCorrectSide + "\r\n" +
                 "EnableRightLeftMustEquals:" + EnableRightLeftMustEquals;
         }
     }
