@@ -2286,7 +2286,8 @@ namespace PinkyAndBrain
             _checkboxesDictionary = new Dictionary<string, CheckBox>();
 
             _checkboxesDictionary.Add("AUTO_FIXATION", _checkBoxAutoFixation);
-            _checkboxesDictionary.Add("REWARD_SOUND", _checkBoxCenterRewardSound);
+            _checkboxesDictionary.Add("CENTER_REWARD_SOUND", _checkBoxCenterRewardSound);
+            _checkboxesDictionary.Add("SIDE_REWARD_SOUND", _checkboxSideRewardSound);
             _checkboxesDictionary.Add("AUTO_START", _checkBoxAutoStart);
             _checkboxesDictionary.Add("AUTO_CHOICE", _checkBoxAutoChoice);
             _checkboxesDictionary.Add("B.F_SOUND_ON", _checkBoxBreakFixationSoundEnable);
