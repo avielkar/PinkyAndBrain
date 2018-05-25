@@ -372,6 +372,7 @@ namespace PinkyAndBrain
             SecondChoice = false;
             BreakFixationSoundOn = false;
             ErrorChoiceSouunOn = false;
+            EnableGoCueSound = false;
             EnableCueSoundInBothSide = false;
             EnableCueSoundInCorrectSide = false;
             EnableRightLeftMustEquals = false;
@@ -398,6 +399,11 @@ namespace PinkyAndBrain
         public bool ErrorChoiceSouunOn { get; set; }
 
         /// <summary>
+        /// Indicates if go cue sound is enabled (can be one of the correct side cue or the both sides option).
+        /// </summary>
+        public bool EnableGoCueSound { get; set; }
+
+        /// <summary>
         /// Indicates to enable sound onlt at the correct side.
         /// </summary>
         public bool EnableCueSoundInCorrectSide { get; set; }
@@ -419,6 +425,7 @@ namespace PinkyAndBrain
                 "SecondChoice:" + SecondChoice + "\r\n" +
                 "BreakFixationSoundOn:" + BreakFixationSoundOn + "\r\n" +
                 "ErrorChoiceSoundOn:" + ErrorChoiceSouunOn + "\r\n" +
+                "EnableGoCueSound:" + EnableGoCueSound + "\r\n" +
                 "EnableCueSoundInBothSide:" + EnableCueSoundInBothSide + "\r\n" +
                 "EnableCueSoundCorrectSide:" + EnableCueSoundInCorrectSide + "\r\n" +
                 "EnableRightLeftMustEquals:" + EnableRightLeftMustEquals;

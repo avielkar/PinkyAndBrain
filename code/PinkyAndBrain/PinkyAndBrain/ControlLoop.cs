@@ -363,7 +363,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Indicates if to enable clue sound in both sides.
         /// </summary>
-        public bool EnableClueSoundInBothSide { get; set; }
+        public bool EnableCueSoundInBothSide { get; set; }
 
         /// <summary>
         /// Indicates if to enable clue sound only in the correct side.
@@ -847,7 +847,7 @@ namespace PinkyAndBrain
         public void ClueSoundPlayer()
         {
             //todo:add all this logic in if statement for the sound should play.
-            _logger.Info("ClueSoundPlayer begin. EnableCueSoundInBothSide = " + (EnableClueSoundInBothSide & EnableGoCueSound) +
+            _logger.Info("ClueSoundPlayer begin. EnableCueSoundInBothSide = " + (EnableCueSoundInBothSide & EnableGoCueSound) +
                          ";EnableCueSoundCorrectSide" + (EnableCueSoundCorrectSide & EnableGoCueSound) + ".");
 
             //update the global details listview with the current stage.
@@ -858,14 +858,17 @@ namespace PinkyAndBrain
             //determine the current trial correct answer.
             DetermineCurrentStimulusAnswer();
 
-            if (EnableClueSoundInBothSide & EnableGoCueSound)
+            //updates special modes according to the real time values.
+            _specialModesInRealTime.EnableGoCueSound = EnableGoCueSound;
+            _specialModesInRealTime.EnableCueSoundInBothSide = EnableCueSoundInBothSide;
+            _specialModesInRealTime.EnableCueSoundInCorrectSide = EnableCueSoundCorrectSide;
+
+            if (EnableCueSoundInBothSide & EnableGoCueSound)
             {
                 _logger.Info("Start playing EnableCueSoundInBothSide");
 
                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                 _windowsMediaPlayer.controls.play();
-
-                _specialModesInRealTime.EnableCueSoundInBothSide = true;
 
                 _logger.Info("End playing EnableCueSoundInBothSide");
             }
@@ -891,8 +894,6 @@ namespace PinkyAndBrain
 
                     _logger.Info("End playing EnableCueSoundInBothSide");
                 }
-
-                _specialModesInRealTime.EnableCueSoundInCorrectSide = true;
             }
 
             _logger.Info("ClueSoundPlayer ended.");
@@ -1145,7 +1146,7 @@ namespace PinkyAndBrain
             Task clueDelayTask = Task.Factory.StartNew(() =>
             {
                 if (!EnableGoCueSound) return;
-                if (!EnableCueSoundCorrectSide && !EnableClueSoundInBothSide) return;
+                if (!EnableCueSoundCorrectSide && !EnableCueSoundInBothSide) return;
                 //give the cue only if it is a cebter reward
                 if (!position.Equals(RewardPosition.Center)) return;
                 //and only if it is not a fixation only trial.
