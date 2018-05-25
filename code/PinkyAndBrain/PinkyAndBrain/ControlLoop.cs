@@ -1582,7 +1582,6 @@ namespace PinkyAndBrain
                         TrialNum = _totalHeadStabilityInCenterDuringDurationTime + _totalHeadFixationBreaks,
                         StickOnNumber = NumOfStickOn,
                         NumOfRepetitions = NumOfRepetitions,
-                        RRInverse = _inverseRRDecision,
                         AutosOptions = _autosOptionsInRealTime,
                         SpecialModes = _specialModesInRealTime,
                         SoundsMode = _soundsMode,
@@ -1843,6 +1842,9 @@ namespace PinkyAndBrain
             {
                 _inverseRRDecision = false;
             }
+
+            //update the specail mode RRInverse parameter.
+            _specialModesInRealTime.RRInverse = _inverseRRDecision;
 
             _correctDecision = currentStimulationSide;
         }

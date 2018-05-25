@@ -80,12 +80,6 @@ namespace PinkyAndBrain
             _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
             lineBuilder.Clear();
 
-            //append the RR inverse value (if flipped decision).
-            lineBuilder.Append("RR Inverse:");
-            lineBuilder.Append(trialData.RRInverse);
-            _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
-            lineBuilder.Clear();
-
             //append the stick number value.
             lineBuilder.Append("StickNumber:");
             lineBuilder.Append(trialData.StickOnNumber);
@@ -298,11 +292,6 @@ namespace PinkyAndBrain
         public SoundsMode SoundsMode { get; set; }
 
         /// <summary>
-        /// Indicates if in case of Random Heading Direction , the descision was converted to be true.
-        /// </summary>
-        public bool RRInverse { get; set; }
-
-        /// <summary>
         /// Leds data options.
         /// </summary>
         public LedsData LedsData { get; set; }
@@ -381,6 +370,7 @@ namespace PinkyAndBrain
             FixationOnly = false;
             SecondChoice = false;
             EnableRightLeftMustEquals = false;
+            RRInverse = false;
         }
 
         /// <summary>
@@ -397,15 +387,18 @@ namespace PinkyAndBrain
         /// Indicates if the right and the left parameters should be the same.
         /// </summary>
         public bool EnableRightLeftMustEquals { get; set; }
-
-
-        //todo:add r.r delta option.
+        
+        /// <summary>
+        /// Indicates if in case of Random Heading Direction , the descision was converted to be true.
+        /// </summary>
+        public bool RRInverse { get; set; }
 
         public override string ToString()
         {
             return
                 "FixationOnly:" + FixationOnly + "\r\n" +
                 "SecondChoice:" + SecondChoice + "\r\n" +
+                "RR Inverse:" + RRInverse + "\r\n" +
                 "EnableRightLeftMustEquals:" + EnableRightLeftMustEquals;
         }
     }
