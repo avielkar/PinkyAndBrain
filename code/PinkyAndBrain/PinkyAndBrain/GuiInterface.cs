@@ -1050,6 +1050,7 @@ namespace PinkyAndBrain
                 _btnResume.Enabled = false;
                 _btnPark.Enabled = false;
                 _btnEnagae.Enabled = false;
+                _btnStop.Enabled = true;
                 _btnMoveRobotSide.Enabled = false;
                 #endregion
 
