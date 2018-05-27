@@ -229,6 +229,9 @@ namespace PinkyAndBrain
             _logger.Info("Writing park position file ended.");
         }
 
+        /// <summary>
+        /// Writing the Aside pos file as the readen parameter in the configuration.
+        /// </summary>
         public void WriteASidePositionFile()
         {
             _logger.Info("Writing ASide position file.");
@@ -290,6 +293,9 @@ namespace PinkyAndBrain
             _logger.Info("Moving the robot park position ended.");
         }
 
+        /// <summary>
+        /// Move the robot to it's ASide position.
+        /// </summary>
         public void MoveRobotASidePosition()
         {
             _logger.Info("Moving the robot aside position begin.");
