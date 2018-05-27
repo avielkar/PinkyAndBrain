@@ -442,5 +442,17 @@ namespace MotomanSystem {
                 this["R1ASideRZ"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public double DeltaASideToPark {
+            get {
+                return ((double)(this["DeltaASideToPark"]));
+            }
+            set {
+                this["DeltaASideToPark"] = value;
+            }
+        }
     }
 }

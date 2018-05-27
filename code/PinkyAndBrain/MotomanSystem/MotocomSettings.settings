@@ -107,5 +107,8 @@
     <Setting Name="R1ASideRZ" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-100</Value>
     </Setting>
+    <Setting Name="DeltaASideToPark" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
