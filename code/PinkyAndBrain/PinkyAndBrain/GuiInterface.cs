@@ -1029,7 +1029,6 @@ namespace PinkyAndBrain
                 _btnResume.Enabled = true;
                 _btnPark.Enabled = true;
                 _btnEnagae.Enabled = false;
-                _btnMoveRobotSide.Enabled = true;
                 #endregion
 
                 Globals._systemState = SystemState.PAUSED;
