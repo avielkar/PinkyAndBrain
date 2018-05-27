@@ -229,6 +229,32 @@ namespace PinkyAndBrain
             _logger.Info("Writing park position file ended.");
         }
 
+        public void WriteASidePositionFile()
+        {
+            _logger.Info("Writing ASide position file.");
+
+            Position r1ASidePosition;
+
+            r1ASidePosition.x = MotocomSettings.Default.R1ASideX;
+            r1ASidePosition.y = MotocomSettings.Default.R1ASideY;
+            r1ASidePosition.z = MotocomSettings.Default.R1ASideZ;
+            r1ASidePosition.rx = MotocomSettings.Default.R1ASideRX;
+            r1ASidePosition.ry = MotocomSettings.Default.R1ASideRY;
+            r1ASidePosition.rz = MotocomSettings.Default.R1ASideRZ;
+
+            Position r2ASidePosition;
+            r2ASidePosition.x = MotocomSettings.Default.R2OriginalX;
+            r2ASidePosition.y = MotocomSettings.Default.R2OriginalY;
+            r2ASidePosition.z = MotocomSettings.Default.R2OriginalZ;
+            r2ASidePosition.rx = MotocomSettings.Default.R2OriginalRX;
+            r2ASidePosition.ry = MotocomSettings.Default.R2OriginalRY;
+            r2ASidePosition.rz = MotocomSettings.Default.R2OriginalRZ;
+
+            WriteOneTargetPositionFile("ASIDE_POS_BOTH", r1ASidePosition, r2ASidePosition);
+
+            _logger.Info("Writing ASide position file ended.");
+        }
+
         /// <summary>
         /// Writing the JBI file for one target position moving.
         /// </summary>
@@ -262,6 +288,15 @@ namespace PinkyAndBrain
             MoveRobotSpecificPosition("PARK_POS_BOTH.JBI");
 
             _logger.Info("Moving the robot park position ended.");
+        }
+
+        public void MoveRobotASidePosition()
+        {
+            _logger.Info("Moving the robot aside position begin.");
+
+            MoveRobotSpecificPosition("ASIDE_POS_BOTH.JBI");
+
+            _logger.Info("Moving the robot aside position ended.");
         }
 
         /// <summary>

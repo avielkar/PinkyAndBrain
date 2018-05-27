@@ -1204,6 +1204,33 @@ namespace PinkyAndBrain
             _btnPark.Enabled = true;
             _btnMoveRobotSide.Enabled = false;
             #endregion DISABLE_ENABLE_BUTTONS
+
+            try
+            {
+                //set robot servo on and go homeposition.
+                _motocomController.SetServoOn();
+            }
+            catch
+            {
+                MessageBox.Show("Cannot set the servos on - check if robot is conncted in play mode and also not turned off", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            _motocomController.WriteASidePositionFile();;
+            _motocomController.MoveRobotASidePosition();
+
+            _motocomController.WaitJobFinished();
+
+            try
+            {
+                //set robot servo on and go homeposition.
+                _motocomController.SetServoOff();
+            }
+            catch
+            {
+                MessageBox.Show("Cannot set the servos off - check if robot is conncted in play mode and also not turned off", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
         }
         #endregion
 
