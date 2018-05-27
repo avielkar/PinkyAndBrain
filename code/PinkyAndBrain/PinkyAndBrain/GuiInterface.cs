@@ -1050,6 +1050,7 @@ namespace PinkyAndBrain
                 _btnResume.Enabled = false;
                 _btnPark.Enabled = false;
                 _btnEnagae.Enabled = false;
+                _btnStop.Enabled = true;
                 _btnMoveRobotSide.Enabled = false;
                 #endregion
 
@@ -1072,7 +1073,6 @@ namespace PinkyAndBrain
                     #region DISABLE_BUTTONS
                     bool isBtnStartEnabled = _btnStart.Enabled;
                     bool isBtnStopEnabled = _btnStop.Enabled;
-                    bool isBtnResumeEnabled = _btnResume.Enabled;
                     bool isBtnPauseEnabled = _btnPause.Enabled;
 
                     _btnStart.Enabled = false;
@@ -1111,7 +1111,7 @@ namespace PinkyAndBrain
                     #region ENABLE_BUTTONS_BACK
                     _btnStart.Enabled = isBtnStartEnabled;
                     _btnStop.Enabled = isBtnStopEnabled;
-                    _btnResume.Enabled = isBtnResumeEnabled;
+                    _btnResume.Enabled = false;
                     _btnPause.Enabled = isBtnPauseEnabled;
                     _btnEnagae.Enabled = true;
                     _btnPark.Enabled = true;
@@ -1136,7 +1136,6 @@ namespace PinkyAndBrain
                     #region DISABLE_BUTTONS
                     bool isBtnStartEnabled = _btnStart.Enabled;
                     bool isBtnStopEnabled = _btnStop.Enabled;
-                    bool isBtnResumeEnabled = _btnResume.Enabled;
                     bool isBtnPauseEnabled = _btnPause.Enabled;
 
                     _btnStart.Enabled = false;
@@ -1179,7 +1178,8 @@ namespace PinkyAndBrain
                     #region ENABLE_BUTTONS_BACK
                     _btnStart.Enabled = isBtnStartEnabled;
                     _btnStop.Enabled = isBtnStopEnabled;
-                    _btnResume.Enabled = isBtnResumeEnabled;
+                    //if paused and then parked and engaged in the middle of the experiment.
+                    if(_isEngaged && !_btnStop.Enabled && !_btnStart.Enabled) _btnResume.Enabled = true;
                     _btnPause.Enabled = isBtnPauseEnabled;
                     _btnEnagae.Enabled = true;
                     _btnPark.Enabled = true;
@@ -1201,7 +1201,7 @@ namespace PinkyAndBrain
             _btnResume.Enabled = false;
             _btnPause.Enabled = false;
             _btnEnagae.Enabled = false;
-            _btnPark.Enabled = true;
+            _btnPark.Enabled = false;
             _btnMoveRobotSide.Enabled = false;
             #endregion DISABLE_ENABLE_BUTTONS
 
@@ -1231,6 +1231,10 @@ namespace PinkyAndBrain
                 MessageBox.Show("Cannot set the servos off - check if robot is conncted in play mode and also not turned off", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            #region DISABLE_ENABLE_BUTTONS
+            _btnPark.Enabled = true;
+            #endregion DISABLE_ENABLE_BUTTONS
         }
         #endregion
 
