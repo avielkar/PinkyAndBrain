@@ -1135,7 +1135,6 @@ namespace PinkyAndBrain
                     #region DISABLE_BUTTONS
                     bool isBtnStartEnabled = _btnStart.Enabled;
                     bool isBtnStopEnabled = _btnStop.Enabled;
-                    bool isBtnResumeEnabled = _btnResume.Enabled;
                     bool isBtnPauseEnabled = _btnPause.Enabled;
 
                     _btnStart.Enabled = false;
@@ -1178,7 +1177,8 @@ namespace PinkyAndBrain
                     #region ENABLE_BUTTONS_BACK
                     _btnStart.Enabled = isBtnStartEnabled;
                     _btnStop.Enabled = isBtnStopEnabled;
-                    _btnResume.Enabled = isBtnResumeEnabled;
+                    //if paused and then parked and engaged in the middle of the experiment.
+                    if(_isEngaged && !_btnStop.Enabled && !_btnStart.Enabled) _btnResume.Enabled = true;
                     _btnPause.Enabled = isBtnPauseEnabled;
                     _btnEnagae.Enabled = true;
                     _btnPark.Enabled = true;
