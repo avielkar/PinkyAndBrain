@@ -12,7 +12,7 @@ namespace MotomanSystem {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0")]
     public sealed partial class MotocomSettings : global::System.Configuration.ApplicationSettingsBase {
         
         private static MotocomSettings defaultInstance = ((MotocomSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new MotocomSettings())));
@@ -368,6 +368,90 @@ namespace MotomanSystem {
             }
             set {
                 this["DeltaEngageToEngage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public double R1ASideX {
+            get {
+                return ((double)(this["R1ASideX"]));
+            }
+            set {
+                this["R1ASideX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("320")]
+        public double R1ASideY {
+            get {
+                return ((double)(this["R1ASideY"]));
+            }
+            set {
+                this["R1ASideY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("523.095")]
+        public double R1ASideZ {
+            get {
+                return ((double)(this["R1ASideZ"]));
+            }
+            set {
+                this["R1ASideZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double R1ASideRX {
+            get {
+                return ((double)(this["R1ASideRX"]));
+            }
+            set {
+                this["R1ASideRX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double R1ASideRY {
+            get {
+                return ((double)(this["R1ASideRY"]));
+            }
+            set {
+                this["R1ASideRY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-100")]
+        public double R1ASideRZ {
+            get {
+                return ((double)(this["R1ASideRZ"]));
+            }
+            set {
+                this["R1ASideRZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public double DeltaASideToPark {
+            get {
+                return ((double)(this["DeltaASideToPark"]));
+            }
+            set {
+                this["DeltaASideToPark"] = value;
             }
         }
     }

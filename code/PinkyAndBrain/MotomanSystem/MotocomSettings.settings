@@ -89,5 +89,26 @@
     <Setting Name="DeltaEngageToEngage" Type="System.Double" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
+    <Setting Name="R1ASideX" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="R1ASideY" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">320</Value>
+    </Setting>
+    <Setting Name="R1ASideZ" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">523.095</Value>
+    </Setting>
+    <Setting Name="R1ASideRX" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="R1ASideRY" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="R1ASideRZ" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-100</Value>
+    </Setting>
+    <Setting Name="DeltaASideToPark" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -887,6 +887,7 @@ namespace PinkyAndBrain
                         _btnPause.Enabled = true;
                         _btnResume.Enabled = false;
                         _btnPark.Enabled = false;
+                        _btnMoveRobotSide.Enabled = false;
                         #endregion
 
                         //if already running - ignore.
@@ -1009,6 +1010,7 @@ namespace PinkyAndBrain
                 _btnPause.Enabled = false;
                 _btnResume.Enabled = false;
                 _btnPark.Enabled = true;
+                _btnMoveRobotSide.Enabled = true;
                 #endregion
             }
         }
@@ -1048,6 +1050,7 @@ namespace PinkyAndBrain
                 _btnResume.Enabled = false;
                 _btnPark.Enabled = false;
                 _btnEnagae.Enabled = false;
+                _btnMoveRobotSide.Enabled = false;
                 #endregion
 
                 Globals._systemState = SystemState.RUNNING;
@@ -1078,6 +1081,7 @@ namespace PinkyAndBrain
                     _btnPause.Enabled = false;
                     _btnEnagae.Enabled = false;
                     _btnPark.Enabled = false;
+                    _btnMoveRobotSide.Enabled = false;
                     #endregion
 
                     //set robot servo on and go homeposition.
@@ -1085,8 +1089,9 @@ namespace PinkyAndBrain
 
                     string checkerParkPosition = CheckBothRobotsAtParkPosition(MotocomSettings.Default.DeltaParkToPark);
                     string checkerEngagePosition = CheckBothRobotAroundEngagePosition(MotocomSettings.Default.DeltaEngageToPark);
+                    string checkerAsidePosition = CheckBothRobotAroundASidePosition(MotocomSettings.Default.DeltaASideToPark);
 
-                    if (checkerParkPosition.Equals(string.Empty) || checkerEngagePosition.Equals(string.Empty))
+                    if (checkerParkPosition.Equals(string.Empty) || checkerEngagePosition.Equals(string.Empty) || checkerAsidePosition.Equals(string.Empty))
                     {
 
                         _motocomController.WriteParkPositionFile();
@@ -1110,6 +1115,7 @@ namespace PinkyAndBrain
                     _btnPause.Enabled = isBtnPauseEnabled;
                     _btnEnagae.Enabled = true;
                     _btnPark.Enabled = true;
+                    _btnMoveRobotSide.Enabled = true;
                     #endregion
                 }
             }
@@ -1123,7 +1129,7 @@ namespace PinkyAndBrain
         /// <param name="e">Args.</param>
         private void _btnEnagae_Click(object sender, EventArgs e)
         {
-            lock (_lockerPauseResumeButton)
+            lock (_lockerStopStartButton)
             {
                 lock (_lockerPauseResumeButton)
                 {
@@ -1139,6 +1145,7 @@ namespace PinkyAndBrain
                     _btnPause.Enabled = false;
                     _btnEnagae.Enabled = false;
                     _btnPark.Enabled = false;
+                    _btnMoveRobotSide.Enabled = false;
                     #endregion
 
                     try
@@ -1178,6 +1185,51 @@ namespace PinkyAndBrain
                     _btnPark.Enabled = true;
                     #endregion
                 }
+            }
+        }
+
+        /// <summary>
+        /// Moves the R1 robot aside.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void _btnMoveRobotSide_Click(object sender, EventArgs e)
+        {
+            #region DISABLE_ENABLE_BUTTONS
+            _btnStart.Enabled = false;
+            _btnStop.Enabled = false;
+            _btnResume.Enabled = false;
+            _btnPause.Enabled = false;
+            _btnEnagae.Enabled = false;
+            _btnPark.Enabled = true;
+            _btnMoveRobotSide.Enabled = false;
+            #endregion DISABLE_ENABLE_BUTTONS
+
+            try
+            {
+                //set robot servo on and go homeposition.
+                _motocomController.SetServoOn();
+            }
+            catch
+            {
+                MessageBox.Show("Cannot set the servos on - check if robot is conncted in play mode and also not turned off", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            _motocomController.WriteASidePositionFile();;
+            _motocomController.MoveRobotASidePosition();
+
+            _motocomController.WaitJobFinished();
+
+            try
+            {
+                //set robot servo on and go homeposition.
+                _motocomController.SetServoOff();
+            }
+            catch
+            {
+                MessageBox.Show("Cannot set the servos off - check if robot is conncted in play mode and also not turned off", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
         }
         #endregion
@@ -1261,12 +1313,21 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
-        /// Check the both robots arounf the engage position.
+        /// Check the both robots around the engage position.
         /// </summary>
         /// <returns></returns>
         private string CheckBothRobotAroundEngagePosition(double delta)
         {
             return CheckBothRobotAroundDeltaEngagePosition(delta);
+        }
+
+        /// <summary>
+        /// Check the both robots around the Aside position.
+        /// </summary>
+        /// <returns></returns>
+        private string CheckBothRobotAroundASidePosition(double delta)
+        {
+            return CheckBothRobotAroundDeltaASidePosition(delta);
         }
 
         /// <summary>
@@ -1300,6 +1361,41 @@ namespace PinkyAndBrain
                 "R2XDelta = " + (robot2Pos[0] - MotocomSettings.Default.R2OriginalX).ToString("0.00") + "mm\n" +
                 "R2YDelta = " + (robot2Pos[1] - MotocomSettings.Default.R2OriginalY).ToString("0.00") + "mm\n" +
                 "R2ZDelta = " + (robot2Pos[2] - MotocomSettings.Default.R2OriginalZ).ToString("0.00") + "mm";
+
+            return (robot1PosInEngage && robot2PosInEngage) ? (string.Empty) : (message);
+        }
+
+        /// <summary>
+        /// Check the both robots around delta from the ASide position.
+        /// </summary>
+        /// <param name="delta"></param>
+        /// <returns></returns>
+        private string CheckBothRobotAroundDeltaASidePosition(double delta)
+        {
+            _motocomController.SetRobotControlGroup(1);
+
+            double[] robot1Pos = _motocomController.GetRobotPlace();
+
+            //when checking that robot position is close to engage for park or park for engage, if delta is small, allow x to be large (it is along the engage-park line).
+            bool robot1PosInEngage = (Math.Abs(robot1Pos[0] - (MotocomSettings.Default.R1ASideX)) < delta || delta <= 10) &&
+                                     Math.Abs(robot1Pos[1] - MotocomSettings.Default.R1ASideY) < delta &&
+                                     Math.Abs(robot1Pos[2] - MotocomSettings.Default.R1ASideZ) < delta;
+
+            _motocomController.SetRobotControlGroup(2);
+
+            double[] robot2Pos = _motocomController.GetRobotPlace();
+
+            bool robot2PosInEngage = (Math.Abs(robot2Pos[0] - MotocomSettings.Default.R2OriginalX) < delta || delta <= 10) &&
+                                     Math.Abs(robot2Pos[1] - MotocomSettings.Default.R2OriginalY) < delta &&
+                                     Math.Abs(robot2Pos[2] - MotocomSettings.Default.R2OriginalZ) < delta;
+
+            string message = "Move manually to < " + delta + "mm of the Aside position. Current location from Aside:\n" +
+                             "R1XDelta = " + (robot1Pos[0] - MotocomSettings.Default.R1ASideX).ToString("0.00") + "mm\n" +
+                             "R1YDelta = " + (robot1Pos[1] - MotocomSettings.Default.R1ASideY).ToString("0.00") + "mm\n" +
+                             "R1ZDelta = " + (robot1Pos[2] - MotocomSettings.Default.R1ASideZ).ToString("0.00") + "mm\n" +
+                             "R2XDelta = " + (robot2Pos[0] - MotocomSettings.Default.R1ASideRX).ToString("0.00") + "mm\n" +
+                             "R2YDelta = " + (robot2Pos[1] - MotocomSettings.Default.R1ASideRX).ToString("0.00") + "mm\n" +
+                             "R2ZDelta = " + (robot2Pos[2] - MotocomSettings.Default.R1ASideRZ).ToString("0.00") + "mm";
 
             return (robot1PosInEngage && robot2PosInEngage) ? (string.Empty) : (message);
         }
