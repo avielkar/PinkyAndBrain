@@ -55,6 +55,7 @@
             this._continiousHandRewardButton = new System.Windows.Forms.Button();
             this._checkBoxAutoChoice = new System.Windows.Forms.CheckBox();
             this._varyingControlGroupBox = new System.Windows.Forms.GroupBox();
+            this._btnMoveRobotSide = new System.Windows.Forms.Button();
             this._btnEnagae = new System.Windows.Forms.Button();
             this._btnPark = new System.Windows.Forms.Button();
             this._btnResume = new System.Windows.Forms.Button();
@@ -121,7 +122,6 @@
             this._groupboxGoCue = new System.Windows.Forms.GroupBox();
             this._radiobuttonGoCueCorrectSide = new System.Windows.Forms.RadioButton();
             this._radiobuttonGoCueBothSide = new System.Windows.Forms.RadioButton();
-            this._btnMoveRobotSide = new System.Windows.Forms.Button();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -373,6 +373,17 @@
             this._varyingControlGroupBox.TabIndex = 13;
             this._varyingControlGroupBox.TabStop = false;
             this._varyingControlGroupBox.Text = "Varying Control";
+            // 
+            // _btnMoveRobotSide
+            // 
+            this._btnMoveRobotSide.Enabled = false;
+            this._btnMoveRobotSide.Location = new System.Drawing.Point(7, 67);
+            this._btnMoveRobotSide.Name = "_btnMoveRobotSide";
+            this._btnMoveRobotSide.Size = new System.Drawing.Size(75, 23);
+            this._btnMoveRobotSide.TabIndex = 18;
+            this._btnMoveRobotSide.Text = "Move Side";
+            this._btnMoveRobotSide.UseVisualStyleBackColor = true;
+            this._btnMoveRobotSide.Click += new System.EventHandler(this._btnMoveRobotSide_Click);
             // 
             // _btnEnagae
             // 
@@ -1025,16 +1036,6 @@
             this._radiobuttonGoCueBothSide.Text = "Both Side";
             this._radiobuttonGoCueBothSide.UseVisualStyleBackColor = true;
             this._radiobuttonGoCueBothSide.CheckedChanged += new System.EventHandler(this._radiobuttonGoCueBothSide_CheckedChanged);
-            // 
-            // _btnMoveRobotSide
-            // 
-            this._btnMoveRobotSide.Location = new System.Drawing.Point(7, 67);
-            this._btnMoveRobotSide.Name = "_btnMoveRobotSide";
-            this._btnMoveRobotSide.Size = new System.Drawing.Size(75, 23);
-            this._btnMoveRobotSide.TabIndex = 18;
-            this._btnMoveRobotSide.Text = "Move Side";
-            this._btnMoveRobotSide.UseVisualStyleBackColor = true;
-            this._btnMoveRobotSide.Click += new System.EventHandler(this._btnMoveRobotSide_Click);
             // 
             // GuiInterface
             // 
