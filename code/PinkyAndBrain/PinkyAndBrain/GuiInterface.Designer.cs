@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._protocolsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -121,6 +121,7 @@
             this._groupboxGoCue = new System.Windows.Forms.GroupBox();
             this._radiobuttonGoCueCorrectSide = new System.Windows.Forms.RadioButton();
             this._radiobuttonGoCueBothSide = new System.Windows.Forms.RadioButton();
+            this._btnMoveRobotSide = new System.Windows.Forms.Button();
             this._trialParametersGroup.SuspendLayout();
             this._handRewardsgroupBox.SuspendLayout();
             this._varyingControlGroupBox.SuspendLayout();
@@ -351,6 +352,7 @@
             // 
             // _varyingControlGroupBox
             // 
+            this._varyingControlGroupBox.Controls.Add(this._btnMoveRobotSide);
             this._varyingControlGroupBox.Controls.Add(this._btnEnagae);
             this._varyingControlGroupBox.Controls.Add(this._btnPark);
             this._varyingControlGroupBox.Controls.Add(this._btnResume);
@@ -629,17 +631,17 @@
             // 
             // _onlinePsychGraphControl
             // 
-            chartArea2.Name = "ChartArea1";
-            this._onlinePsychGraphControl.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this._onlinePsychGraphControl.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this._onlinePsychGraphControl.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this._onlinePsychGraphControl.Legends.Add(legend1);
             this._onlinePsychGraphControl.Location = new System.Drawing.Point(6, 19);
             this._onlinePsychGraphControl.Name = "_onlinePsychGraphControl";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this._onlinePsychGraphControl.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this._onlinePsychGraphControl.Series.Add(series1);
             this._onlinePsychGraphControl.Size = new System.Drawing.Size(379, 279);
             this._onlinePsychGraphControl.TabIndex = 0;
             this._onlinePsychGraphControl.Text = "chart1";
@@ -1024,6 +1026,16 @@
             this._radiobuttonGoCueBothSide.UseVisualStyleBackColor = true;
             this._radiobuttonGoCueBothSide.CheckedChanged += new System.EventHandler(this._radiobuttonGoCueBothSide_CheckedChanged);
             // 
+            // _btnMoveRobotSide
+            // 
+            this._btnMoveRobotSide.Location = new System.Drawing.Point(7, 67);
+            this._btnMoveRobotSide.Name = "_btnMoveRobotSide";
+            this._btnMoveRobotSide.Size = new System.Drawing.Size(75, 23);
+            this._btnMoveRobotSide.TabIndex = 18;
+            this._btnMoveRobotSide.Text = "Move Side";
+            this._btnMoveRobotSide.UseVisualStyleBackColor = true;
+            this._btnMoveRobotSide.Click += new System.EventHandler(this._btnMoveRobotSide_Click);
+            // 
             // GuiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1182,5 +1194,6 @@
         private System.Windows.Forms.GroupBox _groupboxGoCue;
         private System.Windows.Forms.RadioButton _radiobuttonGoCueCorrectSide;
         private System.Windows.Forms.RadioButton _radiobuttonGoCueBothSide;
+        private System.Windows.Forms.Button _btnMoveRobotSide;
     }
 }

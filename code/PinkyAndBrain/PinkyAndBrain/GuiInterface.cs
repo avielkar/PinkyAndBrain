@@ -887,6 +887,7 @@ namespace PinkyAndBrain
                         _btnPause.Enabled = true;
                         _btnResume.Enabled = false;
                         _btnPark.Enabled = false;
+                        _btnMoveRobotSide.Enabled = false;
                         #endregion
 
                         //if already running - ignore.
@@ -1009,6 +1010,7 @@ namespace PinkyAndBrain
                 _btnPause.Enabled = false;
                 _btnResume.Enabled = false;
                 _btnPark.Enabled = true;
+                _btnMoveRobotSide.Enabled = true;
                 #endregion
             }
         }
@@ -1027,6 +1029,7 @@ namespace PinkyAndBrain
                 _btnResume.Enabled = true;
                 _btnPark.Enabled = true;
                 _btnEnagae.Enabled = false;
+                _btnMoveRobotSide.Enabled = true;
                 #endregion
 
                 Globals._systemState = SystemState.PAUSED;
@@ -1048,6 +1051,7 @@ namespace PinkyAndBrain
                 _btnResume.Enabled = false;
                 _btnPark.Enabled = false;
                 _btnEnagae.Enabled = false;
+                _btnMoveRobotSide.Enabled = false;
                 #endregion
 
                 Globals._systemState = SystemState.RUNNING;
@@ -1078,6 +1082,7 @@ namespace PinkyAndBrain
                     _btnPause.Enabled = false;
                     _btnEnagae.Enabled = false;
                     _btnPark.Enabled = false;
+                    _btnMoveRobotSide.Enabled = false;
                     #endregion
 
                     //set robot servo on and go homeposition.
@@ -1110,6 +1115,7 @@ namespace PinkyAndBrain
                     _btnPause.Enabled = isBtnPauseEnabled;
                     _btnEnagae.Enabled = true;
                     _btnPark.Enabled = true;
+                    _btnMoveRobotSide.Enabled = true;
                     #endregion
                 }
             }
@@ -1123,7 +1129,7 @@ namespace PinkyAndBrain
         /// <param name="e">Args.</param>
         private void _btnEnagae_Click(object sender, EventArgs e)
         {
-            lock (_lockerPauseResumeButton)
+            lock (_lockerStopStartButton)
             {
                 lock (_lockerPauseResumeButton)
                 {
@@ -1139,6 +1145,7 @@ namespace PinkyAndBrain
                     _btnPause.Enabled = false;
                     _btnEnagae.Enabled = false;
                     _btnPark.Enabled = false;
+                    _btnMoveRobotSide.Enabled = false;
                     #endregion
 
                     try
@@ -1179,6 +1186,24 @@ namespace PinkyAndBrain
                     #endregion
                 }
             }
+        }
+
+        /// <summary>
+        /// Moves the R1 robot aside.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void _btnMoveRobotSide_Click(object sender, EventArgs e)
+        {
+            #region DISABLE_ENABLE_BUTTONS
+            _btnStart.Enabled = false;
+            _btnStop.Enabled = false;
+            _btnResume.Enabled = false;
+            _btnPause.Enabled = false;
+            _btnEnagae.Enabled = false;
+            _btnPark.Enabled = true;
+            _btnMoveRobotSide.Enabled = false;
+            #endregion DISABLE_ENABLE_BUTTONS
         }
         #endregion
 
