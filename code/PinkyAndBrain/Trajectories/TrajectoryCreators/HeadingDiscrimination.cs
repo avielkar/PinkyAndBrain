@@ -182,8 +182,9 @@ namespace Trajectories
             //if it is to move the landscapeHouseRobot with no Delta.
             if (_stimulusType == 1)
             {
+                //todo::check what to add to the tilt in the future (now th tilt is always 0 - so nevermind midwhile).
                 multiplyRatDistance = CreateMultiplyTuple(_headingDirection, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
-                multiplyLandscapeDistance = CreateMultiplyTuple(180 + _headingDirection, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
+                multiplyLandscapeDistance = CreateMultiplyTuple(_headingDirection, 180 + _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
             }
             else if(_stimulusType == 2 || _stimulusType == 10 || _stimulusType == 12)//stim type 12 would repace stim type 10
             {
@@ -200,6 +201,7 @@ namespace Trajectories
             //_stimulusType = 14 move the landscapeHouseParameter with  negative delta in the dark.
             else if (_stimulusType == 4 || _stimulusType == 14)
             {
+                //todo::check here with adam about adding the 180 here also (i think they dont run 3d protocol woth delta - but may run in the future.
                 multiplyRatDistance = CreateMultiplyTuple(_headingDirection - _deltaHeading / 2, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
                 multiplyLandscapeDistance = CreateMultiplyTuple(_headingDirection + _deltaHeading / 2, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
             }
@@ -207,6 +209,7 @@ namespace Trajectories
             //_stimulusType = 15 move the landscapeHouseParameter with  positive delta in the dark.
             else
             {
+                //todo::check here with adam about adding the 180 here also (i think they dont run 3d protocol woth delta - but may run in the future.
                 multiplyRatDistance = CreateMultiplyTuple(_headingDirection + _deltaHeading / 2, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
                 multiplyLandscapeDistance = CreateMultiplyTuple(_headingDirection - _deltaHeading / 2, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
             }
