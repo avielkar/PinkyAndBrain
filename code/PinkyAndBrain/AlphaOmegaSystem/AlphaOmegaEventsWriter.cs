@@ -232,7 +232,7 @@ namespace AlphaOmegaSystem
         /// <summary>
         /// The side (left or right) sound starts to play. (#24)
         /// </summary>
-        SideRewardSound = 0xc0,
+        GoCueSound = 0xc0, 
 
         /// <summary>
         /// The robot get execute to move forward trajectory for stimulus type 14. (#25)
@@ -248,11 +248,11 @@ namespace AlphaOmegaSystem
         /// The center reward sound starts to play. (#27)
         /// </summary>
         CenterRewardSound = 0xd8,
-
+        
         /// <summary>
         /// The go cue sound starts to play. (#28)
         /// </summary>
-        GoCueSound = 0xe0,
+        SideRewardSound = 0xe0,
 
         /// <summary>
         /// The robot finish to execute the forward moving trajectory. (#29)
