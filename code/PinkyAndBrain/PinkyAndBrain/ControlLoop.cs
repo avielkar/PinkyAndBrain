@@ -862,6 +862,7 @@ namespace PinkyAndBrain
                 _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage",
                 "Clue Stage");
 
+            //todo:check if it should be here and not outside this function - because the correct answer shoule not determine in this function especailly.
             //determine the current trial correct answer.
             DetermineCurrentStimulusAnswer();
 
@@ -870,36 +871,39 @@ namespace PinkyAndBrain
             _soundsMode.EnableCueSoundInBothSide = EnableCueSoundInBothSide;
             _soundsMode.EnableCueSoundInCorrectSide = EnableCueSoundCorrectSide;
 
-            if (EnableCueSoundInBothSide & EnableGoCueSound)
+            if (EnableGoCueSound)
             {
-                _logger.Info("Start playing EnableCueSoundInBothSide");
-
-                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
-                _windowsMediaPlayer.controls.play();
-
-                _logger.Info("End playing EnableCueSoundInBothSide");
-            }
-
-            else if (EnableCueSoundCorrectSide & EnableGoCueSound)
-            {
-                if (_correctDecision.Equals(RatDecison.Right))
+                if (EnableCueSoundInBothSide)
                 {
-                    _logger.Info("Start playing EnableCueSoundCorrectSide - Right");
+                    _logger.Info("Start playing EnableCueSoundInBothSide");
 
-                    _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
+                    _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                     _windowsMediaPlayer.controls.play();
 
                     _logger.Info("End playing EnableCueSoundInBothSide");
                 }
 
-                else if (_correctDecision.Equals(RatDecison.Left))
+                else if (EnableCueSoundCorrectSide)
                 {
-                    _logger.Info("Start playing EnableCueSoundCorrectSide - Left");
+                    if (_correctDecision.Equals(RatDecison.Right))
+                    {
+                        _logger.Info("Start playing EnableCueSoundCorrectSide - Right");
 
-                    _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
-                    _windowsMediaPlayer.controls.play();
+                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
+                        _windowsMediaPlayer.controls.play();
 
-                    _logger.Info("End playing EnableCueSoundInBothSide");
+                        _logger.Info("End playing EnableCueSoundInBothSide");
+                    }
+
+                    else if (_correctDecision.Equals(RatDecison.Left))
+                    {
+                        _logger.Info("Start playing EnableCueSoundCorrectSide - Left");
+
+                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
+                        _windowsMediaPlayer.controls.play();
+
+                        _logger.Info("End playing EnableCueSoundInBothSide");
+                    }
                 }
             }
 
