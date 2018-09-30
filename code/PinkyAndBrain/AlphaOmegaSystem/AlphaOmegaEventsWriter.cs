@@ -245,14 +245,14 @@ namespace AlphaOmegaSystem
         StimulusStart15 = 0xd0,
 
         /// <summary>
-        /// The robot get execute to move forward trajectory for stimulus type 16. (#27)
+        /// The center reward sound starts to play. (#27)
         /// </summary>
-        StimulusStart16 = 0xd8,
+        CenterRewardSound = 0xd8,
 
         /// <summary>
-        /// The robot get execute to move forward trajectory for stimulus type 17. (#28)
+        /// The go cue sound starts to play. (#28)
         /// </summary>
-        StimulusStart17 = 0xe0,
+        GoCueSound = 0xe0,
 
         /// <summary>
         /// The robot finish to execute the forward moving trajectory. (#29)
