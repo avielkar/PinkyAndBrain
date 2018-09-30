@@ -1106,8 +1106,8 @@ namespace PinkyAndBrain
         /// <param name="position">The cellenoid position side to be opened.</param>
         /// <param name="rewardDuration">The duration the selected cellenoid eould be opened.</param>
         /// <param name="rewardDelay">The delay time before opening the selected cellenoid.</param>
-        /// <param name="autoreward">Indecation if to give the reward with no delay.</param>
-        /// <param name="autoRewardSound">Indecation ig to give the suto reard sound during the reward.</param>
+        /// <param name="autoreward">Indecition if to give the reward with no delay.</param>
+        /// <param name="autoRewardSound">Indication if to give the auto reward sound during the reward.</param>
         public void Reward(RewardPosition position, double rewardDuration, double rewardDelay, bool autoreward = false , bool autoRewardSound = false)
         {
             //if autoReward than play the sound in the slected side of the water reward in order to help the rat to understand the water reward side.
