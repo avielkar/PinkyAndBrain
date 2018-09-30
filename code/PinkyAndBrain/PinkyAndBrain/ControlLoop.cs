@@ -862,6 +862,7 @@ namespace PinkyAndBrain
                 _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage",
                 "Clue Stage");
 
+            //todo:check if it should be here and not outside this function - because the correct answer shoule not determine in this function especailly.
             //determine the current trial correct answer.
             DetermineCurrentStimulusAnswer();
 
@@ -870,36 +871,43 @@ namespace PinkyAndBrain
             _soundsMode.EnableCueSoundInBothSide = EnableCueSoundInBothSide;
             _soundsMode.EnableCueSoundInCorrectSide = EnableCueSoundCorrectSide;
 
-            if (EnableCueSoundInBothSide & EnableGoCueSound)
+            if (EnableGoCueSound)
             {
-                _logger.Info("Start playing EnableCueSoundInBothSide");
+                //write the go cue event to the AlphaOmega system.
+                _alphaOmegaEventsWriter.WriteEvent(true , AlphaOmegaEvent.GoCueSound);
+                _trialEventRealTiming.Add("GoCueSound" , _controlLoopTrialTimer.ElapsedMilliseconds);
 
-                _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
-                _windowsMediaPlayer.controls.play();
-
-                _logger.Info("End playing EnableCueSoundInBothSide");
-            }
-
-            else if (EnableCueSoundCorrectSide & EnableGoCueSound)
-            {
-                if (_correctDecision.Equals(RatDecison.Right))
+                //make the sound.
+                if (EnableCueSoundInBothSide)
                 {
-                    _logger.Info("Start playing EnableCueSoundCorrectSide - Right");
+                    _logger.Info("Start playing EnableCueSoundInBothSide");
 
-                    _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
+                    _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                     _windowsMediaPlayer.controls.play();
 
                     _logger.Info("End playing EnableCueSoundInBothSide");
                 }
-
-                else if (_correctDecision.Equals(RatDecison.Left))
+                else if (EnableCueSoundCorrectSide)
                 {
-                    _logger.Info("Start playing EnableCueSoundCorrectSide - Left");
+                    if (_correctDecision.Equals(RatDecison.Right))
+                    {
+                        _logger.Info("Start playing EnableCueSoundCorrectSide - Right");
 
-                    _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
-                    _windowsMediaPlayer.controls.play();
+                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
+                        _windowsMediaPlayer.controls.play();
 
-                    _logger.Info("End playing EnableCueSoundInBothSide");
+                        _logger.Info("End playing EnableCueSoundInBothSide");
+                    }
+
+                    else if (_correctDecision.Equals(RatDecison.Left))
+                    {
+                        _logger.Info("Start playing EnableCueSoundCorrectSide - Left");
+
+                        _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
+                        _windowsMediaPlayer.controls.play();
+
+                        _logger.Info("End playing EnableCueSoundInBothSide");
+                    }
                 }
             }
 
@@ -1099,8 +1107,8 @@ namespace PinkyAndBrain
         /// <param name="position">The cellenoid position side to be opened.</param>
         /// <param name="rewardDuration">The duration the selected cellenoid eould be opened.</param>
         /// <param name="rewardDelay">The delay time before opening the selected cellenoid.</param>
-        /// <param name="autoreward">Indecation if to give the reward with no delay.</param>
-        /// <param name="autoRewardSound">Indecation ig to give the suto reard sound during the reward.</param>
+        /// <param name="autoreward">Indecition if to give the reward with no delay.</param>
+        /// <param name="autoRewardSound">Indication if to give the auto reward sound during the reward.</param>
         public void Reward(RewardPosition position, double rewardDuration, double rewardDelay, bool autoreward = false , bool autoRewardSound = false)
         {
             //if autoReward than play the sound in the slected side of the water reward in order to help the rat to understand the water reward side.
@@ -1115,14 +1123,20 @@ namespace PinkyAndBrain
                         switch (position)
                         {
                             case RewardPosition.Center:
+                                _alphaOmegaEventsWriter.WriteEvent(true,AlphaOmegaEvent.CenterRewardSound);
+                                _trialEventRealTiming.Add("CenterRewardSound" , _controlLoopTrialTimer.ElapsedMilliseconds);
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                                 _windowsMediaPlayer.controls.play();
                                 break;
                             case RewardPosition.Left:
+                                _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.SideRewardSound);
+                                _trialEventRealTiming.Add("SideRewardSound", _controlLoopTrialTimer.ElapsedMilliseconds);
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
                                 _windowsMediaPlayer.controls.play();
                                 break;
                             case RewardPosition.Right:
+                                _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.SideRewardSound);
+                                _trialEventRealTiming.Add("SideRewardSound", _controlLoopTrialTimer.ElapsedMilliseconds);
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
                                 _windowsMediaPlayer.controls.play();
                                 break;
