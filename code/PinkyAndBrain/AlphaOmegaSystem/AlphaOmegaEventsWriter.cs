@@ -230,9 +230,9 @@ namespace AlphaOmegaSystem
         StimulusStart12 = 0xb8,
 
         /// <summary>
-        /// The robot get execute to move forward trajectory for stimulus type 13. (#24)
+        /// The side (left or right) sound starts to play. (#24)
         /// </summary>
-        StimulusStart13 = 0xc0,
+        SideRewardSound = 0xc0,
 
         /// <summary>
         /// The robot get execute to move forward trajectory for stimulus type 14. (#25)

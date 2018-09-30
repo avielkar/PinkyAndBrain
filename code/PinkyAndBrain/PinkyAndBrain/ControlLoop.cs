@@ -1122,14 +1122,20 @@ namespace PinkyAndBrain
                         switch (position)
                         {
                             case RewardPosition.Center:
+                                _alphaOmegaEventsWriter.WriteEvent(true,AlphaOmegaEvent.CenterRewardSound);
+                                _trialEventRealTiming.Add("CenterRewardSound" , _controlLoopTrialTimer.ElapsedMilliseconds);
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                                 _windowsMediaPlayer.controls.play();
                                 break;
                             case RewardPosition.Left:
+                                _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.SideRewardSound);
+                                _trialEventRealTiming.Add("SideRewardSound", _controlLoopTrialTimer.ElapsedMilliseconds);
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Left"];
                                 _windowsMediaPlayer.controls.play();
                                 break;
                             case RewardPosition.Right:
+                                _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.SideRewardSound);
+                                _trialEventRealTiming.Add("SideRewardSound", _controlLoopTrialTimer.ElapsedMilliseconds);
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding-Right"];
                                 _windowsMediaPlayer.controls.play();
                                 break;
