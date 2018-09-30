@@ -873,6 +873,10 @@ namespace PinkyAndBrain
 
             if (EnableGoCueSound)
             {
+                //write the go cue event to the AlphaOmega system.
+                _alphaOmegaEventsWriter.WriteEvent(true , AlphaOmegaEvent.GoCueSound);
+
+                //make the sound.
                 if (EnableCueSoundInBothSide)
                 {
                     _logger.Info("Start playing EnableCueSoundInBothSide");
@@ -882,7 +886,6 @@ namespace PinkyAndBrain
 
                     _logger.Info("End playing EnableCueSoundInBothSide");
                 }
-
                 else if (EnableCueSoundCorrectSide)
                 {
                     if (_correctDecision.Equals(RatDecison.Right))
