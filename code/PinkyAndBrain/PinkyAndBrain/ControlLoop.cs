@@ -875,6 +875,7 @@ namespace PinkyAndBrain
             {
                 //write the go cue event to the AlphaOmega system.
                 _alphaOmegaEventsWriter.WriteEvent(true , AlphaOmegaEvent.GoCueSound);
+                _trialEventRealTiming.Add("GoCueSound" , _controlLoopTrialTimer.ElapsedMilliseconds);
 
                 //make the sound.
                 if (EnableCueSoundInBothSide)
