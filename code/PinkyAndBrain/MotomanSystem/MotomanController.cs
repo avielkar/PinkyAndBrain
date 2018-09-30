@@ -330,6 +330,7 @@ namespace PinkyAndBrain
         /// </summary>
         public void MoveYasakawaRobotWithTrajectory()
         {
+            //todo:Check if to defuncion this function toi 2 seperates function of MoveRobot() and WaitFinish().
             _motomanController.StartJob("GAUSSIANMOVING2.JBI");
             _logger.Info("Moving the robot with trajectory begin.");
 
