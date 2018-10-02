@@ -274,11 +274,11 @@ namespace PinkyAndBrain
                 sb.Append("MOVL ");
                 sb.Append("P");
                 sb.Append((1).ToString("D" + 5));
-                double velocity2 = Velocity3D(selecterRobotTraj.x[0] * 10,
+                double velocity2 = Velocity3D(selecterRobotTraj.x[0],
                                        0,//originalX,
-                                       selecterRobotTraj.y[0] * 10,
+                                       selecterRobotTraj.y[0],
                                        0,//originalY,
-                                       selecterRobotTraj.z[0] * 10,
+                                       selecterRobotTraj.z[0],
                                        0)//originalZ)
                                    * 10000 / (1000 / _frequency);
                 sb.Append(" V=");
@@ -289,11 +289,11 @@ namespace PinkyAndBrain
                     sb.Append("  +MOVL ");
                     sb.Append("P");
                     sb.Append((selecterRobotTraj.x.Count + 1).ToString("D" + 5));
-                    double velocity21 = Velocity3D(r2Traj.x[0] * 10,
+                    double velocity21 = Velocity3D(r2Traj.x[0],
                                             0,//MotocomSettings.Default.R2OriginalX,
-                                            r2Traj.y[0] * 10,
+                                            r2Traj.y[0],
                                             0,//MotocomSettings.Default.R2OriginalY,
-                                            r2Traj.z[0] * 10,
+                                            r2Traj.z[0],
                                             0)//MotocomSettings.Default.R2OriginalZ)
                                         * 10000 / (1000 / _frequency);
                     sb.Append(" V=");
@@ -368,11 +368,11 @@ namespace PinkyAndBrain
                 sb.Append("MOVL ");
                 sb.Append("P");
                 sb.Append((selecterRobotTraj.x.Count).ToString("D" + 5));
-                double velocity2 = Velocity3D(selecterRobotTraj.x[selecterRobotTraj.x.Count-1] * 10,
+                double velocity2 = Velocity3D(selecterRobotTraj.x[selecterRobotTraj.x.Count-1],
                                        0,//originalX,
-                                       selecterRobotTraj.y[selecterRobotTraj.y.Count-1] * 10,
+                                       selecterRobotTraj.y[selecterRobotTraj.y.Count-1],
                                        0,//originalY,
-                                       selecterRobotTraj.z[selecterRobotTraj.z.Count-1] * 10,
+                                       selecterRobotTraj.z[selecterRobotTraj.z.Count-1],
                                        0)//originalZ)
                                    * 10000 / (1000 / _frequency);
                 sb.Append(" V=");
@@ -383,11 +383,11 @@ namespace PinkyAndBrain
                     sb.Append("  +MOVL ");
                     sb.Append("P");
                     sb.Append((selecterRobotTraj.x.Count * 2).ToString("D" + 5));
-                    double velocity21 = Velocity3D(r2Traj.x[r2Traj.x.Count-1] * 10,
+                    double velocity21 = Velocity3D(r2Traj.x[r2Traj.x.Count-1],
                                             0,//MotocomSettings.Default.R2OriginalX,
-                                            r2Traj.y[r2Traj.y.Count-1] * 10,
+                                            r2Traj.y[r2Traj.y.Count-1],
                                             0,//MotocomSettings.Default.R2OriginalY,
-                                            r2Traj.z[r2Traj.z.Count-1] * 10,
+                                            r2Traj.z[r2Traj.z.Count-1],
                                             0)//MotocomSettings.Default.R2OriginalZ)
                                         * 10000 / (1000 / _frequency);
                     sb.Append(" V=");
