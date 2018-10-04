@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 using System.IO;
 using Trajectories;
 using System.Configuration;
+using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics.LinearAlgebra.Complex;
+using MathNet.Numerics.LinearAlgebra.Double;
 using MotomanSystem;
+using Vector = MathNet.Numerics.LinearAlgebra.Complex.Vector;
 
 namespace PinkyAndBrain
 {
