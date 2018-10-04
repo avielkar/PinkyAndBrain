@@ -71,3 +71,4 @@ code/PinkyAndBrain/LED.Strip.Adressable/obj/Debug/LED.Strip.Adressable.csproj.Fi
 *.txt
 code/PinkyAndBrain/.vs/PinkyAndBrain/v15/Server/sqlite3/db.lock
 *.lock
+/code/PinkyAndBrain/PinkyAndBrain/bin/Debug
