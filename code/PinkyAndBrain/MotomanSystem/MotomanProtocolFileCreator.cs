@@ -209,9 +209,44 @@ namespace PinkyAndBrain
             _fileStreamWriter.WriteLine("P00000=10.000,0.000,0.000,0.0000,0.0000,0.0000");
             _fileStreamWriter.WriteLine("///POSTYPE BASE");
 
-            foreach (string lineString in TrajectoriesToLine(r1Traj , r2Traj , updateJobType))
+            //adding the zero point place for the trajectory (for the velocity calculaion behind) at the end if it is backward or at the beginning if it is forward movement.
+            //also, for the backward movement it skip the last point (because the robot is already there from the forward movement) and added the 0 placed to the end of the trajectory.
+            if (!returnBackMotion)
             {
-                _fileStreamWriter.WriteLine(lineString);
+                foreach (string lineString in TrajectoriesToLine(r1Traj, r2Traj, updateJobType))
+                {
+                    _fileStreamWriter.WriteLine(lineString);
+                }
+
+                r1Traj = InsertOriginPlace(r1Traj);
+                r2Traj = InsertOriginPlace(r2Traj);
+            }
+            else
+            {
+                Trajectory r1Traj2 = InsertOriginPlace(r1Traj, false);
+                Trajectory r2Traj2 = InsertOriginPlace(r2Traj, false);
+
+                r1Traj2.x = r1Traj2.x.SubVector(1, r1Traj2.x.Count - 1);
+                r1Traj2.y = r1Traj2.y.SubVector(1, r1Traj2.y.Count - 1);
+                r1Traj2.z = r1Traj2.z.SubVector(1, r1Traj2.z.Count - 1);
+                r1Traj2.rx = r1Traj2.rx.SubVector(1, r1Traj2.rx.Count - 1);
+                r1Traj2.ry = r1Traj2.ry.SubVector(1, r1Traj2.ry.Count - 1);
+                r1Traj2.rz = r1Traj2.rz.SubVector(1, r1Traj2.rz.Count - 1);
+
+                r2Traj2.x = r2Traj2.x.SubVector(1, r2Traj2.x.Count - 1);
+                r2Traj2.y = r2Traj2.y.SubVector(1, r2Traj2.y.Count - 1);
+                r2Traj2.z = r2Traj2.z.SubVector(1, r2Traj2.z.Count - 1);
+                r2Traj2.rx = r2Traj2.rx.SubVector(1, r2Traj2.rx.Count - 1);
+                r2Traj2.ry = r2Traj2.ry.SubVector(1, r2Traj2.ry.Count - 1);
+                r2Traj2.rz = r2Traj2.rz.SubVector(1, r2Traj2.rz.Count - 1);
+
+                foreach (string lineString in TrajectoriesToLine(r1Traj2, r2Traj2, updateJobType))
+                {
+                    _fileStreamWriter.WriteLine(lineString);
+                }
+
+                r1Traj = InsertOriginPlace(r1Traj, false);
+                r2Traj = InsertOriginPlace(r2Traj, false);
             }
 
             _fileStreamWriter.WriteLine("//INST");
