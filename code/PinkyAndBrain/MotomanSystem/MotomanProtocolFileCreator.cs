@@ -616,5 +616,80 @@ namespace PinkyAndBrain
             /// </summary>
             Both=3
         }
+
+        /// <summary>
+        /// The function inserts the zero place (at the first of at the end of the trajectory) to the trajectory according to the trajectory forward/backward type.
+        /// </summary>
+        /// <param name="traj">The trajectory.</param>
+        /// <param name="forward">Indicates if the movement is forward of backward.</param>
+        /// <returns></returns>
+        public Trajectory InsertOriginPlace(Trajectory traj, bool forward = true)
+        {
+            //todo:decide if to return new one or the input one (chenged).
+            if (!forward)
+            {
+                List<double> x = traj.x.ToList();
+                List<double> y = traj.y.ToList();
+                List<double> z = traj.z.ToList();
+                List<double> rx = traj.rx.ToList();
+                List<double> ry = traj.ry.ToList();
+                List<double> rz = traj.rz.ToList();
+                x.Add(0);
+                y.Add(0);
+                z.Add(0);
+                rx.Add(0);
+                ry.Add(0);
+                rz.Add(0);
+
+                traj.x = Vector<double>.Build.Dense(x.ToArray());
+                traj.y = Vector<double>.Build.Dense(y.ToArray());
+                traj.z = Vector<double>.Build.Dense(z.ToArray());
+                traj.rx = Vector<double>.Build.Dense(rx.ToArray());
+                traj.ry = Vector<double>.Build.Dense(ry.ToArray());
+                traj.rz = Vector<double>.Build.Dense(rz.ToArray());
+
+                return traj;
+            }
+            else
+            {
+                List<double> x = traj.x.ToList();
+                x.Reverse();
+                x.Add(0);
+                x.Reverse();
+                traj.x = Vector<double>.Build.Dense(x.ToArray());
+
+                List<double> y = traj.y.ToList();
+                y.Reverse();
+                y.Add(0);
+                y.Reverse();
+                traj.y = Vector<double>.Build.Dense(y.ToArray());
+
+                List<double> z = traj.z.ToList();
+                z.Reverse();
+                z.Add(0);
+                z.Reverse();
+                traj.z = Vector<double>.Build.Dense(z.ToArray());
+
+                List<double> rx = traj.rx.ToList();
+                rx.Reverse();
+                rx.Add(0);
+                rx.Reverse();
+                traj.rx = Vector<double>.Build.Dense(rx.ToArray());
+
+                List<double> ry = traj.ry.ToList();
+                ry.Reverse();
+                ry.Add(0);
+                ry.Reverse();
+                traj.ry = Vector<double>.Build.Dense(ry.ToArray());
+
+                List<double> rz = traj.rz.ToList();
+                rz.Reverse();
+                rz.Add(0);
+                rz.Reverse();
+                traj.rz = Vector<double>.Build.Dense(rz.ToArray());
+
+                return traj;
+            }
+        }
     }
 }
