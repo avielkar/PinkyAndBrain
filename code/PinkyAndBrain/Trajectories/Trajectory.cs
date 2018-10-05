@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Trajectories
 {
-    public class Trajectory2
+    public class Trajectory2:IList<Point>
     {
         #region MEMBERS
         #region LINEAR_TRAJECTORIES
@@ -55,6 +55,7 @@ namespace Trajectories
 
         public bool IsFixedSize => throw new NotImplementedException();
 
+        Point IList<Point>.this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public object this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         #endregion ROTATION_TRAJECTORIES
         #endregion MEMBERS
@@ -128,6 +129,56 @@ namespace Trajectories
                 rz.Reverse();
                 RZ = Vector<double>.Build.Dense(rz.ToArray());
             }
+        }
+
+        public int IndexOf(Point item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(int index, Point item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveAt(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(Point item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Clear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Contains(Point item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CopyTo(Point[] array, int arrayIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Remove(Point item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<Point> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 
