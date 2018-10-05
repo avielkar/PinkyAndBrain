@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Trajectories
 {
-    public class Trajectory2:IList<Point>
+    public class Trajectory2:IList<Position>
     {
         #region MEMBERS
         #region LINEAR_TRAJECTORIES
@@ -55,9 +55,10 @@ namespace Trajectories
 
         public bool IsFixedSize => throw new NotImplementedException();
 
-        Point IList<Point>.this[int index]
+        Position IList<Position>.this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Position this[int index]
         {
-            get => new Point()
+            get => new Position()
             {
                 X = X[index],
                 Y = Y[index],
@@ -76,7 +77,6 @@ namespace Trajectories
                 RZ[index] = value.RZ;
             }
         }
-        public object this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         #endregion ROTATION_TRAJECTORIES
         #endregion MEMBERS
 
@@ -88,7 +88,7 @@ namespace Trajectories
         public void InsertOriginPlace(bool forward = true)
         {
 
-            Point originPoint = new Point() { X = 0, Y = 0, Z = 0, RX = 0, RY = 0, RZ = 0 };
+            Position originPoint = new Position() { X = 0, Y = 0, Z = 0, RX = 0, RY = 0, RZ = 0 };
 
             //todo:decide if to return new one or the input one (chenged).
             if (!forward)
@@ -101,12 +101,12 @@ namespace Trajectories
             }
         }
 
-        public int IndexOf(Point item)
+        public int IndexOf(Position item)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(int index, Point item)
+        public void Insert(int index, Position item)
         {
             List<double> x = X.ToList();
             List<double> y = Y.ToList();
@@ -152,7 +152,7 @@ namespace Trajectories
             RZ = Vector<double>.Build.Dense(rz.ToArray());
         }
 
-        public void Add(Point item)
+        public void Add(Position item)
         {
             this.Insert(this.Count-1, item);
         }
@@ -167,22 +167,22 @@ namespace Trajectories
             RZ.Clear();
         }
 
-        public bool Contains(Point item)
+        public bool Contains(Position item)
         {
             throw new NotImplementedException();
         }
 
-        public void CopyTo(Point[] array, int arrayIndex)
+        public void CopyTo(Position[] array, int arrayIndex)
         {
             throw new NotImplementedException();
         }
 
-        public bool Remove(Point item)
+        public bool Remove(Position item)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerator<Point> GetEnumerator()
+        public IEnumerator<Position> GetEnumerator()
         {
             throw new NotImplementedException();
         }
@@ -191,20 +191,75 @@ namespace Trajectories
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Get a new Trajectory (independent from current) reversed to the current Trajectory.
+        /// </summary>
+        /// <returns>The new  reversed Trajectory.</returns>
+        public Trajectory2 ToReverse()
+        {
+            //the inversed trajectory to be returned.
+            Trajectory2 inverseTrajectory = new Trajectory2();
+
+            //initialization for the the trajectorry yo be retund.
+            int length = this.Count;
+            inverseTrajectory.X = Vector<double>.Build.Dense(length);
+            inverseTrajectory.Y = Vector<double>.Build.Dense(length);
+            inverseTrajectory.Z = Vector<double>.Build.Dense(length);
+            inverseTrajectory.RX = Vector<double>.Build.Dense(length);
+            inverseTrajectory.RY = Vector<double>.Build.Dense(length);
+            inverseTrajectory.RZ = Vector<double>.Build.Dense(length);
+
+            //inverse the original trajectory into the new trajectory.
+            for (int i = 0; i < length; i++)
+            {
+                int index = length - 1 - i;
+
+                inverseTrajectory.X[i] = this.X[index];
+                inverseTrajectory.Y[i] = this.Y[index];
+                inverseTrajectory.Z[i] = this.Z[index];
+                inverseTrajectory.RX[i] = this.RX[index];
+                inverseTrajectory.RY[i] = this.RY[index];
+                inverseTrajectory.RZ[i] = this.RZ[index];
+            }
+
+            //return the inversed trajectory.
+            return inverseTrajectory;
+        }
     }
 
-    public class Point
+    public class Position
     {
+        #region LINEAR_TRAJECTORY
+        /// <summary>
+        /// The x axis for the position.
+        /// </summary>
         public double X { get; set; }
 
+        /// <summary>
+        /// The y axis for the position.
+        /// </summary>
         public double Y { get; set; }
 
+        /// <summary>
+        /// The z axis for the position.
+        /// </summary>
         public double Z { get; set; }
+        #endregion LINEAR_TRAJECTORY
 
+        #region ROTATION_TRAJECTORY
+        /// <summary>
+        /// The x rotation axis for the position.
+        /// </summary>
         public double RX { get; set; }
-
+        /// <summary>
+        /// The y rotation axis for the position.
+        /// </summary>
         public double RY { get; set; }
-
+        /// <summary>
+        /// The z rotation axis for the position.
+        /// </summary>
         public double RZ { get; set; }
+        #endregion ROTATION_TRAJECTORY
     }
 }

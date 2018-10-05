@@ -112,13 +112,14 @@ namespace Trajectories
         /// Create a trajectory for both the ratHouseTrajectory and the landscapeHouseTrjectory for the control loop.
         /// </summary>
         /// <returns>The both ratHouseTrajectory and the landscapeHouseTrjectory.</returns>
-        public Tuple<Trajectory ,Trajectory> CreateTrajectory(int index = 0)
+        public Tuple<Trajectory2 ,Trajectory2> CreateTrajectory(int index = 0)
         {         
             return _trajectoryCreator.CreateTrialTrajectory(index);
         } 
         #endregion FUNCTIONS
     }
 
+    /*
     /// <summary>
     /// Describes the trajectory that should be sent to the robot.
     /// </summary>
@@ -159,8 +160,9 @@ namespace Trajectories
         public Vector<double> rz;
         #endregion ROTATION_TRAJECTORIES
     }
+    */
 
-    public struct Position
+    /*public struct Position
     {
         #region LINEAR_TRAJECTORY
 
@@ -196,5 +198,5 @@ namespace Trajectories
         /// </summary>
         public double rz;
         #endregion ROTATION_TRAJECTORY
-    }
+    }*/
 }

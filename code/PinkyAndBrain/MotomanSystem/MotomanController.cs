@@ -143,13 +143,13 @@ namespace PinkyAndBrain
         /// <param name="traj">The trajectory to be send to the controller.</param>
         /// <param name="updateJobType">The robots type to update the job trajectory with.</param>
         /// <param name="inverse"> Indicate if the motion of the robot is backword motion.</param>
-        public void UpdateYasakawaRobotJBIFile(Tuple<Trajectory, Trajectory> traj, MotomanProtocolFileCreator.UpdateJobType updateJobType, bool inverse = false)
+        public void UpdateYasakawaRobotJBIFile(Tuple<Trajectory2, Trajectory2> traj, MotomanProtocolFileCreator.UpdateJobType updateJobType, bool inverse = false)
         {
             _logger.Info("Writing job file to the robot.");
 
             //if need to inverse the trajectory in case of PostTrialStage backword trajcetory.
             if (inverse)
-                traj = new Tuple<Trajectory, Trajectory>(TrajectoryInverse(traj.Item1), TrajectoryInverse(traj.Item2));
+                traj = new Tuple<Trajectory2, Trajectory2>(traj.Item1.ToReverse(), traj.Item2.ToReverse());
 
             //setting the trajectory for the JBI file creator and update the file that is being senf to the controller with the new commands.
             MotomanProtocolFileCreator.TrajectoryR1Position = traj.Item1;
@@ -179,21 +179,25 @@ namespace PinkyAndBrain
         {
             _logger.Info("Writing home position file.");
 
-            Position r1HomePosition = new Position();
-            r1HomePosition.x = MotocomSettings.Default.R1OriginalX;
-            r1HomePosition.y = MotocomSettings.Default.R1OriginalY;
-            r1HomePosition.z = MotocomSettings.Default.R1OriginalZ;
-            r1HomePosition.rx = MotocomSettings.Default.R1OriginalRX;
-            r1HomePosition.ry = MotocomSettings.Default.R1OriginalRY;
-            r1HomePosition.rz = MotocomSettings.Default.R1OriginalRZ;
+            Position r1HomePosition = new Position()
+            {
+                X = MotocomSettings.Default.R1OriginalX,
+                Y = MotocomSettings.Default.R1OriginalY,
+                Z = MotocomSettings.Default.R1OriginalZ,
+                RX = MotocomSettings.Default.R1OriginalRX,
+                RY = MotocomSettings.Default.R1OriginalRY,
+                RZ = MotocomSettings.Default.R1OriginalRZ
+            };
 
-            Position r2HomePosition = new Position();
-            r2HomePosition.x = MotocomSettings.Default.R2OriginalX;
-            r2HomePosition.y = MotocomSettings.Default.R2OriginalY;
-            r2HomePosition.z = MotocomSettings.Default.R2OriginalZ;
-            r2HomePosition.rx = MotocomSettings.Default.R2OriginalRX;
-            r2HomePosition.ry = MotocomSettings.Default.R2OriginalRY;
-            r2HomePosition.rz = MotocomSettings.Default.R2OriginalRZ;
+            Position r2HomePosition = new Position()
+            {
+                X = MotocomSettings.Default.R2OriginalX,
+                Y = MotocomSettings.Default.R2OriginalY,
+                Z = MotocomSettings.Default.R2OriginalZ,
+                RX = MotocomSettings.Default.R2OriginalRX,
+                RY = MotocomSettings.Default.R2OriginalRY,
+                RZ = MotocomSettings.Default.R2OriginalRZ
+            };
 
             WriteOneTargetPositionFile("HOME_POS_BOTH" ,r1HomePosition, r2HomePosition);
 
@@ -207,22 +211,25 @@ namespace PinkyAndBrain
         {
             _logger.Info("Writing park position file.");
 
-            Position r1ParkPosition;
+            Position r1ParkPosition = new Position()
+            {
+                X = MotocomSettings.Default.R1OriginalX - MotocomSettings.Default.ParkingBackwordDistance,
+                Y = MotocomSettings.Default.R1OriginalY,
+                Z = MotocomSettings.Default.R1OriginalZ,
+                RX = MotocomSettings.Default.R1OriginalRX,
+                RY = MotocomSettings.Default.R1OriginalRY,
+                RZ = MotocomSettings.Default.R1OriginalRZ
+            };
 
-            r1ParkPosition.x = MotocomSettings.Default.R1OriginalX - MotocomSettings.Default.ParkingBackwordDistance;
-            r1ParkPosition.y = MotocomSettings.Default.R1OriginalY;
-            r1ParkPosition.z = MotocomSettings.Default.R1OriginalZ;
-            r1ParkPosition.rx = MotocomSettings.Default.R1OriginalRX;
-            r1ParkPosition.ry = MotocomSettings.Default.R1OriginalRY;
-            r1ParkPosition.rz = MotocomSettings.Default.R1OriginalRZ;
-
-            Position r2ParkPosition;
-            r2ParkPosition.x = MotocomSettings.Default.R2OriginalX;
-            r2ParkPosition.y = MotocomSettings.Default.R2OriginalY;
-            r2ParkPosition.z = MotocomSettings.Default.R2OriginalZ;
-            r2ParkPosition.rx = MotocomSettings.Default.R2OriginalRX;
-            r2ParkPosition.ry = MotocomSettings.Default.R2OriginalRY;
-            r2ParkPosition.rz = MotocomSettings.Default.R2OriginalRZ;
+            Position r2ParkPosition = new Position()
+            {
+                X = MotocomSettings.Default.R2OriginalX,
+                Y = MotocomSettings.Default.R2OriginalY,
+                Z = MotocomSettings.Default.R2OriginalZ,
+                RX = MotocomSettings.Default.R2OriginalRX,
+                RY = MotocomSettings.Default.R2OriginalRY,
+                RZ = MotocomSettings.Default.R2OriginalRZ
+            };
 
             WriteOneTargetPositionFile("PARK_POS_BOTH" , r1ParkPosition, r2ParkPosition);
 
@@ -236,22 +243,25 @@ namespace PinkyAndBrain
         {
             _logger.Info("Writing ASide position file.");
 
-            Position r1ASidePosition;
+            Position r1ASidePosition = new Position()
+            {
+                X = MotocomSettings.Default.R1ASideX,
+                Y = MotocomSettings.Default.R1ASideY,
+                Z = MotocomSettings.Default.R1ASideZ,
+                RX = MotocomSettings.Default.R1ASideRX,
+                RY = MotocomSettings.Default.R1ASideRY,
+                RZ = MotocomSettings.Default.R1ASideRZ
+            };
 
-            r1ASidePosition.x = MotocomSettings.Default.R1ASideX;
-            r1ASidePosition.y = MotocomSettings.Default.R1ASideY;
-            r1ASidePosition.z = MotocomSettings.Default.R1ASideZ;
-            r1ASidePosition.rx = MotocomSettings.Default.R1ASideRX;
-            r1ASidePosition.ry = MotocomSettings.Default.R1ASideRY;
-            r1ASidePosition.rz = MotocomSettings.Default.R1ASideRZ;
-
-            Position r2ASidePosition;
-            r2ASidePosition.x = MotocomSettings.Default.R2OriginalX;
-            r2ASidePosition.y = MotocomSettings.Default.R2OriginalY;
-            r2ASidePosition.z = MotocomSettings.Default.R2OriginalZ;
-            r2ASidePosition.rx = MotocomSettings.Default.R2OriginalRX;
-            r2ASidePosition.ry = MotocomSettings.Default.R2OriginalRY;
-            r2ASidePosition.rz = MotocomSettings.Default.R2OriginalRZ;
+            Position r2ASidePosition = new Position()
+            {
+                X = MotocomSettings.Default.R2OriginalX,
+                Y = MotocomSettings.Default.R2OriginalY,
+                Z = MotocomSettings.Default.R2OriginalZ,
+                RX = MotocomSettings.Default.R2OriginalRX,
+                RY = MotocomSettings.Default.R2OriginalRY,
+                RZ = MotocomSettings.Default.R2OriginalRZ
+            };
 
             WriteOneTargetPositionFile("ASIDE_POS_BOTH", r1ASidePosition, r2ASidePosition);
 
@@ -346,7 +356,7 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="trajectory">The trajectory to inverse.</param>
         /// <returns>A new trajectory inversed from the original.</returns>
-        private Trajectory TrajectoryInverse(Trajectory trajectory)
+        /*private Trajectory TrajectoryInverse(Trajectory trajectory)
         {
             //the inversed trajectory to be returned.
             Trajectory inverseTrajectory = new Trajectory();
@@ -375,7 +385,7 @@ namespace PinkyAndBrain
 
             //return the inversed trajectory.
             return inverseTrajectory;
-        }
+        }*/
         #endregion
     }
 }
