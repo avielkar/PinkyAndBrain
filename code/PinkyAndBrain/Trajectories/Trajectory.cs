@@ -55,7 +55,27 @@ namespace Trajectories
 
         public bool IsFixedSize => throw new NotImplementedException();
 
-        Point IList<Point>.this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        Point IList<Point>.this[int index]
+        {
+            get => new Point()
+            {
+                X = X[index],
+                Y = Y[index],
+                Z = Z[index],
+                RX = RX[index],
+                RY = RY[index],
+                RZ = RZ[index],
+            };
+            set
+            {
+                X[index] = value.X;
+                Y[index] = value.Y;
+                Z[index] = value.Z;
+                RX[index] = value.RX;
+                RY[index] = value.RY;
+                RZ[index] = value.RZ;
+            }
+        }
         public object this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         #endregion ROTATION_TRAJECTORIES
         #endregion MEMBERS
