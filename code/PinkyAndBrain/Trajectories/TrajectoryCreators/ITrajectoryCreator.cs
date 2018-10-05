@@ -35,6 +35,6 @@ namespace Trajectories
         /// </summary>
         /// <param name="index">The index from the crossVaryingList to take the attributes of he varying variables from.</param>
         /// <returns>The trajectory tuple (for the ratHouseTrajectory and for the landscapeHouseTrajectory). </returns>
-        Tuple<Trajectory, Trajectory> CreateTrialTrajectory(int index = 0);
+        Tuple<Trajectory2, Trajectory2> CreateTrialTrajectory(int index = 0);
     }
 }

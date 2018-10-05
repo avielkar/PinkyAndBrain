@@ -135,7 +135,7 @@ namespace PinkyAndBrain
         /// The first element in the tuple is the ratHouseTrajectory.
         /// The second element in the tuple is the landscapeHouseTrajectory.
         /// </summary>
-        private Tuple<Trajectory, Trajectory> _currentTrialTrajectories;
+        private Tuple<Trajectory2, Trajectory2> _currentTrialTrajectories;
 
         /// <summary>
         /// The current trial stimulus type.

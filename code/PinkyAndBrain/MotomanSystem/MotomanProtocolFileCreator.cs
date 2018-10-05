@@ -53,12 +53,12 @@ namespace PinkyAndBrain
         /// <summary>
         /// Get or set the R1 robot trajectory position to be written to the controller JBI file.
         /// </summary>
-        public Trajectory TrajectoryR1Position { get; set; }
+        public Trajectory2 TrajectoryR1Position { get; set; }
 
         /// <summary>
         /// Get or set the R2 robot trajectory position to be written to the controller JBI file.
         /// </summary>
-        public Trajectory TrajectoryR2Position { get; set; }
+        public Trajectory2 TrajectoryR2Position { get; set; }
 
         /// <summary>
         /// The trial number to send to the AlphaOmega (with time sharing - before moving the robot sending half of 14 bits and after moving the robot sending the second half).
@@ -91,6 +91,20 @@ namespace PinkyAndBrain
         }
 
         /// <summary>
+        /// Calaculates the velocity between 3D Points.
+        /// </summary>
+        /// <param name="source">The source position.</param>
+        /// <param name="destination">The destination poisition.</param>
+        /// <returns>The 3D velocity for the points.</returns>
+        public double Velocity3D(Position source , Position destination)
+        {
+            //todo:chek what about the other 3 axes : rx , ry , rz.
+            return Velocity3D(source.X, destination.X,
+                              source.Y, destination.Y,
+                              source.Z, destination.Z);
+        }
+
+        /// <summary>
         /// Update (make) the JBI file that would be send to the controller with the new given trajectory.
         /// <param name="updateJobType">The robots type to update the job trajectory with.</param>
         /// <param name="returnBackMotion">Indicate if the motion is backword.</param>
@@ -120,33 +134,33 @@ namespace PinkyAndBrain
             _fileStreamWriter.WriteLine("///POSTYPE BASE");
 
             lineStringBuilder.Append("P00001=");
-            lineStringBuilder.Append(r1Pos.x.ToString("0000.0000000"));
+            lineStringBuilder.Append(r1Pos.X.ToString("0000.0000000"));
             lineStringBuilder.Append(",");
-            lineStringBuilder.Append(r1Pos.y.ToString("0000.0000000"));
+            lineStringBuilder.Append(r1Pos.Y.ToString("0000.0000000"));
             lineStringBuilder.Append(",");
-            lineStringBuilder.Append(r1Pos.z.ToString("0000.0000000"));
+            lineStringBuilder.Append(r1Pos.Z.ToString("0000.0000000"));
             lineStringBuilder.Append(",");
-            lineStringBuilder.Append(r1Pos.rx.ToString("0000.0000000"));
+            lineStringBuilder.Append(r1Pos.RX.ToString("0000.0000000"));
             lineStringBuilder.Append(",");
-            lineStringBuilder.Append(r1Pos.ry.ToString("0000.0000000"));
+            lineStringBuilder.Append(r1Pos.RY.ToString("0000.0000000"));
             lineStringBuilder.Append(",");
-            lineStringBuilder.Append(r1Pos.rz.ToString("0000.0000000"));
+            lineStringBuilder.Append(r1Pos.RZ.ToString("0000.0000000"));
 
             _fileStreamWriter.WriteLine(lineStringBuilder.ToString());
             lineStringBuilder.Clear();
 
             lineStringBuilder.Append("P00002=");
-            lineStringBuilder.Append(r2Pos.x.ToString("0000.0000000"));
+            lineStringBuilder.Append(r2Pos.X.ToString("0000.0000000"));
             lineStringBuilder.Append(",");
-            lineStringBuilder.Append(r2Pos.y.ToString("0000.0000000"));
+            lineStringBuilder.Append(r2Pos.Y.ToString("0000.0000000"));
             lineStringBuilder.Append(",");
-            lineStringBuilder.Append(r2Pos.z.ToString("0000.0000000"));
+            lineStringBuilder.Append(r2Pos.Z.ToString("0000.0000000"));
             lineStringBuilder.Append(",");
-            lineStringBuilder.Append(r2Pos.rx.ToString("0000.0000000"));
+            lineStringBuilder.Append(r2Pos.RX.ToString("0000.0000000"));
             lineStringBuilder.Append(",");
-            lineStringBuilder.Append(r2Pos.ry.ToString("0000.0000000"));
+            lineStringBuilder.Append(r2Pos.RY.ToString("0000.0000000"));
             lineStringBuilder.Append(",");
-            lineStringBuilder.Append(r2Pos.rz.ToString("0000.0000000"));
+            lineStringBuilder.Append(r2Pos.RZ.ToString("0000.0000000"));
 
             _fileStreamWriter.WriteLine(lineStringBuilder.ToString());
             lineStringBuilder.Clear();
@@ -174,12 +188,12 @@ namespace PinkyAndBrain
 
         /// <summary>
         /// Decode the trajectory commands to a JBI file.
-        /// <param name="r1Traj">The r1 robot traj to be written to the file as the protocol format.</param>
-        /// <param name="r2Traj">The r2 robot traj to be written to the file as the protocol format.</param>
+        /// <param name="clonedR1Traj">The r1 robot traj to be written to the file as the protocol format.</param>
+        /// <param name="clonedR2Traj">The r2 robot traj to be written to the file as the protocol format.</param>
         /// <param name="updateJobType">The robots type to update the job trajectory with.</param>
         /// <param name="returnBackMotion">Indicate if the motion is backword.</param>
         /// </summary>
-        private void DecodeTrajectoriesToJBIFile(Trajectory r1Traj , Trajectory r2Traj , UpdateJobType updateJobType , bool returnBackMotion)
+        private void DecodeTrajectoriesToJBIFile(Trajectory2 r1Traj , Trajectory2 r2Traj , UpdateJobType updateJobType , bool returnBackMotion)
         {
             StreamWriter _fileStreamWriter = new StreamWriter(_fileName);
 
@@ -190,13 +204,13 @@ namespace PinkyAndBrain
             switch (updateJobType)
             {
                 case UpdateJobType.R1Only:
-                    _fileStreamWriter.Write("///NPOS 0,0,0,"); _fileStreamWriter.Write(r1Traj.x.Count + 1); _fileStreamWriter.WriteLine(",0,0");
+                    _fileStreamWriter.Write("///NPOS 0,0,0,"); _fileStreamWriter.Write(r1Traj.Count + 1); _fileStreamWriter.WriteLine(",0,0");
                     break;
                 case UpdateJobType.R2Only:
-                    _fileStreamWriter.Write("///NPOS 0,0,0,"); _fileStreamWriter.Write(r2Traj.x.Count + 1); _fileStreamWriter.WriteLine(",0,0");
+                    _fileStreamWriter.Write("///NPOS 0,0,0,"); _fileStreamWriter.Write(r2Traj.Count + 1); _fileStreamWriter.WriteLine(",0,0");
                     break;
                 case UpdateJobType.Both:
-                    _fileStreamWriter.Write("///NPOS 0,0,0,"); _fileStreamWriter.Write(r1Traj.x.Count + r2Traj.x.Count + 1); _fileStreamWriter.WriteLine(",0,0");
+                    _fileStreamWriter.Write("///NPOS 0,0,0,"); _fileStreamWriter.Write(r1Traj.Count + r2Traj.Count + 1); _fileStreamWriter.WriteLine(",0,0");
                     break;
                 default:
                     break;
@@ -209,44 +223,40 @@ namespace PinkyAndBrain
             _fileStreamWriter.WriteLine("P00000=10.000,0.000,0.000,0.0000,0.0000,0.0000");
             _fileStreamWriter.WriteLine("///POSTYPE BASE");
 
+
+
+            Trajectory2 clonedR1Traj = r1Traj.Clone();
+            Trajectory2 clonedR2Traj = r2Traj.Clone();
             //adding the zero point place for the trajectory (for the velocity calculaion behind) at the end if it is backward or at the beginning if it is forward movement.
             //also, for the backward movement it skip the last point (because the robot is already there from the forward movement) and added the 0 placed to the end of the trajectory.
             if (!returnBackMotion)
             {
-                foreach (string lineString in TrajectoriesToLine(r1Traj, r2Traj, updateJobType))
+                foreach (string lineString in TrajectoriesToLine(clonedR1Traj, clonedR2Traj, updateJobType))
                 {
                     _fileStreamWriter.WriteLine(lineString);
                 }
 
-                r1Traj = InsertOriginPlace(r1Traj);
-                r2Traj = InsertOriginPlace(r2Traj);
+                clonedR1Traj.InsertOriginPlace(true);
+                clonedR2Traj.InsertOriginPlace(true);
             }
             else
             {
-                Trajectory r1Traj2 = InsertOriginPlace(r1Traj, false);
-                Trajectory r2Traj2 = InsertOriginPlace(r2Traj, false);
+                clonedR1Traj.InsertOriginPlace(false);
+                clonedR2Traj.InsertOriginPlace(false);
 
-                r1Traj2.x = r1Traj2.x.SubVector(1, r1Traj2.x.Count - 1);
-                r1Traj2.y = r1Traj2.y.SubVector(1, r1Traj2.y.Count - 1);
-                r1Traj2.z = r1Traj2.z.SubVector(1, r1Traj2.z.Count - 1);
-                r1Traj2.rx = r1Traj2.rx.SubVector(1, r1Traj2.rx.Count - 1);
-                r1Traj2.ry = r1Traj2.ry.SubVector(1, r1Traj2.ry.Count - 1);
-                r1Traj2.rz = r1Traj2.rz.SubVector(1, r1Traj2.rz.Count - 1);
+                Position firstPositionR1 = clonedR1Traj[0];
+                Position firstPositionR2 = clonedR2Traj[0];
 
-                r2Traj2.x = r2Traj2.x.SubVector(1, r2Traj2.x.Count - 1);
-                r2Traj2.y = r2Traj2.y.SubVector(1, r2Traj2.y.Count - 1);
-                r2Traj2.z = r2Traj2.z.SubVector(1, r2Traj2.z.Count - 1);
-                r2Traj2.rx = r2Traj2.rx.SubVector(1, r2Traj2.rx.Count - 1);
-                r2Traj2.ry = r2Traj2.ry.SubVector(1, r2Traj2.ry.Count - 1);
-                r2Traj2.rz = r2Traj2.rz.SubVector(1, r2Traj2.rz.Count - 1);
+                clonedR1Traj.RemoveAt(0);
+                clonedR2Traj.RemoveAt(0);
 
-                foreach (string lineString in TrajectoriesToLine(r1Traj2, r2Traj2, updateJobType))
+                foreach (string lineString in TrajectoriesToLine(clonedR1Traj, clonedR2Traj, updateJobType))
                 {
                     _fileStreamWriter.WriteLine(lineString);
                 }
 
-                r1Traj = InsertOriginPlace(r1Traj, false);
-                r2Traj = InsertOriginPlace(r2Traj, false);
+                clonedR1Traj.Insert(0, firstPositionR1);
+                clonedR2Traj.Insert(0, firstPositionR2);
             }
 
             _fileStreamWriter.WriteLine("//INST");
@@ -302,25 +312,19 @@ namespace PinkyAndBrain
 
             StringBuilder sb = new StringBuilder();
             //the selected trajectory is for the for loop to init with r1 or r2 as needed for the UpdateJobType.
-            Trajectory selecterRobotTraj = (!updateJobType.Equals(UpdateJobType.R2Only))?(r1Traj):(r2Traj);
+            Trajectory2 selecterRobotTraj = (!updateJobType.Equals(UpdateJobType.R2Only))?(clonedR1Traj):(clonedR2Traj);
             double originalX = (!updateJobType.Equals(UpdateJobType.R2Only)) ? (MotocomSettings.Default.R1OriginalX) : (MotocomSettings.Default.R2OriginalX);
             double originalY = (!updateJobType.Equals(UpdateJobType.R2Only)) ? (MotocomSettings.Default.R1OriginalY) : (MotocomSettings.Default.R2OriginalY);
             double originalZ = (!updateJobType.Equals(UpdateJobType.R2Only)) ? (MotocomSettings.Default.R1OriginalZ) : (MotocomSettings.Default.R2OriginalZ);
 
             //make the f * duration velocity points vector from the f * duratoin + 1 places points in the trajectory.
-            for (int i = 0; i < selecterRobotTraj.x.Count - 1; i++)
+            for (int i = 0; i < selecterRobotTraj.Count - 1; i++)
             {
                 //decode the velocity for the selected robot (if only one of then) or the first robot (r1) if both of them.
                 sb.Append("MOVL ");
                 sb.Append("P");
                 sb.Append((i + 1).ToString("D" + 5));
-                double velocity = Velocity3D(selecterRobotTraj.x[i + 1],
-                    selecterRobotTraj.x[i],
-                    selecterRobotTraj.y[i + 1],
-                    selecterRobotTraj.y[i],
-                    selecterRobotTraj.z[i + 1],
-                    selecterRobotTraj.z[i])
-                    * 10000.0 / (1000.0 / (double)(_frequency));
+                double velocity = Velocity3D(selecterRobotTraj[i + 1], selecterRobotTraj[i]) * 10000.0 / (1000.0 / (double)(_frequency));
                 sb.Append(" V=");
                 sb.Append(velocity.ToString("0000.00000000"));
 
@@ -328,11 +332,9 @@ namespace PinkyAndBrain
                 {
                     sb.Append("  +MOVL ");
                     sb.Append("P");
-                    sb.Append((selecterRobotTraj.x.Count + i + 1).ToString("D" + 5));
-                    double velocity12 = Velocity3D(r2Traj.x[i + 1],
-                            r2Traj.x[i], r2Traj.y[i + 1],
-                            r2Traj.y[i], r2Traj.z[i + 1],
-                            r2Traj.z[i]) * 10000.0 / (1000.0 / (double)(_frequency));
+                    //the minus -1 is due to the enlargment from f * time to f * time + 1.
+                    sb.Append((selecterRobotTraj.Count + i + 1 - 1).ToString("D" + 5));
+                    double velocity12 = Velocity3D(clonedR2Traj[i + 1], clonedR2Traj[i]) * 10000.0 / (1000.0 / (double)(_frequency));
                     sb.Append(" V=");
                     sb.Append(velocity12.ToString("0000.00000000"));
                 }
@@ -381,7 +383,7 @@ namespace PinkyAndBrain
         /// The list of commands strings.
         /// Every item in the list is a line command in the JBI file.
         /// </returns>
-        private List<string> TrajectoriesToLine(Trajectory trajR1, Trajectory trajR2 , UpdateJobType updateJobType)
+        private List<string> TrajectoriesToLine(Trajectory2 trajR1, Trajectory2 trajR2 , UpdateJobType updateJobType)
         {
             List<string> stringLinesList = new List<string>();
 
@@ -397,22 +399,22 @@ namespace PinkyAndBrain
                 currectStringValue.Clear();
 
                 //setting all the points for the robot0.
-                foreach (double point in trajR1.x)
+                foreach (double point in trajR1.X)
                 {
                     currectStringValue.Append("P");
                     currectStringValue.Append(i.ToString("D" + 5));
                     currectStringValue.Append("=");
                     currectStringValue.Append(((double)(point * 10 + MotocomSettings.Default.R1OriginalX)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR1.y[i - 1] * 10 + MotocomSettings.Default.R1OriginalY)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR1.Y[i - 1] * 10 + MotocomSettings.Default.R1OriginalY)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR1.z[i - 1] * 10 + MotocomSettings.Default.R1OriginalZ)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR1.Z[i - 1] * 10 + MotocomSettings.Default.R1OriginalZ)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR1.rx[i - 1] * 10 + MotocomSettings.Default.R1OriginalRX)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR1.RX[i - 1] * 10 + MotocomSettings.Default.R1OriginalRX)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR1.ry[i - 1] * 10 + MotocomSettings.Default.R1OriginalRY)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR1.RY[i - 1] * 10 + MotocomSettings.Default.R1OriginalRY)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR1.rz[i - 1] * 10 + MotocomSettings.Default.R1OriginalRZ)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR1.RZ[i - 1] * 10 + MotocomSettings.Default.R1OriginalRZ)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
                     i++;
                     stringLinesList.Add(currectStringValue.ToString());
@@ -432,22 +434,22 @@ namespace PinkyAndBrain
                 currectStringValue.Clear();
 
                 //setting all the points for the robot1.
-                foreach (double point in trajR2.x)
+                foreach (double point in trajR2.X)
                 {
                     currectStringValue.Append("P");
                     currectStringValue.Append(j.ToString("D" + 5));
                     currectStringValue.Append("=");
                     currectStringValue.Append(((double)(point * 10 + MotocomSettings.Default.R2OriginalX)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR2.y[i - 1] * 10 + MotocomSettings.Default.R2OriginalY)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR2.Y[i - 1] * 10 + MotocomSettings.Default.R2OriginalY)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR2.z[i - 1] * 10 + MotocomSettings.Default.R2OriginalZ)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR2.Z[i - 1] * 10 + MotocomSettings.Default.R2OriginalZ)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR2.rx[i - 1] * 10 + MotocomSettings.Default.R2OriginalRX)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR2.RX[i - 1] * 10 + MotocomSettings.Default.R2OriginalRX)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR2.ry[i - 1] * 10 + MotocomSettings.Default.R2OriginalRY)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR2.RY[i - 1] * 10 + MotocomSettings.Default.R2OriginalRY)).ToString("0000.00000000"));
                     currectStringValue.Append(",");
-                    currectStringValue.Append(((double)(trajR2.rz[i - 1] * 10 + MotocomSettings.Default.R2OriginalRZ)).ToString("0000.00000000"));
+                    currectStringValue.Append(((double)(trajR2.RZ[i - 1] * 10 + MotocomSettings.Default.R2OriginalRZ)).ToString("0000.00000000"));
                     i++;
                     j++;
                     stringLinesList.Add(currectStringValue.ToString());
@@ -556,81 +558,6 @@ namespace PinkyAndBrain
             /// Update the job for both R1 and R2 trajectories.
             /// </summary>
             Both=3
-        }
-
-        /// <summary>
-        /// The function inserts the zero place (at the first of at the end of the trajectory) to the trajectory according to the trajectory forward/backward type.
-        /// </summary>
-        /// <param name="traj">The trajectory.</param>
-        /// <param name="forward">Indicates if the movement is forward of backward.</param>
-        /// <returns></returns>
-        public Trajectory InsertOriginPlace(Trajectory traj, bool forward = true)
-        {
-            //todo:decide if to return new one or the input one (chenged).
-            if (!forward)
-            {
-                List<double> x = traj.x.ToList();
-                List<double> y = traj.y.ToList();
-                List<double> z = traj.z.ToList();
-                List<double> rx = traj.rx.ToList();
-                List<double> ry = traj.ry.ToList();
-                List<double> rz = traj.rz.ToList();
-                x.Add(0);
-                y.Add(0);
-                z.Add(0);
-                rx.Add(0);
-                ry.Add(0);
-                rz.Add(0);
-
-                traj.x = Vector<double>.Build.Dense(x.ToArray());
-                traj.y = Vector<double>.Build.Dense(y.ToArray());
-                traj.z = Vector<double>.Build.Dense(z.ToArray());
-                traj.rx = Vector<double>.Build.Dense(rx.ToArray());
-                traj.ry = Vector<double>.Build.Dense(ry.ToArray());
-                traj.rz = Vector<double>.Build.Dense(rz.ToArray());
-
-                return traj;
-            }
-            else
-            {
-                List<double> x = traj.x.ToList();
-                x.Reverse();
-                x.Add(0);
-                x.Reverse();
-                traj.x = Vector<double>.Build.Dense(x.ToArray());
-
-                List<double> y = traj.y.ToList();
-                y.Reverse();
-                y.Add(0);
-                y.Reverse();
-                traj.y = Vector<double>.Build.Dense(y.ToArray());
-
-                List<double> z = traj.z.ToList();
-                z.Reverse();
-                z.Add(0);
-                z.Reverse();
-                traj.z = Vector<double>.Build.Dense(z.ToArray());
-
-                List<double> rx = traj.rx.ToList();
-                rx.Reverse();
-                rx.Add(0);
-                rx.Reverse();
-                traj.rx = Vector<double>.Build.Dense(rx.ToArray());
-
-                List<double> ry = traj.ry.ToList();
-                ry.Reverse();
-                ry.Add(0);
-                ry.Reverse();
-                traj.ry = Vector<double>.Build.Dense(ry.ToArray());
-
-                List<double> rz = traj.rz.ToList();
-                rz.Reverse();
-                rz.Add(0);
-                rz.Reverse();
-                traj.rz = Vector<double>.Build.Dense(rz.ToArray());
-
-                return traj;
-            }
         }
     }
 }

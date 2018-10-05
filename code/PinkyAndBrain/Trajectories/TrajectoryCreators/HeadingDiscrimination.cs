@@ -175,16 +175,16 @@ namespace Trajectories
         /// </summary>
         /// <param name="index">The index from the crossVaryingList to take the attributes of he varying variables from.</param>
         /// <returns>The trajectory tuple (for the ratHouseTrajectory and for the landscapeHouseTrajectory). </returns>
-        public Tuple<Trajectory , Trajectory> CreateTrialTrajectory(int index)
+        public Tuple<Trajectory2, Trajectory2> CreateTrialTrajectory(int index)
         {
             //reading the needed current trial parameters into the object members.
             ReadTrialParameters(index);
 
             //make the ratHouseDistance vector.
-            Vector<double> ratHouseDistanceVector = GenerateGaussianSampledCDF(_duration , _sigma , _distance , _frequency);
-            
+            Vector<double> ratHouseDistanceVector = GenerateGaussianSampledCDF(_duration, _sigma, _distance, _frequency);
+
             //combined.
-            if(_stimulusType == 3)
+            if (_stimulusType == 3)
             {
                 _headingDirection = _headingDirection + _adaptationAngle * Math.PI * 180 / 2;
             }
@@ -192,7 +192,7 @@ namespace Trajectories
             //create the multiplication matrix to multiply with the distances vectors.
             Tuple<double, double, double> multiplyRatDistance;
             Tuple<double, double, double> multiplyLandscapeDistance;
-            
+
             //if it is to move the landscapeHouseRobot with no Delta.
             if (_stimulusType == 1)
             {
@@ -200,7 +200,7 @@ namespace Trajectories
                 multiplyRatDistance = CreateMultiplyTuple(_headingDirection, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
                 multiplyLandscapeDistance = CreateMultiplyTuple(_headingDirection, 180 + _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
             }
-            else if(_stimulusType == 2 || _stimulusType == 10 || _stimulusType == 12)//stim type 12 would repace stim type 10
+            else if (_stimulusType == 2 || _stimulusType == 10 || _stimulusType == 12)//stim type 12 would repace stim type 10
             {
                 multiplyRatDistance = new Tuple<double, double, double>(0, 0, 0);
                 multiplyLandscapeDistance = CreateMultiplyTuple(_headingDirection, _discPlaneAzimuth, _discPlaneElevation, _discPlaneTilt);
@@ -246,39 +246,41 @@ namespace Trajectories
                 heaveLandscapeHouse = heaveLandscapeHouse - heaveRatHouse;
             }
 
-            Trajectory ratHouseTrajectory = new Trajectory();
-            ratHouseTrajectory.x =  lateralRatHouse;
-            ratHouseTrajectory.y = surgeRatHouse;
-            ratHouseTrajectory.z = heaveRatHouse;
-            //rx - roll , ry - pitch , rz = yaw
-            ratHouseTrajectory.rx = CreateVector.Dense<double>((int)(_frequency*_duration), 0);
-            ratHouseTrajectory.ry = CreateVector.Dense<double>((int)(_frequency*_duration), 0);
-            ratHouseTrajectory.rz = CreateVector.Dense<double>((int)(_frequency*_duration), 0);
+            Trajectory2 ratHouseTrajectory = new Trajectory2()
+            {
+                X = lateralRatHouse,
+                Y = surgeRatHouse,
+                Z = heaveRatHouse,
+                //rx - roll , ry - pitch , rz = yaw
+                RX = CreateVector.Dense<double>((int)(_frequency * _duration), 0),
+                RY = CreateVector.Dense<double>((int)(_frequency * _duration), 0),
+                RZ = CreateVector.Dense<double>((int)(_frequency * _duration), 0)
+            };
                                                                
 
-            Trajectory landscapeHouseTrajectory = new Trajectory();
-            landscapeHouseTrajectory.x = lateralLandscapeHouse;
-            landscapeHouseTrajectory.y = surgeLandscapeHouse;
-            landscapeHouseTrajectory.z = heaveLandscapeHouse;
+            Trajectory2 landscapeHouseTrajectory = new Trajectory2();
+            landscapeHouseTrajectory.X = lateralLandscapeHouse;
+            landscapeHouseTrajectory.Y = surgeLandscapeHouse;
+            landscapeHouseTrajectory.Z = heaveLandscapeHouse;
             //rx - roll , ry - pitch , rz = yaw
-            landscapeHouseTrajectory.rx = CreateVector.Dense<double>((int)(_frequency*_duration), 0);
-            landscapeHouseTrajectory.ry = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
-            landscapeHouseTrajectory.rz = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
+            landscapeHouseTrajectory.RX = CreateVector.Dense<double>((int)(_frequency*_duration), 0);
+            landscapeHouseTrajectory.RY = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
+            landscapeHouseTrajectory.RZ = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
 
             //visual only (landscapeHouseDistance only).
             if(_stimulusType == 2)
             {
-                ratHouseTrajectory.x = CreateVector.Dense<double>((int)(_frequency*_duration), 0);
-                ratHouseTrajectory.y = CreateVector.Dense<double>((int)(_frequency*_duration), 0);
-                ratHouseTrajectory.z = CreateVector.Dense<double>((int)(_frequency*_duration), 0);
+                ratHouseTrajectory.X = CreateVector.Dense<double>((int)(_frequency*_duration), 0);
+                ratHouseTrajectory.Y = CreateVector.Dense<double>((int)(_frequency*_duration), 0);
+                ratHouseTrajectory.Z = CreateVector.Dense<double>((int)(_frequency*_duration), 0);
             }
 
             //combined - only ratHouseDistance
             if(_stimulusType == 3)
             {
-                landscapeHouseTrajectory.x = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
-                landscapeHouseTrajectory.y = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
-                landscapeHouseTrajectory.z = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
+                landscapeHouseTrajectory.X = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
+                landscapeHouseTrajectory.Y = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
+                landscapeHouseTrajectory.Z = CreateVector.Dense<double>((int)(_frequency * _duration), 0);
             }
 
             //if need to plot the trajectories
@@ -287,7 +289,7 @@ namespace Trajectories
                 MatlabPlotTrajectoryFunction(ratHouseTrajectory);
             }
 
-            return new Tuple<Trajectory, Trajectory>(ratHouseTrajectory, landscapeHouseTrajectory);
+            return new Tuple<Trajectory2, Trajectory2>(ratHouseTrajectory, landscapeHouseTrajectory);
         }
 
         /// <summary>
@@ -461,7 +463,7 @@ namespace Trajectories
         /// Plotting all 6 attributes for the given trajectory.
         /// </summary>
         /// <param name="traj">The trajectory to be decomposed to it's 6 components and to plot in a figure.</param>
-        public void MatlabPlotTrajectoryFunction(Trajectory traj)
+        public void MatlabPlotTrajectoryFunction(Trajectory2 traj)
         {
 
             _matlabApp.Execute("figure;");
@@ -470,7 +472,7 @@ namespace Trajectories
             _matlabApp.PutWorkspaceData("rows", "base", (double)3);
             _matlabApp.PutWorkspaceData("columns", "base", (double)2);
 
-            double[] dArray = ConvertVectorToArray(traj.x);
+            double[] dArray = ConvertVectorToArray(traj.X);
             _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
             _matlabApp.PutWorkspaceData("subplotGraphName", "base", "x");
             _matlabApp.PutWorkspaceData("index", "base", (double)1);
@@ -478,7 +480,7 @@ namespace Trajectories
             _matlabApp.Execute("plot(drawingVector)");
             _matlabApp.Execute("title(subplotGraphName)");
 
-            dArray = ConvertVectorToArray(traj.y);
+            dArray = ConvertVectorToArray(traj.Y);
             _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
             _matlabApp.PutWorkspaceData("subplotGraphName", "base", "y");
             _matlabApp.PutWorkspaceData("index", "base", (double)2);
@@ -486,7 +488,7 @@ namespace Trajectories
             _matlabApp.Execute("plot(drawingVector)");
             _matlabApp.Execute("title(subplotGraphName)");
 
-            dArray = ConvertVectorToArray(traj.z);
+            dArray = ConvertVectorToArray(traj.Z);
             _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
             _matlabApp.PutWorkspaceData("subplotGraphName", "base", "z");
             _matlabApp.PutWorkspaceData("index", "base", (double)3);
@@ -494,7 +496,7 @@ namespace Trajectories
             _matlabApp.Execute("plot(drawingVector)");
             _matlabApp.Execute("title(subplotGraphName)");
 
-            dArray = ConvertVectorToArray(traj.rx);
+            dArray = ConvertVectorToArray(traj.RX);
             _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
             _matlabApp.PutWorkspaceData("subplotGraphName", "base", "rx");
             _matlabApp.PutWorkspaceData("index", "base", (double)4);
@@ -502,7 +504,7 @@ namespace Trajectories
             _matlabApp.Execute("plot(drawingVector)");
             _matlabApp.Execute("title(subplotGraphName)");
 
-            dArray = ConvertVectorToArray(traj.ry);
+            dArray = ConvertVectorToArray(traj.RY);
             _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
             _matlabApp.PutWorkspaceData("subplotGraphName", "base", "ry");
             _matlabApp.PutWorkspaceData("index", "base", (double)5);
@@ -510,7 +512,7 @@ namespace Trajectories
             _matlabApp.Execute("plot(drawingVector)");
             _matlabApp.Execute("title(subplotGraphName)");
 
-            dArray = ConvertVectorToArray(traj.rz);
+            dArray = ConvertVectorToArray(traj.RZ);
             _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
             _matlabApp.PutWorkspaceData("subplotGraphName", "base", "rz");
             _matlabApp.PutWorkspaceData("index", "base", (double)6);
