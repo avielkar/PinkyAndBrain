@@ -66,7 +66,7 @@
     <Compile Include="TrajectoryCreators\Azimuth1D.cs" />
     <Compile Include="TrajectoryCreators\Azimuth3D.cs" />
     <Compile Include="TrajectoryCreators\ITrajectoryCreator.cs" />
-    <Compile Include="TrajectoryCreators\Position.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="TrajectoryCreators\ThreeStepAdaptation.cs" />
     <Compile Include="TrajectoryCreators\Training.cs" />
   </ItemGroup>
