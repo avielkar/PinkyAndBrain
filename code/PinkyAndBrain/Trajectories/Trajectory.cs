@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Trajectories
 {
-    public class Trajectory2:IList<Position>
+    public class Trajectory2:IList<Position>, ICloneable
     {
         #region MEMBERS
         #region LINEAR_TRAJECTORIES
@@ -82,7 +82,6 @@ namespace Trajectories
 
         public Trajectory2()
         {
-
         }
 
         public void InsertOriginPlace(bool forward = true)
@@ -154,7 +153,19 @@ namespace Trajectories
 
         public void Add(Position item)
         {
-            this.Insert(this.Count-1, item);
+            if (this.Count == 0)
+            {
+                X = Vector<double>.Build.Dense(1);
+                Y = Vector<double>.Build.Dense(1);
+                Z = Vector<double>.Build.Dense(1);
+                RX = Vector<double>.Build.Dense(1);
+                RY = Vector<double>.Build.Dense(1);
+                RZ = Vector<double>.Build.Dense(1);
+            }
+            else
+            {
+                this.Insert(this.Count - 1, item);
+            }
         }
 
         public void Clear()
@@ -225,6 +236,18 @@ namespace Trajectories
 
             //return the inversed trajectory.
             return inverseTrajectory;
+        }
+
+        public object Clone()
+        {
+            Trajectory2 clonedTrajectory = new Trajectory2();
+
+            for(int i=0;i<this.Count;i++)
+            {
+                clonedTrajectory.Add(this[i]);
+            }
+
+            return clonedTrajectory;
         }
     }
 }
