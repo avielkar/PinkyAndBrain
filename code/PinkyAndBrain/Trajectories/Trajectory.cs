@@ -45,7 +45,7 @@ namespace Trajectories
         /// </summary>
         public Vector<double> RZ { get; set; }
 
-        public int Count => throw new NotImplementedException();
+        public int Count => X.Count;
 
         public object SyncRoot => throw new NotImplementedException();
 
