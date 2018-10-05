@@ -148,7 +148,7 @@ namespace Trajectories
 
         public void Add(Point item)
         {
-            throw new NotImplementedException();
+            this.Insert(this.Count, item);
         }
 
         public void Clear()
