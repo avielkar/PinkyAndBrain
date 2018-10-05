@@ -173,7 +173,12 @@ namespace Trajectories
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            X.Clear();
+            Y.Clear();
+            Z.Clear();
+            RX.Clear();
+            RY.Clear();
+            RZ.Clear();
         }
 
         public bool Contains(Point item)
