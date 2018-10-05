@@ -349,43 +349,5 @@ namespace PinkyAndBrain
             _logger.Info("Moving the robot with trajectory finished.");
         }
         #endregion
-
-        #region ADDITIONAL_FUNCTIONS
-        /// <summary>
-        /// Trajectory inversing function for inversing the points backwords.
-        /// </summary>
-        /// <param name="trajectory">The trajectory to inverse.</param>
-        /// <returns>A new trajectory inversed from the original.</returns>
-        /*private Trajectory TrajectoryInverse(Trajectory trajectory)
-        {
-            //the inversed trajectory to be returned.
-            Trajectory inverseTrajectory = new Trajectory();
-
-            //initialization for the the trajectorry yo be retund.
-            int length = trajectory.x.Count;
-            inverseTrajectory.x = Vector<double>.Build.Dense(length);
-            inverseTrajectory.y = Vector<double>.Build.Dense(length);
-            inverseTrajectory.z = Vector<double>.Build.Dense(length);
-            inverseTrajectory.rx = Vector<double>.Build.Dense(length);
-            inverseTrajectory.ry = Vector<double>.Build.Dense(length);
-            inverseTrajectory.rz = Vector<double>.Build.Dense(length);
-
-            //inverse the original trajectory into the new trajectory.
-            for (int i = 0; i < length; i++)
-            {
-                int index = length - 1 - i;
-
-                inverseTrajectory.x[i] = trajectory.x[index];
-                inverseTrajectory.y[i] = trajectory.y[index];
-                inverseTrajectory.z[i] = trajectory.z[index];
-                inverseTrajectory.rx[i] = trajectory.rx[index];
-                inverseTrajectory.ry[i] = trajectory.ry[index];
-                inverseTrajectory.rz[i] = trajectory.rz[index];
-            }
-
-            //return the inversed trajectory.
-            return inverseTrajectory;
-        }*/
-        #endregion
     }
 }
