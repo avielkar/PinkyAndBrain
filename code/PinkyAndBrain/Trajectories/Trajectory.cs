@@ -88,66 +88,16 @@ namespace Trajectories
         public void InsertOriginPlace(bool forward = true)
         {
 
+            Point originPoint = new Point() { X = 0, Y = 0, Z = 0, RX = 0, RY = 0, RZ = 0 };
+
             //todo:decide if to return new one or the input one (chenged).
             if (!forward)
             {
-                List<double> x = X.ToList();
-                List<double> y = Y.ToList();
-                List<double> z = Z.ToList();
-                List<double> rx = RX.ToList();
-                List<double> ry = RY.ToList();
-                List<double> rz = RZ.ToList();
-                x.Add(0);
-                y.Add(0);
-                z.Add(0);
-                rx.Add(0);
-                ry.Add(0);
-                rz.Add(0);               
-
-                X = Vector<double>.Build.Dense(x.ToArray());
-                Y = Vector<double>.Build.Dense(y.ToArray());
-                Z = Vector<double>.Build.Dense(z.ToArray());
-                RX = Vector<double>.Build.Dense(rx.ToArray());
-                RY = Vector<double>.Build.Dense(ry.ToArray());
-                RZ = Vector<double>.Build.Dense(rz.ToArray());
+                this.Add(originPoint);
             }
             else
             {
-                List<double> x = X.ToList();
-                x.Reverse();
-                x.Add(0);
-                x.Reverse();
-                X = Vector<double>.Build.Dense(x.ToArray());
-
-                List<double> y = Y.ToList();
-                y.Reverse();
-                y.Add(0);
-                y.Reverse();
-                Y = Vector<double>.Build.Dense(y.ToArray());
-
-                List<double> z = Z.ToList();
-                z.Reverse();
-                z.Add(0);
-                z.Reverse();
-                Z = Vector<double>.Build.Dense(z.ToArray());
-
-                List<double> rx = RX.ToList();
-                rx.Reverse();
-                rx.Add(0);
-                rx.Reverse();
-                RX = Vector<double>.Build.Dense(rx.ToArray());
-
-                List<double> ry = RY.ToList();
-                ry.Reverse();
-                ry.Add(0);
-                ry.Reverse();
-                RY = Vector<double>.Build.Dense(ry.ToArray());
-
-                List<double> rz = RZ.ToList();
-                rz.Reverse();
-                rz.Add(0);
-                rz.Reverse();
-                RZ = Vector<double>.Build.Dense(rz.ToArray());
+                this.Insert(0, originPoint);
             }
         }
 
