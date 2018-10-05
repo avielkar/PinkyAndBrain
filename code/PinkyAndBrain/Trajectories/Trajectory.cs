@@ -131,7 +131,25 @@ namespace Trajectories
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            List<double> x = X.ToList();
+            List<double> y = Y.ToList();
+            List<double> z = Z.ToList();
+            List<double> rx = RX.ToList();
+            List<double> ry = RY.ToList();
+            List<double> rz = RZ.ToList();
+            x.RemoveAt(index);
+            y.RemoveAt(index);
+            z.RemoveAt(index);
+            rx.RemoveAt(index);
+            ry.RemoveAt(index);
+            rz.RemoveAt(index);
+
+            X = Vector<double>.Build.Dense(x.ToArray());
+            Y = Vector<double>.Build.Dense(y.ToArray());
+            Z = Vector<double>.Build.Dense(z.ToArray());
+            RX = Vector<double>.Build.Dense(rx.ToArray());
+            RY = Vector<double>.Build.Dense(ry.ToArray());
+            RZ = Vector<double>.Build.Dense(rz.ToArray());
         }
 
         public void Add(Point item)
