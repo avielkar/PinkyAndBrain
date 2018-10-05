@@ -332,7 +332,8 @@ namespace PinkyAndBrain
                 {
                     sb.Append("  +MOVL ");
                     sb.Append("P");
-                    sb.Append((selecterRobotTraj.Count + i + 1).ToString("D" + 5));
+                    //the minus -1 is due to the enlargment from f * time to f * time + 1.
+                    sb.Append((selecterRobotTraj.Count + i + 1 - 1).ToString("D" + 5));
                     double velocity12 = Velocity3D(clonedR2Traj[i + 1], clonedR2Traj[i]) * 10000.0 / (1000.0 / (double)(_frequency));
                     sb.Append(" V=");
                     sb.Append(velocity12.ToString("0000.00000000"));
