@@ -188,8 +188,8 @@ namespace PinkyAndBrain
 
         /// <summary>
         /// Decode the trajectory commands to a JBI file.
-        /// <param name="r1Traj">The r1 robot traj to be written to the file as the protocol format.</param>
-        /// <param name="r2Traj">The r2 robot traj to be written to the file as the protocol format.</param>
+        /// <param name="clonedR1Traj">The r1 robot traj to be written to the file as the protocol format.</param>
+        /// <param name="clonedR2Traj">The r2 robot traj to be written to the file as the protocol format.</param>
         /// <param name="updateJobType">The robots type to update the job trajectory with.</param>
         /// <param name="returnBackMotion">Indicate if the motion is backword.</param>
         /// </summary>
@@ -223,36 +223,40 @@ namespace PinkyAndBrain
             _fileStreamWriter.WriteLine("P00000=10.000,0.000,0.000,0.0000,0.0000,0.0000");
             _fileStreamWriter.WriteLine("///POSTYPE BASE");
 
+
+
+            Trajectory2 clonedR1Traj = r1Traj.Clone();
+            Trajectory2 clonedR2Traj = r2Traj.Clone();
             //adding the zero point place for the trajectory (for the velocity calculaion behind) at the end if it is backward or at the beginning if it is forward movement.
             //also, for the backward movement it skip the last point (because the robot is already there from the forward movement) and added the 0 placed to the end of the trajectory.
             if (!returnBackMotion)
             {
-                foreach (string lineString in TrajectoriesToLine(r1Traj, r2Traj, updateJobType))
+                foreach (string lineString in TrajectoriesToLine(clonedR1Traj, clonedR2Traj, updateJobType))
                 {
                     _fileStreamWriter.WriteLine(lineString);
                 }
 
-                r1Traj.InsertOriginPlace(true);
-                r2Traj.InsertOriginPlace(true);
+                clonedR1Traj.InsertOriginPlace(true);
+                clonedR2Traj.InsertOriginPlace(true);
             }
             else
             {
-                r1Traj.InsertOriginPlace(false);
-                r2Traj.InsertOriginPlace(false);
+                clonedR1Traj.InsertOriginPlace(false);
+                clonedR2Traj.InsertOriginPlace(false);
 
-                Position firstPositionR1 = r1Traj[0];
-                Position firstPositionR2 = r2Traj[0];
+                Position firstPositionR1 = clonedR1Traj[0];
+                Position firstPositionR2 = clonedR2Traj[0];
 
-                r1Traj.RemoveAt(0);
-                r2Traj.RemoveAt(0);
+                clonedR1Traj.RemoveAt(0);
+                clonedR2Traj.RemoveAt(0);
 
-                foreach (string lineString in TrajectoriesToLine(r1Traj, r2Traj, updateJobType))
+                foreach (string lineString in TrajectoriesToLine(clonedR1Traj, clonedR2Traj, updateJobType))
                 {
                     _fileStreamWriter.WriteLine(lineString);
                 }
 
-                r1Traj.Insert(0, firstPositionR1);
-                r2Traj.Insert(0, firstPositionR2);
+                clonedR1Traj.Insert(0, firstPositionR1);
+                clonedR2Traj.Insert(0, firstPositionR2);
             }
 
             _fileStreamWriter.WriteLine("//INST");
@@ -308,7 +312,7 @@ namespace PinkyAndBrain
 
             StringBuilder sb = new StringBuilder();
             //the selected trajectory is for the for loop to init with r1 or r2 as needed for the UpdateJobType.
-            Trajectory2 selecterRobotTraj = (!updateJobType.Equals(UpdateJobType.R2Only))?(r1Traj):(r2Traj);
+            Trajectory2 selecterRobotTraj = (!updateJobType.Equals(UpdateJobType.R2Only))?(clonedR1Traj):(clonedR2Traj);
             double originalX = (!updateJobType.Equals(UpdateJobType.R2Only)) ? (MotocomSettings.Default.R1OriginalX) : (MotocomSettings.Default.R2OriginalX);
             double originalY = (!updateJobType.Equals(UpdateJobType.R2Only)) ? (MotocomSettings.Default.R1OriginalY) : (MotocomSettings.Default.R2OriginalY);
             double originalZ = (!updateJobType.Equals(UpdateJobType.R2Only)) ? (MotocomSettings.Default.R1OriginalZ) : (MotocomSettings.Default.R2OriginalZ);
@@ -329,7 +333,7 @@ namespace PinkyAndBrain
                     sb.Append("  +MOVL ");
                     sb.Append("P");
                     sb.Append((selecterRobotTraj.Count + i + 1).ToString("D" + 5));
-                    double velocity12 = Velocity3D(r2Traj[i + 1], r2Traj[i]) * 10000.0 / (1000.0 / (double)(_frequency));
+                    double velocity12 = Velocity3D(clonedR2Traj[i + 1], clonedR2Traj[i]) * 10000.0 / (1000.0 / (double)(_frequency));
                     sb.Append(" V=");
                     sb.Append(velocity12.ToString("0000.00000000"));
                 }

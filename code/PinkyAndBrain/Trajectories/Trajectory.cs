@@ -45,7 +45,7 @@ namespace Trajectories
         /// </summary>
         public Vector<double> RZ { get; set; }
 
-        public int Count => X.Count;
+        public int Count => (X!=null)?X.Count:0;
 
         public object SyncRoot => throw new NotImplementedException();
 
@@ -161,10 +161,17 @@ namespace Trajectories
                 RX = Vector<double>.Build.Dense(1);
                 RY = Vector<double>.Build.Dense(1);
                 RZ = Vector<double>.Build.Dense(1);
+
+                X[0] = item.X;
+                Y[0] = item.Y;
+                Z[0] = item.Z;
+                RX[0] = item.RX;
+                RY[0] = item.RY;
+                RZ[0] = item.RZ;
             }
             else
             {
-                this.Insert(this.Count - 1, item);
+                this.Insert(this.Count, item);
             }
         }
 
@@ -238,7 +245,7 @@ namespace Trajectories
             return inverseTrajectory;
         }
 
-        public object Clone()
+        public Trajectory2 Clone()
         {
             Trajectory2 clonedTrajectory = new Trajectory2();
 
@@ -248,6 +255,11 @@ namespace Trajectories
             }
 
             return clonedTrajectory;
+        }
+
+        object ICloneable.Clone()
+        {
+            return Clone();
         }
     }
 }
