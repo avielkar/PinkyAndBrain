@@ -1,5 +1,6 @@
 ﻿using MathNet.Numerics.LinearAlgebra;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,18 @@ namespace Trajectories
         /// The z rotation axis for thevector list position.
         /// </summary>
         public Vector<double> RZ { get; set; }
+
+        public int Count => throw new NotImplementedException();
+
+        public object SyncRoot => throw new NotImplementedException();
+
+        public bool IsSynchronized => throw new NotImplementedException();
+
+        public bool IsReadOnly => throw new NotImplementedException();
+
+        public bool IsFixedSize => throw new NotImplementedException();
+
+        public object this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         #endregion ROTATION_TRAJECTORIES
         #endregion MEMBERS
 
@@ -116,5 +129,20 @@ namespace Trajectories
                 RZ = Vector<double>.Build.Dense(rz.ToArray());
             }
         }
+    }
+
+    public class Point
+    {
+        public double X { get; set; }
+
+        public double Y { get; set; }
+
+        public double Z { get; set; }
+
+        public double RX { get; set; }
+
+        public double RY { get; set; }
+
+        public double RZ { get; set; }
     }
 }
