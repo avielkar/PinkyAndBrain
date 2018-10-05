@@ -15,37 +15,45 @@ namespace Trajectories
         /// <summary>
         /// The x axis for the vector list position.
         /// </summary>
-        private Vector<double> _x;
+        public Vector<double> X { get; set; }
 
         /// <summary>
         /// The y axis for the vector list  position.
         /// </summary>
-        private Vector<double> _y;
+        public Vector<double> Y { get; set; }
 
         /// <summary>
         /// The z axis for the vector list position.
         /// </summary>
-        private Vector<double> _z;
+        public Vector<double> Z { get; set; }
         #endregion LINEAR_TRAJECTORIES
 
         #region ROTATION_TRAJECTORIES
         /// <summary>
         /// The x rotation axis for the vector list  position.
         /// </summary>
-        private Vector<double> _rx;
+        public Vector<double> RX { get; set; }
 
         /// <summary>
         /// The y rotation axis for the vector list  position.
         /// </summary>
-        private Vector<double> _ry;
+        public Vector<double> RY { get; set; }
 
         /// <summary>
         /// The z rotation axis for thevector list position.
         /// </summary>
-        private Vector<double> _rz;
+        public Vector<double> RZ { get; set; }
         #endregion ROTATION_TRAJECTORIES
         #endregion MEMBERS
 
+        public Trajectory2()
+        {
 
+        }
+
+        public void InsertOriginPlace(Trajectory traj, bool forward = true)
+        {
+
+        }
     }
 }
