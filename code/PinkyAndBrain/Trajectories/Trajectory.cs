@@ -136,7 +136,7 @@ namespace Trajectories
 
         public void Add(Point item)
         {
-            this.Insert(this.Count, item);
+            this.Insert(this.Count-1, item);
         }
 
         public void Clear()
