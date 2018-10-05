@@ -151,7 +151,21 @@ namespace Trajectories
         /// </returns>
         public Vector<double> GenerateGaussianSampledCDF(double duration, double sigma, double magnitude, int frequency)
         {
-            Vector<double> returnedVector = CreateVector.Dense<double>((int)(frequency * duration), time => magnitude * Normal.CDF(duration/2, duration / (2 * sigma), (double)time/frequency));
+            //generate a vector with one more point sampling the gaussian.
+            Vector<double> returnedVector = CreateVector.Dense<double>((int)(frequency * duration) + 1, time => magnitude * Normal.CDF(duration / 2, duration / (2 * sigma), (double)time / frequency));
+            for (int i = 1; i < returnedVector.Count; i++)
+            {
+                /*
+                 * decrease from each sampled point the first point'
+                 * so that the gaussian would begin with the a value that it's distance
+                 * from the 0 would not be higher than the distance to the second point. i.e x0-0<x1-x0.
+                 */
+                returnedVector[i] -= returnedVector[0];
+            }
+
+            //remove the first point we need only for decreasing from other points.
+            returnedVector = returnedVector.SubVector(1, frequency);
+
             //MatlabPlotFunction(returnedVector);
             return returnedVector;
         }

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 using System.IO;
 using Trajectories;
 using System.Configuration;
+using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics.LinearAlgebra.Complex;
+using MathNet.Numerics.LinearAlgebra.Double;
 using MotomanSystem;
+using Vector = MathNet.Numerics.LinearAlgebra.Complex.Vector;
 
 namespace PinkyAndBrain
 {
@@ -205,9 +209,44 @@ namespace PinkyAndBrain
             _fileStreamWriter.WriteLine("P00000=10.000,0.000,0.000,0.0000,0.0000,0.0000");
             _fileStreamWriter.WriteLine("///POSTYPE BASE");
 
-            foreach (string lineString in TrajectoriesToLine(r1Traj , r2Traj , updateJobType))
+            //adding the zero point place for the trajectory (for the velocity calculaion behind) at the end if it is backward or at the beginning if it is forward movement.
+            //also, for the backward movement it skip the last point (because the robot is already there from the forward movement) and added the 0 placed to the end of the trajectory.
+            if (!returnBackMotion)
             {
-                _fileStreamWriter.WriteLine(lineString);
+                foreach (string lineString in TrajectoriesToLine(r1Traj, r2Traj, updateJobType))
+                {
+                    _fileStreamWriter.WriteLine(lineString);
+                }
+
+                r1Traj = InsertOriginPlace(r1Traj);
+                r2Traj = InsertOriginPlace(r2Traj);
+            }
+            else
+            {
+                Trajectory r1Traj2 = InsertOriginPlace(r1Traj, false);
+                Trajectory r2Traj2 = InsertOriginPlace(r2Traj, false);
+
+                r1Traj2.x = r1Traj2.x.SubVector(1, r1Traj2.x.Count - 1);
+                r1Traj2.y = r1Traj2.y.SubVector(1, r1Traj2.y.Count - 1);
+                r1Traj2.z = r1Traj2.z.SubVector(1, r1Traj2.z.Count - 1);
+                r1Traj2.rx = r1Traj2.rx.SubVector(1, r1Traj2.rx.Count - 1);
+                r1Traj2.ry = r1Traj2.ry.SubVector(1, r1Traj2.ry.Count - 1);
+                r1Traj2.rz = r1Traj2.rz.SubVector(1, r1Traj2.rz.Count - 1);
+
+                r2Traj2.x = r2Traj2.x.SubVector(1, r2Traj2.x.Count - 1);
+                r2Traj2.y = r2Traj2.y.SubVector(1, r2Traj2.y.Count - 1);
+                r2Traj2.z = r2Traj2.z.SubVector(1, r2Traj2.z.Count - 1);
+                r2Traj2.rx = r2Traj2.rx.SubVector(1, r2Traj2.rx.Count - 1);
+                r2Traj2.ry = r2Traj2.ry.SubVector(1, r2Traj2.ry.Count - 1);
+                r2Traj2.rz = r2Traj2.rz.SubVector(1, r2Traj2.rz.Count - 1);
+
+                foreach (string lineString in TrajectoriesToLine(r1Traj2, r2Traj2, updateJobType))
+                {
+                    _fileStreamWriter.WriteLine(lineString);
+                }
+
+                r1Traj = InsertOriginPlace(r1Traj, false);
+                r2Traj = InsertOriginPlace(r2Traj, false);
             }
 
             _fileStreamWriter.WriteLine("//INST");
@@ -242,7 +281,8 @@ namespace PinkyAndBrain
                 _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
 
                 //add the trial number with turnning the 2-14 indexes bits.
-                _fileStreamWriter.Write(MakeDoutsPins(DecToBin(TrialNum)));
+                //_fileStreamWriter.Write(MakeDoutsPins(DecToBin(TrialNum)));
+                _fileStreamWriter.WriteLine("DOUT OT#(14) ON");
 
                 //turn on the strobe bit (16)
                 _fileStreamWriter.WriteLine("DOUT OT#(16) ON");
@@ -263,6 +303,11 @@ namespace PinkyAndBrain
             StringBuilder sb = new StringBuilder();
             //the selected trajectory is for the for loop to init with r1 or r2 as needed for the UpdateJobType.
             Trajectory selecterRobotTraj = (!updateJobType.Equals(UpdateJobType.R2Only))?(r1Traj):(r2Traj);
+            double originalX = (!updateJobType.Equals(UpdateJobType.R2Only)) ? (MotocomSettings.Default.R1OriginalX) : (MotocomSettings.Default.R2OriginalX);
+            double originalY = (!updateJobType.Equals(UpdateJobType.R2Only)) ? (MotocomSettings.Default.R1OriginalY) : (MotocomSettings.Default.R2OriginalY);
+            double originalZ = (!updateJobType.Equals(UpdateJobType.R2Only)) ? (MotocomSettings.Default.R1OriginalZ) : (MotocomSettings.Default.R2OriginalZ);
+
+            //make the f * duration velocity points vector from the f * duratoin + 1 places points in the trajectory.
             for (int i = 0; i < selecterRobotTraj.x.Count - 1; i++)
             {
                 //decode the velocity for the selected robot (if only one of then) or the first robot (r1) if both of them.
@@ -275,54 +320,27 @@ namespace PinkyAndBrain
                     selecterRobotTraj.y[i],
                     selecterRobotTraj.z[i + 1],
                     selecterRobotTraj.z[i])
-                    * 10000 / (1000 / _frequency);
+                    * 10000.0 / (1000.0 / (double)(_frequency));
                 sb.Append(" V=");
-                sb.Append(velocity.ToString("0000.0000000"));
+                sb.Append(velocity.ToString("0000.00000000"));
 
                 if (updateJobType.Equals(UpdateJobType.Both))
                 {
                     sb.Append("  +MOVL ");
                     sb.Append("P");
-                    sb.Append((selecterRobotTraj.x.Count + 1 + i).ToString("D" + 5));
-                    double velocity12 = Velocity3D(r2Traj.x[i + 1], r2Traj.x[i], r2Traj.y[i + 1], r2Traj.y[i], r2Traj.z[i + 1], r2Traj.z[i]) * 10000 / (1000 / _frequency);
+                    sb.Append((selecterRobotTraj.x.Count + i + 1).ToString("D" + 5));
+                    double velocity12 = Velocity3D(r2Traj.x[i + 1],
+                            r2Traj.x[i], r2Traj.y[i + 1],
+                            r2Traj.y[i], r2Traj.z[i + 1],
+                            r2Traj.z[i]) * 10000.0 / (1000.0 / (double)(_frequency));
                     sb.Append(" V=");
-                    sb.Append(velocity12.ToString("0000.0000000"));
+                    sb.Append(velocity12.ToString("0000.00000000"));
                 }
 
                 _fileStreamWriter.WriteLine(sb.ToString());
                 sb.Clear();
             }
-
-            //decode the velocity for the selected robot (if only one of then) or the first robot (r1) if both of them.
-            sb.Append("MOVL ");
-            sb.Append("P");
-            sb.Append((selecterRobotTraj.x.Count).ToString("D" + 5));
-            double velocity2 = Velocity3D(selecterRobotTraj.x[selecterRobotTraj.x.Count - 1],
-                selecterRobotTraj.x[selecterRobotTraj.x.Count - 2], 
-                selecterRobotTraj.y[selecterRobotTraj.y.Count - 1],
-                selecterRobotTraj.y[selecterRobotTraj.y.Count - 2],
-                selecterRobotTraj.z[selecterRobotTraj.z.Count - 1],
-                selecterRobotTraj.z[selecterRobotTraj.z.Count - 2])
-                * 10000 / (1000 / _frequency);
-            sb.Append(" V=");
-            sb.Append(velocity2.ToString("0000.0000000"));
-
-            if (updateJobType.Equals(UpdateJobType.Both))
-            {
-                sb.Append("  +MOVL ");
-                sb.Append("P");
-                sb.Append((selecterRobotTraj.x.Count * 2).ToString("D" + 5));
-                double velocity21 = Velocity3D(r2Traj.x[r2Traj.x.Count - 1],
-                    r2Traj.x[r2Traj.x.Count - 2], r2Traj.y[r2Traj.y.Count - 1],
-                    r2Traj.y[r2Traj.y.Count - 2], r2Traj.z[r2Traj.z.Count - 1],
-                    r2Traj.z[r2Traj.z.Count - 2])
-                    * 10000 / (1000 / _frequency);
-                sb.Append(" V=");
-                sb.Append(velocity21.ToString("0000.0000000"));
-            }
-
-            _fileStreamWriter.WriteLine(sb.ToString());
-            sb.Clear();
+            
 
             if (!returnBackMotion)
             {
@@ -330,7 +348,8 @@ namespace PinkyAndBrain
                 _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
 
                 //reset the trial number bits(2-14)
-                _fileStreamWriter.Write(ResetDoutPins());
+                //_fileStreamWriter.Write(ResetDoutPins());
+                _fileStreamWriter.WriteLine("DOUT OT#(14) OFF");
 
                 //turn on the strobe bit (16)
                 _fileStreamWriter.WriteLine("DOUT OT#(16) ON");
@@ -537,6 +556,81 @@ namespace PinkyAndBrain
             /// Update the job for both R1 and R2 trajectories.
             /// </summary>
             Both=3
+        }
+
+        /// <summary>
+        /// The function inserts the zero place (at the first of at the end of the trajectory) to the trajectory according to the trajectory forward/backward type.
+        /// </summary>
+        /// <param name="traj">The trajectory.</param>
+        /// <param name="forward">Indicates if the movement is forward of backward.</param>
+        /// <returns></returns>
+        public Trajectory InsertOriginPlace(Trajectory traj, bool forward = true)
+        {
+            //todo:decide if to return new one or the input one (chenged).
+            if (!forward)
+            {
+                List<double> x = traj.x.ToList();
+                List<double> y = traj.y.ToList();
+                List<double> z = traj.z.ToList();
+                List<double> rx = traj.rx.ToList();
+                List<double> ry = traj.ry.ToList();
+                List<double> rz = traj.rz.ToList();
+                x.Add(0);
+                y.Add(0);
+                z.Add(0);
+                rx.Add(0);
+                ry.Add(0);
+                rz.Add(0);
+
+                traj.x = Vector<double>.Build.Dense(x.ToArray());
+                traj.y = Vector<double>.Build.Dense(y.ToArray());
+                traj.z = Vector<double>.Build.Dense(z.ToArray());
+                traj.rx = Vector<double>.Build.Dense(rx.ToArray());
+                traj.ry = Vector<double>.Build.Dense(ry.ToArray());
+                traj.rz = Vector<double>.Build.Dense(rz.ToArray());
+
+                return traj;
+            }
+            else
+            {
+                List<double> x = traj.x.ToList();
+                x.Reverse();
+                x.Add(0);
+                x.Reverse();
+                traj.x = Vector<double>.Build.Dense(x.ToArray());
+
+                List<double> y = traj.y.ToList();
+                y.Reverse();
+                y.Add(0);
+                y.Reverse();
+                traj.y = Vector<double>.Build.Dense(y.ToArray());
+
+                List<double> z = traj.z.ToList();
+                z.Reverse();
+                z.Add(0);
+                z.Reverse();
+                traj.z = Vector<double>.Build.Dense(z.ToArray());
+
+                List<double> rx = traj.rx.ToList();
+                rx.Reverse();
+                rx.Add(0);
+                rx.Reverse();
+                traj.rx = Vector<double>.Build.Dense(rx.ToArray());
+
+                List<double> ry = traj.ry.ToList();
+                ry.Reverse();
+                ry.Add(0);
+                ry.Reverse();
+                traj.ry = Vector<double>.Build.Dense(ry.ToArray());
+
+                List<double> rz = traj.rz.ToList();
+                rz.Reverse();
+                rz.Add(0);
+                rz.Reverse();
+                traj.rz = Vector<double>.Build.Dense(rz.ToArray());
+
+                return traj;
+            }
         }
     }
 }
