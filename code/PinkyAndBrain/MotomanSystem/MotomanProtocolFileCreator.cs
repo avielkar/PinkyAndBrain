@@ -291,8 +291,8 @@ namespace PinkyAndBrain
                 _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
 
                 //add the trial number with turnning the 2-14 indexes bits.
-                //_fileStreamWriter.Write(MakeDoutsPins(DecToBin(TrialNum)));
-                _fileStreamWriter.WriteLine("DOUT OT#(14) ON");
+                _fileStreamWriter.Write(MakeDoutsPins(DecToBin(TrialNum)));
+                //_fileStreamWriter.WriteLine("DOUT OT#(14) ON");
 
                 //turn on the strobe bit (16)
                 _fileStreamWriter.WriteLine("DOUT OT#(16) ON");
@@ -350,8 +350,8 @@ namespace PinkyAndBrain
                 _fileStreamWriter.WriteLine("DOUT OT#(16) OFF");
 
                 //reset the trial number bits(2-14)
-                //_fileStreamWriter.Write(ResetDoutPins());
-                _fileStreamWriter.WriteLine("DOUT OT#(14) OFF");
+                _fileStreamWriter.Write(ResetDoutPins());
+                //_fileStreamWriter.WriteLine("DOUT OT#(14) OFF");
 
                 //turn on the strobe bit (16)
                 _fileStreamWriter.WriteLine("DOUT OT#(16) ON");

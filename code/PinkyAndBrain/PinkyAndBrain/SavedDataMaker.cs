@@ -135,17 +135,6 @@ namespace PinkyAndBrain
                 lineBuilder.Clear();
             }
 
-            //append all timngs variables names and values.
-            foreach (var field in typeof(ControlLoop.TrialTimings).GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
-            {
-                lineBuilder.Append(field.Name);
-                lineBuilder.Append(":");
-                lineBuilder.Append(field.GetValue(trialData.TimingsVariables));
-
-                _currentSavedFileStramWriter.WriteLine(lineBuilder.ToString());
-                lineBuilder.Clear();
-            }
-
             //save all trial events with their real time timings.
             SaveTheRealTimingEvents(trialData.TrialEventsTiming);
 
