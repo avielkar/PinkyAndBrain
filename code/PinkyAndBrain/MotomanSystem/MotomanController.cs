@@ -33,6 +33,11 @@ namespace PinkyAndBrain
         /// The JBI protocol file creator for each trial trajectory.
         /// </summary>
         public MotomanProtocolFileCreator MotomanProtocolFileCreator;
+
+        /// <summary>
+        /// The frquency rate for the trajectory poins per second.
+        /// </summary>
+        public int Frequency { get; set; }
         #endregion
 
         #region CONSTRUCTORS
@@ -41,11 +46,13 @@ namespace PinkyAndBrain
         /// </summary>
         /// <param name="robotIPAddress">The robot IP adress to connect to.</param>
         /// <param name="logger">The application logger.</param>
-        public MotomanController(string robotIPAddress, ILog logger)
+        public MotomanController(string robotIPAddress, int frequency ,  ILog logger)
         {
             _motomanController = new CYasnac(robotIPAddress, Application.StartupPath);
 
             MotomanProtocolFileCreator = new MotomanProtocolFileCreator(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
+
+            Frequency = frequency;
 
             _logger = logger;
 
@@ -276,7 +283,7 @@ namespace PinkyAndBrain
             MotomanProtocolFileCreator targetPositionFile = new MotomanProtocolFileCreator(@"C:\Users\User\Desktop\" + jbiFileName + ".JBI");
 
             //update the target position file.
-            targetPositionFile.UpdateSpecificPosJBIFile(jbiFileName, r1TargetPosition, r2TargetPosition, 60);
+            targetPositionFile.UpdateSpecificPosJBIFile(jbiFileName, r1TargetPosition, r2TargetPosition, Frequency);
         }
 
         /// <summary>

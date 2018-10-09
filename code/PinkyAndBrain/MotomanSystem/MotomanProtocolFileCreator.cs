@@ -37,7 +37,7 @@ namespace PinkyAndBrain
         /// </param>
         /// <param name="frequency">The frequenct of the trajectory (points per second).</param>
         /// </summary>
-        public MotomanProtocolFileCreator(string fileName , int frequency = 60)
+        public MotomanProtocolFileCreator(string fileName , int frequency = 50)
         {
             _fileName = fileName;
 
