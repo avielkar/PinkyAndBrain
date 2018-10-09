@@ -163,7 +163,7 @@ namespace PinkyAndBrain
             try
             {
                 //connect to the robot and turn on it's servos.
-                _motocomController = new MotomanController("10.0.0.2", _logger);
+                _motocomController = new MotomanController("10.0.0.2", Properties.Settings.Default.Frequency , _logger);
             }
             catch
             {
