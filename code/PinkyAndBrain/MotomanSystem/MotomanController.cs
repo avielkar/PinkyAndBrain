@@ -283,7 +283,7 @@ namespace PinkyAndBrain
             MotomanProtocolFileCreator targetPositionFile = new MotomanProtocolFileCreator(@"C:\Users\User\Desktop\" + jbiFileName + ".JBI");
 
             //update the target position file.
-            targetPositionFile.UpdateSpecificPosJBIFile(jbiFileName, r1TargetPosition, r2TargetPosition, );
+            targetPositionFile.UpdateSpecificPosJBIFile(jbiFileName, r1TargetPosition, r2TargetPosition, Frequency);
         }
 
         /// <summary>
