@@ -12,7 +12,7 @@
       <Value Profile="(Default)">440</Value>
     </Setting>
     <Setting Name="Frequency" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">60</Value>
+      <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="RatNames" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
