@@ -1761,29 +1761,31 @@ namespace PinkyAndBrain
         /// </summary>
         private void SendDataToRobots()
         {
+            int movementDuration = (int)(1000 * _currentTrialTimings.wDuration);
+
             _logger.Info("Sending trajectories data to robots begin.");
             //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
             switch (_currentTrialStimulusType)
             {
                 case 0://none
-                    _robotMotionTask = Task.Factory.StartNew(() => Thread.Sleep((int)(1000 * _currentTrialTimings.wDuration)));
+                    _robotMotionTask = Task.Factory.StartNew(() => Thread.Sleep(movementDuration));
                     break;
                 case 1://vistibular only.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.Both);
-                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory(false , movementDuration));
                     break;
 
                 case 2://visual only.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only);
-                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory(false , movementDuration));
                     break;
 
                 case 3://vistibular and visual both.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only);
-                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory(false ,movementDuration));
                     break;
 
                 case 4://vistibular and visual both with delta+ for visual.
@@ -1798,21 +1800,21 @@ namespace PinkyAndBrain
                         deltaHeading = _crossVaryingVals[_currentVaryingTrialIndex]["DELTA"];
                     //if delta is 0 move only the R1 robot.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, (deltaHeading != 0) ? MotomanProtocolFileCreator.UpdateJobType.Both : MotomanProtocolFileCreator.UpdateJobType.R1Only);
-                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory(false ,movementDuration));
                     break;
 
                 case 10://visual only in the dark.
                 case 12://will replace visual only in the dark.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R2Only);
-                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory(false , movementDuration));
                     break;
 
                 case 11://combined in the dark.
                 case 13://will replace combined in the dark.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
                     _motomanController.UpdateYasakawaRobotJBIFile(_currentTrialTrajectories, MotomanProtocolFileCreator.UpdateJobType.R1Only);
-                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                    _robotMotionTask = new Task(() => _motomanController.MoveYasakawaRobotWithTrajectory(false , movementDuration));
                     break;
 
                 default://if there is no motion , make a delay of waiting the duration time (the time that should take the robot to move).
