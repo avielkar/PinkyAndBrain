@@ -1382,11 +1382,11 @@ namespace PinkyAndBrain
         /// <returns>True if the head was stable consistently in the center during the movement time.</returns>
         public bool MovingTheRobotDurationWithHeadCenterStabilityStage()
         {
-                _logger.Info("Moving the robot with duration time and head center stability check stage is begin.");
+                _logger.Info("Moving the robot with duration time and head center stability check stage is begin."); ;
 
-                //update the global details listview with the current stage.
-                _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
-                _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Stimulus Duration");
+            //update the global details listview with the current stage.
+            _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
+            _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Stimulus Duration");
 
             //start moving the robot according to the stimulus type.
             _logger.Info("Send Executing robot trajectory data start command");
