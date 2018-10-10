@@ -1582,7 +1582,7 @@ namespace PinkyAndBrain
             }
             else
             {
-                moveRobotHomePositionTask = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory());
+                moveRobotHomePositionTask = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory(false, (int)(1000 * _currentTrialTimings.wDuration)));
 
                 //also send the AlphaOmega that motion backward starts.
                 _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotStartMovingBackward);
