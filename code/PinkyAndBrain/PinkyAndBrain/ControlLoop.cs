@@ -1355,8 +1355,23 @@ namespace PinkyAndBrain
         {
             _logger.Info("RewardToBackwardDelayStage begin.");
 
-            Thread.Sleep((int)(_currentTrialTimings.wRewardToBackwardDelay*1000));
+            Task updateBackwordTrajectory = new Task(() =>
+            {
+                _logger.Info("Updating backward trajectory file begin.");
+                UpdateRobotHomePositionBackwordsJBIFile();
+                _logger.Info("Updating backward trajectory file begin.");
+            });
 
+            Task waitRewardBackwardDelay = new Task(() =>
+            {
+                Thread.Sleep((int)(_currentTrialTimings.wRewardToBackwardDelay * 1000));
+            });
+
+            updateBackwordTrajectory.Start();
+            waitRewardBackwardDelay.Start();
+
+            waitRewardBackwardDelay.Wait();
+            updateBackwordTrajectory.Wait();
             _logger.Info("RewardToBackwardDelayStage ended.");
         }
 
@@ -1577,10 +1592,7 @@ namespace PinkyAndBrain
                 //_varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
                 trialSucceed = false;
 
-            //Task moveRobotHomePositionTask = Task.Factory.StartNew(() => MoveRobotHomePosition());
-
             //need to get the robot backword only if ther was a rat enterance that trigger thr robot motion.
-            UpdateRobotHomePositionBackwordsJBIFile();
             Task moveRobotHomePositionTask;
             if (!duration1HeadInTheCenterStabilityStage)
             {
