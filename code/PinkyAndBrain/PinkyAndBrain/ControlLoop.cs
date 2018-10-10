@@ -1572,25 +1572,9 @@ namespace PinkyAndBrain
         {
             _logger.Info("PostTrialStage begin.");
 
-            bool trialSucceed = true;
-
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Post trial time.");
-
-            //save the fixation only mode
-            _specialModesInRealTime.FixationOnly = FixationOnlyMode;
-
-            //if no answer in the response time or not even coming to tge response time.
-            if (!FixationOnlyMode && !(_currentRatDecision.Equals(RatDecison.Left) || _currentRatDecision.Equals(RatDecison.Right)))
-                //reset status of the current trial combination index if there was no reponse stage at all.
-                //_varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
-                trialSucceed = false;
-
-            if (FixationOnlyMode && !_currentRatDecision.Equals(RatDecison.PassDurationTime))
-                //reset status of the current trial combination index if there was no reponse stage at all.
-                //_varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
-                trialSucceed = false;
 
             //need to get the robot backword only if ther was a rat enterance that trigger thr robot motion.
             Task moveRobotHomePositionTask;
@@ -1607,6 +1591,21 @@ namespace PinkyAndBrain
                 _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotStartMovingBackward);
                 _trialEventRealTiming.Add("RobotStartMovingBackward", _controlLoopTrialTimer.ElapsedMilliseconds);
             }
+
+            //save the fixation only mode
+            _specialModesInRealTime.FixationOnly = FixationOnlyMode;
+
+            bool trialSucceed = true;
+            //if no answer in the response time or not even coming to tge response time.
+            if (!FixationOnlyMode && !(_currentRatDecision.Equals(RatDecison.Left) || _currentRatDecision.Equals(RatDecison.Right)))
+                //reset status of the current trial combination index if there was no reponse stage at all.
+                //_varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
+                trialSucceed = false;
+
+            if (FixationOnlyMode && !_currentRatDecision.Equals(RatDecison.PassDurationTime))
+                //reset status of the current trial combination index if there was no reponse stage at all.
+                //_varyingIndexSelector.ResetTrialStatus(_currentVaryingTrialIndex);
+                trialSucceed = false;
 
             //save the dat into the result file only if the trial is within success trials (that have any stimulus)
             if (!_currentRatDecision.Equals(RatDecison.NoEntryToResponseStage))
