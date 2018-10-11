@@ -1355,6 +1355,11 @@ namespace PinkyAndBrain
         {
             _logger.Info("RewardToBackwardDelayStage begin.");
 
+            Task waitRewardBackwardHalfDelay = new Task(() =>
+            {
+                Thread.Sleep((int)(_currentTrialTimings.wRewardToBackwardDelay * 1000/2));
+            });
+
             Task updateBackwordTrajectory = new Task(() =>
             {
                 _logger.Info("Updating backward trajectory file begin.");
@@ -1362,15 +1367,16 @@ namespace PinkyAndBrain
                 _logger.Info("Updating backward trajectory file begin.");
             });
 
-            Task waitRewardBackwardDelay = new Task(() =>
-            {
-                Thread.Sleep((int)(_currentTrialTimings.wRewardToBackwardDelay * 1000));
-            });
+            //wait half of the time so can write the new JBI file after a little delay for the end of the forward movement.
+            waitRewardBackwardHalfDelay.Start();
+            waitRewardBackwardHalfDelay.Wait();
 
+            //update the JBI file after the little delay.
             updateBackwordTrajectory.Start();
-            waitRewardBackwardDelay.Start();
+            waitRewardBackwardHalfDelay.Start();
 
-            waitRewardBackwardDelay.Wait();
+            //wait the other half time and the JBI writing file time.
+            waitRewardBackwardHalfDelay.Wait();
             updateBackwordTrajectory.Wait();
             _logger.Info("RewardToBackwardDelayStage ended.");
         }
