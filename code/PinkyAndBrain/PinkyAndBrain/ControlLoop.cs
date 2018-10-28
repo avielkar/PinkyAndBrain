@@ -730,14 +730,6 @@ namespace PinkyAndBrain
                             //sounds the beep for missing the movement head in the center.
                             else
                             {
-                                Task.Run(() =>
-                                {
-                                    _logger.Info("Start playing missing sound in the center");
-
-                                    _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"]; _windowsMediaPlayer.controls.play();
-
-                                    _logger.Info("End playing missing sound in the center");
-                                });
                                 _totalHeadFixationBreaksStartDelay++;
                             }
                         }
@@ -1520,6 +1512,7 @@ namespace PinkyAndBrain
             //check if the head is stable in the center during the startDelay time (before starting the movement).
             while (sw.ElapsedMilliseconds < (int)(_currentTrialTimings.wStartDelay * 1000))
             {
+                //todo: add this block in a function called CheckBreakFixation() and also add this function in the block of function MovingTheRobotDurationWithHeadCenterStabilityStage instead the block inside this function.
                 //if AutoFixation no need to check that.
                 if (!AutoFixation)
                 {
@@ -1530,6 +1523,29 @@ namespace PinkyAndBrain
                     if (_currentRatResponse != 2)
                     {
                         _logger.Info("Breaking head fixation during the stability stage occured.");
+
+
+                        if (EnableFixationBreakSound)
+                        //sound the break fixation sound - aaaahhhh sound.
+                        {
+                            Task.Run(() =>
+                            {
+                                _logger.Info("Start playing the missing answer sound");
+
+                                _windowsMediaPlayer.URL = _soundPlayerPathDB["MissingAnswer"];
+                                _windowsMediaPlayer.controls.play();
+
+                                _logger.Info("End playing the missing answer sound");
+                            });
+                        }
+
+                        //save the state of the enable fixation break sound on.
+                        _soundsMode.BreakFixationSoundOn = EnableFixationBreakSound;
+                        _autosOptionsInRealTime.AutoFixation = AutoFixation;
+
+                        //write the break fixation event to the AlphaOmega.
+                        _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadStabilityBreak);
+                        _trialEventRealTiming.Add("HeadStabilityBreak", _controlLoopTrialTimer.ElapsedMilliseconds);
 
                         return false;
                     }
