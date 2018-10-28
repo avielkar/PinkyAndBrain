@@ -668,14 +668,6 @@ namespace PinkyAndBrain
                             return;
                         }
 
-                        //show some trial details to the gui trial details panel.
-                        ShowTrialDetailsToTheDetailsListView();
-                        //show the global experiment details for global experiment details.
-                        ShowGlobalExperimentDetailsListView();
-
-                        //initialize the currebt time parameters and all the current trial variables.
-                        InitializationStage();
-
                         //Sending all needed data to all interfaces and makes the beep sound.
                         PreTrialStage();
 
@@ -788,7 +780,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Initializes the variables , points , trajectories , random varibles ,  etc.
         /// </summary>
-        public void InitializationStage()
+        public void ResetVariables()
         {
             //TODO : change the index of the trial to be identical to the trial number in the result file.
             _logger.Info("Initialization Stage of trial #" + (_totalHeadStabilityInCenterDuringDurationTime + 1));
@@ -815,6 +807,12 @@ namespace PinkyAndBrain
             //initialize the trial sounds mode options.
             _soundsMode = new SoundsMode();
 
+            _specialModesInRealTime.EnableRightLeftMustEquals = EnableRightLeftMustEquals;
+
+            //reset the trial stopwatch and add the start event trial to the trial events list and timings.
+            _controlLoopTrialTimer.Restart();
+            _trialEventRealTiming.Clear();
+
             //updatre the trial number for the motoman protocol file creator to send it to the alpha omega.
             //_motomanController.MotomanProtocolFileCreator.TrialNum = _totalHeadStabilityInCenterDuringDurationTime + 1;
             //the adiitiom of 1 is because the ++ of one of them is only at the end of the movement.
@@ -834,11 +832,12 @@ namespace PinkyAndBrain
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Intialization");
 #endif
 
-            _specialModesInRealTime.EnableRightLeftMustEquals = EnableRightLeftMustEquals;
+            //initialize the currebt time parameters and all the current trial variables.
+            ResetVariables();
 
-            //reset the trial stopwatch and add the start event trial to the trial events list and timings.
-            _controlLoopTrialTimer.Restart();
-            _trialEventRealTiming.Clear();
+            //updates the gui elements as the current trial parameters.
+            UpdateGuiElements();
+
             _trialEventRealTiming.Add("TrialBegin", _controlLoopTrialTimer.ElapsedMilliseconds);
 
             Task sendDataToRobotTask = new Task(()=>
@@ -861,6 +860,17 @@ namespace PinkyAndBrain
             preTrialWaitingTask.Start();
 
             Task.WaitAll(preTrialWaitingTask, sendDataToRobotTask, SendDataToLedControllersTask);
+        }
+
+        /// <summary>
+        /// Updates the gui elements with the current trial options.
+        /// </summary>
+        private void UpdateGuiElements()
+        {
+            //show some trial details to the gui trial details panel.
+            ShowTrialDetailsToTheDetailsListView();
+            //show the global experiment details for global experiment details.
+            ShowGlobalExperimentDetailsListView();
         }
 
         /// <summary>
