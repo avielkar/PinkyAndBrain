@@ -100,12 +100,6 @@ namespace Trajectories
             args[4] = _frequency;
 
             _trajectoryCreator = trajectoryCreator;
-
-            //create the _trajectoryCreator by constructor with the match name to the trajectoryName.
-
-            //Type e = Type.GetType("Trajectories.TrajectoryCreators." + _trajectoryCreatorName);
-
-            //_trajectoryCreator = (ITrajectoryCreator)Activator.CreateInstance(Type.GetType("Trajectories." + _trajectoryCreatorName), args);
         }
 
         /// <summary>
@@ -118,85 +112,4 @@ namespace Trajectories
         } 
         #endregion FUNCTIONS
     }
-
-    /*
-    /// <summary>
-    /// Describes the trajectory that should be sent to the robot.
-    /// </summary>
-    public struct Trajectory
-    {
-        #region LINEAR_TRAJECTORIES
-
-        /// <summary>
-        /// The x axis for the vector list position.
-        /// </summary>
-        public Vector<double> x;
-
-        /// <summary>
-        /// The y axis for the vector list  position.
-        /// </summary>
-        public Vector<double> y;
-
-        /// <summary>
-        /// The z axis for the vector list position.
-        /// </summary>
-        public Vector<double> z;
-        #endregion LINEAR_TRAJECTORIES
-
-        #region ROTATION_TRAJECTORIES
-        /// <summary>
-        /// The x rotation axis for the vector list  position.
-        /// </summary>
-        public Vector<double> rx;
-
-        /// <summary>
-        /// The y rotation axis for the vector list  position.
-        /// </summary>
-        public Vector<double> ry;
-
-        /// <summary>
-        /// The z rotation axis for thevector list position.
-        /// </summary>
-        public Vector<double> rz;
-        #endregion ROTATION_TRAJECTORIES
-    }
-    */
-
-    /*public struct Position
-    {
-        #region LINEAR_TRAJECTORY
-
-        /// <summary>
-        /// The x axis for the position.
-        /// </summary>
-        public double x;
-
-        /// <summary>
-        /// The y axis for the position.
-        /// </summary>
-        public double y;
-
-        /// <summary>
-        /// The z axis for the position.
-        /// </summary>
-        public double z;
-        #endregion LINEAR_TRAJECTORY
-
-        #region ROTATION_TRAJECTORY
-        /// <summary>
-        /// The x rotation axis for the position.
-        /// </summary>
-        public double rx;
-
-        /// <summary>
-        /// The y rotation axis for the position.
-        /// </summary>
-        public double ry;
-
-        /// <summary>
-        /// The z rotation axis for the position.
-        /// </summary>
-        public double rz;
-        #endregion ROTATION_TRAJECTORY
-    }*/
 }

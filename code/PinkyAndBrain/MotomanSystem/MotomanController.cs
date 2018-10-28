@@ -345,14 +345,21 @@ namespace PinkyAndBrain
         /// <summary>
         /// Move the motoman with the given trajectory.
         /// </summary>
-        public void MoveYasakawaRobotWithTrajectory()
+        public void MoveYasakawaRobotWithTrajectory(bool waitJObIOFinished = false, int waitDuration = 1000)
         {
             //todo:Check if to defuncion this function toi 2 seperates function of MoveRobot() and WaitFinish().
-            _motomanController.StartJob("GAUSSIANMOVING2.JBI");
             _logger.Info("Moving the robot with trajectory begin.");
+            _motomanController.StartJob("GAUSSIANMOVING2.JBI");            
 
             //wait for the commands to be executed.
-            WaitJobFinished();
+            if (waitJObIOFinished)
+            {
+                WaitJobFinished();
+            }
+            else
+            {
+                Thread.Sleep(waitDuration);
+            }
             _logger.Info("Moving the robot with trajectory finished.");
         }
         #endregion
