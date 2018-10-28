@@ -812,6 +812,12 @@ namespace PinkyAndBrain
             //initialize the trial sounds mode options.
             _soundsMode = new SoundsMode();
 
+            _specialModesInRealTime.EnableRightLeftMustEquals = EnableRightLeftMustEquals;
+
+            //reset the trial stopwatch and add the start event trial to the trial events list and timings.
+            _controlLoopTrialTimer.Restart();
+            _trialEventRealTiming.Clear();
+
             //updatre the trial number for the motoman protocol file creator to send it to the alpha omega.
             //_motomanController.MotomanProtocolFileCreator.TrialNum = _totalHeadStabilityInCenterDuringDurationTime + 1;
             //the adiitiom of 1 is because the ++ of one of them is only at the end of the movement.
@@ -834,11 +840,6 @@ namespace PinkyAndBrain
             //initialize the currebt time parameters and all the current trial variables.
             ResetVariables();
 
-            _specialModesInRealTime.EnableRightLeftMustEquals = EnableRightLeftMustEquals;
-
-            //reset the trial stopwatch and add the start event trial to the trial events list and timings.
-            _controlLoopTrialTimer.Restart();
-            _trialEventRealTiming.Clear();
             _trialEventRealTiming.Add("TrialBegin", _controlLoopTrialTimer.ElapsedMilliseconds);
 
             Task sendDataToRobotTask = new Task(()=>
