@@ -33,6 +33,8 @@ namespace PinkyAndBrain
     /// </summary>
     public class ControlLoop:IDisposable
     {
+        const bool UPDATE_GLOBAL_DETAILS_LIST_VIEW = false;
+
         #region CONSTANTS
         /// <summary>
         /// Indicates if when moving the forward and backward trajectories need to wait the job end by the bsc yasakawa i/o indicator or by the given force timing parameter.
@@ -566,9 +568,11 @@ namespace PinkyAndBrain
             };
             _onlinePsychGraphMaker.InitSerieses();
 
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             //reset the amount of water measurement interactive panel.
             _mainGuiInterfaceControlsDictionary["SetWaterRewardsMeasure"].BeginInvoke(
               _mainGuiControlsDelegatesDictionary["SetWaterRewardsMeasure"], true);
+#endif
 
             //run the main control loop function in other thread from the main thread ( that handling events and etc).
             _stopAfterTheEndOfTheCurrentTrial = false;
@@ -603,9 +607,9 @@ namespace PinkyAndBrain
 
             Task.Run(()=>MainControlLoop());
         }
-        #endregion
+#endregion
 
-        #region STAGES_FUNCTION
+#region STAGES_FUNCTION
         public void MainControlLoop()
         {
             _logger.Info("Main ControlLoop begin.");
@@ -789,9 +793,11 @@ namespace PinkyAndBrain
             //TODO : change the index of the trial to be identical to the trial number in the result file.
             _logger.Info("Initialization Stage of trial #" + (_totalHeadStabilityInCenterDuringDurationTime + 1));
 
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Intialization");
+#endif
 
             //determine all current trial timings and delays.
             _currentTrialTimings = DetermineCurrentTrialTimings();
@@ -822,9 +828,11 @@ namespace PinkyAndBrain
         {
             _logger.Info("Pre trail stage begin.");
 
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Intialization");
+#endif
 
             _specialModesInRealTime.EnableRightLeftMustEquals = EnableRightLeftMustEquals;
 
@@ -864,10 +872,12 @@ namespace PinkyAndBrain
             _logger.Info("CueSoundPlayer begin. EnableCueSoundInBothSide = " + (EnableCueSoundInBothSide & EnableGoCueSound) +
                          ";EnableCueSoundCorrectSide" + (EnableCueSoundCorrectSide & EnableGoCueSound) + ".");
 
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
                 _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage",
                 "Clue Stage");
+#endif
 
             //todo:check if it should be here and not outside this function - because the correct answer shoule not determine in this function especailly.
             //determine the current trial correct answer.
@@ -936,10 +946,11 @@ namespace PinkyAndBrain
                 //return new Tuple<RatDecison, bool>(RatDecison.NoDecision, false);
             }
 
-
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Waiting for Response");
+#endif
 
             //get the current stimulus direction.
             double currentHeadingDirection = double.Parse(GetVariableValue("HEADING_DIRECTION"));
@@ -1065,9 +1076,11 @@ namespace PinkyAndBrain
         {
             //Thread.Sleep(1000*(int)(_currentTrialTimings.wResponseTime));
 
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Waiting for Second Chance Response");
+#endif
 
             //save the second chance response is on.
             _specialModesInRealTime.SecondChoice = true;
@@ -1296,9 +1309,11 @@ namespace PinkyAndBrain
         {
             _logger.Info("RewardLeftStage begin with AutoReward  = " + autoReward + ".");
 
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Left)");
+#endif
 
             if (!secondChance)
                 Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration, _currentTrialTimings.wRewardLeftDelay, autoReward, RewardSound);
@@ -1318,9 +1333,11 @@ namespace PinkyAndBrain
         {
             _logger.Info("RewardRightStage begin with AutoReward  = " + autoReward + ".");
 
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Right)");
+#endif
 
             if (!secondChance)
                 Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration, _currentTrialTimings.wRewardRightDelay, autoReward, RewardSound);
@@ -1339,9 +1356,11 @@ namespace PinkyAndBrain
         {
             _logger.Info("RewardCenterStage begin with AutoReward  = " + autoReward + ".");
 
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Center)");
+#endif
 
             Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration, _currentTrialTimings.wRewardCenterDelay, autoReward ,autoRewardSound);
 
@@ -1363,7 +1382,8 @@ namespace PinkyAndBrain
             Task updateBackwordTrajectory = new Task(() =>
             {
                 //wait the half of the time for the pause after the robt end moving forward (and than write the JBI file).
-                Thread.Sleep((int)(_currentTrialTimings.wRewardToBackwardDelay * 1000 / 2));
+                Thread.Sleep((int)(250));
+
                 _logger.Info("Updating backward trajectory file begin.");
                 UpdateRobotHomePositionBackwordsJBIFile();
                 _logger.Info("Updating backward trajectory file begin.");
@@ -1388,9 +1408,11 @@ namespace PinkyAndBrain
         {
             _logger.Info("Moving the robot with duration time and head center stability check stage is begin.");
 
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Stimulus Duration");
+#endif
 
             //start moving the robot according to the stimulus type.
             _logger.Info("Send Executing robot trajectory data start command");
@@ -1527,9 +1549,11 @@ namespace PinkyAndBrain
 
             _logger.Info("Waiting for Head to be entered to the center stage for the first time.");
 
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             //update the global details listview with the current stage.
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Waiting for rat to start trial");
+#endif
 
             //if autoStart is checked than should not wait for the rat to enter it's head to the center for starting.
             _autosOptionsInRealTime.AutoStart = AutoStart;
@@ -1577,9 +1601,11 @@ namespace PinkyAndBrain
             _logger.Info("PostTrialStage begin.");
 
             //update the global details listview with the current stage.
+
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Post trial time.");
-
+#endif
             //need to get the robot backword only if ther was a rat enterance that trigger thr robot motion.
             Task moveRobotHomePositionTask;
             if (!duration1HeadInTheCenterStabilityStage)
@@ -1589,11 +1615,11 @@ namespace PinkyAndBrain
             }
             else
             {
-                moveRobotHomePositionTask = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory(YASKAWA_TRAJECTORY_MOVEMENTS_JOB_WAIT_BY_IO, (int)(1000 * _currentTrialTimings.wDuration)));
-
-                //also send the AlphaOmega that motion backward starts.
+                //send the AlphaOmega that motion backward starts.
                 _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotStartMovingBackward);
                 _trialEventRealTiming.Add("RobotStartMovingBackward", _controlLoopTrialTimer.ElapsedMilliseconds);
+
+                moveRobotHomePositionTask = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory(YASKAWA_TRAJECTORY_MOVEMENTS_JOB_WAIT_BY_IO, (int)(1000 * _currentTrialTimings.wDuration)));
             }
 
             //save the fixation only mode
@@ -1650,9 +1676,9 @@ namespace PinkyAndBrain
             _logger.Info("PostTrialStage ended. TrialSucceed = " + trialSucceed + ".");
             return trialSucceed;
         }
-        #endregion
+#endregion
 
-        #region STAGES_ADDIION_FUNCTION
+#region STAGES_ADDIION_FUNCTION
         /// <summary>
         /// Sending the leds data to the leds controllers (without execution).
         /// </summary>
@@ -1979,9 +2005,9 @@ namespace PinkyAndBrain
             }
         }
 
-        #endregion STAGES_ADDIION_FUNCTION
+#endregion STAGES_ADDIION_FUNCTION
 
-        #region GUI_CONTROLS_FUNCTIONS
+#region GUI_CONTROLS_FUNCTIONS
         /// <summary>
         /// Show global experiment parameters.
         /// </summary>
@@ -2039,9 +2065,9 @@ namespace PinkyAndBrain
                 _mainGuiControlsDelegatesDictionary["UpdateCurrentTrialDetailsViewList"], varName, currentParameterDetails);
             }
         }
-        #endregion
+#endregion
 
-        #region ADDITIONAL_FUNCTIONS
+#region ADDITIONAL_FUNCTIONS
         /// <summary>
         /// This function is called if the control loop asked to be ended.
         /// </summary>
@@ -2061,13 +2087,13 @@ namespace PinkyAndBrain
                 //Close and release the current saved file.
                 _savedExperimentDataMaker.CloseFile();
 
-                //raise an event for the GuiInterface that the trials round is over.
-                _mainGuiInterfaceControlsDictionary["FinishedAllTrialsRound"].BeginInvoke(_mainGuiControlsDelegatesDictionary["FinishedAllTrialsRound"]);
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
+            //raise an event for the GuiInterface that the trials round is over.
+            _mainGuiInterfaceControlsDictionary["FinishedAllTrialsRound"].BeginInvoke(_mainGuiControlsDelegatesDictionary["FinishedAllTrialsRound"]);
 
                 //choose none rat in the selected rat
                 _mainGuiInterfaceControlsDictionary["ResetSelectedRatNameCombobox"].BeginInvoke(_mainGuiControlsDelegatesDictionary["ResetSelectedRatNameCombobox"]);
-                //choose none student in the selected rat
-                //_mainGuiInterfaceControlsDictionary["ResetSelectedStudentNameCombobox"].BeginInvoke(_mainGuiControlsDelegatesDictionary["ResetSelectedStudentNameCombobox"]);
+#endif
         }
 
         /// <summary>
@@ -2380,9 +2406,11 @@ namespace PinkyAndBrain
             //update the variable saving the current rat head direction.
             _currentRatResponse = _ratResponseController.ReadSingleSamplePort();
 
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             //only if the system is running , update the interactive window.
             if(Globals._systemState.Equals(SystemState.RUNNING))
                 _mainGuiInterfaceControlsDictionary["SetNoldusRatResponseInteractivePanel"].BeginInvoke(_mainGuiControlsDelegatesDictionary["SetNoldusRatResponseInteractivePanel"] , _currentRatResponse);
+#endif
         }
         #endregion
 
@@ -2394,8 +2422,10 @@ namespace PinkyAndBrain
         /// <param name="e">Args.</param>
         void WaterRewardFillingTimer_Tick(object sender, EventArgs e)
         {
+#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             _mainGuiInterfaceControlsDictionary["SetWaterRewardsMeasure"].BeginInvoke(
                 _mainGuiControlsDelegatesDictionary["SetWaterRewardsMeasure"] , false);
+#endif
         }
         #endregion
 
@@ -2423,9 +2453,9 @@ namespace PinkyAndBrain
 
             _logger.Info("End playing break fixation sound from gui");
         }
-        #endregion GUI_EVENTS
+#endregion GUI_EVENTS
 
-        #region STRUCT_ENUMS
+#region STRUCT_ENUMS
         /// <summary>
         /// Struct contains all the trial timings.
         /// </summary>
@@ -2584,7 +2614,7 @@ namespace PinkyAndBrain
             /// </summary>
             Right = 0x04,
         };
-        #endregion
-        #endregion FUNCTIONS
+#endregion
+#endregion FUNCTIONS
     }
 }
