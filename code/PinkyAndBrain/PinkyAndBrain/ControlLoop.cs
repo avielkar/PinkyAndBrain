@@ -1002,6 +1002,7 @@ namespace PinkyAndBrain
                             _logger.Info("End playing error sound");
                         });
 
+                        //todo: ask adam about this.
                         //don't make sound if it is auto reward because the rat dont need to choose.
                         if (!AutoReward)
                         {
@@ -1058,6 +1059,7 @@ namespace PinkyAndBrain
                             _logger.Info("End playing wrong answer");
                         });
 
+                        //todo: ask adam about this.
                         //don't make sound if it is auto reward because the rat dont need to choose.
                         if (!AutoReward)
                         {
