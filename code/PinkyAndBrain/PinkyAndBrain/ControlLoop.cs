@@ -1002,6 +1002,14 @@ namespace PinkyAndBrain
                             _logger.Info("End playing error sound");
                         });
 
+                        //todo: ask adam about this.
+                        //don't make sound if it is auto reward because the rat dont need to choose.
+                        if (!AutoReward)
+                        {
+                            _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.AudioWrong);
+                            _trialEventRealTiming.Add("AudioWrong", _controlLoopTrialTimer.ElapsedMilliseconds);
+                        }
+
                         _soundsMode.ErrorChoiceSoundOn = true;
                     }
 
@@ -1050,6 +1058,14 @@ namespace PinkyAndBrain
 
                             _logger.Info("End playing wrong answer");
                         });
+
+                        //todo: ask adam about this.
+                        //don't make sound if it is auto reward because the rat dont need to choose.
+                        if (!AutoReward)
+                        {
+                            _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.AudioWrong);
+                            _trialEventRealTiming.Add("AudioWrong", _controlLoopTrialTimer.ElapsedMilliseconds);
+                        }
 
                         _soundsMode.ErrorChoiceSoundOn = true;
                     }
@@ -1277,17 +1293,6 @@ namespace PinkyAndBrain
 
                 //save the auto reward option true.
                 _autosOptionsInRealTime.AutoReward = true;
-            }
-
-            //if not AutoReward and the answer is wrong play the wrong answer audio
-            else
-            {
-                //play the wrong answer
-                //Task.Run(() => { _windowsMediaPlayer.URL = _soundPlayerPathDB["WrongAnswer"]; _windowsMediaPlayer.controls.play(); });
-
-                //write the alpha omega event for playing a wrong answer audio.
-                _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.AudioWrong);
-                _trialEventRealTiming.Add("AudioWrong", _controlLoopTrialTimer.ElapsedMilliseconds);
             }
 
             _autosOptionsInRealTime.AutoReward = autoReward;
