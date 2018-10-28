@@ -1251,13 +1251,13 @@ namespace PinkyAndBrain
                 switch (decision.Item1)
                 {
                     case RatDecison.Center:
-                        RewardCenterStage(false , CenterRewardSound);
+                        RewardCenterStage(false , CenterRewardSound, secondChance , true);
                         break;
                     case RatDecison.Left:
-                        RewardLeftStage(false, SideRewardSound, secondChance);
+                        RewardLeftStage(false, SideRewardSound, secondChance, true);
                         break;
                     case RatDecison.Right:
-                        RewardRightStage(false, SideRewardSound, secondChance);
+                        RewardRightStage(false, SideRewardSound, secondChance, true);
                         break;
                     default:
                         break;
@@ -1289,11 +1289,11 @@ namespace PinkyAndBrain
                         break;
 
                     case RatDecison.Left:
-                        RewardLeftStage(true , SideRewardSound , false);
+                        RewardLeftStage(true , SideRewardSound , false, true);
                         break;
 
                     case RatDecison.Right:
-                        RewardRightStage(true , SideRewardSound , false);
+                        RewardRightStage(true , SideRewardSound , false, true);
                         break;
 
                     default:
