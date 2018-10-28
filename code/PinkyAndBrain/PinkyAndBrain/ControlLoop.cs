@@ -673,9 +673,6 @@ namespace PinkyAndBrain
                         //show the global experiment details for global experiment details.
                         ShowGlobalExperimentDetailsListView();
 
-                        //initialize the currebt time parameters and all the current trial variables.
-                        ResetVariables();
-
                         //Sending all needed data to all interfaces and makes the beep sound.
                         PreTrialStage();
 
@@ -833,6 +830,9 @@ namespace PinkyAndBrain
             _mainGuiInterfaceControlsDictionary["UpdateGlobalExperimentDetailsListView"].BeginInvoke(
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Intialization");
 #endif
+
+            //initialize the currebt time parameters and all the current trial variables.
+            ResetVariables();
 
             _specialModesInRealTime.EnableRightLeftMustEquals = EnableRightLeftMustEquals;
 
