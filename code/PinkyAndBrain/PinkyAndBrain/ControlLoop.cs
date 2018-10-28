@@ -726,12 +726,6 @@ namespace PinkyAndBrain
                                 //after the end of rewrad wait a time delay before backword movement to the home poistion.
                                 RewardToBackwardDelayStage();
                             }
-
-                            //sounds the beep for missing the movement head in the center.
-                            else
-                            {
-                                _totalHeadFixationBreaksStartDelay++;
-                            }
                         }
 
                         //sounds the beep with the missing start gead in the center.
@@ -1546,6 +1540,9 @@ namespace PinkyAndBrain
                         //write the break fixation event to the AlphaOmega.
                         _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.HeadStabilityBreak);
                         _trialEventRealTiming.Add("HeadStabilityBreak", _controlLoopTrialTimer.ElapsedMilliseconds);
+
+                        //increase the head fixation breaks in start delay counter.
+                        _totalHeadFixationBreaksStartDelay++;
 
                         return false;
                     }
