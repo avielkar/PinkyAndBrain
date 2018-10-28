@@ -668,11 +668,6 @@ namespace PinkyAndBrain
                             return;
                         }
 
-                        //show some trial details to the gui trial details panel.
-                        ShowTrialDetailsToTheDetailsListView();
-                        //show the global experiment details for global experiment details.
-                        ShowGlobalExperimentDetailsListView();
-
                         //Sending all needed data to all interfaces and makes the beep sound.
                         PreTrialStage();
 
@@ -840,6 +835,9 @@ namespace PinkyAndBrain
             //initialize the currebt time parameters and all the current trial variables.
             ResetVariables();
 
+            //updates the gui elements as the current trial parameters.
+            UpdateGuiElements();
+
             _trialEventRealTiming.Add("TrialBegin", _controlLoopTrialTimer.ElapsedMilliseconds);
 
             Task sendDataToRobotTask = new Task(()=>
@@ -862,6 +860,17 @@ namespace PinkyAndBrain
             preTrialWaitingTask.Start();
 
             Task.WaitAll(preTrialWaitingTask, sendDataToRobotTask, SendDataToLedControllersTask);
+        }
+
+        /// <summary>
+        /// Updates the gui elements with the current trial options.
+        /// </summary>
+        private void UpdateGuiElements()
+        {
+            //show some trial details to the gui trial details panel.
+            ShowTrialDetailsToTheDetailsListView();
+            //show the global experiment details for global experiment details.
+            ShowGlobalExperimentDetailsListView();
         }
 
         /// <summary>
