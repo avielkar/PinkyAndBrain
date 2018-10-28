@@ -1141,11 +1141,12 @@ namespace PinkyAndBrain
         /// <param name="rewardDelay">The delay time before opening the selected cellenoid.</param>
         /// <param name="autoreward">Indecition if to give the reward with no delay.</param>
         /// <param name="autoRewardSound">Indication if to give the auto reward sound during the reward.</param>
-        public void Reward(RewardPosition position, double rewardDuration, double rewardDelay, bool autoreward = false , bool autoRewardSound = false)
+        /// <param name="responseReward">Indicates if the reward is due to a response or due to the center stability stage.</param>
+        public void Reward(RewardPosition position, double rewardDuration, double rewardDelay, bool autoreward = false, bool autoRewardSound = false, bool responseReward = false)
         {
             //if autoReward than play the sound in the slected side of the water reward in order to help the rat to understand the water reward side.
             _autosOptionsInRealTime.AutoRewardSound = autoRewardSound;
-            if(autoRewardSound)
+            if (autoRewardSound)
             {
                 Task.Run(() =>
                     {
@@ -1155,8 +1156,8 @@ namespace PinkyAndBrain
                         switch (position)
                         {
                             case RewardPosition.Center:
-                                _alphaOmegaEventsWriter.WriteEvent(true,AlphaOmegaEvent.CenterRewardSound);
-                                _trialEventRealTiming.Add("CenterRewardSound" , _controlLoopTrialTimer.ElapsedMilliseconds);
+                                _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.CenterRewardSound);
+                                _trialEventRealTiming.Add("CenterRewardSound", _controlLoopTrialTimer.ElapsedMilliseconds);
                                 _windowsMediaPlayer.URL = _soundPlayerPathDB["Ding"];
                                 _windowsMediaPlayer.controls.play();
                                 break;
@@ -1208,20 +1209,28 @@ namespace PinkyAndBrain
                 }
             });
 
-            Task clueDelayTask = Task.Factory.StartNew(() =>
+            Task clueDelayTask = null;
+            //if the reward is due to the center stability stage - add clue if needed. Else, if it is due to response stage , don't add clue.
+            if (!responseReward)
             {
-                if (!EnableGoCueSound) return;
-                if (!EnableCueSoundCorrectSide && !EnableCueSoundInBothSide) return;
+                clueDelayTask = Task.Factory.StartNew(() =>
+                {
+                    if (!EnableGoCueSound) return;
+                    if (!EnableCueSoundCorrectSide && !EnableCueSoundInBothSide) return;
                 //give the cue only if it is a cebter reward
                 if (!position.Equals(RewardPosition.Center)) return;
                 //and only if it is not a fixation only trial.
                 if (!FixationOnlyMode)
-                {
-                    Thread.Sleep((int) (1000 * _currentTrialTimings.wClueDelay));
-                }
-            });
+                    {
+                        Thread.Sleep((int)(1000 * _currentTrialTimings.wClueDelay));
+                    }
+                });
+            }
 
-            clueDelayTask.Wait();
+            if(!responseReward)
+            {
+                clueDelayTask.Wait();
+            }
             rewardTask.Wait();
         }
 
@@ -1305,8 +1314,9 @@ namespace PinkyAndBrain
         /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
         /// <param name="RewardSound">Indecation ig to give the reward sound during the reward.</param>
         /// <param name="secondChance">Indicate if it is reward for the second chance.</param>
+        /// <param name="responseReward">Indicates if the reward is due to a response or due to the center stability stage.</param>
         /// </summary>
-        public void RewardLeftStage(bool autoReward = false , bool RewardSound = false , bool secondChance = false)
+        public void RewardLeftStage(bool autoReward = false , bool RewardSound = false , bool secondChance = false, bool responseReward = false)
         {
             _logger.Info("RewardLeftStage begin with AutoReward  = " + autoReward + ".");
 
@@ -1317,9 +1327,9 @@ namespace PinkyAndBrain
 #endif
 
             if (!secondChance)
-                Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration, _currentTrialTimings.wRewardLeftDelay, autoReward, RewardSound);
+                Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDuration, _currentTrialTimings.wRewardLeftDelay, autoReward, RewardSound, responseReward);
             else
-                Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDurationSecondChance, _currentTrialTimings.wRewardLeftDelaySecondChance, false, RewardSound);
+                Reward(RewardPosition.Left, _currentTrialTimings.wRewardLeftDurationSecondChance, _currentTrialTimings.wRewardLeftDelaySecondChance, false, RewardSound, responseReward);
 
             _logger.Info("RewardLeftStage ended.");
         }
@@ -1329,8 +1339,9 @@ namespace PinkyAndBrain
         /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
         /// <param name="RewardSound">Indecation ig to give the suto reard sound during the reward.</param>
         /// <param name="secondChance">Indicate if it is reward for the second chance.</param>
+        /// <param name="responseReward">Indicates if the reward is due to a response or due to the center stability stage.</param>
         /// </summary>
-        public void RewardRightStage(bool autoReward = false, bool RewardSound = false , bool secondChance = false)
+        public void RewardRightStage(bool autoReward = false, bool RewardSound = false , bool secondChance = false, bool responseReward = false)
         {
             _logger.Info("RewardRightStage begin with AutoReward  = " + autoReward + ".");
 
@@ -1341,9 +1352,9 @@ namespace PinkyAndBrain
 #endif
 
             if (!secondChance)
-                Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration, _currentTrialTimings.wRewardRightDelay, autoReward, RewardSound);
+                Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDuration, _currentTrialTimings.wRewardRightDelay, autoReward, RewardSound, responseReward);
             else
-                Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDurationSecondChance, _currentTrialTimings.wRewardRightDelaySecondChance, false, RewardSound);
+                Reward(RewardPosition.Right, _currentTrialTimings.wRewardRightDurationSecondChance, _currentTrialTimings.wRewardRightDelaySecondChance, false, RewardSound, responseReward);
 
             _logger.Info("RewardRightStage ended.");
         }
@@ -1352,8 +1363,9 @@ namespace PinkyAndBrain
         /// The reward center stage is happening if the rat head was consistently stable in the center during the movement.
         /// <param name="autoReward">Indecation if to give the reward with no delay.</param>
         /// <param name="autoRewardSound">Indecation ig to give the suto reard sound during the reward.</param>
+        /// <param name="responseReward">Indicates if the reward is due to a response or due to the center stability stage.</param>
         /// </summary>
-        public void RewardCenterStage(bool autoReward = false, bool autoRewardSound = false , bool secondChance = false)
+        public void RewardCenterStage(bool autoReward = false, bool autoRewardSound = false , bool secondChance = false, bool responseReward = false)
         {
             _logger.Info("RewardCenterStage begin with AutoReward  = " + autoReward + ".");
 
@@ -1363,7 +1375,7 @@ namespace PinkyAndBrain
             _mainGuiControlsDelegatesDictionary["UpdateGlobalExperimentDetailsListView"], "Current Stage", "Getting Reward (Center)");
 #endif
 
-            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration, _currentTrialTimings.wRewardCenterDelay, autoReward ,autoRewardSound);
+            Reward(RewardPosition.Center, _currentTrialTimings.wRewardCenterDuration, _currentTrialTimings.wRewardCenterDelay, autoReward ,autoRewardSound, responseReward);
 
             _logger.Info("RewardCenterStage ended.");
         }
