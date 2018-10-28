@@ -674,7 +674,7 @@ namespace PinkyAndBrain
                         ShowGlobalExperimentDetailsListView();
 
                         //initialize the currebt time parameters and all the current trial variables.
-                        InitializationStage();
+                        ResetVariables();
 
                         //Sending all needed data to all interfaces and makes the beep sound.
                         PreTrialStage();
@@ -788,7 +788,7 @@ namespace PinkyAndBrain
         /// <summary>
         /// Initializes the variables , points , trajectories , random varibles ,  etc.
         /// </summary>
-        public void InitializationStage()
+        public void ResetVariables()
         {
             //TODO : change the index of the trial to be identical to the trial number in the result file.
             _logger.Info("Initialization Stage of trial #" + (_totalHeadStabilityInCenterDuringDurationTime + 1));
