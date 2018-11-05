@@ -2127,13 +2127,13 @@ namespace PinkyAndBrain
                 //Close and release the current saved file.
                 _savedExperimentDataMaker.CloseFile();
 
-#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
+//#if UPDATE_GLOBAL_DETAILS_LIST_VIEW
             //raise an event for the GuiInterface that the trials round is over.
             _mainGuiInterfaceControlsDictionary["FinishedAllTrialsRound"].BeginInvoke(_mainGuiControlsDelegatesDictionary["FinishedAllTrialsRound"]);
 
                 //choose none rat in the selected rat
                 _mainGuiInterfaceControlsDictionary["ResetSelectedRatNameCombobox"].BeginInvoke(_mainGuiControlsDelegatesDictionary["ResetSelectedRatNameCombobox"]);
-#endif
+//#endif
         }
 
         /// <summary>
