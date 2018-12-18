@@ -40,16 +40,6 @@ namespace Trajectories
         /// The numbers of samples for each trajectory.
         /// </summary>
         private int _frequency;
-
-        /// <summary>
-        /// The Matlab handler object.
-        /// </summary>
-        private MLApp.MLApp _matlabApp;
-
-        /// <summary>
-        /// Indicates if to draw or not the movement graph for each trial.
-        /// </summary>
-        public bool DrawTrialMovementGraph { get; set; }
         #endregion ATTRIBUTES
 
         #region CONSTRUCTORS
@@ -67,9 +57,8 @@ namespace Trajectories
         /// <param name="variablesList">The variables list showen in the readen from the excel and changed by the main gui.</param>
         /// <param name="crossVaryingVals">Final list holds all the current cross varying vals by dictionary of variables with values for each line(trial) for ratHouseParameters.</param>
         /// <param name="trajectorySampleNumber">The number of sample points for the trajectory.</param>
-        public Training(MLApp.MLApp matlabApp, Variables variablesList, List<Dictionary<string, double>> crossVaryingVals, Dictionary<string, double> staticVals, int trajectorySampleNumber)
+        public Training(Variables variablesList, List<Dictionary<string, double>> crossVaryingVals, Dictionary<string, double> staticVals, int trajectorySampleNumber)
         {
-            _matlabApp = matlabApp;
             _variablesList = variablesList;
             _crossVaryingVals = crossVaryingVals;
             _staticVars = staticVals;
@@ -92,7 +81,6 @@ namespace Trajectories
         public Vector<double> GenerateGaussianSampledCDF(double duration, double sigma, double magnitude, int frequency)
         {
             Vector<double> returnedVector = CreateVector.Dense<double>(frequency * (int)duration,0);
-            //MatlabPlotFunction(returnedVector);
             return returnedVector;
         }
 
@@ -130,12 +118,6 @@ namespace Trajectories
                 RZ = CreateVector.Dense<double>(_frequency, 0)
             };
 
-            //if need to plot the trajectories
-            if (DrawTrialMovementGraph)
-            {
-                MatlabPlotTrajectoryFunction(ratHouseTrajectory);
-            }
-
             return new Tuple<Trajectory2, Trajectory2>(ratHouseTrajectory, landscapeHouseTrajectory);
         }
 
@@ -152,85 +134,6 @@ namespace Trajectories
             {
                 _duration = currentVaryingTrialParameters["STIMULUS_DURATION"];
             }
-        }
-
-        /// <summary>
-        /// Plotting a vector into  new window for 2D function with MATLAB.
-        /// </summary>
-        /// <param name="drawingVector">
-        /// The vector to be drawn into the graph.
-        /// The x axis is the size of the vecor.
-        /// The y axis is the vector.
-        /// </param>
-        public void MatlabPlotFunction(Vector<double> drawingVector)
-        {
-            double[] dArray = ConvertVectorToArray(drawingVector);
-            _matlabApp.Execute("figure;");
-            _matlabApp.Execute("title('Trajectories')");
-            _matlabApp.Execute("plot(drawingVector)");
-
-        }
-
-        /// <summary>
-        /// Plotting all 6 attributes for the given trajectory.
-        /// </summary>
-        /// <param name="traj">The trajectory to be decomposed to it's 6 components and to plot in a figure.</param>
-        public void MatlabPlotTrajectoryFunction(Trajectory2 traj)
-        {
-
-            _matlabApp.Execute("figure;");
-            _matlabApp.Execute("title('Trajectories')");
-
-            _matlabApp.PutWorkspaceData("rows", "base", (double)3);
-            _matlabApp.PutWorkspaceData("columns", "base", (double)2);
-
-            double[] dArray = ConvertVectorToArray(traj.X);
-            _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
-            _matlabApp.PutWorkspaceData("subplotGraphName", "base", "x");
-            _matlabApp.PutWorkspaceData("index", "base", (double)1);
-            _matlabApp.Execute("subplot(rows , columns , index)");
-            _matlabApp.Execute("plot(drawingVector)");
-            _matlabApp.Execute("title(subplotGraphName)");
-
-            dArray = ConvertVectorToArray(traj.Y);
-            _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
-            _matlabApp.PutWorkspaceData("subplotGraphName", "base", "y");
-            _matlabApp.PutWorkspaceData("index", "base", (double)2);
-            _matlabApp.Execute("subplot(rows , columns , index)");
-            _matlabApp.Execute("plot(drawingVector)");
-            _matlabApp.Execute("title(subplotGraphName)");
-
-            dArray = ConvertVectorToArray(traj.Z);
-            _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
-            _matlabApp.PutWorkspaceData("subplotGraphName", "base", "z");
-            _matlabApp.PutWorkspaceData("index", "base", (double)3);
-            _matlabApp.Execute("subplot(rows , columns , index)");
-            _matlabApp.Execute("plot(drawingVector)");
-            _matlabApp.Execute("title(subplotGraphName)");
-
-            dArray = ConvertVectorToArray(traj.RX);
-            _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
-            _matlabApp.PutWorkspaceData("subplotGraphName", "base", "rx");
-            _matlabApp.PutWorkspaceData("index", "base", (double)4);
-            _matlabApp.Execute("subplot(rows , columns , index)");
-            _matlabApp.Execute("plot(drawingVector)");
-            _matlabApp.Execute("title(subplotGraphName)");
-
-            dArray = ConvertVectorToArray(traj.RY);
-            _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
-            _matlabApp.PutWorkspaceData("subplotGraphName", "base", "ry");
-            _matlabApp.PutWorkspaceData("index", "base", (double)5);
-            _matlabApp.Execute("subplot(rows , columns , index)");
-            _matlabApp.Execute("plot(drawingVector)");
-            _matlabApp.Execute("title(subplotGraphName)");
-
-            dArray = ConvertVectorToArray(traj.RZ);
-            _matlabApp.PutWorkspaceData("drawingVector", "base", dArray);
-            _matlabApp.PutWorkspaceData("subplotGraphName", "base", "rz");
-            _matlabApp.PutWorkspaceData("index", "base", (double)6);
-            _matlabApp.Execute("subplot(rows , columns , index)");
-            _matlabApp.Execute("plot(drawingVector)");
-            _matlabApp.Execute("title(subplotGraphName)");
         }
 
         /// <summary>

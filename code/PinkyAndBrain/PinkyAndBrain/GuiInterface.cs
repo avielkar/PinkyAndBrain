@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using System.IO;
 using Params;
 using Trajectories;
-using MLApp;
 using MotocomdotNetWrapper;
 using LED.Strip.Adressable;
 using InfraRedSystem;
@@ -73,11 +72,6 @@ namespace PinkyAndBrain
         /// ControlLoop interface for doing the commands inserted in the gui.
         /// </summary>
         private ControlLoop _cntrlLoop;
-
-        /// <summary>
-        /// The matlab app object for handling the matlab application.
-        /// </summary>
-        private MLApp.MLApp _matlabApp;
 
         /// <summary>
         /// The selected protocol file full name.
@@ -151,7 +145,6 @@ namespace PinkyAndBrain
             _staticValuesGenerator = new StaticValuesGenerator();
             InitializeTitleLabels();
             ShowVaryingControlsOptions(false);
-            _matlabApp = new MLApp.MLApp();
 
             InitializeCheckBoxesDictionary();
 
@@ -196,7 +189,7 @@ namespace PinkyAndBrain
 
             //make the delegate with it's control object and their nickname as pairs of dictionaries.
             Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>> delegatsControlsTuple = MakeCtrlDelegateAndFunctionDictionary();
-            _cntrlLoop = new ControlLoop(_matlabApp, _motocomController, _ledController, _ledController2, _infraredController, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1, _logger);
+            _cntrlLoop = new ControlLoop(_motocomController, _ledController, _ledController2, _infraredController, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1, _logger);
 
             //reset the selected direction to be empty.
             _selectedHandRewardDirections = 0;
@@ -281,16 +274,16 @@ namespace PinkyAndBrain
             switch (protoclName)
             {
                 case "Training":
-                    return new Training(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
+                    return new Training(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
                 case "Azimuth3D":
-                    return new Azimuth3D(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
+                    return new Azimuth3D(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
                 case "HeadingDiscrimination":
-                    return new HeadingDiscrimination(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
+                    return new HeadingDiscrimination(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
                 default:
                     {
                         MessageBox.Show("The protocol name is not accessed, running now the HeadingDiscrimination protocol", "Warning", MessageBoxButtons.OK);
 
-                        return new HeadingDiscrimination(_matlabApp, _variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
+                        return new HeadingDiscrimination(_variablesList, _acrossVectorValuesGenerator._crossVaryingValsBoth, _staticValuesGenerator._staticVariableList, Properties.Settings.Default.Frequency);
                     }
             }
         }

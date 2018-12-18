@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Params;
 using MathNet.Numerics.LinearAlgebra;
-using MLApp;
 using System.Runtime.Remoting;
 using System.Reflection;
 
@@ -21,11 +20,6 @@ namespace Trajectories
         /// The trajectory creator name (the name of the type for making the trjectory).
         /// </summary>
         private string _trajectoryCreatorName;
-
-        /// <summary>
-        /// The Matlab computing process object for drawing graphs and etc.
-        /// </summary>
-        private MLApp.MLApp _matlab;
 
         /// <summary>
         /// The index of the current varying trial in the random indexed varying vector.
@@ -63,12 +57,8 @@ namespace Trajectories
         /// <summary>
         /// Default constructor.
         /// </summary>
-        /// <param name="matlab">The Matlab computations handler object.</param>
-        public TrajectoryCreatorHandler(MLApp.MLApp matlab)
+        public TrajectoryCreatorHandler()
         {
-            //set the matlab engine object pointer.
-            _matlab = matlab;
-
             //reset the varying index to read from.
             _varyingCurrentIndex = 0;
         }
@@ -90,14 +80,6 @@ namespace Trajectories
             _crossVaryingVals = crossVaryingVals;
             _staticVals = staticVariables;
             _frequency = frequency;
-
-            //arguments for the ITrajectoryCreator constructor.
-            object[] args = new object[5];
-            args[0] = _matlab;
-            args[1] = _variablesList;
-            args[2] = _crossVaryingVals;
-            args[3] = _staticVals;
-            args[4] = _frequency;
 
             _trajectoryCreator = trajectoryCreator;
         }
