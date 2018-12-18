@@ -81,14 +81,6 @@ namespace Trajectories
             _staticVals = staticVariables;
             _frequency = frequency;
 
-            //arguments for the ITrajectoryCreator constructor.
-            object[] args = new object[5];
-            //args[0] = _matlab;
-            args[1] = _variablesList;
-            args[2] = _crossVaryingVals;
-            args[3] = _staticVals;
-            args[4] = _frequency;
-
             _trajectoryCreator = trajectoryCreator;
         }
 
