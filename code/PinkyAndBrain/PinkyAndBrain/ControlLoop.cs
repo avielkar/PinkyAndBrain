@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Params;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.Distributions;
-using MLApp;
 using System.Diagnostics;
 using System.Windows.Forms;
 using MotocomdotNetWrapper;
@@ -73,11 +72,6 @@ namespace PinkyAndBrain
         /// The numbers of samples for each trajectory.
         /// </summary>
         private int _frequency;
-
-        /// <summary>
-        /// The Matlab computing process object for drawing graphs and etc.
-        /// </summary>
-        private MLApp.MLApp _matlabApp;
 
         /// <summary>
         /// The name of the selected protocol.
@@ -428,7 +422,6 @@ namespace PinkyAndBrain
         #region CONTRUCTORS
         /// <summary>
         /// Default constructor.
-        /// <param name="matlabApp">The matlab app handler.</param>
         /// <param name="motomanController">The motoman controller object.</param>
         /// <param name="ledController">The led controller object.</param>
         /// <param name="infraRedController">The InfraRed controller for turning on/off the InfraRed.</param>
@@ -436,10 +429,9 @@ namespace PinkyAndBrain
         /// <param name="mainGuiInterfaceControlsDictionary">The name of each main gui needed control and it's reference.</param>
         /// <param name="logger">The program logger for logging into log file.</param>
         /// </summary>
-        public ControlLoop(MLApp.MLApp matlabApp , MotomanController motomanController , LEDController ledController , LEDController ledController2 , InfraRedController infraRedController, Dictionary<string, Delegate> ctrlDelegatesDic, Dictionary<string , Control> mainGuiInterfaceControlsDictionary , ILog logger)
+        public ControlLoop(MotomanController motomanController , LEDController ledController , LEDController ledController2 , InfraRedController infraRedController, Dictionary<string, Delegate> ctrlDelegatesDic, Dictionary<string , Control> mainGuiInterfaceControlsDictionary , ILog logger)
         {
-            _matlabApp = matlabApp;
-            _trajectoryCreatorHandler = new TrajectoryCreatorHandler(_matlabApp);
+            _trajectoryCreatorHandler = new TrajectoryCreatorHandler();
 
             //copy the logger reference to writing lof information
             _logger = logger;
