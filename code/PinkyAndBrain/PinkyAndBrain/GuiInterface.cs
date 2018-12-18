@@ -878,6 +878,13 @@ namespace PinkyAndBrain
             {
                 if (_isEngaged)
                 {
+                    //check if auto button is checked , and add warning message.
+                    if (AutosOptionsSelected())
+                    {
+                        //if aborted , get out of the start logics function.
+                        if (DialogResult.No == MessageBox.Show("An auto options is selected.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                            return;
+                    }
                     lock (_lockerStopStartButton)
                     {
                         #region ENABLE_DISABLE_BUTTONS
@@ -922,6 +929,17 @@ namespace PinkyAndBrain
                     MessageBox.Show("Error - Robot is not engaged!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        /// <summary>
+        /// Decide whether one or more of the auto's options are selected.
+        /// </summary>
+        /// <returns></returns>
+        private bool AutosOptionsSelected()
+        {
+            return (_checkBoxAutoChoice.Checked ||
+                    _checkBoxAutoFixation.Checked ||
+                    _checkBoxAutoStart.Checked);
         }
 
         /// <summary>
