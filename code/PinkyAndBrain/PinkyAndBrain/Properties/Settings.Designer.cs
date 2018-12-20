@@ -99,5 +99,17 @@ namespace PinkyAndBrain.Properties {
                 this["StudentsName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\PinkyAndBrain\\protocols")]
+        public string ProtocolsDirPath {
+            get {
+                return ((string)(this["ProtocolsDirPath"]));
+            }
+            set {
+                this["ProtocolsDirPath"] = value;
+            }
+        }
     }
 }
