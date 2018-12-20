@@ -173,7 +173,7 @@
             // 
             // _protocolsFolderBrowser
             // 
-            this._protocolsFolderBrowser.SelectedPath = "C:\\Users\\User\\Desktop\\protocols";
+            this._protocolsFolderBrowser.SelectedPath = Properties.Settings.Default.ProtocolsDirPath;
             // 
             // _protocolBrowserBtn
             // 

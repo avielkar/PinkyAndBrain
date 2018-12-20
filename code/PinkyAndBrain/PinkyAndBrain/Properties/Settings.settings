@@ -28,5 +28,8 @@
   &lt;string&gt;Elad&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
+    <Setting Name="ProtocolsDirPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\User\Desktop\protocols</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
