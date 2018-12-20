@@ -227,22 +227,6 @@ namespace LED.Strip.Adressable
         }
 
         /// <summary>
-        /// Send a reset dat frame to reset all leds in the strip.
-        /// </summary>
-        private void SendResetdata()
-        {
-            SendInitDataSign();
-
-            SendNumberOfFrames(0);
-
-            SendLedsColorData(new byte[] { 0, 0, 0, 0 });
-
-            SendPlacesDataFrames(new byte[_numOfLeds]);
-
-            SendEndOfDataSign();
-        }
-
-        /// <summary>
         /// Turning off all leds in the ledstrip.
         /// </summary>
         public void ResetLeds()
@@ -250,21 +234,10 @@ namespace LED.Strip.Adressable
             //if not connected nothing to do.
             if (!Connected) return;
 
-            _logger.Info("Reset Leds begin");
-
-            //rset leds data
-            _ledsData.Red = 0;
-            _ledsData.Green = 0;
-            _ledsData.Blue = 0;
-
-            //send the data for leds turning on/off as the default value of arrays (which is 0).
-            int len = _ledsData.TurnedOnPlaces.Length;
-            _ledsData.TurnedOnPlaces = new byte[len];
-
-            SendResetdata();
-            ExecuteFrame();
-
-            _logger.Info("Reset Leds finished");
+            LedsSelector _ledsSelector = new LedsSelector(150, 1);
+            LEDsDataCommand = new LEDsData((byte)0, (byte)(0), (byte)(0), (byte)(0), _ledsSelector.FillWithBinaryRandomCombination(0 ,100, 1));
+            SendData();
+            ExecuteAllFrames();
         }
         #endregion FUNCTIONS
 
