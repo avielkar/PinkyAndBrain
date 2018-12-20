@@ -102,7 +102,7 @@ namespace PinkyAndBrain.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\User\\Desktop\\protocols")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\PinkyAndBrain\\protocols")]
         public string ProtocolsDirPath {
             get {
                 return ((string)(this["ProtocolsDirPath"]));
