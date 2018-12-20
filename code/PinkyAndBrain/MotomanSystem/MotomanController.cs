@@ -50,7 +50,7 @@ namespace PinkyAndBrain
         {
             _motomanController = new CYasnac(robotIPAddress, Application.StartupPath);
 
-            MotomanProtocolFileCreator = new MotomanProtocolFileCreator(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
+            MotomanProtocolFileCreator = new MotomanProtocolFileCreator(Application.StartupPath + @"\JBI\GAUSSIANMOVING2.JBI");
 
             Frequency = frequency;
 
@@ -174,7 +174,7 @@ namespace PinkyAndBrain
             }
 
             //wruite the new JBI file to the controller.
-            _motomanController.WriteFile(@"C:\Users\User\Desktop\GAUSSIANMOVING2.JBI");
+            _motomanController.WriteFile(Application.StartupPath +  @"\JBI\GAUSSIANMOVING2.JBI");
 
             _logger.Info("Writing job file to the robot ended.");
         }
@@ -280,7 +280,7 @@ namespace PinkyAndBrain
         /// </summary>
         public void WriteOneTargetPositionFile(string jbiFileName , Position r1TargetPosition, Position r2TargetPosition)
         {
-            MotomanProtocolFileCreator targetPositionFile = new MotomanProtocolFileCreator(@"C:\Users\User\Desktop\" + jbiFileName + ".JBI");
+            MotomanProtocolFileCreator targetPositionFile = new MotomanProtocolFileCreator(Application.StartupPath +  @"\JBI\" + jbiFileName + ".JBI");
 
             //update the target position file.
             targetPositionFile.UpdateSpecificPosJBIFile(jbiFileName, r1TargetPosition, r2TargetPosition, Frequency);
@@ -335,7 +335,7 @@ namespace PinkyAndBrain
             catch
             { }
 
-            _motomanController.WriteFile(@"C:\Users\User\Desktop\" + jobName);
+            _motomanController.WriteFile(Application.StartupPath + @"\JBI\" + jobName);
 
             _motomanController.StartJob(jobName);
 
