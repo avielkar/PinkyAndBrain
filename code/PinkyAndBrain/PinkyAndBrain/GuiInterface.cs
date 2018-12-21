@@ -15,6 +15,7 @@ using LED.Strip.Adressable;
 using InfraRedSystem;
 using log4net;
 using System.Threading;
+using System.Windows.Forms.DataVisualization.Charting;
 using MotomanSystem;
 using VaryingValuesGenerators;
 
@@ -358,6 +359,7 @@ namespace PinkyAndBrain
                     _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).IsValueShownAsLabel = true;
                     _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).LabelFormat = "{0:0.00}";
                     _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).Color = ColorByStimulus(seriesName);
+                    _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).MarkerStyle = MarkerStyleByStimulus(seriesName);
                     //show the x axis value for all the points.
                     _onlinePsychGraphControl.ChartAreas[0].AxisX.IsInterlaced = true;
                     _onlinePsychGraphControl.ChartAreas[0].AxisX.IsLabelAutoFit = true;
@@ -365,6 +367,42 @@ namespace PinkyAndBrain
             }
 
             _onlinePsychGraphControl.ChartAreas.First(area => true).RecalculateAxesScale();
+        }
+
+        /// <summary>
+        /// Decide which marker style to give to the point by the stim type.
+        /// </summary>
+        /// <param name="stimulsType">The stim type value.</param>
+        /// <returns></returns>
+        private MarkerStyle MarkerStyleByStimulus(string stimulusType)
+        {
+            switch (stimulusType)
+            {
+                case "1":   //vestibular only
+                    return MarkerStyle.Circle;
+                case "2":  //visual only
+                    return MarkerStyle.Cross;
+                case "10":
+                    return MarkerStyle.Diamond;
+                case "12":
+                    return MarkerStyle.Square;
+                case "3":   //combined
+                    return MarkerStyle.Star10;
+                case "4":
+                    return MarkerStyle.Star4;
+                case "5":
+                    return MarkerStyle.Star5;
+                case "11":
+                    return MarkerStyle.Star6;
+                case "13":
+                    return MarkerStyle.Triangle;
+                case "14":
+                    return MarkerStyle.Cross;
+                case "15":
+                    return MarkerStyle.Diamond;
+                default:
+                    return MarkerStyle.Circle;
+            }
         }
 
         /// <summary>
