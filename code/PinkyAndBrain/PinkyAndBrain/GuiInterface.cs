@@ -147,6 +147,7 @@ namespace PinkyAndBrain
             _variablesList = new Variables();
             _variablesList._variablesDictionary = new Dictionary<string, Variable>();
             _dynamicAllocatedTextBoxes = new Dictionary<string, Control>();
+            _dynamicAllocatexTextboxesEnabledStatusBeforeFreeze = new Dictionary<string, bool>();
             _acrossVectorValuesGenerator = DecideVaryinVectorsGeneratorByProtocolName();
             _staticValuesGenerator = new StaticValuesGenerator();
             InitializeTitleLabels();
