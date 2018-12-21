@@ -357,6 +357,7 @@ namespace PinkyAndBrain
                     _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x, y);
                     _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).IsValueShownAsLabel = true;
                     _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).LabelFormat = "{0:0.00}";
+                    _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).Color = ColorByStimulus(seriesName);
                     //show the x axis value for all the points.
                     _onlinePsychGraphControl.ChartAreas[0].AxisX.IsInterlaced = true;
                     _onlinePsychGraphControl.ChartAreas[0].AxisX.IsLabelAutoFit = true;
@@ -364,6 +365,35 @@ namespace PinkyAndBrain
             }
 
             _onlinePsychGraphControl.ChartAreas.First(area => true).RecalculateAxesScale();
+        }
+
+        /// <summary>
+        /// Decide which color to give to the point by the stim type.
+        /// </summary>
+        /// <param name="stimulsType">The stim type value.</param>
+        /// <returns></returns>
+        private Color ColorByStimulus(string stimulsType)
+        {
+            switch (stimulsType)
+            {
+                case "1":   //vestibular only
+                    return Color.Green;
+                case "2":  //visual only
+                case "10":
+                case "12":
+                    return Color.Red;
+                case "3":   //combined
+                case "4":
+                case "5":
+                case "11":
+                case "13":
+                case "14":
+                case "15":
+                    return Color.Blue;
+                default:
+                    return Color.Black;
+                    break;
+            }
         }
 
         /// <summary>
