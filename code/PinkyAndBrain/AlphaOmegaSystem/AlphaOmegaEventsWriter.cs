@@ -81,7 +81,6 @@ namespace AlphaOmegaSystem
         public void WriteEvent(bool autoStart, AlphaOmegaEvent alphaOmegaEvent)
         {
             _logger.Info("Writing event. AlphaOmegaEvent = " + alphaOmegaEvent.ToString() + ".");
-     
             _digitalWriter.WriteSingleSamplePort(autoStart, (byte)alphaOmegaEvent);
             
             Thread.Sleep(1);
@@ -92,7 +91,8 @@ namespace AlphaOmegaSystem
             _digitalWriterStrobe.WriteSingleSamplePort(autoStart, 0x00);
 
             Thread.Sleep(1);
-            
+
+            _logger.Info("Writing event. AlphaOmegaEvent = " + AlphaOmegaEvent.EmptyEvent.ToString() + ".");
             _digitalWriter.WriteSingleSamplePort(autoStart, (byte)(AlphaOmegaEvent.EmptyEvent));
         }
     }
