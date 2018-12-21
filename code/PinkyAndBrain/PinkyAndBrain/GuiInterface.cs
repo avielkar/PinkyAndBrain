@@ -50,6 +50,11 @@ namespace PinkyAndBrain
         private Dictionary<string, Control> _dynamicAllocatedTextBoxes;
 
         /// <summary>
+        /// Indicates each of the dynamic allocatex textbox status before freezing it via running.
+        /// </summary>
+        private Dictionary<string, bool> _dynamicAllocatexTextboxesEnabledStatusBeforeFreeze;
+
+        /// <summary>
         /// Dictionary describes all ButtonBase (checkboxes and radiobuttons) names in the gui as keys with their conrol as value.
         /// </summary>
         private Dictionary<string, ButtonBase> _buttonbasesDictionary;
@@ -963,6 +968,9 @@ namespace PinkyAndBrain
                         {
                             //update the system state.
                             Globals._systemState = SystemState.RUNNING;
+
+                            //freeze all dynamic inputs via running.
+                            FreezeDynamicsTextBoxes();
 
                             //add the static variable list of double type values.
                             _staticValuesGenerator.SetVariables(_variablesList);
@@ -2716,6 +2724,20 @@ namespace PinkyAndBrain
             if (parametersTextbox)
             {
                 textBox.Enabled = !textBox.Enabled;
+            }
+        }
+
+        /// <summary>
+        /// Freezes all dyynamics allocated textboxes.
+        /// </summary>
+        public void FreezeDynamicsTextBoxes()
+        {
+            foreach (Control dynamicControl in _dynamicAllocatedTextBoxes.Values)
+            {
+                if (dynamicControl is TextBox)
+                {
+                    dynamicControl.Enabled = false;
+                }
             }
         }
 
