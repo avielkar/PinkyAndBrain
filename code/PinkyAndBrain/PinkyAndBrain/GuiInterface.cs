@@ -544,6 +544,9 @@ namespace PinkyAndBrain
         /// </summary>
         public void FinishedAllTrialsRound()
         {
+            //retun back from the textboxes freeze during the running.
+            ReturnBackFromFreezeDynamicTextBoxes();
+
             _btnStop.Enabled = false;
             _btnStart.Enabled = false;
             _btnPause.Enabled = false;
@@ -1090,6 +1093,9 @@ namespace PinkyAndBrain
             {
                 //stop the control loop.
                 _cntrlLoop.Stop();
+
+                //retun back from the textboxes freeze during the running.
+                ReturnBackFromFreezeDynamicTextBoxes();
 
                 #region ENABLE_DISABLE_BUTTONS
                 _btnStop.Enabled = false;
@@ -2732,11 +2738,37 @@ namespace PinkyAndBrain
         /// </summary>
         public void FreezeDynamicsTextBoxes()
         {
-            foreach (Control dynamicControl in _dynamicAllocatedTextBoxes.Values)
+            foreach (KeyValuePair<string ,Control> dynamicControlPair in _dynamicAllocatedTextBoxes)
             {
-                if (dynamicControl is TextBox)
+                if (dynamicControlPair.Value is TextBox)
                 {
-                    dynamicControl.Enabled = false;
+                    if (_dynamicAllocatexTextboxesEnabledStatusBeforeFreeze.Keys.Contains(dynamicControlPair.Key))
+                    {
+                        _dynamicAllocatexTextboxesEnabledStatusBeforeFreeze[dynamicControlPair.Key] = dynamicControlPair.Value.Enabled;
+                    }
+                    else
+                    {
+                        _dynamicAllocatexTextboxesEnabledStatusBeforeFreeze.Add(dynamicControlPair.Key , dynamicControlPair.Value.Enabled);
+                    }
+
+                    dynamicControlPair.Value.Enabled = false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Retuens back vefore the freeze of the dynamic controls textboxes.
+        /// </summary>
+        public void ReturnBackFromFreezeDynamicTextBoxes()
+        {
+            foreach (KeyValuePair<string, Control> dynamicControlPair in _dynamicAllocatedTextBoxes)
+            {
+                if (dynamicControlPair.Value is TextBox)
+                {
+                    if (_dynamicAllocatexTextboxesEnabledStatusBeforeFreeze[dynamicControlPair.Key])
+                    {
+                        dynamicControlPair.Value.Enabled = true;
+                    }
                 }
             }
         }
