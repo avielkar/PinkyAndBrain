@@ -50,6 +50,11 @@ namespace PinkyAndBrain
         private Dictionary<string, Control> _dynamicAllocatedTextBoxes;
 
         /// <summary>
+        /// Indicates each of the dynamic allocatex textbox status before freezing it via running.
+        /// </summary>
+        private Dictionary<string, bool> _dynamicAllocatexTextboxesEnabledStatusBeforeFreeze;
+
+        /// <summary>
         /// Dictionary describes all ButtonBase (checkboxes and radiobuttons) names in the gui as keys with their conrol as value.
         /// </summary>
         private Dictionary<string, ButtonBase> _buttonbasesDictionary;
@@ -142,6 +147,7 @@ namespace PinkyAndBrain
             _variablesList = new Variables();
             _variablesList._variablesDictionary = new Dictionary<string, Variable>();
             _dynamicAllocatedTextBoxes = new Dictionary<string, Control>();
+            _dynamicAllocatexTextboxesEnabledStatusBeforeFreeze = new Dictionary<string, bool>();
             _acrossVectorValuesGenerator = DecideVaryinVectorsGeneratorByProtocolName();
             _staticValuesGenerator = new StaticValuesGenerator();
             InitializeTitleLabels();
@@ -539,6 +545,9 @@ namespace PinkyAndBrain
         /// </summary>
         public void FinishedAllTrialsRound()
         {
+            //retun back from the textboxes freeze during the running.
+            ReturnBackFromFreezeDynamicTextBoxes();
+
             _btnStop.Enabled = false;
             _btnStart.Enabled = false;
             _btnPause.Enabled = false;
@@ -964,6 +973,9 @@ namespace PinkyAndBrain
                             //update the system state.
                             Globals._systemState = SystemState.RUNNING;
 
+                            //freeze all dynamic inputs via running.
+                            FreezeDynamicsTextBoxes();
+
                             //add the static variable list of double type values.
                             _staticValuesGenerator.SetVariables(_variablesList);
 
@@ -1082,6 +1094,9 @@ namespace PinkyAndBrain
             {
                 //stop the control loop.
                 _cntrlLoop.Stop();
+
+                //retun back from the textboxes freeze during the running.
+                ReturnBackFromFreezeDynamicTextBoxes();
 
                 #region ENABLE_DISABLE_BUTTONS
                 _btnStop.Enabled = false;
@@ -2716,6 +2731,46 @@ namespace PinkyAndBrain
             if (parametersTextbox)
             {
                 textBox.Enabled = !textBox.Enabled;
+            }
+        }
+
+        /// <summary>
+        /// Freezes all dyynamics allocated textboxes.
+        /// </summary>
+        public void FreezeDynamicsTextBoxes()
+        {
+            foreach (KeyValuePair<string ,Control> dynamicControlPair in _dynamicAllocatedTextBoxes)
+            {
+                if (dynamicControlPair.Value is TextBox)
+                {
+                    if (_dynamicAllocatexTextboxesEnabledStatusBeforeFreeze.Keys.Contains(dynamicControlPair.Key))
+                    {
+                        _dynamicAllocatexTextboxesEnabledStatusBeforeFreeze[dynamicControlPair.Key] = dynamicControlPair.Value.Enabled;
+                    }
+                    else
+                    {
+                        _dynamicAllocatexTextboxesEnabledStatusBeforeFreeze.Add(dynamicControlPair.Key , dynamicControlPair.Value.Enabled);
+                    }
+
+                    dynamicControlPair.Value.Enabled = false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Retuens back vefore the freeze of the dynamic controls textboxes.
+        /// </summary>
+        public void ReturnBackFromFreezeDynamicTextBoxes()
+        {
+            foreach (KeyValuePair<string, Control> dynamicControlPair in _dynamicAllocatedTextBoxes)
+            {
+                if (dynamicControlPair.Value is TextBox)
+                {
+                    if (_dynamicAllocatexTextboxesEnabledStatusBeforeFreeze[dynamicControlPair.Key])
+                    {
+                        dynamicControlPair.Value.Enabled = true;
+                    }
+                }
             }
         }
 
