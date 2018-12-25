@@ -1799,7 +1799,7 @@ namespace PinkyAndBrain
         {
             TextBox tb = sender as TextBox;
 
-            CheckProperInputSpelling(tb.Text, varName, varAttibuteName);
+            CheckProperInputSpellingAndUpdate(tb.Text, varName, varAttibuteName);
 
             //if a left textbox updated and need to equalize the right checkbox also.
             UpdateRightTextBoxesAvailability(_checkBoxRightAndLeftSame.Checked);
@@ -2752,7 +2752,12 @@ namespace PinkyAndBrain
                         _dynamicAllocatexTextboxesEnabledStatusBeforeFreeze.Add(dynamicControlPair.Key , dynamicControlPair.Value.Enabled);
                     }
 
-                    dynamicControlPair.Value.Enabled = false;
+                    if (dynamicControlPair.Key.Contains("increament") ||
+                        dynamicControlPair.Key.Contains("high_bound") ||
+                        dynamicControlPair.Key.Contains("low_bound"))
+                    {
+                        dynamicControlPair.Value.Enabled = false;
+                    }
                 }
             }
         }
@@ -2781,7 +2786,7 @@ namespace PinkyAndBrain
         /// <param name="varName">The var name to attributed updated according to the new value if the input is proper.</param>
         /// <param name="attributeName">The attribute of the variable to be pdated if the input was proper.</param>
         /// <returns></returns>
-        private Param CheckProperInputSpelling(string attributeValue, string varName, string attributeName)
+        private Param CheckProperInputSpellingAndUpdate(string attributeValue, string varName, string attributeName)
         {
             Param par = new Param();
 
@@ -2798,6 +2803,13 @@ namespace PinkyAndBrain
                 if (DigitsNumberChecker(par._ratHouseParameter))
                 {
                     _variablesList._variablesDictionary[varName]._description[attributeName] = par;
+
+                    //update if it is a static variable or consr variable.
+                    if (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter.Equals("0") ||
+                        _variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter.Equals("1"))
+                    {
+                        _staticValuesGenerator._staticVariableList[varName] = double.Parse(par._ratHouseParameter);
+                    }
 
                     SetParametersTextBox(varName, new StringBuilder());
                 }
