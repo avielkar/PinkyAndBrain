@@ -2752,7 +2752,12 @@ namespace PinkyAndBrain
                         _dynamicAllocatexTextboxesEnabledStatusBeforeFreeze.Add(dynamicControlPair.Key , dynamicControlPair.Value.Enabled);
                     }
 
-                    dynamicControlPair.Value.Enabled = false;
+                    if (dynamicControlPair.Key.Contains("increament") ||
+                        dynamicControlPair.Key.Contains("high_bound") ||
+                        dynamicControlPair.Key.Contains("low_bound"))
+                    {
+                        dynamicControlPair.Value.Enabled = false;
+                    }
                 }
             }
         }
