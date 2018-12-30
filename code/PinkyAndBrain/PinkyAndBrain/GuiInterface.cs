@@ -2848,30 +2848,30 @@ namespace PinkyAndBrain
             switch (variableName)
             {
                case  "PRE_TRIAL_TIME":
-                    if (value < 0.2)
+                    if (value < Properties.Settings.Default.MinimumPreTrialTime)
                     {
-                        MessageBox.Show("Minimum time for PreTrialStage is 0.2s" , "Error" , MessageBoxButtons.OKCancel , MessageBoxIcon.Error);
+                        MessageBox.Show($"Minimum time for PreTrialStage is {Properties.Settings.Default.MinimumPreTrialTime}s", "Error" , MessageBoxButtons.OKCancel , MessageBoxIcon.Error);
                         return false;
                     }
                     return true;
                 case "STIMULUS_DURATION":
-                    if(value != 1)
+                    if(value != Properties.Settings.Default.MinimumStimulusDuration)
                     {
-                        MessageBox.Show("Time for StimulusDuration is  exactly 1.0s", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        MessageBox.Show($"Time for StimulusDuration is  exactly {Properties.Settings.Default.MinimumStimulusDuration}s", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                         return false;
                     }
                     return true;
                 case "REWARD_BACKWARD_TIME":
-                    if (value < 0.8)
+                    if (value < Properties.Settings.Default.MinimumRewardBackwardTime)
                     {
-                        MessageBox.Show("Minimum time for RewardBackwardTime is 0.8s", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        MessageBox.Show($"Minimum time for RewardBackwardTime is {Properties.Settings.Default.MinimumRewardBackwardTime}s", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                         return false;
                     }
                     return true;
                 case "POST_TRIAL_TIME":
-                    if (value < 1.2)
+                    if (value < Properties.Settings.Default.MinimumPostTrialTime)
                     {
-                        MessageBox.Show("Minimum time for PostTrialTime is 1.2s", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        MessageBox.Show($"Minimum time for PostTrialTime is {Properties.Settings.Default.MinimumPostTrialTime}s", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                         return false;
                     }
                     return true;
