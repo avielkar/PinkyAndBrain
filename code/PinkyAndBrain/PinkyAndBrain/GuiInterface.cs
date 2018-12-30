@@ -2880,6 +2880,15 @@ namespace PinkyAndBrain
             }
         }
 
+        bool CheckMinimimTimingValues()
+        {
+            return 
+            CheckMinimumTimingValue("PRE_TRIAL_TIME", double.Parse(_variablesList._variablesDictionary["PRE_TRIAL_TIME"]._description["parameters"]._ratHouseParameter))
+            && CheckMinimumTimingValue("STIMULUS_DURATION", double.Parse(_variablesList._variablesDictionary["STIMULUS_DURATION"]._description["parameters"]._ratHouseParameter))
+            && CheckMinimumTimingValue("REWARD_BACKWARD_TIME", double.Parse(_variablesList._variablesDictionary["REWARD_BACKWARD_TIME"]._description["parameters"]._ratHouseParameter))
+            && CheckMinimumTimingValue("POST_TRIAL_TIME", double.Parse(_variablesList._variablesDictionary["POST_TRIAL_TIME"]._description["parameters"]._ratHouseParameter));
+        }
+
         /// <summary>
         /// Checking ig the input for the new adding varying vector is proper.
         /// </summary>
