@@ -1037,6 +1037,9 @@ namespace PinkyAndBrain
                 return false;
             }
 
+            if (!CheckMinimimTimingValues())
+                return false;
+
             return true;
         }
 
