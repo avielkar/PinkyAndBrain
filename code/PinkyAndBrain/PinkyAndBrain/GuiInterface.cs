@@ -2857,7 +2857,7 @@ namespace PinkyAndBrain
                 case "STIMULUS_DURATION":
                     if(value != 1)
                     {
-                        MessageBox.Show("Time for StimulusDuration is  exactly 1.s", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        MessageBox.Show("Time for StimulusDuration is  exactly 1.0s", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                         return false;
                     }
                     return true;
