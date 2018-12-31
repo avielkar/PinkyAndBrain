@@ -1037,6 +1037,9 @@ namespace PinkyAndBrain
                 return false;
             }
 
+            if (!CheckMinimimTimingValues())
+                return false;
+
             return true;
         }
 
@@ -2802,16 +2805,19 @@ namespace PinkyAndBrain
                 //if true , update the values in the variables dictionary.
                 if (DigitsNumberChecker(par._ratHouseParameter))
                 {
-                    _variablesList._variablesDictionary[varName]._description[attributeName] = par;
-
-                    //update if it is a static variable or consr variable.
-                    if (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter.Equals("0") ||
-                        _variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter.Equals("1"))
+                    if (CheckMinimumTimingValue(varName, double.Parse(par._ratHouseParameter)))
                     {
-                        _staticValuesGenerator._staticVariableList[varName] = double.Parse(par._ratHouseParameter);
-                    }
+                        _variablesList._variablesDictionary[varName]._description[attributeName] = par;
 
-                    SetParametersTextBox(varName, new StringBuilder());
+                        //update if it is a static variable or consr variable.
+                        if (_variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter.Equals("0") ||
+                            _variablesList._variablesDictionary[varName]._description["status"]._ratHouseParameter.Equals("1"))
+                        {
+                            _staticValuesGenerator._staticVariableList[varName] = double.Parse(par._ratHouseParameter);
+                        }
+
+                        SetParametersTextBox(varName, new StringBuilder());
+                    }
                 }
 
                 //show the previous text to the changed textbox (taken from the variable list dictionary).
@@ -2838,6 +2844,52 @@ namespace PinkyAndBrain
             }
 
             return par;
+        }
+
+        bool CheckMinimumTimingValue(string variableName , double value)
+        {
+            switch (variableName)
+            {
+               case  "PRE_TRIAL_TIME":
+                    if (value < Properties.Settings.Default.MinimumPreTrialTime)
+                    {
+                        MessageBox.Show($"Minimum time for PreTrialStage is {Properties.Settings.Default.MinimumPreTrialTime}s", "Error" , MessageBoxButtons.OKCancel , MessageBoxIcon.Error);
+                        return false;
+                    }
+                    return true;
+                case "STIMULUS_DURATION":
+                    if(value != Properties.Settings.Default.MinimumStimulusDuration)
+                    {
+                        MessageBox.Show($"Time for StimulusDuration is  exactly {Properties.Settings.Default.MinimumStimulusDuration}s", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        return false;
+                    }
+                    return true;
+                case "REWARD_BACKWARD_TIME":
+                    if (value < Properties.Settings.Default.MinimumRewardBackwardTime)
+                    {
+                        MessageBox.Show($"Minimum time for RewardBackwardTime is {Properties.Settings.Default.MinimumRewardBackwardTime}s", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        return false;
+                    }
+                    return true;
+                case "POST_TRIAL_TIME":
+                    if (value < Properties.Settings.Default.MinimumPostTrialTime)
+                    {
+                        MessageBox.Show($"Minimum time for PostTrialTime is {Properties.Settings.Default.MinimumPostTrialTime}s", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        return false;
+                    }
+                    return true;
+                default:
+                    return true;
+            }
+        }
+
+        bool CheckMinimimTimingValues()
+        {
+            return 
+            CheckMinimumTimingValue("PRE_TRIAL_TIME", double.Parse(_variablesList._variablesDictionary["PRE_TRIAL_TIME"]._description["parameters"]._ratHouseParameter))
+            && CheckMinimumTimingValue("STIMULUS_DURATION", double.Parse(_variablesList._variablesDictionary["STIMULUS_DURATION"]._description["parameters"]._ratHouseParameter))
+            && CheckMinimumTimingValue("REWARD_BACKWARD_TIME", double.Parse(_variablesList._variablesDictionary["REWARD_BACKWARD_TIME"]._description["parameters"]._ratHouseParameter))
+            && CheckMinimumTimingValue("POST_TRIAL_TIME", double.Parse(_variablesList._variablesDictionary["POST_TRIAL_TIME"]._description["parameters"]._ratHouseParameter));
         }
 
         /// <summary>

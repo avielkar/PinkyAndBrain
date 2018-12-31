@@ -111,5 +111,53 @@ namespace PinkyAndBrain.Properties {
                 this["ProtocolsDirPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
+        public double MinimumPreTrialTime {
+            get {
+                return ((double)(this["MinimumPreTrialTime"]));
+            }
+            set {
+                this["MinimumPreTrialTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double MinimumStimulusDuration {
+            get {
+                return ((double)(this["MinimumStimulusDuration"]));
+            }
+            set {
+                this["MinimumStimulusDuration"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.8")]
+        public double MinimumRewardBackwardTime {
+            get {
+                return ((double)(this["MinimumRewardBackwardTime"]));
+            }
+            set {
+                this["MinimumRewardBackwardTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.2")]
+        public double MinimumPostTrialTime {
+            get {
+                return ((double)(this["MinimumPostTrialTime"]));
+            }
+            set {
+                this["MinimumPostTrialTime"] = value;
+            }
+        }
     }
 }
