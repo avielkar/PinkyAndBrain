@@ -1698,12 +1698,12 @@ namespace PinkyAndBrain
                 });
             }
 
-            Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
-
             //wait the maximum time of the postTrialTime and the going home position time.
             moveRobotHomePositionTask.Wait();
             //also send the AlphaOmega that motion backwards ends.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotEndMovingBackward);
+
+            Thread.Sleep((int)(_currentTrialTimings.wPostTrialTime * 1000));
 
             _logger.Info("PostTrialStage ended. TrialSucceed = " + trialSucceed + ".");
             return trialSucceed;
