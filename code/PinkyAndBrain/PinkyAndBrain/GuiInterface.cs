@@ -2853,7 +2853,7 @@ namespace PinkyAndBrain
                case  "PRE_TRIAL_TIME":
                     if (value < Properties.Settings.Default.MinimumPreTrialTime)
                     {
-                        MessageBox.Show($"Minimum time for PreTrialStage is {Properties.Settings.Default.MinimumPreTrialTime}s", "Error" , MessageBoxButtons.OKCancel , MessageBoxIcon.Error);
+                        MessageBox.Show($"Minimum time for Pre Trial Time is {Properties.Settings.Default.MinimumPreTrialTime}s", "Error" , MessageBoxButtons.OKCancel , MessageBoxIcon.Error);
                         return false;
                     }
                     return true;
@@ -2867,7 +2867,7 @@ namespace PinkyAndBrain
                 case "REWARD_BACKWARD_TIME":
                     if (value < Properties.Settings.Default.MinimumRewardBackwardTime)
                     {
-                        MessageBox.Show($"Minimum time for RewardBackwardTime is {Properties.Settings.Default.MinimumRewardBackwardTime}s", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        MessageBox.Show($"Minimum time for Wait Time Before Return is {Properties.Settings.Default.MinimumRewardBackwardTime}s", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                         return false;
                     }
                     return true;
