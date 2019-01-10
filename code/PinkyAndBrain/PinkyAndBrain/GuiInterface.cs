@@ -422,7 +422,7 @@ namespace PinkyAndBrain
             switch (stimulsType)
             {
                 case "1":   //vestibular only
-                    return Color.Green;
+                    return Color.Blue;
                 case "2":  //visual only
                 case "10":
                 case "12":
@@ -434,7 +434,7 @@ namespace PinkyAndBrain
                 case "13":
                 case "14":
                 case "15":
-                    return Color.Blue;
+                    return Color.Green;
                 default:
                     return Color.Black;
                     break;
