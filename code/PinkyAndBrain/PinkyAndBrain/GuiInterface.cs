@@ -364,9 +364,9 @@ namespace PinkyAndBrain
                     _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x, y);
                     //_onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).IsValueShownAsLabel = true;
                     //_onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).LabelFormat = "{0:0.00}";
-                    _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).Color = ColorByStimulus(seriesName);
-                    _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).MarkerStyle = MarkerStyleByStimulus(seriesName);
-                    _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).MarkerSize = 10;
+                    _onlinePsychGraphControl.Series[seriesName].Color = ColorByStimulus(seriesName);
+                    _onlinePsychGraphControl.Series[seriesName].MarkerStyle = MarkerStyleByStimulus(seriesName);
+                    _onlinePsychGraphControl.Series[seriesName].MarkerSize = 10;
                     //show the x axis value for all the points.
                     _onlinePsychGraphControl.ChartAreas[0].AxisX.IsInterlaced = true;
                     _onlinePsychGraphControl.ChartAreas[0].AxisX.IsLabelAutoFit = true;
