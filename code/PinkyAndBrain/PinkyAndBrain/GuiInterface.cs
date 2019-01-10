@@ -364,9 +364,9 @@ namespace PinkyAndBrain
                     _onlinePsychGraphControl.Series[seriesName].Points.AddXY(x, y);
                     //_onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).IsValueShownAsLabel = true;
                     //_onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).LabelFormat = "{0:0.00}";
-                    _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).Color = ColorByStimulus(seriesName);
-                    _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).MarkerStyle = MarkerStyleByStimulus(seriesName);
-                    _onlinePsychGraphControl.Series[seriesName].Points.First(point => point.XValue == x).MarkerSize = 10;
+                    _onlinePsychGraphControl.Series[seriesName].Color = ColorByStimulus(seriesName);
+                    _onlinePsychGraphControl.Series[seriesName].MarkerStyle = MarkerStyleByStimulus(seriesName);
+                    _onlinePsychGraphControl.Series[seriesName].MarkerSize = 10;
                     //show the x axis value for all the points.
                     _onlinePsychGraphControl.ChartAreas[0].AxisX.IsInterlaced = true;
                     _onlinePsychGraphControl.ChartAreas[0].AxisX.IsLabelAutoFit = true;
@@ -422,7 +422,7 @@ namespace PinkyAndBrain
             switch (stimulsType)
             {
                 case "1":   //vestibular only
-                    return Color.Green;
+                    return Color.Blue;
                 case "2":  //visual only
                 case "10":
                 case "12":
@@ -434,7 +434,7 @@ namespace PinkyAndBrain
                 case "13":
                 case "14":
                 case "15":
-                    return Color.Blue;
+                    return Color.Green;
                 default:
                     return Color.Black;
                     break;
