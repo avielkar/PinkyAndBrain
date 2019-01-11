@@ -1847,8 +1847,8 @@ namespace PinkyAndBrain
             //The motion of the Yasakawa robot if needed as the current stimulus type (if is both visual&vestibular -3 or only vistibular-1).
             switch (_currentTrialStimulusType)
             {
-                case 0://none
-                    _robotMotionTask = Task.Factory.StartNew(() => Thread.Sleep(movementDuration));
+                case 0://none 
+                    _robotMotionTask = new Task(() => Thread.Sleep(movementDuration));
                     break;
                 case 1://vistibular only.
                     //first update the JBI file in seperately  , and after that negin both moving the robot and play with the leds for percisely simulatenously.
