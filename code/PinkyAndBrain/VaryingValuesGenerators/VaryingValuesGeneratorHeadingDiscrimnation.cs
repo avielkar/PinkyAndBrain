@@ -170,7 +170,7 @@ namespace VaryingValuesGenerators
             _containsStimulusType0 = false;
 
             #region MAKING_VARYING_VECTOR_LIST
-            foreach (KeyValuePair<string , Variable> item in _varyingVariables._variablesDictionary)
+            foreach (KeyValuePair<string, Variable> item in _varyingVariables._variablesDictionary)
             {
                 Vector<double> oneVarVector;
 
@@ -187,14 +187,23 @@ namespace VaryingValuesGenerators
                         _containsStimulusType0 = true;
                     }
                     else
-                        oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament); 
+                    {
+                        oneVarVector = CreateVectorFromBounds(low_bound, high_bound, increament);
+                    }
                 }
                 else // equals "6"
                 {
-                    string []  splittedVectorValues = item.Value._description["parameters"]._ratHouseParameter.Split(' ');
-                    if (splittedVectorValues.Contains("0"))
-                        _containsStimulusType0 = true;
-                    oneVarVector = CreateVectorFromStringVector(string.Join(" ", splittedVectorValues.Where(s => s != "0")));
+                    string[] splittedVectorValues = item.Value._description["parameters"]._ratHouseParameter.Split(' ');
+                    if (item.Key == "STIMULUS_TYPE")
+                    {
+                        if (splittedVectorValues.Contains("0"))
+                            _containsStimulusType0 = true;
+                        oneVarVector = CreateVectorFromStringVector(string.Join(" ", splittedVectorValues.Where(s => s != "0")));
+                    }
+                    else
+                    {
+                        oneVarVector = CreateVectorFromStringVector(string.Join(" ", splittedVectorValues));
+                    }
                 }
 
                 varyingVectorsList.Add(item.Key, oneVarVector);
