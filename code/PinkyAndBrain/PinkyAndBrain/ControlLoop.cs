@@ -1485,10 +1485,7 @@ namespace PinkyAndBrain
             });
 
             //wait the robot task to finish the movement.
-            if (_currentTrialStimulusType != 0)
-            {
-                _robotMotionTask.Wait();
-            }
+            _robotMotionTask.Wait();
 
             //also send the AlphaOmega that motion forward ends.
             _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotEndMovingForward);
@@ -1651,7 +1648,15 @@ namespace PinkyAndBrain
                 _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotStartMovingBackward);
                 _trialEventRealTiming.Add("RobotStartMovingBackward", _controlLoopTrialTimer.ElapsedMilliseconds);
 
-                moveRobotHomePositionTask = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory(YASKAWA_TRAJECTORY_MOVEMENTS_JOB_WAIT_BY_IO, (int)(1000 * _currentTrialTimings.wDuration)));
+                switch (_currentTrialStimulusType)
+                {
+                    case 0:
+                        moveRobotHomePositionTask = Task.Factory.StartNew(() => Thread.Sleep((int)(1000 * _currentTrialTimings.wDuration)));
+                        break;
+                    default:
+                        moveRobotHomePositionTask = Task.Factory.StartNew(() => _motomanController.MoveYasakawaRobotWithTrajectory(YASKAWA_TRAJECTORY_MOVEMENTS_JOB_WAIT_BY_IO, (int)(1000 * _currentTrialTimings.wDuration)));
+                        break;
+                }
             }
 
             //save the fixation only mode
