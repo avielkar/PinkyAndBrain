@@ -1277,7 +1277,7 @@ namespace PinkyAndBrain
                     _btnStart.Enabled = isBtnStartEnabled;
                     _btnStop.Enabled = isBtnStopEnabled;
                     //if paused and then parked and engaged in the middle of the experiment.
-                    if(_isEngaged && !_btnStop.Enabled && !_btnStart.Enabled) _btnResume.Enabled = true;
+                    if(_isEngaged && !isBtnPauseEnabled && !_btnStart.Enabled) _btnResume.Enabled = true;
                     _btnPause.Enabled = isBtnPauseEnabled;
                     _btnEnagae.Enabled = true;
                     _btnPark.Enabled = true;
