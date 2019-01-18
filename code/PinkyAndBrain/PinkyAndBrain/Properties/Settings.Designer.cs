@@ -102,7 +102,7 @@ namespace PinkyAndBrain.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\PinkyAndBrain\\protocols")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\PinkyAndBrain\\protocols")]
         public string ProtocolsDirPath {
             get {
                 return ((string)(this["ProtocolsDirPath"]));
@@ -162,7 +162,7 @@ namespace PinkyAndBrain.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\results")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\PinkyAndBrain\\results")]
         public string ResultsDirPath {
             get {
                 return ((string)(this["ResultsDirPath"]));
