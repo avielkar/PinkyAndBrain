@@ -43,5 +43,8 @@
     <Setting Name="MinimumPostTrialTime" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1.2</Value>
     </Setting>
+    <Setting Name="ResultsDirPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\results</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -159,5 +159,17 @@ namespace PinkyAndBrain.Properties {
                 this["MinimumPostTrialTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\results")]
+        public string ResultsDirPath {
+            get {
+                return ((string)(this["ResultsDirPath"]));
+            }
+            set {
+                this["ResultsDirPath"] = value;
+            }
+        }
     }
 }

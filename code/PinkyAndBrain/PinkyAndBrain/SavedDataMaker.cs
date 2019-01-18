@@ -187,7 +187,7 @@ namespace PinkyAndBrain
             CreateNewDirectory(ratName);
 
             //create a new results file for the new experiment.
-            _currentSavedFileStramWriter = File.CreateText(@"C:\results\" + ratName + @"\" + DateTime.Now.ToString("yyyy_MM_dd") + @"\" + DateTime.Now.ToString("yyyy_MM_dd_HH-mm") + " Rat " + ratName + ".txt");
+            _currentSavedFileStramWriter = File.CreateText(Properties.Settings.Default.ResultsDirPath + ratName + @"\" + DateTime.Now.ToString("yyyy_MM_dd") + @"\" + DateTime.Now.ToString("yyyy_MM_dd_HH-mm") + " Rat " + ratName + ".txt");
         }
 
         /// <summary>
