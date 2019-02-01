@@ -440,7 +440,10 @@ namespace PinkyAndBrain
             _ratResponseController = new RatResponseController("Dev1", "Port0", "Line0:2", "RatResponseChannels");
             _alphaOmegaEventsWriter = new AlphaOmegaEventsWriter("Dev1", "Port0", "Line3:7", "AlphaOmegaEventsChannels" , "Port1" , "Line3" , "AlphaOmegaStrobeChannel" , _logger);
             _infraredController = infraRedController;
-            
+
+            //reset the RewardController outputs.
+            _rewardController.ResetControllerOutputs();
+
             _stopAfterTheEndOfTheCurrentTrial = false;
             
             //configure  rge timer for the sampling Noldus rat response direction.
