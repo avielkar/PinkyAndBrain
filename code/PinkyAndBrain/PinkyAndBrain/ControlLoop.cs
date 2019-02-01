@@ -429,22 +429,17 @@ namespace PinkyAndBrain
         /// <param name="mainGuiInterfaceControlsDictionary">The name of each main gui needed control and it's reference.</param>
         /// <param name="logger">The program logger for logging into log file.</param>
         /// </summary>
-        public ControlLoop(MotomanController motomanController , LEDController ledController , LEDController ledController2 , InfraRedController infraRedController, Dictionary<string, Delegate> ctrlDelegatesDic, Dictionary<string , Control> mainGuiInterfaceControlsDictionary , ILog logger)
+        public ControlLoop(MotomanController motomanController , LEDController ledController , LEDController ledController2 , RewardController rewardController , RatResponseController ratResponseController , AlphaOmegaEventsWriter alphaOmegaEventsWriter , InfraRedController infraRedController, Dictionary<string, Delegate> ctrlDelegatesDic, Dictionary<string , Control> mainGuiInterfaceControlsDictionary , ILog logger)
         {
             _trajectoryCreatorHandler = new TrajectoryCreatorHandler();
 
             //copy the logger reference to writing lof information
             _logger = logger;
 
-            //todo:tranfer this commands to the gui interface function and here just reference it.
-            _rewardController = new RewardController("Dev1" , "Port1" ,"Line0:2", "RewardChannels");
-            _ratResponseController = new RatResponseController("Dev1", "Port0", "Line0:2", "RatResponseChannels");
-            _alphaOmegaEventsWriter = new AlphaOmegaEventsWriter("Dev1", "Port0", "Line3:7", "AlphaOmegaEventsChannels" , "Port1" , "Line3" , "AlphaOmegaStrobeChannel" , _logger);
+            _rewardController = rewardController;
+            _ratResponseController = ratResponseController;
+            _alphaOmegaEventsWriter = alphaOmegaEventsWriter;
             _infraredController = infraRedController;
-
-            //todo:tranfer this commands to the gui interface function and here just reference it.
-            //reset the RewardController outputs.
-            _rewardController.ResetControllerOutputs();
 
             _stopAfterTheEndOfTheCurrentTrial = false;
             

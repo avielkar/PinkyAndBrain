@@ -18,6 +18,8 @@ using System.Threading;
 using System.Windows.Forms.DataVisualization.Charting;
 using MotomanSystem;
 using VaryingValuesGenerators;
+using RatResponseSystem;
+using AlphaOmegaSystem;
 
 namespace PinkyAndBrain
 {
@@ -126,6 +128,21 @@ namespace PinkyAndBrain
         private LEDController _ledController2;
 
         /// <summary>
+        /// The robot reward controller.
+        /// </summary>
+        private RewardController _rewardController;
+
+        /// <summary>
+        /// Controller for the rat Noldus responses.
+        /// </summary>
+        private RatResponseController _ratResponseController;
+
+        /// <summary>
+        /// Controller for writing events for the AlphaOmega.
+        /// </summary>
+        private AlphaOmegaEventsWriter _alphaOmegaEventsWriter;
+
+        /// <summary>
         /// Infra red controller for turnnig the InfraRed on/off.
         /// </summary>
         private InfraRedController _infraredController;
@@ -187,6 +204,17 @@ namespace PinkyAndBrain
                 _ardionoPrtWarningLabel.Visible = true;
             _ledController2.ResetLeds();
 
+            //Set the reward controller for the water reward system.
+            _rewardController = new RewardController("Dev1", "Port1", "Line0:2", "RewardChannels");
+            //reset the RewardController outputs.
+            _rewardController.ResetControllerOutputs();
+
+            //Init the rat resoinse controller for receiving rat response.
+            _ratResponseController = new RatResponseController("Dev1", "Port0", "Line0:2", "RatResponseChannels");
+
+            //Init the alpha omega writer for writingevents during the experiment.
+            _alphaOmegaEventsWriter = new AlphaOmegaEventsWriter("Dev1", "Port0", "Line3:7", "AlphaOmegaEventsChannels", "Port1", "Line3", "AlphaOmegaStrobeChannel", _logger);
+
             //set the InfraRed controller object.
             _infraredController = new InfraRedController("Dev1", "AO1", "InfraRedChannel");
             //turn the infrared on.
@@ -196,7 +224,7 @@ namespace PinkyAndBrain
 
             //make the delegate with it's control object and their nickname as pairs of dictionaries.
             Tuple<Dictionary<string, Control>, Dictionary<string, Delegate>> delegatsControlsTuple = MakeCtrlDelegateAndFunctionDictionary();
-            _cntrlLoop = new ControlLoop(_motocomController, _ledController, _ledController2, _infraredController, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1, _logger);
+            _cntrlLoop = new ControlLoop(_motocomController, _ledController, _ledController2, _rewardController, _ratResponseController, _alphaOmegaEventsWriter, _infraredController, delegatsControlsTuple.Item2, delegatsControlsTuple.Item1, _logger);
 
             //reset the selected direction to be empty.
             _selectedHandRewardDirections = 0;
