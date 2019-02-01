@@ -578,6 +578,13 @@ namespace PinkyAndBrain
         /// </summary>
         public void Stop()
         {
+            //if was paused in the middel and the stop come after pause with no resume before , cancel the pause.
+            if (_pauseAfterTheEndOfTheCurrentTrial)
+            {
+                _pauseAfterTheEndOfTheCurrentTrial = false;
+                Resume();
+            }
+
             //Globals._systemState = SystemState.STOPPED;
             _stopAfterTheEndOfTheCurrentTrial = true;
         }
