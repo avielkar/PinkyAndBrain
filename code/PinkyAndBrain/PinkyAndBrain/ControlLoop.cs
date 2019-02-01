@@ -435,12 +435,14 @@ namespace PinkyAndBrain
 
             //copy the logger reference to writing lof information
             _logger = logger;
-            
+
+            //todo:tranfer this commands to the gui interface function and here just reference it.
             _rewardController = new RewardController("Dev1" , "Port1" ,"Line0:2", "RewardChannels");
             _ratResponseController = new RatResponseController("Dev1", "Port0", "Line0:2", "RatResponseChannels");
             _alphaOmegaEventsWriter = new AlphaOmegaEventsWriter("Dev1", "Port0", "Line3:7", "AlphaOmegaEventsChannels" , "Port1" , "Line3" , "AlphaOmegaStrobeChannel" , _logger);
             _infraredController = infraRedController;
 
+            //todo:tranfer this commands to the gui interface function and here just reference it.
             //reset the RewardController outputs.
             _rewardController.ResetControllerOutputs();
 
