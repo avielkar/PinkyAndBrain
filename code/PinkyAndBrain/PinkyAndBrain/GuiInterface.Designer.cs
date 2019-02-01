@@ -173,7 +173,7 @@
             // 
             // _protocolsFolderBrowser
             // 
-            this._protocolsFolderBrowser.SelectedPath = Properties.Settings.Default.ProtocolsDirPath;
+            this._protocolsFolderBrowser.SelectedPath = global::PinkyAndBrain.Properties.Settings.Default.ProtocolsDirPath;
             // 
             // _protocolBrowserBtn
             // 
@@ -472,6 +472,7 @@
             this._interactiveNolduscommuncation.TabIndex = 14;
             this._interactiveNolduscommuncation.TabStop = false;
             this._interactiveNolduscommuncation.Text = "Interacive Noldus Communication";
+            this._interactiveNolduscommuncation.Visible = false;
             // 
             // panel3
             // 
