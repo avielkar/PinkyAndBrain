@@ -1713,7 +1713,7 @@ namespace PinkyAndBrain
             //wait the maximum time of the postTrialTime and the going home position time.
             moveRobotHomePositionTask.Wait();
             //also send the AlphaOmega that motion backwards ends if the robot was in motion backward.
-            if (!duration1HeadInTheCenterStabilityStage)
+            if (duration1HeadInTheCenterStabilityStage)
             {
                 _alphaOmegaEventsWriter.WriteEvent(true, AlphaOmegaEvent.RobotEndMovingBackward);
             }
